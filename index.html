@@ -7,7 +7,7 @@
 
 <title>BunRey English Course</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,8 +18,8 @@
     --yellow:#FFD93D;
     --green:#06D6A0;
     --orange:#FF6B35;
-    --bg:#F8FAFF;
     --dark:#1A1A2E;
+    --bg:#F8FAFF;
 }
 
 *{
@@ -49,7 +49,7 @@ header h1{
 
 header p{
     font-size:1.1rem;
-    opacity:0.9;
+    opacity:.9;
 }
 
 .hero-btn{
@@ -70,21 +70,22 @@ header p{
 }
 
 .section-title{
-    font-family:'Fredoka',sans-serif;
-    margin-bottom:25px;
-    color:var(--purple);
+    text-align:center;
+    margin-bottom:30px;
     font-size:2rem;
+    color:var(--purple);
+    font-family:'Fredoka',sans-serif;
 }
 
 .grade-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
 
 .grade-card{
     background:white;
-    border-radius:20px;
+    border-radius:24px;
     padding:25px;
     box-shadow:0 10px 25px rgba(0,0,0,.08);
     transition:.25s;
@@ -95,8 +96,8 @@ header p{
 }
 
 .grade-card h3{
-    margin-bottom:15px;
     color:var(--blue);
+    margin-bottom:15px;
     font-family:'Fredoka',sans-serif;
 }
 
@@ -104,10 +105,10 @@ header p{
     display:block;
     text-decoration:none;
     color:#444;
-    background:#f5f7fb;
+    padding:12px 15px;
     margin-bottom:10px;
-    padding:12px 14px;
     border-radius:12px;
+    background:#F4F6FA;
     font-weight:700;
     transition:.2s;
 }
@@ -126,15 +127,15 @@ header p{
 
 .stat-box{
     background:white;
-    text-align:center;
-    padding:25px;
     border-radius:20px;
+    padding:25px;
+    text-align:center;
     box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
 .stat-box h3{
-    font-size:2rem;
     color:var(--orange);
+    font-size:2rem;
 }
 
 footer{
@@ -145,10 +146,6 @@ footer{
     padding:30px;
 }
 
-footer p{
-    opacity:.8;
-}
-
 @media(max-width:768px){
 
 header h1{
@@ -156,7 +153,7 @@ header h1{
 }
 
 .section-title{
-    font-size:1.6rem;
+    font-size:1.5rem;
 }
 
 }
@@ -168,109 +165,109 @@ header h1{
 
 <header>
 
-    <h1>🎓 BunRey English Course</h1>
+<h1>🎓 BunRey English Course</h1>
 
-    <p>
-        Fun English Learning for Elementary Students
-    </p>
+<p>
+Fun English Learning for Elementary Students
+</p>
 
-    <a href="#grades" class="hero-btn">
-        📚 Explore Materials
-    </a>
+<a href="#materials" class="hero-btn">
+📚 Explore Materials
+</a>
 
 </header>
 
 <div class="container">
 
-    <h2 class="section-title" id="grades">
-        📚 Learning Materials
-    </h2>
+<h2 class="section-title" id="materials">
+📚 Learning Materials
+</h2>
 
-    <div class="grade-grid">
+<div class="grade-grid">
 
-        <div class="grade-card">
-            <h3>Grade 1</h3>
+<div class="grade-card">
+<h3>📘 Grade 1</h3>
+<a href="grade1-listening.html">🎧 Listening</a>
+<a href="grade1-reading.html">📖 Reading</a>
+<a href="grade1-speaking.html">🗣 Speaking</a>
+<a href="grade1-writing.html">✍ Writing</a>
+</div>
 
-            <a href="grade1-bunrey-listening.html">🎧 Listening</a>
-            <a href="grade1-bunrey-pronoun.html">📝 Pronoun</a>
-            <a href="grade1-reading-my-family.html">📖 Reading</a>
-        </div>
+<div class="grade-card">
+<h3>📗 Grade 2</h3>
+<a href="grade2-listening.html">🎧 Listening</a>
+<a href="grade2-reading.html">📖 Reading</a>
+<a href="grade2-speaking.html">🗣 Speaking</a>
+<a href="grade2-writing.html">✍ Writing</a>
+</div>
 
-        <div class="grade-card">
-            <h3>Grade 2</h3>
+<div class="grade-card">
+<h3>📙 Grade 3</h3>
+<a href="grade3-listening.html">🎧 Listening</a>
+<a href="grade3-reading.html">📖 Reading</a>
+<a href="grade3-speaking.html">🗣 Speaking</a>
+<a href="grade3-writing.html">✍ Writing</a>
+</div>
 
-            <a href="grade2-bunrey-listening.html">🎧 Listening</a>
-            <a href="grade2-bunrey-pronoun.html">📝 Pronoun</a>
-            <a href="grade2-reading-my-family.html">📖 Reading</a>
-        </div>
+<div class="grade-card">
+<h3>📕 Grade 4</h3>
+<a href="grade4-listening.html">🎧 Listening</a>
+<a href="grade4-reading.html">📖 Reading</a>
+<a href="grade4-speaking.html">🗣 Speaking</a>
+<a href="grade4-writing.html">✍ Writing</a>
+</div>
 
-        <div class="grade-card">
-            <h3>Grade 3</h3>
+<div class="grade-card">
+<h3>📓 Grade 5</h3>
+<a href="grade5-listening.html">🎧 Listening</a>
+<a href="grade5-reading.html">📖 Reading</a>
+<a href="grade5-speaking.html">🗣 Speaking</a>
+<a href="grade5-writing.html">✍ Writing</a>
+</div>
 
-            <a href="grade3-bunrey-listening.html">🎧 Listening</a>
-            <a href="grade3-bunrey-pronoun.html">📝 Pronoun</a>
-            <a href="grade3-reading-my-family.html">📖 Reading</a>
-        </div>
+<div class="grade-card">
+<h3>📔 Grade 6</h3>
+<a href="grade6-listening.html">🎧 Listening</a>
+<a href="grade6-reading.html">📖 Reading</a>
+<a href="grade6-speaking.html">🗣 Speaking</a>
+<a href="grade6-writing.html">✍ Writing</a>
+</div>
 
-        <div class="grade-card">
-            <h3>Grade 4</h3>
+</div>
 
-            <a href="grade4-bunrey-listening.html">🎧 Listening</a>
-            <a href="grade4-bunrey-pronoun.html">📝 Pronoun</a>
-            <a href="grade4-reading-my-family.html">📖 Reading</a>
-        </div>
+<div class="stats">
 
-        <div class="grade-card">
-            <h3>Grade 5</h3>
+<div class="stat-box">
+<h3>6</h3>
+<p>Grade Levels</p>
+</div>
 
-            <a href="#">🎧 Listening</a>
-            <a href="#">📝 Grammar</a>
-            <a href="#">📖 Reading</a>
-        </div>
+<div class="stat-box">
+<h3>4</h3>
+<p>Skills</p>
+</div>
 
-        <div class="grade-card">
-            <h3>Grade 6</h3>
+<div class="stat-box">
+<h3>100+</h3>
+<p>Future Lessons</p>
+</div>
 
-            <a href="#">🎧 Listening</a>
-            <a href="#">📝 Grammar</a>
-            <a href="#">📖 Reading</a>
-        </div>
+<div class="stat-box">
+<h3>∞</h3>
+<p>Learning Fun</p>
+</div>
 
-    </div>
-
-    <div class="stats">
-
-        <div class="stat-box">
-            <h3>6</h3>
-            <p>Grade Levels</p>
-        </div>
-
-        <div class="stat-box">
-            <h3>4</h3>
-            <p>Learning Skills</p>
-        </div>
-
-        <div class="stat-box">
-            <h3>100+</h3>
-            <p>Future Lessons</p>
-        </div>
-
-        <div class="stat-box">
-            <h3>∞</h3>
-            <p>Learning Fun</p>
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 <footer>
 
-    <h3>BunRey English Course</h3>
+<h3>BunRey English Course</h3>
 
-    <p>
-        Learn English with Fun • Listening • Reading • Speaking • Writing
-    </p>
+<p>
+Listening • Reading • Speaking • Writing
+</p>
 
 </footer>
 
