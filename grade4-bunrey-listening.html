@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening | Kelas 4 SD</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD93D;
+    --orange: #FF6B35;
+    --teal: #1DB9AA;
+    --purple: #7C5CBF;
+    --pink: #FF4D8D;
+    --blue: #3A86FF;
+    --green: #06D6A0;
+    --white: #FFFDF5;
+    --dark: #1A1A2E;
+    --card-bg: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #3A86FF 0%, #7C5CBF 60%, #FF4D8D 100%);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-shapes {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .header-shapes span {
+    position: absolute;
+    border-radius: 50%;
+    opacity: .18;
+  }
+  .hs1 { width:220px;height:220px;background:#FFD93D;top:-60px;left:-60px; }
+  .hs2 { width:150px;height:150px;background:#06D6A0;bottom:-40px;right:10%; }
+  .hs3 { width:90px;height:90px;background:#FF6B35;top:20px;right:25%; }
+
+  .header-inner {
+    position: relative;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 48px 28px 40px;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand-logo {
+    width:62px;height:62px;
+    background: var(--yellow);
+    border-radius: 18px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fredoka One',cursive;
+    font-size:22px; color:var(--dark);
+    box-shadow: 4px 4px 0 rgba(0,0,0,.25);
+    letter-spacing:1px;
+  }
+  .brand-text { color:#fff; }
+  .brand-text h1 { font-family:'Fredoka One',cursive; font-size:28px; line-height:1; letter-spacing:1px; }
+  .brand-text p { font-size:13px; opacity:.85; margin-top:2px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+  .header-badge {
+    background: var(--yellow);
+    color: var(--dark);
+    font-family:'Fredoka One',cursive;
+    font-size:15px; padding:10px 22px;
+    border-radius:50px;
+    box-shadow:3px 3px 0 rgba(0,0,0,.2);
+    letter-spacing:.5px;
+  }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: linear-gradient(160deg, #FFF8E1 0%, #E0F7FA 100%);
+    padding: 40px 48px 36px;
+    border-bottom: 4px dashed #FFD93D;
+    display:flex; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .hero-emoji { font-size:90px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .hero-text h2 {
+    font-family:'Fredoka One',cursive;
+    font-size:36px; color:var(--purple);
+    line-height:1.1;
+  }
+  .hero-text h2 span { color:var(--orange); }
+  .hero-text p { font-size:16px; color:#555; margin-top:10px; font-weight:600; max-width:480px; }
+  .hero-chips { display:flex;gap:10px;flex-wrap:wrap;margin-top:14px; }
+  .chip {
+    background:#fff; border:2.5px solid; border-radius:50px;
+    padding:6px 16px; font-size:13px; font-weight:800; letter-spacing:.5px;
+  }
+  .chip-blue  {border-color:var(--blue);color:var(--blue);}
+  .chip-pink  {border-color:var(--pink);color:var(--pink);}
+  .chip-green {border-color:var(--green);color:var(--green);}
+  .chip-orange{border-color:var(--orange);color:var(--orange);}
+
+  /* ── SECTION WRAPPER ── */
+  .page { max-width:960px; margin:0 auto; padding:40px 24px 60px; }
+
+  .section-title {
+    font-family:'Fredoka One',cursive;
+    font-size:22px;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:22px;
+  }
+  .section-title .icon-circle {
+    width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px; flex-shrink:0;
+  }
+  .bg-blue   {background:#E3EDFF;}
+  .bg-yellow {background:#FFF3CC;}
+  .bg-pink   {background:#FFE6F0;}
+  .bg-green  {background:#D6F5EE;}
+  .bg-purple {background:#EDE8FF;}
+  .bg-orange {background:#FFE8DE;}
+
+  /* ── LEARNING OBJECTIVES ── */
+  .obj-grid {
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;
+    margin-bottom:40px;
+  }
+  .obj-card {
+    background:#fff;
+    border:2.5px solid #E0E0E0;
+    border-radius:18px;
+    padding:18px 16px;
+    text-align:center;
+    transition:.2s;
+    box-shadow:3px 3px 0 #E0E0E0;
+  }
+  .obj-card:hover { transform:translateY(-4px); box-shadow:3px 7px 0 #ccc; }
+  .obj-card .emoji { font-size:34px; margin-bottom:8px; }
+  .obj-card h3 { font-size:14px;font-weight:800;color:var(--dark);margin-bottom:4px; }
+  .obj-card p  { font-size:12px;color:#777;font-weight:600; }
+
+  /* ── VOCABULARY CARDS ── */
+  .vocab-grid {
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;
+    margin-bottom:40px;
+  }
+  .vocab-card {
+    border-radius:16px;
+    padding:16px 12px;
+    text-align:center;
+    border:2.5px solid transparent;
+    transition:.2s;
+    cursor:default;
+    position:relative;overflow:hidden;
+  }
+  .vocab-card:hover { transform:scale(1.05); }
+  .vocab-card .word { font-family:'Fredoka One',cursive;font-size:17px;margin-bottom:4px; }
+  .vocab-card .trans { font-size:12px;font-weight:700;opacity:.75; }
+  .vocab-card .pic   { font-size:32px;margin-bottom:6px; }
+
+  .vc1 {background:#FFF3CC;border-color:#FFD93D;color:#B87000;}
+  .vc2 {background:#E3EDFF;border-color:#3A86FF;color:#1A4FA8;}
+  .vc3 {background:#D6F5EE;border-color:#06D6A0;color:#007A5E;}
+  .vc4 {background:#FFE6F0;border-color:#FF4D8D;color:#B5004E;}
+  .vc5 {background:#EDE8FF;border-color:#7C5CBF;color:#4B2E9E;}
+  .vc6 {background:#FFE8DE;border-color:#FF6B35;color:#B03A00;}
+
+  /* ── TRANSCRIPT BOX ── */
+  .transcript-box {
+    background:#1A1A2E;
+    color:#E0E0E0;
+    border-radius:20px;
+    padding:28px 30px;
+    position:relative;
+    margin-bottom:32px;
+    box-shadow:6px 6px 0 #ccc;
+  }
+  .transcript-box::before {
+    content:'📜 Script / Teks Audio';
+    display:block;
+    font-family:'Fredoka One',cursive;
+    font-size:14px;color:#FFD93D;
+    margin-bottom:14px;
+    letter-spacing:1px;
+  }
+  .transcript-box p { font-size:15px;line-height:1.9;font-weight:600; }
+  .transcript-box .highlight { color:#FFD93D; font-weight:800; }
+  .transcript-box .speaker {
+    display:inline-block;
+    background:#3A86FF;color:#fff;
+    font-family:'Fredoka One',cursive;
+    font-size:12px;padding:2px 10px;border-radius:50px;
+    margin-right:6px;
+  }
+  .speaker.b { background:#FF4D8D; }
+
+  /* ── EXERCISES ── */
+  .exercise-card {
+    background:#fff;
+    border-radius:20px;
+    border:2.5px solid #E8E8E8;
+    box-shadow:4px 4px 0 #E0E0E0;
+    padding:24px 26px;
+    margin-bottom:20px;
+  }
+  .exercise-card h4 {
+    font-family:'Fredoka One',cursive;
+    font-size:17px;color:var(--purple);
+    margin-bottom:16px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .q-block { margin-bottom:16px; }
+  .q-block .q-num {
+    display:inline-block;
+    background:var(--purple);color:#fff;
+    font-family:'Fredoka One',cursive;
+    width:28px;height:28px;border-radius:50%;
+    text-align:center;line-height:28px;font-size:14px;
+    margin-right:8px;flex-shrink:0;
+  }
+  .q-block .q-text { font-weight:700;font-size:15px;color:#333;display:inline; }
+  .options { display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;margin-left:36px; }
+  .opt {
+    background:#F5F5F5;
+    border:2px solid #DDD;
+    border-radius:50px;
+    padding:7px 18px;
+    font-size:13px;font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+    color:#444;
+  }
+  .opt:hover {background:var(--blue);border-color:var(--blue);color:#fff;}
+  .opt.correct {background:var(--green);border-color:var(--green);color:#fff;}
+  .opt.wrong   {background:#FF6B6B;border-color:#FF6B6B;color:#fff;}
+
+  .check-btn {
+    display:inline-block;
+    background:linear-gradient(135deg,var(--blue),var(--purple));
+    color:#fff;
+    font-family:'Fredoka One',cursive;
+    font-size:16px;
+    padding:12px 32px;
+    border-radius:50px;
+    border:none;cursor:pointer;
+    box-shadow:3px 3px 0 rgba(0,0,0,.15);
+    margin-top:10px;
+    transition:.2s;
+  }
+  .check-btn:hover {transform:translateY(-2px);box-shadow:3px 6px 0 rgba(0,0,0,.2);}
+
+  /* ── TRUE / FALSE ── */
+  .tf-row {
+    display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;
+  }
+  .tf-row .q-text { font-weight:700;font-size:15px;flex:1;min-width:200px; }
+  .tf-btns { display:flex;gap:8px; }
+  .tf-btn {
+    padding:7px 18px;border-radius:50px;
+    font-size:13px;font-weight:800;
+    border:2px solid;cursor:pointer;transition:.2s;background:#fff;
+  }
+  .tf-true  {border-color:var(--green);color:var(--green);}
+  .tf-false {border-color:#FF6B6B;color:#FF6B6B;}
+  .tf-true:hover,.tf-true.active  {background:var(--green);color:#fff;}
+  .tf-false:hover,.tf-false.active {background:#FF6B6B;color:#fff;}
+
+  /* ── FILL IN BLANKS ── */
+  .blank-input {
+    border:none;border-bottom:2.5px solid var(--blue);
+    outline:none;font-family:'Nunito',sans-serif;
+    font-size:15px;font-weight:700;
+    width:110px;text-align:center;
+    background:transparent;color:var(--blue);
+    margin:0 4px;
+  }
+
+  /* ── SCORE BOARD ── */
+  .score-box {
+    background:linear-gradient(135deg,var(--yellow),var(--orange));
+    border-radius:24px;
+    padding:28px 32px;
+    text-align:center;
+    margin-bottom:40px;
+    display:none;
+    box-shadow:6px 6px 0 rgba(0,0,0,.12);
+  }
+  .score-box h3 { font-family:'Fredoka One',cursive;font-size:28px;color:#fff; }
+  .score-box p  { font-size:16px;color:#fff;font-weight:700;margin-top:6px;opacity:.9; }
+  .score-big { font-family:'Fredoka One',cursive;font-size:64px;color:#fff;line-height:1; }
+
+  /* ── TIPS ── */
+  .tips-grid {
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;
+    margin-bottom:40px;
+  }
+  .tip-card {
+    border-radius:18px;padding:18px 16px;
+    border:2.5px dashed;
+    transition:.2s;
+  }
+  .tip-card:hover{transform:translateY(-3px);}
+  .tip-card .tip-icon {font-size:28px;margin-bottom:8px;}
+  .tip-card h4 {font-size:14px;font-weight:800;margin-bottom:4px;}
+  .tip-card p  {font-size:12px;font-weight:600;opacity:.8;line-height:1.5;}
+  .tc1{background:#FFF3CC;border-color:#FFD93D;color:#7A5200;}
+  .tc2{background:#E3EDFF;border-color:#3A86FF;color:#0A3080;}
+  .tc3{background:#D6F5EE;border-color:#06D6A0;color:#005C44;}
+  .tc4{background:#FFE6F0;border-color:#FF4D8D;color:#80003A;}
+
+  /* ── FOOTER ── */
+  footer {
+    background:var(--dark);color:#aaa;
+    text-align:center;padding:24px;
+    font-size:13px;font-weight:600;
+  }
+  footer span {color:var(--yellow);}
+
+  /* ── AUDIO PLAYER MOCK ── */
+  .audio-player {
+    background:linear-gradient(135deg,#1DB9AA,#3A86FF);
+    border-radius:18px;padding:18px 24px;
+    display:flex;align-items:center;gap:18px;
+    margin-bottom:18px;flex-wrap:wrap;
+    box-shadow:4px 4px 0 rgba(0,0,0,.1);
+  }
+  .play-btn {
+    width:52px;height:52px;border-radius:50%;
+    background:#fff;border:none;cursor:pointer;
+    font-size:22px;display:flex;align-items:center;justify-content:center;
+    box-shadow:3px 3px 0 rgba(0,0,0,.15);transition:.2s;flex-shrink:0;
+  }
+  .play-btn:hover{transform:scale(1.1);}
+  .audio-info { color:#fff; }
+  .audio-info h4 {font-family:'Fredoka One',cursive;font-size:16px;margin-bottom:2px;}
+  .audio-info p  {font-size:12px;opacity:.85;font-weight:700;}
+  .progress-bar {
+    flex:1;min-width:120px;
+    height:8px;background:rgba(255,255,255,.3);
+    border-radius:50px;overflow:hidden;
+  }
+  .progress-fill {
+    height:100%;background:#fff;width:0%;
+    border-radius:50px;transition:width .1s linear;
+  }
+  .note-banner {
+    background:#FFF3CC;border:2px solid #FFD93D;
+    border-radius:14px;padding:12px 18px;
+    font-size:13px;font-weight:700;color:#7A5200;
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:22px;
+  }
+
+  /* divider */
+  .divider {
+    border:none;border-top:3px dashed #E0E0E0;
+    margin:36px 0;
+  }
+
+  @media(max-width:600px){
+    .header-inner{padding:20px 20px;}
+    .hero{padding:28px 20px;}
+    .hero-emoji{font-size:60px;}
+    .hero-text h2{font-size:26px;}
+    .page{padding:28px 16px 48px;}
+    .transcript-box{padding:20px 18px;}
+    .exercise-card{padding:18px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-shapes">
+    <span class="hs1"></span>
+    <span class="hs2"></span>
+    <span class="hs3"></span>
+  </div>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-logo">BR</div>
+      <div class="brand-text">
+        <h1>BunRey</h1>
+        <p>English Course</p>
+      </div>
+    </div>
+    <div class="header-badge">🎧 Listening – Kelas 4 SD</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-emoji">🎧</div>
+  <div class="hero-text">
+    <h2>Let's Listen &amp; <span>Understand!</span></h2>
+    <p>Belajar memahami bahasa Inggris melalui mendengarkan percakapan sehari-hari dengan menyenangkan.</p>
+    <div class="hero-chips">
+      <span class="chip chip-blue">📌 Tema: Daily Activities</span>
+      <span class="chip chip-pink">⏱ 60 Menit</span>
+      <span class="chip chip-green">🏫 Kelas 4 SD</span>
+      <span class="chip chip-orange">⭐ Level: Beginner</span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- TUJUAN PEMBELAJARAN -->
+  <div class="section-title">
+    <div class="icon-circle bg-blue">🎯</div>
+    Tujuan Pembelajaran
+  </div>
+  <div class="obj-grid">
+    <div class="obj-card">
+      <div class="emoji">👂</div>
+      <h3>Mendengarkan</h3>
+      <p>Memahami percakapan pendek dalam Bahasa Inggris</p>
+    </div>
+    <div class="obj-card">
+      <div class="emoji">🔍</div>
+      <h3>Menemukan Info</h3>
+      <p>Menangkap informasi penting dari audio</p>
+    </div>
+    <div class="obj-card">
+      <div class="emoji">📝</div>
+      <h3>Menjawab</h3>
+      <p>Menjawab pertanyaan berdasarkan apa yang didengar</p>
+    </div>
+    <div class="obj-card">
+      <div class="emoji">💬</div>
+      <h3>Kosakata</h3>
+      <p>Mengenali kata-kata baru dalam konteks nyata</p>
+    </div>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div class="section-title">
+    <div class="icon-circle bg-yellow">📖</div>
+    Kosakata Penting (Key Vocabulary)
+  </div>
+  <div class="vocab-grid">
+    <div class="vocab-card vc1"><div class="pic">🌅</div><div class="word">Morning</div><div class="trans">Pagi hari</div></div>
+    <div class="vocab-card vc2"><div class="pic">🍳</div><div class="word">Breakfast</div><div class="trans">Sarapan</div></div>
+    <div class="vocab-card vc3"><div class="pic">🏫</div><div class="word">School</div><div class="trans">Sekolah</div></div>
+    <div class="vocab-card vc4"><div class="pic">🚌</div><div class="word">Bus</div><div class="trans">Bus</div></div>
+    <div class="vocab-card vc5"><div class="pic">📚</div><div class="word">Homework</div><div class="trans">PR / Tugas</div></div>
+    <div class="vocab-card vc6"><div class="pic">⏰</div><div class="word">Wake up</div><div class="trans">Bangun tidur</div></div>
+    <div class="vocab-card vc1"><div class="pic">🥛</div><div class="word">Milk</div><div class="trans">Susu</div></div>
+    <div class="vocab-card vc2"><div class="pic">👟</div><div class="word">Uniform</div><div class="trans">Seragam</div></div>
+    <div class="vocab-card vc3"><div class="pic">🌙</div><div class="word">Bedtime</div><div class="trans">Waktu tidur</div></div>
+    <div class="vocab-card vc4"><div class="pic">🎒</div><div class="word">Bag</div><div class="trans">Tas</div></div>
+    <div class="vocab-card vc5"><div class="pic">🦷</div><div class="word">Brush teeth</div><div class="trans">Gosok gigi</div></div>
+    <div class="vocab-card vc6"><div class="pic">🍱</div><div class="word">Lunch box</div><div class="trans">Bekal makan</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LISTENING 1 -->
+  <div class="section-title">
+    <div class="icon-circle bg-pink">🎙️</div>
+    Audio 1 – Percakapan: Morning Routine
+  </div>
+
+  <div class="audio-player">
+    <button class="play-btn" onclick="playAudio(this, 'audio1')" id="playBtn1">▶️</button>
+    <div class="audio-info">
+      <h4>Morning Routine – Dani &amp; Mom</h4>
+      <p>🎵 Durasi: ±1:30 menit | Dengarkan 2–3 kali</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog1"></div></div>
+  </div>
+
+  <div class="note-banner">
+    ℹ️ <strong>Petunjuk guru:</strong> Putar audio / bacakan teks percakapan di bawah ini. Siswa mendengarkan tanpa melihat teks terlebih dahulu.
+  </div>
+
+  <div class="transcript-box">
+    <p>
+      <span class="speaker">Mom</span> Dani, wake up! It's already <span class="highlight">6 o'clock</span> in the morning!<br><br>
+      <span class="speaker b">Dani</span> Oh, okay, Mom. Good morning!<br><br>
+      <span class="speaker">Mom</span> Good morning, dear. Please go and <span class="highlight">brush your teeth</span>, then get dressed in your <span class="highlight">uniform</span>.<br><br>
+      <span class="speaker b">Dani</span> Yes, Mom. Can I have <span class="highlight">breakfast</span> first?<br><br>
+      <span class="speaker">Mom</span> Of course! I made <span class="highlight">fried rice</span> and a glass of <span class="highlight">milk</span> for you.<br><br>
+      <span class="speaker b">Dani</span> Yay! My favourite! Mom, what time does the <span class="highlight">school bus</span> come?<br><br>
+      <span class="speaker">Mom</span> At <span class="highlight">6:30</span>. Don't forget your <span class="highlight">bag</span> and your <span class="highlight">lunch box</span>!<br><br>
+      <span class="speaker b">Dani</span> Okay, Mom! Thank you. Bye-bye!<br><br>
+      <span class="speaker">Mom</span> Bye-bye, Dani! Have a good day at school! 👋
+    </p>
+  </div>
+
+  <!-- EXERCISE 1 – Multiple Choice -->
+  <div class="exercise-card" id="ex1">
+    <h4>✏️ Exercise 1 – Pilihan Ganda (Multiple Choice)</h4>
+    <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:18px;">Pilih jawaban yang paling tepat berdasarkan percakapan di atas!</p>
+
+    <div class="q-block">
+      <span class="q-num">1</span><span class="q-text">What time does Dani wake up?</span>
+      <div class="options">
+        <button class="opt" onclick="choose(this,'wrong')">5 o'clock</button>
+        <button class="opt" onclick="choose(this,'correct')">6 o'clock</button>
+        <button class="opt" onclick="choose(this,'wrong')">7 o'clock</button>
+        <button class="opt" onclick="choose(this,'wrong')">Half past 5</button>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">2</span><span class="q-text">What does Mom make for breakfast?</span>
+      <div class="options">
+        <button class="opt" onclick="choose(this,'wrong')">Bread and butter</button>
+        <button class="opt" onclick="choose(this,'wrong')">Noodles and juice</button>
+        <button class="opt" onclick="choose(this,'correct')">Fried rice and milk</button>
+        <button class="opt" onclick="choose(this,'wrong')">Sandwich and tea</button>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">3</span><span class="q-text">What time does the school bus come?</span>
+      <div class="options">
+        <button class="opt" onclick="choose(this,'wrong')">6:00</button>
+        <button class="opt" onclick="choose(this,'correct')">6:30</button>
+        <button class="opt" onclick="choose(this,'wrong')">7:00</button>
+        <button class="opt" onclick="choose(this,'wrong')">7:30</button>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">4</span><span class="q-text">What does Mom tell Dani NOT to forget?</span>
+      <div class="options">
+        <button class="opt" onclick="choose(this,'wrong')">Umbrella and water bottle</button>
+        <button class="opt" onclick="choose(this,'wrong')">Books and pencil</button>
+        <button class="opt" onclick="choose(this,'correct')">Bag and lunch box</button>
+        <button class="opt" onclick="choose(this,'wrong')">Hat and shoes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXERCISE 2 – True / False -->
+  <div class="exercise-card" id="ex2">
+    <h4>✅ Exercise 2 – True or False</h4>
+    <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:18px;">Pilih TRUE (Benar) atau FALSE (Salah)!</p>
+
+    <div class="tf-row">
+      <span class="q-num" style="background:var(--teal);">1</span>
+      <span class="q-text">Dani's favourite breakfast is fried rice.</span>
+      <div class="tf-btns">
+        <button class="tf-btn tf-true" onclick="tfChoose(this,true,true)">TRUE</button>
+        <button class="tf-btn tf-false" onclick="tfChoose(this,false,true)">FALSE</button>
+      </div>
+    </div>
+    <div class="tf-row">
+      <span class="q-num" style="background:var(--teal);">2</span>
+      <span class="q-text">Dani goes to school by bicycle.</span>
+      <div class="tf-btns">
+        <button class="tf-btn tf-true" onclick="tfChoose(this,true,false)">TRUE</button>
+        <button class="tf-btn tf-false" onclick="tfChoose(this,false,false)">FALSE</button>
+      </div>
+    </div>
+    <div class="tf-row">
+      <span class="q-num" style="background:var(--teal);">3</span>
+      <span class="q-text">Mom says "Have a good day at school."</span>
+      <div class="tf-btns">
+        <button class="tf-btn tf-true" onclick="tfChoose(this,true,true)">TRUE</button>
+        <button class="tf-btn tf-false" onclick="tfChoose(this,false,true)">FALSE</button>
+      </div>
+    </div>
+    <div class="tf-row">
+      <span class="q-num" style="background:var(--teal);">4</span>
+      <span class="q-text">Dani brushes his teeth after breakfast.</span>
+      <div class="tf-btns">
+        <button class="tf-btn tf-true" onclick="tfChoose(this,true,false)">TRUE</button>
+        <button class="tf-btn tf-false" onclick="tfChoose(this,false,false)">FALSE</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LISTENING 2 -->
+  <div class="section-title">
+    <div class="icon-circle bg-green">🎙️</div>
+    Audio 2 – Monolog: My Daily Activities
+  </div>
+
+  <div class="audio-player" style="background:linear-gradient(135deg,#7C5CBF,#FF4D8D);">
+    <button class="play-btn" onclick="playAudio(this, 'audio2')" id="playBtn2">▶️</button>
+    <div class="audio-info">
+      <h4>My Daily Activities – Siti</h4>
+      <p>🎵 Durasi: ±1:15 menit | Dengarkan 2–3 kali</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog2"></div></div>
+  </div>
+
+  <div class="note-banner">
+    ℹ️ <strong>Petunjuk guru:</strong> Bacakan monolog ini perlahan dengan intonasi jelas. Siswa mencatat informasi penting.
+  </div>
+
+  <div class="transcript-box" style="background:#2D1B4E;">
+    <p>
+      Hi! My name is <span class="highlight">Siti</span>. I am a student. Let me tell you about my daily activities.<br><br>
+      Every morning, I wake up at <span class="highlight">five thirty</span>. I take a <span class="highlight">bath</span> and brush my teeth. Then I eat breakfast with my family. We usually have <span class="highlight">rice and vegetables</span>.<br><br>
+      I go to school at <span class="highlight">six fifteen</span>. I walk to school because my school is <span class="highlight">close to my house</span>. School starts at <span class="highlight">seven o'clock</span>.<br><br>
+      At school, I study <span class="highlight">Math, English, Science</span>, and other subjects. My favourite subject is <span class="highlight">English</span> because it is fun!<br><br>
+      I go home at <span class="highlight">one o'clock</span>. After lunch, I take a rest. In the afternoon, I do my <span class="highlight">homework</span>. In the evening, I study and read books.<br><br>
+      At <span class="highlight">nine o'clock</span>, I go to bed. Good night! 😴
+    </p>
+  </div>
+
+  <!-- EXERCISE 3 – Fill in the Blank -->
+  <div class="exercise-card" id="ex3">
+    <h4>✏️ Exercise 3 – Fill in the Blank</h4>
+    <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:18px;">Lengkapi kalimat berikut berdasarkan monolog Siti!</p>
+
+    <div class="q-block">
+      <span class="q-num" style="background:var(--orange);">1</span>
+      <span class="q-text">Siti wakes up at <input class="blank-input" id="b1" placeholder="..."> in the morning.</span>
+    </div>
+    <div class="q-block">
+      <span class="q-num" style="background:var(--orange);">2</span>
+      <span class="q-text">Siti goes to school by <input class="blank-input" id="b2" placeholder="..."> (walking / on foot).</span>
+    </div>
+    <div class="q-block">
+      <span class="q-num" style="background:var(--orange);">3</span>
+      <span class="q-text">Siti's favourite subject is <input class="blank-input" id="b3" placeholder="...">.</span>
+    </div>
+    <div class="q-block">
+      <span class="q-num" style="background:var(--orange);">4</span>
+      <span class="q-text">Siti goes home at <input class="blank-input" id="b4" placeholder="..."> o'clock.</span>
+    </div>
+    <div class="q-block">
+      <span class="q-num" style="background:var(--orange);">5</span>
+      <span class="q-text">In the afternoon, Siti does her <input class="blank-input" id="b5" placeholder="...">.</span>
+    </div>
+
+    <button class="check-btn" onclick="checkBlanks()">🔍 Check Answers</button>
+    <div id="blank-result" style="margin-top:14px;font-weight:800;font-size:15px;display:none;"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SCORE BOARD -->
+  <div class="score-box" id="scoreBox">
+    <div class="score-big" id="scoreNum">0</div>
+    <h3>🎉 Skor Kamu!</h3>
+    <p id="scoreMsg">Terus semangat belajar ya!</p>
+  </div>
+
+  <!-- TIPS -->
+  <div class="section-title">
+    <div class="icon-circle bg-orange">💡</div>
+    Tips Mendengarkan (Listening Tips)
+  </div>
+  <div class="tips-grid">
+    <div class="tip-card tc1">
+      <div class="tip-icon">🔄</div>
+      <h4>Dengarkan Berkali-kali</h4>
+      <p>Tidak apa-apa mendengarkan audio 2–3 kali sampai kamu memahaminya.</p>
+    </div>
+    <div class="tip-card tc2">
+      <div class="tip-icon">🗝️</div>
+      <h4>Cari Kata Kunci</h4>
+      <p>Fokus pada kata-kata penting seperti waktu, nama, dan tempat.</p>
+    </div>
+    <div class="tip-card tc3">
+      <div class="tip-icon">✍️</div>
+      <h4>Catat Informasi</h4>
+      <p>Tuliskan kata atau angka yang kamu dengar saat menyimak.</p>
+    </div>
+    <div class="tip-card tc4">
+      <div class="tip-icon">😌</div>
+      <h4>Jangan Panik</h4>
+      <p>Tidak perlu memahami setiap kata. Fokus pada ide utamanya!</p>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section-title">
+    <div class="icon-circle bg-purple">🌟</div>
+    Refleksi Siswa
+  </div>
+  <div class="exercise-card">
+    <h4 style="color:var(--teal);">💬 What did you learn today? (Apa yang kamu pelajari hari ini?)</h4>
+    <p style="font-size:14px;color:#555;font-weight:600;margin-bottom:14px;">Lingkari emoji yang sesuai dengan perasaanmu setelah belajar hari ini:</p>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:36px;margin-bottom:20px;">
+      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="Sangat Paham">😄</span>
+      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="Cukup Paham">🙂</span>
+      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="Perlu Belajar Lagi">😐</span>
+      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="Belum Mengerti">😟</span>
+    </div>
+    <p style="font-size:14px;font-weight:800;color:#333;">📝 Kata baru yang aku pelajari hari ini:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;" id="wordsList">
+      <span style="background:#E3EDFF;color:var(--blue);border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Morning ☀️</span>
+      <span style="background:#FFF3CC;color:#7A5200;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Breakfast 🍳</span>
+      <span style="background:#D6F5EE;color:#005C44;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">School 🏫</span>
+      <span style="background:#FFE6F0;color:#80003A;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Homework 📚</span>
+      <span style="background:#EDE8FF;color:#4B2E9E;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Uniform 👟</span>
+    </div>
+  </div>
+
+</div><!-- end .page -->
+
+<footer>
+  <p>© 2025 <span>BunRey English Course</span> · Materi Listening · Kelas 4 SD · Tema: Daily Activities</p>
+  <p style="margin-top:6px;font-size:12px;">Dibuat dengan ❤️ untuk semua murid BunRey yang hebat!</p>
+</footer>
+
+<script>
+  // ── AUDIO SIMULATION ──
+  let timers = {};
+  function playAudio(btn, id) {
+    const progId = id === 'audio1' ? 'prog1' : 'prog2';
+    const prog = document.getElementById(progId);
+    if (timers[id]) {
+      clearInterval(timers[id]);
+      delete timers[id];
+      btn.textContent = '▶️';
+      return;
+    }
+    btn.textContent = '⏸️';
+    let pct = 0;
+    timers[id] = setInterval(() => {
+      pct += .5;
+      prog.style.width = pct + '%';
+      if (pct >= 100) {
+        clearInterval(timers[id]);
+        delete timers[id];
+        btn.textContent = '▶️';
+        prog.style.width = '0%';
+      }
+    }, 150);
+  }
+
+  // ── MULTIPLE CHOICE ──
+  function choose(btn, type) {
+    const group = btn.closest('.options');
+    group.querySelectorAll('.opt').forEach(b => b.classList.remove('correct','wrong'));
+    btn.classList.add(type);
+  }
+
+  // ── TRUE / FALSE ──
+  function tfChoose(btn, chosen, correct) {
+    const row = btn.closest('.tf-btns');
+    row.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (chosen === correct) {
+      btn.style.background = '#06D6A0'; btn.style.borderColor = '#06D6A0'; btn.style.color = '#fff';
+    } else {
+      btn.style.background = '#FF6B6B'; btn.style.borderColor = '#FF6B6B'; btn.style.color = '#fff';
+    }
+  }
+
+  // ── FILL IN BLANK ──
+  const answers = {b1:'five thirty',b2:'walking',b3:'english',b4:'one',b5:'homework'};
+  function checkBlanks() {
+    let score = 0;
+    ['b1','b2','b3','b4','b5'].forEach(id => {
+      const inp = document.getElementById(id);
+      const val = inp.value.trim().toLowerCase();
+      const ans = answers[id];
+      if (val === ans || val.includes(ans) || ans.includes(val)) {
+        inp.style.borderBottomColor = '#06D6A0'; inp.style.color = '#06D6A0'; score++;
+      } else {
+        inp.style.borderBottomColor = '#FF6B6B'; inp.style.color = '#FF6B6B';
+      }
+    });
+    const el = document.getElementById('blank-result');
+    el.style.display = 'block';
+    if (score === 5) {
+      el.style.color = '#06D6A0';
+      el.textContent = '🎉 Sempurna! Semua jawaban benar!';
+    } else {
+      el.style.color = '#FF6B35';
+      el.textContent = `📝 ${score} dari 5 benar. Coba lagi ya!`;
+    }
+    showScore(score);
+  }
+
+  function showScore(s) {
+    const box = document.getElementById('scoreBox');
+    box.style.display = 'block';
+    document.getElementById('scoreNum').textContent = s + '/5';
+    const msgs = ['Yuk belajar lagi! 💪','Bagus, terus semangat! 😊','Luar biasa! 🌟','Hampir sempurna! ✨','Sempurna! Kamu hebat! 🏆'];
+    document.getElementById('scoreMsg').textContent = msgs[s] || msgs[0];
+    box.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  // ── EMOJI REFLECTION ──
+  function selectEmoji(el) {
+    document.querySelectorAll('.emoji-pick').forEach(e => e.style.transform='scale(1)');
+    el.style.transform = 'scale(1.4)';
+    el.style.filter = 'drop-shadow(0 0 8px gold)';
+  }
+</script>
+</body>
+</html>
