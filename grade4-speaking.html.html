@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Adverbs | Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sun: #FFD93D;
+  --coral: #FF6B6B;
+  --teal: #4ECDC4;
+  --navy: #1A1A3E;
+  --purple: #9B59B6;
+  --pink: #FF6EB4;
+  --green: #2ECC71;
+  --blue: #3498DB;
+  --orange: #FF8C42;
+  --cream: #FFF9F0;
+  --card: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ══ DECORATIVE BG DOTS ══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,217,61,.15) 2px, transparent 2px),
+    radial-gradient(circle, rgba(78,205,196,.10) 2px, transparent 2px);
+  background-size: 40px 40px, 70px 70px;
+  background-position: 0 0, 20px 20px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ══ HEADER ══ */
+header {
+  background: linear-gradient(135deg, #1A1A3E 0%, #2D1B69 50%, #1A1A3E 100%);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.header-stars {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.star {
+  position: absolute; font-size: 18px; opacity: .25;
+  animation: twinkle 2.5s ease-in-out infinite;
+}
+.star:nth-child(1){top:15%;left:5%;animation-delay:0s}
+.star:nth-child(2){top:60%;left:12%;animation-delay:.4s}
+.star:nth-child(3){top:20%;left:30%;animation-delay:.8s}
+.star:nth-child(4){top:70%;left:45%;animation-delay:.2s}
+.star:nth-child(5){top:10%;left:65%;animation-delay:1s}
+.star:nth-child(6){top:55%;left:78%;animation-delay:.6s}
+.star:nth-child(7){top:80%;left:90%;animation-delay:.3s}
+.star:nth-child(8){top:30%;left:88%;animation-delay:.9s}
+
+@keyframes twinkle { 0%,100%{opacity:.25}50%{opacity:.7} }
+
+.header-inner {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-logo {
+  width: 64px; height: 64px;
+  background: var(--sun);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 24px; color: var(--navy);
+  box-shadow: 0 4px 0 rgba(0,0,0,.3), 0 0 20px rgba(255,217,61,.4);
+}
+.brand-text { color: #fff; }
+.brand-text h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 30px; line-height: 1;
+  background: linear-gradient(90deg, #FFD93D, #FF6EB4);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.brand-text p { font-size: 12px; opacity: .7; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #ccc; margin-top: 2px; }
+
+.header-badge {
+  background: linear-gradient(135deg, var(--sun), var(--orange));
+  color: var(--navy);
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px; padding: 10px 24px;
+  border-radius: 50px;
+  box-shadow: 0 4px 0 rgba(0,0,0,.25);
+  letter-spacing: .5px;
+}
+
+/* ══ HERO ══ */
+.hero {
+  background: linear-gradient(160deg, #2D1B69 0%, #1A1A3E 100%);
+  padding: 50px 40px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: .3;
+  pointer-events: none;
+}
+.hg1{width:300px;height:300px;background:#FF6EB4;top:-80px;left:-80px;}
+.hg2{width:250px;height:250px;background:#4ECDC4;bottom:-60px;right:-60px;}
+.hg3{width:200px;height:200px;background:#FFD93D;top:50%;left:50%;transform:translate(-50%,-50%);}
+
+.hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,.1);
+  border: 1.5px solid rgba(255,255,255,.2);
+  color: var(--sun);
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  padding: 6px 18px; border-radius: 50px;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.hero h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 52px; line-height: 1.05;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.hero h2 .accent { color: var(--sun); }
+.hero h2 .accent2 { color: var(--teal); }
+.hero p {
+  font-size: 17px; color: rgba(255,255,255,.8);
+  font-weight: 600; line-height: 1.6; max-width: 500px; margin: 0 auto 26px;
+}
+.hero-chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.hchip {
+  background: rgba(255,255,255,.12);
+  border: 1.5px solid rgba(255,255,255,.2);
+  color: #fff; border-radius: 50px;
+  padding: 7px 18px; font-size: 13px; font-weight: 800;
+}
+
+/* ══ WHAT IS ADVERB — BIG DEFINITION CARD ══ */
+.def-section {
+  position: relative; z-index: 1;
+  max-width: 1000px; margin: 0 auto;
+  padding: 48px 24px 0;
+}
+.def-card {
+  background: linear-gradient(135deg, var(--teal) 0%, #2980B9 100%);
+  border-radius: 28px;
+  padding: 36px 40px;
+  display: flex; align-items: center; gap: 32px;
+  box-shadow: 0 8px 0 rgba(0,0,0,.12), 0 20px 40px rgba(78,205,196,.25);
+  flex-wrap: wrap;
+}
+.def-icon { font-size: 72px; flex-shrink: 0; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+.def-text { flex: 1; min-width: 260px; }
+.def-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px; color: rgba(255,255,255,.7);
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+}
+.def-text h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 32px; color: #fff; margin-bottom: 10px;
+}
+.def-text p { font-size: 16px; color: rgba(255,255,255,.9); font-weight: 600; line-height: 1.6; }
+.def-highlight {
+  display: inline-block;
+  background: rgba(255,255,255,.2);
+  border: 1.5px solid rgba(255,255,255,.3);
+  border-radius: 8px; padding: 2px 8px;
+  font-weight: 800;
+}
+
+/* ══ PAGE WRAP ══ */
+.page { max-width: 1000px; margin: 0 auto; padding: 40px 24px 60px; position: relative; z-index: 1; }
+
+/* ══ SECTION TITLES ══ */
+.sec-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 24px; color: var(--navy);
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px; margin-top: 48px;
+}
+.sec-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+  box-shadow: 0 3px 0 rgba(0,0,0,.1);
+}
+.si-sun   { background: var(--sun); }
+.si-coral { background: var(--coral); }
+.si-teal  { background: var(--teal); }
+.si-purple{ background: var(--purple); color:#fff; }
+.si-pink  { background: var(--pink); }
+.si-green { background: var(--green); }
+.si-blue  { background: var(--blue); color:#fff; }
+.si-orange{ background: var(--orange); }
+
+/* ══ TYPES OF ADVERBS — TAB CARDS ══ */
+.types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.type-card {
+  border-radius: 22px;
+  padding: 22px 20px;
+  cursor: pointer;
+  transition: all .25s cubic-bezier(.34,1.56,.64,1);
+  border: 2.5px solid transparent;
+  position: relative; overflow: hidden;
+}
+.type-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: .08;
+  background: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 1px, transparent 8px);
+}
+.type-card:hover { transform: translateY(-6px) scale(1.02); border-color: rgba(255,255,255,.4); }
+.type-card .tc-icon { font-size: 38px; margin-bottom: 12px; }
+.type-card h4 { font-family: 'Fredoka One', cursive; font-size: 18px; margin-bottom: 6px; }
+.type-card .tc-desc { font-size: 13px; font-weight: 700; opacity: .85; margin-bottom: 10px; line-height: 1.4; }
+.type-card .tc-question { font-size: 12px; font-weight: 800; opacity: .65; font-style: italic; }
+.tc-examples { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tc-ex {
+  background: rgba(255,255,255,.25);
+  border-radius: 50px; padding: 3px 10px;
+  font-size: 12px; font-weight: 800;
+}
+.card-manner  { background: linear-gradient(135deg, #FF6EB4, #FF4D8D); color: #fff; }
+.card-time    { background: linear-gradient(135deg, #FFD93D, #FF8C42); color: var(--navy); }
+.card-place   { background: linear-gradient(135deg, #4ECDC4, #2980B9); color: #fff; }
+.card-freq    { background: linear-gradient(135deg, #9B59B6, #6C3483); color: #fff; }
+.card-degree  { background: linear-gradient(135deg, #2ECC71, #1A8A4A); color: #fff; }
+
+/* ══ FORMULA BOX ══ */
+.formula-box {
+  background: var(--navy);
+  border-radius: 22px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 6px 0 rgba(0,0,0,.2);
+}
+.formula-box h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px; color: var(--sun);
+  letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.formula-row {
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap; margin-bottom: 12px;
+}
+.f-box {
+  background: rgba(255,255,255,.1);
+  border: 2px solid rgba(255,255,255,.2);
+  color: #fff;
+  border-radius: 12px; padding: 8px 16px;
+  font-family: 'Fredoka One', cursive; font-size: 15px;
+}
+.f-box.highlight-box { background: var(--teal); border-color: var(--teal); color: var(--navy); }
+.f-plus { color: rgba(255,255,255,.5); font-size: 18px; font-weight: 900; }
+.f-note { font-size: 13px; color: rgba(255,255,255,.6); font-weight: 700; margin-top: 6px; }
+
+/* ══ EXAMPLE SENTENCES ══ */
+.examples-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.example-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+  box-shadow: 0 3px 0 #E8E8E8, 0 6px 20px rgba(0,0,0,.04);
+  transition: .2s;
+}
+.example-item:hover { transform: translateX(4px); box-shadow: 0 3px 0 #ccc, 0 6px 20px rgba(0,0,0,.08); }
+.ex-num {
+  width: 32px; height: 32px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka One', cursive; font-size: 15px;
+  flex-shrink: 0;
+}
+.ex-body { flex: 1; }
+.ex-sentence { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.ex-adverb { font-weight: 900; text-decoration: underline wavy 2px; }
+.ex-note { font-size: 12px; font-weight: 700; color: #888; }
+.ex-type-tag {
+  display: inline-block; border-radius: 50px;
+  padding: 2px 10px; font-size: 11px; font-weight: 800;
+  margin-left: 8px;
+}
+
+/* ══ ADVERB SUFFIXES ══ */
+.suffix-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px; margin-bottom: 32px;
+}
+.suffix-card {
+  background: #fff;
+  border-radius: 18px; padding: 20px 16px;
+  text-align: center;
+  border: 2.5px solid #F0F0F0;
+  box-shadow: 0 3px 0 #E8E8E8;
+  transition: .2s;
+}
+.suffix-card:hover { transform: translateY(-4px); border-color: var(--teal); }
+.suffix-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px; margin-bottom: 4px;
+}
+.suffix-arrow { font-size: 18px; color: #ccc; margin: 6px 0; }
+.suffix-result {
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px; margin-bottom: 6px;
+}
+.suffix-eg { font-size: 12px; font-weight: 700; color: #888; }
+
+/* ══ DIVIDER ══ */
+.divider { border: none; border-top: 3px dashed #E0E0E0; margin: 40px 0; }
+
+/* ══ EXERCISES ══ */
+.exercise-wrap {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px 30px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 0 #E0E0E0, 0 10px 30px rgba(0,0,0,.04);
+}
+.exercise-wrap h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px; color: var(--navy);
+  margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+}
+.exercise-wrap .ex-sub {
+  font-size: 13px; color: #888; font-weight: 700; margin-bottom: 20px;
+}
+.q-row { margin-bottom: 18px; }
+.q-label {
+  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;
+}
+.q-badge {
+  background: var(--navy); color: #fff;
+  font-family: 'Fredoka One', cursive;
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.q-text { font-size: 15px; font-weight: 700; color: #333; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; margin-left: 38px; }
+.opt {
+  background: #F8F8F8; border: 2px solid #E0E0E0;
+  border-radius: 50px; padding: 8px 18px;
+  font-size: 13px; font-weight: 700; color: #555;
+  cursor: pointer; transition: .2s;
+}
+.opt:hover { background: var(--teal); border-color: var(--teal); color: #fff; }
+.opt.correct { background: var(--green); border-color: var(--green); color: #fff; }
+.opt.wrong   { background: var(--coral); border-color: var(--coral); color: #fff; }
+
+/* TF */
+.tf-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.tf-text { font-size: 15px; font-weight: 700; flex: 1; min-width: 200px; }
+.tf-btns { display: flex; gap: 8px; }
+.tf-btn {
+  padding: 7px 18px; border-radius: 50px;
+  font-size: 13px; font-weight: 800;
+  border: 2px solid; cursor: pointer; background: #fff; transition: .2s;
+}
+.tf-t { border-color: var(--green); color: var(--green); }
+.tf-f { border-color: var(--coral); color: var(--coral); }
+
+/* Fill blank */
+.blank-input {
+  border: none; border-bottom: 2.5px solid var(--blue);
+  outline: none; width: 120px; text-align: center;
+  font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800;
+  background: transparent; color: var(--blue); margin: 0 4px;
+}
+.word-bank-box {
+  background: linear-gradient(135deg, #EEF2FF, #F0FFF8);
+  border: 2px dashed var(--blue);
+  border-radius: 14px; padding: 12px 18px;
+  margin-bottom: 18px;
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.wb-label { font-family: 'Fredoka One', cursive; font-size: 14px; color: var(--blue); }
+.wb-word {
+  background: #fff; border: 2px solid var(--blue);
+  color: var(--blue); border-radius: 50px;
+  padding: 4px 14px; font-size: 13px; font-weight: 800;
+}
+
+/* Drag & drop sort */
+.sort-list {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;
+}
+.sort-item {
+  background: #F8F8F8; border: 2px solid #E0E0E0;
+  border-radius: 14px; padding: 12px 18px;
+  font-size: 15px; font-weight: 700; color: #333;
+  cursor: grab; user-select: none;
+  display: flex; align-items: center; gap: 12px;
+  transition: .15s;
+}
+.sort-item:active { cursor: grabbing; }
+.sort-item .drag-icon { color: #ccc; font-size: 18px; }
+.sort-item.dragging { opacity: .5; border-color: var(--teal); background: #E0FAF8; }
+.sort-item.drag-over { border-color: var(--purple); background: #F5EEFF; transform: scale(1.02); }
+.sort-classify-tag { margin-left: auto; border-radius: 50px; padding: 3px 12px; font-size: 12px; font-weight: 800; }
+
+.check-btn {
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  color: #fff; font-family: 'Fredoka One', cursive;
+  font-size: 16px; padding: 12px 32px; border-radius: 50px;
+  border: none; cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,.15);
+  margin-top: 8px; transition: .2s;
+}
+.check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(0,0,0,.15); }
+
+/* ══ SCORE ══ */
+.score-box {
+  background: linear-gradient(135deg, #FFD93D, #FF8C42);
+  border-radius: 26px; padding: 30px 36px;
+  text-align: center; margin-bottom: 40px;
+  display: none;
+  box-shadow: 0 6px 0 rgba(0,0,0,.12), 0 20px 40px rgba(255,140,66,.2);
+}
+.score-big { font-family: 'Fredoka One', cursive; font-size: 72px; color: #fff; line-height: 1; }
+.score-box h3 { font-family: 'Fredoka One', cursive; font-size: 28px; color: #fff; margin-top: 4px; }
+.score-box p { font-size: 16px; font-weight: 700; color: rgba(255,255,255,.9); margin-top: 8px; }
+
+/* ══ TIPS ══ */
+.tips-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px; margin-bottom: 40px;
+}
+.tip-card {
+  border-radius: 20px; padding: 20px 18px;
+  border: 2.5px dashed; transition: .2s;
+}
+.tip-card:hover { transform: translateY(-4px); }
+.tip-card .ti { font-size: 30px; margin-bottom: 10px; }
+.tip-card h4 { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+.tip-card p  { font-size: 12px; font-weight: 600; line-height: 1.5; opacity: .85; }
+.tc-a{background:#FFF3CC;border-color:#FFD93D;color:#7A5200;}
+.tc-b{background:#E3EDFF;border-color:#3498DB;color:#0A3080;}
+.tc-c{background:#D6F5EE;border-color:#2ECC71;color:#0A5C34;}
+.tc-d{background:#FFE6F0;border-color:#FF6EB4;color:#7A0040;}
+
+/* ══ REFLECTION ══ */
+.reflect-card {
+  background: var(--navy);
+  border-radius: 24px; padding: 30px 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 0 rgba(0,0,0,.2);
+}
+.reflect-card h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px; color: var(--sun);
+  margin-bottom: 16px;
+}
+.reflect-card p { font-size: 14px; color: rgba(255,255,255,.75); font-weight: 600; margin-bottom: 16px; }
+.emoji-row { display: flex; gap: 20px; flex-wrap: wrap; font-size: 38px; margin-bottom: 22px; }
+.emoji-row span { cursor: pointer; transition: .3s; }
+.words-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.w-tag {
+  border-radius: 50px; padding: 6px 16px;
+  font-size: 13px; font-weight: 800;
+}
+.wt1{background:#FFD93D;color:#7A5200;}
+.wt2{background:#4ECDC4;color:#004D48;}
+.wt3{background:#FF6EB4;color:#5A0030;}
+.wt4{background:#9B59B6;color:#fff;}
+.wt5{background:#2ECC71;color:#0A4020;}
+.wt6{background:#3498DB;color:#fff;}
+.wt7{background:#FF8C42;color:#4A1A00;}
+
+/* ══ FOOTER ══ */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,.5);
+  text-align: center; padding: 26px;
+  font-size: 13px; font-weight: 600; position: relative; z-index: 1;
+}
+footer .ft-accent { color: var(--sun); }
+
+@media(max-width:600px){
+  .header-inner{padding:20px;}
+  .hero{padding:36px 20px 44px;}
+  .hero h2{font-size:36px;}
+  .def-card{padding:24px 20px;}
+  .def-icon{font-size:50px;}
+  .page{padding:28px 16px 48px;}
+  .exercise-wrap{padding:20px 16px;}
+  .formula-box{padding:20px 18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-stars">
+    <span class="star">⭐</span><span class="star">✨</span><span class="star">⭐</span>
+    <span class="star">✨</span><span class="star">⭐</span><span class="star">✨</span>
+    <span class="star">⭐</span><span class="star">✨</span>
+  </div>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-logo">BR</div>
+      <div class="brand-text">
+        <h1>BunRey</h1>
+        <p>English Course</p>
+      </div>
+    </div>
+    <div class="header-badge">📝 Adverbs – Grade 4</div>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-glow hg1"></div>
+  <div class="hero-glow hg2"></div>
+  <div class="hero-glow hg3"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📚 Grammar Lesson</div>
+    <h2>What is an <span class="accent">Adverb</span>?<br><span class="accent2">Let's Find Out!</span></h2>
+    <p>Learn how adverbs make our sentences more interesting, descriptive, and exciting!</p>
+    <div class="hero-chips">
+      <span class="hchip">📌 Topic: Adverbs</span>
+      <span class="hchip">⏱ 60 Minutes</span>
+      <span class="hchip">🏫 Grade 4</span>
+      <span class="hchip">⭐ Beginner – Intermediate</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHAT IS AN ADVERB ══ -->
+<div class="def-section">
+  <div class="def-card">
+    <div class="def-icon">🔍</div>
+    <div class="def-text">
+      <div class="def-label">📖 Definition</div>
+      <h3>What is an Adverb?</h3>
+      <p>An <span class="def-highlight">adverb</span> is a word that describes or gives more information about a <span class="def-highlight">verb</span>, an <span class="def-highlight">adjective</span>, or another <span class="def-highlight">adverb</span>. Adverbs tell us <em>how</em>, <em>when</em>, <em>where</em>, <em>how often</em>, or <em>how much</em> something happens.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE ══ -->
+<div class="page">
+
+  <!-- LEARNING OBJECTIVES -->
+  <div class="sec-title"><div class="sec-icon si-sun">🎯</div>Learning Objectives</div>
+  <div class="types-grid" style="margin-bottom:40px;">
+    <div class="obj-card" style="background:#fff;border:2.5px solid #F0F0F0;border-radius:20px;padding:20px;text-align:center;box-shadow:0 3px 0 #E8E8E8;">
+      <div style="font-size:32px;margin-bottom:10px;">🧠</div>
+      <h4 style="font-family:'Fredoka One',cursive;font-size:16px;margin-bottom:6px;">Understand</h4>
+      <p style="font-size:12px;color:#777;font-weight:700;">Know what an adverb is and how it works</p>
+    </div>
+    <div class="obj-card" style="background:#fff;border:2.5px solid #F0F0F0;border-radius:20px;padding:20px;text-align:center;box-shadow:0 3px 0 #E8E8E8;">
+      <div style="font-size:32px;margin-bottom:10px;">🔎</div>
+      <h4 style="font-family:'Fredoka One',cursive;font-size:16px;margin-bottom:6px;">Identify</h4>
+      <p style="font-size:12px;color:#777;font-weight:700;">Find adverbs in sentences</p>
+    </div>
+    <div class="obj-card" style="background:#fff;border:2.5px solid #F0F0F0;border-radius:20px;padding:20px;text-align:center;box-shadow:0 3px 0 #E8E8E8;">
+      <div style="font-size:32px;margin-bottom:10px;">📝</div>
+      <h4 style="font-family:'Fredoka One',cursive;font-size:16px;margin-bottom:6px;">Classify</h4>
+      <p style="font-size:12px;color:#777;font-weight:700;">Sort adverbs by their type</p>
+    </div>
+    <div class="obj-card" style="background:#fff;border:2.5px solid #F0F0F0;border-radius:20px;padding:20px;text-align:center;box-shadow:0 3px 0 #E8E8E8;">
+      <div style="font-size:32px;margin-bottom:10px;">✍️</div>
+      <h4 style="font-family:'Fredoka One',cursive;font-size:16px;margin-bottom:6px;">Use</h4>
+      <p style="font-size:12px;color:#777;font-weight:700;">Use adverbs correctly in sentences</p>
+    </div>
+  </div>
+
+  <!-- ══ TYPES OF ADVERBS ══ -->
+  <div class="sec-title"><div class="sec-icon si-coral">📋</div>Types of Adverbs</div>
+  <div class="types-grid">
+
+    <div class="type-card card-manner">
+      <div class="tc-icon">🎭</div>
+      <h4>Adverb of Manner</h4>
+      <div class="tc-desc">Describes <strong>HOW</strong> an action is done</div>
+      <div class="tc-question">Question: How?</div>
+      <div class="tc-examples">
+        <span class="tc-ex">quickly</span>
+        <span class="tc-ex">slowly</span>
+        <span class="tc-ex">loudly</span>
+        <span class="tc-ex">carefully</span>
+        <span class="tc-ex">happily</span>
+      </div>
+    </div>
+
+    <div class="type-card card-time">
+      <div class="tc-icon">⏰</div>
+      <h4>Adverb of Time</h4>
+      <div class="tc-desc">Describes <strong>WHEN</strong> something happens</div>
+      <div class="tc-question">Question: When?</div>
+      <div class="tc-examples">
+        <span class="tc-ex">today</span>
+        <span class="tc-ex">yesterday</span>
+        <span class="tc-ex">soon</span>
+        <span class="tc-ex">now</span>
+        <span class="tc-ex">later</span>
+      </div>
+    </div>
+
+    <div class="type-card card-place">
+      <div class="tc-icon">📍</div>
+      <h4>Adverb of Place</h4>
+      <div class="tc-desc">Describes <strong>WHERE</strong> something happens</div>
+      <div class="tc-question">Question: Where?</div>
+      <div class="tc-examples">
+        <span class="tc-ex">here</span>
+        <span class="tc-ex">there</span>
+        <span class="tc-ex">outside</span>
+        <span class="tc-ex">inside</span>
+        <span class="tc-ex">nearby</span>
+      </div>
+    </div>
+
+    <div class="type-card card-freq">
+      <div class="tc-icon">🔁</div>
+      <h4>Adverb of Frequency</h4>
+      <div class="tc-desc">Describes <strong>HOW OFTEN</strong> something happens</div>
+      <div class="tc-question">Question: How often?</div>
+      <div class="tc-examples">
+        <span class="tc-ex">always</span>
+        <span class="tc-ex">usually</span>
+        <span class="tc-ex">often</span>
+        <span class="tc-ex">sometimes</span>
+        <span class="tc-ex">never</span>
+      </div>
+    </div>
+
+    <div class="type-card card-degree">
+      <div class="tc-icon">📊</div>
+      <h4>Adverb of Degree</h4>
+      <div class="tc-desc">Describes <strong>HOW MUCH</strong> or to what extent</div>
+      <div class="tc-question">Question: How much?</div>
+      <div class="tc-examples">
+        <span class="tc-ex">very</span>
+        <span class="tc-ex">quite</span>
+        <span class="tc-ex">too</span>
+        <span class="tc-ex">almost</span>
+        <span class="tc-ex">so</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ HOW TO FORM -LY ADVERBS ══ -->
+  <div class="sec-title"><div class="sec-icon si-purple">✨</div>How to Form Adverbs (Adding -ly)</div>
+  <div class="suffix-grid">
+    <div class="suffix-card">
+      <div class="suffix-label" style="color:var(--blue);">slow</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">(adjective)</div>
+      <div class="suffix-arrow">+ ly ↓</div>
+      <div class="suffix-result" style="color:var(--blue);">slowly</div>
+      <div class="suffix-eg">He walks <em>slowly</em>.</div>
+    </div>
+    <div class="suffix-card">
+      <div class="suffix-label" style="color:var(--pink);">quick</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">(adjective)</div>
+      <div class="suffix-arrow">+ ly ↓</div>
+      <div class="suffix-result" style="color:var(--pink);">quickly</div>
+      <div class="suffix-eg">She ran <em>quickly</em>.</div>
+    </div>
+    <div class="suffix-card">
+      <div class="suffix-label" style="color:var(--green);">happy</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">(adjective)</div>
+      <div class="suffix-arrow">y → ily ↓</div>
+      <div class="suffix-result" style="color:var(--green);">happily</div>
+      <div class="suffix-eg">She sang <em>happily</em>.</div>
+    </div>
+    <div class="suffix-card">
+      <div class="suffix-label" style="color:var(--orange);">loud</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">(adjective)</div>
+      <div class="suffix-arrow">+ ly ↓</div>
+      <div class="suffix-result" style="color:var(--orange);">loudly</div>
+      <div class="suffix-eg">He shouted <em>loudly</em>.</div>
+    </div>
+    <div class="suffix-card">
+      <div class="suffix-label" style="color:var(--purple);">careful</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">(adjective)</div>
+      <div class="suffix-arrow">+ ly ↓</div>
+      <div class="suffix-result" style="color:var(--purple);">carefully</div>
+      <div class="suffix-eg">Draw <em>carefully</em>.</div>
+    </div>
+    <div class="suffix-card">
+      <div class="suffix-label" style="color:var(--coral);">quiet</div>
+      <div style="font-size:12px;color:#aaa;font-weight:700;">(adjective)</div>
+      <div class="suffix-arrow">+ ly ↓</div>
+      <div class="suffix-result" style="color:var(--coral);">quietly</div>
+      <div class="suffix-eg">Read <em>quietly</em>.</div>
+    </div>
+  </div>
+  <div class="formula-box">
+    <h4>⚠️ Special Rule — Adjective ending in -y</h4>
+    <div class="formula-row">
+      <div class="f-box">adjective ending in -y</div>
+      <div class="f-plus">→</div>
+      <div class="f-box">remove <strong>-y</strong></div>
+      <div class="f-plus">+</div>
+      <div class="f-box highlight-box">-ily</div>
+    </div>
+    <div class="formula-row">
+      <div class="f-box">happy</div><div class="f-plus">→</div><div class="f-box highlight-box">happily</div>
+      <div class="f-box" style="margin-left:10px;">easy</div><div class="f-plus">→</div><div class="f-box highlight-box">easily</div>
+      <div class="f-box" style="margin-left:10px;">angry</div><div class="f-plus">→</div><div class="f-box highlight-box">angrily</div>
+    </div>
+    <div class="f-note">📌 Note: Some adverbs do NOT end in -ly — fast, hard, late, early, well</div>
+  </div>
+
+  <!-- ══ EXAMPLE SENTENCES ══ -->
+  <div class="sec-title"><div class="sec-icon si-teal">💬</div>Example Sentences</div>
+  <div class="examples-list">
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#FFE8F0;color:#FF6EB4;">1</div>
+      <div class="ex-body">
+        <div class="ex-sentence">She sings <span class="ex-adverb" style="color:#FF6EB4;">beautifully</span>. <span class="ex-type-tag" style="background:#FFE8F0;color:#FF6EB4;">Manner</span></div>
+        <div class="ex-note">👉 How does she sing? — beautifully</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#FFF3CC;color:#FF8C42;">2</div>
+      <div class="ex-body">
+        <div class="ex-sentence">We have English class <span class="ex-adverb" style="color:#FF8C42;">today</span>. <span class="ex-type-tag" style="background:#FFF3CC;color:#FF8C42;">Time</span></div>
+        <div class="ex-note">👉 When do we have English class? — today</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#E0F7FA;color:#4ECDC4;">3</div>
+      <div class="ex-body">
+        <div class="ex-sentence">Please come <span class="ex-adverb" style="color:#2980B9;">here</span>. <span class="ex-type-tag" style="background:#E0F7FA;color:#2980B9;">Place</span></div>
+        <div class="ex-note">👉 Where should you come? — here</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#EDE8FF;color:#9B59B6;">4</div>
+      <div class="ex-body">
+        <div class="ex-sentence">I <span class="ex-adverb" style="color:#9B59B6;">always</span> brush my teeth before bed. <span class="ex-type-tag" style="background:#EDE8FF;color:#9B59B6;">Frequency</span></div>
+        <div class="ex-note">👉 How often do I brush my teeth? — always</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#D6F5EE;color:#2ECC71;">5</div>
+      <div class="ex-body">
+        <div class="ex-sentence">The test was <span class="ex-adverb" style="color:#2ECC71;">very</span> difficult. <span class="ex-type-tag" style="background:#D6F5EE;color:#2ECC71;">Degree</span></div>
+        <div class="ex-note">👉 How difficult was the test? — very difficult</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#FFE8DE;color:#FF6B35;">6</div>
+      <div class="ex-body">
+        <div class="ex-sentence">He reads <span class="ex-adverb" style="color:#FF6B35;">quietly</span> in the library. <span class="ex-type-tag" style="background:#FFE8DE;color:#FF6B35;">Manner</span></div>
+        <div class="ex-note">👉 How does he read? — quietly</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#E3EDFF;color:#3498DB;">7</div>
+      <div class="ex-body">
+        <div class="ex-sentence">My dog is <span class="ex-adverb" style="color:#3498DB;">outside</span>. <span class="ex-type-tag" style="background:#E3EDFF;color:#3498DB;">Place</span></div>
+        <div class="ex-note">👉 Where is my dog? — outside</div>
+      </div>
+    </div>
+
+    <div class="example-item">
+      <div class="ex-num" style="background:#FFE6F0;color:#FF4D8D;">8</div>
+      <div class="ex-body">
+        <div class="ex-sentence">She <span class="ex-adverb" style="color:#FF4D8D;">sometimes</span> eats pizza for lunch. <span class="ex-type-tag" style="background:#FFE6F0;color:#FF4D8D;">Frequency</span></div>
+        <div class="ex-note">👉 How often does she eat pizza? — sometimes</div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════════════
+       EXERCISES
+       ══════════════════════════════ -->
+  <div class="sec-title"><div class="sec-icon si-pink">✏️</div>Exercises – Let's Practice!</div>
+
+  <!-- EX 1 – MULTIPLE CHOICE -->
+  <div class="exercise-wrap">
+    <h4>🔵 Exercise 1 – Multiple Choice</h4>
+    <div class="ex-sub">Choose the correct adverb to complete each sentence.</div>
+
+    <div class="q-row">
+      <div class="q-label"><div class="q-badge">1</div><div class="q-text">She danced _______ on stage.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')">beauty</button>
+        <button class="opt" onclick="pick(this,'c')">beautifully</button>
+        <button class="opt" onclick="pick(this,'w')">beautiful</button>
+        <button class="opt" onclick="pick(this,'w')">more beauty</button>
+      </div>
+    </div>
+
+    <div class="q-row">
+      <div class="q-label"><div class="q-badge">2</div><div class="q-text">Please speak _______ in the library.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')">loud</button>
+        <button class="opt" onclick="pick(this,'w')">loudness</button>
+        <button class="opt" onclick="pick(this,'c')">quietly</button>
+        <button class="opt" onclick="pick(this,'w')">quiet</button>
+      </div>
+    </div>
+
+    <div class="q-row">
+      <div class="q-label"><div class="q-badge">3</div><div class="q-text">The bird flew _______ in the sky.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'c')">high</button>
+        <button class="opt" onclick="pick(this,'w')">highly</button>
+        <button class="opt" onclick="pick(this,'w')">height</button>
+        <button class="opt" onclick="pick(this,'w')">higher than</button>
+      </div>
+    </div>
+
+    <div class="q-row">
+      <div class="q-label"><div class="q-badge">4</div><div class="q-text">I _______ eat vegetables because they are healthy.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')">never</button>
+        <button class="opt" onclick="pick(this,'c')">always</button>
+        <button class="opt" onclick="pick(this,'w')">yesterday</button>
+        <button class="opt" onclick="pick(this,'w')">there</button>
+      </div>
+    </div>
+
+    <div class="q-row">
+      <div class="q-label"><div class="q-badge">5</div><div class="q-text">The movie was _______ exciting!</div></div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'w')">much</button>
+        <button class="opt" onclick="pick(this,'w')">too little</button>
+        <button class="opt" onclick="pick(this,'c')">very</button>
+        <button class="opt" onclick="pick(this,'w')">quite never</button>
+      </div>
+    </div>
+
+    <div class="q-row">
+      <div class="q-label"><div class="q-badge">6</div><div class="q-text">He finished his homework _______.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="pick(this,'c')">quickly</button>
+        <button class="opt" onclick="pick(this,'w')">quick</button>
+        <button class="opt" onclick="pick(this,'w')">quicker</button>
+        <button class="opt" onclick="pick(this,'w')">quickest</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX 2 – IDENTIFY THE ADVERB -->
+  <div class="exercise-wrap">
+    <h4>🟢 Exercise 2 – Find the Adverb</h4>
+    <div class="ex-sub">Click on the word that is the adverb in each sentence.</div>
+
+    <div class="q-row" id="findQ1">
+      <div class="q-label"><div class="q-badge" style="background:var(--green);">1</div><div class="q-text">The children played <span style="font-weight:900;">happily</span> in the park.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="findAdv(this,'w','findQ1')">children</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ1')">played</button>
+        <button class="opt" onclick="findAdv(this,'c','findQ1')">happily</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ1')">park</button>
+      </div>
+    </div>
+
+    <div class="q-row" id="findQ2">
+      <div class="q-label"><div class="q-badge" style="background:var(--green);">2</div><div class="q-text">My mother woke up <span style="font-weight:900;">early</span> this morning.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="findAdv(this,'w','findQ2')">mother</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ2')">woke</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ2')">morning</button>
+        <button class="opt" onclick="findAdv(this,'c','findQ2')">early</button>
+      </div>
+    </div>
+
+    <div class="q-row" id="findQ3">
+      <div class="q-label"><div class="q-badge" style="background:var(--green);">3</div><div class="q-text">The cat is sleeping <span style="font-weight:900;">upstairs</span>.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="findAdv(this,'w','findQ3')">cat</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ3')">sleeping</button>
+        <button class="opt" onclick="findAdv(this,'c','findQ3')">upstairs</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ3')">the</button>
+      </div>
+    </div>
+
+    <div class="q-row" id="findQ4">
+      <div class="q-label"><div class="q-badge" style="background:var(--green);">4</div><div class="q-text">She <span style="font-weight:900;">never</span> forgets her homework.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="findAdv(this,'c','findQ4')">never</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ4')">forgets</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ4')">homework</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ4')">she</button>
+      </div>
+    </div>
+
+    <div class="q-row" id="findQ5">
+      <div class="q-label"><div class="q-badge" style="background:var(--green);">5</div><div class="q-text">The teacher explained the lesson <span style="font-weight:900;">clearly</span>.</div></div>
+      <div class="opts">
+        <button class="opt" onclick="findAdv(this,'w','findQ5')">teacher</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ5')">explained</button>
+        <button class="opt" onclick="findAdv(this,'w','findQ5')">lesson</button>
+        <button class="opt" onclick="findAdv(this,'c','findQ5')">clearly</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EX 3 – TRUE OR FALSE -->
+  <div class="exercise-wrap">
+    <h4>🟡 Exercise 3 – True or False</h4>
+    <div class="ex-sub">Is the underlined word used correctly as an adverb?</div>
+
+    <div class="tf-row">
+      <div class="q-badge" style="background:var(--sun);color:var(--navy);border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:14px;flex-shrink:0;">1</div>
+      <div class="tf-text">"He runs <u>fastly</u> on the field."</div>
+      <div class="tf-btns"><button class="tf-btn tf-t" onclick="tfPick(this,true,false)">TRUE</button><button class="tf-btn tf-f" onclick="tfPick(this,false,false)">FALSE</button></div>
+    </div>
+    <div class="tf-row">
+      <div class="q-badge" style="background:var(--sun);color:var(--navy);border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:14px;flex-shrink:0;">2</div>
+      <div class="tf-text">"She sings <u>beautifully</u>."</div>
+      <div class="tf-btns"><button class="tf-btn tf-t" onclick="tfPick(this,true,true)">TRUE</button><button class="tf-btn tf-f" onclick="tfPick(this,false,true)">FALSE</button></div>
+    </div>
+    <div class="tf-row">
+      <div class="q-badge" style="background:var(--sun);color:var(--navy);border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:14px;flex-shrink:0;">3</div>
+      <div class="tf-text">"I <u>sometimes</u> go swimming on weekends." — 'sometimes' is an adverb of frequency.</div>
+      <div class="tf-btns"><button class="tf-btn tf-t" onclick="tfPick(this,true,true)">TRUE</button><button class="tf-btn tf-f" onclick="tfPick(this,false,true)">FALSE</button></div>
+    </div>
+    <div class="tf-row">
+      <div class="q-badge" style="background:var(--sun);color:var(--navy);border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:14px;flex-shrink:0;">4</div>
+      <div class="tf-text">"He is a <u>quick</u> runner." — 'quick' here is used as an adverb.</div>
+      <div class="tf-btns"><button class="tf-btn tf-t" onclick="tfPick(this,true,false)">TRUE</button><button class="tf-btn tf-f" onclick="tfPick(this,false,false)">FALSE</button></div>
+    </div>
+    <div class="tf-row">
+      <div class="q-badge" style="background:var(--sun);color:var(--navy);border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:14px;flex-shrink:0;">5</div>
+      <div class="tf-text">"The baby cried <u>loudly</u>." — 'loudly' describes the verb 'cried'.</div>
+      <div class="tf-btns"><button class="tf-btn tf-t" onclick="tfPick(this,true,true)">TRUE</button><button class="tf-btn tf-f" onclick="tfPick(this,false,true)">FALSE</button></div>
+    </div>
+  </div>
+
+  <!-- EX 4 – FILL IN BLANKS -->
+  <div class="exercise-wrap">
+    <h4>🟠 Exercise 4 – Fill in the Blanks</h4>
+    <div class="ex-sub">Choose the correct adverb from the word bank to complete each sentence.</div>
+
+    <div class="word-bank-box">
+      <span class="wb-label">📦 Word Bank:</span>
+      <span class="wb-word">carefully</span>
+      <span class="wb-word">yesterday</span>
+      <span class="wb-word">there</span>
+      <span class="wb-word">never</span>
+      <span class="wb-word">quite</span>
+      <span class="wb-word">softly</span>
+      <span class="wb-word">always</span>
+    </div>
+
+    <div class="q-row"><span style="font-weight:700;">1.</span> Please walk <input class="blank-input" id="f1" placeholder="..."> near the swimming pool.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = manner</span></div>
+    <div class="q-row"><span style="font-weight:700;">2.</span> I went to the market <input class="blank-input" id="f2" placeholder="..."> with my mom.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = time</span></div>
+    <div class="q-row"><span style="font-weight:700;">3.</span> The keys are over <input class="blank-input" id="f3" placeholder="..."> on the table.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = place</span></div>
+    <div class="q-row"><span style="font-weight:700;">4.</span> I <input class="blank-input" id="f4" placeholder="..."> forget to say thank you.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = frequency (0%)</span></div>
+    <div class="q-row"><span style="font-weight:700;">5.</span> The soup is <input class="blank-input" id="f5" placeholder="..."> hot today.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = degree</span></div>
+    <div class="q-row"><span style="font-weight:700;">6.</span> The nurse spoke <input class="blank-input" id="f6" placeholder="..."> to the patient.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = manner</span></div>
+    <div class="q-row"><span style="font-weight:700;">7.</span> Dani <input class="blank-input" id="f7" placeholder="..."> arrives on time to school.<br><span style="font-size:12px;color:#aaa;margin-left:20px;">Hint: type of adverb = frequency (100%)</span></div>
+
+    <button class="check-btn" onclick="checkFill()">✅ Check My Answers</button>
+    <div id="fill-result" style="margin-top:14px;font-weight:800;font-size:15px;display:none;"></div>
+  </div>
+
+  <!-- EX 5 – CLASSIFY ADVERBS -->
+  <div class="exercise-wrap">
+    <h4>🟣 Exercise 5 – Classify the Adverb</h4>
+    <div class="ex-sub">Drag and drop (or tap) to match each adverb to its correct type!</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex-wrap:wrap;">
+      <div>
+        <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--purple);margin-bottom:12px;">🃏 Adverb Cards</p>
+        <div class="sort-list" id="adverbCards">
+          <div class="sort-item" data-type="manner"  onclick="classifyTap(this)"><span class="drag-icon">≡</span> quickly</div>
+          <div class="sort-item" data-type="time"    onclick="classifyTap(this)"><span class="drag-icon">≡</span> tomorrow</div>
+          <div class="sort-item" data-type="place"   onclick="classifyTap(this)"><span class="drag-icon">≡</span> here</div>
+          <div class="sort-item" data-type="frequency" onclick="classifyTap(this)"><span class="drag-icon">≡</span> always</div>
+          <div class="sort-item" data-type="degree"  onclick="classifyTap(this)"><span class="drag-icon">≡</span> very</div>
+          <div class="sort-item" data-type="manner"  onclick="classifyTap(this)"><span class="drag-icon">≡</span> quietly</div>
+          <div class="sort-item" data-type="time"    onclick="classifyTap(this)"><span class="drag-icon">≡</span> soon</div>
+          <div class="sort-item" data-type="frequency" onclick="classifyTap(this)"><span class="drag-icon">≡</span> never</div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'Fredoka One',cursive;font-size:14px;color:var(--purple);margin-bottom:12px;">📂 Drop Zones</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="drop-zone" id="dz-manner"    data-type="manner"    onclick="classifyDrop(this)" style="background:#FFE8F0;border:2.5px dashed #FF6EB4;border-radius:14px;padding:10px 14px;min-height:42px;cursor:pointer;font-size:13px;font-weight:700;color:#FF6EB4;">🎭 Manner</div>
+          <div class="drop-zone" id="dz-time"      data-type="time"      onclick="classifyDrop(this)" style="background:#FFF3CC;border:2.5px dashed #FF8C42;border-radius:14px;padding:10px 14px;min-height:42px;cursor:pointer;font-size:13px;font-weight:700;color:#FF8C42;">⏰ Time</div>
+          <div class="drop-zone" id="dz-place"     data-type="place"     onclick="classifyDrop(this)" style="background:#E0F7FA;border:2.5px dashed #4ECDC4;border-radius:14px;padding:10px 14px;min-height:42px;cursor:pointer;font-size:13px;font-weight:700;color:#4ECDC4;">📍 Place</div>
+          <div class="drop-zone" id="dz-frequency" data-type="frequency" onclick="classifyDrop(this)" style="background:#EDE8FF;border:2.5px dashed #9B59B6;border-radius:14px;padding:10px 14px;min-height:42px;cursor:pointer;font-size:13px;font-weight:700;color:#9B59B6;">🔁 Frequency</div>
+          <div class="drop-zone" id="dz-degree"    data-type="degree"    onclick="classifyDrop(this)" style="background:#D6F5EE;border:2.5px dashed #2ECC71;border-radius:14px;padding:10px 14px;min-height:42px;cursor:pointer;font-size:13px;font-weight:700;color:#2ECC71;">📊 Degree</div>
+        </div>
+      </div>
+    </div>
+    <button class="check-btn" style="margin-top:16px;" onclick="checkClassify()">🔍 Check Classification</button>
+    <div id="classify-result" style="margin-top:14px;font-weight:800;font-size:15px;display:none;"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SCORE -->
+  <div class="score-box" id="scoreBox">
+    <div class="score-big" id="scoreNum">0/7</div>
+    <h3>🎉 Fill-in-the-Blank Score!</h3>
+    <p id="scoreMsg">Keep practicing!</p>
+  </div>
+
+  <!-- TIPS -->
+  <div class="sec-title"><div class="sec-icon si-blue">💡</div>Study Tips – Remember This!</div>
+  <div class="tips-grid">
+    <div class="tip-card tc-a"><div class="ti">🔑</div><h4>Ask the Right Question</h4><p>Always ask: How? When? Where? How often? How much? — The answer is usually the adverb!</p></div>
+    <div class="tip-card tc-b"><div class="ti">✂️</div><h4>Look for -ly</h4><p>Many adverbs end in -ly (quickly, slowly, carefully). But not all! (fast, well, hard are also adverbs)</p></div>
+    <div class="tip-card tc-c"><div class="ti">📌</div><h4>Position Matters</h4><p>Adverbs usually come after the verb or at the start/end of the sentence.</p></div>
+    <div class="tip-card tc-d"><div class="ti">🚫</div><h4>Watch Out!</h4><p>"fast" is BOTH an adjective AND an adverb. "fastly" does NOT exist! Say "He runs fast" (not fastly).</p></div>
+  </div>
+
+  <!-- FREQUENCY SCALE -->
+  <div class="sec-title"><div class="sec-icon si-green">📊</div>Frequency Adverb Scale</div>
+  <div style="background:#fff;border-radius:22px;padding:28px 32px;margin-bottom:40px;box-shadow:0 4px 0 #E0E0E0;">
+    <p style="font-size:14px;font-weight:700;color:#888;margin-bottom:18px;">From 0% to 100% — how often something happens:</p>
+    <div style="position:relative;margin:0 10px;">
+      <div style="height:10px;background:linear-gradient(90deg,#FF6B6B,#FFD93D,#2ECC71);border-radius:50px;margin-bottom:24px;"></div>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;">
+        <div style="text-align:center;min-width:70px;">
+          <div style="font-family:'Fredoka One',cursive;font-size:15px;color:var(--coral);">never</div>
+          <div style="font-size:11px;font-weight:800;color:#aaa;">0%</div>
+        </div>
+        <div style="text-align:center;min-width:70px;">
+          <div style="font-family:'Fredoka One',cursive;font-size:15px;color:var(--orange);">rarely</div>
+          <div style="font-size:11px;font-weight:800;color:#aaa;">10%</div>
+        </div>
+        <div style="text-align:center;min-width:70px;">
+          <div style="font-family:'Fredoka One',cursive;font-size:15px;color:#FF8C42;">sometimes</div>
+          <div style="font-size:11px;font-weight:800;color:#aaa;">50%</div>
+        </div>
+        <div style="text-align:center;min-width:70px;">
+          <div style="font-family:'Fredoka One',cursive;font-size:15px;color:var(--teal);">often</div>
+          <div style="font-size:11px;font-weight:800;color:#aaa;">70%</div>
+        </div>
+        <div style="text-align:center;min-width:70px;">
+          <div style="font-family:'Fredoka One',cursive;font-size:15px;color:#27AE60;">usually</div>
+          <div style="font-size:11px;font-weight:800;color:#aaa;">80%</div>
+        </div>
+        <div style="text-align:center;min-width:70px;">
+          <div style="font-family:'Fredoka One',cursive;font-size:15px;color:var(--green);">always</div>
+          <div style="font-size:11px;font-weight:800;color:#aaa;">100%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="sec-title"><div class="sec-icon si-orange">🌟</div>Self Reflection</div>
+  <div class="reflect-card">
+    <h4>💬 How do you feel about Adverbs?</h4>
+    <p>Tap the emoji that best shows how confident you are with today's lesson:</p>
+    <div class="emoji-row" id="reflectEmoji">
+      <span onclick="pickEmoji(this)" title="I understand everything!">😄</span>
+      <span onclick="pickEmoji(this)" title="I understand most of it">🙂</span>
+      <span onclick="pickEmoji(this)" title="I need more practice">😐</span>
+      <span onclick="pickEmoji(this)" title="I am confused">😟</span>
+    </div>
+    <p style="margin-bottom:12px;">📝 Adverbs I learned today:</p>
+    <div class="words-row">
+      <span class="w-tag wt1">quickly ⚡</span>
+      <span class="w-tag wt2">carefully 🎯</span>
+      <span class="w-tag wt3">beautifully 🌸</span>
+      <span class="w-tag wt4">always 🔁</span>
+      <span class="w-tag wt5">very 📊</span>
+      <span class="w-tag wt6">here 📍</span>
+      <span class="w-tag wt7">yesterday ⏰</span>
+    </div>
+  </div>
+
+</div><!-- end .page -->
+
+<footer>
+  <p>© 2026 <span class="ft-accent">BunRey English Course</span> &nbsp;·&nbsp; Grammar: Adverbs &nbsp;·&nbsp; Grade 4</p>
+  <p style="margin-top:6px;font-size:12px;">Made with ❤️ for all amazing BunRey students!</p>
+</footer>
+
+<script>
+/* ── MULTIPLE CHOICE ── */
+function pick(btn, type) {
+  var group = btn.closest('.opts');
+  group.querySelectorAll('.opt').forEach(function(b){ b.classList.remove('correct','wrong'); });
+  btn.classList.add(type === 'c' ? 'correct' : 'wrong');
+}
+
+/* ── FIND ADVERB ── */
+function findAdv(btn, type, qid) {
+  var group = btn.closest('.opts');
+  group.querySelectorAll('.opt').forEach(function(b){ b.classList.remove('correct','wrong'); });
+  btn.classList.add(type === 'c' ? 'correct' : 'wrong');
+}
+
+/* ── TRUE / FALSE ── */
+function tfPick(btn, chosen, correct) {
+  var row = btn.closest('.tf-btns');
+  row.querySelectorAll('.tf-btn').forEach(function(b){
+    b.style.background=''; b.style.borderColor=''; b.style.color='';
+  });
+  btn.style.color = '#fff';
+  if (chosen === correct) { btn.style.background='#2ECC71'; btn.style.borderColor='#2ECC71'; }
+  else                    { btn.style.background='#FF6B6B'; btn.style.borderColor='#FF6B6B'; }
+}
+
+/* ── FILL IN BLANKS ── */
+var fillAns = { f1:'carefully', f2:'yesterday', f3:'there', f4:'never', f5:'quite', f6:'softly', f7:'always' };
+function checkFill() {
+  var score = 0;
+  Object.keys(fillAns).forEach(function(id) {
+    var inp = document.getElementById(id);
+    var val = inp.value.trim().toLowerCase();
+    var ans = fillAns[id];
+    var ok = val === ans;
+    inp.style.borderBottomColor = ok ? '#2ECC71' : '#FF6B6B';
+    inp.style.color = ok ? '#2ECC71' : '#FF6B6B';
+    if (ok) score++;
+  });
+  var el = document.getElementById('fill-result');
+  el.style.display = 'block';
+  var msgs = ['😟 Try again! Review the word bank.','😐 Good effort! Keep going.','🙂 Nice work!','😊 Great job!','🌟 Perfect! All correct!'];
+  el.style.color = score >= 6 ? '#2ECC71' : '#FF8C42';
+  el.textContent = score + '/7 correct — ' + msgs[Math.min(Math.floor(score / 2), 4)];
+  showScore(score);
+}
+function showScore(s) {
+  var box = document.getElementById('scoreBox');
+  box.style.display = 'block';
+  document.getElementById('scoreNum').textContent = s + '/7';
+  var msgs = ["Don't give up — keep practicing! 💪","Good try! Review the types again. 😊","You are getting it! 🌟","Excellent! Almost perfect! ✨","PERFECT SCORE! You are an Adverb Master! 🏆"];
+  document.getElementById('scoreMsg').textContent = msgs[Math.min(Math.floor(s/2), 4)];
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ── CLASSIFY EXERCISE ── */
+var selectedCard = null;
+var classified = {};
+
+function classifyTap(card) {
+  // Deselect previous
+  document.querySelectorAll('#adverbCards .sort-item').forEach(function(c){ c.style.outline=''; });
+  if (selectedCard === card) { selectedCard = null; return; }
+  selectedCard = card;
+  card.style.outline = '3px solid #9B59B6';
+}
+
+function classifyDrop(zone) {
+  if (!selectedCard) { return; }
+  var word = selectedCard.textContent.trim().replace('≡','').trim();
+  var type = zone.dataset.type;
+
+  // Add word tag to zone
+  var tag = document.createElement('span');
+  tag.textContent = word;
+  tag.style.cssText = 'background:rgba(255,255,255,.7);border-radius:50px;padding:3px 10px;font-size:12px;font-weight:800;margin-left:8px;display:inline-block;margin-top:4px;';
+  zone.appendChild(tag);
+
+  // Mark card as placed
+  selectedCard.style.opacity = '.4';
+  selectedCard.style.outline = '';
+  selectedCard.onclick = null;
+
+  // Store classification
+  classified[word] = type;
+  selectedCard = null;
+}
+
+function checkClassify() {
+  var correct = { 'quickly':'manner','quietly':'manner','tomorrow':'time','soon':'time','here':'place','always':'frequency','never':'frequency','very':'degree' };
+  var score = 0; var total = Object.keys(correct).length;
+  Object.keys(classified).forEach(function(word) {
+    if (correct[word] && classified[word] === correct[word]) score++;
+  });
+  var el = document.getElementById('classify-result');
+  el.style.display = 'block';
+  el.style.color = score >= total * .7 ? '#2ECC71' : '#FF8C42';
+  el.textContent = score + '/' + total + ' correct classifications! ' + (score === total ? '🎉 Outstanding!' : '🙂 Keep trying!');
+}
+
+/* ── EMOJI REFLECTION ── */
+function pickEmoji(el) {
+  document.querySelectorAll('#reflectEmoji span').forEach(function(e){ e.style.transform='scale(1)'; e.style.filter=''; });
+  el.style.transform = 'scale(1.5)';
+  el.style.filter = 'drop-shadow(0 0 10px gold)';
+}
+</script>
+</body>
+</html>
