@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Pronouns Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #FF6B2B;
+  --brand-dark: #D94F10;
+  --teal:       #00A89D;
+  --teal-light: #E0F7F6;
+  --yellow:     #FFD33A;
+  --yellow-lt:  #FFF8DC;
+  --purple:     #7C5CBF;
+  --purple-lt:  #F0EBFF;
+  --rose:       #F2426A;
+  --rose-lt:    #FFF0F3;
+  --bg:         #FDF6EE;
+  --white:      #FFFFFF;
+  --ink:        #1E1B18;
+  --muted:      #7A7269;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.07);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.10);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: linear-gradient(135deg, #FF6B2B 0%, #FF9F1C 60%, #FFD33A 100%);
+  position: relative;
+  overflow: hidden;
+}
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .18; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+
+.header-inner {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 20px 26px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.brand-logo {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.15);
+  flex-shrink: 0;
+}
+.brand-logo .logo-main {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--brand);
+  line-height: 1;
+}
+.brand-logo .logo-sub {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.header-text { flex: 1; }
+.header-eyebrow {
+  display: inline-block;
+  background: rgba(255,255,255,.3);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.header-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(26px,5vw,44px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 2px 3px 0 rgba(0,0,0,.12);
+}
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot {
+  font-size: 60px;
+  flex-shrink: 0;
+  animation: bounce 2.2s ease-in-out infinite;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,.15));
+}
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* ── NAV ── */
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 14px 18px;
+  border: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .22s;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+/* ── MAIN ── */
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.sec-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-title .pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: 20px;
+  background: var(--brand);
+  color: #fff;
+  letter-spacing: .5px;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--white);
+  border-radius: var(--card-r);
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+  border-top: 5px solid var(--brand);
+  transition: box-shadow .2s, transform .2s;
+}
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card.green  { border-color: #4CAF50; }
+
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+
+/* ── PRONOUN CHIPS ── */
+.intro-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 10px; }
+.pronoun-chip { border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: transform .18s; border: 2px solid transparent; }
+.pronoun-chip:hover { transform: scale(1.04); }
+.pronoun-chip .emoji { font-size: 30px; flex-shrink: 0; }
+.pronoun-chip .pword { font-family: 'Baloo 2', cursive; font-size: 20px; font-weight: 800; line-height: 1; }
+.pronoun-chip .pmean { font-size: 12px; font-weight: 600; opacity: .75; margin-top: 2px; }
+.pc-i    { background:#FFF3E0; border-color:#FFB74D; color:#B24800; }
+.pc-you  { background:#E8F5E9; border-color:#66BB6A; color:#1B5E20; }
+.pc-he   { background:#E3F2FD; border-color:#64B5F6; color:#0D47A1; }
+.pc-she  { background:#FCE4EC; border-color:#F48FB1; color:#880E4F; }
+.pc-it   { background:#F3E5F5; border-color:#CE93D8; color:#4A148C; }
+.pc-we   { background:#E0F7FA; border-color:#4DD0E1; color:#006064; }
+.pc-they { background:#FFF8E1; border-color:#FFD54F; color:#6D4C00; }
+.pc-you2 { background:#EFEBE9; border-color:#A1887F; color:#3E2723; }
+
+/* ── CONCEPT BOX ── */
+.concept-box {
+  background: linear-gradient(135deg, var(--teal) 0%, #00C6B8 100%);
+  border-radius: var(--card-r);
+  padding: 24px 26px;
+  color: #fff;
+  margin-bottom: 18px;
+  position: relative;
+  overflow: hidden;
+}
+.concept-box::after { content:'💬'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.15; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+/* ── COMPARE ── */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid #F48FB1; }
+.compare-col.right { background: #E8F5E9; border: 2px solid #81C784; }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+/* ── TABLE ── */
+.pro-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); margin-top:12px; font-size:14px; }
+.pro-table thead tr { background: var(--brand); color:#fff; }
+.pro-table th { padding:12px 14px; text-align:left; font-weight:700; font-size:12.5px; letter-spacing:.4px; }
+.pro-table td { padding:11px 14px; vertical-align:top; border-bottom:1px solid #f0ebe4; }
+.pro-table tr:last-child td { border:none; }
+.pro-table tr:nth-child(even) td { background:#FFF8F2; }
+.pro-table tr:hover td { background:#FFF3E8; }
+.pro-table .en { font-weight:700; color:var(--brand-dark); }
+.pro-table .muted { color:var(--muted); font-size:12.5px; }
+.pro-table .ex { font-style:italic; color:#444; }
+.pro-table .exsub { font-size:12px; color:var(--muted); display:block; margin-top:2px; }
+
+/* ── BUILDER ── */
+.builder-row { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:10px; background:var(--yellow-lt); border:2px solid var(--yellow); border-radius:12px; padding:12px 16px; }
+.slot { font-family:'Baloo 2',cursive; font-size:16px; font-weight:700; padding:5px 12px; border-radius:8px; }
+.slot.pronoun { background:var(--brand); color:#fff; }
+.slot.verb    { background:var(--teal); color:#fff; }
+.slot.obj     { background:var(--purple); color:#fff; }
+.slot.plus    { background:transparent; color:var(--muted); font-size:20px; }
+.builder-row .meaning { margin-left:auto; font-size:12.5px; color:var(--muted); font-style:italic; }
+
+/* ── DIALOGUE ── */
+.dialogue { display:flex; flex-direction:column; gap:12px; }
+.brow { display:flex; align-items:flex-start; gap:10px; }
+.brow.right { flex-direction:row-reverse; }
+.av { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; background:#f0ece6; }
+.bc { display:flex; flex-direction:column; max-width:76%; }
+.brow.right .bc { align-items:flex-end; }
+.bname { font-size:11px; font-weight:700; color:var(--muted); margin-bottom:3px; }
+.bubble { padding:11px 15px; border-radius:16px; font-size:14px; font-weight:500; line-height:1.55; }
+.brow:not(.right) .bubble { background:var(--teal-light); border-bottom-left-radius:4px; color:#003D3A; }
+.brow.right .bubble { background:#FFF0E5; border-bottom-right-radius:4px; color:#4A1A00; }
+.bubble .hi { font-weight:700; color:var(--brand); }
+.bexp { font-size:12px; color:var(--muted); margin-top:4px; font-style:italic; }
+.brow.right .bexp { text-align:right; }
+
+/* ── TIP ── */
+.tip { background:var(--yellow-lt); border:2px dashed var(--yellow); border-radius:14px; padding:14px 18px; display:flex; gap:12px; align-items:flex-start; margin-top:14px; }
+.tip-ico { font-size:26px; flex-shrink:0; }
+.tip-body { font-size:13.5px; line-height:1.7; color:#5A4200; font-weight:500; }
+.tip-body strong { color:var(--brand-dark); }
+
+/* ── QUIZ ── */
+.score-bar { background:var(--white); border-radius:14px; padding:14px 20px; margin-bottom:20px; display:flex; align-items:center; gap:14px; box-shadow:var(--shadow-sm); }
+.sc-label { font-weight:700; font-size:13px; color:var(--muted); }
+.sc-num { font-family:'Baloo 2',cursive; font-size:32px; font-weight:800; color:var(--brand); line-height:1; }
+.sc-max { font-size:15px; color:var(--muted); font-weight:600; }
+.sc-stars { font-size:22px; margin-left:auto; }
+
+.quiz-wrap { display:flex; flex-direction:column; gap:16px; }
+.qitem { background:var(--white); border-radius:16px; padding:18px 20px; box-shadow:var(--shadow-sm); border-left:5px solid var(--teal); }
+.qnum { font-size:10.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:6px; }
+.qtext { font-size:15px; font-weight:600; color:var(--ink); margin-bottom:12px; line-height:1.5; }
+.qtext em { color:var(--brand); font-style:normal; font-weight:800; }
+.opts { display:flex; flex-wrap:wrap; gap:8px; }
+.opt { padding:8px 20px; border:2.5px solid #DDD; border-radius:30px; background:var(--white); font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; cursor:pointer; transition:all .18s; }
+.opt:hover { border-color:var(--teal); color:var(--teal); }
+.opt.correct { background:#E8F5E9; border-color:#4CAF50; color:#1B5E20; }
+.opt.wrong   { background:var(--rose-lt); border-color:var(--rose); color:#7f0021; }
+.qfb { margin-top:10px; font-size:13.5px; font-weight:700; display:none; }
+.qfb.show { display:block; }
+.qfb.ok { color:#2e7d32; }
+.qfb.no { color:#c62828; }
+
+/* ── PROGRESS ── */
+.progress-box { background:linear-gradient(135deg,var(--purple) 0%,#9B6FD8 100%); border-radius:var(--card-r); padding:20px 24px; color:#fff; margin-bottom:18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.progress-box h4 { font-family:'Baloo 2',cursive; font-size:18px; margin-bottom:4px; }
+.progress-box p { font-size:13px; opacity:.9; }
+.prog-dots { display:flex; gap:8px; margin-left:auto; }
+.pdot { width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,.35); border:2px solid rgba(255,255,255,.5); transition:all .3s; }
+.pdot.done { background:var(--yellow); border-color:var(--yellow); }
+
+.reset-btn { display:block; margin:24px auto 0; padding:14px 40px; background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%); color:#fff; border:none; border-radius:40px; font-family:'Baloo 2',cursive; font-size:18px; font-weight:700; cursor:pointer; box-shadow:0 6px 20px rgba(255,107,43,.4); transition:transform .2s,box-shadow .2s; }
+.reset-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,107,43,.45); }
+
+@media(max-width:520px) {
+  .compare { grid-template-columns:1fr; }
+  .intro-grid { grid-template-columns:repeat(2,1fr); }
+  .header-mascot { display:none; }
+  .tab-btn { padding:12px 14px; font-size:12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-shapes"><div class="hs hs1"></div><div class="hs hs2"></div><div class="hs hs3"></div></div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">English Course</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grade 4 · English</div>
+      <div class="header-title">Learning <span>Pronouns</span></div>
+      <div class="header-sub">Fun, clear, and easy to remember! 🎉</div>
+    </div>
+    <div class="header-mascot">🦊</div>
+  </div>
+</header>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro',this)">🏠 Introduction</button>
+    <button class="tab-btn" onclick="showTab('subject',this)">🙋 Subject</button>
+    <button class="tab-btn" onclick="showTab('object',this)">🎯 Object</button>
+    <button class="tab-btn" onclick="showTab('possessive',this)">💼 Possessive</button>
+    <button class="tab-btn" onclick="showTab('dialogue',this)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz',this)">🏆 Quiz</button>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- ══ SECTION 1: INTRODUCTION ══ -->
+<div class="section active" id="intro">
+
+  <div class="progress-box">
+    <div>
+      <h4>📍 You are here</h4>
+      <p>Start with the introduction, then move through each tab!</p>
+    </div>
+    <div class="prog-dots">
+      <div class="pdot done"></div><div class="pdot"></div><div class="pdot"></div>
+      <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
+    </div>
+  </div>
+
+  <div class="sec-title">🌟 What is a Pronoun? <span class="pill">Core Concept</span></div>
+
+  <div class="concept-box">
+    <h3>Definition of a Pronoun</h3>
+    <p>A <strong>pronoun</strong> is a word used to <strong>replace a noun</strong> (the name of a person, animal, or thing) so we don't have to repeat it over and over.<br><br>
+    Example: Instead of saying <em>"Budi went to school. Budi carried Budi's bag."</em> — we say <em>"Budi went to school. <strong>He</strong> carried <strong>his</strong> bag."</em></p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">All Pronouns at a Glance</div>
+    <h3>The Pronouns You Need to Know</h3>
+    <div class="intro-grid">
+      <div class="pronoun-chip pc-i"><span class="emoji">🧒</span><div><div class="pword">I</div><div class="pmean">used for yourself</div></div></div>
+      <div class="pronoun-chip pc-you"><span class="emoji">👉</span><div><div class="pword">You</div><div class="pmean">one person you talk to</div></div></div>
+      <div class="pronoun-chip pc-he"><span class="emoji">👦</span><div><div class="pword">He</div><div class="pmean">one male person</div></div></div>
+      <div class="pronoun-chip pc-she"><span class="emoji">👧</span><div><div class="pword">She</div><div class="pmean">one female person</div></div></div>
+      <div class="pronoun-chip pc-it"><span class="emoji">🐾</span><div><div class="pword">It</div><div class="pmean">an animal or thing</div></div></div>
+      <div class="pronoun-chip pc-we"><span class="emoji">👫</span><div><div class="pword">We</div><div class="pmean">yourself + others</div></div></div>
+      <div class="pronoun-chip pc-they"><span class="emoji">👥</span><div><div class="pword">They</div><div class="pmean">more than one person</div></div></div>
+      <div class="pronoun-chip pc-you2"><span class="emoji">🫂</span><div><div class="pword">You</div><div class="pmean">more than one person</div></div></div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Before & After</div>
+    <h3>Without Pronouns vs. With Pronouns</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>❌ Without Pronouns</h4>
+        <ul>
+          <li>Rina is my friend. Rina is smart.</li>
+          <li>Budi has a dog. Budi loves Budi's dog.</li>
+          <li>The cat is hungry. The cat wants food.</li>
+        </ul>
+      </div>
+      <div class="compare-col right">
+        <h4>✅ With Pronouns</h4>
+        <ul>
+          <li>Rina is my friend. <b>She</b> is smart.</li>
+          <li>Budi has a dog. <b>He</b> loves <b>his</b> dog.</li>
+          <li>The cat is hungry. <b>It</b> wants food.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>BunRey Fox says:</strong> There are 3 types of pronouns we will study:<br>
+      👤 <strong>Subject Pronoun</strong> – the <em>doer</em> of the action<br>
+      🎯 <strong>Object Pronoun</strong> – the <em>receiver</em> of the action<br>
+      💼 <strong>Possessive Pronoun</strong> – shows <em>ownership</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: SUBJECT PRONOUN ══ -->
+<div class="section" id="subject">
+  <div class="sec-title">🙋 Subject Pronouns <span class="pill">The Doer</span></div>
+
+  <div class="concept-box">
+    <h3>What is a Subject Pronoun?</h3>
+    <p>A subject pronoun is the pronoun that acts as the <strong>subject (the doer) of a sentence</strong>. It usually comes at the <strong>beginning of the sentence</strong>, before the verb.<br><br>
+    Pattern: <strong>Subject Pronoun + Verb + ...</strong></p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Full Reference Table</div>
+    <h3>Subject Pronouns &amp; Example Sentences</h3>
+    <table class="pro-table">
+      <thead><tr><th>Pronoun</th><th>Refers to</th><th>Example Sentence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">I</span></td><td class="muted">yourself</td><td><span class="ex">I go to school every day.<span class="exsub">→ You are talking about yourself.</span></span></td></tr>
+        <tr><td><span class="en">You</span></td><td class="muted">the person spoken to</td><td><span class="ex">You are my best friend.<span class="exsub">→ Talking to one person.</span></span></td></tr>
+        <tr><td><span class="en">He</span></td><td class="muted">one male person</td><td><span class="ex">He plays football very well.<span class="exsub">→ Replaces a boy's or man's name.</span></span></td></tr>
+        <tr><td><span class="en">She</span></td><td class="muted">one female person</td><td><span class="ex">She likes drawing pictures.<span class="exsub">→ Replaces a girl's or woman's name.</span></span></td></tr>
+        <tr><td><span class="en">It</span></td><td class="muted">an animal or thing</td><td><span class="ex">It is a big dog.<span class="exsub">→ Replaces a thing or animal.</span></span></td></tr>
+        <tr><td><span class="en">We</span></td><td class="muted">yourself + other(s)</td><td><span class="ex">We study English together.<span class="exsub">→ Includes yourself in the group.</span></span></td></tr>
+        <tr><td><span class="en">They</span></td><td class="muted">more than one person</td><td><span class="ex">They live in Jakarta.<span class="exsub">→ Replaces a group of people.</span></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-label">Sentence Builder</div>
+    <h3>🔨 How to Build a Sentence</h3>
+    <div class="builder-row">
+      <span class="slot pronoun">She</span><span class="slot plus">+</span><span class="slot verb">reads</span><span class="slot plus">+</span><span class="slot obj">a book</span>
+      <span class="meaning">→ She reads a book.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">They</span><span class="slot plus">+</span><span class="slot verb">play</span><span class="slot plus">+</span><span class="slot obj">in the park</span>
+      <span class="meaning">→ They play in the park.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">We</span><span class="slot plus">+</span><span class="slot verb">eat</span><span class="slot plus">+</span><span class="slot obj">rice</span>
+      <span class="meaning">→ We eat rice.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">He</span><span class="slot plus">+</span><span class="slot verb">watches</span><span class="slot plus">+</span><span class="slot obj">TV</span>
+      <span class="meaning">→ He watches TV.</span>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">⚠️</div>
+    <div class="tip-body">
+      <strong>Important!</strong> The pronoun "I" is <em>always</em> written with a <strong>capital letter</strong>, even in the middle of a sentence.<br>
+      ✅ <em>My mom and <b>I</b> go shopping.</em><br>
+      ❌ <em>My mom and <b>i</b> go shopping.</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: OBJECT PRONOUN ══ -->
+<div class="section" id="object">
+  <div class="sec-title">🎯 Object Pronouns <span class="pill">The Receiver</span></div>
+
+  <div class="concept-box">
+    <h3>What is an Object Pronoun?</h3>
+    <p>An object pronoun is the pronoun that receives the action in a sentence. It usually comes <strong>after a verb</strong> or <strong>after a preposition</strong> (to, for, with, etc.).<br><br>
+    Pattern: <strong>Subject + Verb + Object Pronoun</strong></p>
+  </div>
+
+  <div class="card rose">
+    <div class="card-label">Full Reference Table</div>
+    <h3>Subject → Object Pronoun</h3>
+    <table class="pro-table">
+      <thead><tr><th>Subject</th><th>Object</th><th>Refers to</th><th>Example Sentence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">I</span></td><td><span class="en" style="color:var(--rose)">me</span></td><td class="muted">yourself</td><td><span class="ex">Help <b>me</b>!<span class="exsub">→ Someone helps you.</span></span></td></tr>
+        <tr><td><span class="en">You</span></td><td><span class="en" style="color:var(--rose)">you</span></td><td class="muted">person spoken to</td><td><span class="ex">I like <b>you</b>.<span class="exsub">→ You receive the liking.</span></span></td></tr>
+        <tr><td><span class="en">He</span></td><td><span class="en" style="color:var(--rose)">him</span></td><td class="muted">one male person</td><td><span class="ex">I see <b>him</b>.<span class="exsub">→ The boy is seen.</span></span></td></tr>
+        <tr><td><span class="en">She</span></td><td><span class="en" style="color:var(--rose)">her</span></td><td class="muted">one female person</td><td><span class="ex">I call <b>her</b>.<span class="exsub">→ The girl is called.</span></span></td></tr>
+        <tr><td><span class="en">It</span></td><td><span class="en" style="color:var(--rose)">it</span></td><td class="muted">animal or thing</td><td><span class="ex">I found <b>it</b>.<span class="exsub">→ The thing is found.</span></span></td></tr>
+        <tr><td><span class="en">We</span></td><td><span class="en" style="color:var(--rose)">us</span></td><td class="muted">yourself + others</td><td><span class="ex">Join <b>us</b>!<span class="exsub">→ The group receives the action.</span></span></td></tr>
+        <tr><td><span class="en">They</span></td><td><span class="en" style="color:var(--rose)">them</span></td><td class="muted">more than one</td><td><span class="ex">I know <b>them</b>.<span class="exsub">→ The people are known.</span></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Sentence Builder</div>
+    <h3>Subject + Object in One Sentence</h3>
+    <div class="builder-row">
+      <span class="slot pronoun">She</span><span class="slot verb">gives</span><span class="slot obj">him</span><span class="slot plus">a gift</span>
+      <span class="meaning">→ She gives him a gift.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">I</span><span class="slot verb">love</span><span class="slot obj">them</span>
+      <span class="meaning">→ I love them.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">He</span><span class="slot verb">kicks</span><span class="slot obj">it</span>
+      <span class="meaning">→ He kicks it. (the ball)</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">They</span><span class="slot verb">wait for</span><span class="slot obj">us</span>
+      <span class="meaning">→ They wait for us.</span>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>Easy trick:</strong> Object pronouns always come <em>after</em> the verb.<br>
+      "I love <b>her</b>" ✅ &nbsp;|&nbsp; "<b>Her</b> love I" ❌<br><br>
+      They also appear after prepositions: <strong>to, for, with, about, at, from</strong><br>
+      Example: "This gift is <em>for</em> <b>him</b>."
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 4: POSSESSIVE ══ -->
+<div class="section" id="possessive">
+  <div class="sec-title">💼 Possessive Pronouns <span class="pill">Ownership</span></div>
+
+  <div class="concept-box">
+    <h3>What is a Possessive Pronoun?</h3>
+    <p>Possessive pronouns show <strong>who owns something</strong>. There are two forms:<br>
+    🔹 <strong>Possessive Adjective</strong> – placed <em>before a noun</em> (my bag, his book)<br>
+    🔸 <strong>Possessive Pronoun</strong> – stands <em>alone</em>, without a noun (mine, his, hers)</p>
+  </div>
+
+  <div class="card purple">
+    <div class="card-label">Full Reference Table</div>
+    <h3>Possessive Adjectives &amp; Possessive Pronouns</h3>
+    <table class="pro-table">
+      <thead><tr><th>Subject</th><th>Poss. Adjective</th><th>Poss. Pronoun</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="en">I</span></td>
+          <td><span class="en" style="color:var(--purple)">my</span></td>
+          <td><span class="en" style="color:var(--purple)">mine</span></td>
+          <td><span class="ex">This is <b>my</b> book. → This book is <b>mine</b>.<span class="exsub">→ The book belongs to me.</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="en">You</span></td>
+          <td><span class="en" style="color:var(--purple)">your</span></td>
+          <td><span class="en" style="color:var(--purple)">yours</span></td>
+          <td><span class="ex">Is this <b>your</b> pen? → Is this pen <b>yours</b>?<span class="exsub">→ Does the pen belong to you?</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="en">He</span></td>
+          <td><span class="en" style="color:var(--purple)">his</span></td>
+          <td><span class="en" style="color:var(--purple)">his</span></td>
+          <td><span class="ex">That is <b>his</b> bag. → That bag is <b>his</b>.<span class="exsub">→ The bag belongs to him.</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="en">She</span></td>
+          <td><span class="en" style="color:var(--purple)">her</span></td>
+          <td><span class="en" style="color:var(--purple)">hers</span></td>
+          <td><span class="ex"><b>Her</b> cat is cute. → The cat is <b>hers</b>.<span class="exsub">→ The cat belongs to her.</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="en">It</span></td>
+          <td><span class="en" style="color:var(--purple)">its</span></td>
+          <td><span class="en" style="color:var(--purple)">—</span></td>
+          <td><span class="ex">The dog wags <b>its</b> tail.<span class="exsub">→ No standalone form; always used with a noun.</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="en">We</span></td>
+          <td><span class="en" style="color:var(--purple)">our</span></td>
+          <td><span class="en" style="color:var(--purple)">ours</span></td>
+          <td><span class="ex">This is <b>our</b> school. → The school is <b>ours</b>.<span class="exsub">→ The school belongs to us.</span></span></td>
+        </tr>
+        <tr>
+          <td><span class="en">They</span></td>
+          <td><span class="en" style="color:var(--purple)">their</span></td>
+          <td><span class="en" style="color:var(--purple)">theirs</span></td>
+          <td><span class="ex"><b>Their</b> house is big. → The house is <b>theirs</b>.<span class="exsub">→ The house belongs to them.</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Comparison</div>
+    <h3>Possessive Adjective vs. Possessive Pronoun</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>🔹 Possessive Adjective<br><small style="font-weight:500;font-size:12px">(+ a noun after it)</small></h4>
+        <ul>
+          <li>This is <b>my</b> bag.</li>
+          <li>I love <b>her</b> smile.</li>
+          <li>They lost <b>their</b> key.</li>
+          <li>We clean <b>our</b> room.</li>
+        </ul>
+      </div>
+      <div class="compare-col right">
+        <h4>🔸 Possessive Pronoun<br><small style="font-weight:500;font-size:12px">(stands alone, no noun)</small></h4>
+        <ul>
+          <li>This bag is <b>mine</b>.</li>
+          <li>The smile is <b>hers</b>.</li>
+          <li>The key is <b>theirs</b>.</li>
+          <li>The room is <b>ours</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">⚠️</div>
+    <div class="tip-body">
+      <strong>Don't mix these up!</strong><br>
+      🐾 <strong>Its</strong> (ownership by an animal/thing) is DIFFERENT from <strong>It's</strong> (= It is).<br>
+      ✅ <em>The cat licks <b>its</b> paw.</em> → ownership — belongs to the cat.<br>
+      ✅ <em><b>It's</b> a cute cat.</em> → It is a cute cat.
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 5: DIALOGUE ══ -->
+<div class="section" id="dialogue">
+  <div class="sec-title">💬 Dialogue Practice <span class="pill">Real Conversations</span></div>
+
+  <div class="card green">
+    <div class="card-label">Dialogue 1 – Talking About a Friend</div>
+    <h3>Who is That? 🤔</h3>
+    <div class="dialogue">
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Nisa</div>
+          <div class="bubble">Hey Dani! Who is that boy over there? <span class="hi">He</span> looks familiar.</div>
+          <div class="bexp">→ "He" = subject pronoun replacing the boy's name.</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Dani</div>
+          <div class="bubble">Oh, <span class="hi">he</span> is Reza. <span class="hi">He</span> is <span class="hi">my</span> neighbor. <span class="hi">His</span> house is near <span class="hi">our</span> school.</div>
+          <div class="bexp">→ "my" & "his" = possessive adjectives. "our" = possessive adjective (plural).</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Nisa</div>
+          <div class="bubble">Really? Does <span class="hi">he</span> know <span class="hi">us</span>?</div>
+          <div class="bexp">→ "us" = object pronoun replacing "Nisa and Dani".</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Dani</div>
+          <div class="bubble">Yes! <span class="hi">He</span> knows <span class="hi">you</span> too. <span class="hi">He</span> told <span class="hi">me</span> that <span class="hi">you</span> are <span class="hi">his</span> classmate in tutor class!</div>
+          <div class="bexp">→ "you" = object pronoun. "me" = object pronoun. "his" = possessive adjective.</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Nisa</div>
+          <div class="bubble">Wow! Let's invite <span class="hi">him</span> to play with <span class="hi">us</span>!</div>
+          <div class="bexp">→ "him" & "us" = object pronouns.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card rose" style="margin-top:18px">
+    <div class="card-label">Dialogue 2 – Whose Pencil Case is This?</div>
+    <h3>Whose Is It? 🎒</h3>
+    <div class="dialogue">
+      <div class="brow">
+        <div class="av">👩‍🏫</div>
+        <div class="bc">
+          <div class="bname">Teacher</div>
+          <div class="bubble">Class, I found a pencil case. Is this <span class="hi">yours</span>, Budi?</div>
+          <div class="bexp">→ "yours" = possessive pronoun (stands alone, no noun after it).</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Budi</div>
+          <div class="bubble">No, Ma'am. That is not <span class="hi">mine</span>. <span class="hi">My</span> pencil case is blue.</div>
+          <div class="bexp">→ "mine" = possessive pronoun. "My" = possessive adjective (+ noun).</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👩‍🏫</div>
+        <div class="bc">
+          <div class="bname">Teacher</div>
+          <div class="bubble">How about you, Sari? Could it be <span class="hi">hers</span>? (Wulan's)</div>
+          <div class="bexp">→ "hers" = possessive pronoun replacing "Wulan's pencil case".</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Sari</div>
+          <div class="bubble">Oh yes! That is <span class="hi">hers</span>! <span class="hi">She</span> told <span class="hi">me</span> <span class="hi">she</span> lost <span class="hi">her</span> pencil case yesterday!</div>
+          <div class="bexp">→ "She" = subject pronoun. "me" = object pronoun. "her" = possessive adjective.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>Try this practice!</strong> Read both dialogues above and underline every pronoun you find. Then sort them into three groups: Subject Pronoun, Object Pronoun, and Possessive. You'll find plenty of real examples! 🎉
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 6: QUIZ ══ -->
+<div class="section" id="quiz">
+  <div class="sec-title">🏆 Quiz Time! <span class="pill">Test Yourself</span></div>
+
+  <div class="score-bar">
+    <div class="sc-label">⭐ YOUR SCORE</div>
+    <div class="sc-num" id="scoreNum">0</div>
+    <div class="sc-max">/ 8</div>
+    <div class="sc-stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="quiz-wrap">
+
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Subject Pronoun</div>
+      <div class="qtext">Rina is a student. <em>___</em> goes to school every morning.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,true)">She</button>
+        <button class="opt" onclick="ans('q1',this,false)">Her</button>
+        <button class="opt" onclick="ans('q1',this,false)">Hers</button>
+        <button class="opt" onclick="ans('q1',this,false)">They</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — Object Pronoun</div>
+      <div class="qtext">I have a little brother. I always help <em>___</em> with his homework.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,false)">he</button>
+        <button class="opt" onclick="ans('q2',this,true)">him</button>
+        <button class="opt" onclick="ans('q2',this,false)">his</button>
+        <button class="opt" onclick="ans('q2',this,false)">himself</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Possessive Adjective</div>
+      <div class="qtext">Budi has a bicycle. <em>___</em> bicycle is red.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">He</button>
+        <button class="opt" onclick="ans('q3',this,false)">Him</button>
+        <button class="opt" onclick="ans('q3',this,true)">His</button>
+        <button class="opt" onclick="ans('q3',this,false)">Himself</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Subject Pronoun (Plural)</div>
+      <div class="qtext">Andi and Sari are my friends. <em>___</em> are very kind.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">He</button>
+        <button class="opt" onclick="ans('q4',this,false)">She</button>
+        <button class="opt" onclick="ans('q4',this,true)">They</button>
+        <button class="opt" onclick="ans('q4',this,false)">We</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Object Pronoun (Plural)</div>
+      <div class="qtext">My parents are wonderful. I love <em>___</em> very much.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,false)">they</button>
+        <button class="opt" onclick="ans('q5',this,true)">them</button>
+        <button class="opt" onclick="ans('q5',this,false)">their</button>
+        <button class="opt" onclick="ans('q5',this,false)">theirs</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Possessive Pronoun</div>
+      <div class="qtext">"Is this bag yours?" — "No, it's not mine. It's <em>___</em>." (it belongs to Maya)</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,false)">she</button>
+        <button class="opt" onclick="ans('q6',this,false)">her</button>
+        <button class="opt" onclick="ans('q6',this,true)">hers</button>
+        <button class="opt" onclick="ans('q6',this,false)">herself</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Choosing the Right Pronoun</div>
+      <div class="qtext">The cat is hungry. <em>___</em> wants <em>___</em> food.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,true)">It … its</button>
+        <button class="opt" onclick="ans('q7',this,false)">It … it's</button>
+        <button class="opt" onclick="ans('q7',this,false)">He … his</button>
+        <button class="opt" onclick="ans('q7',this,false)">They … their</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Complete the Sentence</div>
+      <div class="qtext">My teacher gave Dani and me a book. <em>___</em> gave it to <em>___</em>.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">Her … we</button>
+        <button class="opt" onclick="ans('q8',this,false)">She … our</button>
+        <button class="opt" onclick="ans('q8',this,true)">She … us</button>
+        <button class="opt" onclick="ans('q8',this,false)">Her … us</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</div>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const tabs = ['intro','subject','object','possessive','dialogue','quiz'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.pdot').forEach((d,i) => d.classList.toggle('done', i <= idx));
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Great job!', '✅ Excellent! Well done!', '✅ That\'s right! Smart!', '✅ Perfect answer!'],
+  wrong:   ['❌ Not quite. Review the table above!', '❌ Close! Check the lesson again.', '❌ Keep trying, you\'ve got this!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'🌟🌟🌟🌟':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>
