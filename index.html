@@ -18,9 +18,7 @@
   --dark:#1A1A2E;
   --bg:#F8FAFF;
 }
-
 *{ margin:0; padding:0; box-sizing:border-box; }
-
 body{
   font-family:'Nunito',sans-serif;
   background:var(--bg);
@@ -28,94 +26,127 @@ body{
   overflow-x:hidden;
 }
 
+/* ── HEADER ── */
 header{
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,#3A86FF 0%,#7C5CBF 50%,#FF4D8D 100%);
+  background:linear-gradient(160deg,#74b9ff 0%,#a29bfe 45%,#fd79a8 100%);
   color:white;
   text-align:center;
-  padding:110px 20px 140px;
+  padding:110px 20px 160px;
 }
 
-.header-decoration{
+/* soft light orbs in bg */
+header::before{
+  content:'';
   position:absolute;
-  font-size:3rem;
-  opacity:.3;
-}
-.cloud1{ top:30px; left:5%; animation:floatCloud 8s ease-in-out infinite; }
-.cloud2{ top:50px; right:10%; animation:floatCloud 10s ease-in-out infinite reverse; }
-.star1{ bottom:60px; left:15%; animation:twinkle 3s ease-in-out infinite; }
-.star2{ top:120px; right:20%; animation:twinkle 4s ease-in-out infinite 1s; }
-
-@keyframes floatCloud{
-  0%,100%{ transform:translateX(0); }
-  50%{ transform:translateX(18px); }
-}
-@keyframes twinkle{
-  0%,100%{ transform:scale(1) rotate(0deg); opacity:.3; }
-  50%{ transform:scale(1.3) rotate(20deg); opacity:.6; }
-}
-
-/* Canvas plant layer */
-#plantCanvas{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:180px;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(255,255,255,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 80% 60%, rgba(255,200,220,0.2) 0%, transparent 70%);
   pointer-events:none;
 }
 
-/* Floating bubbles */
-.bubble{
+/* clouds */
+.cloud{
   position:absolute;
+  background:rgba(255,255,255,0.88);
+  border-radius:50px;
+  filter:blur(1px);
+}
+.cloud::before,.cloud::after{
+  content:'';
+  position:absolute;
+  background:inherit;
   border-radius:50%;
-  background:rgba(255,255,255,0.1);
-  animation:rise linear infinite;
 }
-.b1{ width:18px;height:18px; left:25%; animation-duration:7s; }
-.b2{ width:12px;height:12px; left:40%; animation-duration:9s; animation-delay:2s; }
-.b3{ width:22px;height:22px; left:60%; animation-duration:6s; animation-delay:1s; }
-.b4{ width:10px;height:10px; left:75%; animation-duration:8s; animation-delay:3s; }
-.b5{ width:16px;height:16px; left:85%; animation-duration:10s; animation-delay:.5s; }
+.cloud-a{
+  width:90px;height:28px;
+  top:38px;left:6%;
+  animation:driftL 12s ease-in-out infinite;
+}
+.cloud-a::before{ width:44px;height:44px;top:-22px;left:12px; }
+.cloud-a::after{  width:30px;height:30px;top:-16px;left:44px; }
+.cloud-b{
+  width:70px;height:22px;
+  top:55px;right:8%;
+  animation:driftR 15s ease-in-out infinite;
+}
+.cloud-b::before{ width:36px;height:36px;top:-18px;left:10px; }
+.cloud-b::after{  width:24px;height:24px;top:-12px;left:36px; }
+.cloud-c{
+  width:55px;height:18px;
+  top:80px;left:35%;
+  animation:driftL 10s ease-in-out infinite 3s;
+  opacity:.7;
+}
+.cloud-c::before{ width:28px;height:28px;top:-14px;left:8px; }
+.cloud-c::after{  width:20px;height:20px;top:-10px;left:28px; }
 
-@keyframes rise{
-  0%{ bottom:-30px; opacity:0; }
-  10%{ opacity:.6; }
-  90%{ opacity:.3; }
-  100%{ bottom:110%; opacity:0; }
+@keyframes driftL{ 0%,100%{transform:translateX(0)} 50%{transform:translateX(14px)} }
+@keyframes driftR{ 0%,100%{transform:translateX(0)} 50%{transform:translateX(-14px)} }
+
+/* stars / sparkles */
+.sparkle{
+  position:absolute;
+  font-size:1.5rem;
+  animation:sparkle 2.5s ease-in-out infinite;
+  filter:drop-shadow(0 0 6px rgba(255,240,100,0.8));
+}
+.sp1{ top:25px;left:22%;animation-delay:0s; }
+.sp2{ top:40px;right:25%;animation-delay:.7s; }
+.sp3{ top:100px;left:50%;animation-delay:1.3s; }
+.sp4{ top:70px;left:8%;animation-delay:.4s;font-size:1rem; }
+.sp5{ top:90px;right:12%;animation-delay:1.8s;font-size:1rem; }
+@keyframes sparkle{
+  0%,100%{ transform:scale(1) rotate(0deg); opacity:.7; }
+  50%{ transform:scale(1.4) rotate(25deg); opacity:1; }
 }
 
+/* canvas */
+#plantCanvas{
+  position:absolute;
+  bottom:0;left:0;
+  width:100%;height:200px;
+  pointer-events:none;
+}
+
+/* header text */
 header h1{
   font-family:'Fredoka',sans-serif;
   font-size:3rem;
   margin-bottom:10px;
   position:relative;
-  text-shadow:0 2px 12px rgba(0,0,0,0.2);
+  text-shadow:0 3px 16px rgba(90,50,150,0.25);
+  letter-spacing:.5px;
 }
 header > p{
-  font-size:1.1rem;
-  opacity:.9;
+  font-size:1.15rem;
+  opacity:.95;
   position:relative;
+  font-weight:600;
+  text-shadow:0 1px 6px rgba(0,0,0,.12);
 }
 .hero-btn{
   display:inline-block;
-  margin-top:25px;
-  background:var(--yellow);
-  color:var(--dark);
+  margin-top:28px;
+  background:linear-gradient(135deg,#ffeaa7,#fdcb6e);
+  color:#2d1b00;
   text-decoration:none;
-  padding:14px 28px;
+  padding:15px 34px;
   border-radius:50px;
   font-weight:800;
+  font-size:1.05rem;
   position:relative;
-  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  box-shadow:0 6px 22px rgba(200,140,0,0.35), 0 2px 0 rgba(255,255,255,0.5) inset;
   transition:transform .2s, box-shadow .2s;
 }
 .hero-btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 28px rgba(0,0,0,0.28);
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 12px 30px rgba(200,140,0,0.4);
 }
 
+/* ── MAIN ── */
 .container{
   max-width:1200px;
   margin:auto;
@@ -132,96 +163,106 @@ header > p{
 .grade-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
+  gap:26px;
 }
 
 .grade-card{
   background:white;
-  border-radius:24px;
+  border-radius:28px;
   padding:0;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  transition:.3s;
+  box-shadow:0 8px 28px rgba(0,0,0,0.07);
+  transition:.3s cubic-bezier(.34,1.56,.64,1);
   overflow:hidden;
   position:relative;
 }
 .grade-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.14);
+  transform:translateY(-10px) scale(1.01);
+  box-shadow:0 22px 44px rgba(0,0,0,0.13);
 }
 
 .card-header{
-  padding:20px 25px 16px;
+  padding:22px 26px 18px;
   position:relative;
   overflow:hidden;
 }
+/* decorative circles in card header */
 .card-header::after{
   content:'';
   position:absolute;
-  top:-20px;right:-20px;
-  width:80px;height:80px;
+  top:-25px;right:-25px;
+  width:90px;height:90px;
   border-radius:50%;
-  background:rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.22);
 }
 .card-header::before{
   content:'';
   position:absolute;
-  top:-40px;right:20px;
-  width:120px;height:120px;
+  top:-45px;right:18px;
+  width:130px;height:130px;
   border-radius:50%;
-  background:rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.13);
 }
 .card-header h3{
   font-family:'Fredoka',sans-serif;
-  font-size:1.4rem;
+  font-size:1.45rem;
   color:white;
-  text-shadow:0 1px 4px rgba(0,0,0,0.15);
+  text-shadow:0 1px 6px rgba(0,0,0,0.18);
   position:relative;
 }
-
-.card-body{ padding:18px 25px 22px; }
+.card-body{ padding:18px 26px 24px; }
 
 .grade-card a{
   display:block;
   text-decoration:none;
-  color:#444;
-  padding:11px 16px;
+  color:#555;
+  padding:12px 18px;
   margin-bottom:10px;
-  border-radius:12px;
+  border-radius:14px;
   background:#F4F6FA;
   font-weight:700;
   transition:.2s;
+  font-size:.97rem;
 }
 .grade-card a:last-child{ margin-bottom:0; }
 
-.grade-1 .card-header{ background:linear-gradient(135deg,#3A86FF,#2667CC); }
-.grade-1 a:hover{ background:#3A86FF; color:white; }
-.grade-2 .card-header{ background:linear-gradient(135deg,#06D6A0,#04A87C); }
-.grade-2 a:hover{ background:#06D6A0; color:white; }
-.grade-3 .card-header{ background:linear-gradient(135deg,#FF6B35,#D84F1A); }
-.grade-3 a:hover{ background:#FF6B35; color:white; }
-.grade-4 .card-header{ background:linear-gradient(135deg,#7C5CBF,#5D3FA0); }
-.grade-4 a:hover{ background:#7C5CBF; color:white; }
-.grade-5 .card-header{ background:linear-gradient(135deg,#FF4D8D,#D4306A); }
-.grade-5 a:hover{ background:#FF4D8D; color:white; }
-.grade-6 .card-header{ background:linear-gradient(135deg,#FFD93D,#E8B500); }
-.grade-6 .card-header h3{ color:#1A1A2E; }
-.grade-6 a:hover{ background:#FFD93D; color:#1A1A2E; }
+/* per-grade colors – softer, more pastel */
+.grade-1 .card-header{ background:linear-gradient(135deg,#74b9ff,#0984e3); }
+.grade-1 a:hover{ background:#74b9ff; color:#003a6e; }
 
+.grade-2 .card-header{ background:linear-gradient(135deg,#55efc4,#00b894); }
+.grade-2 a:hover{ background:#55efc4; color:#004d3a; }
+
+.grade-3 .card-header{ background:linear-gradient(135deg,#fab1a0,#e17055); }
+.grade-3 a:hover{ background:#fab1a0; color:#5c1f0f; }
+
+.grade-4 .card-header{ background:linear-gradient(135deg,#a29bfe,#6c5ce7); }
+.grade-4 a:hover{ background:#a29bfe; color:#2d0075; }
+
+.grade-5 .card-header{ background:linear-gradient(135deg,#fd79a8,#d63031); }
+.grade-5 .card-header h3{ color:white; }
+.grade-5 a:hover{ background:#fd79a8; color:#5a001a; }
+
+.grade-6 .card-header{ background:linear-gradient(135deg,#ffeaa7,#fdcb6e); }
+.grade-6 .card-header h3{ color:#5c3900; }
+.grade-6 a:hover{ background:#ffeaa7; color:#5c3900; }
+
+/* top accent bar */
 .grade-card::before{
   content:'';
   display:block;
-  height:4px;
+  height:5px;
   position:absolute;
   top:0;left:0;right:0;
-  border-radius:24px 24px 0 0;
+  border-radius:28px 28px 0 0;
 }
-.grade-1::before{ background:linear-gradient(90deg,#3A86FF,#80B3FF); }
-.grade-2::before{ background:linear-gradient(90deg,#06D6A0,#5DEDD0); }
-.grade-3::before{ background:linear-gradient(90deg,#FF6B35,#FFB19A); }
-.grade-4::before{ background:linear-gradient(90deg,#7C5CBF,#B89EE0); }
-.grade-5::before{ background:linear-gradient(90deg,#FF4D8D,#FF9EC4); }
-.grade-6::before{ background:linear-gradient(90deg,#FFD93D,#FFE980); }
+.grade-1::before{ background:linear-gradient(90deg,#74b9ff,#b8d9ff); }
+.grade-2::before{ background:linear-gradient(90deg,#55efc4,#a8f7e0); }
+.grade-3::before{ background:linear-gradient(90deg,#fab1a0,#fdd5cc); }
+.grade-4::before{ background:linear-gradient(90deg,#a29bfe,#cfc9ff); }
+.grade-5::before{ background:linear-gradient(90deg,#fd79a8,#ffb3cf); }
+.grade-6::before{ background:linear-gradient(90deg,#ffeaa7,#fff4d0); }
 
+/* ── STATS ── */
 .stats{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -230,22 +271,21 @@ header > p{
 }
 .stat-box{
   background:white;
-  border-radius:20px;
+  border-radius:22px;
   padding:28px 25px;
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  box-shadow:0 8px 24px rgba(0,0,0,0.07);
   transition:.25s;
-  position:relative;
-  overflow:hidden;
 }
-.stat-box:hover{ transform:translateY(-4px); }
+.stat-box:hover{ transform:translateY(-5px); }
 .stat-box h3{ font-size:2.2rem; margin-bottom:6px; }
 .stat-box p{ color:#1A1A2E; font-weight:700; font-size:1rem; }
-.stat-box:nth-child(1) h3{ color:#3A86FF; }
-.stat-box:nth-child(2) h3{ color:#06D6A0; }
-.stat-box:nth-child(3) h3{ color:#FF6B35; }
-.stat-box:nth-child(4) h3{ color:#FF4D8D; }
+.stat-box:nth-child(1) h3{ color:#74b9ff; }
+.stat-box:nth-child(2) h3{ color:#55efc4; }
+.stat-box:nth-child(3) h3{ color:#fab1a0; }
+.stat-box:nth-child(4) h3{ color:#fd79a8; }
 
+/* ── FOOTER ── */
 footer{
   margin-top:70px;
   background:var(--dark);
@@ -260,20 +300,20 @@ footer{
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="header-decoration cloud1">☁️</div>
-  <div class="header-decoration cloud2">☁️</div>
-  <div class="header-decoration star1">⭐</div>
-  <div class="header-decoration star2">⭐</div>
+  <!-- soft clouds -->
+  <div class="cloud cloud-a"></div>
+  <div class="cloud cloud-b"></div>
+  <div class="cloud cloud-c"></div>
 
-  <div class="bubble b1"></div>
-  <div class="bubble b2"></div>
-  <div class="bubble b3"></div>
-  <div class="bubble b4"></div>
-  <div class="bubble b5"></div>
+  <!-- sparkles -->
+  <div class="sparkle sp1">✨</div>
+  <div class="sparkle sp2">⭐</div>
+  <div class="sparkle sp3">✨</div>
+  <div class="sparkle sp4">🌟</div>
+  <div class="sparkle sp5">✨</div>
 
   <h1>🎓 BunRey English Course</h1>
   <p>Fun English Learning for Elementary Students</p>
@@ -358,291 +398,318 @@ footer{
 <script>
 (function(){
   const canvas = document.getElementById('plantCanvas');
-  const ctx = canvas.getContext('2d');
+  const ctx    = canvas.getContext('2d');
 
   function resize(){
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    canvas.width  = canvas.offsetWidth  * devicePixelRatio;
+    canvas.height = canvas.offsetHeight * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
   }
-  resize();
-  window.addEventListener('resize', resize);
-
-  /* ── Wind simulation ── */
-  let windBase = 0, windNoise = 0, windT = 0;
-  function getWind(t){
-    windT += 0.008;
-    windBase  = Math.sin(windT * 0.7) * 0.6 + Math.sin(windT * 1.3) * 0.3;
-    windNoise = Math.sin(windT * 4.1) * 0.15 + Math.sin(windT * 7.3) * 0.07;
-    return windBase + windNoise;
+  let W, H;
+  function setSize(){
+    resize();
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
   }
+  setSize();
+  window.addEventListener('resize', setSize);
 
-  /* ── Draw a curved stem using quadratic bezier ──
-     baseX, baseY : root of stem
-     height       : stem length
-     wind         : current wind value (−1..1)
-     phase        : per-plant phase offset
-     thickness    : base width
-     color        : stem color
-     returns tip {x,y} for leaf placement
-  */
-  function drawStem(baseX, baseY, height, wind, phase, thickness, color){
-    const bend  = wind * height * 0.28 * Math.sin(phase);
-    const cpX   = baseX + bend * 0.5;
-    const cpY   = baseY - height * 0.55;
-    const tipX  = baseX + bend;
-    const tipY  = baseY - height;
-
-    ctx.beginPath();
-    ctx.moveTo(baseX, baseY);
-    ctx.quadraticCurveTo(cpX, cpY, tipX, tipY);
-    ctx.strokeStyle = color;
-    ctx.lineWidth   = thickness;
-    ctx.lineCap     = 'round';
-    ctx.stroke();
-    return { x: tipX, y: tipY, cpX, cpY, bend };
+  /* ── Wind ── */
+  let t = 0;
+  function wind(){
+    return Math.sin(t*0.6)*0.7 + Math.sin(t*1.4)*0.25 + Math.sin(t*3.8)*0.08;
   }
 
-  /* ── Draw an organic leaf ──
-     ox, oy   : attachment point on stem
-     angle    : base rotation (radians)
-     size     : leaf length
-     wind     : current wind
-     phase    : timing offset
-     flip     : mirror horizontally
-     colors   : [fill, vein]
-  */
-  function drawLeaf(ox, oy, angle, size, wind, phase, flip, colors){
-    const wobble = wind * 0.35 * Math.sin(phase * 1.7 + Date.now()*0.0001);
-    const lean   = angle + wobble * (flip ? -1 : 1);
-    const w      = size * 0.45;
+  /* ── Bezier helpers ── */
+  function qPoint(ax,ay,cx,cy,bx,by,u){
+    const v=1-u;
+    return{ x:v*v*ax+2*v*u*cx+u*u*bx, y:v*v*ay+2*v*u*cy+u*u*by };
+  }
+  function qTangentAngle(ax,ay,cx,cy,bx,by,u){
+    const dx=2*(1-u)*(cx-ax)+2*u*(bx-cx);
+    const dy=2*(1-u)*(cy-ay)+2*u*(by-cy);
+    return Math.atan2(dy,dx);
+  }
 
+  /* ── Cute chubby leaf ── */
+  function cuteLeaf(ox,oy, angle, size, alpha){
     ctx.save();
+    ctx.globalAlpha = alpha ?? 1;
     ctx.translate(ox, oy);
-    ctx.rotate(lean);
-    if(flip) ctx.scale(-1,1);
+    ctx.rotate(angle);
 
-    /* leaf body */
+    const w = size * 0.52;
+    // body
     ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.bezierCurveTo( w, -size*0.25,  w*1.1, -size*0.6,  0, -size);
-    ctx.bezierCurveTo(-w*0.6, -size*0.65, -w*0.5, -size*0.3,  0,  0);
-    ctx.fillStyle = colors[0];
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo( w*1.1,-size*0.2,  w*1.15,-size*0.65,  0,-size);
+    ctx.bezierCurveTo(-w*0.8,-size*0.65, -w*0.7,-size*0.2,   0,0);
+    ctx.closePath();
+
+    // soft pastel gradient fill
+    const g = ctx.createLinearGradient(0,0,0,-size);
+    g.addColorStop(0,'#a8e6a3');
+    g.addColorStop(0.5,'#c8f2b0');
+    g.addColorStop(1,'#e8fce0');
+    ctx.fillStyle = g;
     ctx.fill();
 
-    /* midrib */
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.quadraticCurveTo(w*0.15, -size*0.5, 0, -size);
-    ctx.strokeStyle = colors[1];
-    ctx.lineWidth   = Math.max(0.8, size * 0.025);
+    // soft outline
+    ctx.strokeStyle='rgba(80,160,80,0.3)';
+    ctx.lineWidth=1;
     ctx.stroke();
 
-    /* lateral veins */
-    ctx.lineWidth = Math.max(0.4, size * 0.012);
-    ctx.globalAlpha = 0.55;
-    for(let i=1; i<=3; i++){
-      const t  = i / 4;
-      const mx = w*0.1*t;
-      const my = -size*t;
-      ctx.beginPath();
-      ctx.moveTo(mx, my);
-      ctx.quadraticCurveTo(mx + w*0.55, my - size*0.12, mx + w*0.7, my - size*0.05);
-      ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
+    // midrib
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.quadraticCurveTo(w*0.1,-size*0.5, 0,-size);
+    ctx.strokeStyle='rgba(80,170,80,0.4)';
+    ctx.lineWidth=1.2;
+    ctx.stroke();
 
     ctx.restore();
   }
 
-  /* ── Grass blade ── */
-  function drawBlade(baseX, baseY, height, wind, phase, color){
-    const bend = wind * height * 0.55 * Math.sin(phase);
-    const cpX  = baseX + bend * 0.4;
-    const cpY  = baseY - height * 0.6;
-    const tipX = baseX + bend;
-    const tipY = baseY - height;
-
+  /* ── Cute round flower ── */
+  function cuteFlower(cx,cy, r, petalColor, centerColor, petalCount){
+    const pc = petalCount||5;
+    ctx.save();
+    ctx.translate(cx,cy);
+    for(let i=0;i<pc;i++){
+      ctx.save();
+      ctx.rotate((Math.PI*2/pc)*i);
+      ctx.beginPath();
+      ctx.ellipse(0,-r*1.0, r*0.55, r*0.7, 0, 0, Math.PI*2);
+      ctx.fillStyle = petalColor;
+      ctx.globalAlpha=0.9;
+      ctx.fill();
+      ctx.restore();
+    }
+    // center
     ctx.beginPath();
-    ctx.moveTo(baseX - 2, baseY);
-    ctx.quadraticCurveTo(cpX - 1, cpY, tipX, tipY);
-    ctx.lineTo(baseX + 2, baseY);
-    ctx.closePath();
-    ctx.fillStyle = color;
+    ctx.arc(0,0,r*0.52,0,Math.PI*2);
+    ctx.fillStyle=centerColor;
+    ctx.globalAlpha=1;
     ctx.fill();
+    // center shine
+    ctx.beginPath();
+    ctx.arc(-r*0.12,-r*0.12,r*0.18,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.55)';
+    ctx.fill();
+    ctx.restore();
   }
 
-  /* ── Plant definitions ──
-     side: 'L' or 'R'
-     xFrac: 0..1 along that side (0 = edge)
-     Each plant has stems with leaves attached at parametric positions along the bezier
-  */
-  const PLANTS = [
-    /* ─ LEFT SIDE ─ */
-    { side:'L', xFrac:0.00, stems:[
-        { h:115, th:5, sc:'#1a6b30', phase:1.0,
-          leaves:[
-            { t:1.0, sz:42, a:-0.5, flip:false, fc:'#2d9e4f', vc:'#1a6b30' },
-            { t:0.75, sz:34, a:-0.8, flip:true,  fc:'#38b85e', vc:'#24873f' },
-            { t:0.5,  sz:28, a:-0.4, flip:false, fc:'#4dcf72', vc:'#2d9e4f' },
-          ]
-        },
-        { h:80,  th:3, sc:'#256638', phase:2.1,
-          leaves:[
-            { t:1.0, sz:32, a:-0.6, flip:true,  fc:'#33a852', vc:'#1e7d3a' },
-            { t:0.6, sz:22, a:-0.5, flip:false, fc:'#42c463', vc:'#2d8e45' },
-          ]
-        }
-      ]
-    },
-    { side:'L', xFrac:0.055, stems:[
-        { h:95,  th:4, sc:'#1e7336', phase:0.5,
-          leaves:[
-            { t:1.0, sz:36, a:-0.45, flip:false, fc:'#28a44d', vc:'#1a7535' },
-            { t:0.7, sz:28, a:-0.7,  flip:true,  fc:'#3bbc62', vc:'#26934a' },
-            { t:0.45,sz:20, a:-0.3,  flip:false, fc:'#50d47a', vc:'#38a85b' },
-          ]
-        }
-      ]
-    },
-    { side:'L', xFrac:0.11, stems:[
-        { h:70,  th:3, sc:'#1d6b30', phase:1.8,
-          leaves:[
-            { t:1.0, sz:28, a:-0.5, flip:true,  fc:'#25924a', vc:'#196632' },
-            { t:0.65,sz:20, a:-0.6, flip:false, fc:'#38b05e', vc:'#238045' },
-          ]
-        }
-      ]
-    },
-    { side:'L', xFrac:0.165, stems:[
-        { h:55,  th:2.5, sc:'#195c2a', phase:2.6,
-          leaves:[
-            { t:1.0, sz:22, a:-0.55, flip:false, fc:'#228040', vc:'#175227' },
-            { t:0.6, sz:16, a:-0.7,  flip:true,  fc:'#2fa055', vc:'#1e6e38' },
-          ]
-        }
-      ]
-    },
-    /* ─ RIGHT SIDE ─ */
-    { side:'R', xFrac:0.00, stems:[
-        { h:115, th:5, sc:'#1a6b30', phase:0.7,
-          leaves:[
-            { t:1.0, sz:42, a:-0.5, flip:true,  fc:'#2d9e4f', vc:'#1a6b30' },
-            { t:0.75,sz:34, a:-0.8, flip:false, fc:'#38b85e', vc:'#24873f' },
-            { t:0.5, sz:28, a:-0.4, flip:true,  fc:'#4dcf72', vc:'#2d9e4f' },
-          ]
-        },
-        { h:78,  th:3, sc:'#256638', phase:1.5,
-          leaves:[
-            { t:1.0, sz:30, a:-0.6, flip:false, fc:'#33a852', vc:'#1e7d3a' },
-            { t:0.6, sz:21, a:-0.5, flip:true,  fc:'#42c463', vc:'#2d8e45' },
-          ]
-        }
-      ]
-    },
-    { side:'R', xFrac:0.055, stems:[
-        { h:90,  th:4, sc:'#1e7336', phase:1.2,
-          leaves:[
-            { t:1.0, sz:35, a:-0.45, flip:true,  fc:'#28a44d', vc:'#1a7535' },
-            { t:0.7, sz:26, a:-0.7,  flip:false, fc:'#3bbc62', vc:'#26934a' },
-          ]
-        }
-      ]
-    },
-    { side:'R', xFrac:0.11, stems:[
-        { h:65,  th:3, sc:'#1d6b30', phase:0.3,
-          leaves:[
-            { t:1.0, sz:26, a:-0.5, flip:false, fc:'#25924a', vc:'#196632' },
-            { t:0.6, sz:18, a:-0.6, flip:true,  fc:'#38b05e', vc:'#238045' },
-          ]
-        }
-      ]
-    },
-    { side:'R', xFrac:0.165, stems:[
-        { h:52,  th:2.5, sc:'#195c2a', phase:1.9,
-          leaves:[
-            { t:1.0, sz:20, a:-0.55, flip:true,  fc:'#228040', vc:'#175227' },
-            { t:0.6, sz:14, a:-0.7,  flip:false, fc:'#2fa055', vc:'#1e6e38' },
-          ]
-        }
-      ]
-    },
+  /* ── Cute chubby stem (wobbles as one) ── */
+  function chubbyStem(bx,by, h, bendX, th, col){
+    const cpx = bx + bendX*0.45;
+    const cpy = by - h*0.55;
+    const tx  = bx + bendX;
+    const ty  = by - h;
+
+    // stem glow / thickness = cute & soft
+    ctx.beginPath();
+    ctx.moveTo(bx, by);
+    ctx.quadraticCurveTo(cpx,cpy,tx,ty);
+    ctx.strokeStyle = col;
+    ctx.lineWidth   = th;
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+    ctx.stroke();
+
+    return {bx,by,cpx,cpy,tx,ty};
+  }
+
+  /* ── Butterfly ── */
+  function butterfly(bx,by, phase, wScale){
+    const flap = Math.sin(phase*6) * wScale; // wing flap
+    ctx.save();
+    ctx.translate(bx, by);
+
+    // left wings
+    ctx.save();
+    ctx.scale(-flap, 1);
+    ctx.beginPath();
+    ctx.ellipse(-7,-4, 10,7, -0.4, 0, Math.PI*2);
+    ctx.fillStyle='rgba(253,121,168,0.85)';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(-5,4, 7,5, 0.5, 0, Math.PI*2);
+    ctx.fillStyle='rgba(253,121,168,0.7)';
+    ctx.fill();
+    ctx.restore();
+
+    // right wings
+    ctx.save();
+    ctx.scale(flap, 1);
+    ctx.beginPath();
+    ctx.ellipse(7,-4, 10,7, 0.4, 0, Math.PI*2);
+    ctx.fillStyle='rgba(162,155,254,0.85)';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(5,4, 7,5, -0.5, 0, Math.PI*2);
+    ctx.fillStyle='rgba(162,155,254,0.7)';
+    ctx.fill();
+    ctx.restore();
+
+    // body
+    ctx.beginPath();
+    ctx.ellipse(0,0, 2,6, 0, 0, Math.PI*2);
+    ctx.fillStyle='#636e72';
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  /* ── Plant data ── */
+  // Each plant: side 'L'/'R', xFrac (0=edge), stems[]
+  // stem: h, th, col, phase, leaves[]
+  // leaf: t(0-1 along stem), sz, side(-1/1 = left/right of stem)
+  // flower: attached at stem tip or mid
+  const plants = [
+    // ── LEFT ──
+    { side:'L', xf:0.00, stems:[
+        { h:120, th:6, col:'#78c87a', phase:0.8, leaves:[
+            {t:1.0,sz:44,s:-1},{t:0.75,sz:36,s:1},{t:0.5,sz:28,s:-1}
+          ], flower:{r:10,pc:'#fd79a8',cc:'#ffeaa7',petals:5} },
+        { h:80,  th:4, col:'#6bbf6d', phase:2.0, leaves:[
+            {t:1.0,sz:32,s:1},{t:0.6,sz:22,s:-1}
+          ], flower:null }
+      ]},
+    { side:'L', xf:0.058, stems:[
+        { h:95, th:5, col:'#7dcf80', phase:1.5, leaves:[
+            {t:1.0,sz:38,s:-1},{t:0.65,sz:28,s:1},{t:0.4,sz:20,s:-1}
+          ], flower:{r:8,pc:'#a29bfe',cc:'#fdcb6e',petals:6} }
+      ]},
+    { side:'L', xf:0.115, stems:[
+        { h:68, th:4, col:'#6dc470', phase:0.3, leaves:[
+            {t:1.0,sz:28,s:1},{t:0.6,sz:20,s:-1}
+          ], flower:null }
+      ]},
+    { side:'L', xf:0.165, stems:[
+        { h:50, th:3, col:'#72c975', phase:2.3, leaves:[
+            {t:1.0,sz:20,s:-1},{t:0.55,sz:14,s:1}
+          ], flower:{r:7,pc:'#74b9ff',cc:'#ffeaa7',petals:5} }
+      ]},
+    // tiny sprout far left
+    { side:'L', xf:0.21, stems:[
+        { h:32, th:2.5, col:'#88d48a', phase:1.1, leaves:[
+            {t:1.0,sz:14,s:1},{t:0.5,sz:10,s:-1}
+          ], flower:null }
+      ]},
+
+    // ── RIGHT ──
+    { side:'R', xf:0.00, stems:[
+        { h:118, th:6, col:'#78c87a', phase:1.2, leaves:[
+            {t:1.0,sz:42,s:1},{t:0.75,sz:34,s:-1},{t:0.5,sz:26,s:1}
+          ], flower:{r:10,pc:'#55efc4',cc:'#fd79a8',petals:5} },
+        { h:76, th:4, col:'#6bbf6d', phase:0.4, leaves:[
+            {t:1.0,sz:30,s:-1},{t:0.6,sz:20,s:1}
+          ], flower:null }
+      ]},
+    { side:'R', xf:0.058, stems:[
+        { h:90, th:5, col:'#7dcf80', phase:1.9, leaves:[
+            {t:1.0,sz:36,s:1},{t:0.65,sz:26,s:-1}
+          ], flower:{r:8,pc:'#ffeaa7',cc:'#fd79a8',petals:6} }
+      ]},
+    { side:'R', xf:0.115, stems:[
+        { h:65, th:4, col:'#6dc470', phase:0.9, leaves:[
+            {t:1.0,sz:26,s:-1},{t:0.6,sz:18,s:1}
+          ], flower:null }
+      ]},
+    { side:'R', xf:0.165, stems:[
+        { h:48, th:3, col:'#72c975', phase:2.7, leaves:[
+            {t:1.0,sz:18,s:1},{t:0.5,sz:13,s:-1}
+          ], flower:{r:7,pc:'#fab1a0',cc:'#a29bfe',petals:5} }
+      ]},
+    { side:'R', xf:0.21, stems:[
+        { h:30, th:2.5, col:'#88d48a', phase:0.6, leaves:[
+            {t:1.0,sz:12,s:-1},{t:0.5,sz:9,s:1}
+          ], flower:null }
+      ]},
   ];
 
-  /* grass clusters at base */
-  const GRASS = [];
-  const leftCount  = 22;
-  const rightCount = 22;
-  for(let i=0;i<leftCount;i++){
-    const xFrac = (i / leftCount) * 0.22;
-    GRASS.push({ side:'L', xFrac, h: 18+Math.random()*22, phase: Math.random()*Math.PI*2,
-      c: `hsl(${130+Math.random()*25},${55+Math.random()*20}%,${28+Math.random()*18}%)` });
+  /* ── Grass blades ── */
+  const blades = [];
+  function mkBlade(side, xf){
+    return { side, xf, h:12+Math.random()*20,
+      phase:Math.random()*Math.PI*2,
+      col:`hsla(${125+Math.random()*30},${50+Math.random()*25}%,${48+Math.random()*20}%,0.75)` };
   }
-  for(let i=0;i<rightCount;i++){
-    const xFrac = (i / rightCount) * 0.22;
-    GRASS.push({ side:'R', xFrac, h: 18+Math.random()*22, phase: Math.random()*Math.PI*2,
-      c: `hsl(${130+Math.random()*25},${55+Math.random()*20}%,${28+Math.random()*18}%)` });
-  }
+  for(let i=0;i<35;i++) blades.push(mkBlade('L', i/35*0.24));
+  for(let i=0;i<35;i++) blades.push(mkBlade('R', i/35*0.24));
 
-  /* point on a quadratic bezier at parameter t */
-  function bezierPoint(ax,ay, cpx,cpy, bx,by, t){
-    const mt = 1-t;
-    return {
-      x: mt*mt*ax + 2*mt*t*cpx + t*t*bx,
-      y: mt*mt*ay + 2*mt*t*cpy + t*t*by
-    };
-  }
+  /* ── Butterflies ── */
+  const butterflies = [
+    { xf:0.28, yf:0.35, amp:60, period:7,  phase:0.0, vphase:1.2 },
+    { xf:0.60, yf:0.45, amp:45, period:9,  phase:2.1, vphase:0.5 },
+    { xf:0.75, yf:0.28, amp:55, period:11, phase:4.3, vphase:2.0 },
+  ];
 
+  /* ── Draw loop ── */
   function draw(){
-    const W = canvas.width;
-    const H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
+    ctx.clearRect(0,0,W,H);
+    t += 0.016;
+    const w = wind();
 
-    const wind = getWind(windT);
+    /* ground soft glow */
+    const grd = ctx.createLinearGradient(0,H*0.55,0,H);
+    grd.addColorStop(0,'rgba(120,200,122,0)');
+    grd.addColorStop(1,'rgba(120,200,122,0.28)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, H*0.55, W, H);
 
     /* grass */
-    GRASS.forEach(g=>{
-      const bx = g.side==='L' ? g.xFrac * W : W - g.xFrac * W;
-      drawBlade(bx, H, g.h, wind, g.phase, g.c);
+    blades.forEach(b=>{
+      const bx = b.side==='L' ? b.xf*W : W - b.xf*W;
+      const bend = w * b.h * 0.7 * Math.sin(b.phase + t);
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(bx-1.5, H);
+      ctx.quadraticCurveTo(bx+bend*0.4, H-b.h*0.55, bx+bend, H-b.h);
+      ctx.lineTo(bx+1.5, H);
+      ctx.closePath();
+      ctx.fillStyle = b.col;
+      ctx.fill();
+      ctx.restore();
     });
 
     /* plants */
-    PLANTS.forEach(plant=>{
-      const baseX = plant.side==='L' ? plant.xFrac * W : W - plant.xFrac * W;
-      const baseY = H;
+    plants.forEach(pl=>{
+      const bx = pl.side==='L' ? pl.xf*W : W - pl.xf*W;
+      const by = H;
 
-      plant.stems.forEach(stem=>{
-        const bend  = wind * stem.h * 0.28 * Math.sin(stem.phase);
-        const cpX   = baseX + bend * 0.5;
-        const cpY   = baseY - stem.h * 0.55;
-        const tipX  = baseX + bend;
-        const tipY  = baseY - stem.h;
+      pl.stems.forEach(st=>{
+        const bendX = w * st.h * 0.30 * Math.sin(st.phase);
+        const S = chubbyStem(bx, by, st.h, bendX, st.th, st.col);
 
-        /* draw stem */
-        ctx.beginPath();
-        ctx.moveTo(baseX, baseY);
-        ctx.quadraticCurveTo(cpX, cpY, tipX, tipY);
-        ctx.strokeStyle = stem.sc;
-        ctx.lineWidth   = stem.th;
-        ctx.lineCap     = 'round';
-        ctx.stroke();
-
-        /* draw leaves along stem */
-        stem.leaves.forEach(lf=>{
-          const pt = bezierPoint(baseX,baseY, cpX,cpY, tipX,tipY, lf.t);
-          /* tangent angle for natural leaf attachment */
-          const dt  = 0.01;
-          const pt2 = bezierPoint(baseX,baseY, cpX,cpY, tipX,tipY, Math.max(0,lf.t-dt));
-          const tangentAngle = Math.atan2(pt.y-pt2.y, pt.x-pt2.x);
-          const leafAngle = tangentAngle + lf.a + (lf.flip ? 0.2 : -0.2);
-
-          drawLeaf(pt.x, pt.y, leafAngle, lf.sz, wind, stem.phase + lf.a, lf.flip, [lf.fc, lf.vc]);
+        /* leaves */
+        st.leaves.forEach(lf=>{
+          const pt  = qPoint(S.bx,S.by, S.cpx,S.cpy, S.tx,S.ty, lf.t);
+          const ang = qTangentAngle(S.bx,S.by, S.cpx,S.cpy, S.tx,S.ty, lf.t);
+          // wobble per leaf
+          const wobble = w * 0.28 * Math.sin(st.phase * 1.6 + lf.t * 3.1 + t*0.8);
+          const side   = lf.s === -1 ? -1.4 : 1.4; // branch outward
+          cuteLeaf(pt.x, pt.y, ang + side*(Math.PI*0.38) + wobble, lf.sz);
         });
+
+        /* flower at tip */
+        if(st.flower){
+          const f = st.flower;
+          cuteFlower(S.tx, S.ty, f.r, f.pc, f.cc, f.petals);
+        }
       });
+    });
+
+    /* butterflies */
+    butterflies.forEach(bf=>{
+      const bx  = bf.xf * W + Math.sin(t/bf.period + bf.phase) * bf.amp;
+      const by2 = (1-bf.yf)*H + Math.sin(t*0.8 + bf.vphase)*18;
+      const wsc = 0.55 + Math.abs(Math.sin(t*3 + bf.phase))*0.45; // 0.55-1
+      butterfly(bx, by2, t + bf.phase, wsc);
     });
 
     requestAnimationFrame(draw);
   }
-
   draw();
 })();
 </script>
