@@ -3,619 +3,1293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BunRey English Course - Listening | Grade 1 – Daily Activities</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<title>BunRey English Course – My Family | Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --yellow: #FFD93D; --orange: #FF6B35; --teal: #1DB9AA;
-    --purple: #7C5CBF; --pink: #FF4D8D; --blue: #3A86FF;
-    --green: #06D6A0; --white: #FFFDF5; --dark: #1A1A2E;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Nunito', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
-  header { background: linear-gradient(135deg, #FF6B35 0%, #FF4D8D 60%, #7C5CBF 100%); position: relative; overflow: hidden; }
-  .header-shapes { position: absolute; inset: 0; pointer-events: none; }
-  .header-shapes span { position: absolute; border-radius: 50%; opacity: .18; }
-  .hs1 { width:220px;height:220px;background:#FFD93D;top:-60px;left:-60px; }
-  .hs2 { width:150px;height:150px;background:#06D6A0;bottom:-40px;right:10%; }
-  .hs3 { width:90px;height:90px;background:#3A86FF;top:20px;right:25%; }
-  .header-inner { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
-  .brand { display:flex; align-items:center; gap:14px; }
-  .brand-logo { width:62px;height:62px; background: var(--yellow); border-radius: 18px; display:flex;align-items:center;justify-content:center; font-family:'Fredoka One',cursive; font-size:22px; color:var(--dark); box-shadow: 4px 4px 0 rgba(0,0,0,.25); }
-  .brand-text { color:#fff; }
-  .brand-text h1 { font-family:'Fredoka One',cursive; font-size:28px; line-height:1; }
-  .brand-text p { font-size:13px; opacity:.85; margin-top:2px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
-  .header-badge { background: var(--yellow); color: var(--dark); font-family:'Fredoka One',cursive; font-size:15px; padding:10px 22px; border-radius:50px; box-shadow:3px 3px 0 rgba(0,0,0,.2); }
-  .hero { background: linear-gradient(160deg, #FFF0E8 0%, #FFE6F0 100%); padding: 40px 48px 36px; border-bottom: 4px dashed #FF6B35; display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
-  .hero-emoji { font-size:90px; animation: float 3s ease-in-out infinite; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-  .hero-text h2 { font-family:'Fredoka One',cursive; font-size:36px; color:var(--orange); line-height:1.1; }
-  .hero-text h2 span { color:var(--purple); }
-  .hero-text p { font-size:16px; color:#555; margin-top:10px; font-weight:600; max-width:480px; }
-  .hero-chips { display:flex;gap:10px;flex-wrap:wrap;margin-top:14px; }
-  .chip { background:#fff; border:2.5px solid; border-radius:50px; padding:6px 16px; font-size:13px; font-weight:800; }
-  .chip-blue{border-color:var(--blue);color:var(--blue);}
-  .chip-pink{border-color:var(--pink);color:var(--pink);}
-  .chip-green{border-color:var(--green);color:var(--green);}
-  .chip-orange{border-color:var(--orange);color:var(--orange);}
-  .page { max-width:960px; margin:0 auto; padding:40px 24px 60px; }
-  .section-title { font-family:'Fredoka One',cursive; font-size:22px; display:flex;align-items:center;gap:10px; margin-bottom:22px; }
-  .icon-circle { width:40px;height:40px;border-radius:50%; display:flex;align-items:center;justify-content:center; font-size:20px; flex-shrink:0; }
-  .bg-blue{background:#E3EDFF;} .bg-yellow{background:#FFF3CC;} .bg-pink{background:#FFE6F0;}
-  .bg-green{background:#D6F5EE;} .bg-purple{background:#EDE8FF;} .bg-orange{background:#FFE8DE;}
-  .obj-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px; margin-bottom:40px; }
-  .obj-card { background:#fff; border:2.5px solid #E0E0E0; border-radius:18px; padding:18px 16px; text-align:center; transition:.2s; box-shadow:3px 3px 0 #E0E0E0; }
-  .obj-card:hover { transform:translateY(-4px); }
-  .obj-card .emoji { font-size:34px; margin-bottom:8px; }
-  .obj-card h3 { font-size:14px;font-weight:800;margin-bottom:4px; }
-  .obj-card p { font-size:12px;color:#777;font-weight:600; }
-  .vocab-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px; margin-bottom:40px; }
-  .vocab-card { border-radius:16px; padding:16px 12px; text-align:center; border:2.5px solid transparent; transition:.2s; cursor:pointer; }
-  .vocab-card:hover { transform:scale(1.05); }
-  .vocab-card .word { font-family:'Fredoka One',cursive;font-size:17px;margin-bottom:4px; }
-  .vocab-card .trans { font-size:11px;font-weight:700;opacity:.75; }
-  .vocab-card .pic { font-size:32px;margin-bottom:6px; }
-  .vc1{background:#FFF3CC;border-color:#FFD93D;color:#B87000;}
-  .vc2{background:#E3EDFF;border-color:#3A86FF;color:#1A4FA8;}
-  .vc3{background:#D6F5EE;border-color:#06D6A0;color:#007A5E;}
-  .vc4{background:#FFE6F0;border-color:#FF4D8D;color:#B5004E;}
-  .vc5{background:#EDE8FF;border-color:#7C5CBF;color:#4B2E9E;}
-  .vc6{background:#FFE8DE;border-color:#FF6B35;color:#B03A00;}
-  .transcript-box { background:#1A1A2E; color:#E0E0E0; border-radius:20px; padding:28px 30px; margin-bottom:32px; box-shadow:6px 6px 0 #ccc; }
-  .transcript-box .label { font-family:'Fredoka One',cursive; font-size:14px;color:#FFD93D; margin-bottom:14px; letter-spacing:1px; display:block; }
-  .transcript-box p { font-size:15px;line-height:1.9;font-weight:600; }
-  .transcript-box .highlight { color:#FFD93D; font-weight:800; }
-  .transcript-box .speaker { display:inline-block; background:#FF6B35;color:#fff; font-family:'Fredoka One',cursive; font-size:12px;padding:2px 10px;border-radius:50px; margin-right:6px; }
-  .speaker.b { background:#7C5CBF; }
-  .exercise-card { background:#fff; border-radius:20px; border:2.5px solid #E8E8E8; box-shadow:4px 4px 0 #E0E0E0; padding:24px 26px; margin-bottom:20px; }
-  .exercise-card h4 { font-family:'Fredoka One',cursive; font-size:17px;color:var(--orange); margin-bottom:16px; }
-  .q-block { margin-bottom:16px; }
-  .q-num { display:inline-block; background:var(--orange);color:#fff; font-family:'Fredoka One',cursive; width:28px;height:28px;border-radius:50%; text-align:center;line-height:28px;font-size:14px; margin-right:8px; }
-  .q-text { font-weight:700;font-size:15px;color:#333; }
-  .options { display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;margin-left:36px; }
-  .opt { background:#F5F5F5; border:2px solid #DDD; border-radius:50px; padding:7px 18px; font-size:13px;font-weight:700; cursor:pointer; transition:.2s; color:#444; }
-  .opt:hover{background:var(--blue);border-color:var(--blue);color:#fff;}
-  .opt.correct{background:var(--green);border-color:var(--green);color:#fff;}
-  .opt.wrong{background:#FF6B6B;border-color:#FF6B6B;color:#fff;}
-  .check-btn { display:inline-block; background:linear-gradient(135deg,var(--orange),var(--pink)); color:#fff; font-family:'Fredoka One',cursive; font-size:16px; padding:12px 32px; border-radius:50px; border:none;cursor:pointer; box-shadow:3px 3px 0 rgba(0,0,0,.15); margin-top:10px; transition:.2s; }
-  .check-btn:hover{transform:translateY(-2px);}
-  .tf-row { display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap; }
-  .tf-row .q-text { flex:1;min-width:200px; }
-  .tf-btns { display:flex;gap:8px; }
-  .tf-btn { padding:7px 18px;border-radius:50px; font-size:13px;font-weight:800; border:2px solid;cursor:pointer;transition:.2s;background:#fff; }
-  .tf-true{border-color:var(--green);color:var(--green);}
-  .tf-false{border-color:#FF6B6B;color:#FF6B6B;}
-  .tf-true:hover,.tf-true.active{background:var(--green);color:#fff;}
-  .tf-false:hover,.tf-false.active{background:#FF6B6B;color:#fff;}
-  .blank-input { border:none;border-bottom:2.5px solid var(--orange); outline:none;font-family:'Nunito',sans-serif; font-size:15px;font-weight:700; width:110px;text-align:center; background:transparent;color:var(--orange); margin:0 4px; }
-  .score-box { background:linear-gradient(135deg,var(--orange),var(--pink)); border-radius:24px; padding:28px 32px; text-align:center; margin-bottom:40px; display:none; box-shadow:6px 6px 0 rgba(0,0,0,.12); }
-  .score-box h3 { font-family:'Fredoka One',cursive;font-size:28px;color:#fff; }
-  .score-box p { font-size:16px;color:#fff;font-weight:700;margin-top:6px;opacity:.9; }
-  .score-big { font-family:'Fredoka One',cursive;font-size:64px;color:#fff;line-height:1; }
-  .tips-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px; margin-bottom:40px; }
-  .tip-card { border-radius:18px;padding:18px 16px; border:2.5px dashed; transition:.2s; }
-  .tip-card:hover{transform:translateY(-3px);}
-  .tip-card .tip-icon{font-size:28px;margin-bottom:8px;}
-  .tip-card h4{font-size:14px;font-weight:800;margin-bottom:4px;}
-  .tip-card p{font-size:12px;font-weight:600;opacity:.8;line-height:1.5;}
-  .tc1{background:#FFF3CC;border-color:#FFD93D;color:#7A5200;}
-  .tc2{background:#E3EDFF;border-color:#3A86FF;color:#0A3080;}
-  .tc3{background:#D6F5EE;border-color:#06D6A0;color:#005C44;}
-  .tc4{background:#FFE6F0;border-color:#FF4D8D;color:#80003A;}
-  footer { background:var(--dark);color:#aaa; text-align:center;padding:24px; font-size:13px;font-weight:600; }
-  footer span{color:var(--yellow);}
-  .audio-player { background:linear-gradient(135deg,#FF6B35,#FF4D8D); border-radius:18px;padding:18px 24px; display:flex;align-items:center;gap:18px; margin-bottom:18px;flex-wrap:wrap; box-shadow:4px 4px 0 rgba(0,0,0,.1); }
-  .play-btn { width:52px;height:52px;border-radius:50%; background:#fff;border:none;cursor:pointer; font-size:22px;display:flex;align-items:center;justify-content:center; box-shadow:3px 3px 0 rgba(0,0,0,.15);transition:.2s;flex-shrink:0; }
-  .play-btn:hover{transform:scale(1.1);}
-  .audio-info{color:#fff;}
-  .audio-info h4{font-family:'Fredoka One',cursive;font-size:16px;margin-bottom:2px;}
-  .audio-info p{font-size:12px;opacity:.85;font-weight:700;}
-  .tts-status{font-size:11px;color:rgba(255,255,255,.85);font-weight:700;margin-top:3px;}
-  .progress-bar { flex:1;min-width:120px; height:8px;background:rgba(255,255,255,.3); border-radius:50px;overflow:hidden; }
-  .progress-fill { height:100%;background:#fff;width:0%; border-radius:50px;transition:width .15s linear; }
-  .note-banner { background:#FFF0E8;border:2px solid #FF6B35; border-radius:14px;padding:12px 18px; font-size:13px;font-weight:700;color:#8B3200; margin-bottom:22px; }
-  .divider { border:none;border-top:3px dashed #E0E0E0; margin:36px 0; }
-  @media(max-width:600px){
-    .header-inner{padding:20px;}
-    .hero{padding:28px 20px;}
-    .hero-emoji{font-size:60px;}
-    .hero-text h2{font-size:26px;}
-    .page{padding:28px 16px 48px;}
-  }
+
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --amber:     #F5A623;
+  --amber-lt:  #FFF3D6;
+  --coral:     #F26D5B;
+  --coral-lt:  #FFF0EE;
+  --teal:      #2BBFA4;
+  --teal-dk:   #1D8F7B;
+  --teal-lt:   #E0FAF6;
+  --lav:       #A78BF5;
+  --lav-lt:    #F0EAFF;
+  --green:     #3DB87A;
+  --green-lt:  #E6F9EF;
+  --cream:     #FFFBF4;
+  --white:     #FFFFFF;
+  --ink:       #2D2D3A;
+  --muted:     #8A8FA8;
+  --border:    #EDE8DF;
+
+  --r-card: 20px;
+  --r-pill: 999px;
+  --shadow: 0 4px 24px rgba(45,45,58,.09);
+  --shadow-sm: 0 2px 10px rgba(45,45,58,.07);
+}
+
+/* ═══════════════════════════════════════
+   BASE
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, #F5A623 0%, #F26D5B 55%, #E8525A 100%);
+  padding: 48px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scattered polka dots — playful texture */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.18) 3px, transparent 3px),
+    radial-gradient(circle, rgba(255,255,255,.10) 2px, transparent 2px);
+  background-size: 48px 48px, 28px 28px;
+  background-position: 0 0, 14px 14px;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  pointer-events: none;
+}
+.hero-glow.g1 { width:260px; height:260px; top:-80px; right:-60px; }
+.hero-glow.g2 { width:160px; height:160px; bottom:-50px; left:-40px; }
+
+.brand-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--white);
+  border-radius: var(--r-pill);
+  padding: 5px 18px;
+  font-family: 'Lilita One', cursive;
+  font-size: .9rem;
+  color: var(--coral);
+  margin-bottom: 18px;
+  box-shadow: 0 3px 14px rgba(0,0,0,.14);
+  letter-spacing: .3px;
+}
+
+.hero h1 {
+  position: relative;
+  font-family: 'Lilita One', cursive;
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  color: var(--white);
+  line-height: 1.08;
+  letter-spacing: .5px;
+  text-shadow: 0 4px 18px rgba(0,0,0,.18);
+}
+.hero h1 .accent { color: #FFE5A0; }
+
+.hero-sub {
+  position: relative;
+  color: rgba(255,255,255,.9);
+  font-size: .96rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.badge-row {
+  position: relative;
+  display: flex; justify-content: center;
+  flex-wrap: wrap; gap: 8px;
+  margin-top: 20px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 14px;
+  border-radius: var(--r-pill);
+  font-size: .76rem; font-weight: 700;
+  background: rgba(255,255,255,.22);
+  border: 1.5px solid rgba(255,255,255,.35);
+  color: white;
+}
+
+/* ═══════════════════════════════════════
+   WAVE BREAK
+═══════════════════════════════════════ */
+.wave { display: block; width: 100%; margin-bottom: -2px; }
+
+/* ═══════════════════════════════════════
+   STICKY TABS
+═══════════════════════════════════════ */
+.tabs-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--cream);
+  border-bottom: 2px solid var(--border);
+  padding: 0 16px;
+}
+.tabs {
+  display: flex; gap: 2px;
+  max-width: 900px; margin: 0 auto;
+  overflow-x: auto; scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 6px;
+  padding: 14px 18px 12px;
+  border: none; background: none;
+  font-family: 'Lilita One', cursive;
+  font-size: .92rem; letter-spacing: .3px;
+  color: var(--muted); cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active { color: var(--coral); border-bottom-color: var(--coral); }
+
+/* ═══════════════════════════════════════
+   MAIN
+═══════════════════════════════════════ */
+.main {
+  max-width: 900px; margin: 0 auto;
+  padding: 32px 16px 90px;
+}
+.section { display: none; }
+.section.active { display: block; animation: rise .4s ease; }
+@keyframes rise {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ═══════════════════════════════════════
+   SECTION HEADING
+═══════════════════════════════════════ */
+.sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.sec-icon {
+  width: 54px; height: 54px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.9rem; flex-shrink: 0;
+}
+.si-amber  { background: var(--amber-lt); }
+.si-teal   { background: var(--teal-lt); }
+.si-coral  { background: var(--coral-lt); }
+.si-green  { background: var(--green-lt); }
+.si-lav    { background: var(--lav-lt); }
+
+.sec-head-text h2 {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.45rem; letter-spacing: .4px; line-height: 1.2;
+}
+.sec-head-text p { font-size: .8rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+
+/* ═══════════════════════════════════════
+   CARD
+═══════════════════════════════════════ */
+.card {
+  background: var(--white);
+  border-radius: var(--r-card);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid var(--border);
+}
+
+/* ═══════════════════════════════════════
+   CHIP
+═══════════════════════════════════════ */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  border-radius: var(--r-pill);
+  padding: 4px 13px;
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .5px; margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.ch-amber  { background: var(--amber);  color: #fff; }
+.ch-teal   { background: var(--teal);   color: #fff; }
+.ch-coral  { background: var(--coral);  color: #fff; }
+.ch-lav    { background: var(--lav);    color: #fff; }
+.ch-green  { background: var(--green);  color: #fff; }
+
+/* ═══════════════════════════════════════
+   ★ SIGNATURE — FAMILY HOUSE
+═══════════════════════════════════════ */
+.house-wrap {
+  background: linear-gradient(160deg, #FFF6E0 0%, #E0FAF6 100%);
+  border: 2px dashed var(--amber);
+  border-radius: 20px;
+  padding: 28px 20px 22px;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.house-title {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.25rem; color: var(--coral);
+  margin-bottom: 20px; letter-spacing: .3px;
+}
+
+/* House shape */
+.house {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Roof */
+.roof {
+  width: 0; height: 0;
+  border-left: 148px solid transparent;
+  border-right: 148px solid transparent;
+  border-bottom: 80px solid var(--coral);
+  position: relative; left: 50%; transform: translateX(-50%);
+  filter: drop-shadow(0 4px 8px rgba(242,109,91,.25));
+}
+.roof-inner {
+  width: 0; height: 0;
+  border-left: 136px solid transparent;
+  border-right: 136px solid transparent;
+  border-bottom: 72px solid #F47D6C;
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+}
+.chimney {
+  position: absolute;
+  width: 22px; height: 28px;
+  background: #D45F4E;
+  top: -18px; right: 60px;
+  border-radius: 3px 3px 0 0;
+}
+.smoke {
+  position: absolute;
+  top: -26px; right: 63px;
+  font-size: .9rem;
+  opacity: .5;
+  animation: smokeUp 3s ease-in-out infinite;
+}
+@keyframes smokeUp {
+  0%,100% { transform: translateY(0) scale(1); opacity:.4; }
+  50%      { transform: translateY(-10px) scale(1.2); opacity:.2; }
+}
+
+/* House body */
+.house-body {
+  background: #FFF9F0;
+  border: 3px solid var(--amber);
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  width: 296px;
+  padding: 16px 14px 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  position: relative;
+}
+/* Ground stripe */
+.house-body::after {
+  content: '';
+  position: absolute;
+  bottom: -10px; left: -4px; right: -4px;
+  height: 10px;
+  background: var(--green);
+  border-radius: 0 0 12px 12px;
+  opacity: .35;
+}
+
+/* Door */
+.front-door {
+  grid-column: 2;
+  background: var(--teal);
+  border-radius: 8px 8px 0 0;
+  padding: 8px 6px 0;
+  text-align: center;
+  font-size: .7rem; font-weight: 700; color: white;
+  display: flex; flex-direction: column; align-items: center;
+  border: 2px solid var(--teal-dk);
+  align-self: end;
+  min-height: 56px;
+  justify-content: flex-end;
+}
+.front-door .door-knob {
+  width: 6px; height: 6px;
+  background: var(--amber);
+  border-radius: 50%;
+  margin: 4px 0 2px auto;
+}
+
+/* Window */
+.window-card {
+  background: var(--white);
+  border: 2px solid var(--amber);
+  border-radius: 10px;
+  padding: 8px 6px;
+  text-align: center;
+  cursor: default;
+  transition: transform .2s, box-shadow .2s;
+}
+.window-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(245,166,35,.2); }
+.window-card .wc-e { font-size: 1.6rem; display: block; }
+.window-card .wc-w {
+  font-family: 'Lilita One', cursive;
+  font-size: .78rem; color: var(--coral);
+  margin-top: 5px; display: block; letter-spacing: .2px;
+}
+.window-card .wc-d { font-size: .62rem; color: var(--muted); font-weight: 600; margin-top: 1px; display: block; }
+
+/* Bottom row — grandparents outside the house, pathway */
+.garden-row {
+  display: flex; justify-content: center; gap: 14px;
+  margin-top: 14px; flex-wrap: wrap;
+}
+.garden-card {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--white);
+  border: 2px dashed var(--teal);
+  border-radius: 14px; padding: 10px 14px 8px;
+  min-width: 90px;
+  transition: transform .2s;
+}
+.garden-card:hover { transform: translateY(-3px); }
+.garden-card .gc-e { font-size: 1.7rem; }
+.garden-card .gc-w { font-family: 'Lilita One', cursive; font-size: .82rem; color: var(--teal-dk); margin-top: 5px; }
+.garden-card .gc-d { font-size: .65rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+
+.garden-label {
+  font-size: .75rem; font-weight: 700; color: var(--teal);
+  margin: 10px 0 6px; text-align: center;
+  display: flex; align-items: center; gap: 6px;
+}
+.garden-label::before, .garden-label::after {
+  content: ''; flex: 1; height: 1.5px;
+  background: linear-gradient(to right, transparent, var(--teal), transparent);
+}
+
+.house-note {
+  font-size: .76rem; color: var(--muted); font-weight: 600;
+  margin-top: 14px; text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   VOCAB GRID
+═══════════════════════════════════════ */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px,1fr));
+  gap: 10px; margin-top: 14px;
+}
+.vcard {
+  border-radius: 14px; padding: 13px 10px 10px;
+  text-align: center; cursor: default;
+  transition: transform .2s, box-shadow .2s;
+  border: 2px solid transparent;
+}
+.vcard:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.vcard .ve { font-size: 1.85rem; display: block; }
+.vcard .vw { font-family: 'Lilita One', cursive; font-size: .94rem; margin-top: 6px; display: block; letter-spacing: .2px; }
+.vcard .vd { font-size: .68rem; color: var(--muted); font-weight: 600; margin-top: 2px; display: block; }
+
+.vc1 { background: #FFF3D6; color: #A0680A; border-color: #FFE090; }
+.vc2 { background: var(--coral-lt); color: #B5290F; border-color: #FAC0B8; }
+.vc3 { background: var(--teal-lt);  color: #1A7063; border-color: #9EEEE3; }
+.vc4 { background: var(--lav-lt);   color: #6B44CC; border-color: #CFC0F8; }
+.vc5 { background: var(--green-lt); color: #1E7A46; border-color: #9EEDC2; }
+.vc6 { background: #FEE8FF;         color: #8B1BAF; border-color: #E8A8F8; }
+
+/* ═══════════════════════════════════════
+   AUDIO SCRIPT
+═══════════════════════════════════════ */
+.script-box {
+  background: #F9F6FF;
+  border: 2px dashed var(--lav);
+  border-radius: 16px; padding: 20px 22px; margin-top: 4px;
+}
+.script-text { font-size: .93rem; line-height: 2; color: var(--ink); }
+.hl  { background: #FFE566; border-radius: 4px; padding: 0 4px; font-weight: 700; }
+.hl2 { background: #C8F8EE; border-radius: 4px; padding: 0 4px; font-weight: 700; color: #1A7063; }
+
+/* ═══════════════════════════════════════
+   DIALOGUE
+═══════════════════════════════════════ */
+.dialogue { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+.dl { display: flex; gap: 12px; align-items: flex-start; }
+.dl.r { flex-direction: row-reverse; }
+.avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem; flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,.13);
+}
+.av-amber { background: linear-gradient(135deg,#FFD080,#F5A623); }
+.av-coral { background: linear-gradient(135deg,#F89080,#F26D5B); }
+.av-teal  { background: linear-gradient(135deg,#70DFD0,#2BBFA4); }
+.av-lav   { background: linear-gradient(135deg,#C8B0FF,#A78BF5); }
+
+.bubble {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 18px; padding: 11px 16px;
+  font-size: .9rem; line-height: 1.6;
+  max-width: 76%; box-shadow: var(--shadow-sm);
+}
+.dl.r .bubble { background: var(--teal-lt); border-color: #9EEEE3; }
+.bubble strong { color: var(--teal-dk); font-family: 'Lilita One', cursive; font-size: .98rem; letter-spacing: .2px; }
+
+/* ═══════════════════════════════════════
+   EXERCISE
+═══════════════════════════════════════ */
+.ex-item { margin-bottom: 18px; font-size: .92rem; line-height: 1.55; }
+.q-no { font-family: 'Lilita One', cursive; font-size: 1.05rem; color: var(--coral); margin-right: 4px; letter-spacing: .2px; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.choice {
+  padding: 7px 18px; border-radius: var(--r-pill);
+  border: 2px solid var(--border); background: var(--white);
+  font-size: .84rem; font-weight: 700; cursor: pointer; color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  transition: all .2s;
+}
+.choice:hover { border-color: var(--teal); color: var(--teal-dk); }
+.choice.correct { background: var(--green-lt); border-color: var(--green); color: #1E7A46; pointer-events: none; }
+.choice.wrong   { background: var(--coral-lt); border-color: var(--coral); color: #B5290F; pointer-events: none; }
+
+/* ═══════════════════════════════════════
+   TEACHER TIP
+═══════════════════════════════════════ */
+.tip {
+  background: var(--amber-lt);
+  border-left: 4px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  padding: 12px 16px; margin-top: 16px;
+  font-size: .84rem; color: #7A4E00; line-height: 1.65;
+}
+.tip b {
+  display: block; margin-bottom: 3px;
+  font-family: 'Lilita One', cursive;
+  font-size: .92rem; color: var(--amber); letter-spacing: .2px;
+}
+
+/* ═══════════════════════════════════════
+   ORDERING LIST
+═══════════════════════════════════════ */
+.step-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.step-item {
+  display: flex; align-items: center; gap: 12px;
+  background: #F8FAFC; border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 10px 14px;
+  font-size: .9rem; font-weight: 600;
+}
+.step-dot {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--teal); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lilita One', cursive; font-size: .88rem; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   MATCH GRID
+═══════════════════════════════════════ */
+.match-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  gap: 10px; margin-top: 12px;
+}
+.match-cell {
+  border-radius: 14px; background: var(--lav-lt);
+  border: 2px dashed var(--lav);
+  padding: 14px 10px 10px; text-align: center;
+}
+.match-cell .mc-e { font-size: 1.9rem; display: block; }
+.match-cell .mc-b {
+  font-family: 'Lilita One', cursive; font-size: .82rem;
+  color: #C0B0E8; margin-top: 8px; letter-spacing: 3px; display: block;
+}
+.match-cell .mc-a { font-size: .68rem; color: var(--green); font-weight: 700; margin-top: 4px; display: block; }
+
+/* ═══════════════════════════════════════
+   SONG
+═══════════════════════════════════════ */
+.song-card {
+  background: linear-gradient(135deg, #FFF0EE 0%, #E0FAF6 100%);
+  border: 2px solid #FAC0B8; border-radius: var(--r-card); padding: 28px 24px; text-align: center;
+}
+.song-lyrics {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.04rem; line-height: 2.2; color: var(--ink); letter-spacing: .2px;
+}
+.rh  { color: var(--coral); font-size: 1.08rem; }
+.rh2 { color: var(--teal-dk); }
+
+/* ═══════════════════════════════════════
+   SPEAKING FRAMES
+═══════════════════════════════════════ */
+.speak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+@media (max-width:500px) { .speak-grid { grid-template-columns: 1fr; } }
+.speak-frame {
+  background: var(--white); border: 2px solid var(--border);
+  border-radius: 14px; padding: 14px 16px;
+  font-size: .88rem; font-weight: 600; line-height: 1.75; color: var(--ink);
+}
+.speak-frame .sf-lbl {
+  font-family: 'Lilita One', cursive; color: var(--teal-dk);
+  font-size: .95rem; display: block; margin-bottom: 5px; letter-spacing: .2px;
+}
+.sf-blank {
+  color: var(--coral); border-bottom: 2px dashed var(--coral);
+  min-width: 60px; display: inline-block;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: var(--ink); text-align: center; padding: 22px 16px;
+  color: rgba(255,255,255,.42); font-size: .78rem; font-weight: 600;
+}
+footer .ft-brand { color: var(--amber); font-family: 'Lilita One', cursive; font-size: 1.05rem; letter-spacing: .4px; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width:600px) {
+  .vocab-grid { grid-template-columns: repeat(3,1fr); }
+  .bubble { max-width: 86%; }
+  .tab-btn { padding: 12px 11px 10px; font-size: .82rem; }
+  .house-body { width: 100%; max-width: 296px; }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-shapes">
-    <span class="hs1"></span><span class="hs2"></span><span class="hs3"></span>
-  </div>
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-logo">BR</div>
-      <div class="brand-text">
-        <h1>BunRey</h1>
-        <p>English Course</p>
-      </div>
-    </div>
-    <div class="header-badge">🎧 Listening – Grade 1</div>
-  </div>
-</header>
-
+<!-- ══ HERO ══════════════════════════════════ -->
 <div class="hero">
-  <div class="hero-emoji">🌞</div>
-  <div class="hero-text">
-    <h2>Let's Listen &amp; <span>Learn!</span></h2>
-    <p>Listen and learn about what we do every day from morning until night!</p>
-    <div class="hero-chips">
-      <span class="chip chip-orange">📌 Topic: Daily Activities</span>
-      <span class="chip chip-pink">⏱ 45 Minutes</span>
-      <span class="chip chip-green">🏫 Grade 1</span>
-      <span class="chip chip-blue">⭐ Level: Beginner</span>
-    </div>
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+
+  <div class="brand-tag">⭐ BunRey English Course ⭐</div>
+
+  <h1>❤️ My <span class="accent">Family</span></h1>
+  <div class="hero-sub">Listening Materials &nbsp;·&nbsp; Grade 1 Elementary School</div>
+
+  <div class="badge-row">
+    <span class="badge">🎯 Grade 1</span>
+    <span class="badge">👂 Listening Skill</span>
+    <span class="badge">⏱ 45 Min / Session</span>
+    <span class="badge">📘 Beginner Level</span>
+    <span class="badge">🏠 My Family Topic</span>
   </div>
 </div>
 
-<div class="page">
+<svg class="wave" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#FFFBF4" d="M0,52 C180,10 360,44 540,24 C720,4 900,48 1080,28 C1260,8 1380,40 1440,52 L1440,52 L0,52 Z"/>
+</svg>
 
-  <!-- LEARNING OBJECTIVES -->
-  <div class="section-title">
-    <div class="icon-circle bg-blue">🎯</div>
-    Learning Objectives
+<!-- ══ TABS ═══════════════════════════════════ -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="show('vocab')">🏠 Vocabulary</button>
+    <button class="tab-btn" onclick="show('script')">🎧 Scripts</button>
+    <button class="tab-btn" onclick="show('dialogue')">💬 Dialogues</button>
+    <button class="tab-btn" onclick="show('exercise')">✏️ Exercises</button>
+    <button class="tab-btn" onclick="show('song')">🎵 Song</button>
   </div>
-  <div class="obj-grid">
-    <div class="obj-card"><div class="emoji">👂</div><h3>Listen Carefully</h3><p>Understand simple English sentences about daily life</p></div>
-    <div class="obj-card"><div class="emoji">🔍</div><h3>Find Details</h3><p>Identify names, times, and activities from what you hear</p></div>
-    <div class="obj-card"><div class="emoji">📝</div><h3>Answer Questions</h3><p>Choose the right answer based on the audio</p></div>
-    <div class="obj-card"><div class="emoji">💬</div><h3>New Words</h3><p>Learn everyday action words and time expressions</p></div>
-  </div>
-
-  <!-- KEY VOCABULARY -->
-  <div class="section-title">
-    <div class="icon-circle bg-yellow">📖</div>
-    Key Vocabulary
-  </div>
-  <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:14px;">👆 Click any card to hear the word spoken aloud!</p>
-  <div class="vocab-grid">
-    <div class="vocab-card vc1" onclick="speakWord('Wake up')"><div class="pic">⏰</div><div class="word">Wake up</div><div class="trans">stop sleeping</div></div>
-    <div class="vocab-card vc2" onclick="speakWord('Wash face')"><div class="pic">🚿</div><div class="word">Wash face</div><div class="trans">clean your face</div></div>
-    <div class="vocab-card vc3" onclick="speakWord('Eat breakfast')"><div class="pic">🍞</div><div class="word">Eat breakfast</div><div class="trans">morning meal</div></div>
-    <div class="vocab-card vc4" onclick="speakWord('Go to school')"><div class="pic">🎒</div><div class="word">Go to school</div><div class="trans">start your school day</div></div>
-    <div class="vocab-card vc5" onclick="speakWord('Study')"><div class="pic">📖</div><div class="word">Study</div><div class="trans">learn at school</div></div>
-    <div class="vocab-card vc6" onclick="speakWord('Play')"><div class="pic">⚽</div><div class="word">Play</div><div class="trans">have fun</div></div>
-    <div class="vocab-card vc1" onclick="speakWord('Eat lunch')"><div class="pic">🍚</div><div class="word">Eat lunch</div><div class="trans">midday meal</div></div>
-    <div class="vocab-card vc2" onclick="speakWord('Go home')"><div class="pic">🏠</div><div class="word">Go home</div><div class="trans">return to your house</div></div>
-    <div class="vocab-card vc3" onclick="speakWord('Take a bath')"><div class="pic">🛁</div><div class="word">Take a bath</div><div class="trans">clean your body</div></div>
-    <div class="vocab-card vc4" onclick="speakWord('Do homework')"><div class="pic">✏️</div><div class="word">Do homework</div><div class="trans">school work at home</div></div>
-    <div class="vocab-card vc5" onclick="speakWord('Eat dinner')"><div class="pic">🍜</div><div class="word">Eat dinner</div><div class="trans">evening meal</div></div>
-    <div class="vocab-card vc6" onclick="speakWord('Go to sleep')"><div class="pic">😴</div><div class="word">Go to sleep</div><div class="trans">rest at night</div></div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- AUDIO 1 -->
-  <div class="section-title">
-    <div class="icon-circle bg-pink">🎙️</div>
-    Audio 1 – Dialogue: Morning Time!
-  </div>
-
-  <div class="audio-player">
-    <button class="play-btn" onclick="playTTS('audio1')" id="playBtn1">▶️</button>
-    <div class="audio-info">
-      <h4>Morning Time! – Riko &amp; Dad</h4>
-      <p>🎵 Duration: approx. 1:15 min | Listen 2–3 times</p>
-      <div class="tts-status" id="status1">Click ▶️ to listen</div>
-    </div>
-    <div class="progress-bar"><div class="progress-fill" id="prog1"></div></div>
-  </div>
-
-  <div class="note-banner">
-    ℹ️ <strong>Teacher's note:</strong> Play the audio or read the dialogue aloud. Ask students to listen first without reading. Listen at least twice before doing the exercises.
-  </div>
-
-  <div class="transcript-box">
-    <span class="label">📜 Audio Script</span>
-    <p>
-      <span class="speaker">Dad</span> Riko, wake up! It's <span class="highlight">six o'clock</span>!<br><br>
-      <span class="speaker b">Riko</span> Good morning, Dad! I'm sleepy...<br><br>
-      <span class="speaker">Dad</span> Come on! Go and <span class="highlight">wash your face</span>. Then get ready for school.<br><br>
-      <span class="speaker b">Riko</span> Okay, Dad. What is for <span class="highlight">breakfast</span> today?<br><br>
-      <span class="speaker">Dad</span> We have <span class="highlight">bread and eggs</span>! Your favourite!<br><br>
-      <span class="speaker b">Riko</span> Yay! Can I have <span class="highlight">orange juice</span> too, Dad?<br><br>
-      <span class="speaker">Dad</span> Of course! Now hurry up. The school <span class="highlight">starts at seven</span>.<br><br>
-      <span class="speaker b">Riko</span> Yes, Dad! I will get my <span class="highlight">bag</span> and my <span class="highlight">water bottle</span>.<br><br>
-      <span class="speaker">Dad</span> Good boy! Have a great day at school, Riko! 😊<br><br>
-      <span class="speaker b">Riko</span> Thank you, Dad! Bye-bye! 👋
-    </p>
-  </div>
-
-  <!-- EXERCISE 1 – Multiple Choice -->
-  <div class="exercise-card" id="ex1">
-    <h4>✏️ Exercise 1 – Multiple Choice</h4>
-    <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:18px;">Choose the best answer based on the dialogue above!</p>
-
-    <div class="q-block">
-      <span class="q-num">1</span><span class="q-text">What time does Dad wake Riko up?</span>
-      <div class="options">
-        <button class="opt" onclick="choose(this,'wrong')">Five o'clock</button>
-        <button class="opt" onclick="choose(this,'correct')">Six o'clock</button>
-        <button class="opt" onclick="choose(this,'wrong')">Seven o'clock</button>
-        <button class="opt" onclick="choose(this,'wrong')">Eight o'clock</button>
-      </div>
-    </div>
-    <div class="q-block">
-      <span class="q-num">2</span><span class="q-text">What does Dad tell Riko to do first?</span>
-      <div class="options">
-        <button class="opt" onclick="choose(this,'wrong')">Eat breakfast</button>
-        <button class="opt" onclick="choose(this,'wrong')">Get his bag</button>
-        <button class="opt" onclick="choose(this,'correct')">Wash his face</button>
-        <button class="opt" onclick="choose(this,'wrong')">Brush his teeth</button>
-      </div>
-    </div>
-    <div class="q-block">
-      <span class="q-num">3</span><span class="q-text">What is for breakfast?</span>
-      <div class="options">
-        <button class="opt" onclick="choose(this,'wrong')">Rice and vegetables</button>
-        <button class="opt" onclick="choose(this,'correct')">Bread and eggs</button>
-        <button class="opt" onclick="choose(this,'wrong')">Fried rice and milk</button>
-        <button class="opt" onclick="choose(this,'wrong')">Noodles and juice</button>
-      </div>
-    </div>
-    <div class="q-block">
-      <span class="q-num">4</span><span class="q-text">What does Riko take to school?</span>
-      <div class="options">
-        <button class="opt" onclick="choose(this,'wrong')">Hat and umbrella</button>
-        <button class="opt" onclick="choose(this,'wrong')">Lunch box and books</button>
-        <button class="opt" onclick="choose(this,'correct')">Bag and water bottle</button>
-        <button class="opt" onclick="choose(this,'wrong')">Shoes and socks</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- EXERCISE 2 – True or False -->
-  <div class="exercise-card" id="ex2">
-    <h4>✅ Exercise 2 – True or False</h4>
-    <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:18px;">Choose TRUE or FALSE for each statement!</p>
-
-    <div class="tf-row">
-      <span class="q-num" style="background:var(--teal);">1</span>
-      <span class="q-text">Riko is happy when Dad wakes him up.</span>
-      <div class="tf-btns">
-        <button class="tf-btn tf-true" onclick="tfChoose(this,true,false)">TRUE</button>
-        <button class="tf-btn tf-false" onclick="tfChoose(this,false,false)">FALSE</button>
-      </div>
-    </div>
-    <div class="tf-row">
-      <span class="q-num" style="background:var(--teal);">2</span>
-      <span class="q-text">Riko asks for orange juice with breakfast.</span>
-      <div class="tf-btns">
-        <button class="tf-btn tf-true" onclick="tfChoose(this,true,true)">TRUE</button>
-        <button class="tf-btn tf-false" onclick="tfChoose(this,false,true)">FALSE</button>
-      </div>
-    </div>
-    <div class="tf-row">
-      <span class="q-num" style="background:var(--teal);">3</span>
-      <span class="q-text">School starts at eight o'clock.</span>
-      <div class="tf-btns">
-        <button class="tf-btn tf-true" onclick="tfChoose(this,true,false)">TRUE</button>
-        <button class="tf-btn tf-false" onclick="tfChoose(this,false,false)">FALSE</button>
-      </div>
-    </div>
-    <div class="tf-row">
-      <span class="q-num" style="background:var(--teal);">4</span>
-      <span class="q-text">Dad says "Have a great day at school."</span>
-      <div class="tf-btns">
-        <button class="tf-btn tf-true" onclick="tfChoose(this,true,true)">TRUE</button>
-        <button class="tf-btn tf-false" onclick="tfChoose(this,false,true)">FALSE</button>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- AUDIO 2 -->
-  <div class="section-title">
-    <div class="icon-circle bg-green">🎙️</div>
-    Audio 2 – Monologue: My Busy Day!
-  </div>
-
-  <div class="audio-player" style="background:linear-gradient(135deg,#7C5CBF,#1DB9AA);">
-    <button class="play-btn" onclick="playTTS('audio2')" id="playBtn2">▶️</button>
-    <div class="audio-info">
-      <h4>My Busy Day! – Nana</h4>
-      <p>🎵 Duration: approx. 1:10 min | Listen 2–3 times</p>
-      <div class="tts-status" id="status2">Click ▶️ to listen</div>
-    </div>
-    <div class="progress-bar"><div class="progress-fill" id="prog2"></div></div>
-  </div>
-
-  <div class="note-banner">
-    ℹ️ <strong>Teacher's note:</strong> Read this monologue slowly with clear intonation. Students can write down key words or numbers they hear before answering.
-  </div>
-
-  <div class="transcript-box" style="background:#2D1B4E;">
-    <span class="label">📜 Audio Script</span>
-    <p>
-      Hello! My name is <span class="highlight">Nana</span>. I am in Grade One. Let me tell you about my day!<br><br>
-      Every morning, I <span class="highlight">wake up at five o'clock</span>. First, I <span class="highlight">wash my face</span> and brush my teeth. Then I eat breakfast. I like to eat <span class="highlight">bread with jam</span> in the morning.<br><br>
-      I go to school at <span class="highlight">six thirty</span>. My mom takes me to school by <span class="highlight">motorcycle</span>. At school, I study and play with my friends. My favourite subject is <span class="highlight">English</span>!<br><br>
-      I go home at <span class="highlight">twelve o'clock</span>. When I get home, I <span class="highlight">take a bath</span> and eat lunch. Then I take a nap.<br><br>
-      In the afternoon, I play with my little <span class="highlight">brother</span>. At night, I do my <span class="highlight">homework</span> and read a story book. I go to sleep at <span class="highlight">eight thirty</span>.<br><br>
-      That is my day! What about yours? 😊
-    </p>
-  </div>
-
-  <!-- EXERCISE 3 – Fill in the Blank -->
-  <div class="exercise-card" id="ex3">
-    <h4>✏️ Exercise 3 – Fill in the Blank</h4>
-    <p style="font-size:13px;color:#888;font-weight:700;margin-bottom:18px;">Complete the sentences based on Nana's monologue!</p>
-
-    <div class="q-block">
-      <span class="q-num" style="background:var(--purple);">1</span>
-      <span class="q-text">Nana wakes up at <input class="blank-input" id="b1" placeholder="..."> in the morning.</span>
-    </div>
-    <div class="q-block">
-      <span class="q-num" style="background:var(--purple);">2</span>
-      <span class="q-text">For breakfast, Nana eats <input class="blank-input" id="b2" placeholder="..."> with jam.</span>
-    </div>
-    <div class="q-block">
-      <span class="q-num" style="background:var(--purple);">3</span>
-      <span class="q-text">Nana goes to school by <input class="blank-input" id="b3" placeholder="...">.</span>
-    </div>
-    <div class="q-block">
-      <span class="q-num" style="background:var(--purple);">4</span>
-      <span class="q-text">Nana goes home at <input class="blank-input" id="b4" placeholder="..."> o'clock.</span>
-    </div>
-    <div class="q-block">
-      <span class="q-num" style="background:var(--purple);">5</span>
-      <span class="q-text">At night, Nana does her <input class="blank-input" id="b5" placeholder="..."> and reads a book.</span>
-    </div>
-
-    <button class="check-btn" onclick="checkBlanks()">🔍 Check Answers</button>
-    <div id="blank-result" style="margin-top:14px;font-weight:800;font-size:15px;display:none;"></div>
-  </div>
-
-  <hr class="divider">
-
-  <!-- SCORE BOX -->
-  <div class="score-box" id="scoreBox">
-    <div class="score-big" id="scoreNum">0</div>
-    <h3>🎉 Your Score!</h3>
-    <p id="scoreMsg">Keep on learning!</p>
-  </div>
-
-  <!-- LISTENING TIPS -->
-  <div class="section-title">
-    <div class="icon-circle bg-orange">💡</div>
-    Listening Tips
-  </div>
-  <div class="tips-grid">
-    <div class="tip-card tc1">
-      <div class="tip-icon">🔄</div>
-      <h4>Listen Again & Again</h4>
-      <p>It's okay to listen 2–3 times. Every listen helps you understand more!</p>
-    </div>
-    <div class="tip-card tc2">
-      <div class="tip-icon">🕐</div>
-      <h4>Listen for Numbers</h4>
-      <p>Time words like "six o'clock" or "twelve" are very important clues.</p>
-    </div>
-    <div class="tip-card tc3">
-      <div class="tip-icon">✍️</div>
-      <h4>Write Key Words</h4>
-      <p>Write down words or numbers you hear to help you remember.</p>
-    </div>
-    <div class="tip-card tc4">
-      <div class="tip-icon">😌</div>
-      <h4>Stay Calm</h4>
-      <p>You don't need every word. Focus on the main idea and key details!</p>
-    </div>
-  </div>
-
-  <!-- STUDENT REFLECTION -->
-  <div class="section-title">
-    <div class="icon-circle bg-purple">🌟</div>
-    Student Reflection
-  </div>
-  <div class="exercise-card">
-    <h4 style="color:var(--teal);">💬 How do you feel today?</h4>
-    <p style="font-size:14px;color:#555;font-weight:600;margin-bottom:14px;">Click the emoji that shows how you feel after today's lesson:</p>
-    <div style="display:flex;gap:18px;flex-wrap:wrap;font-size:36px;margin-bottom:20px;">
-      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="I understood everything!">😄</span>
-      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="I understood most of it">🙂</span>
-      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="I need more practice">😐</span>
-      <span onclick="selectEmoji(this)" style="cursor:pointer;transition:.2s;" title="I didn't understand yet">😟</span>
-    </div>
-    <p style="font-size:14px;font-weight:800;color:#333;">📝 New words I learned today:</p>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
-      <span style="background:#FFE8DE;color:#B03A00;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Wake up ⏰</span>
-      <span style="background:#E3EDFF;color:var(--blue);border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Wash face 🚿</span>
-      <span style="background:#FFF3CC;color:#7A5200;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Breakfast 🍞</span>
-      <span style="background:#D6F5EE;color:#005C44;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Go home 🏠</span>
-      <span style="background:#EDE8FF;color:#4B2E9E;border-radius:50px;padding:5px 14px;font-size:13px;font-weight:800;">Homework ✏️</span>
-    </div>
-  </div>
-
 </div>
 
+<!-- ══ MAIN ═══════════════════════════════════ -->
+<div class="main">
+
+
+<!-- ════════════════════════════════════════════
+     TAB 1 · VOCABULARY
+════════════════════════════════════════════ -->
+<div class="section active" id="tab-vocab">
+
+  <div class="sec-head">
+    <div class="sec-icon si-amber">🏠</div>
+    <div class="sec-head-text">
+      <h2>Vocabulary — Family Members</h2>
+      <p>Family words + describing words &nbsp;·&nbsp; 18 words</p>
+    </div>
+  </div>
+
+  <!-- ★ FAMILY HOUSE (signature element) -->
+  <div class="house-wrap">
+    <div class="house-title">🏠 Welcome to Our Family House!</div>
+
+    <div class="house">
+      <!-- Roof -->
+      <div style="position:relative;">
+        <div class="roof"></div>
+        <div class="chimney"></div>
+        <div class="smoke">💨</div>
+      </div>
+
+      <!-- Body -->
+      <div class="house-body">
+        <!-- Top row: Father | Baby/Me | Mother -->
+        <div class="window-card">
+          <span class="wc-e">👨</span>
+          <span class="wc-w">Father</span>
+          <span class="wc-d">Dad</span>
+        </div>
+        <div class="window-card" style="background:var(--amber-lt);border-color:var(--amber);">
+          <span class="wc-e">🧒</span>
+          <span class="wc-w" style="color:var(--amber);">Me! 😊</span>
+          <span class="wc-d">the student</span>
+        </div>
+        <div class="window-card">
+          <span class="wc-e">👩</span>
+          <span class="wc-w">Mother</span>
+          <span class="wc-d">Mom</span>
+        </div>
+
+        <!-- Bottom row: Brother | Door | Sister -->
+        <div class="window-card">
+          <span class="wc-e">👦</span>
+          <span class="wc-w">Brother</span>
+          <span class="wc-d">sibling</span>
+        </div>
+        <div class="front-door">
+          <div style="font-size:1.2rem;">🚪</div>
+          <div class="door-knob"></div>
+          <div style="font-size:.62rem;padding-bottom:4px;">Home</div>
+        </div>
+        <div class="window-card">
+          <span class="wc-e">👧</span>
+          <span class="wc-w">Sister</span>
+          <span class="wc-d">sibling</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Garden: grandparents + pet -->
+    <div class="garden-label">🌿 In the Garden</div>
+    <div class="garden-row">
+      <div class="garden-card">
+        <span class="gc-e">👴</span>
+        <span class="gc-w">Grandfather</span>
+        <span class="gc-d">Grandpa</span>
+      </div>
+      <div class="garden-card">
+        <span class="gc-e">👵</span>
+        <span class="gc-w">Grandmother</span>
+        <span class="gc-d">Grandma</span>
+      </div>
+      <div class="garden-card">
+        <span class="gc-e">👶</span>
+        <span class="gc-w">Baby</span>
+        <span class="gc-d">youngest</span>
+      </div>
+      <div class="garden-card">
+        <span class="gc-e">🐶</span>
+        <span class="gc-w">Pet</span>
+        <span class="gc-d">family animal</span>
+      </div>
+    </div>
+
+    <div class="house-note">👆 Point to each window and say the word out loud with your teacher!</div>
+  </div>
+
+  <!-- Core vocab -->
+  <div class="card">
+    <div class="chip ch-amber">🎙️ Listen &amp; Repeat — Family Members</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px;">Listen to your teacher, then say each word out loud!</p>
+    <div class="vocab-grid">
+      <div class="vcard vc1"><span class="ve">👨</span><span class="vw">Father</span><span class="vd">Dad / Papa</span></div>
+      <div class="vcard vc2"><span class="ve">👩</span><span class="vw">Mother</span><span class="vd">Mom / Mama</span></div>
+      <div class="vcard vc3"><span class="ve">👦</span><span class="vw">Brother</span><span class="vd">male sibling</span></div>
+      <div class="vcard vc4"><span class="ve">👧</span><span class="vw">Sister</span><span class="vd">female sibling</span></div>
+      <div class="vcard vc5"><span class="ve">👴</span><span class="vw">Grandfather</span><span class="vd">Grandpa</span></div>
+      <div class="vcard vc6"><span class="ve">👵</span><span class="vw">Grandmother</span><span class="vd">Grandma</span></div>
+      <div class="vcard vc1"><span class="ve">👶</span><span class="vw">Baby</span><span class="vd">youngest child</span></div>
+      <div class="vcard vc2"><span class="ve">👨‍👩‍👧‍👦</span><span class="vw">Family</span><span class="vd">all together</span></div>
+      <div class="vcard vc3"><span class="ve">🏠</span><span class="vw">Home</span><span class="vd">where we live</span></div>
+      <div class="vcard vc4"><span class="ve">🐶</span><span class="vw">Pet</span><span class="vd">family animal</span></div>
+      <div class="vcard vc5"><span class="ve">❤️</span><span class="vw">Love</span><span class="vd">warm feeling</span></div>
+      <div class="vcard vc6"><span class="ve">😊</span><span class="vw">Happy</span><span class="vd">feeling good</span></div>
+    </div>
+  </div>
+
+  <!-- Describing words -->
+  <div class="card">
+    <div class="chip ch-coral">⭐ Describing Words — About Family</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px;">Use these words to describe each family member!</p>
+    <div class="vocab-grid">
+      <div class="vcard vc3"><span class="ve">💪</span><span class="vw">Strong</span><span class="vd">very powerful</span></div>
+      <div class="vcard vc2"><span class="ve">😍</span><span class="vw">Beautiful</span><span class="vd">very pretty</span></div>
+      <div class="vcard vc1"><span class="ve">🤓</span><span class="vw">Smart</span><span class="vd">intelligent</span></div>
+      <div class="vcard vc4"><span class="ve">😄</span><span class="vw">Funny</span><span class="vd">makes you laugh</span></div>
+      <div class="vcard vc5"><span class="ve">🤗</span><span class="vw">Kind</span><span class="vd">caring &amp; gentle</span></div>
+      <div class="vcard vc6"><span class="ve">🌟</span><span class="vw">Wonderful</span><span class="vd">amazing</span></div>
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Play "Who Am I?" — give a clue like <em>"I am the father of your father. Who am I?"</em> Students answer: <em>"Grandfather!"</em> Then ask students to give their own clues for the class to guess. Great for listening and speaking at the same time!
+    </div>
+  </div>
+
+</div><!-- /tab-vocab -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 2 · SCRIPTS
+════════════════════════════════════════════ -->
+<div class="section" id="tab-script">
+
+  <div class="sec-head">
+    <div class="sec-icon si-teal">🎧</div>
+    <div class="sec-head-text">
+      <h2>Listening Scripts</h2>
+      <p>Read aloud to students · 2 scripts + 1 activity</p>
+    </div>
+  </div>
+
+  <!-- Script A -->
+  <div class="card">
+    <div class="chip ch-teal">🎙️ Script A — "Lily's Family"</div>
+    <div class="script-box">
+      <div class="script-text">
+        Hello, friends! My name is <span class="hl">Lily</span>. I am six years old. 👋<br>
+        Today I want to tell you about my <span class="hl">family</span>. I love my family so much! ❤️<br><br>
+
+        First, I have a <span class="hl">father</span>. His name is <span class="hl">Mr. David</span>.<br>
+        My father is <span class="hl2">tall</span> and <span class="hl2">strong</span>. He works as an <span class="hl">engineer</span>. 🔧<br>
+        He builds roads and bridges. I think he is very <span class="hl2">smart</span>!<br><br>
+
+        Next, I have a <span class="hl">mother</span>. Her name is <span class="hl">Mrs. Sarah</span>.<br>
+        My mother is <span class="hl2">kind</span> and <span class="hl2">beautiful</span>. She is a <span class="hl">nurse</span>. 🏥<br>
+        She helps sick people get better. I am very proud of her!<br><br>
+
+        I have one <span class="hl">brother</span>. His name is <span class="hl">Ben</span>. He is nine years old.<br>
+        Ben is <span class="hl2">funny</span> and <span class="hl2">smart</span>. He loves reading books. 📚<br><br>
+
+        I also have one <span class="hl">sister</span>. Her name is <span class="hl">Mia</span>. She is only two years old.<br>
+        Mia is our <span class="hl">baby</span>. She is very <span class="hl2">little</span> and so <span class="hl2">cute</span>! 👶<br><br>
+
+        My <span class="hl">grandfather</span> is Grandpa Tom. He is <span class="hl2">kind</span> and tells great stories. 📖<br>
+        My <span class="hl">grandmother</span> is Grandma Rose. She makes the best cookies! 🍪<br><br>
+
+        We also have a pet <span class="hl">dog</span>. His name is <span class="hl">Biscuit</span>! 🐶<br>
+        Biscuit is <span class="hl2">funny</span> and <span class="hl2">playful</span>. He is part of our family too!<br><br>
+
+        My family is big and <span class="hl2">happy</span>. We live together in our <span class="hl">home</span>. 🏠<br>
+        I love my family very much! 😊
+      </div>
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Read Script A 2–3 times expressively. Round 1: students listen quietly. Round 2: students draw a stick-figure for each family member as they hear them. Round 3: students repeat key sentences with you. Use yellow highlighting to draw attention to family words.
+    </div>
+  </div>
+
+  <!-- Script B -->
+  <div class="card">
+    <div class="chip ch-teal">🎙️ Script B — "My Small Family" (Short Version)</div>
+    <div class="script-box">
+      <div class="script-text">
+        Hi! My name is <span class="hl">Sam</span>. 😊 I have a small but <span class="hl2">happy</span> family.<br>
+        There are just four people — and one very silly cat! 🐱<br><br>
+
+        My <span class="hl">father</span>, Mr. <span class="hl">Lee</span>, is <span class="hl2">strong</span> and <span class="hl2">funny</span>. He is a cook. 🍳<br>
+        My <span class="hl">mother</span>, Mrs. <span class="hl">Anna</span>, is <span class="hl2">kind</span> and <span class="hl2">smart</span>. She is a doctor. 🩺<br>
+        I have one older <span class="hl">sister</span>, <span class="hl">Zoe</span>. She is ten and loves dancing. 💃<br>
+        And our cat is called <span class="hl">Mochi</span>. Mochi is orange and very <span class="hl2">funny</span>. 😄<br><br>
+
+        Small family, big <span class="hl">love</span>! ❤️
+      </div>
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Use Script B for a second session or as a review. After listening, ask: <em>"How many people are in Sam's family?"</em> and <em>"What is the cat's name?"</em> Students can also draw Sam's family and label each member.
+    </div>
+  </div>
+
+  <!-- Sequence activity -->
+  <div class="card">
+    <div class="chip ch-green">📋 Activity — Lily's Family Members in Order</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px;">After listening to Script A, can you list all the family members in the order Lily mentions them?</p>
+    <ul class="step-list">
+      <li class="step-item"><span class="step-dot">1</span>👨 Father — Mr. David (tall, strong, engineer)</li>
+      <li class="step-item"><span class="step-dot">2</span>👩 Mother — Mrs. Sarah (kind, beautiful, nurse)</li>
+      <li class="step-item"><span class="step-dot">3</span>👦 Brother — Ben, 9 years old (funny, smart, loves books)</li>
+      <li class="step-item"><span class="step-dot">4</span>👧 Sister — Mia, 2 years old (little, cute, the baby)</li>
+      <li class="step-item"><span class="step-dot">5</span>👴 Grandfather — Grandpa Tom (kind, tells great stories)</li>
+      <li class="step-item"><span class="step-dot">6</span>👵 Grandmother — Grandma Rose (makes the best cookies!)</li>
+      <li class="step-item"><span class="step-dot">7</span>🐶 Pet dog — Biscuit (funny, playful)</li>
+    </ul>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Write each family member on a separate card and shuffle them. After listening, students arrange the cards in the correct order. This builds sequencing skills and reinforces listening comprehension.
+    </div>
+  </div>
+
+</div><!-- /tab-script -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 3 · DIALOGUES
+════════════════════════════════════════════ -->
+<div class="section" id="tab-dialogue">
+
+  <div class="sec-head">
+    <div class="sec-icon si-coral">💬</div>
+    <div class="sec-head-text">
+      <h2>Listening Dialogues</h2>
+      <p>Real conversations about family · 2 dialogues</p>
+    </div>
+  </div>
+
+  <!-- Dialogue 1 -->
+  <div class="card">
+    <div class="chip ch-coral">💬 Dialogue 1 — "Tell Me About Your Family!"</div>
+    <div class="dialogue">
+
+      <div class="dl">
+        <div class="avatar av-teal">👦</div>
+        <div class="bubble"><strong>Sam:</strong> Hi Lily! Can you tell me about your family?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> Sure, Sam! I have a big family. There are seven of us — plus our dog Biscuit!</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-teal">👦</div>
+        <div class="bubble"><strong>Sam:</strong> Wow, seven people! Who is in your family?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> My father, my mother, my brother Ben, my baby sister Mia, Grandpa Tom, Grandma Rose, and me! 😄</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-teal">👦</div>
+        <div class="bubble"><strong>Sam:</strong> That's a big family! What does your father do?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> My father is an engineer. He builds roads and bridges. He is very strong and smart! 💪</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-teal">👦</div>
+        <div class="bubble"><strong>Sam:</strong> Cool! What about your mother?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> My mother is a nurse. She is so kind and beautiful. I love her very much! ❤️</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-teal">👦</div>
+        <div class="bubble"><strong>Sam:</strong> Your family sounds wonderful! My family is small — just four people and our cat Mochi. 🐱</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> A cat! How fun! Big family or small family — every family is special! 🌟</div>
+      </div>
+
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Read the dialogue together — teacher as Sam, students as Lily, then swap roles. Focus on the key patterns: <em>"What does your __ do?"</em> and <em>"My __ is a __."</em> Then ask students to use those same patterns to talk about their own real family!
+    </div>
+  </div>
+
+  <!-- Dialogue 2 -->
+  <div class="card">
+    <div class="chip ch-coral">💬 Dialogue 2 — "Look at My Family Photo!"</div>
+    <div class="dialogue">
+
+      <div class="dl">
+        <div class="avatar av-lav">👩</div>
+        <div class="bubble"><strong>Teacher:</strong> Lily, whose photo is this?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> That is my family photo! We took it at Grandma's house last Sunday. 📸</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-lav">👩</div>
+        <div class="bubble"><strong>Teacher:</strong> Who is the tall man?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> That is my father, Mr. David. He is tall and strong. He is an engineer! 🔧</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-lav">👩</div>
+        <div class="bubble"><strong>Teacher:</strong> And the woman next to him — she looks so kind!</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> That is my mother, Mrs. Sarah. She is a nurse and she is very beautiful. I love her! ❤️</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-lav">👩</div>
+        <div class="bubble"><strong>Teacher:</strong> Is that little baby on her lap your sister?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> Yes! That is baby Mia. She is two years old and so cute! 👶😍</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-lav">👩</div>
+        <div class="bubble"><strong>Teacher:</strong> How many people are in your family, Lily?</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> Seven people! And one dog named Biscuit — he ran away before the photo! Ha ha! 🐶😂</div>
+      </div>
+
+      <div class="dl">
+        <div class="avatar av-lav">👩</div>
+        <div class="bubble"><strong>Teacher:</strong> Ha ha! What a wonderful family, Lily. You must feel very loved!</div>
+      </div>
+
+      <div class="dl r">
+        <div class="avatar av-coral">👧</div>
+        <div class="bubble"><strong>Lily:</strong> Yes! I love my family so much! ❤️🏠</div>
+      </div>
+
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Ask students to bring a family photo or draw one. After reading the dialogue, do a "show and tell" moment — each student holds up their picture and says: <em>"This is my [family member]. His/Her name is ___. He/She is ___."</em> This turns the listening session into a genuine, meaningful speaking activity.
+    </div>
+  </div>
+
+</div><!-- /tab-dialogue -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 4 · EXERCISES
+════════════════════════════════════════════ -->
+<div class="section" id="tab-exercise">
+
+  <div class="sec-head">
+    <div class="sec-icon si-green">✏️</div>
+    <div class="sec-head-text">
+      <h2>Listening Exercises</h2>
+      <p>Check your understanding · 3 exercise types</p>
+    </div>
+  </div>
+
+  <!-- Exercise A: Multiple Choice -->
+  <div class="card">
+    <div class="chip ch-green">📝 Exercise A — Choose the Correct Answer</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px;">Listen to Script A about Lily's Family, then choose the right answer! 👇</p>
+
+    <div class="ex-item">
+      <span class="q-no">1.</span> What is Lily's father's name?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">Mr. Ben</button>
+        <button class="choice" onclick="pick(this,true)">Mr. David</button>
+        <button class="choice" onclick="pick(this,false)">Mr. Tom</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">2.</span> What is Lily's mother's job?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">Engineer</button>
+        <button class="choice" onclick="pick(this,true)">Nurse</button>
+        <button class="choice" onclick="pick(this,false)">Teacher</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">3.</span> How old is Lily's brother, Ben?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">Six years old</button>
+        <button class="choice" onclick="pick(this,false)">Seven years old</button>
+        <button class="choice" onclick="pick(this,true)">Nine years old</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">4.</span> What does Ben love to do?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,true)">Reading books</button>
+        <button class="choice" onclick="pick(this,false)">Playing football</button>
+        <button class="choice" onclick="pick(this,false)">Dancing</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">5.</span> What is Grandma Rose famous for?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">Telling great stories</button>
+        <button class="choice" onclick="pick(this,true)">Making the best cookies</button>
+        <button class="choice" onclick="pick(this,false)">Singing songs</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">6.</span> What is the name of Lily's pet dog?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">Cookie</button>
+        <button class="choice" onclick="pick(this,false)">Mochi</button>
+        <button class="choice" onclick="pick(this,true)">Biscuit</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">7.</span> How many people are in Sam's family?
+      <div class="choices">
+        <button class="choice" onclick="pick(this,true)">Four people</button>
+        <button class="choice" onclick="pick(this,false)">Three people</button>
+        <button class="choice" onclick="pick(this,false)">Six people</button>
+      </div>
+    </div>
+
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Re-read both scripts before students answer. Give about 30 seconds per question. Review answers together — cheer and clap for every correct answer! 🎉 Use wrong answers as a chance to re-read the matching part of the script.
+    </div>
+  </div>
+
+  <!-- Exercise B: True / False -->
+  <div class="card">
+    <div class="chip ch-lav">✅ Exercise B — True or False?</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px;">Based on the scripts and dialogues — is each sentence true or false?</p>
+
+    <div class="ex-item">
+      <span class="q-no">1.</span> Lily's father builds roads and bridges.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,true)">✅ True</button>
+        <button class="choice" onclick="pick(this,false)">❌ False</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">2.</span> Lily's mother is a teacher.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">✅ True</button>
+        <button class="choice" onclick="pick(this,true)">❌ False</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">3.</span> Mia is two years old.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,true)">✅ True</button>
+        <button class="choice" onclick="pick(this,false)">❌ False</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">4.</span> Sam's cat is called Biscuit.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">✅ True</button>
+        <button class="choice" onclick="pick(this,true)">❌ False</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">5.</span> Grandpa Tom loves telling great stories.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,true)">✅ True</button>
+        <button class="choice" onclick="pick(this,false)">❌ False</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">6.</span> Lily has two brothers.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,false)">✅ True</button>
+        <button class="choice" onclick="pick(this,true)">❌ False</button>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <span class="q-no">7.</span> Sam's father is a cook.
+      <div class="choices">
+        <button class="choice" onclick="pick(this,true)">✅ True</button>
+        <button class="choice" onclick="pick(this,false)">❌ False</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise C: Picture Match -->
+  <div class="card">
+    <div class="chip ch-amber">🖼️ Exercise C — Match the Picture!</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:4px;">Look at each picture and write the correct family word. Answers are shown for reference.</p>
+    <div class="match-grid">
+      <div class="match-cell"><span class="mc-e">👨</span><span class="mc-b">_ _ _ _ _ _</span><span class="mc-a">✅ Father</span></div>
+      <div class="match-cell"><span class="mc-e">👩</span><span class="mc-b">_ _ _ _ _ _</span><span class="mc-a">✅ Mother</span></div>
+      <div class="match-cell"><span class="mc-e">👦</span><span class="mc-b">_ _ _ _ _ _ _</span><span class="mc-a">✅ Brother</span></div>
+      <div class="match-cell"><span class="mc-e">👧</span><span class="mc-b">_ _ _ _ _ _</span><span class="mc-a">✅ Sister</span></div>
+      <div class="match-cell"><span class="mc-e">👴</span><span class="mc-b">_ _ _ _ _ _ _ _ _ _</span><span class="mc-a">✅ Grandfather</span></div>
+      <div class="match-cell"><span class="mc-e">👵</span><span class="mc-b">_ _ _ _ _ _ _ _ _ _</span><span class="mc-a">✅ Grandmother</span></div>
+      <div class="match-cell"><span class="mc-e">👶</span><span class="mc-b">_ _ _ _</span><span class="mc-a">✅ Baby</span></div>
+      <div class="match-cell"><span class="mc-e">🐶</span><span class="mc-b">_ _ _</span><span class="mc-a">✅ Pet</span></div>
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      For a printed version: put pictures on the left and shuffled words on the right — students draw lines to connect them. In class: hold up picture cards and have students race to call out the correct word. First correct answer wins a point!
+    </div>
+  </div>
+
+</div><!-- /tab-exercise -->
+
+
+<!-- ════════════════════════════════════════════
+     TAB 5 · SONG
+════════════════════════════════════════════ -->
+<div class="section" id="tab-song">
+
+  <div class="sec-head">
+    <div class="sec-icon si-lav">🎵</div>
+    <div class="sec-head-text">
+      <h2>Listening Song</h2>
+      <p>My Family Song · Sing, clap &amp; move!</p>
+    </div>
+  </div>
+
+  <div class="song-card">
+    <div class="chip ch-coral" style="margin-bottom:20px;">🎶 "MY WONDERFUL FAMILY" — Sing Along!</div>
+    <div class="song-lyrics">
+      👨 My <span class="rh">father</span> is so <span class="rh">strong</span> and <span class="rh">tall</span>, 💪<br>
+      He catches me whenever I <span class="rh">fall</span>! 🤲<br>
+      👩 My <span class="rh">mother</span> hugs me every <span class="rh">day</span>,<br>
+      She chases all my fears <span class="rh">away</span>! 🌈<br><br>
+
+      👦 My <span class="rh2">brother</span> makes me laugh out <span class="rh2">loud</span>, 😂<br>
+      He makes our whole family so <span class="rh2">proud</span>! 🌟<br>
+      👧 My little <span class="rh2">sister</span>, small and <span class="rh2">sweet</span>,<br>
+      She makes our family feel <span class="rh2">complete</span>! 🍭<br><br>
+
+      👴 <span class="rh">Grandpa</span> tells me stories of <span class="rh">long ago</span>,<br>
+      His eyes just light up with a <span class="rh">glow</span>! ✨<br>
+      👵 <span class="rh">Grandma's</span> cookies — warm and <span class="rh">sweet</span>,<br>
+      The best thing I have ever <span class="rh">eat</span>! 🍪<br><br>
+
+      ❤️ <span class="rh">I love my family</span>, yes I <span class="rh">do</span>!<br>
+      And they all love <span class="rh">me</span> too! 💕<br>
+      Together we stand <span class="rh">tall</span>,<br>
+      My family, <span class="rh">best of all</span>! 🏠🌟<br><br>
+
+      <span style="font-size:.8rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:600;">
+        ♩ Sung to a gentle 4/4 beat &nbsp;·&nbsp; Clap on every rhyming word! ♩
+      </span>
+    </div>
+  </div>
+
+  <!-- Actions guide -->
+  <div class="card" style="margin-top:20px;">
+    <div class="chip ch-teal">🕺 Song Actions Guide</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px;">Do these actions while singing each line!</p>
+    <ul class="step-list">
+      <li class="step-item"><span class="step-dot">👨</span><strong>Father</strong> — Flex both arms like a superhero 💪</li>
+      <li class="step-item"><span class="step-dot">👩</span><strong>Mother</strong> — Wrap both arms around yourself in a hug 🤗</li>
+      <li class="step-item"><span class="step-dot">👦</span><strong>Brother</strong> — Make a big exaggerated laughing face 😂</li>
+      <li class="step-item"><span class="step-dot">👧</span><strong>Sister</strong> — Hold hand low (she is little!) and wave sweetly 🤏</li>
+      <li class="step-item"><span class="step-dot">👴</span><strong>Grandpa</strong> — Cup hands around mouth like whispering a story 📖</li>
+      <li class="step-item"><span class="step-dot">👵</span><strong>Grandma</strong> — Pretend to take a big bite of a cookie 🍪😋</li>
+      <li class="step-item"><span class="step-dot">❤️</span><strong>I love my family</strong> — Cross both hands over your heart ❤️</li>
+      <li class="step-item"><span class="step-dot">🏠</span><strong>Best of all</strong> — Both arms up in a big V for victory! 🙌</li>
+    </ul>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      Teach the actions first without music — run through them all together, then add the song. Repeat 3 times: slow to learn → normal speed → fast and fun! Give a "Family Star" ⭐ sticker to the most expressive student. The song can also be recorded by the teacher for students to practice listening at home.
+    </div>
+  </div>
+
+  <!-- Speaking challenge -->
+  <div class="card">
+    <div class="chip ch-coral">🗣️ Speaking Challenge — Introduce Your Family!</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:12px;">Now it's YOUR turn! Stand up and tell the class about your own family using these sentence starters:</p>
+    <div class="speak-grid">
+      <div class="speak-frame">
+        <span class="sf-lbl">👨 My Father</span>
+        My father's name is <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.<br>
+        He is <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> and <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.
+      </div>
+      <div class="speak-frame">
+        <span class="sf-lbl">👩 My Mother</span>
+        My mother's name is <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.<br>
+        She is <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> and <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.
+      </div>
+      <div class="speak-frame">
+        <span class="sf-lbl">👦👧 Brother / Sister</span>
+        My <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'s name is <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.<br>
+        He / She is <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> years old.
+      </div>
+      <div class="speak-frame">
+        <span class="sf-lbl">👨‍👩‍👧‍👦 My Family</span>
+        There are <span class="sf-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> people in my family.<br>
+        I love my family! ❤️
+      </div>
+    </div>
+    <div class="tip">
+      <b>💡 Teacher's Tip</b>
+      This is the final output of the full listening cycle: <strong>Vocabulary → Script → Dialogue → Exercise → Song → Speaking!</strong> Each student comes to the front to introduce their family. After each turn, one classmate asks a question. This creates a real, two-way listening and speaking moment every time.
+    </div>
+  </div>
+
+</div><!-- /tab-song -->
+
+</div><!-- /main -->
+
+<!-- ══ FOOTER ════════════════════════════════ -->
 <footer>
-  <p>© 2026 <span>BunRey English Course</span> · Listening Material · Grade 1 · Topic: Daily Activities</p>
-  <p style="margin-top:6px;font-size:12px;">Made with ❤️ for all amazing BunRey students!</p>
+  <div class="ft-brand">⭐ BunRey English Course ⭐</div>
+  <div style="margin-top:6px;">My Family · Listening Materials · Grade 1 Elementary · Beginner Level</div>
+  <div style="margin-top:4px;font-size:.7rem;">🌟 Every family is special — and so are you! 🌟</div>
 </footer>
 
 <script>
-  const audioScripts = {
-    audio1: "Riko, wake up! It's six o'clock! ... Good morning, Dad! I'm sleepy... ... Come on! Go and wash your face. Then get ready for school. ... Okay, Dad. What is for breakfast today? ... We have bread and eggs! Your favourite! ... Yay! Can I have orange juice too, Dad? ... Of course! Now hurry up. The school starts at seven. ... Yes, Dad! I will get my bag and my water bottle. ... Good boy! Have a great day at school, Riko! ... Thank you, Dad! Bye-bye!",
-    audio2: "Hello! My name is Nana. I am in Grade One. Let me tell you about my day! Every morning, I wake up at five o'clock. First, I wash my face and brush my teeth. Then I eat breakfast. I like to eat bread with jam in the morning. I go to school at six thirty. My mom takes me to school by motorcycle. At school, I study and play with my friends. My favourite subject is English! I go home at twelve o'clock. When I get home, I take a bath and eat lunch. Then I take a nap. In the afternoon, I play with my little brother. At night, I do my homework and read a story book. I go to sleep at eight thirty. That is my day! What about yours?"
-  };
+function show(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  ['vocab','script','dialogue','exercise','song'].forEach((t,i) => {
+    if (t === tab) document.querySelectorAll('.tab-btn')[i].classList.add('active');
+  });
+  window.scrollTo({ top: document.querySelector('.tabs-wrap').offsetTop - 2, behavior: 'smooth' });
+}
 
-  let currentAudioId = null;
-  let progressInterval = null;
-
-  function getEngVoice() {
-    const voices = window.speechSynthesis.getVoices();
-    return voices.find(v => v.lang === 'en-US' && v.localService) ||
-           voices.find(v => v.lang.startsWith('en-') && v.localService) ||
-           voices.find(v => v.lang.startsWith('en')) || null;
-  }
-
-  function playTTS(id) {
-    if (!window.speechSynthesis) {
-      document.getElementById(id === 'audio1' ? 'status1' : 'status2').textContent =
-        'Audio not supported. Please use Chrome, Edge, or Safari.';
-      return;
-    }
-
-    const btnEl  = document.getElementById(id === 'audio1' ? 'playBtn1' : 'playBtn2');
-    const statEl = document.getElementById(id === 'audio1' ? 'status1' : 'status2');
-    const progEl = document.getElementById(id === 'audio1' ? 'prog1' : 'prog2');
-
-    if (currentAudioId === id && window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-      btnEl.textContent = '▶️';
-      statEl.textContent = 'Click ▶️ to listen';
-      progEl.style.width = '0%';
-      clearInterval(progressInterval);
-      currentAudioId = null;
-      return;
-    }
-
-    if (window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-      clearInterval(progressInterval);
-      ['audio1','audio2'].forEach(aid => {
-        const b = document.getElementById(aid === 'audio1' ? 'playBtn1' : 'playBtn2');
-        const s = document.getElementById(aid === 'audio1' ? 'status1' : 'status2');
-        const p = document.getElementById(aid === 'audio1' ? 'prog1' : 'prog2');
-        if (b) b.textContent = '▶️';
-        if (s) s.textContent = 'Click ▶️ to listen';
-        if (p) p.style.width = '0%';
-      });
-    }
-
-    const utter = new SpeechSynthesisUtterance(audioScripts[id]);
-    utter.lang  = 'en-US';
-    utter.rate  = 0.85;
-    utter.pitch = 1.0;
-    const voice = getEngVoice();
-    if (voice) utter.voice = voice;
-
-    currentAudioId = id;
-    btnEl.textContent = '⏸️';
-    statEl.textContent = '🔊 Playing...';
-
-    const words  = audioScripts[id].split(' ').length;
-    const estMs  = (words / 130) * 60000;
-    let elapsed  = 0;
-    clearInterval(progressInterval);
-    progressInterval = setInterval(() => {
-      elapsed += 200;
-      progEl.style.width = Math.min((elapsed / estMs) * 100, 98) + '%';
-    }, 200);
-
-    utter.onend = () => {
-      btnEl.textContent = '▶️';
-      statEl.textContent = '✅ Done! Click ▶️ to replay';
-      progEl.style.width = '100%';
-      clearInterval(progressInterval);
-      currentAudioId = null;
-      setTimeout(() => { progEl.style.width = '0%'; }, 2000);
-    };
-
-    utter.onerror = () => {
-      btnEl.textContent = '▶️';
-      statEl.textContent = '⚠️ Error – click again to retry';
-      progEl.style.width = '0%';
-      clearInterval(progressInterval);
-      currentAudioId = null;
-    };
-
-    window.speechSynthesis.speak(utter);
-  }
-
-  function speakWord(word) {
-    if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(word);
-    u.lang = 'en-US'; u.rate = 0.85;
-    const v = getEngVoice();
-    if (v) u.voice = v;
-    window.speechSynthesis.speak(u);
-  }
-
-  if (window.speechSynthesis) {
-    window.speechSynthesis.getVoices();
-    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-  }
-
-  function choose(btn, type) {
-    btn.closest('.options').querySelectorAll('.opt').forEach(b => b.classList.remove('correct','wrong'));
-    btn.classList.add(type);
-  }
-
-  function tfChoose(btn, chosen, correct) {
-    const row = btn.closest('.tf-btns');
-    row.querySelectorAll('.tf-btn').forEach(b => {
-      b.classList.remove('active');
-      b.style.cssText = '';
+function pick(el, correct) {
+  const row = el.closest('.choices');
+  row.querySelectorAll('.choice').forEach(c => { c.classList.remove('correct','wrong'); c.disabled = true; });
+  if (correct) {
+    el.classList.add('correct');
+  } else {
+    el.classList.add('wrong');
+    row.querySelectorAll('.choice').forEach(c => {
+      if (c.getAttribute('onclick').includes('true')) c.classList.add('correct');
     });
-    btn.classList.add('active');
-    if (chosen === correct) {
-      btn.style.background = '#06D6A0'; btn.style.borderColor = '#06D6A0'; btn.style.color = '#fff';
-    } else {
-      btn.style.background = '#FF6B6B'; btn.style.borderColor = '#FF6B6B'; btn.style.color = '#fff';
-    }
   }
-
-  // Accepted answers (flexible matching)
-  const answers = {
-    b1: 'five',
-    b2: 'bread',
-    b3: 'motorcycle',
-    b4: 'twelve',
-    b5: 'homework'
-  };
-
-  function checkBlanks() {
-    let score = 0;
-    ['b1','b2','b3','b4','b5'].forEach(id => {
-      const inp = document.getElementById(id);
-      const val = inp.value.trim().toLowerCase();
-      const ans = answers[id];
-      if (val === ans || val.includes(ans) || ans.includes(val)) {
-        inp.style.borderBottomColor = '#06D6A0'; inp.style.color = '#06D6A0'; score++;
-      } else {
-        inp.style.borderBottomColor = '#FF6B6B'; inp.style.color = '#FF6B6B';
-      }
-    });
-    const el = document.getElementById('blank-result');
-    el.style.display = 'block';
-    if (score === 5) {
-      el.style.color = '#06D6A0';
-      el.textContent = '🎉 Perfect! All answers are correct!';
-    } else {
-      el.style.color = '#FF6B35';
-      el.textContent = score + ' out of 5 correct. Try again!';
-    }
-    showScore(score);
-  }
-
-  function showScore(s) {
-    const box = document.getElementById('scoreBox');
-    box.style.display = 'block';
-    document.getElementById('scoreNum').textContent = s + '/5';
-    const msgs = ['Keep practising! 💪','Good job, keep it up! 😊','Excellent! 🌟','Almost perfect! ✨','Perfect! You are amazing! 🏆'];
-    document.getElementById('scoreMsg').textContent = msgs[s] || msgs[0];
-    box.scrollIntoView({behavior:'smooth',block:'center'});
-  }
-
-  function selectEmoji(el) {
-    document.querySelectorAll('[onclick^="selectEmoji"]').forEach(e => {
-      e.style.transform = 'scale(1)'; e.style.filter = 'none';
-    });
-    el.style.transform = 'scale(1.4)';
-    el.style.filter = 'drop-shadow(0 0 8px gold)';
-  }
+}
 </script>
 </body>
 </html>
