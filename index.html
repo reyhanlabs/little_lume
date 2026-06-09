@@ -36,10 +36,42 @@ body{
 }
 
 header{
-    background:linear-gradient(135deg,var(--blue),var(--purple),var(--pink));
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(
+        135deg,
+        #3A86FF,
+        #7C5CBF,
+        #FF4D8D
+    );
     color:white;
     text-align:center;
-    padding:70px 20px;
+    padding:100px 20px;
+}
+    .header-decoration{
+    position:absolute;
+    font-size:3rem;
+    opacity:.25;
+}
+
+.cloud1{
+    top:30px;
+    left:5%;
+}
+
+.cloud2{
+    top:50px;
+    right:10%;
+}
+
+.star1{
+    bottom:40px;
+    left:15%;
+}
+
+.star2{
+    top:120px;
+    right:20%;
 }
 
 header h1{
@@ -166,6 +198,12 @@ header h1{
 
 <header>
 
+<div class="header-decoration cloud1">☁️</div>
+<div class="header-decoration cloud2">☁️</div>
+
+<div class="header-decoration star1">⭐</div>
+<div class="header-decoration star2">⭐</div>
+
 <h1>🎓 BunRey English Course</h1>
 
 <p>
@@ -175,8 +213,6 @@ Fun English Learning for Elementary Students
 <a href="#materials" class="hero-btn">
 📚 Explore Materials
 </a>
-
-</header>
 
 <div class="container">
 
