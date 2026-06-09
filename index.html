@@ -1,333 +1,650 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BunRey English Course</title>
 <link rel="icon" href="/favicon.ico">
-
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-    --blue:#3A86FF;
-    --purple:#7C5CBF;
-    --pink:#FF4D8D;
-    --yellow:#FFD93D;
-    --green:#06D6A0;
-    --orange:#FF6B35;
-    --dark:#1A1A2E;
-    --bg:#F8FAFF;
+  --blue:#3A86FF;
+  --purple:#7C5CBF;
+  --pink:#FF4D8D;
+  --yellow:#FFD93D;
+  --green:#06D6A0;
+  --orange:#FF6B35;
+  --dark:#1A1A2E;
+  --bg:#F8FAFF;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
 
 body{
-    font-family:'Nunito',sans-serif;
-    background:var(--bg);
-    color:var(--dark);
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  overflow-x:hidden;
 }
 
 header{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(
-        135deg,
-        #3A86FF,
-        #7C5CBF,
-        #FF4D8D
-    );
-    color:white;
-    text-align:center;
-    padding:100px 20px;
-}
-    .header-decoration{
-    position:absolute;
-    font-size:3rem;
-    opacity:.25;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#3A86FF 0%,#7C5CBF 50%,#FF4D8D 100%);
+  color:white;
+  text-align:center;
+  padding:110px 20px 140px;
 }
 
-.cloud1{
-    top:30px;
-    left:5%;
+.header-decoration{
+  position:absolute;
+  font-size:3rem;
+  opacity:.3;
+}
+.cloud1{ top:30px; left:5%; animation:floatCloud 8s ease-in-out infinite; }
+.cloud2{ top:50px; right:10%; animation:floatCloud 10s ease-in-out infinite reverse; }
+.star1{ bottom:60px; left:15%; animation:twinkle 3s ease-in-out infinite; }
+.star2{ top:120px; right:20%; animation:twinkle 4s ease-in-out infinite 1s; }
+
+@keyframes floatCloud{
+  0%,100%{ transform:translateX(0); }
+  50%{ transform:translateX(18px); }
+}
+@keyframes twinkle{
+  0%,100%{ transform:scale(1) rotate(0deg); opacity:.3; }
+  50%{ transform:scale(1.3) rotate(20deg); opacity:.6; }
 }
 
-.cloud2{
-    top:50px;
-    right:10%;
+/* Canvas plant layer */
+#plantCanvas{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:180px;
+  pointer-events:none;
 }
 
-.star1{
-    bottom:40px;
-    left:15%;
+/* Floating bubbles */
+.bubble{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  animation:rise linear infinite;
 }
+.b1{ width:18px;height:18px; left:25%; animation-duration:7s; }
+.b2{ width:12px;height:12px; left:40%; animation-duration:9s; animation-delay:2s; }
+.b3{ width:22px;height:22px; left:60%; animation-duration:6s; animation-delay:1s; }
+.b4{ width:10px;height:10px; left:75%; animation-duration:8s; animation-delay:3s; }
+.b5{ width:16px;height:16px; left:85%; animation-duration:10s; animation-delay:.5s; }
 
-.star2{
-    top:120px;
-    right:20%;
+@keyframes rise{
+  0%{ bottom:-30px; opacity:0; }
+  10%{ opacity:.6; }
+  90%{ opacity:.3; }
+  100%{ bottom:110%; opacity:0; }
 }
 
 header h1{
-    font-family:'Fredoka',sans-serif;
-    font-size:3rem;
-    margin-bottom:10px;
+  font-family:'Fredoka',sans-serif;
+  font-size:3rem;
+  margin-bottom:10px;
+  position:relative;
+  text-shadow:0 2px 12px rgba(0,0,0,0.2);
 }
-
-header p{
-    font-size:1.1rem;
-    opacity:.9;
+header > p{
+  font-size:1.1rem;
+  opacity:.9;
+  position:relative;
 }
-
 .hero-btn{
-    display:inline-block;
-    margin-top:25px;
-    background:var(--yellow);
-    color:var(--dark);
-    text-decoration:none;
-    padding:14px 28px;
-    border-radius:50px;
-    font-weight:800;
+  display:inline-block;
+  margin-top:25px;
+  background:var(--yellow);
+  color:var(--dark);
+  text-decoration:none;
+  padding:14px 28px;
+  border-radius:50px;
+  font-weight:800;
+  position:relative;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  transition:transform .2s, box-shadow .2s;
+}
+.hero-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(0,0,0,0.28);
 }
 
 .container{
-    max-width:1200px;
-    margin:auto;
-    padding:50px 20px;
+  max-width:1200px;
+  margin:auto;
+  padding:50px 20px;
 }
-
 .section-title{
-    text-align:center;
-    margin-bottom:30px;
-    font-size:2rem;
-    color:var(--white);
-    font-family:'Fredoka',sans-serif;
+  text-align:center;
+  margin-bottom:40px;
+  font-size:2rem;
+  color:var(--dark);
+  font-family:'Fredoka',sans-serif;
 }
 
 .grade-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
 
 .grade-card{
-    background:white;
-    border-radius:24px;
-    padding:25px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.25s;
+  background:white;
+  border-radius:24px;
+  padding:0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:.3s;
+  overflow:hidden;
+  position:relative;
 }
-
 .grade-card:hover{
-    transform:translateY(-5px);
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.14);
 }
 
-.grade-card h3{
-    color:var(--blue);
-    margin-bottom:15px;
-    font-family:'Fredoka',sans-serif;
+.card-header{
+  padding:20px 25px 16px;
+  position:relative;
+  overflow:hidden;
 }
+.card-header::after{
+  content:'';
+  position:absolute;
+  top:-20px;right:-20px;
+  width:80px;height:80px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.2);
+}
+.card-header::before{
+  content:'';
+  position:absolute;
+  top:-40px;right:20px;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+}
+.card-header h3{
+  font-family:'Fredoka',sans-serif;
+  font-size:1.4rem;
+  color:white;
+  text-shadow:0 1px 4px rgba(0,0,0,0.15);
+  position:relative;
+}
+
+.card-body{ padding:18px 25px 22px; }
 
 .grade-card a{
-    display:block;
-    text-decoration:none;
-    color:#444;
-    padding:12px 15px;
-    margin-bottom:10px;
-    border-radius:12px;
-    background:#F4F6FA;
-    font-weight:700;
-    transition:.2s;
+  display:block;
+  text-decoration:none;
+  color:#444;
+  padding:11px 16px;
+  margin-bottom:10px;
+  border-radius:12px;
+  background:#F4F6FA;
+  font-weight:700;
+  transition:.2s;
 }
+.grade-card a:last-child{ margin-bottom:0; }
 
-.grade-card a:hover{
-    background:var(--blue);
-    color:white;
+.grade-1 .card-header{ background:linear-gradient(135deg,#3A86FF,#2667CC); }
+.grade-1 a:hover{ background:#3A86FF; color:white; }
+.grade-2 .card-header{ background:linear-gradient(135deg,#06D6A0,#04A87C); }
+.grade-2 a:hover{ background:#06D6A0; color:white; }
+.grade-3 .card-header{ background:linear-gradient(135deg,#FF6B35,#D84F1A); }
+.grade-3 a:hover{ background:#FF6B35; color:white; }
+.grade-4 .card-header{ background:linear-gradient(135deg,#7C5CBF,#5D3FA0); }
+.grade-4 a:hover{ background:#7C5CBF; color:white; }
+.grade-5 .card-header{ background:linear-gradient(135deg,#FF4D8D,#D4306A); }
+.grade-5 a:hover{ background:#FF4D8D; color:white; }
+.grade-6 .card-header{ background:linear-gradient(135deg,#FFD93D,#E8B500); }
+.grade-6 .card-header h3{ color:#1A1A2E; }
+.grade-6 a:hover{ background:#FFD93D; color:#1A1A2E; }
+
+.grade-card::before{
+  content:'';
+  display:block;
+  height:4px;
+  position:absolute;
+  top:0;left:0;right:0;
+  border-radius:24px 24px 0 0;
 }
+.grade-1::before{ background:linear-gradient(90deg,#3A86FF,#80B3FF); }
+.grade-2::before{ background:linear-gradient(90deg,#06D6A0,#5DEDD0); }
+.grade-3::before{ background:linear-gradient(90deg,#FF6B35,#FFB19A); }
+.grade-4::before{ background:linear-gradient(90deg,#7C5CBF,#B89EE0); }
+.grade-5::before{ background:linear-gradient(90deg,#FF4D8D,#FF9EC4); }
+.grade-6::before{ background:linear-gradient(90deg,#FFD93D,#FFE980); }
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px;
-    margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+  margin-top:60px;
 }
-
 .stat-box{
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+  background:white;
+  border-radius:20px;
+  padding:28px 25px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
 }
-
-.stat-box h3{
-    color:var(--orange);
-    font-size:2rem;
-}
-    .stat-box p{
-    color:#1A1A2E;
-    font-weight:700;
-    font-size:1rem;
-}
+.stat-box:hover{ transform:translateY(-4px); }
+.stat-box h3{ font-size:2.2rem; margin-bottom:6px; }
+.stat-box p{ color:#1A1A2E; font-weight:700; font-size:1rem; }
+.stat-box:nth-child(1) h3{ color:#3A86FF; }
+.stat-box:nth-child(2) h3{ color:#06D6A0; }
+.stat-box:nth-child(3) h3{ color:#FF6B35; }
+.stat-box:nth-child(4) h3{ color:#FF4D8D; }
 
 footer{
-    margin-top:70px;
-    background:var(--dark);
-    color:white;
-    text-align:center;
-    padding:30px;
+  margin-top:70px;
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:30px;
 }
 
 @media(max-width:768px){
-
-header h1{
-    font-size:2.2rem;
+  header h1{ font-size:2.2rem; }
+  .section-title{ font-size:1.5rem; }
 }
-
-.section-title{
-    font-size:1.5rem;
-}
-
-}
-    .stat-box:nth-child(1) h3{
-    color:#3A86FF;
-}
-
-.stat-box:nth-child(2) h3{
-    color:#06D6A0;
-}
-
-.stat-box:nth-child(3) h3{
-    color:#FF6B35;
-}
-
-.stat-box:nth-child(4) h3{
-    color:#FF4D8D;
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
+  <div class="header-decoration cloud1">☁️</div>
+  <div class="header-decoration cloud2">☁️</div>
+  <div class="header-decoration star1">⭐</div>
+  <div class="header-decoration star2">⭐</div>
 
-<div class="header-decoration cloud1">☁️</div>
-<div class="header-decoration cloud2">☁️</div>
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+  <div class="bubble b4"></div>
+  <div class="bubble b5"></div>
 
-<div class="header-decoration star1">⭐</div>
-<div class="header-decoration star2">⭐</div>
+  <h1>🎓 BunRey English Course</h1>
+  <p>Fun English Learning for Elementary Students</p>
+  <a href="#materials" class="hero-btn">📚 Explore Materials</a>
 
-<h1>🎓 BunRey English Course</h1>
-
-<p>
-Fun English Learning for Elementary Students
-</p>
-
-<a href="#materials" class="hero-btn">
-📚 Explore Materials
-</a>
+  <canvas id="plantCanvas"></canvas>
+</header>
 
 <div class="container">
+  <h2 class="section-title" id="materials">📚 Learning Materials</h2>
 
-<h2 class="section-title" id="materials">
-📚 Learning Materials
-</h2>
+  <div class="grade-grid">
+    <div class="grade-card grade-1">
+      <div class="card-header"><h3>📘 Grade 1</h3></div>
+      <div class="card-body">
+        <a href="grade1/listening/">🎧 Listening</a>
+        <a href="grade1/reading/">📖 Reading</a>
+        <a href="grade1/speaking/">🗣 Speaking</a>
+        <a href="grade1/writing/">✍ Writing</a>
+      </div>
+    </div>
+    <div class="grade-card grade-2">
+      <div class="card-header"><h3>📗 Grade 2</h3></div>
+      <div class="card-body">
+        <a href="grade2-listening.html">🎧 Listening</a>
+        <a href="grade2-reading.html">📖 Reading</a>
+        <a href="grade2-speaking.html">🗣 Speaking</a>
+        <a href="grade2-writing.html">✍ Writing</a>
+      </div>
+    </div>
+    <div class="grade-card grade-3">
+      <div class="card-header"><h3>📙 Grade 3</h3></div>
+      <div class="card-body">
+        <a href="grade3-listening.html">🎧 Listening</a>
+        <a href="grade3-reading.html">📖 Reading</a>
+        <a href="grade3-speaking.html">🗣 Speaking</a>
+        <a href="grade3-writing.html">✍ Writing</a>
+      </div>
+    </div>
+    <div class="grade-card grade-4">
+      <div class="card-header"><h3>📕 Grade 4</h3></div>
+      <div class="card-body">
+        <a href="grade4-listening.html">🎧 Listening</a>
+        <a href="grade4-reading.html">📖 Reading</a>
+        <a href="grade4-speaking.html">🗣 Speaking</a>
+        <a href="grade4-writing.html">✍ Writing</a>
+      </div>
+    </div>
+    <div class="grade-card grade-5">
+      <div class="card-header"><h3>📓 Grade 5</h3></div>
+      <div class="card-body">
+        <a href="grade5-listening.html">🎧 Listening</a>
+        <a href="grade5-reading.html">📖 Reading</a>
+        <a href="grade5-speaking.html">🗣 Speaking</a>
+        <a href="grade5-writing.html">✍ Writing</a>
+      </div>
+    </div>
+    <div class="grade-card grade-6">
+      <div class="card-header"><h3>📔 Grade 6</h3></div>
+      <div class="card-body">
+        <a href="grade6-listening.html">🎧 Listening</a>
+        <a href="grade6-reading.html">📖 Reading</a>
+        <a href="grade6-speaking.html">🗣 Speaking</a>
+        <a href="grade6-writing.html">✍ Writing</a>
+      </div>
+    </div>
+  </div>
 
-<div class="grade-grid">
-
-<div class="grade-card">
-<h3>📘 Grade 1</h3>
-<a href="grade1/listening/">🎧 Listening</a>
-<a href="grade1/reading/">📖 Reading</a>
-<a href="grade1/speaking/">🗣 Speaking</a>
-<a href="grade1/writing/">✍ Writing</a>
-</div>
-
-<div class="grade-card">
-<h3>📗 Grade 2</h3>
-<a href="grade2-listening.html">🎧 Listening</a>
-<a href="grade2-reading.html">📖 Reading</a>
-<a href="grade2-speaking.html">🗣 Speaking</a>
-<a href="grade2-writing.html">✍ Writing</a>
-</div>
-
-<div class="grade-card">
-<h3>📙 Grade 3</h3>
-<a href="grade3-listening.html">🎧 Listening</a>
-<a href="grade3-reading.html">📖 Reading</a>
-<a href="grade3-speaking.html">🗣 Speaking</a>
-<a href="grade3-writing.html">✍ Writing</a>
-</div>
-
-<div class="grade-card">
-<h3>📕 Grade 4</h3>
-<a href="grade4-listening.html">🎧 Listening</a>
-<a href="grade4-reading.html">📖 Reading</a>
-<a href="grade4-speaking.html">🗣 Speaking</a>
-<a href="grade4-writing.html">✍ Writing</a>
-</div>
-
-<div class="grade-card">
-<h3>📓 Grade 5</h3>
-<a href="grade5-listening.html">🎧 Listening</a>
-<a href="grade5-reading.html">📖 Reading</a>
-<a href="grade5-speaking.html">🗣 Speaking</a>
-<a href="grade5-writing.html">✍ Writing</a>
-</div>
-
-<div class="grade-card">
-<h3>📔 Grade 6</h3>
-<a href="grade6-listening.html">🎧 Listening</a>
-<a href="grade6-reading.html">📖 Reading</a>
-<a href="grade6-speaking.html">🗣 Speaking</a>
-<a href="grade6-writing.html">✍ Writing</a>
-</div>
-
-</div>
-
-<div class="stats">
-
-<div class="stat-box">
-<h3>6</h3>
-<p>Grade Levels</p>
-</div>
-
-<div class="stat-box">
-<h3>4</h3>
-<p>Skills</p>
-</div>
-
-<div class="stat-box">
-<h3>100+</h3>
-<p>Future Lessons</p>
-</div>
-
-<div class="stat-box">
-<h3>∞</h3>
-<p>Learning Fun</p>
-</div>
-
-</div>
-
+  <div class="stats">
+    <div class="stat-box"><h3>6</h3><p>Grade Levels</p></div>
+    <div class="stat-box"><h3>4</h3><p>Skills</p></div>
+    <div class="stat-box"><h3>100+</h3><p>Future Lessons</p></div>
+    <div class="stat-box"><h3>∞</h3><p>Learning Fun</p></div>
+  </div>
 </div>
 
 <footer>
-
-<h3>BunRey English Course</h3>
-
-<p>
-Listening • Reading • Speaking • Writing
-</p>
-
+  <h3>BunRey English Course</h3>
+  <p>Listening • Reading • Speaking • Writing</p>
 </footer>
 
+<script>
+(function(){
+  const canvas = document.getElementById('plantCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Wind simulation ── */
+  let windBase = 0, windNoise = 0, windT = 0;
+  function getWind(t){
+    windT += 0.008;
+    windBase  = Math.sin(windT * 0.7) * 0.6 + Math.sin(windT * 1.3) * 0.3;
+    windNoise = Math.sin(windT * 4.1) * 0.15 + Math.sin(windT * 7.3) * 0.07;
+    return windBase + windNoise;
+  }
+
+  /* ── Draw a curved stem using quadratic bezier ──
+     baseX, baseY : root of stem
+     height       : stem length
+     wind         : current wind value (−1..1)
+     phase        : per-plant phase offset
+     thickness    : base width
+     color        : stem color
+     returns tip {x,y} for leaf placement
+  */
+  function drawStem(baseX, baseY, height, wind, phase, thickness, color){
+    const bend  = wind * height * 0.28 * Math.sin(phase);
+    const cpX   = baseX + bend * 0.5;
+    const cpY   = baseY - height * 0.55;
+    const tipX  = baseX + bend;
+    const tipY  = baseY - height;
+
+    ctx.beginPath();
+    ctx.moveTo(baseX, baseY);
+    ctx.quadraticCurveTo(cpX, cpY, tipX, tipY);
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = thickness;
+    ctx.lineCap     = 'round';
+    ctx.stroke();
+    return { x: tipX, y: tipY, cpX, cpY, bend };
+  }
+
+  /* ── Draw an organic leaf ──
+     ox, oy   : attachment point on stem
+     angle    : base rotation (radians)
+     size     : leaf length
+     wind     : current wind
+     phase    : timing offset
+     flip     : mirror horizontally
+     colors   : [fill, vein]
+  */
+  function drawLeaf(ox, oy, angle, size, wind, phase, flip, colors){
+    const wobble = wind * 0.35 * Math.sin(phase * 1.7 + Date.now()*0.0001);
+    const lean   = angle + wobble * (flip ? -1 : 1);
+    const w      = size * 0.45;
+
+    ctx.save();
+    ctx.translate(ox, oy);
+    ctx.rotate(lean);
+    if(flip) ctx.scale(-1,1);
+
+    /* leaf body */
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo( w, -size*0.25,  w*1.1, -size*0.6,  0, -size);
+    ctx.bezierCurveTo(-w*0.6, -size*0.65, -w*0.5, -size*0.3,  0,  0);
+    ctx.fillStyle = colors[0];
+    ctx.fill();
+
+    /* midrib */
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.quadraticCurveTo(w*0.15, -size*0.5, 0, -size);
+    ctx.strokeStyle = colors[1];
+    ctx.lineWidth   = Math.max(0.8, size * 0.025);
+    ctx.stroke();
+
+    /* lateral veins */
+    ctx.lineWidth = Math.max(0.4, size * 0.012);
+    ctx.globalAlpha = 0.55;
+    for(let i=1; i<=3; i++){
+      const t  = i / 4;
+      const mx = w*0.1*t;
+      const my = -size*t;
+      ctx.beginPath();
+      ctx.moveTo(mx, my);
+      ctx.quadraticCurveTo(mx + w*0.55, my - size*0.12, mx + w*0.7, my - size*0.05);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    ctx.restore();
+  }
+
+  /* ── Grass blade ── */
+  function drawBlade(baseX, baseY, height, wind, phase, color){
+    const bend = wind * height * 0.55 * Math.sin(phase);
+    const cpX  = baseX + bend * 0.4;
+    const cpY  = baseY - height * 0.6;
+    const tipX = baseX + bend;
+    const tipY = baseY - height;
+
+    ctx.beginPath();
+    ctx.moveTo(baseX - 2, baseY);
+    ctx.quadraticCurveTo(cpX - 1, cpY, tipX, tipY);
+    ctx.lineTo(baseX + 2, baseY);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  /* ── Plant definitions ──
+     side: 'L' or 'R'
+     xFrac: 0..1 along that side (0 = edge)
+     Each plant has stems with leaves attached at parametric positions along the bezier
+  */
+  const PLANTS = [
+    /* ─ LEFT SIDE ─ */
+    { side:'L', xFrac:0.00, stems:[
+        { h:115, th:5, sc:'#1a6b30', phase:1.0,
+          leaves:[
+            { t:1.0, sz:42, a:-0.5, flip:false, fc:'#2d9e4f', vc:'#1a6b30' },
+            { t:0.75, sz:34, a:-0.8, flip:true,  fc:'#38b85e', vc:'#24873f' },
+            { t:0.5,  sz:28, a:-0.4, flip:false, fc:'#4dcf72', vc:'#2d9e4f' },
+          ]
+        },
+        { h:80,  th:3, sc:'#256638', phase:2.1,
+          leaves:[
+            { t:1.0, sz:32, a:-0.6, flip:true,  fc:'#33a852', vc:'#1e7d3a' },
+            { t:0.6, sz:22, a:-0.5, flip:false, fc:'#42c463', vc:'#2d8e45' },
+          ]
+        }
+      ]
+    },
+    { side:'L', xFrac:0.055, stems:[
+        { h:95,  th:4, sc:'#1e7336', phase:0.5,
+          leaves:[
+            { t:1.0, sz:36, a:-0.45, flip:false, fc:'#28a44d', vc:'#1a7535' },
+            { t:0.7, sz:28, a:-0.7,  flip:true,  fc:'#3bbc62', vc:'#26934a' },
+            { t:0.45,sz:20, a:-0.3,  flip:false, fc:'#50d47a', vc:'#38a85b' },
+          ]
+        }
+      ]
+    },
+    { side:'L', xFrac:0.11, stems:[
+        { h:70,  th:3, sc:'#1d6b30', phase:1.8,
+          leaves:[
+            { t:1.0, sz:28, a:-0.5, flip:true,  fc:'#25924a', vc:'#196632' },
+            { t:0.65,sz:20, a:-0.6, flip:false, fc:'#38b05e', vc:'#238045' },
+          ]
+        }
+      ]
+    },
+    { side:'L', xFrac:0.165, stems:[
+        { h:55,  th:2.5, sc:'#195c2a', phase:2.6,
+          leaves:[
+            { t:1.0, sz:22, a:-0.55, flip:false, fc:'#228040', vc:'#175227' },
+            { t:0.6, sz:16, a:-0.7,  flip:true,  fc:'#2fa055', vc:'#1e6e38' },
+          ]
+        }
+      ]
+    },
+    /* ─ RIGHT SIDE ─ */
+    { side:'R', xFrac:0.00, stems:[
+        { h:115, th:5, sc:'#1a6b30', phase:0.7,
+          leaves:[
+            { t:1.0, sz:42, a:-0.5, flip:true,  fc:'#2d9e4f', vc:'#1a6b30' },
+            { t:0.75,sz:34, a:-0.8, flip:false, fc:'#38b85e', vc:'#24873f' },
+            { t:0.5, sz:28, a:-0.4, flip:true,  fc:'#4dcf72', vc:'#2d9e4f' },
+          ]
+        },
+        { h:78,  th:3, sc:'#256638', phase:1.5,
+          leaves:[
+            { t:1.0, sz:30, a:-0.6, flip:false, fc:'#33a852', vc:'#1e7d3a' },
+            { t:0.6, sz:21, a:-0.5, flip:true,  fc:'#42c463', vc:'#2d8e45' },
+          ]
+        }
+      ]
+    },
+    { side:'R', xFrac:0.055, stems:[
+        { h:90,  th:4, sc:'#1e7336', phase:1.2,
+          leaves:[
+            { t:1.0, sz:35, a:-0.45, flip:true,  fc:'#28a44d', vc:'#1a7535' },
+            { t:0.7, sz:26, a:-0.7,  flip:false, fc:'#3bbc62', vc:'#26934a' },
+          ]
+        }
+      ]
+    },
+    { side:'R', xFrac:0.11, stems:[
+        { h:65,  th:3, sc:'#1d6b30', phase:0.3,
+          leaves:[
+            { t:1.0, sz:26, a:-0.5, flip:false, fc:'#25924a', vc:'#196632' },
+            { t:0.6, sz:18, a:-0.6, flip:true,  fc:'#38b05e', vc:'#238045' },
+          ]
+        }
+      ]
+    },
+    { side:'R', xFrac:0.165, stems:[
+        { h:52,  th:2.5, sc:'#195c2a', phase:1.9,
+          leaves:[
+            { t:1.0, sz:20, a:-0.55, flip:true,  fc:'#228040', vc:'#175227' },
+            { t:0.6, sz:14, a:-0.7,  flip:false, fc:'#2fa055', vc:'#1e6e38' },
+          ]
+        }
+      ]
+    },
+  ];
+
+  /* grass clusters at base */
+  const GRASS = [];
+  const leftCount  = 22;
+  const rightCount = 22;
+  for(let i=0;i<leftCount;i++){
+    const xFrac = (i / leftCount) * 0.22;
+    GRASS.push({ side:'L', xFrac, h: 18+Math.random()*22, phase: Math.random()*Math.PI*2,
+      c: `hsl(${130+Math.random()*25},${55+Math.random()*20}%,${28+Math.random()*18}%)` });
+  }
+  for(let i=0;i<rightCount;i++){
+    const xFrac = (i / rightCount) * 0.22;
+    GRASS.push({ side:'R', xFrac, h: 18+Math.random()*22, phase: Math.random()*Math.PI*2,
+      c: `hsl(${130+Math.random()*25},${55+Math.random()*20}%,${28+Math.random()*18}%)` });
+  }
+
+  /* point on a quadratic bezier at parameter t */
+  function bezierPoint(ax,ay, cpx,cpy, bx,by, t){
+    const mt = 1-t;
+    return {
+      x: mt*mt*ax + 2*mt*t*cpx + t*t*bx,
+      y: mt*mt*ay + 2*mt*t*cpy + t*t*by
+    };
+  }
+
+  function draw(){
+    const W = canvas.width;
+    const H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    const wind = getWind(windT);
+
+    /* grass */
+    GRASS.forEach(g=>{
+      const bx = g.side==='L' ? g.xFrac * W : W - g.xFrac * W;
+      drawBlade(bx, H, g.h, wind, g.phase, g.c);
+    });
+
+    /* plants */
+    PLANTS.forEach(plant=>{
+      const baseX = plant.side==='L' ? plant.xFrac * W : W - plant.xFrac * W;
+      const baseY = H;
+
+      plant.stems.forEach(stem=>{
+        const bend  = wind * stem.h * 0.28 * Math.sin(stem.phase);
+        const cpX   = baseX + bend * 0.5;
+        const cpY   = baseY - stem.h * 0.55;
+        const tipX  = baseX + bend;
+        const tipY  = baseY - stem.h;
+
+        /* draw stem */
+        ctx.beginPath();
+        ctx.moveTo(baseX, baseY);
+        ctx.quadraticCurveTo(cpX, cpY, tipX, tipY);
+        ctx.strokeStyle = stem.sc;
+        ctx.lineWidth   = stem.th;
+        ctx.lineCap     = 'round';
+        ctx.stroke();
+
+        /* draw leaves along stem */
+        stem.leaves.forEach(lf=>{
+          const pt = bezierPoint(baseX,baseY, cpX,cpY, tipX,tipY, lf.t);
+          /* tangent angle for natural leaf attachment */
+          const dt  = 0.01;
+          const pt2 = bezierPoint(baseX,baseY, cpX,cpY, tipX,tipY, Math.max(0,lf.t-dt));
+          const tangentAngle = Math.atan2(pt.y-pt2.y, pt.x-pt2.x);
+          const leafAngle = tangentAngle + lf.a + (lf.flip ? 0.2 : -0.2);
+
+          drawLeaf(pt.x, pt.y, leafAngle, lf.sz, wind, stem.phase + lf.a, lf.flip, [lf.fc, lf.vc]);
+        });
+      });
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+})();
+</script>
 </body>
 </html>
-```
