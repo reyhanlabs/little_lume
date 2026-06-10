@@ -284,6 +284,75 @@ body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;-web
 .loading-spinner{width:50px;height:50px;border:4px solid var(--surface2);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* ─── EMOJI TRANSLATE ───────────────── */
+.et-emoji-row{display:flex;gap:12px;justify-content:center;font-size:3rem;margin-bottom:24px;animation:bounceIn .5s ease}
+.et-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px;margin:0 auto 16px}
+.et-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:14px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.1rem;cursor:pointer;transition:all .2s}
+.et-btn:hover:not(:disabled){border-color:var(--pink);transform:scale(1.04)}
+
+/* ─── ANTONYM ───────────────────────── */
+.ant-word{font-family:'Fredoka',sans-serif;font-size:3rem;font-weight:700;color:var(--orange);text-align:center;margin-bottom:24px;animation:bounceIn .4s ease}
+.ant-options{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto 16px}
+.ant-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:14px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.15rem;cursor:pointer;transition:all .2s}
+.ant-btn:hover:not(:disabled){border-color:var(--orange);transform:translateX(5px)}
+
+/* ─── FLASHCARD FLIP ────────────────── */
+.fc-card{width:100%;max-width:360px;height:200px;perspective:900px;margin:0 auto 24px;cursor:pointer}
+.fc-inner{width:100%;height:100%;position:relative;transition:transform .6s;transform-style:preserve-3d}
+.fc-card.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;gap:10px}
+.fc-front{background:linear-gradient(135deg,var(--purple),#7c3aed);border:2px solid rgba(167,139,250,.3)}
+.fc-back{background:linear-gradient(135deg,var(--teal),#0d9488);border:2px solid rgba(78,205,196,.3);transform:rotateY(180deg)}
+.fc-word{font-family:'Fredoka',sans-serif;font-size:2.2rem;font-weight:700;color:#fff}
+.fc-sub{font-size:.9rem;color:rgba(255,255,255,.7)}
+.fc-hint{font-size:1rem;color:rgba(255,255,255,.8);padding:0 20px;text-align:center}
+.fc-tap-hint{font-size:.85rem;color:var(--text-dim);text-align:center;margin-bottom:8px}
+.fc-nav{display:flex;justify-content:center;gap:14px;align-items:center;margin-bottom:16px}
+.fc-counter{font-family:'Fredoka',sans-serif;color:var(--text-dim);font-size:1rem}
+.fc-nav-btn{background:var(--surface2);border:1px solid rgba(255,255,255,.08);color:var(--text);width:44px;height:44px;border-radius:50%;font-size:1.3rem;cursor:pointer;transition:all .2s}
+.fc-nav-btn:hover{background:var(--teal);color:var(--bg)}
+
+/* ─── FILL IN THE BLANK ─────────────── */
+.fib-sentence{font-size:1.15rem;text-align:center;line-height:2.4;margin-bottom:28px;background:var(--surface);padding:24px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.05)}
+.fib-blank{display:inline-block;min-width:80px;padding:2px 10px;border-bottom:3px solid var(--yellow);color:var(--yellow);font-weight:700;font-family:'Fredoka',sans-serif;font-size:1.2rem;text-align:center;margin:0 4px}
+.fib-options{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.fib-opt{background:linear-gradient(135deg,var(--pink),#c026d3);border:none;color:#fff;padding:12px 20px;border-radius:12px;font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:all .2s}
+.fib-opt:hover{transform:scale(1.07) translateY(-2px)}
+
+/* ─── LETTER RAIN ───────────────────── */
+.lr-word{font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;color:var(--yellow);text-align:center;letter-spacing:4px;margin-bottom:6px}
+.lr-progress{text-align:center;font-size:.9rem;color:var(--text-dim);margin-bottom:10px}
+.lr-area{background:var(--surface);border-radius:var(--radius);height:320px;position:relative;overflow:hidden;margin-bottom:16px;border:2px solid rgba(255,255,255,.05)}
+.lr-letter-btn{position:absolute;border:none;border-radius:10px;font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;cursor:pointer;padding:10px 14px;transition:transform .1s}
+.lr-letter-btn:hover{transform:scale(1.15)}
+
+/* ─── SYLLABLE COUNT ────────────────── */
+.syl-word{font-family:'Fredoka',sans-serif;font-size:3rem;font-weight:700;color:var(--teal);text-align:center;margin-bottom:28px;animation:bounceIn .4s ease}
+.syl-options{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.syl-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);width:64px;height:64px;border-radius:50%;font-family:'Fredoka',sans-serif;font-size:1.6rem;font-weight:700;cursor:pointer;transition:all .2s}
+.syl-btn:hover:not(:disabled){border-color:var(--teal);background:rgba(78,205,196,.1);transform:scale(1.1)}
+
+/* ─── COMPOUND WORDS ────────────────── */
+.cw-halves{display:flex;gap:16px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.cw-half{background:var(--surface2);border:2px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 22px;font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;cursor:pointer;transition:all .2s}
+.cw-half:hover{border-color:var(--yellow)}
+.cw-half.cw-selected{border-color:var(--yellow);background:rgba(255,230,109,.1);box-shadow:0 0 12px rgba(255,230,109,.2)}
+.cw-half.cw-matched{border-color:var(--green);background:rgba(107,203,119,.1);cursor:default}
+.cw-result{text-align:center;font-family:'Fredoka',sans-serif;font-size:2rem;color:var(--yellow);margin:16px 0;min-height:48px}
+
+/* ─── PREPOSITION QUEST ─────────────── */
+.pq-scene{background:var(--surface);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:20px;border:1px solid rgba(255,255,255,.05);font-size:1.2rem;line-height:1.9}
+.pq-blank{color:var(--yellow);font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;border-bottom:2px dashed var(--yellow);padding:0 8px}
+.pq-options{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.pq-btn{background:var(--surface2);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:12px 20px;border-radius:12px;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.pq-btn:hover:not(:disabled){border-color:var(--purple);background:rgba(167,139,250,.1);transform:scale(1.05)}
+
+/* ─── PICTURE VOCAB ─────────────────── */
+.pv-emoji{font-size:5rem;text-align:center;margin-bottom:20px;animation:bounceIn .5s ease}
+.pv-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:400px;margin:0 auto 16px}
+.pv-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:16px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.pv-btn:hover:not(:disabled){border-color:var(--pink);transform:scale(1.04)}
+
 /* ─── RESPONSIVE ────────────────────── */
 @media(max-width:600px){
   .slot{width:40px;height:46px;font-size:1.2rem}
@@ -1906,6 +1975,919 @@ function WordBuilder({ age, onBack }) {
 }
 
 // ═══════════════════════════════════════════════════════════
+// 17. EMOJI TRANSLATE
+// ═══════════════════════════════════════════════════════════
+function EmojiTranslate({ age, onBack }) {
+  const data = shuffle([...EMOJI_VOCAB]);
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [options, setOptions] = useState([]);
+
+  const loadRound = useCallback((i) => {
+    const item = data[i % data.length];
+    setOptions(shuffle([item.answer, ...item.wrong]));
+    setFeedback("");
+  }, [data]);
+
+  useEffect(() => { loadRound(0); }, []);
+
+  const choose = (opt) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    if (opt === data[idx % data.length].answer) {
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(12);
+      setTimeout(() => { const ni = idx + 1; setIdx(ni); loadRound(ni); }, 1200);
+    } else {
+      setFeedback(opt);
+      setTimeout(() => setFeedback(""), 900);
+    }
+  };
+
+  const item = data[idx % data.length];
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">😀 Emoji Translate</h2>
+      <p className="game-instruction">What English word does this emoji represent?</p>
+      <div className="et-emoji-row">{item.emoji}</div>
+      <div className="et-options">
+        {options.map(opt => (
+          <button key={opt} className={`et-btn ${feedback === "correct" && opt === item.answer ? "correct-opt" : ""} ${feedback === opt && opt !== item.answer ? "wrong-opt" : ""}`}
+            onClick={() => choose(opt)} disabled={!!feedback}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">🎉 That's right!</div>}
+      {feedback && feedback !== "correct" && <div className="feedback-popup wrong-popup">❌ Nope!</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 18. ANTONYM HUNT
+// ═══════════════════════════════════════════════════════════
+function AntonymHunt({ age, onBack }) {
+  const data = ANTONYMS[age] || ANTONYMS["5-6"];
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [options, setOptions] = useState([]);
+  const shuffled = useRef(shuffle([...data]));
+  const item = shuffled.current[idx % shuffled.current.length];
+
+  const loadRound = useCallback((i) => {
+    const d = shuffled.current[i % shuffled.current.length];
+    setOptions(shuffle([d.answer, ...d.wrong]));
+    setFeedback("");
+  }, []);
+
+  useEffect(() => { loadRound(0); }, []);
+
+  const choose = (opt) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    if (opt === item.answer) {
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(12);
+      setTimeout(() => { const ni = idx + 1; setIdx(ni); loadRound(ni); }, 1300);
+    } else {
+      setFeedback(opt);
+      setTimeout(() => setFeedback(""), 1000);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">↔️ Antonym Hunt</h2>
+      <p className="game-instruction">Find the <strong style={{color:"var(--orange)"}}>opposite</strong> of the word!</p>
+      <div className="ant-word">{item.word}</div>
+      <div className="ant-options">
+        {options.map(opt => (
+          <button key={opt} className={`ant-btn ${feedback === "correct" && opt === item.answer ? "correct-opt" : ""} ${feedback === opt && opt !== item.answer ? "wrong-opt" : ""}`}
+            onClick={() => choose(opt)} disabled={!!feedback}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">✅ Correct!</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 19. FLASHCARD FLIP
+// ═══════════════════════════════════════════════════════════
+function FlashcardFlip({ age, onBack }) {
+  const cards = useRef(shuffle([...(FLASHCARDS[age] || FLASHCARDS["5-6"])]));
+  const [idx, setIdx] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [known, setKnown] = useState(0);
+  const total = cards.current.length;
+  const card = cards.current[idx % total];
+
+  const next = (didKnow) => {
+    if (didKnow) setKnown(k => k + 1);
+    setFlipped(false);
+    setTimeout(() => setIdx(i => i + 1), 200);
+  };
+
+  const done = idx >= total;
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">🃏 {Math.min(idx+1, total)}/{total}</div>
+      </div>
+      <h2 className="game-title">🃏 Flashcard Flip</h2>
+      {!done ? (
+        <React.Fragment>
+          <p className="game-instruction">Tap the card to reveal the clue!</p>
+          <p className="fc-tap-hint">👆 Tap to flip</p>
+          <div className={`fc-card ${flipped ? "flipped" : ""}`} onClick={() => setFlipped(f => !f)}>
+            <div className="fc-inner">
+              <div className="fc-face fc-front">
+                <span className="fc-word">{card.word}</span>
+                <span className="fc-sub">Tap to see hint</span>
+              </div>
+              <div className="fc-face fc-back">
+                <span className="fc-hint">{card.hint}</span>
+              </div>
+            </div>
+          </div>
+          {flipped && (
+            <div className="fc-nav">
+              <button className="fc-nav-btn" onClick={() => next(false)} title="Still learning">🤔</button>
+              <span className="fc-counter">Know it?</span>
+              <button className="fc-nav-btn" onClick={() => next(true)} title="I know it!" style={{background:"var(--green)"}}>✅</button>
+            </div>
+          )}
+          {!flipped && idx > 0 && <p style={{textAlign:"center",color:"var(--text-dim)",fontSize:".85rem"}}>Known so far: {known}/{idx}</p>}
+        </React.Fragment>
+      ) : (
+        <div className="win-overlay">
+          <div className="win-card">
+            <div className="win-emoji">🃏</div>
+            <h3>All Done!</h3>
+            <p>You knew {known} out of {total} cards!</p>
+            <button className="play-again-btn" onClick={() => { cards.current = shuffle([...(FLASHCARDS[age] || FLASHCARDS["5-6"])]); setIdx(0); setFlipped(false); setKnown(0); }}>Play Again</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 20. FILL IN THE BLANK
+// ═══════════════════════════════════════════════════════════
+function FillInBlank({ age, onBack }) {
+  const data = FILL_IN_BLANK[age] || FILL_IN_BLANK["5-6"];
+  const shuffled = useRef(shuffle([...data]));
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [filled, setFilled] = useState(null);
+  const item = shuffled.current[idx % shuffled.current.length];
+
+  const choose = (opt) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    setFilled(opt);
+    if (opt === item.blank) {
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(14);
+      setTimeout(() => { setFeedback(""); setFilled(null); setIdx(i => i + 1); }, 1400);
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => { setFeedback(""); setFilled(null); }, 1000);
+    }
+  };
+
+  const renderSentence = () => {
+    const parts = item.sentence.split("___");
+    return (
+      <span>
+        {parts[0]}
+        <span className="fib-blank">{filled || "___"}</span>
+        {parts[1]}
+      </span>
+    );
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">✏️ Fill in the Blank</h2>
+      <p className="game-instruction">Choose the word that fits the sentence!</p>
+      <div className={`fib-sentence ${feedback === "correct" ? "glow-green" : ""} ${feedback === "wrong" ? "shake" : ""}`}>
+        {renderSentence()}
+      </div>
+      <div className="fib-options">
+        {item.options.map(opt => (
+          <button key={opt} className={`fib-opt ${feedback === "correct" && opt === item.blank ? "correct-opt" : ""} ${feedback === "wrong" && opt === filled ? "wrong-opt" : ""}`}
+            onClick={() => choose(opt)} disabled={!!feedback} style={{opacity: feedback && opt !== item.blank && opt !== filled ? .5 : 1}}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      <button className="skip-btn" onClick={() => { setFeedback(""); setFilled(null); setIdx(i => i + 1); }}>Skip →</button>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">🎉 Perfect!</div>}
+      {feedback === "wrong" && <div className="feedback-popup wrong-popup">Try again! 💪</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 21. LETTER RAIN
+// ═══════════════════════════════════════════════════════════
+function LetterRain({ age, onBack }) {
+  const words = getAllWords(age).filter(w => w.length >= 3 && w.length <= 7);
+  const FALL_MS = 3200;
+  const SPAWN_MS = 500;
+
+  const [targetWord, setTargetWord] = useState("");
+  const [collected, setCollected] = useState([]);
+  const [falling, setFalling] = useState([]);
+  const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(5);
+  const [gameOver, setGameOver] = useState(false);
+  const targetRef = useRef("");
+  const collectedRef = useRef([]);
+  const livesRef = useRef(5);
+  const goRef = useRef(false);
+  const spawnRef = useRef();
+
+  const COLORS = ["#FF6B9D","#4ECDC4","#FFE66D","#A78BFA","#FF8A5C","#6BCB77"];
+
+  const newWord = useCallback(() => {
+    const w = shuffle(words)[0];
+    targetRef.current = w;
+    collectedRef.current = [];
+    setTargetWord(w);
+    setCollected([]);
+  }, [words]);
+
+  const startGame = useCallback(() => {
+    livesRef.current = 5;
+    goRef.current = false;
+    setScore(0);
+    setLives(5);
+    setGameOver(false);
+    setFalling([]);
+    newWord();
+  }, [newWord]);
+
+  useEffect(() => { startGame(); }, []);
+
+  useEffect(() => {
+    if (gameOver || !targetWord) return;
+    spawnRef.current = setInterval(() => {
+      if (goRef.current) return;
+      const tw = targetRef.current;
+      const needed = tw.split("").filter(c => !collectedRef.current.includes(c));
+      const spawnTarget = needed.length > 0 && Math.random() < 0.45;
+      const letter = spawnTarget
+        ? needed[Math.floor(Math.random() * needed.length)]
+        : "abcdefghijklmnopqrstuvwxyz"[Math.floor(Math.random() * 26)];
+      const isNeeded = tw.includes(letter) && needed.includes(letter);
+      const id = Date.now() + Math.random();
+      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      setFalling(prev => [...prev, { id, letter, x: 5 + Math.random() * 75, isNeeded, color }]);
+      setTimeout(() => {
+        setFalling(prev => {
+          const f = prev.find(x => x.id === id);
+          if (f && f.isNeeded && !goRef.current) {
+            const nl = livesRef.current - 1;
+            livesRef.current = nl;
+            setLives(nl);
+            if (nl <= 0) { goRef.current = true; setGameOver(true); }
+          }
+          return prev.filter(x => x.id !== id);
+        });
+      }, FALL_MS + 100);
+    }, SPAWN_MS);
+    return () => clearInterval(spawnRef.current);
+  }, [targetWord, gameOver]);
+
+  const catchLetter = (f) => {
+    if (goRef.current) return;
+    setFalling(prev => prev.filter(x => x.id !== f.id));
+    const tw = targetRef.current;
+    const needed = tw.split("").filter(c => !collectedRef.current.includes(c));
+    if (f.isNeeded && needed.includes(f.letter)) {
+      const nc = [...collectedRef.current, f.letter];
+      collectedRef.current = nc;
+      setCollected([...nc]);
+      const done = tw.split("").every(c => nc.includes(c));
+      if (done) {
+        setScore(s => s + 1);
+        confetti(14);
+        setTimeout(newWord, 600);
+      }
+    } else if (!tw.includes(f.letter)) {
+      const nl = livesRef.current - 1;
+      livesRef.current = nl;
+      setLives(nl);
+      if (nl <= 0) { goRef.current = true; setGameOver(true); }
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <style>{`@keyframes lrFall{from{top:-8%}to{top:108%}}.lr-letter-css{position:absolute;animation:lrFall ${FALL_MS}ms linear forwards;border:none;border-radius:10px;font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;cursor:pointer;padding:10px 14px;color:#fff;transition:transform .1s}.lr-letter-css:hover{transform:scale(1.2)}`}</style>
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score} | ❤️ {lives}</div>
+      </div>
+      <h2 className="game-title">🌧️ Letter Rain</h2>
+      <p className="game-instruction">Catch the letters to spell the word!</p>
+      <div className="lr-word">{targetWord.toUpperCase()}</div>
+      <div className="lr-progress">
+        Collected: {targetWord.split("").map((c,i) => (
+          <span key={i} style={{color: collected.includes(c) ? "var(--green)" : "var(--text-dim)", marginRight:4, fontFamily:"'Fredoka',sans-serif", fontWeight:700}}>
+            {collected.includes(c) ? c.toUpperCase() : "_"}
+          </span>
+        ))}
+      </div>
+      <div className="lr-area">
+        {falling.map(f => (
+          <button key={f.id} className="lr-letter-css" style={{ left: f.x + "%", background: f.color }} onClick={() => catchLetter(f)}>
+            {f.letter.toUpperCase()}
+          </button>
+        ))}
+      </div>
+      {gameOver && (
+        <div className="win-overlay">
+          <div className="win-card">
+            <div className="win-emoji">🌧️</div>
+            <h3>Game Over!</h3>
+            <p>Words completed: {score}</p>
+            <button className="play-again-btn" onClick={startGame}>Play Again</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 22. SYLLABLE COUNT
+// ═══════════════════════════════════════════════════════════
+function SyllableCount({ age, onBack }) {
+  const data = SYLLABLE_DATA[age] || SYLLABLE_DATA["5-6"];
+  const shuffled = useRef(shuffle([...data]));
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const item = shuffled.current[idx % shuffled.current.length];
+
+  const choose = (n) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    if (n === item.count) {
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(12);
+      setTimeout(() => { setFeedback(""); setIdx(i => i + 1); }, 1300);
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => setFeedback(""), 1000);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">🥁 Syllable Count</h2>
+      <p className="game-instruction">How many syllables does the word have?</p>
+      <div className="syl-word">{item.word}</div>
+      <p style={{textAlign:"center",color:"var(--text-dim)",marginBottom:20,fontSize:".9rem"}}>Clap it out! 👏</p>
+      <div className="syl-options">
+        {[1,2,3,4,5,6].map(n => (
+          <button key={n} className={`syl-btn ${feedback === "correct" && n === item.count ? "correct-opt" : ""} ${feedback === "wrong" && n !== item.count ? "" : ""}`}
+            onClick={() => choose(n)} disabled={!!feedback}>
+            {n}
+          </button>
+        ))}
+      </div>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">🎉 {item.count} syllable{item.count > 1 ? "s" : ""}!</div>}
+      {feedback === "wrong" && <div className="feedback-popup wrong-popup">It has {item.count} syllable{item.count > 1 ? "s" : ""}!</div>}
+      <button className="skip-btn" onClick={() => { setFeedback(""); setIdx(i => i + 1); }}>Skip →</button>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 23. COMPOUND WORDS
+// ═══════════════════════════════════════════════════════════
+function CompoundWords({ age, onBack }) {
+  const pool = useRef(shuffle([...COMPOUND_WORDS]));
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [selectedA, setSelectedA] = useState(null);
+  const [selectedB, setSelectedB] = useState(null);
+  const [matched, setMatched] = useState(new Set());
+  const [result, setResult] = useState("");
+  const [feedback, setFeedback] = useState("");
+
+  // Show 4 items at a time
+  const batch = pool.current.slice(idx, idx + 4);
+  const allMatched = matched.size === batch.length && batch.length > 0;
+
+  const pickA = (item) => {
+    if (matched.has(item.result)) return;
+    setSelectedA(item);
+    setResult("");
+    setFeedback("");
+  };
+  const pickB = (item) => {
+    if (!selectedA || matched.has(item.result)) return;
+    if (selectedA.b === item.b) {
+      const combined = selectedA.a + item.b;
+      if (combined === item.result && selectedA.result === item.result) {
+        setMatched(m => new Set([...m, item.result]));
+        setResult(item.result);
+        setScore(s => s + 1);
+        confetti(10);
+        setSelectedA(null);
+        setSelectedB(null);
+        setFeedback("correct");
+        setTimeout(() => setFeedback(""), 1000);
+      }
+    } else {
+      setSelectedB(item);
+      setFeedback("wrong");
+      setTimeout(() => { setSelectedA(null); setSelectedB(null); setFeedback(""); }, 800);
+    }
+  };
+
+  const nextBatch = () => { setIdx(i => i + 4); setMatched(new Set()); setSelectedA(null); setSelectedB(null); setResult(""); setFeedback(""); };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">🔗 Compound Words</h2>
+      <p className="game-instruction">Click a first-half, then its matching second-half to make a compound word!</p>
+      <div className="cw-result">{result ? "✨ " + result + "!" : ""}</div>
+      <div>
+        <p style={{textAlign:"center",fontSize:".85rem",color:"var(--text-dim)",marginBottom:8}}>First halves:</p>
+        <div className="cw-halves">
+          {batch.map(item => (
+            <button key={item.result + "a"} className={`cw-half ${selectedA?.result === item.result ? "cw-selected" : ""} ${matched.has(item.result) ? "cw-matched" : ""}`}
+              onClick={() => pickA(item)} disabled={matched.has(item.result)}>
+              {item.a}
+            </button>
+          ))}
+        </div>
+        <p style={{textAlign:"center",fontSize:".85rem",color:"var(--text-dim)",marginBottom:8}}>Second halves:</p>
+        <div className="cw-halves">
+          {shuffle(batch.map(item => item)).map(item => (
+            <button key={item.result + "b"} className={`cw-half ${matched.has(item.result) ? "cw-matched" : ""}`}
+              onClick={() => pickB(item)} disabled={matched.has(item.result) || !selectedA}>
+              {item.b}
+            </button>
+          ))}
+        </div>
+      </div>
+      {allMatched && <button className="next-btn" style={{display:"block",margin:"20px auto 0"}} onClick={nextBatch}>Next Round →</button>}
+      {feedback === "correct" && <div className="feedback-popup correct-popup">✅ Compound word!</div>}
+      {feedback === "wrong" && <div className="feedback-popup wrong-popup">❌ Try again!</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 24. PREPOSITION QUEST
+// ═══════════════════════════════════════════════════════════
+function PrepositionQuest({ age, onBack }) {
+  const data = PREPOSITIONS[age] || PREPOSITIONS["5-6"];
+  const shuffled = useRef(shuffle([...data]));
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [chosen, setChosen] = useState(null);
+  const item = shuffled.current[idx % shuffled.current.length];
+
+  const choose = (opt) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    setChosen(opt);
+    if (opt === item.answer) {
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(12);
+      setTimeout(() => { setFeedback(""); setChosen(null); setIdx(i => i + 1); }, 1400);
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => { setFeedback(""); setChosen(null); }, 1000);
+    }
+  };
+
+  const renderSentence = () => {
+    const parts = item.sentence.split("___");
+    return <span>{parts[0]}<span className="pq-blank">{chosen || "___"}</span>{parts[1]}</span>;
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">📍 Preposition Quest</h2>
+      <p className="game-instruction">Pick the correct preposition for each sentence!</p>
+      <div className={`pq-scene ${feedback === "correct" ? "glow-green" : ""} ${feedback === "wrong" ? "shake" : ""}`}>
+        <div style={{fontSize:"2rem",marginBottom:12}}>{item.emoji}</div>
+        {renderSentence()}
+      </div>
+      <div className="pq-options">
+        {item.options.map(opt => (
+          <button key={opt} className={`pq-btn ${feedback === "correct" && opt === item.answer ? "correct-opt" : ""} ${feedback === "wrong" && opt === chosen ? "wrong-opt" : ""}`}
+            onClick={() => choose(opt)} disabled={!!feedback}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      <button className="skip-btn" onClick={() => { setFeedback(""); setChosen(null); setIdx(i => i + 1); }}>Skip →</button>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">🎉 Correct!</div>}
+      {feedback === "wrong" && <div className="feedback-popup wrong-popup">Try: {item.answer}</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 25. PICTURE VOCAB
+// ═══════════════════════════════════════════════════════════
+function PictureVocab({ age, onBack }) {
+  const all = shuffle([...EMOJI_VOCAB]);
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [options, setOptions] = useState([]);
+
+  const loadRound = useCallback((i) => {
+    const item = all[i % all.length];
+    const wrong = shuffle(all.filter(x => x.answer !== item.answer)).slice(0, 3).map(x => x.answer);
+    setOptions(shuffle([item.answer, ...wrong]));
+    setFeedback("");
+  }, [all]);
+
+  useEffect(() => { loadRound(0); }, []);
+
+  const choose = (opt) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    const item = all[idx % all.length];
+    if (opt === item.answer) {
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(14);
+      setTimeout(() => { const ni = idx + 1; setIdx(ni); loadRound(ni); }, 1200);
+    } else {
+      setFeedback(opt);
+      setTimeout(() => setFeedback(""), 900);
+    }
+  };
+
+  const item = all[idx % all.length];
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">🖼️ Picture Vocab</h2>
+      <p className="game-instruction">What is this? Choose the correct English word!</p>
+      <div className="pv-emoji">{item.emoji}</div>
+      <div className="pv-options">
+        {options.map(opt => (
+          <button key={opt} className={`pv-btn ${feedback === "correct" && opt === item.answer ? "correct-opt" : ""} ${feedback === opt && opt !== item.answer ? "wrong-opt" : ""}`}
+            onClick={() => choose(opt)} disabled={!!feedback}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">🌟 Yes!</div>}
+      {feedback && feedback !== "correct" && <div className="feedback-popup wrong-popup">It's: {item.answer}!</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 26. VOWEL OR CONSONANT
+// ═══════════════════════════════════════════════════════════
+function VowelOrConsonant({ age, onBack }) {
+  const VOWELS = new Set(["a","e","i","o","u"]);
+  const letters = "abcdefghijklmnopqrstuvwxyz".split("");
+  const [current, setCurrent] = useState("");
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [streak, setStreak] = useState(0);
+
+  const newLetter = useCallback(() => {
+    setCurrent(letters[Math.floor(Math.random() * letters.length)]);
+    setFeedback("");
+  }, []);
+
+  useEffect(() => { newLetter(); }, []);
+
+  const answer = (isVowel) => {
+    if (feedback) return;
+    const correct = VOWELS.has(current) === isVowel;
+    setTotal(t => t + 1);
+    if (correct) {
+      setScore(s => s + 1);
+      setStreak(s => s + 1);
+      setFeedback("correct");
+      confetti(10);
+      setTimeout(newLetter, 900);
+    } else {
+      setStreak(0);
+      setFeedback("wrong");
+      setTimeout(newLetter, 1000);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">🔡 Vowel or Consonant?</h2>
+      <p className="game-instruction">Is it a vowel (A E I O U) or a consonant?</p>
+      {streak >= 3 && <p style={{textAlign:"center",color:"var(--yellow)",fontFamily:"'Fredoka',sans-serif",marginBottom:8}}>🔥 Streak: {streak}</p>}
+      <div style={{fontFamily:"'Fredoka',sans-serif",fontSize:"6rem",fontWeight:700,textAlign:"center",margin:"20px 0",color:"var(--teal)",textTransform:"uppercase",animation:"bounceIn .3s ease"}}>
+        {current}
+      </div>
+      <div style={{display:"flex",gap:16,justifyContent:"center",marginBottom:20}}>
+        <button className="quiz-btn" style={{background:"linear-gradient(135deg,var(--pink),#c026d3)",color:"#fff",border:"none",flex:1,maxWidth:160,fontSize:"1.2rem"}}
+          onClick={() => answer(true)} disabled={!!feedback}>
+          🌸 Vowel
+        </button>
+        <button className="quiz-btn" style={{background:"linear-gradient(135deg,var(--teal),#0d9488)",color:"#fff",border:"none",flex:1,maxWidth:160,fontSize:"1.2rem"}}
+          onClick={() => answer(false)} disabled={!!feedback}>
+          🔷 Consonant
+        </button>
+      </div>
+      <p style={{textAlign:"center",color:"var(--text-dim)",fontSize:".85rem"}}>Vowels: A · E · I · O · U</p>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">✅ Correct!</div>}
+      {feedback === "wrong" && <div className="feedback-popup wrong-popup">❌ {VOWELS.has(current) ? "It's a VOWEL!" : "It's a CONSONANT!"}</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// EXTRA DATA FOR NEW GAMES
+// ═══════════════════════════════════════════════════════════
+const EMOJI_VOCAB = [
+  {emoji:"🐱",answer:"cat",wrong:["dog","hen","pig"]},
+  {emoji:"🐶",answer:"dog",wrong:["cat","bird","fish"]},
+  {emoji:"☀️",answer:"sun",wrong:["moon","star","rain"]},
+  {emoji:"🍎",answer:"apple",wrong:["mango","grape","lime"]},
+  {emoji:"📚",answer:"book",wrong:["pen","ruler","clock"]},
+  {emoji:"🚗",answer:"car",wrong:["bus","bike","boat"]},
+  {emoji:"🌳",answer:"tree",wrong:["bush","grass","leaf"]},
+  {emoji:"⭐",answer:"star",wrong:["moon","cloud","sun"]},
+  {emoji:"🏠",answer:"house",wrong:["store","school","park"]},
+  {emoji:"🐠",answer:"fish",wrong:["whale","shark","crab"]},
+  {emoji:"🌈",answer:"rainbow",wrong:["thunder","sunrise","tornado"]},
+  {emoji:"🎈",answer:"balloon",wrong:["bubble","kite","rocket"]},
+  {emoji:"🦋",answer:"butterfly",wrong:["dragonfly","ladybug","firefly"]},
+  {emoji:"🌊",answer:"wave",wrong:["tide","storm","ocean"]},
+  {emoji:"🎸",answer:"guitar",wrong:["violin","trumpet","piano"]},
+  {emoji:"🌙",answer:"moon",wrong:["star","sun","comet"]},
+];
+
+const ANTONYMS = {
+  "5-6": [
+    {word:"big",answer:"small",wrong:["fast","hot","red"]},
+    {word:"hot",answer:"cold",wrong:["big","tall","soft"]},
+    {word:"up",answer:"down",wrong:["left","fast","far"]},
+    {word:"day",answer:"night",wrong:["sun","moon","star"]},
+    {word:"fast",answer:"slow",wrong:["big","loud","high"]},
+    {word:"happy",answer:"sad",wrong:["red","cold","old"]},
+    {word:"open",answer:"close",wrong:["push","take","fill"]},
+    {word:"tall",answer:"short",wrong:["wide","thin","soft"]},
+  ],
+  "7-8": [
+    {word:"brave",answer:"scared",wrong:["happy","loud","quick"]},
+    {word:"begin",answer:"finish",wrong:["carry","build","climb"]},
+    {word:"early",answer:"late",wrong:["dark","soft","weak"]},
+    {word:"laugh",answer:"cry",wrong:["walk","think","dream"]},
+    {word:"strong",answer:"weak",wrong:["brave","clean","smart"]},
+    {word:"noisy",answer:"quiet",wrong:["heavy","brave","dirty"]},
+    {word:"clean",answer:"dirty",wrong:["quick","heavy","dry"]},
+    {word:"wide",answer:"narrow",wrong:["loud","rough","bright"]},
+  ],
+  "9-10": [
+    {word:"brave",answer:"cowardly",wrong:["curious","excited","cheerful"]},
+    {word:"enormous",answer:"tiny",wrong:["patient","lonely","nervous"]},
+    {word:"protect",answer:"endanger",wrong:["observe","capture","discover"]},
+    {word:"curious",answer:"indifferent",wrong:["grateful","worried","jealous"]},
+    {word:"victory",answer:"defeat",wrong:["journey","balance","mystery"]},
+    {word:"ancient",answer:"modern",wrong:["fragile","gorgeous","remote"]},
+  ],
+  "11-12": [
+    {word:"accomplish",answer:"fail",wrong:["negotiate","celebrate","cooperate"]},
+    {word:"generous",answer:"selfish",wrong:["innocent","handsome","brilliant"]},
+    {word:"liberty",answer:"captivity",wrong:["justice","mystery","opinion"]},
+    {word:"conflict",answer:"harmony",wrong:["devotion","heritage","ambition"]},
+    {word:"encourage",answer:"discourage",wrong:["guarantee","recognize","appreciate"]},
+  ],
+};
+
+const FLASHCARDS = {
+  "5-6": [
+    {word:"cat",hint:"A furry pet that says meow 🐱"},
+    {word:"dog",hint:"A loyal pet that barks 🐶"},
+    {word:"sun",hint:"It shines in the sky ☀️"},
+    {word:"red",hint:"The colour of a strawberry 🍓"},
+    {word:"big",hint:"Opposite of small 📦"},
+    {word:"run",hint:"Move fast with your feet 🏃"},
+    {word:"hat",hint:"You wear it on your head 🎩"},
+    {word:"frog",hint:"It jumps and says ribbit 🐸"},
+    {word:"cup",hint:"You drink from this ☕"},
+    {word:"star",hint:"Twinkles in the night sky ⭐"},
+  ],
+  "7-8": [
+    {word:"ocean",hint:"A huge body of salt water 🌊"},
+    {word:"rabbit",hint:"Fluffy animal with long ears 🐰"},
+    {word:"thunder",hint:"The loud sound during a storm ⛈️"},
+    {word:"brave",hint:"Not afraid, full of courage 🦁"},
+    {word:"castle",hint:"A large stone building for royalty 🏰"},
+    {word:"planet",hint:"Earth is one of these 🪐"},
+    {word:"jungle",hint:"A dense tropical forest 🌿"},
+    {word:"shadow",hint:"Dark shape made by blocking light 🌑"},
+    {word:"compass",hint:"Tool to find directions 🧭"},
+    {word:"fossil",hint:"Ancient creature trapped in rock 🦴"},
+  ],
+  "9-10": [
+    {word:"curious",hint:"Eager to learn or know things 🔍"},
+    {word:"volcano",hint:"Mountain that erupts with lava 🌋"},
+    {word:"galaxy",hint:"Billions of stars together in space 🌌"},
+    {word:"harmony",hint:"When things work well together 🎵"},
+    {word:"ancient",hint:"Very, very old 🏛️"},
+    {word:"explore",hint:"Travel to discover new things 🗺️"},
+    {word:"crystal",hint:"A clear mineral that sparkles 💎"},
+    {word:"balance",hint:"Keeping things equal or steady ⚖️"},
+    {word:"courage",hint:"Bravery in the face of fear 🦁"},
+    {word:"observe",hint:"Watch carefully and pay attention 👁️"},
+  ],
+  "11-12": [
+    {word:"democracy",hint:"A system where people vote 🗳️"},
+    {word:"ambition",hint:"Strong desire to succeed 🚀"},
+    {word:"conflict",hint:"A serious disagreement or fight ⚔️"},
+    {word:"liberty",hint:"Freedom to live how you choose 🗽"},
+    {word:"negotiate",hint:"Discuss to reach an agreement 🤝"},
+    {word:"heritage",hint:"Traditions passed down through history 🏛️"},
+    {word:"molecule",hint:"The smallest unit of a substance ⚗️"},
+    {word:"evidence",hint:"Facts that prove something is true 🔎"},
+    {word:"appreciate",hint:"To recognise the value of something 💛"},
+    {word:"accomplish",hint:"To successfully complete something 🏆"},
+  ],
+};
+
+const FILL_IN_BLANK = {
+  "5-6": [
+    {sentence:"The ___ is in the sky.",blank:"sun",options:["sun","cat","big","run"]},
+    {sentence:"I have a ___ dog.",blank:"big",options:["big","cold","fly","blue"]},
+    {sentence:"She can ___ very fast.",blank:"run",options:["run","tall","red","open"]},
+    {sentence:"He has a red ___.",blank:"hat",options:["hat","sea","fly","cold"]},
+    {sentence:"The ___ says meow.",blank:"cat",options:["cat","dog","bird","fish"]},
+    {sentence:"I like to ___ books.",blank:"read",options:["read","big","run","tall"]},
+    {sentence:"The bird can ___.",blank:"fly",options:["fly","swim","eat","sit"]},
+  ],
+  "7-8": [
+    {sentence:"The rabbit ___ very high.",blank:"jumps",options:["jumps","sleeps","eats","sings"]},
+    {sentence:"We ___ to school every day.",blank:"go",options:["go","fly","sleep","dance"]},
+    {sentence:"She ___ reading books.",blank:"loves",options:["loves","hates","needs","forgets"]},
+    {sentence:"The sky is ___ today.",blank:"cloudy",options:["cloudy","heavy","round","loud"]},
+    {sentence:"He ___ his homework before dinner.",blank:"finished",options:["finished","started","forgot","lost"]},
+    {sentence:"They played in the ___ after school.",blank:"garden",options:["garden","kitchen","bathroom","bedroom"]},
+  ],
+  "9-10": [
+    {sentence:"Scientists ___ a new planet last year.",blank:"discovered",options:["discovered","invented","painted","cooked"]},
+    {sentence:"She felt very ___ about the surprise.",blank:"excited",options:["excited","bored","tired","hungry"]},
+    {sentence:"The volcano ___ with enormous energy.",blank:"erupted",options:["erupted","melted","froze","whispered"]},
+    {sentence:"He showed great ___ by helping others.",blank:"courage",options:["courage","laziness","confusion","jealousy"]},
+    {sentence:"The dolphin swims ___ through the water.",blank:"gracefully",options:["gracefully","loudly","angrily","sadly"]},
+  ],
+  "11-12": [
+    {sentence:"She ___ her ambition through years of hard work.",blank:"accomplished",options:["accomplished","disappointed","neglected","wasted"]},
+    {sentence:"The evidence ___ that he was innocent.",blank:"proved",options:["proved","suggested","denied","hid"]},
+    {sentence:"Good leaders ___ their team during difficult times.",blank:"encourage",options:["encourage","discourage","ignore","criticise"]},
+    {sentence:"The treaty was ___ after months of discussion.",blank:"negotiated",options:["negotiated","abandoned","interrupted","overruled"]},
+  ],
+};
+
+const SYLLABLE_DATA = {
+  "5-6": [
+    {word:"cat",count:1},{word:"dog",count:1},{word:"happy",count:2},
+    {word:"bird",count:1},{word:"apple",count:2},{word:"star",count:1},
+    {word:"frog",count:1},{word:"funny",count:2},{word:"cup",count:1},
+    {word:"water",count:2},{word:"green",count:1},
+  ],
+  "7-8": [
+    {word:"rabbit",count:2},{word:"garden",count:2},{word:"turtle",count:2},
+    {word:"beautiful",count:4},{word:"umbrella",count:3},{word:"chocolate",count:3},
+    {word:"elephant",count:3},{word:"rainbow",count:2},{word:"computer",count:3},
+    {word:"adventure",count:3},
+  ],
+  "9-10": [
+    {word:"dinosaur",count:3},{word:"geography",count:4},{word:"electricity",count:4},
+    {word:"caterpillar",count:4},{word:"television",count:4},{word:"calculator",count:4},
+    {word:"watermelon",count:4},{word:"helicopter",count:4},{word:"information",count:4},
+    {word:"population",count:4},
+  ],
+  "11-12": [
+    {word:"communication",count:5},{word:"extraordinary",count:5},{word:"approximately",count:5},
+    {word:"mathematical",count:5},{word:"responsibility",count:6},{word:"cardiovascular",count:6},
+    {word:"congratulations",count:5},{word:"misunderstanding",count:5},{word:"representative",count:5},
+    {word:"undergraduate",count:5},
+  ],
+};
+
+const COMPOUND_WORDS = [
+  {a:"sun",b:"flower",result:"sunflower"},
+  {a:"rain",b:"bow",result:"rainbow"},
+  {a:"star",b:"fish",result:"starfish"},
+  {a:"fire",b:"fly",result:"firefly"},
+  {a:"sea",b:"horse",result:"seahorse"},
+  {a:"snow",b:"ball",result:"snowball"},
+  {a:"book",b:"shelf",result:"bookshelf"},
+  {a:"hand",b:"shake",result:"handshake"},
+  {a:"birth",b:"day",result:"birthday"},
+  {a:"butter",b:"fly",result:"butterfly"},
+  {a:"door",b:"bell",result:"doorbell"},
+  {a:"foot",b:"print",result:"footprint"},
+  {a:"air",b:"port",result:"airport"},
+  {a:"eye",b:"brow",result:"eyebrow"},
+  {a:"tooth",b:"brush",result:"toothbrush"},
+];
+
+const PREPOSITIONS = {
+  "5-6": [
+    {sentence:"The cat is ___ the box.",answer:"in",options:["in","on","at","by"],emoji:"📦🐱"},
+    {sentence:"The ball is ___ the table.",answer:"on",options:["on","in","at","for"],emoji:"🏓⚽"},
+    {sentence:"She sits ___ her friend.",answer:"next to",options:["next to","behind","inside","above"],emoji:"👧👧"},
+    {sentence:"The bird is ___ the tree.",answer:"in",options:["in","on","at","under"],emoji:"🌳🐦"},
+    {sentence:"He is ___ the door.",answer:"at",options:["at","on","in","over"],emoji:"🚪👦"},
+    {sentence:"The dog is ___ the chair.",answer:"under",options:["under","on","in","near"],emoji:"🪑🐶"},
+  ],
+  "7-8": [
+    {sentence:"She arrived ___ school early.",answer:"at",options:["at","in","on","to"],emoji:"🏫👩"},
+    {sentence:"We go swimming ___ Sundays.",answer:"on",options:["on","in","at","by"],emoji:"🏊📅"},
+    {sentence:"The book is ___ the shelf.",answer:"on",options:["on","in","at","under"],emoji:"📚🗄️"},
+    {sentence:"He walked ___ the rain.",answer:"in",options:["in","on","at","through"],emoji:"🌧️🚶"},
+    {sentence:"The store is ___ the bank.",answer:"next to",options:["next to","between","above","beside"],emoji:"🏦🏪"},
+    {sentence:"I will see you ___ Monday.",answer:"on",options:["on","in","at","by"],emoji:"📅👋"},
+  ],
+  "9-10": [
+    {sentence:"The scientist discovered a planet ___ our solar system.",answer:"beyond",options:["beyond","inside","within","beneath"],emoji:"🔭🪐"},
+    {sentence:"She was nervous ___ the exam.",answer:"before",options:["before","after","during","beside"],emoji:"😰📝"},
+    {sentence:"He swam ___ the length of the pool.",answer:"across",options:["across","around","along","over"],emoji:"🏊🏊"},
+    {sentence:"The village is ___ the mountains.",answer:"between",options:["between","inside","around","beneath"],emoji:"⛰️🏘️⛰️"},
+  ],
+  "11-12": [
+    {sentence:"Democracy is built ___ the principle of equality.",answer:"upon",options:["upon","beneath","without","despite"],emoji:"🗳️⚖️"},
+    {sentence:"She accomplished her goal ___ many obstacles.",answer:"despite",options:["despite","beneath","within","through"],emoji:"🏆🚧"},
+    {sentence:"He negotiated ___ the two nations.",answer:"between",options:["between","among","above","below"],emoji:"🤝🌍"},
+    {sentence:"The evidence was hidden ___ the document.",answer:"within",options:["within","outside","beside","beneath"],emoji:"📄🔍"},
+  ],
+};
+
+// ═══════════════════════════════════════════════════════════
 // GAME REGISTRY
 // ═══════════════════════════════════════════════════════════
 const GAMES = [
@@ -1925,6 +2907,16 @@ const GAMES = [
   { id: "synonym", name: "Synonym Match", emoji: "🔀", desc: "Match word meanings!", color: "#F472B6", component: SynonymMatch },
   { id: "abcorder", name: "ABC Order", emoji: "🅰️", desc: "Sort alphabetically!", color: "#34D399", component: ABCOrder },
   { id: "wordbuilder", name: "Word Builder", emoji: "🧩", desc: "Build words from letters!", color: "#FB923C", component: WordBuilder },
+  { id: "emoji", name: "Emoji Translate", emoji: "😀", desc: "Name that emoji!", color: "#FF6B9D", component: EmojiTranslate },
+  { id: "antonym", name: "Antonym Hunt", emoji: "↔️", desc: "Find the opposite word!", color: "#F97316", component: AntonymHunt },
+  { id: "flashcard", name: "Flashcard Flip", emoji: "🃏", desc: "Flip & memorize words!", color: "#8B5CF6", component: FlashcardFlip },
+  { id: "fillin", name: "Fill in the Blank", emoji: "✏️", desc: "Complete the sentence!", color: "#EC4899", component: FillInBlank },
+  { id: "letterrain", name: "Letter Rain", emoji: "🌧️", desc: "Catch letters to spell!", color: "#06B6D4", component: LetterRain },
+  { id: "syllable", name: "Syllable Count", emoji: "🥁", desc: "Clap out the syllables!", color: "#10B981", component: SyllableCount },
+  { id: "compound", name: "Compound Words", emoji: "🔗", desc: "Join halves into words!", color: "#EAB308", component: CompoundWords },
+  { id: "preposition", name: "Preposition Quest", emoji: "📍", desc: "Choose the right preposition!", color: "#7C3AED", component: PrepositionQuest },
+  { id: "picturevocab", name: "Picture Vocab", emoji: "🖼️", desc: "Name the picture!", color: "#DB2777", component: PictureVocab },
+  { id: "vowelcon", name: "Vowel or Consonant?", emoji: "🔡", desc: "Identify letters fast!", color: "#0EA5E9", component: VowelOrConsonant },
 ];
 
 // ═══════════════════════════════════════════════════════════
@@ -2012,7 +3004,7 @@ function App() {
           <span className="btn-arrow">→</span>
         </button>
         <div className="home-features">
-          <div className="feature"><span>🎯</span> 16 Fun Games</div>
+          <div className="feature"><span>🎯</span> 26 Fun Games</div>
           <div className="feature"><span>📊</span> 4 Age Levels</div>
           <div className="feature"><span>🏆</span> Track Your Score</div>
         </div>
