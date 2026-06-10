@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>English Game Zone — Learn English Through Fun!</title>
+<meta name="description" content="Interactive English learning games for kids ages 5-12. Word Scramble, Memory Match, Hangman, and more!">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.2/babel.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f23;--surface:#1a1a3e;--surface2:#252552;--text:#f0f0ff;--text-dim:#9999cc;--pink:#FF6B9D;--teal:#4ECDC4;--yellow:#FFE66D;--purple:#A78BFA;--orange:#FFB347;--green:#6BCB77;--radius:16px}
+html,body,#root{height:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;-webkit-tap-highlight-color:transparent}
+
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes bounceIn{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.1) rotate(2deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(78,205,196,0.3)}50%{box-shadow:0 0 30px rgba(78,205,196,0.6)}}
+@keyframes shimmer{0%{left:-100%}100%{left:200%}}
+@keyframes morphBg{0%,100%{border-radius:40% 60% 60% 40%/60% 40% 60% 40%}50%{border-radius:60% 40% 40% 60%/40% 60% 40% 60%}}
+@keyframes popIn{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes cardEnter{0%{transform:translateY(40px) scale(0.9);opacity:0}100%{transform:translateY(0) scale(1);opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes typing{from{width:0}to{width:100%}}
+@keyframes starPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.4);opacity:1}}
+
+.shake{animation:shake .5s ease}
+.glow-green{animation:glow 1s ease}
+
+/* ─── HOME ──────────────────────────── */
+.home-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:20px}
+.home-bg-shapes{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.shape{position:absolute;border-radius:50%;opacity:.08;animation:morphBg 8s ease-in-out infinite}
+.shape-1{width:400px;height:400px;background:var(--pink);top:-100px;left:-100px;animation-delay:0s}
+.shape-2{width:300px;height:300px;background:var(--teal);top:20%;right:-80px;animation-delay:2s}
+.shape-3{width:250px;height:250px;background:var(--yellow);bottom:-50px;left:30%;animation-delay:4s}
+.shape-4{width:200px;height:200px;background:var(--purple);top:60%;left:-50px;animation-delay:1s}
+.shape-5{width:350px;height:350px;background:var(--green);bottom:-100px;right:-100px;animation-delay:3s}
+.home-content{text-align:center;position:relative;z-index:1;animation:slideUp .8s ease}
+.home-icon-row{font-size:3rem;margin-bottom:16px}
+.bounce-icon{display:inline-block;animation:float 2s ease-in-out infinite;margin:0 8px}
+.home-title{font-family:'Fredoka',sans-serif;font-size:clamp(2.5rem,8vw,5rem);font-weight:700;line-height:1.1;margin-bottom:12px}
+.title-word{color:var(--tw-color);display:inline-block;transition:.2s}
+.title-word:hover{transform:scale(1.1) rotate(-2deg)}
+.home-subtitle{font-size:clamp(1rem,3vw,1.3rem);color:var(--text-dim);margin-bottom:36px;font-weight:600}
+.start-btn{background:linear-gradient(135deg,var(--pink),var(--purple));border:none;color:#fff;font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:600;padding:18px 48px;border-radius:60px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;transition:all .3s;box-shadow:0 8px 30px rgba(255,107,157,.3);position:relative;overflow:hidden}
+.start-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 40px rgba(255,107,157,.4)}
+.start-btn:active{transform:scale(.97)}
+.btn-arrow{font-size:1.3em;transition:transform .3s}
+.start-btn:hover .btn-arrow{transform:translateX(5px)}
+.home-features{display:flex;gap:24px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.feature{background:var(--surface);padding:10px 20px;border-radius:40px;font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.06)}
+
+/* ─── AGE SELECT ────────────────────── */
+.age-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.age-heading{font-family:'Fredoka',sans-serif;font-size:clamp(2rem,6vw,3.5rem);color:var(--teal);margin-bottom:8px;animation:slideUp .5s ease}
+.age-sub{color:var(--text-dim);font-size:1.1rem;margin-bottom:40px;animation:slideUp .6s ease}
+.age-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:800px;width:100%}
+.age-card{background:var(--surface);border:2px solid transparent;border-radius:var(--radius);padding:32px 20px;text-align:center;cursor:pointer;transition:all .3s;animation:cardEnter .6s ease both;animation-delay:var(--age-delay);position:relative;overflow:hidden;font-family:'Nunito',sans-serif;color:var(--text)}
+.age-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--age-color),transparent 60%);opacity:.08;transition:opacity .3s}
+.age-card:hover{border-color:var(--age-color);transform:translateY(-6px) scale(1.03)}
+.age-card:hover::before{opacity:.15}
+.age-emoji{font-size:3.5rem;margin-bottom:12px}
+.age-label{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:600}
+
+/* ─── GAMES GRID ────────────────────── */
+.games-screen{min-height:100vh;padding:20px;max-width:1100px;margin:0 auto}
+.games-top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.age-badge{background:var(--surface);padding:8px 18px;border-radius:40px;font-weight:600;font-size:.95rem;border:1px solid rgba(255,255,255,.08)}
+.games-heading{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,5vw,3rem);text-align:center;color:var(--yellow);animation:slideUp .4s ease}
+.games-sub{text-align:center;color:var(--text-dim);margin-bottom:30px;animation:slideUp .5s ease}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.game-card{background:var(--surface);border:2px solid rgba(255,255,255,.05);border-radius:var(--radius);padding:24px 16px;text-align:center;cursor:pointer;transition:all .3s;animation:cardEnter .5s ease both;animation-delay:var(--card-delay);position:relative;overflow:hidden;font-family:'Nunito',sans-serif;color:var(--text)}
+.game-card::before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,var(--card-color),transparent 65%);opacity:.06;transition:opacity .3s}
+.game-card:hover{border-color:var(--card-color);transform:translateY(-5px)}
+.game-card:hover::before{opacity:.14}
+.game-card-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);transition:none}
+.game-card:hover .game-card-shine{animation:shimmer .8s ease forwards}
+.game-card-emoji{font-size:2.5rem;margin-bottom:10px}
+.game-card-name{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:4px}
+.game-card-desc{font-size:.85rem;color:var(--text-dim)}
+
+/* ─── GAME CONTAINER ────────────────── */
+.game-container{min-height:100vh;background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;padding:20px;max-width:700px;margin:0 auto;position:relative}
+.game-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.back-btn{background:var(--surface);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:8px 18px;border-radius:40px;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:600;font-size:.9rem;transition:all .2s}
+.back-btn:hover{background:var(--surface2)}
+.top-back{position:absolute;top:20px;left:20px;z-index:2}
+.score-display{background:var(--surface);padding:8px 18px;border-radius:40px;font-weight:700;font-size:1rem;border:1px solid rgba(255,255,255,.08)}
+.game-title{font-family:'Fredoka',sans-serif;font-size:1.8rem;text-align:center;margin-bottom:6px;color:var(--teal)}
+.game-instruction{text-align:center;color:var(--text-dim);margin-bottom:24px;font-size:1rem}
+
+/* ─── WORD SCRAMBLE ─────────────────── */
+.answer-slots{display:flex;justify-content:center;gap:8px;margin-bottom:24px;min-height:60px;flex-wrap:wrap}
+.slot{width:48px;height:54px;border:2px dashed rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:600;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.slot.filled{border-style:solid;border-color:var(--teal);background:rgba(78,205,196,.1)}
+.slot.correct-slot{border-color:var(--green);background:rgba(107,203,119,.15)}
+.slot.wrong-slot{border-color:#ef4444;background:rgba(239,68,68,.1)}
+.letter-pool{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.letter-bubble{width:50px;height:50px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:600;text-transform:uppercase;cursor:pointer;transition:all .2s;animation:popIn .3s ease}
+.letter-bubble:hover:not(.used){transform:scale(1.1) translateY(-3px)}
+.letter-bubble.used{opacity:.2;transform:scale(.8);cursor:default}
+
+/* ─── MEMORY MATCH ──────────────────── */
+.memory-grid{display:grid;gap:10px;max-width:500px;margin:0 auto 20px;grid-template-columns:repeat(4,1fr)}
+.memory-card{aspect-ratio:1;perspective:800px;cursor:pointer}
+.card-inner{width:100%;height:100%;position:relative;transition:transform .5s;transform-style:preserve-3d}
+.memory-card.flipped .card-inner{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;inset:0;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;font-family:'Fredoka',sans-serif}
+.card-front{background:linear-gradient(135deg,var(--surface2),var(--surface));border:2px solid rgba(255,255,255,.08);font-size:1.5rem;color:var(--text-dim)}
+.card-back{background:var(--surface);border:2px solid var(--teal);transform:rotateY(180deg);padding:6px}
+.card-emoji{font-size:1.6rem}
+.card-word{font-size:.9rem;font-weight:600;color:var(--teal)}
+.card-label{font-size:.7rem;color:var(--text-dim);margin-top:2px}
+.memory-card.matched .card-back{border-color:var(--green);background:rgba(107,203,119,.08)}
+
+/* ─── HANGMAN ───────────────────────── */
+.hangman-svg{width:100%;max-width:400px;display:block;margin:0 auto 20px}
+.word-display{display:flex;justify-content:center;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.word-letter{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;min-width:36px;text-align:center;border-bottom:3px solid var(--text-dim);padding-bottom:4px;text-transform:uppercase;color:transparent}
+.word-letter.revealed{color:var(--teal)}
+.word-letter.hint-letter{color:var(--orange)}
+.keyboard{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:500px;margin:0 auto}
+.key-btn{width:38px;height:42px;border:none;border-radius:10px;background:var(--surface2);color:var(--text);font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.key-btn:hover:not(:disabled){background:var(--teal);color:var(--bg);transform:scale(1.1)}
+.key-btn.key-correct{background:var(--green);color:#fff}
+.key-btn.key-wrong{background:rgba(239,68,68,.3);color:rgba(255,255,255,.3)}
+
+/* ─── SENTENCE BUILDER ──────────────── */
+.sentence-area{background:var(--surface);border:2px dashed rgba(255,255,255,.1);border-radius:var(--radius);min-height:70px;padding:16px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:24px;transition:all .3s}
+.placeholder-text{color:var(--text-dim);font-style:italic}
+.built-word{background:var(--surface2);padding:8px 14px;border-radius:10px;font-weight:600;cursor:pointer;transition:all .2s;animation:popIn .2s ease}
+.built-word:hover{background:rgba(239,68,68,.15)}
+.built-word.correct-word{background:rgba(107,203,119,.2);color:var(--green)}
+.built-word.wrong-word{background:rgba(239,68,68,.2);color:#ef4444}
+.word-pool{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.pool-word{background:linear-gradient(135deg,var(--purple),#7C3AED);border:none;color:#fff;padding:10px 18px;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+.pool-word:hover:not(.used){transform:scale(1.08) translateY(-2px)}
+.pool-word.used{opacity:.15;transform:scale(.9)}
+
+/* ─── SPELLING BEE ──────────────────── */
+.spelling-display{display:flex;justify-content:center;margin-bottom:24px}
+.flash-word{font-family:'Fredoka',sans-serif;font-size:3rem;font-weight:700;color:var(--yellow);animation:pulse 1s ease infinite;text-transform:uppercase;letter-spacing:4px}
+.hint-box{background:var(--surface);padding:16px 28px;border-radius:var(--radius);display:flex;align-items:center;gap:12px;font-size:1.1rem;border:1px solid rgba(255,255,255,.08)}
+.hint-icon{font-size:1.5rem}
+.spelling-input-area{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
+.spelling-input{background:var(--surface);border:2px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 20px;color:var(--text);font-family:'Fredoka',sans-serif;font-size:1.3rem;text-align:center;letter-spacing:3px;text-transform:lowercase;width:280px;outline:none;transition:border-color .3s}
+.spelling-input:focus{border-color:var(--teal)}
+.spelling-input.input-correct{border-color:var(--green);background:rgba(107,203,119,.08)}
+.spelling-input.input-wrong{border-color:#ef4444;animation:shake .4s ease}
+.check-btn{background:var(--teal);border:none;color:var(--bg);padding:14px 24px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.check-btn:hover{transform:scale(1.05)}
+
+/* ─── RHYME TIME ────────────────────── */
+.rhyme-target{text-align:center;font-family:'Fredoka',sans-serif;font-size:3rem;font-weight:700;color:var(--pink);margin-bottom:28px;animation:bounceIn .5s ease}
+.rhyme-options{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto}
+.rhyme-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:16px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:600;cursor:pointer;transition:all .2s}
+.rhyme-btn:hover{border-color:var(--teal);transform:translateX(5px)}
+
+/* ─── STORY FILL ────────────────────── */
+.story-text{background:var(--surface);padding:24px;border-radius:var(--radius);font-size:1.15rem;line-height:2;margin-bottom:24px;border:1px solid rgba(255,255,255,.05)}
+.blank-word{display:inline-block;padding:2px 12px;border-bottom:2px dashed var(--text-dim);margin:0 4px;font-weight:700;color:var(--text-dim);min-width:60px;text-align:center}
+.blank-word.filled-blank{color:var(--green);border-bottom-color:var(--green);border-bottom-style:solid}
+.blank-word.active-blank{color:var(--yellow);border-bottom-color:var(--yellow);animation:pulse 1s ease infinite}
+.story-options{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.story-opt-btn{background:linear-gradient(135deg,var(--orange),#F97316);border:none;color:#fff;padding:12px 24px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.story-opt-btn:hover{transform:scale(1.08) translateY(-2px)}
+.story-complete{text-align:center;font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--green);display:flex;flex-direction:column;align-items:center;gap:16px}
+
+/* ─── WORD CATCHER ──────────────────── */
+.target-highlight{color:var(--yellow);font-size:1.2em}
+.catcher-area{background:var(--surface);border-radius:var(--radius);height:400px;position:relative;overflow:hidden;margin-bottom:20px;border:2px solid rgba(255,255,255,.05)}
+.falling-word{position:absolute;background:linear-gradient(135deg,var(--surface2),var(--purple));border:1px solid rgba(167,139,250,.3);color:var(--text);padding:8px 16px;border-radius:10px;font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .15s,background .15s;white-space:nowrap}
+.falling-word:hover{transform:scale(1.15);background:linear-gradient(135deg,var(--teal),var(--green))}
+
+/* ─── QUIZ ──────────────────────────── */
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:450px;margin:0 auto 20px}
+.quiz-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:18px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;cursor:pointer;transition:all .2s}
+.quiz-btn:hover:not(:disabled){border-color:var(--teal);transform:scale(1.04)}
+
+/* ─── WORD CHAIN ────────────────────── */
+.chain-display{background:var(--surface);padding:20px;border-radius:var(--radius);margin-bottom:24px;display:flex;flex-wrap:wrap;align-items:center;gap:4px;justify-content:center;min-height:60px;border:1px solid rgba(255,255,255,.05)}
+.chain-word{display:inline-flex;align-items:center}
+.chain-arrow{color:var(--text-dim);margin:0 6px}
+.chain-item{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600}
+.chain-last-letter{color:var(--yellow);font-size:1.2em}
+.chain-options{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.chain-btn{background:linear-gradient(135deg,var(--teal),#0D9488);border:none;color:#fff;padding:14px 28px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .2s}
+.chain-btn:hover{transform:scale(1.08) translateY(-3px)}
+
+/* ─── ODD ONE OUT ──────────────────── */
+.odd-category{text-align:center;font-family:'Fredoka',sans-serif;font-size:1.2rem;color:var(--text-dim);margin-bottom:20px}
+.odd-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:400px;margin:0 auto 20px}
+.odd-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:20px;border-radius:14px;font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:600;cursor:pointer;transition:all .2s}
+.odd-btn:hover:not(:disabled){border-color:var(--orange);transform:scale(1.05)}
+
+/* ─── WORD SEARCH ──────────────────── */
+.ws-target-list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px}
+.ws-tag{background:var(--surface);padding:6px 14px;border-radius:20px;font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:600;border:1px solid rgba(255,255,255,.08);transition:all .3s}
+.ws-tag.ws-found{background:rgba(107,203,119,.15);border-color:var(--green);color:var(--green);text-decoration:line-through}
+.ws-grid-wrap{display:flex;justify-content:center;margin-bottom:20px}
+.ws-grid{display:inline-grid;gap:2px;background:var(--surface);padding:12px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.06);user-select:none;-webkit-user-select:none}
+.ws-cell{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;border-radius:6px;cursor:pointer;transition:all .15s;color:var(--text)}
+.ws-cell:hover{background:rgba(78,205,196,.15)}
+.ws-cell.ws-selected{background:rgba(78,205,196,.25);color:var(--teal)}
+.ws-cell.ws-found-cell{background:rgba(107,203,119,.2);color:var(--green)}
+
+/* ─── TYPING RACE ──────────────────── */
+.typing-word-display{text-align:center;font-family:'Fredoka',sans-serif;font-size:2.8rem;font-weight:700;color:var(--purple);margin-bottom:24px;min-height:60px;animation:bounceIn .4s ease}
+.typing-input{background:var(--surface);border:2px solid rgba(255,255,255,.1);border-radius:14px;padding:14px 20px;color:var(--text);font-family:'Fredoka',sans-serif;font-size:1.3rem;text-align:center;width:100%;max-width:350px;outline:none;transition:border-color .3s;letter-spacing:2px;text-transform:lowercase}
+.typing-input:focus{border-color:var(--purple)}
+.typing-input.typing-correct{border-color:var(--green);background:rgba(107,203,119,.08)}
+.typing-input.typing-wrong{border-color:#ef4444}
+.typing-input-wrap{display:flex;justify-content:center;margin-bottom:20px}
+.typing-timer{text-align:center;font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--orange);margin-bottom:16px}
+.typing-timer-bar{height:6px;background:var(--surface2);border-radius:8px;margin-bottom:20px;overflow:hidden}
+.typing-timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--yellow),var(--orange),#ef4444);border-radius:8px;transition:width .3s linear}
+.typing-streak{text-align:center;font-family:'Fredoka',sans-serif;color:var(--yellow);font-size:1rem;margin-bottom:8px}
+
+/* ─── SYNONYM MATCH ────────────────── */
+.syn-columns{display:flex;gap:24px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.syn-col{display:flex;flex-direction:column;gap:10px;min-width:130px}
+.syn-col-title{font-family:'Fredoka',sans-serif;font-size:.85rem;color:var(--text-dim);text-align:center;margin-bottom:4px}
+.syn-btn{background:var(--surface);border:2px solid rgba(255,255,255,.08);color:var(--text);padding:14px 20px;border-radius:12px;font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.syn-btn:hover:not(:disabled):not(.syn-matched){border-color:var(--teal);transform:scale(1.05)}
+.syn-btn.syn-selected{border-color:var(--yellow);background:rgba(255,230,109,.1);box-shadow:0 0 12px rgba(255,230,109,.2)}
+.syn-btn.syn-matched{border-color:var(--green);background:rgba(107,203,119,.1);opacity:.6;cursor:default}
+
+/* ─── ABC ORDER ────────────────────── */
+.abc-word-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.abc-word-btn{background:linear-gradient(135deg,var(--teal),#0D9488);border:none;color:#fff;padding:12px 22px;border-radius:12px;font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;cursor:pointer;transition:all .2s}
+.abc-word-btn:hover:not(.used){transform:scale(1.08) translateY(-2px)}
+.abc-word-btn.used{opacity:.15;transform:scale(.9)}
+.abc-slots{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+.abc-slot{background:var(--surface);border:2px dashed rgba(255,255,255,.12);border-radius:12px;padding:10px 16px;min-width:50px;min-height:44px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s;position:relative}
+.abc-slot.filled{border-style:solid;border-color:var(--teal);background:rgba(78,205,196,.08)}
+.abc-slot.abc-correct{border-color:var(--green);background:rgba(107,203,119,.12)}
+.abc-slot.abc-wrong{border-color:#ef4444;background:rgba(239,68,68,.08)}
+.abc-slot-num{position:absolute;top:-8px;left:-8px;background:var(--surface2);width:22px;height:22px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center;color:var(--text-dim)}
+
+/* ─── WORD BUILDER ─────────────────── */
+.wb-letters{display:flex;gap:8px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.wb-letter{width:52px;height:52px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--orange),#F97316);color:#fff;font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.wb-letter:hover:not(.used){transform:scale(1.1) translateY(-3px)}
+.wb-letter.used{opacity:.2;transform:scale(.85);cursor:default}
+.wb-current{display:flex;justify-content:center;margin-bottom:16px}
+.wb-building{background:var(--surface);border:2px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 24px;font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;min-width:120px;text-align:center;min-height:50px;display:flex;align-items:center;justify-content:center;color:var(--teal)}
+.wb-actions{display:flex;gap:10px;justify-content:center;margin-bottom:20px}
+.wb-action-btn{background:var(--surface2);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 20px;border-radius:10px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .2s}
+.wb-action-btn:hover{background:var(--teal);color:var(--bg)}
+.wb-action-btn.wb-submit{background:var(--green);color:#fff;border-color:var(--green)}
+.wb-found-list{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:16px}
+.wb-found-word{background:rgba(107,203,119,.12);border:1px solid rgba(107,203,119,.3);padding:6px 12px;border-radius:8px;font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:600;color:var(--green)}
+.wb-timer{text-align:center;font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--orange);margin-bottom:12px}
+
+/* ─── COMMON ────────────────────────── */
+.correct-opt{background:var(--green)!important;color:#fff!important;border-color:var(--green)!important}
+.wrong-opt{background:#ef4444!important;color:#fff!important;border-color:#ef4444!important;animation:shake .4s ease}
+.skip-btn,.retry-btn,.next-btn,.play-again-btn{display:block;margin:16px auto 0;background:var(--surface2);border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 28px;border-radius:40px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
+.skip-btn:hover,.retry-btn:hover,.next-btn:hover,.play-again-btn:hover{background:var(--teal);color:var(--bg)}
+.next-btn{background:var(--green);color:#fff}
+.play-again-btn{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-size:1.1rem;padding:14px 36px}
+.result-banner{text-align:center;margin-top:20px;font-family:'Fredoka',sans-serif;font-size:1.3rem;display:flex;flex-direction:column;align-items:center;gap:14px}
+.win-overlay{position:fixed;inset:0;background:rgba(15,15,35,.85);display:flex;align-items:center;justify-content:center;z-index:100;animation:fadeIn .3s ease}
+.win-card{background:var(--surface);border-radius:24px;padding:40px;text-align:center;border:2px solid var(--yellow);animation:bounceIn .5s ease}
+.win-emoji{font-size:4rem;margin-bottom:12px}
+.win-card h3{font-family:'Fredoka',sans-serif;font-size:2rem;color:var(--yellow);margin-bottom:8px}
+.win-card p{color:var(--text-dim);margin-bottom:20px}
+.feedback-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:20px 40px;border-radius:20px;font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;z-index:50;animation:popIn .3s ease;pointer-events:none}
+.correct-popup{background:var(--green);color:#fff}
+.wrong-popup{background:#ef4444;color:#fff}
+
+/* ─── LOADING ───────────────────────── */
+.loading-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.loading-spinner{width:50px;height:50px;border:4px solid var(--surface2);border-top-color:var(--teal);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── RESPONSIVE ────────────────────── */
+@media(max-width:600px){
+  .slot{width:40px;height:46px;font-size:1.2rem}
+  .letter-bubble{width:42px;height:42px;font-size:1.1rem}
+  .key-btn{width:32px;height:36px;font-size:.85rem}
+  .quiz-options{grid-template-columns:1fr}
+  .games-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .game-card{padding:18px 12px}
+  .game-card-emoji{font-size:2rem}
+  .catcher-area{height:300px}
+  .flash-word{font-size:2.2rem}
+  .rhyme-target{font-size:2.2rem}
+  .home-title{margin-bottom:8px}
+  .spelling-input-area{flex-direction:column;align-items:center}
+  .spelling-input{width:100%;max-width:280px}
+  .age-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="loading-screen">
+    <div class="loading-spinner"></div>
+    <div style="font-family:'Fredoka',sans-serif;color:#4ECDC4;font-size:1.3rem">Loading Games...</div>
+  </div>
+</div>
+
+<script type="text/babel" data-type="module">
+const { useState, useEffect, useCallback, useRef } = React;
+
+// ═══════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════
+const AGE_GROUPS = [
+  { id: "5-6", label: "Ages 5-6", emoji: "🐣", color: "#FF6B9D" },
+  { id: "7-8", label: "Ages 7-8", emoji: "🦊", color: "#4ECDC4" },
+  { id: "9-10", label: "Ages 9-10", emoji: "🦁", color: "#FFE66D" },
+  { id: "11-12", label: "Ages 11-12", emoji: "🦅", color: "#A78BFA" },
+];
+
+const VOCAB = {
+  "5-6": {
+    animals: ["cat","dog","bird","fish","frog","hen","pig","cow","ant","bee"],
+    colors: ["red","blue","green","pink","gold","gray","teal"],
+    fruits: ["apple","grape","mango","peach","plum","pear","lime"],
+    body: ["eye","ear","nose","hand","foot","head","arm","leg","lip","toe"],
+    things: ["ball","book","bell","door","tree","star","moon","sun","cup","hat"],
+  },
+  "7-8": {
+    animals: ["rabbit","monkey","turtle","parrot","zebra","tiger","whale","shark","eagle","snake"],
+    food: ["butter","cheese","bread","candy","pizza","pasta","juice","salad","cream","toast"],
+    nature: ["river","cloud","storm","beach","ocean","field","plant","grass","stone","frost"],
+    school: ["ruler","chalk","paper","chair","board","globe","clock","brush","glue","paint"],
+    actions: ["dance","climb","sleep","write","laugh","shout","think","dream","build","carry"],
+  },
+  "9-10": {
+    animals: ["dolphin","penguin","leopard","gorilla","buffalo","hamster","octopus","panther","giraffe","peacock"],
+    places: ["castle","museum","temple","bridge","garden","forest","island","palace","desert","harbor"],
+    science: ["planet","rocket","magnet","energy","oxygen","carbon","fossil","crystal","galaxy","volcano"],
+    feelings: ["courage","patient","curious","nervous","cheerful","excited","grateful","worried","jealous","lonely"],
+    actions: ["explore","imagine","protect","discover","survive","balance","whisper","capture","observe","compete"],
+  },
+  "11-12": {
+    academic: ["paragraph","equation","democracy","continent","literature","geography","fraction","molecule","predator","telescope"],
+    advanced: ["adventure","brilliant","champion","delicious","enormous","fantastic","generous","handsome","innocent","keyboard"],
+    idioms_words: ["breakdown","feedback","headline","landmark","network","overcome","portrait","shortage","treasure","wildlife"],
+    abstract: ["ambition","boundary","conflict","devotion","evidence","heritage","justice","liberty","mystery","opinion"],
+    complex: ["accomplish","appreciate","celebrate","cooperate","disappoint","encourage","guarantee","illustrate","negotiate","recognize"],
+  },
+};
+
+const SENTENCES = {
+  "5-6": [
+    { words: ["The","cat","is","big"], correct: "The cat is big" },
+    { words: ["I","like","red","balls"], correct: "I like red balls" },
+    { words: ["She","has","a","dog"], correct: "She has a dog" },
+    { words: ["We","can","run","fast"], correct: "We can run fast" },
+    { words: ["He","is","my","dad"], correct: "He is my dad" },
+  ],
+  "7-8": [
+    { words: ["The","rabbit","can","jump","high"], correct: "The rabbit can jump high" },
+    { words: ["I","want","to","eat","pizza"], correct: "I want to eat pizza" },
+    { words: ["She","likes","to","read","books"], correct: "She likes to read books" },
+    { words: ["We","play","in","the","garden"], correct: "We play in the garden" },
+    { words: ["They","are","going","to","school"], correct: "They are going to school" },
+  ],
+  "9-10": [
+    { words: ["The","dolphin","swims","gracefully","in","the","ocean"], correct: "The dolphin swims gracefully in the ocean" },
+    { words: ["Scientists","discovered","a","new","planet","yesterday"], correct: "Scientists discovered a new planet yesterday" },
+    { words: ["She","felt","curious","about","the","ancient","castle"], correct: "She felt curious about the ancient castle" },
+    { words: ["The","volcano","erupted","with","enormous","energy"], correct: "The volcano erupted with enormous energy" },
+  ],
+  "11-12": [
+    { words: ["Democracy","requires","the","cooperation","of","all","citizens"], correct: "Democracy requires the cooperation of all citizens" },
+    { words: ["The","telescope","revealed","a","brilliant","galaxy","far","away"], correct: "The telescope revealed a brilliant galaxy far away" },
+    { words: ["She","accomplished","her","ambition","through","hard","work"], correct: "She accomplished her ambition through hard work" },
+  ],
+};
+
+const STORIES = {
+  "5-6": [
+    { text: "I have a ___ cat. It likes to play with a ___. My cat can ___ very fast.", blanks: ["big","ball","run"], options: [["big","red","old"],["ball","hat","cup"],["run","sit","eat"]] },
+    { text: "The ___ is in the sky. It is very ___. I like the ___.", blanks: ["sun","hot","sun"], options: [["sun","moon","star"],["hot","cold","big"],["sun","rain","snow"]] },
+  ],
+  "7-8": [
+    { text: "The ___ hopped into the garden. It found some ___ to eat. The rabbit felt very ___.", blanks: ["rabbit","bread","happy"], options: [["rabbit","turtle","parrot"],["bread","stone","paint"],["happy","angry","sleepy"]] },
+    { text: "We went to the ___ to swim. The water was ___. We built a ___ castle.", blanks: ["beach","cold","sand"], options: [["beach","river","field"],["cold","warm","deep"],["sand","ice","mud"]] },
+  ],
+  "9-10": [
+    { text: "The ___ explored the ancient ___. Inside, they discovered a ___ crystal that glowed with mysterious ___.", blanks: ["scientist","castle","beautiful","energy"], options: [["scientist","dolphin","penguin"],["castle","desert","forest"],["beautiful","tiny","broken"],["energy","darkness","silence"]] },
+  ],
+  "11-12": [
+    { text: "The brave ___ set out on an incredible ___. She had to ___ many challenges, but her ___ kept her going. In the end, she earned everyone's ___.", blanks: ["champion","adventure","overcome","ambition","appreciation"], options: [["champion","stranger","prisoner"],["adventure","equation","paragraph"],["overcome","disappoint","negotiate"],["ambition","conflict","boundary"],["appreciation","jealousy","shortage"]] },
+  ],
+};
+
+const RHYMES = {
+  "5-6": [["cat","hat"],["dog","frog"],["sun","fun"],["red","bed"],["fish","dish"],["star","car"],["bee","tree"],["moon","spoon"]],
+  "7-8": [["dance","chance"],["night","light"],["dream","stream"],["shake","cake"],["train","rain"],["clock","rock"],["toast","coast"],["sleep","deep"]],
+  "9-10": [["explore","shore"],["castle","tassel"],["ocean","motion"],["planet","granite"],["crystal","pistol"],["garden","pardon"],["island","highland"]],
+  "11-12": [["adventure","venture"],["champion","companion"],["accomplish","demolish"],["celebrate","decorate"],["mystery","history"],["treasure","measure"],["boundary","foundry"]],
+};
+
+const SYNONYMS = {
+  "5-6": [
+    { word: "big", synonym: "large", wrong: ["small","fast"] },
+    { word: "happy", synonym: "glad", wrong: ["sad","cold"] },
+    { word: "fast", synonym: "quick", wrong: ["slow","tall"] },
+    { word: "small", synonym: "tiny", wrong: ["huge","long"] },
+    { word: "look", synonym: "see", wrong: ["run","eat"] },
+    { word: "cold", synonym: "cool", wrong: ["hot","wet"] },
+  ],
+  "7-8": [
+    { word: "angry", synonym: "mad", wrong: ["happy","quiet"] },
+    { word: "begin", synonym: "start", wrong: ["finish","sleep"] },
+    { word: "smart", synonym: "clever", wrong: ["silly","brave"] },
+    { word: "scared", synonym: "afraid", wrong: ["brave","tired"] },
+    { word: "close", synonym: "shut", wrong: ["open","build"] },
+    { word: "gift", synonym: "present", wrong: ["prize","card"] },
+    { word: "loud", synonym: "noisy", wrong: ["quiet","dark"] },
+  ],
+  "9-10": [
+    { word: "brave", synonym: "courageous", wrong: ["nervous","curious"] },
+    { word: "discover", synonym: "find", wrong: ["protect","whisper"] },
+    { word: "enormous", synonym: "gigantic", wrong: ["crystal","cheerful"] },
+    { word: "protect", synonym: "defend", wrong: ["capture","observe"] },
+    { word: "curious", synonym: "interested", wrong: ["worried","patient"] },
+    { word: "observe", synonym: "watch", wrong: ["imagine","compete"] },
+  ],
+  "11-12": [
+    { word: "accomplish", synonym: "achieve", wrong: ["disappoint","negotiate"] },
+    { word: "appreciate", synonym: "value", wrong: ["overcome","illustrate"] },
+    { word: "enormous", synonym: "immense", wrong: ["brilliant","innocent"] },
+    { word: "conflict", synonym: "dispute", wrong: ["heritage","liberty"] },
+    { word: "encourage", synonym: "motivate", wrong: ["guarantee","recognize"] },
+    { word: "generous", synonym: "charitable", wrong: ["handsome","delicious"] },
+  ],
+};
+
+const ODD_CATEGORIES = {
+  "5-6": [
+    { category: "Animals", words: ["cat","dog","bird"], odd: "ball", hint: "One is not an animal!" },
+    { category: "Colors", words: ["red","blue","green"], odd: "sun", hint: "One is not a color!" },
+    { category: "Fruits", words: ["apple","grape","pear"], odd: "hand", hint: "One is not a fruit!" },
+    { category: "Body", words: ["eye","ear","nose"], odd: "tree", hint: "One is not a body part!" },
+  ],
+  "7-8": [
+    { category: "Food", words: ["bread","cheese","pizza"], odd: "ruler", hint: "One is not food!" },
+    { category: "Nature", words: ["river","ocean","beach"], odd: "chalk", hint: "One is not nature!" },
+    { category: "School", words: ["ruler","chalk","paper"], odd: "whale", hint: "One is not a school item!" },
+    { category: "Actions", words: ["dance","climb","laugh"], odd: "toast", hint: "One is not an action!" },
+  ],
+  "9-10": [
+    { category: "Feelings", words: ["courage","nervous","excited"], odd: "volcano", hint: "One is not a feeling!" },
+    { category: "Science", words: ["planet","rocket","magnet"], odd: "castle", hint: "One is not science!" },
+    { category: "Places", words: ["castle","museum","temple"], odd: "dolphin", hint: "One is not a place!" },
+    { category: "Animals", words: ["dolphin","penguin","gorilla"], odd: "crystal", hint: "One is not an animal!" },
+  ],
+  "11-12": [
+    { category: "Academic", words: ["paragraph","equation","fraction"], odd: "adventure", hint: "One is not an academic word!" },
+    { category: "Abstract", words: ["ambition","conflict","justice"], odd: "telescope", hint: "One is not an abstract idea!" },
+    { category: "Complex Verbs", words: ["accomplish","celebrate","negotiate"], odd: "landmark", hint: "One is not a verb!" },
+    { category: "Advanced Adj.", words: ["brilliant","enormous","delicious"], odd: "headline", hint: "One is not an adjective!" },
+  ],
+};
+
+// ═══════════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════════
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function pick(arr, n = 1) { return shuffle(arr).slice(0, n); }
+function getAllWords(age) { return Object.values(VOCAB[age] || {}).flat(); }
+
+function confetti(count = 30) {
+  const c = document.createElement("div");
+  c.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden";
+  document.body.appendChild(c);
+  const colors = ["#FF6B9D","#4ECDC4","#FFE66D","#A78BFA","#FF8A5C","#5BCDFA","#FF5E78","#7CFF6B"];
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement("div");
+    const shape = Math.random() > 0.5 ? "50%" : "2px";
+    p.style.cssText = `position:absolute;top:-20px;left:${Math.random()*100}%;width:${8+Math.random()*8}px;height:${8+Math.random()*8}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${shape};animation:confettiFall ${1.5+Math.random()*2}s ease-out forwards;animation-delay:${Math.random()*0.5}s;transform:rotate(${Math.random()*360}deg)`;
+    c.appendChild(p);
+  }
+  setTimeout(() => c.remove(), 4000);
+}
+
+// ═══════════════════════════════════════════════════════════
+// 1. WORD SCRAMBLE
+// ═══════════════════════════════════════════════════════════
+function WordScramble({ age, onBack }) {
+  const words = getAllWords(age);
+  const [current, setCurrent] = useState(() => pick(words)[0]);
+  const [scrambled, setScrambled] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [shakeWrong, setShakeWrong] = useState(false);
+
+  const newWord = useCallback(() => {
+    const w = pick(words)[0];
+    setCurrent(w);
+    let s = shuffle(w.split(""));
+    while (s.join("") === w && w.length > 1) s = shuffle(w.split(""));
+    setScrambled(s.map((l, i) => ({ letter: l, id: i, used: false })));
+    setSelected([]);
+    setFeedback("");
+  }, [words]);
+
+  useEffect(() => { newWord(); }, []);
+
+  const selectLetter = (item) => {
+    if (item.used) return;
+    const newScr = scrambled.map(s => s.id === item.id ? { ...s, used: true } : s);
+    const newSel = [...selected, item];
+    setScrambled(newScr);
+    setSelected(newSel);
+    if (newSel.length === current.length) {
+      const answer = newSel.map(s => s.letter).join("");
+      setTotal(t => t + 1);
+      if (answer === current) {
+        setScore(s => s + 1);
+        setFeedback("correct");
+        confetti(20);
+        setTimeout(newWord, 1500);
+      } else {
+        setFeedback("wrong");
+        setShakeWrong(true);
+        setTimeout(() => { setShakeWrong(false); setScrambled(newScr.map(s => ({...s, used: false}))); setSelected([]); setFeedback(""); }, 1200);
+      }
+    }
+  };
+
+  const removeLetter = (idx) => {
+    if (feedback) return;
+    const item = selected[idx];
+    setSelected(selected.filter((_, i) => i !== idx));
+    setScrambled(scrambled.map(s => s.id === item.id ? { ...s, used: false } : s));
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">🔤 Word Scramble</h2>
+      <p className="game-instruction">Tap the letters in the right order to spell the word!</p>
+      <div className={`answer-slots ${feedback === "correct" ? "glow-green" : ""} ${shakeWrong ? "shake" : ""}`}>
+        {current.split("").map((_, i) => (
+          <div key={i} className={`slot ${selected[i] ? "filled" : ""} ${feedback === "correct" ? "correct-slot" : ""} ${feedback === "wrong" ? "wrong-slot" : ""}`} onClick={() => selected[i] && removeLetter(i)}>
+            {selected[i] ? selected[i].letter : ""}
+          </div>
+        ))}
+      </div>
+      <div className="letter-pool">
+        {scrambled.map((item) => (
+          <button key={item.id} className={`letter-bubble ${item.used ? "used" : ""}`} onClick={() => selectLetter(item)} disabled={item.used}>
+            {item.letter}
+          </button>
+        ))}
+      </div>
+      <button className="skip-btn" onClick={newWord}>Skip →</button>
+      {feedback === "correct" && <div className="feedback-popup correct-popup">🎉 Awesome!</div>}
+      {feedback === "wrong" && <div className="feedback-popup wrong-popup">Try again! 💪</div>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 2. MEMORY MATCH
+// ═══════════════════════════════════════════════════════════
+function MemoryMatch({ age, onBack }) {
+  const words = getAllWords(age);
+  const pairCount = age === "5-6" ? 4 : age === "7-8" ? 6 : 8;
+  const [cards, setCards] = useState([]);
+  const [flipped, setFlipped] = useState([]);
+  const [matched, setMatched] = useState(new Set());
+  const [moves, setMoves] = useState(0);
+  const [gameWon, setGameWon] = useState(false);
+
+  const initGame = useCallback(() => {
+    const chosen = pick(words, pairCount);
+    const emojis = ["🌟","🎈","🎯","🎨","🎪","🎭","🎵","🎲","🌈","🦄","🍕","🚀"];
+    const pairs = chosen.map((w, i) => [
+      { id: i * 2, type: "word", value: w, pairId: i },
+      { id: i * 2 + 1, type: "emoji", value: emojis[i % emojis.length], label: w, pairId: i },
+    ]).flat();
+    setCards(shuffle(pairs));
+    setFlipped([]);
+    setMatched(new Set());
+    setMoves(0);
+    setGameWon(false);
+  }, [words, pairCount]);
+
+  useEffect(() => { initGame(); }, []);
+
+  const flipCard = (id) => {
+    if (flipped.length === 2 || matched.has(cards.find(c => c.id === id).pairId)) return;
+    if (flipped.includes(id)) return;
+    const newFlipped = [...flipped, id];
+    setFlipped(newFlipped);
+    if (newFlipped.length === 2) {
+      setMoves(m => m + 1);
+      const [a, b] = newFlipped.map(fid => cards.find(c => c.id === fid));
+      if (a.pairId === b.pairId) {
+        const newMatched = new Set([...matched, a.pairId]);
+        setMatched(newMatched);
+        setFlipped([]);
+        if (newMatched.size === pairCount) { setGameWon(true); confetti(40); }
+      } else {
+        setTimeout(() => setFlipped([]), 900);
+      }
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">Moves: {moves}</div>
+      </div>
+      <h2 className="game-title">🧠 Memory Match</h2>
+      <p className="game-instruction">Match each word with its emoji partner!</p>
+      <div className="memory-grid">
+        {cards.map(card => {
+          const isFlipped = flipped.includes(card.id) || matched.has(card.pairId);
+          return (
+            <div key={card.id} className={`memory-card ${isFlipped ? "flipped" : ""} ${matched.has(card.pairId) ? "matched" : ""}`} onClick={() => flipCard(card.id)}>
+              <div className="card-inner">
+                <div className="card-front">?</div>
+                <div className="card-back">
+                  {card.type === "emoji" ? <React.Fragment><span className="card-emoji">{card.value}</span><span className="card-label">{card.label}</span></React.Fragment> : <span className="card-word">{card.value}</span>}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {gameWon && (
+        <div className="win-overlay">
+          <div className="win-card">
+            <div className="win-emoji">🏆</div>
+            <h3>You Won!</h3>
+            <p>Completed in {moves} moves</p>
+            <button className="play-again-btn" onClick={initGame}>Play Again</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 3. HANGMAN
+// ═══════════════════════════════════════════════════════════
+function Hangman({ age, onBack }) {
+  const words = getAllWords(age);
+  const [word, setWord] = useState("");
+  const [guessed, setGuessed] = useState(new Set());
+  const [wrong, setWrong] = useState(0);
+  const maxWrong = 7;
+  const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+
+  const newGame = useCallback(() => {
+    setWord(pick(words)[0]);
+    setGuessed(new Set());
+    setWrong(0);
+  }, [words]);
+
+  useEffect(() => { newGame(); }, []);
+
+  const guess = (letter) => {
+    if (guessed.has(letter)) return;
+    const newGuessed = new Set([...guessed, letter]);
+    setGuessed(newGuessed);
+    if (!word.includes(letter)) setWrong(w => w + 1);
+  };
+
+  const won = word && word.split("").every(l => guessed.has(l));
+  const lost = wrong >= maxWrong;
+
+  useEffect(() => { if (won) confetti(25); }, [won]);
+
+  const bodyParts = [
+    <circle key="head" cx="200" cy="95" r="20" fill="none" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="3"/>,
+    <line key="body" x1="200" y1="115" x2="200" y2="175" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="3"/>,
+    <line key="la" x1="200" y1="135" x2="170" y2="155" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="3"/>,
+    <line key="ra" x1="200" y1="135" x2="230" y2="155" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="3"/>,
+    <line key="ll" x1="200" y1="175" x2="175" y2="210" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="3"/>,
+    <line key="rl" x1="200" y1="175" x2="225" y2="210" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="3"/>,
+    <g key="face"><circle cx="192" cy="90" r="2" fill={wrong >= 5 ? "#ef4444" : "#64748b"}/><circle cx="208" cy="90" r="2" fill={wrong >= 5 ? "#ef4444" : "#64748b"}/><path d="M190 102 Q200 96 210 102" fill="none" stroke={wrong >= 5 ? "#ef4444" : "#64748b"} strokeWidth="2"/></g>,
+  ];
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">❤️ {maxWrong - wrong}</div>
+      </div>
+      <h2 className="game-title">🪢 Hangman</h2>
+      <p className="game-instruction">Guess the word letter by letter!</p>
+      <svg viewBox="0 0 400 240" className="hangman-svg">
+        <line x1="60" y1="230" x2="160" y2="230" stroke="#94a3b8" strokeWidth="4"/>
+        <line x1="110" y1="230" x2="110" y2="40" stroke="#94a3b8" strokeWidth="3"/>
+        <line x1="110" y1="40" x2="200" y2="40" stroke="#94a3b8" strokeWidth="3"/>
+        <line x1="200" y1="40" x2="200" y2="75" stroke="#94a3b8" strokeWidth="3"/>
+        {bodyParts.slice(0, wrong)}
+      </svg>
+      <div className="word-display">
+        {word.split("").map((l, i) => (
+          <span key={i} className={`word-letter ${guessed.has(l) ? "revealed" : ""} ${(won || lost) && !guessed.has(l) ? "hint-letter" : ""}`}>
+            {guessed.has(l) || lost ? l : "_"}
+          </span>
+        ))}
+      </div>
+      {!won && !lost && (
+        <div className="keyboard">
+          {alphabet.map(l => (
+            <button key={l} className={`key-btn ${guessed.has(l) ? (word.includes(l) ? "key-correct" : "key-wrong") : ""}`} onClick={() => guess(l)} disabled={guessed.has(l)}>
+              {l}
+            </button>
+          ))}
+        </div>
+      )}
+      {(won || lost) && (
+        <div className="result-banner">
+          <span>{won ? "🎉 You got it!" : `😢 The word was "${word}"`}</span>
+          <button className="play-again-btn" onClick={newGame}>Next Word</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 4. SENTENCE BUILDER
+// ═══════════════════════════════════════════════════════════
+function SentenceBuilder({ age, onBack }) {
+  const sentences = SENTENCES[age] || SENTENCES["5-6"];
+  const [idx, setIdx] = useState(0);
+  const [pool, setPool] = useState([]);
+  const [built, setBuilt] = useState([]);
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+
+  const loadSentence = useCallback((i) => {
+    const s = sentences[i % sentences.length];
+    setPool(shuffle(s.words.map((w, j) => ({ word: w, id: j, used: false }))));
+    setBuilt([]);
+    setFeedback("");
+  }, [sentences]);
+
+  useEffect(() => { loadSentence(0); }, []);
+
+  const addWord = (item) => {
+    if (item.used || feedback) return;
+    const newPool = pool.map(p => p.id === item.id ? { ...p, used: true } : p);
+    const newBuilt = [...built, item];
+    setPool(newPool);
+    setBuilt(newBuilt);
+    if (newBuilt.length === sentences[idx % sentences.length].words.length) {
+      const answer = newBuilt.map(b => b.word).join(" ");
+      if (answer === sentences[idx % sentences.length].correct) {
+        setFeedback("correct");
+        setScore(s => s + 1);
+        confetti(20);
+      } else {
+        setFeedback("wrong");
+      }
+    }
+  };
+
+  const removeWord = (i) => {
+    if (feedback) return;
+    const item = built[i];
+    setBuilt(built.filter((_, j) => j !== i));
+    setPool(pool.map(p => p.id === item.id ? { ...p, used: false } : p));
+  };
+
+  const next = () => { const ni = idx + 1; setIdx(ni); loadSentence(ni); };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">📝 Sentence Builder</h2>
+      <p className="game-instruction">Tap words in order to build the sentence!</p>
+      <div className={`sentence-area ${feedback === "correct" ? "glow-green" : ""} ${feedback === "wrong" ? "shake" : ""}`}>
+        {built.length === 0 ? <span className="placeholder-text">Tap words below...</span> :
+          built.map((b, i) => (
+            <span key={i} className={`built-word ${feedback === "correct" ? "correct-word" : ""} ${feedback === "wrong" ? "wrong-word" : ""}`} onClick={() => removeWord(i)}>{b.word}</span>
+          ))
+        }
+      </div>
+      <div className="word-pool">
+        {pool.map(item => (
+          <button key={item.id} className={`pool-word ${item.used ? "used" : ""}`} onClick={() => addWord(item)} disabled={item.used}>
+            {item.word}
+          </button>
+        ))}
+      </div>
+      {feedback === "wrong" && <button className="retry-btn" onClick={() => loadSentence(idx)}>🔄 Try Again</button>}
+      {feedback === "correct" && <button className="next-btn" onClick={next}>Next →</button>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 5. SPELLING BEE
+// ═══════════════════════════════════════════════════════════
+function SpellingBee({ age, onBack }) {
+  const words = getAllWords(age);
+  const [word, setWord] = useState("");
+  const [hint, setHint] = useState("");
+  const [input, setInput] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+  const [showWord, setShowWord] = useState(true);
+
+  const newRound = useCallback(() => {
+    const w = pick(words)[0];
+    setWord(w);
+    setHint(w.length + ' letters, starts with "' + w[0] + '"');
+    setInput("");
+    setFeedback("");
+    setShowWord(true);
+    setTimeout(() => setShowWord(false), age === "5-6" ? 3000 : 2000);
+  }, [words, age]);
+
+  useEffect(() => { newRound(); }, []);
+
+  const check = () => {
+    if (input.toLowerCase().trim() === word) {
+      setFeedback("correct");
+      setScore(s => s + 1);
+      confetti(15);
+      setTimeout(newRound, 1500);
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => setFeedback(""), 1000);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">🐝 Spelling Bee</h2>
+      <p className="game-instruction">Memorize the word, then spell it!</p>
+      <div className="spelling-display">
+        {showWord ? (
+          <div className="flash-word">{word}</div>
+        ) : (
+          <div className="hint-box">
+            <span className="hint-icon">💡</span>
+            <span>{hint}</span>
+          </div>
+        )}
+      </div>
+      {!showWord && (
+        <div className="spelling-input-area">
+          <input type="text" className={`spelling-input ${feedback === "correct" ? "input-correct" : ""} ${feedback === "wrong" ? "input-wrong" : ""}`} value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && check()} placeholder="Type the word..." autoFocus autoComplete="off" autoCapitalize="off" />
+          <button className="check-btn" onClick={check}>Check ✓</button>
+        </div>
+      )}
+      <button className="skip-btn" onClick={newRound}>Skip →</button>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 6. RHYME TIME
+// ═══════════════════════════════════════════════════════════
+function RhymeTime({ age, onBack }) {
+  const rhymes = RHYMES[age] || RHYMES["5-6"];
+  const [round, setRound] = useState(0);
+  const [target, setTarget] = useState("");
+  const [options, setOptions] = useState([]);
+  const [answer, setAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+
+  const newRound = useCallback(() => {
+    const pair = rhymes[round % rhymes.length];
+    const wrong = pick(getAllWords(age).filter(w => w !== pair[0] && w !== pair[1]), 2);
+    setTarget(pair[0]);
+    setAnswer(pair[1]);
+    setOptions(shuffle([pair[1], ...wrong]));
+    setFeedback("");
+  }, [round, rhymes, age]);
+
+  useEffect(() => { newRound(); }, [round]);
+
+  const check = (opt) => {
+    if (opt === answer) {
+      setFeedback("correct");
+      setScore(s => s + 1);
+      confetti(15);
+      setTimeout(() => setRound(r => r + 1), 1200);
+    } else {
+      setFeedback(opt);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">🎵 Rhyme Time</h2>
+      <p className="game-instruction">Which word rhymes with the word below?</p>
+      <div className="rhyme-target">{target}</div>
+      <div className="rhyme-options">
+        {options.map(opt => (
+          <button key={opt} className={`rhyme-btn ${feedback === "correct" && opt === answer ? "correct-opt" : ""} ${feedback === opt ? "wrong-opt" : ""}`} onClick={() => check(opt)} disabled={feedback === "correct"}>
+            {opt}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 7. STORY FILL
+// ═══════════════════════════════════════════════════════════
+function StoryFill({ age, onBack }) {
+  const stories = STORIES[age] || STORIES["5-6"];
+  const [storyIdx, setStoryIdx] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [currentBlank, setCurrentBlank] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [done, setDone] = useState(false);
+
+  const story = stories[storyIdx % stories.length];
+
+  useEffect(() => {
+    setAnswers([]);
+    setCurrentBlank(0);
+    setFeedback("");
+    setDone(false);
+  }, [storyIdx]);
+
+  const choose = (opt) => {
+    if (opt === story.blanks[currentBlank]) {
+      const na = [...answers, opt];
+      setAnswers(na);
+      setFeedback("correct");
+      if (na.length === story.blanks.length) {
+        setDone(true);
+        confetti(30);
+      } else {
+        setTimeout(() => { setCurrentBlank(c => c + 1); setFeedback(""); }, 800);
+      }
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => setFeedback(""), 800);
+    }
+  };
+
+  const renderStory = () => {
+    const parts = story.text.split("___");
+    return parts.map((part, i) => (
+      <React.Fragment key={i}>
+        {part}
+        {i < parts.length - 1 && (
+          <span className={`blank-word ${answers[i] ? "filled-blank" : ""} ${i === currentBlank && !done ? "active-blank" : ""}`}>
+            {answers[i] || "____"}
+          </span>
+        )}
+      </React.Fragment>
+    ));
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">📖 Story {storyIdx + 1}</div>
+      </div>
+      <h2 className="game-title">📚 Story Fill</h2>
+      <p className="game-instruction">Complete the story by choosing the right words!</p>
+      <div className="story-text">{renderStory()}</div>
+      {!done && story.options[currentBlank] && (
+        <div className="story-options">
+          {story.options[currentBlank].map(opt => (
+            <button key={opt} className="story-opt-btn" onClick={() => choose(opt)}>
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+      {done && (
+        <div className="story-complete">
+          <span>🎉 Great job!</span>
+          <button className="next-btn" onClick={() => setStoryIdx(i => i + 1)}>Next Story →</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 8. WORD CATCHER
+// ═══════════════════════════════════════════════════════════
+function WordCatcher({ age, onBack }) {
+  const words = getAllWords(age);
+  // Fall duration in seconds — how long a word takes to cross the area
+  const FALL_DURATION = 3.5;
+  const SPAWN_INTERVAL = 700;
+
+  const [target, setTarget] = useState("");
+  const [falling, setFalling] = useState([]);
+  const [score, setScore] = useState(0);
+  const [lives, setLives] = useState(5);
+  const [gameOver, setGameOver] = useState(false);
+
+  const intervalRef = useRef();
+  const livesRef = useRef(5);
+  const scoreRef = useRef(0);
+  const gameOverRef = useRef(false);
+  const targetRef = useRef("");
+
+  const startGame = useCallback(() => {
+    const t = pick(words)[0];
+    livesRef.current = 5;
+    scoreRef.current = 0;
+    gameOverRef.current = false;
+    targetRef.current = t;
+    setTarget(t);
+    setFalling([]);
+    setScore(0);
+    setLives(5);
+    setGameOver(false);
+  }, [words]);
+
+  useEffect(() => { startGame(); }, []);
+  useEffect(() => { targetRef.current = target; }, [target]);
+
+  // Spawn words on interval
+  useEffect(() => {
+    if (gameOver || !target) return;
+    intervalRef.current = setInterval(() => {
+      if (gameOverRef.current) return;
+      const isTarget = Math.random() < 0.35;
+      const w = isTarget ? targetRef.current : pick(words.filter(x => x !== targetRef.current))[0];
+      const id = Date.now() + Math.random();
+      setFalling(prev => [...prev, {
+        id,
+        word: w,
+        x: 5 + Math.random() * 72,
+        isTarget: w === targetRef.current,
+        born: Date.now(),
+      }]);
+      // Auto-remove after fall duration + buffer
+      setTimeout(() => {
+        setFalling(prev => {
+          const item = prev.find(f => f.id === id);
+          if (item && item.isTarget && !gameOverRef.current) {
+            const nl = livesRef.current - 1;
+            livesRef.current = nl;
+            setLives(nl);
+            if (nl <= 0) { gameOverRef.current = true; setGameOver(true); }
+          }
+          return prev.filter(f => f.id !== id);
+        });
+      }, FALL_DURATION * 1000 + 100);
+    }, SPAWN_INTERVAL);
+    return () => clearInterval(intervalRef.current);
+  }, [target, gameOver, words]);
+
+  const catchWord = (f) => {
+    if (gameOverRef.current) return;
+    setFalling(prev => prev.filter(x => x.id !== f.id));
+    if (f.isTarget) {
+      const ns = scoreRef.current + 1;
+      scoreRef.current = ns;
+      setScore(ns);
+      confetti(8);
+      if (ns % 5 === 0) {
+        const t = pick(words)[0];
+        targetRef.current = t;
+        setTarget(t);
+      }
+    } else {
+      const nl = livesRef.current - 1;
+      livesRef.current = nl;
+      setLives(nl);
+      if (nl <= 0) { gameOverRef.current = true; setGameOver(true); }
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <style>{`
+        @keyframes wordFall {
+          from { top: -12%; }
+          to   { top: 108%; }
+        }
+        .falling-word-css {
+          position: absolute;
+          animation: wordFall ${FALL_DURATION}s linear forwards;
+          background: linear-gradient(135deg, var(--surface2), var(--purple));
+          border: 1px solid rgba(167,139,250,.3);
+          color: var(--text);
+          padding: 8px 16px;
+          border-radius: 10px;
+          font-family: 'Fredoka', sans-serif;
+          font-size: .95rem;
+          font-weight: 600;
+          cursor: pointer;
+          white-space: nowrap;
+          transition: background .15s, transform .15s;
+        }
+        .falling-word-css:hover {
+          transform: scale(1.15);
+          background: linear-gradient(135deg, var(--teal), var(--green));
+        }
+      `}</style>
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score} | ❤️ {lives}</div>
+      </div>
+      <h2 className="game-title">🎯 Word Catcher</h2>
+      <p className="game-instruction">Catch the word: <strong className="target-highlight">{target}</strong></p>
+      <div className="catcher-area">
+        {falling.map(f => (
+          <button
+            key={f.id}
+            className="falling-word-css"
+            style={{ left: f.x + "%" }}
+            onClick={() => catchWord(f)}
+          >
+            {f.word}
+          </button>
+        ))}
+      </div>
+      {gameOver && (
+        <div className="win-overlay">
+          <div className="win-card">
+            <div className="win-emoji">🎮</div>
+            <h3>Game Over!</h3>
+            <p>Score: {score}</p>
+            <button className="play-again-btn" onClick={startGame}>Play Again</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 9. QUIZ TIME
+// ═══════════════════════════════════════════════════════════
+function QuizTime({ age, onBack }) {
+  const words = getAllWords(age);
+  const [question, setQuestion] = useState(null);
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+
+  const types = [
+    (w) => ({ q: 'How many letters does "' + w + '" have?', answer: String(w.length), opts: shuffle([String(w.length), String(w.length + 1), String(w.length - 1 || 1), String(w.length + 2)]) }),
+    (w) => ({ q: 'What is the first letter of "' + w + '"?', answer: w[0], opts: shuffle([w[0], ...pick("abcdefghijklmnopqrstuvwxyz".split("").filter(x => x !== w[0]), 3)]) }),
+    (w) => ({ q: 'What is the last letter of "' + w + '"?', answer: w[w.length - 1], opts: shuffle([w[w.length - 1], ...pick("abcdefghijklmnopqrstuvwxyz".split("").filter(x => x !== w[w.length - 1]), 3)]) }),
+    (w) => {
+      const vowels = w.split("").filter(l => "aeiou".includes(l)).length;
+      return { q: 'How many vowels in "' + w + '"?', answer: String(vowels), opts: shuffle([String(vowels), String(vowels + 1), String(Math.max(0, vowels - 1)), String(vowels + 2)]) };
+    },
+  ];
+
+  const newQ = useCallback(() => {
+    const w = pick(words)[0];
+    const gen = types[Math.floor(Math.random() * types.length)];
+    setQuestion(gen(w));
+    setFeedback("");
+  }, [words]);
+
+  useEffect(() => { newQ(); }, []);
+
+  const check = (opt) => {
+    setTotal(t => t + 1);
+    if (opt === question.answer) {
+      setFeedback("correct");
+      setScore(s => s + 1);
+      confetti(10);
+      setTimeout(newQ, 1200);
+    } else {
+      setFeedback(opt);
+    }
+  };
+
+  if (!question) return null;
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">❓ Quiz Time</h2>
+      <p className="game-instruction">{question.q}</p>
+      <div className="quiz-options">
+        {question.opts.map((opt, i) => (
+          <button key={opt + i} className={`quiz-btn ${feedback === "correct" && opt === question.answer ? "correct-opt" : ""} ${feedback === opt ? "wrong-opt" : ""}`} onClick={() => !feedback && check(opt)} disabled={!!feedback && feedback !== "correct"}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      {feedback && feedback !== "correct" && <button className="retry-btn" onClick={newQ}>Next Question →</button>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 10. WORD CHAIN
+// ═══════════════════════════════════════════════════════════
+function WordChain({ age, onBack }) {
+  const words = getAllWords(age);
+  const [chain, setChain] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [score, setScore] = useState(0);
+  const [feedback, setFeedback] = useState("");
+
+  const generateOptions = useCallback((lastWord) => {
+    const lastLetter = lastWord[lastWord.length - 1];
+    const valid = words.filter(w => w[0] === lastLetter && w !== lastWord);
+    if (valid.length === 0) return null;
+    const correct = pick(valid)[0];
+    const wrong = pick(words.filter(w => w[0] !== lastLetter && w !== lastWord), 2);
+    setOptions(shuffle([correct, ...wrong]));
+    return correct;
+  }, [words]);
+
+  const startChain = useCallback(() => {
+    const first = pick(words)[0];
+    setChain([first]);
+    setFeedback("");
+    setScore(0);
+    const lastLetter = first[first.length - 1];
+    const valid = words.filter(w => w[0] === lastLetter && w !== first);
+    if (valid.length > 0) {
+      const correct = pick(valid)[0];
+      const wrong = pick(words.filter(w => w[0] !== lastLetter && w !== first), 2);
+      setOptions(shuffle([correct, ...wrong]));
+    }
+  }, [words]);
+
+  useEffect(() => { startChain(); }, []);
+
+  const choose = (opt) => {
+    const lastWord = chain[chain.length - 1];
+    const lastLetter = lastWord[lastWord.length - 1];
+    if (opt[0] === lastLetter) {
+      const newChain = [...chain, opt];
+      setChain(newChain);
+      setScore(s => s + 1);
+      setFeedback("correct");
+      confetti(8);
+      setTimeout(() => {
+        const result = generateOptions(opt);
+        if (!result) startChain();
+        setFeedback("");
+      }, 800);
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => setFeedback(""), 800);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">🔗 Chain: {chain.length}</div>
+      </div>
+      <h2 className="game-title">🔗 Word Chain</h2>
+      <p className="game-instruction">Pick the word that starts with the last letter!</p>
+      <div className="chain-display">
+        {chain.map((w, i) => (
+          <span key={i} className="chain-word">
+            {i > 0 && <span className="chain-arrow">→</span>}
+            <span className="chain-item">{w.slice(0, -1)}<strong className="chain-last-letter">{w[w.length - 1]}</strong></span>
+          </span>
+        ))}
+      </div>
+      <div className="chain-options">
+        {options.map(opt => (
+          <button key={opt} className="chain-btn" onClick={() => choose(opt)}>
+            {opt}
+          </button>
+        ))}
+      </div>
+      <button className="skip-btn" onClick={startChain}>New Chain 🔄</button>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 11. ODD ONE OUT
+// ═══════════════════════════════════════════════════════════
+function OddOneOut({ age, onBack }) {
+  const data = ODD_CATEGORIES[age] || ODD_CATEGORIES["5-6"];
+  const [round, setRound] = useState(0);
+  const [options, setOptions] = useState([]);
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+  const [total, setTotal] = useState(0);
+  const item = data[round % data.length];
+
+  useEffect(() => {
+    setOptions(shuffle([...item.words, item.odd]));
+    setFeedback("");
+  }, [round]);
+
+  const choose = (w) => {
+    if (feedback) return;
+    setTotal(t => t + 1);
+    if (w === item.odd) {
+      setFeedback("correct");
+      setScore(s => s + 1);
+      confetti(15);
+      setTimeout(() => setRound(r => r + 1), 1300);
+    } else {
+      setFeedback(w);
+      setTimeout(() => setFeedback(""), 1000);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}/{total}</div>
+      </div>
+      <h2 className="game-title">🔍 Odd One Out</h2>
+      <p className="game-instruction">Find the word that does NOT belong!</p>
+      <div className="odd-category">Category: <strong style={{color:"var(--orange)"}}>{item.category}</strong></div>
+      <div className="odd-grid">
+        {options.map(w => (
+          <button key={w} className={`odd-btn ${feedback === "correct" && w === item.odd ? "correct-opt" : ""} ${feedback === w ? "wrong-opt" : ""}`} onClick={() => choose(w)} disabled={feedback === "correct"}>
+            {w}
+          </button>
+        ))}
+      </div>
+      {feedback && feedback !== "correct" && <p style={{textAlign:"center",color:"var(--text-dim)",marginTop:12}}>{item.hint}</p>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 12. WORD SEARCH
+// ═══════════════════════════════════════════════════════════
+function WordSearch({ age, onBack }) {
+  const allWords = getAllWords(age);
+  const gridSize = age === "5-6" ? 8 : age === "7-8" ? 9 : 10;
+  const wordCount = age === "5-6" ? 3 : age === "7-8" ? 4 : 5;
+  const [grid, setGrid] = useState([]);
+  const [targets, setTargets] = useState([]);
+  const [found, setFound] = useState(new Set());
+  const [selected, setSelected] = useState([]);
+  const [placedCells, setPlacedCells] = useState(new Set());
+  const [gameWon, setGameWon] = useState(false);
+
+  const initGame = useCallback(() => {
+    const eligible = allWords.filter(w => w.length <= gridSize - 1 && w.length >= 3);
+    const chosen = pick(eligible, wordCount);
+    const g = Array.from({length: gridSize}, () => Array(gridSize).fill(""));
+    const placed = new Set();
+    const dirs = [[0,1],[1,0],[1,1]]; // right, down, diagonal
+    const placedWords = [];
+
+    for (const word of chosen) {
+      let didPlace = false;
+      for (let attempt = 0; attempt < 80; attempt++) {
+        const dir = dirs[Math.floor(Math.random() * dirs.length)];
+        const maxR = gridSize - (dir[0] === 1 ? word.length : 1);
+        const maxC = gridSize - (dir[1] === 1 ? word.length : 1);
+        if (maxR < 0 || maxC < 0) continue;
+        const r = Math.floor(Math.random() * (maxR + 1));
+        const c = Math.floor(Math.random() * (maxC + 1));
+        let ok = true;
+        for (let i = 0; i < word.length; i++) {
+          const nr = r + dir[0] * i, nc = c + dir[1] * i;
+          if (g[nr][nc] !== "" && g[nr][nc] !== word[i]) { ok = false; break; }
+        }
+        if (ok) {
+          for (let i = 0; i < word.length; i++) {
+            const nr = r + dir[0] * i, nc = c + dir[1] * i;
+            g[nr][nc] = word[i];
+            placed.add(nr + "," + nc);
+          }
+          placedWords.push(word);
+          didPlace = true;
+          break;
+        }
+      }
+    }
+    const alpha = "abcdefghijklmnopqrstuvwxyz";
+    for (let r = 0; r < gridSize; r++)
+      for (let c = 0; c < gridSize; c++)
+        if (g[r][c] === "") g[r][c] = alpha[Math.floor(Math.random() * 26)];
+    setGrid(g);
+    setTargets(placedWords);
+    setPlacedCells(placed);
+    setFound(new Set());
+    setSelected([]);
+    setGameWon(false);
+  }, [allWords, gridSize, wordCount]);
+
+  useEffect(() => { initGame(); }, []);
+
+  const toggleCell = (r, c) => {
+    const key = r + "," + c;
+    const existing = selected.findIndex(s => s.key === key);
+    let newSel;
+    if (existing >= 0) {
+      newSel = selected.filter((_, i) => i !== existing);
+    } else {
+      newSel = [...selected, { r, c, key, letter: grid[r][c] }];
+    }
+    setSelected(newSel);
+    const builtWord = newSel.map(s => s.letter).join("");
+    if (targets.includes(builtWord) && !found.has(builtWord)) {
+      const nf = new Set([...found, builtWord]);
+      setFound(nf);
+      confetti(10);
+      setSelected([]);
+      if (nf.size === targets.length) { setGameWon(true); confetti(40); }
+    }
+  };
+
+  const selKeys = new Set(selected.map(s => s.key));
+  const foundKeys = new Set();
+  // Mark found cells (simplified)
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">🔎 {found.size}/{targets.length}</div>
+      </div>
+      <h2 className="game-title">🔍 Word Search</h2>
+      <p className="game-instruction">Tap letters in order to find hidden words!</p>
+      <div className="ws-target-list">
+        {targets.map(w => (
+          <span key={w} className={`ws-tag ${found.has(w) ? "ws-found" : ""}`}>{w}</span>
+        ))}
+      </div>
+      <div className="ws-grid-wrap">
+        <div className="ws-grid" style={{gridTemplateColumns: `repeat(${gridSize}, 36px)`}}>
+          {grid.map((row, r) => row.map((cell, c) => {
+            const key = r + "," + c;
+            return (
+              <div key={key} className={`ws-cell ${selKeys.has(key) ? "ws-selected" : ""}`} onClick={() => toggleCell(r, c)}>
+                {cell}
+              </div>
+            );
+          }))}
+        </div>
+      </div>
+      {selected.length > 0 && (
+        <div style={{textAlign:"center",marginBottom:12}}>
+          <span style={{fontFamily:"'Fredoka',sans-serif",color:"var(--teal)",fontSize:"1.1rem",letterSpacing:2}}>{selected.map(s=>s.letter).join("").toUpperCase()}</span>
+          <button className="skip-btn" style={{display:"inline-block",marginLeft:12}} onClick={() => setSelected([])}>Clear</button>
+        </div>
+      )}
+      {gameWon && (
+        <div className="win-overlay">
+          <div className="win-card">
+            <div className="win-emoji">🏆</div>
+            <h3>All Found!</h3>
+            <p>You found all {targets.length} words!</p>
+            <button className="play-again-btn" onClick={initGame}>Play Again</button>
+          </div>
+        </div>
+      )}
+      {!gameWon && <button className="skip-btn" onClick={initGame}>New Puzzle 🔄</button>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 13. TYPING RACE
+// ═══════════════════════════════════════════════════════════
+function TypingRace({ age, onBack }) {
+  const words = getAllWords(age);
+  const timeLimit = age === "5-6" ? 8 : age === "7-8" ? 6 : 5;
+  const [word, setWord] = useState("");
+  const [input, setInput] = useState("");
+  const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [bestStreak, setBestStreak] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(timeLimit);
+  const [gameOver, setGameOver] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const timerRef = useRef();
+  const inputRef = useRef();
+
+  const newWord = useCallback(() => {
+    setWord(pick(words)[0]);
+    setInput("");
+    setTimeLeft(timeLimit);
+    setFeedback("");
+  }, [words, timeLimit]);
+
+  const startGame = useCallback(() => {
+    setScore(0);
+    setStreak(0);
+    setBestStreak(0);
+    setGameOver(false);
+    newWord();
+  }, [newWord]);
+
+  useEffect(() => { startGame(); }, []);
+
+  useEffect(() => {
+    if (gameOver || !word) return;
+    timerRef.current = setInterval(() => {
+      setTimeLeft(t => {
+        if (t <= 1) {
+          clearInterval(timerRef.current);
+          setGameOver(true);
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timerRef.current);
+  }, [word, gameOver]);
+
+  useEffect(() => {
+    if (!gameOver && inputRef.current) inputRef.current.focus();
+  }, [word, gameOver]);
+
+  const handleInput = (e) => {
+    const val = e.target.value.toLowerCase();
+    setInput(val);
+    if (val === word) {
+      setFeedback("correct");
+      setScore(s => s + 1);
+      const ns = streak + 1;
+      setStreak(ns);
+      if (ns > bestStreak) setBestStreak(ns);
+      confetti(8);
+      setTimeout(newWord, 500);
+    }
+  };
+
+  const isPartiallyCorrect = word && input && word.startsWith(input);
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">⌨️ Typing Race</h2>
+      <p className="game-instruction">Type the word before time runs out!</p>
+      {!gameOver ? (
+        <React.Fragment>
+          {streak >= 3 && <div className="typing-streak">🔥 Streak: {streak}!</div>}
+          <div className="typing-timer">⏱️ {timeLeft}s</div>
+          <div className="typing-timer-bar">
+            <div className="typing-timer-fill" style={{width: (timeLeft / timeLimit * 100) + "%"}}></div>
+          </div>
+          <div className="typing-word-display">{word}</div>
+          <div className="typing-input-wrap">
+            <input ref={inputRef} type="text" className={`typing-input ${feedback === "correct" ? "typing-correct" : ""} ${input && !isPartiallyCorrect ? "typing-wrong" : ""}`}
+              value={input} onChange={handleInput} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck="false" placeholder="Type here..." />
+          </div>
+          <button className="skip-btn" onClick={newWord}>Skip →</button>
+        </React.Fragment>
+      ) : (
+        <div className="win-overlay" style={{position:"relative",background:"transparent",minHeight:200}}>
+          <div className="win-card">
+            <div className="win-emoji">⌨️</div>
+            <h3>Time's Up!</h3>
+            <p>Words typed: {score} | Best streak: {bestStreak} 🔥</p>
+            <button className="play-again-btn" onClick={startGame}>Play Again</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 14. SYNONYM MATCH
+// ═══════════════════════════════════════════════════════════
+function SynonymMatch({ age, onBack }) {
+  const data = SYNONYMS[age] || SYNONYMS["5-6"];
+  const [round, setRound] = useState(0);
+  const [leftSelected, setLeftSelected] = useState(null);
+  const [pairs, setPairs] = useState([]);
+  const [leftWords, setLeftWords] = useState([]);
+  const [rightWords, setRightWords] = useState([]);
+  const [matched, setMatched] = useState(new Set());
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+
+  const initRound = useCallback(() => {
+    const count = Math.min(3, data.length);
+    const chosen = pick(data, count);
+    setPairs(chosen);
+    setLeftWords(shuffle(chosen.map(c => c.word)));
+    setRightWords(shuffle(chosen.map(c => c.synonym)));
+    setMatched(new Set());
+    setLeftSelected(null);
+    setFeedback("");
+  }, [data]);
+
+  useEffect(() => { initRound(); }, [round]);
+
+  const selectLeft = (w) => {
+    if (matched.has(w)) return;
+    setLeftSelected(w);
+    setFeedback("");
+  };
+
+  const selectRight = (syn) => {
+    if (!leftSelected || matched.has(syn)) return;
+    const pair = pairs.find(p => p.word === leftSelected && p.synonym === syn);
+    if (pair) {
+      const nm = new Set([...matched, leftSelected, syn]);
+      setMatched(nm);
+      setScore(s => s + 1);
+      confetti(10);
+      setLeftSelected(null);
+      if (nm.size === pairs.length * 2) {
+        setTimeout(() => setRound(r => r + 1), 1200);
+      }
+    } else {
+      setFeedback("wrong");
+      setTimeout(() => { setFeedback(""); setLeftSelected(null); }, 800);
+    }
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">🔀 Synonym Match</h2>
+      <p className="game-instruction">Match each word with its synonym!</p>
+      <div className="syn-columns">
+        <div className="syn-col">
+          <div className="syn-col-title">Word</div>
+          {leftWords.map(w => (
+            <button key={w} className={`syn-btn ${leftSelected === w ? "syn-selected" : ""} ${matched.has(w) ? "syn-matched" : ""} ${feedback === "wrong" && leftSelected === w ? "wrong-opt" : ""}`}
+              onClick={() => selectLeft(w)} disabled={matched.has(w)}>{w}</button>
+          ))}
+        </div>
+        <div className="syn-col">
+          <div className="syn-col-title">Synonym</div>
+          {rightWords.map(w => (
+            <button key={w} className={`syn-btn ${matched.has(w) ? "syn-matched" : ""}`}
+              onClick={() => selectRight(w)} disabled={matched.has(w)}>{w}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 15. ABC ORDER
+// ═══════════════════════════════════════════════════════════
+function ABCOrder({ age, onBack }) {
+  const allWords = getAllWords(age);
+  const count = age === "5-6" ? 4 : age === "7-8" ? 5 : 6;
+  const [words, setWords] = useState([]);
+  const [sorted, setSorted] = useState([]);
+  const [placed, setPlaced] = useState([]);
+  const [pool, setPool] = useState([]);
+  const [feedback, setFeedback] = useState("");
+  const [score, setScore] = useState(0);
+
+  const newRound = useCallback(() => {
+    const chosen = pick(allWords, count);
+    const s = [...chosen].sort();
+    setWords(chosen);
+    setSorted(s);
+    setPlaced([]);
+    setPool(shuffle(chosen).map((w, i) => ({ word: w, id: i, used: false })));
+    setFeedback("");
+  }, [allWords, count]);
+
+  useEffect(() => { newRound(); }, []);
+
+  const addWord = (item) => {
+    if (item.used || feedback) return;
+    const np = pool.map(p => p.id === item.id ? { ...p, used: true } : p);
+    const newPlaced = [...placed, item.word];
+    setPool(np);
+    setPlaced(newPlaced);
+    if (newPlaced.length === sorted.length) {
+      const isCorrect = newPlaced.every((w, i) => w === sorted[i]);
+      if (isCorrect) {
+        setFeedback("correct");
+        setScore(s => s + 1);
+        confetti(20);
+      } else {
+        setFeedback("wrong");
+      }
+    }
+  };
+
+  const removeWord = (idx) => {
+    if (feedback) return;
+    const w = placed[idx];
+    setPlaced(placed.filter((_, i) => i !== idx));
+    setPool(pool.map(p => p.word === w && p.used ? { ...p, used: false } : p));
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {score}</div>
+      </div>
+      <h2 className="game-title">🔤 ABC Order</h2>
+      <p className="game-instruction">Put the words in alphabetical order!</p>
+      <div className="abc-slots">
+        {sorted.map((_, i) => (
+          <div key={i} className={`abc-slot ${placed[i] ? "filled" : ""} ${feedback === "correct" ? "abc-correct" : ""} ${feedback === "wrong" ? "abc-wrong" : ""}`}
+            onClick={() => placed[i] && removeWord(i)}>
+            <span className="abc-slot-num">{i + 1}</span>
+            {placed[i] || ""}
+          </div>
+        ))}
+      </div>
+      <div className="abc-word-pool">
+        {pool.map(item => (
+          <button key={item.id} className={`abc-word-btn ${item.used ? "used" : ""}`} onClick={() => addWord(item)} disabled={item.used}>
+            {item.word}
+          </button>
+        ))}
+      </div>
+      {feedback === "wrong" && <button className="retry-btn" onClick={newRound}>🔄 Try Again</button>}
+      {feedback === "correct" && <button className="next-btn" onClick={newRound}>Next →</button>}
+      {!feedback && <button className="skip-btn" onClick={newRound}>Skip →</button>}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 16. WORD BUILDER
+// ═══════════════════════════════════════════════════════════
+function WordBuilder({ age, onBack }) {
+  const allWords = getAllWords(age);
+  const minLen = age === "5-6" ? 2 : 3;
+  const [letters, setLetters] = useState([]);
+  const [building, setBuilding] = useState([]);
+  const [foundWords, setFoundWords] = useState([]);
+  const [feedback, setFeedback] = useState("");
+  const [timeLeft, setTimeLeft] = useState(60);
+  const [gameOver, setGameOver] = useState(false);
+  const timerRef = useRef();
+
+  const validWords = useRef(new Set());
+
+  const initGame = useCallback(() => {
+    // Pick a long word and use its letters
+    const longWords = allWords.filter(w => w.length >= 5);
+    const base = pick(longWords)[0] || pick(allWords)[0];
+    const letterArr = shuffle(base.split("")).map((l, i) => ({ letter: l, id: i, used: false }));
+    setLetters(letterArr);
+    setBuilding([]);
+    setFoundWords([]);
+    setFeedback("");
+    setTimeLeft(60);
+    setGameOver(false);
+    // Precompute valid words from these letters
+    const available = base.split("");
+    const valid = new Set();
+    for (const w of allWords) {
+      if (w.length < minLen) continue;
+      const temp = [...available];
+      let canMake = true;
+      for (const ch of w) {
+        const idx = temp.indexOf(ch);
+        if (idx === -1) { canMake = false; break; }
+        temp.splice(idx, 1);
+      }
+      if (canMake) valid.add(w);
+    }
+    validWords.current = valid;
+  }, [allWords, minLen]);
+
+  useEffect(() => { initGame(); }, []);
+
+  useEffect(() => {
+    if (gameOver) return;
+    timerRef.current = setInterval(() => {
+      setTimeLeft(t => {
+        if (t <= 1) { clearInterval(timerRef.current); setGameOver(true); return 0; }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timerRef.current);
+  }, [gameOver, letters]);
+
+  const selectLetter = (item) => {
+    if (item.used || gameOver) return;
+    setLetters(letters.map(l => l.id === item.id ? { ...l, used: true } : l));
+    setBuilding([...building, item]);
+    setFeedback("");
+  };
+
+  const clearBuilding = () => {
+    setLetters(letters.map(l => ({ ...l, used: false })));
+    setBuilding([]);
+    setFeedback("");
+  };
+
+  const submitWord = () => {
+    const word = building.map(b => b.letter).join("");
+    if (word.length < minLen) {
+      setFeedback("Too short!");
+      return;
+    }
+    if (foundWords.includes(word)) {
+      setFeedback("Already found!");
+      return;
+    }
+    if (validWords.current.has(word)) {
+      setFoundWords([...foundWords, word]);
+      setFeedback("correct");
+      confetti(8);
+    } else {
+      setFeedback("Not a word!");
+    }
+    setTimeout(() => {
+      clearBuilding();
+    }, 500);
+  };
+
+  return (
+    <div className="game-container">
+      <div className="game-header">
+        <button className="back-btn" onClick={onBack}>← Back</button>
+        <div className="score-display">⭐ {foundWords.length}</div>
+      </div>
+      <h2 className="game-title">🧩 Word Builder</h2>
+      <p className="game-instruction">Build as many words as you can from these letters!</p>
+      {!gameOver ? (
+        <React.Fragment>
+          <div className="wb-timer">⏱️ {timeLeft}s | Possible: {validWords.current.size}</div>
+          <div className="wb-letters">
+            {letters.map(item => (
+              <button key={item.id} className={`wb-letter ${item.used ? "used" : ""}`} onClick={() => selectLetter(item)} disabled={item.used}>
+                {item.letter}
+              </button>
+            ))}
+          </div>
+          <div className="wb-current">
+            <div className="wb-building">{building.map(b => b.letter).join("") || "..."}</div>
+          </div>
+          <div className="wb-actions">
+            <button className="wb-action-btn" onClick={clearBuilding}>Clear</button>
+            <button className="wb-action-btn wb-submit" onClick={submitWord}>Submit ✓</button>
+          </div>
+          {feedback && feedback !== "correct" && <p style={{textAlign:"center",color:"#ef4444",fontFamily:"'Fredoka',sans-serif"}}>{feedback}</p>}
+          {feedback === "correct" && <p style={{textAlign:"center",color:"var(--green)",fontFamily:"'Fredoka',sans-serif"}}>✅ Nice!</p>}
+          {foundWords.length > 0 && (
+            <div className="wb-found-list">
+              {foundWords.map(w => <span key={w} className="wb-found-word">{w}</span>)}
+            </div>
+          )}
+        </React.Fragment>
+      ) : (
+        <div style={{textAlign:"center"}}>
+          <div className="win-card" style={{display:"inline-block",marginTop:20}}>
+            <div className="win-emoji">🧩</div>
+            <h3>Time's Up!</h3>
+            <p>You found {foundWords.length} out of {validWords.current.size} words!</p>
+            {foundWords.length > 0 && <div className="wb-found-list" style={{marginTop:12}}>{foundWords.map(w => <span key={w} className="wb-found-word">{w}</span>)}</div>}
+            <button className="play-again-btn" onClick={initGame}>Play Again</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// GAME REGISTRY
+// ═══════════════════════════════════════════════════════════
+const GAMES = [
+  { id: "scramble", name: "Word Scramble", emoji: "🔤", desc: "Unscramble the letters!", color: "#FF6B9D", component: WordScramble },
+  { id: "memory", name: "Memory Match", emoji: "🧠", desc: "Find the matching pairs!", color: "#4ECDC4", component: MemoryMatch },
+  { id: "hangman", name: "Hangman", emoji: "🪢", desc: "Guess the hidden word!", color: "#FFB347", component: Hangman },
+  { id: "sentence", name: "Sentence Builder", emoji: "📝", desc: "Build correct sentences!", color: "#87CEEB", component: SentenceBuilder },
+  { id: "spelling", name: "Spelling Bee", emoji: "🐝", desc: "Memorize & spell it!", color: "#FFE66D", component: SpellingBee },
+  { id: "rhyme", name: "Rhyme Time", emoji: "🎵", desc: "Find the rhyming word!", color: "#DDA0DD", component: RhymeTime },
+  { id: "story", name: "Story Fill", emoji: "📚", desc: "Complete the story!", color: "#98FB98", component: StoryFill },
+  { id: "catcher", name: "Word Catcher", emoji: "🎯", desc: "Catch falling words!", color: "#FF7F7F", component: WordCatcher },
+  { id: "quiz", name: "Quiz Time", emoji: "❓", desc: "Word knowledge quiz!", color: "#B0C4DE", component: QuizTime },
+  { id: "chain", name: "Word Chain", emoji: "🔗", desc: "Chain words together!", color: "#A78BFA", component: WordChain },
+  { id: "oddone", name: "Odd One Out", emoji: "🔍", desc: "Spot the imposter!", color: "#FF8C42", component: OddOneOut },
+  { id: "wordsearch", name: "Word Search", emoji: "🔎", desc: "Find hidden words!", color: "#20B2AA", component: WordSearch },
+  { id: "typing", name: "Typing Race", emoji: "⌨️", desc: "Type fast & accurate!", color: "#C084FC", component: TypingRace },
+  { id: "synonym", name: "Synonym Match", emoji: "🔀", desc: "Match word meanings!", color: "#F472B6", component: SynonymMatch },
+  { id: "abcorder", name: "ABC Order", emoji: "🅰️", desc: "Sort alphabetically!", color: "#34D399", component: ABCOrder },
+  { id: "wordbuilder", name: "Word Builder", emoji: "🧩", desc: "Build words from letters!", color: "#FB923C", component: WordBuilder },
+];
+
+// ═══════════════════════════════════════════════════════════
+// MAIN APP
+// ═══════════════════════════════════════════════════════════
+function App() {
+  const [screen, setScreen] = useState("home");
+  const [age, setAge] = useState(null);
+  const [game, setGame] = useState(null);
+
+  // PLAY SCREEN
+  if (screen === "play" && game && age) {
+    const GameComp = game.component;
+    return <GameComp age={age} onBack={() => setScreen("games")} />;
+  }
+
+  // GAMES GRID
+  if (screen === "games" && age) {
+    const ageGroup = AGE_GROUPS.find(a => a.id === age);
+    return (
+      <div className="games-screen">
+        <div className="games-top-bar">
+          <button className="back-btn" onClick={() => setScreen("ages")}>← Back</button>
+          <div className="age-badge">{ageGroup.emoji} {ageGroup.label}</div>
+        </div>
+        <h1 className="games-heading">Choose Your Game</h1>
+        <p className="games-sub">Pick a game and start learning!</p>
+        <div className="games-grid">
+          {GAMES.map((g, i) => (
+            <button key={g.id} className="game-card" style={{ "--card-color": g.color, "--card-delay": (i * 0.06) + "s" }} onClick={() => { setGame(g); setScreen("play"); }}>
+              <div className="game-card-emoji">{g.emoji}</div>
+              <div className="game-card-name">{g.name}</div>
+              <div className="game-card-desc">{g.desc}</div>
+              <div className="game-card-shine"></div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // AGE SELECT
+  if (screen === "ages") {
+    return (
+      <div className="age-screen">
+        <button className="back-btn top-back" onClick={() => setScreen("home")}>← Home</button>
+        <h1 className="age-heading">How Old Are You?</h1>
+        <p className="age-sub">Choose your age group to get started!</p>
+        <div className="age-grid">
+          {AGE_GROUPS.map((group, i) => (
+            <button key={group.id} className="age-card" style={{ "--age-color": group.color, "--age-delay": (i * 0.1) + "s" }} onClick={() => { setAge(group.id); setScreen("games"); }}>
+              <div className="age-emoji">{group.emoji}</div>
+              <div className="age-label">{group.label}</div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // HOME SCREEN
+  return (
+    <div className="home-screen">
+      <div className="home-bg-shapes">
+        <div className="shape shape-1"></div>
+        <div className="shape shape-2"></div>
+        <div className="shape shape-3"></div>
+        <div className="shape shape-4"></div>
+        <div className="shape shape-5"></div>
+      </div>
+      <div className="home-content">
+        <div className="home-icon-row">
+          <span className="bounce-icon" style={{ animationDelay: "0s" }}>🎮</span>
+          <span className="bounce-icon" style={{ animationDelay: "0.2s" }}>📚</span>
+          <span className="bounce-icon" style={{ animationDelay: "0.4s" }}>🌟</span>
+        </div>
+        <h1 className="home-title">
+          <span className="title-word" style={{ "--tw-color": "#FF6B9D" }}>English</span>{" "}
+          <span className="title-word" style={{ "--tw-color": "#4ECDC4" }}>Game</span>{" "}
+          <span className="title-word" style={{ "--tw-color": "#FFE66D" }}>Zone</span>
+        </h1>
+        <p className="home-subtitle">Learn English Through Fun & Interactive Games!</p>
+        <button className="start-btn" onClick={() => setScreen("ages")}>
+          <span>Let's Play!</span>
+          <span className="btn-arrow">→</span>
+        </button>
+        <div className="home-features">
+          <div className="feature"><span>🎯</span> 16 Fun Games</div>
+          <div className="feature"><span>📊</span> 4 Age Levels</div>
+          <div className="feature"><span>🏆</span> Track Your Score</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// RENDER
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+</script>
+</body>
+</html>
