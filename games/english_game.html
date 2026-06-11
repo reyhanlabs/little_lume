@@ -1978,7 +1978,7 @@ function WordBuilder({ age, onBack }) {
 // 17. EMOJI TRANSLATE
 // ═══════════════════════════════════════════════════════════
 function EmojiTranslate({ age, onBack }) {
-  const data = shuffle([...EMOJI_VOCAB]);
+  const data = useRef(shuffle([...EMOJI_VOCAB])).current;
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
   const [total, setTotal] = useState(0);
@@ -1991,7 +1991,7 @@ function EmojiTranslate({ age, onBack }) {
     setFeedback("");
   }, [data]);
 
-  useEffect(() => { loadRound(0); }, []);
+  useEffect(() => { loadRound(0); }, [loadRound]);
 
   const choose = (opt) => {
     if (feedback) return;
