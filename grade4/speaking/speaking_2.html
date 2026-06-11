@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BunRey English Course – Speaking | Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --sky:    #3AB5E6;
+    --sun:    #FFD04B;
+    --grass:  #4DC77A;
+    --coral:  #FF6B6B;
+    --violet: #845EC2;
+    --white:  #FFFFFF;
+    --ink:    #1A1A2E;
+    --soft:   #F0F8FF;
+    --card-r: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--soft);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--violet) 100%);
+    padding: 40px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") repeat;
+  }
+  .logo-badge {
+    display: inline-block;
+    background: var(--sun);
+    color: var(--ink);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    padding: 6px 18px;
+    border-radius: 40px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 0 rgba(0,0,0,.15);
+  }
+  header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    color: var(--white);
+    line-height: 1.1;
+    text-shadow: 0 3px 8px rgba(0,0,0,.2);
+  }
+  header h1 span { color: var(--sun); }
+  header p.sub {
+    margin-top: 10px;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.85);
+    font-weight: 600;
+  }
+  .wave {
+    display: block;
+    width: 100%; height: 50px;
+    background: var(--soft);
+    clip-path: ellipse(55% 100% at 50% 100%);
+    margin-top: -2px;
+  }
+
+  /* ── LAYOUT ── */
+  main { max-width: 860px; margin: 0 auto; padding: 0 20px 60px; }
+
+  section { margin-top: 44px; }
+  section h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.55rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+
+  /* ── OBJECTIVE BOX ── */
+  .obj-box {
+    background: var(--violet);
+    color: var(--white);
+    border-radius: var(--card-r);
+    padding: 22px 26px;
+    display: flex; gap: 14px; align-items: flex-start;
+    box-shadow: 0 6px 0 rgba(132,94,194,.35);
+  }
+  .obj-box .icon { font-size: 2rem; flex-shrink: 0; }
+  .obj-box ul { list-style: none; }
+  .obj-box ul li::before { content: '✓ '; font-weight: 900; color: var(--sun); }
+  .obj-box ul li { margin-bottom: 6px; font-size: .97rem; font-weight: 600; }
+
+  /* ── VOCAB CARDS ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+  }
+  .vocab-card {
+    background: var(--white);
+    border-radius: var(--card-r);
+    padding: 18px 14px;
+    text-align: center;
+    box-shadow: 0 4px 0 rgba(0,0,0,.07);
+    transition: transform .18s;
+    cursor: default;
+  }
+  .vocab-card:hover { transform: translateY(-4px); }
+  .vocab-card .emoji { font-size: 2.2rem; display: block; margin-bottom: 8px; }
+  .vocab-card strong { display: block; font-size: 1rem; font-weight: 800; color: var(--ink); }
+  .vocab-card span { font-size: .8rem; color: #666; font-style: italic; }
+
+  /* ── DIALOGUE BOX ── */
+  .dialogue { display: flex; flex-direction: column; gap: 14px; }
+  .bubble-wrap { display: flex; align-items: flex-end; gap: 10px; }
+  .bubble-wrap.right { flex-direction: row-reverse; }
+  .avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+  .av-a { background: var(--sky); }
+  .av-b { background: var(--coral); }
+  .bubble {
+    max-width: 72%;
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: .97rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .bubble.a {
+    background: var(--sky);
+    color: var(--white);
+    border-bottom-left-radius: 4px;
+  }
+  .bubble.b {
+    background: var(--coral);
+    color: var(--white);
+    border-bottom-right-radius: 4px;
+  }
+  .bubble .who { font-size: .72rem; opacity: .8; margin-bottom: 2px; }
+
+  /* ── EXPRESSION CARDS ── */
+  .expr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .expr-card {
+    border-radius: var(--card-r);
+    padding: 18px 20px;
+    box-shadow: 0 4px 0 rgba(0,0,0,.07);
+  }
+  .expr-card h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; opacity: .65; margin-bottom: 6px; }
+  .expr-card p  { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+  .expr-card small { font-size: .85rem; }
+
+  /* ── ACTIVITY CARDS ── */
+  .activity-list { display: flex; flex-direction: column; gap: 16px; }
+  .activity-card {
+    background: var(--white);
+    border-radius: var(--card-r);
+    padding: 20px 22px;
+    display: flex; gap: 16px; align-items: flex-start;
+    box-shadow: 0 4px 0 rgba(0,0,0,.07);
+    border-left: 6px solid var(--grass);
+  }
+  .activity-card.c2 { border-color: var(--sky); }
+  .activity-card.c3 { border-color: var(--coral); }
+  .activity-card.c4 { border-color: var(--violet); }
+  .activity-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--grass);
+  }
+  .activity-card.c2 .activity-num { color: var(--sky); }
+  .activity-card.c3 .activity-num { color: var(--coral); }
+  .activity-card.c4 .activity-num { color: var(--violet); }
+  .activity-body h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 4px; }
+  .activity-body p  { font-size: .92rem; color: #444; line-height: 1.55; }
+
+  /* ── PRONUNCIATION TIPS ── */
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .tip-card {
+    background: var(--white);
+    border-radius: var(--card-r);
+    padding: 16px 18px;
+    box-shadow: 0 4px 0 rgba(0,0,0,.07);
+  }
+  .tip-card .sound {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    color: var(--sky);
+    margin-bottom: 4px;
+  }
+  .tip-card p { font-size: .88rem; color: #444; line-height: 1.5; }
+
+  /* ── ASSESSMENT ── */
+  .rubric {
+    width: 100%; border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--card-r);
+    overflow: hidden;
+    box-shadow: 0 4px 0 rgba(0,0,0,.07);
+  }
+  .rubric th {
+    background: var(--violet);
+    color: var(--white);
+    padding: 12px 16px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    text-align: left;
+  }
+  .rubric td {
+    padding: 11px 16px;
+    font-size: .9rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  .rubric tr:last-child td { border: none; }
+  .rubric tr:nth-child(even) td { background: #f7f0ff; }
+  .score {
+    display: inline-block;
+    background: var(--sun);
+    color: var(--ink);
+    border-radius: 8px;
+    padding: 2px 10px;
+    font-weight: 800;
+    font-size: .85rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 24px 16px;
+    font-size: .82rem;
+    margin-top: 60px;
+  }
+  footer strong { color: var(--sun); }
+
+  @media(max-width:480px){
+    .bubble { max-width: 88%; font-size: .88rem; }
+    .vocab-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="logo-badge">🌟 BunRey English Course</div>
+  <h1>Let's <span>Speak</span> English!</h1>
+  <p class="sub">Speaking Module · Grade 4 Elementary School</p>
+</header>
+<span class="wave"></span>
+
+<main>
+
+  <!-- ═══ 1. LEARNING OBJECTIVES ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--violet);color:#fff;">🎯</span>
+      Learning Objectives
+    </h2>
+    <div class="obj-box">
+      <div class="icon">📚</div>
+      <ul>
+        <li>Introduce yourself and ask about others confidently</li>
+        <li>Talk about daily activities and hobbies</li>
+        <li>Express likes, dislikes, and feelings</li>
+        <li>Ask for and give simple directions</li>
+        <li>Use polite expressions in everyday conversations</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 2. KEY VOCABULARY ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--sun);color:var(--ink);">📖</span>
+      Key Vocabulary
+    </h2>
+    <div class="vocab-grid">
+      <div class="vocab-card"><span class="emoji">🏠</span><strong>home</strong><span>place where I live</span></div>
+      <div class="vocab-card"><span class="emoji">🏫</span><strong>school</strong><span>where I study</span></div>
+      <div class="vocab-card"><span class="emoji">🎨</span><strong>hobby</strong><span>what I love to do</span></div>
+      <div class="vocab-card"><span class="emoji">😊</span><strong>feeling</strong><span>happy, sad, tired…</span></div>
+      <div class="vocab-card"><span class="emoji">🧑‍🤝‍🧑</span><strong>friend</strong><span>someone I play with</span></div>
+      <div class="vocab-card"><span class="emoji">📅</span><strong>schedule</strong><span>my daily plan</span></div>
+      <div class="vocab-card"><span class="emoji">🍎</span><strong>favorite</strong><span>what I like best</span></div>
+      <div class="vocab-card"><span class="emoji">🗺️</span><strong>direction</strong><span>left, right, straight</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. SAMPLE DIALOGUE ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--sky);color:#fff;">💬</span>
+      Sample Dialogue
+    </h2>
+    <p style="margin-bottom:16px;font-size:.93rem;color:#555;">Read the conversation below. Then practice with your partner! 🎤</p>
+
+    <div class="dialogue">
+
+      <div class="bubble-wrap">
+        <div class="avatar av-a">😊</div>
+        <div class="bubble a"><div class="who">Andi</div>Hi! My name is Andi. What's your name?</div>
+      </div>
+
+      <div class="bubble-wrap right">
+        <div class="avatar av-b">🌸</div>
+        <div class="bubble b"><div class="who">Bela</div>Hi, Andi! I'm Bela. Nice to meet you!</div>
+      </div>
+
+      <div class="bubble-wrap">
+        <div class="avatar av-a">😊</div>
+        <div class="bubble a"><div class="who">Andi</div>Nice to meet you too! Where do you live?</div>
+      </div>
+
+      <div class="bubble-wrap right">
+        <div class="avatar av-b">🌸</div>
+        <div class="bubble b"><div class="who">Bela</div>I live near the school. What about you?</div>
+      </div>
+
+      <div class="bubble-wrap">
+        <div class="avatar av-a">😊</div>
+        <div class="bubble a"><div class="who">Andi</div>I live on Mango Street. Do you have a hobby?</div>
+      </div>
+
+      <div class="bubble-wrap right">
+        <div class="avatar av-b">🌸</div>
+        <div class="bubble b"><div class="who">Bela</div>Yes! I love drawing and reading books. What about you?</div>
+      </div>
+
+      <div class="bubble-wrap">
+        <div class="avatar av-a">😊</div>
+        <div class="bubble a"><div class="who">Andi</div>I like playing football and listening to music. It's fun!</div>
+      </div>
+
+      <div class="bubble-wrap right">
+        <div class="avatar av-b">🌸</div>
+        <div class="bubble b"><div class="who">Bela</div>That sounds great! Let's be friends, Andi!</div>
+      </div>
+
+      <div class="bubble-wrap">
+        <div class="avatar av-a">😊</div>
+        <div class="bubble a"><div class="who">Andi</div>Sure! Let's play together after school!</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 4. USEFUL EXPRESSIONS ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--grass);color:#fff;">✨</span>
+      Useful Expressions
+    </h2>
+    <div class="expr-grid">
+
+      <div class="expr-card" style="background:#E8F5FF;">
+        <h4>Greeting</h4>
+        <p>"Good morning! How are you?"</p>
+        <small>Use this when you meet someone</small>
+      </div>
+
+      <div class="expr-card" style="background:#FFF3CD;">
+        <h4>Introducing Yourself</h4>
+        <p>"My name is ___ and I am ___ years old."</p>
+        <small>Tell people who you are</small>
+      </div>
+
+      <div class="expr-card" style="background:#FFE8E8;">
+        <h4>Expressing Likes</h4>
+        <p>"I really like / love ___."</p>
+        <small>Share what you enjoy!</small>
+      </div>
+
+      <div class="expr-card" style="background:#E8FFE8;">
+        <h4>Expressing Dislikes</h4>
+        <p>"I don't like / I dislike ___."</p>
+        <small>It's okay to say what you don't like</small>
+      </div>
+
+      <div class="expr-card" style="background:#F0E8FF;">
+        <h4>Asking for Help</h4>
+        <p>"Excuse me, can you help me, please?"</p>
+        <small>Always be polite!</small>
+      </div>
+
+      <div class="expr-card" style="background:#FFF8E1;">
+        <h4>Thanking Someone</h4>
+        <p>"Thank you very much!"<br/>"You're welcome!"</p>
+        <small>Show your gratitude</small>
+      </div>
+
+      <div class="expr-card" style="background:#E8F5FF;">
+        <h4>Asking Directions</h4>
+        <p>"Where is the ___?"<br/>"Go straight, then turn left."</p>
+        <small>Find your way around!</small>
+      </div>
+
+      <div class="expr-card" style="background:#FFE8E8;">
+        <h4>Saying Goodbye</h4>
+        <p>"Goodbye! See you tomorrow!"<br/>"Take care!"</p>
+        <small>End a conversation nicely</small>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 5. PRONUNCIATION TIPS ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--coral);color:#fff;">🔊</span>
+      Pronunciation Tips
+    </h2>
+    <div class="tip-grid">
+      <div class="tip-card">
+        <div class="sound">Th</div>
+        <p>Put your tongue between your teeth.<br/>👉 <em>this, that, the, three</em></p>
+      </div>
+      <div class="tip-card">
+        <div class="sound">-ing</div>
+        <p>Let your nose hum at the end.<br/>👉 <em>playing, eating, going</em></p>
+      </div>
+      <div class="tip-card">
+        <div class="sound">Wh</div>
+        <p>Start with a soft "w" sound.<br/>👉 <em>what, where, when, who</em></p>
+      </div>
+      <div class="tip-card">
+        <div class="sound">-ed</div>
+        <p>Three ways: /t/, /d/, or /ɪd/.<br/>👉 <em>walked, played, wanted</em></p>
+      </div>
+      <div class="tip-card">
+        <div class="sound">R</div>
+        <p>Curl your tongue back slightly.<br/>👉 <em>read, run, really, right</em></p>
+      </div>
+      <div class="tip-card">
+        <div class="sound">V vs W</div>
+        <p>"v" bites the lip; "w" rounds lips.<br/>👉 <em>very / we, vine / wine</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. SPEAKING ACTIVITIES ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--sun);color:var(--ink);">🎮</span>
+      Speaking Activities
+    </h2>
+    <div class="activity-list">
+
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-body">
+          <h3>🌟 All About Me! (Self-Introduction)</h3>
+          <p>Stand up and introduce yourself to the class for 30 seconds. Include your name, age, where you live, and your favorite hobby. Speak loudly and clearly — smile too! 😄</p>
+        </div>
+      </div>
+
+      <div class="activity-card c2">
+        <div class="activity-num">02</div>
+        <div class="activity-body">
+          <h3>🤝 Find Your Match (Pair Interview)</h3>
+          <p>Walk around the classroom and interview 3 classmates using these questions: "What's your favorite food?" "What do you do after school?" "Do you have a pet?" Then share your findings with the class.</p>
+        </div>
+      </div>
+
+      <div class="activity-card c3">
+        <div class="activity-num">03</div>
+        <div class="activity-body">
+          <h3>🗺️ Help Me Get There! (Giving Directions)</h3>
+          <p>Use the classroom map your teacher gives you. One student asks "How do I get to the library?" and the partner gives directions using: go straight, turn left / right, it's next to / between. Then swap!</p>
+        </div>
+      </div>
+
+      <div class="activity-card c4">
+        <div class="activity-num">04</div>
+        <div class="activity-body">
+          <h3>🎭 Role Play – At the Market</h3>
+          <p>One student is the seller, one is the buyer. Practice asking: "How much is this?" "I'd like two apples, please." "Here you are." "Thank you, have a nice day!" Use props or picture cards to make it fun!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ 7. ASSESSMENT RUBRIC ═══ -->
+  <section>
+    <h2>
+      <span class="badge" style="background:var(--violet);color:#fff;">📊</span>
+      Speaking Assessment Rubric
+    </h2>
+    <div style="overflow-x:auto;">
+    <table class="rubric">
+      <thead>
+        <tr>
+          <th>Criteria</th>
+          <th>Excellent (4)</th>
+          <th>Good (3)</th>
+          <th>Fair (2)</th>
+          <th>Needs Work (1)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Fluency</strong></td>
+          <td>Speaks smoothly with no long pauses</td>
+          <td>Mostly smooth, minor hesitations</td>
+          <td>Several pauses, slow pace</td>
+          <td>Very slow, frequent stops</td>
+        </tr>
+        <tr>
+          <td><strong>Pronunciation</strong></td>
+          <td>Clear and easy to understand</td>
+          <td>Mostly clear, minor errors</td>
+          <td>Some unclear sounds</td>
+          <td>Hard to understand</td>
+        </tr>
+        <tr>
+          <td><strong>Vocabulary</strong></td>
+          <td>Uses varied and correct words</td>
+          <td>Good word choice, few errors</td>
+          <td>Limited vocabulary used</td>
+          <td>Very basic words only</td>
+        </tr>
+        <tr>
+          <td><strong>Confidence</strong></td>
+          <td>Eye contact, loud, confident</td>
+          <td>Mostly confident, some shyness</td>
+          <td>Quiet, looks at notes often</td>
+          <td>Very shy, barely audible</td>
+        </tr>
+        <tr>
+          <td><strong>Interaction</strong></td>
+          <td>Responds well, listens actively</td>
+          <td>Usually responds correctly</td>
+          <td>Needs prompting to respond</td>
+          <td>Struggles to respond</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:14px;font-size:.88rem;color:#555;">
+      <span class="score">Total: /20</span> &nbsp; 
+      18–20 = ⭐ Excellent &nbsp;|&nbsp; 14–17 = 👍 Good &nbsp;|&nbsp; 10–13 = 🙂 Fair &nbsp;|&nbsp; Below 10 = 📖 Keep Practicing!
+    </p>
+  </section>
+
+  <!-- ═══ 8. TEACHER'S NOTE ═══ -->
+  <section>
+    <div style="background:var(--grass);border-radius:var(--card-r);padding:24px 26px;color:#fff;box-shadow:0 6px 0 rgba(77,199,122,.3);">
+      <p style="font-family:'Fredoka One',cursive;font-size:1.2rem;margin-bottom:8px;">📝 Teacher's Note</p>
+      <p style="font-size:.93rem;line-height:1.6;opacity:.95;">
+        Encourage students to speak without fear of making mistakes — mistakes are part of learning! Use positive reinforcement (stickers, praise) after each activity. Pair stronger students with those who need more support. Allow students to use simple gestures and pictures if they get stuck. The goal at this stage is <strong>communication confidence</strong>, not perfection.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>BunRey English Course</strong> · Speaking Module · Grade 4 Elementary</p>
+  <p style="margin-top:6px;">Designed to build confidence, one word at a time. 🌟</p>
+</footer>
+
+</body>
+</html>
