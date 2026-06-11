@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Reading · Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:    #4BBDE8;
+    --sun:    #FFD84D;
+    --grass:  #5DBB63;
+    --coral:  #FF6B6B;
+    --lavend: #A78BFA;
+    --white:  #FFFFFF;
+    --ink:    #1E293B;
+    --soft:   #F0F9FF;
+    --card:   #FFFBEB;
+    --border: #E2E8F0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--soft);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--sky) 0%, #6DD5FA 100%);
+    padding: 24px 32px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 16px rgba(75,189,232,.3);
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "☁️ ☁️ ☁️";
+    position: absolute; right: 32px; top: 16px;
+    font-size: 28px; opacity: .5;
+    letter-spacing: 12px;
+  }
+  .logo-badge {
+    background: var(--sun);
+    border-radius: 50%;
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 26px; font-weight: 800;
+    color: var(--white);
+    text-shadow: 0 2px 6px rgba(0,0,0,.2);
+    line-height: 1.1;
+  }
+  .header-text p {
+    font-size: 13px; color: rgba(255,255,255,.9);
+    font-weight: 600; margin-top: 2px;
+  }
+
+  /* ── TOPIC BANNER ── */
+  .topic-banner {
+    background: var(--grass);
+    color: white;
+    text-align: center;
+    padding: 14px 24px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px; font-weight: 700;
+    letter-spacing: .5px;
+    box-shadow: 0 3px 10px rgba(93,187,99,.35);
+  }
+  .topic-banner span { font-size: 22px; margin: 0 8px; }
+
+  /* ── MAIN ── */
+  main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    display: flex; align-items: center; gap: 12px;
+    margin: 36px 0 18px;
+  }
+  .sec-title .icon-bubble {
+    background: var(--coral);
+    color: white;
+    border-radius: 50%;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(255,107,107,.4);
+  }
+  .sec-title h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 20px; font-weight: 800; color: var(--ink);
+  }
+  .sec-title h2 small {
+    display: block; font-size: 12px; font-weight: 600;
+    color: #64748B; font-family: 'Nunito', sans-serif;
+  }
+
+  /* ── ALPHABET GRID ── */
+  .alpha-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(58px, 1fr));
+    gap: 10px;
+  }
+  .alpha-card {
+    background: white;
+    border-radius: 14px;
+    padding: 10px 6px;
+    text-align: center;
+    border: 2.5px solid var(--border);
+    transition: transform .15s, box-shadow .15s;
+    cursor: default;
+  }
+  .alpha-card:hover { transform: translateY(-4px); box-shadow: 0 6px 18px rgba(0,0,0,.1); }
+  .alpha-card .big { font-family: 'Baloo 2', cursive; font-size: 26px; font-weight: 800; line-height: 1; }
+  .alpha-card .small { font-size: 18px; font-weight: 700; color: #64748B; }
+
+  .alpha-card:nth-child(5n+1) { border-color: var(--sky);    } .alpha-card:nth-child(5n+1) .big { color: var(--sky); }
+  .alpha-card:nth-child(5n+2) { border-color: var(--coral);  } .alpha-card:nth-child(5n+2) .big { color: var(--coral); }
+  .alpha-card:nth-child(5n+3) { border-color: var(--grass);  } .alpha-card:nth-child(5n+3) .big { color: var(--grass); }
+  .alpha-card:nth-child(5n+4) { border-color: var(--sun);    } .alpha-card:nth-child(5n+4) .big { color: #D97706; }
+  .alpha-card:nth-child(5n+5) { border-color: var(--lavend); } .alpha-card:nth-child(5n+5) .big { color: var(--lavend); }
+
+  /* ── VOCAB CARDS ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+  }
+  .vocab-card {
+    background: white;
+    border-radius: 18px;
+    padding: 18px 14px 14px;
+    text-align: center;
+    border: 2.5px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    transition: transform .15s;
+  }
+  .vocab-card:hover { transform: translateY(-5px); box-shadow: 0 10px 24px rgba(0,0,0,.1); }
+  .vocab-card .emoji { font-size: 48px; line-height: 1; margin-bottom: 10px; display: block; }
+  .vocab-card .word { font-family: 'Baloo 2', cursive; font-size: 18px; font-weight: 800; color: var(--ink); }
+  .vocab-card .pron { font-size: 11.5px; color: #94A3B8; font-style: italic; margin: 2px 0 4px; }
+  .vocab-card .translation { font-size: 12.5px; font-weight: 700; color: var(--grass); }
+
+  /* ── READING PASSAGE ── */
+  .passage-box {
+    background: var(--card);
+    border: 2.5px solid var(--sun);
+    border-radius: 20px;
+    padding: 28px 28px 22px;
+    position: relative;
+  }
+  .passage-box .passage-label {
+    position: absolute; top: -14px; left: 22px;
+    background: var(--sun);
+    color: var(--ink);
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800; font-size: 13px;
+    padding: 4px 14px; border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(255,216,77,.4);
+  }
+  .passage-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 22px; font-weight: 800;
+    color: var(--coral); margin-bottom: 14px;
+    text-align: center;
+  }
+  .passage-text {
+    font-size: 16px; line-height: 1.9; font-weight: 600;
+    color: var(--ink);
+  }
+  .passage-text .hl { color: var(--sky); font-weight: 800; }
+  .illus { text-align: center; font-size: 56px; margin: 12px 0; letter-spacing: 10px; }
+
+  /* ── QUESTIONS ── */
+  .q-list { display: flex; flex-direction: column; gap: 14px; }
+  .q-item {
+    background: white;
+    border-radius: 16px;
+    border: 2.5px solid var(--border);
+    padding: 16px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .q-num {
+    background: var(--lavend);
+    color: white;
+    border-radius: 50%;
+    width: 32px; height: 32px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 16px;
+  }
+  .q-text { font-size: 15px; font-weight: 700; line-height: 1.5; color: var(--ink); }
+  .q-text .answer {
+    margin-top: 8px;
+    background: #F0FDF4;
+    border-left: 4px solid var(--grass);
+    padding: 6px 12px;
+    border-radius: 0 10px 10px 0;
+    font-size: 13.5px; color: #166534;
+    font-weight: 700;
+  }
+
+  /* ── EXERCISE BOXES ── */
+  .exercise-box {
+    background: white;
+    border-radius: 18px;
+    border: 2.5px solid var(--lavend);
+    padding: 22px 22px 18px;
+    margin-top: 8px;
+  }
+  .exercise-box h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 17px; font-weight: 800; color: var(--lavend);
+    margin-bottom: 14px;
+  }
+  .match-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+  .match-box {
+    background: #EDE9FE;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-weight: 800; font-size: 15px; color: #4C1D95;
+    min-width: 90px; text-align: center;
+  }
+  .match-line { flex:1; border-bottom: 2.5px dashed #C4B5FD; min-width: 24px; }
+  .match-answer {
+    border: 2.5px solid #C4B5FD;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 15px; font-weight: 800; color: var(--ink);
+    min-width: 90px; text-align: center;
+    background: #FAFAF9;
+  }
+  .fill-row { margin-bottom: 12px; font-size: 15px; font-weight: 700; color: var(--ink); line-height: 2; }
+  .blank {
+    display: inline-block;
+    border-bottom: 2.5px solid var(--sky);
+    min-width: 80px;
+    text-align: center;
+    color: var(--sky);
+    font-weight: 800;
+  }
+  .word-bank {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+  }
+  .wb-tag {
+    background: #E0F2FE; color: #0369A1;
+    border-radius: 20px; padding: 5px 14px;
+    font-weight: 800; font-size: 14px;
+    border: 2px solid #BAE6FD;
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: linear-gradient(135deg,#FFF7ED,#FEF3C7);
+    border: 2.5px solid var(--sun);
+    border-radius: 18px;
+    padding: 18px 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .tip-icon { font-size: 32px; flex-shrink: 0; }
+  .tip-box p { font-size: 14px; font-weight: 700; color: #78350F; line-height: 1.7; }
+  .tip-box p strong { color: #92400E; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,.7);
+    text-align: center;
+    padding: 18px;
+    font-size: 13px; font-weight: 600;
+  }
+  footer span { color: var(--sun); }
+
+  @media(max-width:560px) {
+    .vocab-grid { grid-template-columns: repeat(2,1fr); }
+    .alpha-grid  { grid-template-columns: repeat(auto-fill, minmax(48px,1fr)); }
+    .passage-box { padding: 24px 16px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-badge">📚</div>
+  <div class="header-text">
+    <h1>BunRey English Course</h1>
+    <p>Reading Material · Grade 1 · Semester 1</p>
+  </div>
+</header>
+
+<!-- TOPIC BANNER -->
+<div class="topic-banner">
+  <span>🌟</span> Unit 1: Let's Learn to Read! <span>🌟</span>
+</div>
+
+<main>
+
+  <!-- TEACHER NOTE -->
+  <div class="tip-box" style="margin-top:24px;">
+    <div class="tip-icon">👩‍🏫</div>
+    <p><strong>Teacher's Note:</strong> This material is designed for Grade 1 students who are beginning to recognise letters and words in English. Read each section aloud, ask students to repeat, and use the pictures and emojis as visual aids. Each session is approximately 45 minutes.</p>
+  </div>
+
+  <!-- ══ SECTION 1 ══ ALPHABET -->
+  <div class="sec-title">
+    <div class="icon-bubble">🔤</div>
+    <h2>1. The Alphabet<small>Letters A – Z</small></h2>
+  </div>
+
+  <div class="alpha-grid">
+    <div class="alpha-card"><div class="big">A</div><div class="small">a</div></div>
+    <div class="alpha-card"><div class="big">B</div><div class="small">b</div></div>
+    <div class="alpha-card"><div class="big">C</div><div class="small">c</div></div>
+    <div class="alpha-card"><div class="big">D</div><div class="small">d</div></div>
+    <div class="alpha-card"><div class="big">E</div><div class="small">e</div></div>
+    <div class="alpha-card"><div class="big">F</div><div class="small">f</div></div>
+    <div class="alpha-card"><div class="big">G</div><div class="small">g</div></div>
+    <div class="alpha-card"><div class="big">H</div><div class="small">h</div></div>
+    <div class="alpha-card"><div class="big">I</div><div class="small">i</div></div>
+    <div class="alpha-card"><div class="big">J</div><div class="small">j</div></div>
+    <div class="alpha-card"><div class="big">K</div><div class="small">k</div></div>
+    <div class="alpha-card"><div class="big">L</div><div class="small">l</div></div>
+    <div class="alpha-card"><div class="big">M</div><div class="small">m</div></div>
+    <div class="alpha-card"><div class="big">N</div><div class="small">n</div></div>
+    <div class="alpha-card"><div class="big">O</div><div class="small">o</div></div>
+    <div class="alpha-card"><div class="big">P</div><div class="small">p</div></div>
+    <div class="alpha-card"><div class="big">Q</div><div class="small">q</div></div>
+    <div class="alpha-card"><div class="big">R</div><div class="small">r</div></div>
+    <div class="alpha-card"><div class="big">S</div><div class="small">s</div></div>
+    <div class="alpha-card"><div class="big">T</div><div class="small">t</div></div>
+    <div class="alpha-card"><div class="big">U</div><div class="small">u</div></div>
+    <div class="alpha-card"><div class="big">V</div><div class="small">v</div></div>
+    <div class="alpha-card"><div class="big">W</div><div class="small">w</div></div>
+    <div class="alpha-card"><div class="big">X</div><div class="small">x</div></div>
+    <div class="alpha-card"><div class="big">Y</div><div class="small">y</div></div>
+    <div class="alpha-card"><div class="big">Z</div><div class="small">z</div></div>
+  </div>
+
+  <div class="tip-box" style="margin-top:16px;">
+    <div class="tip-icon">💡</div>
+    <p><strong>Activity:</strong> Sing the "ABC Song" together. Point to each letter card as you say it. Ask students to write each letter in the air with their finger.</p>
+  </div>
+
+  <!-- ══ SECTION 2 ══ VOCABULARY – Animals -->
+  <div class="sec-title">
+    <div class="icon-bubble" style="background:var(--grass);">🐾</div>
+    <h2>2. Vocabulary – Animals<small>Animals Around Us</small></h2>
+  </div>
+
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <span class="emoji">🐶</span>
+      <div class="word">Dog</div>
+      <div class="pron">/dɒɡ/</div>
+      <div class="translation">Anjing</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🐱</span>
+      <div class="word">Cat</div>
+      <div class="pron">/kæt/</div>
+      <div class="translation">Kucing</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🐟</span>
+      <div class="word">Fish</div>
+      <div class="pron">/fɪʃ/</div>
+      <div class="translation">Ikan</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🐦</span>
+      <div class="word">Bird</div>
+      <div class="pron">/bɜːrd/</div>
+      <div class="translation">Burung</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🐰</span>
+      <div class="word">Rabbit</div>
+      <div class="pron">/ˈræbɪt/</div>
+      <div class="translation">Kelinci</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🐄</span>
+      <div class="word">Cow</div>
+      <div class="pron">/kaʊ/</div>
+      <div class="translation">Sapi</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🐔</span>
+      <div class="word">Chicken</div>
+      <div class="pron">/ˈtʃɪkɪn/</div>
+      <div class="translation">Ayam</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🦆</span>
+      <div class="word">Duck</div>
+      <div class="pron">/dʌk/</div>
+      <div class="translation">Bebek</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3 ══ VOCABULARY – School Things -->
+  <div class="sec-title">
+    <div class="icon-bubble" style="background:var(--sky);">🎒</div>
+    <h2>3. Vocabulary – School Things<small>Things in My Classroom</small></h2>
+  </div>
+
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <span class="emoji">📚</span>
+      <div class="word">Book</div>
+      <div class="pron">/bʊk/</div>
+      <div class="translation">Buku</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">✏️</span>
+      <div class="word">Pencil</div>
+      <div class="pron">/ˈpensəl/</div>
+      <div class="translation">Pensil</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">📏</span>
+      <div class="word">Ruler</div>
+      <div class="pron">/ˈruːlər/</div>
+      <div class="translation">Penggaris</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🎒</span>
+      <div class="word">Bag</div>
+      <div class="pron">/bæɡ/</div>
+      <div class="translation">Tas</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">✂️</span>
+      <div class="word">Scissors</div>
+      <div class="pron">/ˈsɪzərz/</div>
+      <div class="translation">Gunting</div>
+    </div>
+    <div class="vocab-card">
+      <span class="emoji">🖍️</span>
+      <div class="word">Crayon</div>
+      <div class="pron">/ˈkreɪ.ɒn/</div>
+      <div class="translation">Krayon</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 4 ══ READING PASSAGE 1 -->
+  <div class="sec-title">
+    <div class="icon-bubble" style="background:var(--sun); color:var(--ink);">📖</div>
+    <h2>4. Reading Passage 1<small>Read Aloud &amp; Understand</small></h2>
+  </div>
+
+  <div class="passage-box">
+    <div class="passage-label">📖 Read Aloud!</div>
+    <div class="passage-title">My Pet 🐾</div>
+    <div class="illus">🐱🏠🌳</div>
+    <div class="passage-text">
+      I have a <span class="hl">cat</span>.<br>
+      My cat's name is <span class="hl">Milo</span>.<br>
+      Milo is <span class="hl">small</span> and <span class="hl">white</span>.<br>
+      Milo can <span class="hl">jump</span> high.<br>
+      Milo likes to <span class="hl">eat</span> and <span class="hl">sleep</span>.<br>
+      I <span class="hl">love</span> my cat! 🐾
+    </div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <div class="tip-box">
+      <div class="tip-icon">🗣️</div>
+      <p><strong>How to read:</strong> Read the text slowly together with the students. Words printed in <strong style="color:var(--sky);">blue</strong> are the key vocabulary. Ask students to repeat each sentence after the teacher reads it.</p>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 5 ══ COMPREHENSION Q&A -->
+  <div class="sec-title">
+    <div class="icon-bubble" style="background:var(--lavend);">❓</div>
+    <h2>5. Comprehension Questions<small>Check Your Understanding</small></h2>
+  </div>
+
+  <div class="q-list">
+    <div class="q-item">
+      <div class="q-num">1</div>
+      <div class="q-text">
+        What animal does the story talk about?
+        <div class="answer">✅ A cat.</div>
+      </div>
+    </div>
+    <div class="q-item">
+      <div class="q-num">2</div>
+      <div class="q-text">
+        What is the cat's name?
+        <div class="answer">✅ Milo.</div>
+      </div>
+    </div>
+    <div class="q-item">
+      <div class="q-num">3</div>
+      <div class="q-text">
+        What colour is Milo?
+        <div class="answer">✅ White.</div>
+      </div>
+    </div>
+    <div class="q-item">
+      <div class="q-num">4</div>
+      <div class="q-text">
+        What can Milo do?
+        <div class="answer">✅ Milo can jump high.</div>
+      </div>
+    </div>
+    <div class="q-item">
+      <div class="q-num">5</div>
+      <div class="q-text">
+        Do you have a pet? What is it? (Open answer)
+        <div class="answer">🌟 Open answer – encourage the student to speak!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 6 ══ EXERCISES -->
+  <div class="sec-title">
+    <div class="icon-bubble" style="background:var(--coral);">✍️</div>
+    <h2>6. Exercises<small>Practice Makes Perfect!</small></h2>
+  </div>
+
+  <!-- Exercise A: Match -->
+  <div class="exercise-box">
+    <h3>Exercise A – Match the Picture! 🖼️</h3>
+    <p style="font-size:13px;color:#64748B;font-weight:700;margin-bottom:14px;">Draw a line to match each picture with the correct word.</p>
+
+    <div class="match-row">
+      <div class="match-box">🐶</div>
+      <div class="match-line"></div>
+      <div class="match-answer">Fish</div>
+    </div>
+    <div class="match-row">
+      <div class="match-box">🐟</div>
+      <div class="match-line"></div>
+      <div class="match-answer">Cat</div>
+    </div>
+    <div class="match-row">
+      <div class="match-box">🐱</div>
+      <div class="match-line"></div>
+      <div class="match-answer">Bird</div>
+    </div>
+    <div class="match-row">
+      <div class="match-box">🐦</div>
+      <div class="match-line"></div>
+      <div class="match-answer">Dog</div>
+    </div>
+
+    <div class="tip-box" style="margin-top:14px;">
+      <div class="tip-icon">🔑</div>
+      <p><strong>Answer Key:</strong> 🐶 → Dog &nbsp;|&nbsp; 🐟 → Fish &nbsp;|&nbsp; 🐱 → Cat &nbsp;|&nbsp; 🐦 → Bird</p>
+    </div>
+  </div>
+
+  <!-- Exercise B: Fill in the blanks -->
+  <div class="exercise-box" style="margin-top:16px; border-color: var(--sky);">
+    <h3 style="color:var(--sky);">Exercise B – Fill in the Blanks! ✏️</h3>
+
+    <p style="font-size:13px;color:#64748B;font-weight:700;margin-bottom:10px;">Word Bank – choose the correct word:</p>
+    <div class="word-bank">
+      <span class="wb-tag">cat</span>
+      <span class="wb-tag">small</span>
+      <span class="wb-tag">jump</span>
+      <span class="wb-tag">white</span>
+      <span class="wb-tag">Milo</span>
+    </div>
+
+    <div class="fill-row">1. I have a <span class="blank">cat</span>.</div>
+    <div class="fill-row">2. My cat's name is <span class="blank">Milo</span>.</div>
+    <div class="fill-row">3. Milo is <span class="blank">small</span> and <span class="blank">white</span>.</div>
+    <div class="fill-row">4. Milo can <span class="blank">jump</span> high.</div>
+  </div>
+
+  <!-- Exercise C: True or False -->
+  <div class="exercise-box" style="margin-top:16px; border-color: var(--coral);">
+    <h3 style="color:var(--coral);">Exercise C – True or False! ✔️❌</h3>
+    <p style="font-size:13px;color:#64748B;font-weight:700;margin-bottom:14px;">Write <strong>True</strong> or <strong>False</strong> for each sentence.</p>
+
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-num" style="background:var(--coral);">1</div>
+        <div class="q-text">
+          The cat's name is Bimo.
+          <div class="answer">❌ False. The cat's name is Milo.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num" style="background:var(--coral);">2</div>
+        <div class="q-text">
+          Milo is white.
+          <div class="answer">✅ True.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num" style="background:var(--coral);">3</div>
+        <div class="q-text">
+          Milo is a dog.
+          <div class="answer">❌ False. Milo is a cat.</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <div class="q-num" style="background:var(--coral);">4</div>
+        <div class="q-text">
+          Milo can jump high.
+          <div class="answer">✅ True.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 7 ══ READING PASSAGE 2 -->
+  <div class="sec-title">
+    <div class="icon-bubble" style="background:#F59E0B; color:white;">📖</div>
+    <h2>7. Reading Passage 2<small>Second Reading Text</small></h2>
+  </div>
+
+  <div class="passage-box" style="border-color:var(--grass);">
+    <div class="passage-label" style="background:var(--grass);">📖 Read Aloud!</div>
+    <div class="passage-title" style="color:var(--grass);">My Classroom 🏫</div>
+    <div class="illus">🏫✏️📚</div>
+    <div class="passage-text">
+      This is my <span class="hl">classroom</span>.<br>
+      I have a <span class="hl">book</span> and a <span class="hl">pencil</span>.<br>
+      My bag is <span class="hl">red</span>.<br>
+      My teacher is <span class="hl">kind</span>.<br>
+      I like to <span class="hl">read</span> and <span class="hl">write</span>.<br>
+      I love my <span class="hl">school</span>! 🏫
+    </div>
+  </div>
+
+  <div class="q-list" style="margin-top:16px;">
+    <div class="q-item">
+      <div class="q-num">1</div>
+      <div class="q-text">
+        What colour is the bag?
+        <div class="answer">✅ Red.</div>
+      </div>
+    </div>
+    <div class="q-item">
+      <div class="q-num">2</div>
+      <div class="q-text">
+        What does the student have?
+        <div class="answer">✅ A book and a pencil.</div>
+      </div>
+    </div>
+    <div class="q-item">
+      <div class="q-num">3</div>
+      <div class="q-text">
+        How is the teacher?
+        <div class="answer">✅ The teacher is kind.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 8 ══ ASSESSMENT & TEACHING TIPS -->
+  <div class="sec-title" style="margin-top:40px;">
+    <div class="icon-bubble" style="background:#F59E0B;">🏆</div>
+    <h2>8. Assessment &amp; Teaching Tips<small>For Teachers</small></h2>
+  </div>
+
+  <div style="display:grid; gap:14px;">
+    <div class="tip-box">
+      <div class="tip-icon">⭐</div>
+      <p><strong>Oral Reading Assessment:</strong> Score students on fluency (4 pts), pronunciation (3 pts), and confidence (3 pts). Total = 10 points per student.</p>
+    </div>
+    <div class="tip-box">
+      <div class="tip-icon">🎮</div>
+      <p><strong>Fun Activity:</strong> Create picture flash cards using the vocabulary above. Show the picture and ask students to say the English word. Award a star sticker for every correct answer!</p>
+    </div>
+    <div class="tip-box">
+      <div class="tip-icon">📝</div>
+      <p><strong>Homework:</strong> Ask students to draw their pet (or favourite animal) and write 2 sentences in English. Example: "I have a cat. My cat is black."</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  &copy; 2026 <span>BunRey English Course</span> · Reading Material · Grade 1 · All rights reserved.
+</footer>
+
+</body>
+</html>

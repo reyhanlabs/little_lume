@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Speaking | Grade 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root {
+    --sky:    #4FC3F7;
+    --sun:    #FFD54F;
+    --grass:  #81C784;
+    --coral:  #FF7043;
+    --purple: #AB47BC;
+    --white:  #FFFFFF;
+    --dark:   #1A237E;
+    --light-bg: #F0F8FF;
+    --card-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--light-bg);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--sky) 0%, #0288D1 100%);
+    padding: 28px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '🌟';
+    font-size: 80px;
+    position: absolute; top: -10px; left: -10px; opacity: .15;
+  }
+  header::after {
+    content: '🌈';
+    font-size: 80px;
+    position: absolute; bottom: -20px; right: -10px; opacity: .15;
+  }
+  .logo-badge {
+    display: inline-block;
+    background: var(--sun);
+    color: var(--dark);
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1rem;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  header h1 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2.4rem;
+    color: var(--white);
+    line-height: 1.15;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  }
+  header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+
+  /* ── WAVE ── */
+  .wave {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23F0F8FF' d='M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E") no-repeat bottom;
+    background-size: cover;
+    margin-top: -2px;
+  }
+
+  /* ── MAIN ── */
+  main { max-width: 860px; margin: 0 auto; padding: 16px 20px 60px; }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.5rem;
+    margin: 36px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title span.pill {
+    background: var(--sun);
+    border-radius: 50px;
+    padding: 2px 14px;
+    font-size: 1rem;
+    color: var(--dark);
+  }
+
+  /* ── INFO STRIP ── */
+  .info-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .info-chip {
+    background: var(--white);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-weight: 700;
+    font-size: .9rem;
+    box-shadow: var(--card-shadow);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ── OBJECTIVE CARDS ── */
+  .obj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .obj-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 18px 16px;
+    box-shadow: var(--card-shadow);
+    border-top: 5px solid var(--grass);
+    font-weight: 700;
+    font-size: .95rem;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .obj-card .ico { font-size: 1.6rem; }
+
+  /* ── TOPIC TABS ── */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tab-btn {
+    background: var(--white);
+    border: 2px solid var(--sky);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: .9rem;
+    cursor: pointer;
+    color: var(--dark);
+    transition: all .2s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--sky);
+    color: var(--white);
+    border-color: var(--sky);
+  }
+
+  /* ── TOPIC PANEL ── */
+  .topic-panel { display: none; }
+  .topic-panel.active { display: block; }
+
+  .topic-card {
+    background: var(--white);
+    border-radius: 22px;
+    padding: 26px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+  }
+  .topic-card h3 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.2rem;
+    color: var(--coral);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* ── VOCAB LIST ── */
+  .vocab-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .vocab-item {
+    background: linear-gradient(135deg, #E3F2FD, #F3E5F5);
+    border-radius: 14px;
+    padding: 12px 14px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+  .vocab-item .en  { font-size: 1.2rem; color: var(--dark); }
+  .vocab-item .sub { font-size: .8rem; color: #555; font-weight: 600; margin-top: 2px; }
+  .vocab-item .emo { font-size: 1.6rem; }
+
+  /* ── DIALOG BOX ── */
+  .dialog-box {
+    background: linear-gradient(135deg, #FFF8E1, #FFF3E0);
+    border-left: 5px solid var(--sun);
+    border-radius: 0 14px 14px 0;
+    padding: 14px 18px;
+    margin: 10px 0;
+  }
+  .dialog-box .speaker {
+    font-weight: 800; font-size: .85rem; color: var(--coral);
+    margin-bottom: 4px; text-transform: uppercase; letter-spacing: .5px;
+  }
+  .dialog-box .line        { font-size: 1.05rem; font-weight: 700; }
+  .dialog-box .translation { font-size: .85rem; color: #777; margin-top: 2px; }
+
+  /* ── ACTIVITY CARDS ── */
+  .activity-list { display: flex; flex-direction: column; gap: 12px; }
+  .activity-item {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .activity-item .step-num {
+    min-width: 34px; height: 34px;
+    background: var(--purple);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .activity-item .act-body h4 { font-weight: 800; margin-bottom: 4px; }
+  .activity-item .act-body p  { font-size: .9rem; color: #555; font-weight: 600; }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+    border-radius: 18px;
+    padding: 18px 22px;
+    margin-top: 10px;
+    border-left: 5px solid var(--grass);
+  }
+  .tip-box h4 { font-weight: 800; color: #2E7D32; margin-bottom: 8px; }
+  .tip-box ul  { padding-left: 18px; }
+  .tip-box li  { font-size: .92rem; font-weight: 600; color: #444; margin-bottom: 4px; }
+
+  /* ── ASSESSMENT TABLE ── */
+  .assess-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  .assess-table th {
+    background: var(--sky);
+    color: var(--white);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 800;
+  }
+  .assess-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #E0E0E0;
+    font-weight: 600;
+  }
+  .assess-table tr:nth-child(even) td { background: #F9F9F9; }
+
+  /* ── BADGES ── */
+  .badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge {
+    background: linear-gradient(135deg, #FFD54F, #FFA726);
+    border-radius: 18px;
+    padding: 14px 20px;
+    text-align: center;
+    font-weight: 800;
+    font-size: .9rem;
+    box-shadow: var(--card-shadow);
+    min-width: 130px;
+  }
+  .badge .star { font-size: 1.8rem; display: block; margin-bottom: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 20px;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+  footer span { color: var(--sun); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 500px) {
+    header h1 { font-size: 1.7rem; }
+    .obj-grid  { grid-template-columns: 1fr 1fr; }
+    .vocab-list { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="logo-badge">🐰 BunRey English Course</div>
+  <h1>Speaking Fun!<br>Grade 1 – Primary School</h1>
+  <p>Let's Learn to Speak English Together! 🗣️✨</p>
+</header>
+<span class="wave"></span>
+
+<main>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-chip">📚 Grade 1 – Primary</div>
+    <div class="info-chip">⏱️ 60 Minutes / Session</div>
+    <div class="info-chip">🎯 4 Main Topics</div>
+    <div class="info-chip">🌟 Beginner Level</div>
+  </div>
+
+  <!-- LEARNING GOALS -->
+  <div class="section-title">🎯 Learning Objectives <span class="pill">Goals</span></div>
+  <div class="obj-grid">
+    <div class="obj-card"><span class="ico">👋</span><span>Greet others and introduce themselves in English</span></div>
+    <div class="obj-card" style="border-top-color:var(--coral)"><span class="ico">🔢</span><span>Say the numbers 1–10 fluently</span></div>
+    <div class="obj-card" style="border-top-color:var(--purple)"><span class="ico">🎨</span><span>Name basic colours in English</span></div>
+    <div class="obj-card" style="border-top-color:var(--sun)"><span class="ico">🐶</span><span>Name common animals in English</span></div>
+  </div>
+
+  <!-- TOPIC TABS -->
+  <div class="section-title">📖 Choose a Topic <span class="pill">Topics</span></div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('greetings', this)">👋 Greetings</button>
+    <button class="tab-btn" onclick="showTab('numbers', this)">🔢 Numbers</button>
+    <button class="tab-btn" onclick="showTab('colors', this)">🎨 Colors</button>
+    <button class="tab-btn" onclick="showTab('animals', this)">🐾 Animals</button>
+  </div>
+
+  <!-- ══════ TOPIC 1: GREETINGS ══════ -->
+  <div id="tab-greetings" class="topic-panel active">
+
+    <div class="topic-card">
+      <h3>📚 Vocabulary – Greetings</h3>
+      <div class="vocab-list">
+        <div class="vocab-item"><div class="emo">☀️</div><div class="en">Good Morning</div><div class="sub">used before noon</div></div>
+        <div class="vocab-item"><div class="emo">🌤️</div><div class="en">Good Afternoon</div><div class="sub">noon – evening</div></div>
+        <div class="vocab-item"><div class="emo">🌙</div><div class="en">Good Evening</div><div class="sub">after sunset</div></div>
+        <div class="vocab-item"><div class="emo">👋</div><div class="en">Hello / Hi</div><div class="sub">casual greeting</div></div>
+        <div class="vocab-item"><div class="emo">🙋</div><div class="en">My name is…</div><div class="sub">introducing yourself</div></div>
+        <div class="vocab-item"><div class="emo">😊</div><div class="en">Nice to meet you</div><div class="sub">first meeting</div></div>
+        <div class="vocab-item"><div class="emo">😄</div><div class="en">I am fine</div><div class="sub">answering "how are you"</div></div>
+        <div class="vocab-item"><div class="emo">👋</div><div class="en">Goodbye / Bye</div><div class="sub">parting words</div></div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>💬 Sample Dialogue</h3>
+
+      <div class="dialog-box">
+        <div class="speaker">🧒 Budi</div>
+        <div class="line">Good morning! My name is Budi. What is your name?</div>
+      </div>
+      <div class="dialog-box" style="border-left-color:var(--purple); background:linear-gradient(135deg,#F3E5F5,#EDE7F6)">
+        <div class="speaker" style="color:var(--purple)">👧 Sari</div>
+        <div class="line">Good morning, Budi! My name is Sari. Nice to meet you!</div>
+      </div>
+      <div class="dialog-box">
+        <div class="speaker">🧒 Budi</div>
+        <div class="line">Nice to meet you too, Sari! How are you?</div>
+      </div>
+      <div class="dialog-box" style="border-left-color:var(--purple); background:linear-gradient(135deg,#F3E5F5,#EDE7F6)">
+        <div class="speaker" style="color:var(--purple)">👧 Sari</div>
+        <div class="line">I am fine, thank you! Goodbye!</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>🎮 Classroom Activities</h3>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="step-num">1</div>
+          <div class="act-body">
+            <h4>👋 Hello Circle</h4>
+            <p>Students stand in a circle. One by one they introduce themselves: <em>"Hi! My name is ___."</em> The others reply: <em>"Nice to meet you, ___!"</em></p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">2</div>
+          <div class="act-body">
+            <h4>🎭 Pair Role Play</h4>
+            <p>Students work in pairs and act as new friends. Practise the full dialogue from greeting to farewell.</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">3</div>
+          <div class="act-body">
+            <h4>🎵 Greeting Song</h4>
+            <p>Sing <em>"Hello, Hello, How Are You?"</em> together while waving to friends across the room.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>💡 Teacher Tips</h4>
+        <ul>
+          <li>Use puppets or hand puppets to make the dialogue more engaging.</li>
+          <li>Praise every attempt: <em>"Great job! Well done! ⭐"</em></li>
+          <li>Pair the vocabulary with physical actions — wave while saying "Hello!"</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /greetings -->
+
+  <!-- ══════ TOPIC 2: NUMBERS ══════ -->
+  <div id="tab-numbers" class="topic-panel">
+
+    <div class="topic-card">
+      <h3>📚 Vocabulary – Numbers 1–10</h3>
+      <div class="vocab-list">
+        <div class="vocab-item"><div class="emo">1️⃣</div><div class="en">One</div><div class="sub">1</div></div>
+        <div class="vocab-item"><div class="emo">2️⃣</div><div class="en">Two</div><div class="sub">2</div></div>
+        <div class="vocab-item"><div class="emo">3️⃣</div><div class="en">Three</div><div class="sub">3</div></div>
+        <div class="vocab-item"><div class="emo">4️⃣</div><div class="en">Four</div><div class="sub">4</div></div>
+        <div class="vocab-item"><div class="emo">5️⃣</div><div class="en">Five</div><div class="sub">5</div></div>
+        <div class="vocab-item"><div class="emo">6️⃣</div><div class="en">Six</div><div class="sub">6</div></div>
+        <div class="vocab-item"><div class="emo">7️⃣</div><div class="en">Seven</div><div class="sub">7</div></div>
+        <div class="vocab-item"><div class="emo">8️⃣</div><div class="en">Eight</div><div class="sub">8</div></div>
+        <div class="vocab-item"><div class="emo">9️⃣</div><div class="en">Nine</div><div class="sub">9</div></div>
+        <div class="vocab-item"><div class="emo">🔟</div><div class="en">Ten</div><div class="sub">10</div></div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>💬 Sample Sentences</h3>
+      <div class="dialog-box">
+        <div class="speaker">🧒 Student</div>
+        <div class="line">I have <strong>three</strong> pencils.</div>
+      </div>
+      <div class="dialog-box" style="border-left-color:var(--grass); background:linear-gradient(135deg,#E8F5E9,#F1F8E9)">
+        <div class="speaker" style="color:#2E7D32">🍎 Teacher asks:</div>
+        <div class="line">How many apples are there?</div>
+        <div class="translation">Student counts aloud: "One, two, three… <strong>five apples!</strong>"</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>🎮 Classroom Activities</h3>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="step-num">1</div>
+          <div class="act-body">
+            <h4>🖐️ Count My Fingers!</h4>
+            <p>The teacher holds up fingers; students call out the number in English together as a class.</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">2</div>
+          <div class="act-body">
+            <h4>🎲 Number Dice Game</h4>
+            <p>Roll a die and say the number shown in English. A correct answer earns a star sticker!</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">3</div>
+          <div class="act-body">
+            <h4>🎵 Count with Me Song</h4>
+            <p>Sing <em>"One, Two, Three, Four, Five – Once I Caught a Fish Alive!"</em> while counting on fingers.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>💡 Teacher Tips</h4>
+        <ul>
+          <li>Use real objects (pencils, books, fruit) to make counting concrete.</li>
+          <li>Put a large number poster on the classroom wall for reference.</li>
+          <li>Make colourful number flashcards for daily drills.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /numbers -->
+
+  <!-- ══════ TOPIC 3: COLORS ══════ -->
+  <div id="tab-colors" class="topic-panel">
+
+    <div class="topic-card">
+      <h3>📚 Vocabulary – Colors</h3>
+      <div class="vocab-list">
+        <div class="vocab-item" style="background:linear-gradient(135deg,#FFCDD2,#EF9A9A)"><div class="emo">🔴</div><div class="en">Red</div><div class="sub">like an apple</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#FFF9C4,#FFF176)"><div class="emo">🟡</div><div class="en">Yellow</div><div class="sub">like the sun</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#C8E6C9,#A5D6A7)"><div class="emo">🟢</div><div class="en">Green</div><div class="sub">like grass</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#BBDEFB,#90CAF9)"><div class="emo">🔵</div><div class="en">Blue</div><div class="sub">like the sky</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#E1BEE7,#CE93D8)"><div class="emo">🟣</div><div class="en">Purple</div><div class="sub">like grapes</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#FFE0B2,#FFCC80)"><div class="emo">🟠</div><div class="en">Orange</div><div class="sub">like an orange</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#F5F5F5,#EEEEEE)"><div class="emo">⚪</div><div class="en">White</div><div class="sub">like clouds</div></div>
+        <div class="vocab-item" style="background:linear-gradient(135deg,#616161,#424242)"><div class="emo">⚫</div><div class="en" style="color:#fff">Black</div><div class="sub" style="color:#ccc">like the night</div></div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>💬 Sample Sentences</h3>
+      <div class="dialog-box">
+        <div class="speaker">🧒 Student</div>
+        <div class="line">My bag is <strong>red</strong>.</div>
+      </div>
+      <div class="dialog-box" style="border-left-color:var(--sky); background:linear-gradient(135deg,#E3F2FD,#BBDEFB)">
+        <div class="speaker" style="color:#0277BD">🖍️ Teacher asks:</div>
+        <div class="line">What colour is this?</div>
+        <div class="translation">Student answers: "It is <strong>blue!</strong>"</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>🎮 Classroom Activities</h3>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="step-num">1</div>
+          <div class="act-body">
+            <h4>🌈 Colour Hunt!</h4>
+            <p>The teacher calls a colour in English; students race to touch an object of that colour in the classroom and shout its name.</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">2</div>
+          <div class="act-body">
+            <h4>🖍️ Colour & Say</h4>
+            <p>Students colour a simple picture (fruit, balloons), then present it: <em>"This is a balloon. It is yellow!"</em></p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">3</div>
+          <div class="act-body">
+            <h4>🎵 Rainbow Song</h4>
+            <p>Sing <em>"I Can Sing a Rainbow"</em> together while pointing to colour cards one by one.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>💡 Teacher Tips</h4>
+        <ul>
+          <li>Prepare large, bright colour cards for every lesson.</li>
+          <li>Ask students to wear a specific colour on a chosen day.</li>
+          <li>Connect colours to real classroom objects: the board, books, chairs.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /colors -->
+
+  <!-- ══════ TOPIC 4: ANIMALS ══════ -->
+  <div id="tab-animals" class="topic-panel">
+
+    <div class="topic-card">
+      <h3>📚 Vocabulary – Animals</h3>
+      <div class="vocab-list">
+        <div class="vocab-item"><div class="emo">🐶</div><div class="en">Dog</div><div class="sub">Woof! Woof!</div></div>
+        <div class="vocab-item"><div class="emo">🐱</div><div class="en">Cat</div><div class="sub">Meow! Meow!</div></div>
+        <div class="vocab-item"><div class="emo">🐟</div><div class="en">Fish</div><div class="sub">lives in water</div></div>
+        <div class="vocab-item"><div class="emo">🐦</div><div class="en">Bird</div><div class="sub">Tweet! Tweet!</div></div>
+        <div class="vocab-item"><div class="emo">🐇</div><div class="en">Rabbit</div><div class="sub">hops around</div></div>
+        <div class="vocab-item"><div class="emo">🐘</div><div class="en">Elephant</div><div class="sub">very big!</div></div>
+        <div class="vocab-item"><div class="emo">🐯</div><div class="en">Tiger</div><div class="sub">Roar! Roar!</div></div>
+        <div class="vocab-item"><div class="emo">🐊</div><div class="en">Crocodile</div><div class="sub">big teeth!</div></div>
+        <div class="vocab-item"><div class="emo">🐸</div><div class="en">Frog</div><div class="sub">Ribbit! Ribbit!</div></div>
+        <div class="vocab-item"><div class="emo">🐍</div><div class="en">Snake</div><div class="sub">long and thin</div></div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>💬 Sample Dialogue</h3>
+      <div class="dialog-box">
+        <div class="speaker">🧒 Student</div>
+        <div class="line">I like <strong>rabbits</strong>. Rabbits are cute!</div>
+      </div>
+      <div class="dialog-box" style="border-left-color:var(--grass); background:linear-gradient(135deg,#E8F5E9,#F1F8E9)">
+        <div class="speaker" style="color:#2E7D32">🐾 Teacher asks:</div>
+        <div class="line">What animal is this?</div>
+        <div class="translation">Student answers: "It is a <strong>cat!</strong>"</div>
+      </div>
+      <div class="dialog-box">
+        <div class="speaker">🧒 Student A</div>
+        <div class="line">What sound does a dog make?</div>
+      </div>
+      <div class="dialog-box" style="border-left-color:var(--purple); background:linear-gradient(135deg,#F3E5F5,#EDE7F6)">
+        <div class="speaker" style="color:var(--purple)">👧 Student B</div>
+        <div class="line">A dog says: <strong>Woof! Woof!</strong> 🐶</div>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <h3>🎮 Classroom Activities</h3>
+      <div class="activity-list">
+        <div class="activity-item">
+          <div class="step-num">1</div>
+          <div class="act-body">
+            <h4>🎭 Animal Acting!</h4>
+            <p>A student or teacher mimics an animal's sound and movement. Others guess in English: <em>"Is it a cat?"</em></p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">2</div>
+          <div class="act-body">
+            <h4>🃏 Flash Card Quiz</h4>
+            <p>The teacher shows an animal picture card; students race to call out the animal's name in English.</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="step-num">3</div>
+          <div class="act-body">
+            <h4>🎨 Draw & Tell</h4>
+            <p>Students draw their favourite animal and present it to the class: <em>"This is my favourite animal. It is a ___."</em></p>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <h4>💡 Teacher Tips</h4>
+        <ul>
+          <li>Use animal hand puppets or vivid picture cards.</li>
+          <li>Teach the animal sounds in English: meow, woof, moo, ribbit.</li>
+          <li>Link the topic to a simple illustrated animal storybook.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /animals -->
+
+  <!-- ══════ ASSESSMENT ══════ -->
+  <div class="section-title">📊 Speaking Assessment <span class="pill">Rubric</span></div>
+  <div class="topic-card">
+    <h3>📋 Assessment Rubric</h3>
+    <table class="assess-table">
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>⭐⭐⭐ Excellent</th>
+          <th>⭐⭐ Good</th>
+          <th>⭐ Needs Practice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Pronunciation</strong></td>
+          <td>Clear and accurate</td>
+          <td>Mostly clear</td>
+          <td>Needs guidance</td>
+        </tr>
+        <tr>
+          <td><strong>Confidence</strong></td>
+          <td>Speaks boldly and eagerly</td>
+          <td>Slightly hesitant</td>
+          <td>Needs encouragement</td>
+        </tr>
+        <tr>
+          <td><strong>Vocabulary</strong></td>
+          <td>Recalls 8–10 words</td>
+          <td>Recalls 5–7 words</td>
+          <td>Recalls 1–4 words</td>
+        </tr>
+        <tr>
+          <td><strong>Response</strong></td>
+          <td>Answers immediately</td>
+          <td>Answers with a pause</td>
+          <td>Needs full assistance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════ REWARD ══════ -->
+  <div class="section-title">🏆 Reward System <span class="pill">Star Badges</span></div>
+  <div class="badge-row">
+    <div class="badge"><span class="star">⭐</span>Star Speaker</div>
+    <div class="badge" style="background:linear-gradient(135deg,#B2EBF2,#80DEEA)"><span class="star">🎤</span>Bold Voice</div>
+    <div class="badge" style="background:linear-gradient(135deg,#F8BBD0,#F48FB1)"><span class="star">💬</span>Great Talk</div>
+    <div class="badge" style="background:linear-gradient(135deg,#C8E6C9,#A5D6A7)"><span class="star">🌟</span>English Hero</div>
+  </div>
+  <p style="margin-top:12px; font-size:.9rem; font-weight:700; color:#555;">
+    Every student who speaks up earns a star sticker! Collect 5 stars = unlock the <em>"English Hero"</em> badge 🏅
+  </p>
+
+</main>
+
+<footer>
+  © 2026 <span>BunRey English Course</span> · Speaking Material · Grade 1 – Primary School · Let's Speak English! 🐰✨
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.topic-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
