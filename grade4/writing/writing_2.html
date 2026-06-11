@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Writing Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:      #4BB8F0;
+    --sun:      #FFD94A;
+    --grass:    #5CC86A;
+    --coral:    #FF6E6E;
+    --lavender: #B48BF2;
+    --cream:    #FFF8EE;
+    --ink:      #2E2A4A;
+    --card-bg:  #FFFFFF;
+    --shadow:   0 4px 16px rgba(46,42,74,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+    padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+  }
+  header::before {
+    content: "✏️ 📝 ✏️ 📝 ✏️ 📝 ✏️ 📝 ✏️ 📝";
+    position: absolute; top: 8px; left: 0; right: 0;
+    font-size: 18px; letter-spacing: 12px; opacity: .22;
+  }
+  .brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+  header h1 span { color: var(--sun); }
+  .subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+  .badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+  /* LAYOUT */
+  main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* SECTION TITLE */
+  .sec-title {
+    font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+    margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+  /* INTRO */
+  .intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+  .intro-card strong { color: var(--grass); }
+
+  /* TOPIC GRID */
+  .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+  .topic-card:nth-child(2) { border-color: var(--sky); }
+  .topic-card:nth-child(3) { border-color: var(--grass); }
+  .topic-card:nth-child(4) { border-color: var(--lavender); }
+  .topic-card:hover { transform: translateY(-4px); }
+  .topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+  .topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+  /* LESSON */
+  .lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+  .lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+  .lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+  .lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+  .lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+  .lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+  .lesson-body { padding: 20px 22px; }
+
+  /* EXPLAIN */
+  .explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+  .explain strong { color: var(--lavender); }
+
+  /* EXAMPLE BOX */
+  .example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+  .example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+  .example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+  .example-box ul { padding-left: 18px; }
+
+  /* STRUCTURE */
+  .structure { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .struct-row { display: flex; align-items: stretch; border-radius: 10px; overflow: hidden; font-size: 13.5px; }
+  .struct-label { min-width: 120px; font-weight: 800; color: #fff; padding: 10px 12px; display: flex; align-items: center; }
+  .struct-label.s1 { background: #FF6E6E; }
+  .struct-label.s2 { background: #4BB8F0; }
+  .struct-label.s3 { background: #5CC86A; }
+  .struct-label.s4 { background: #B48BF2; }
+  .struct-content { flex: 1; background: #F7F7F7; padding: 10px 14px; line-height: 1.6; color: #444; }
+
+  /* PRACTICE */
+  .practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+  .practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .practice ol, .practice ul { padding-left: 20px; }
+  .practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+  .blank { display: inline-block; border-bottom: 2px solid var(--ink); min-width: 130px; height: 18px; margin: 0 4px; }
+
+  /* TABLE */
+  .vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+  .vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+  .vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+  .vocab-table thead th:last-child  { border-radius: 0 10px 10px 0; }
+  .vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+  .vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+  .vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+  .tip .ticon { font-size: 28px; margin-bottom: 8px; }
+  .tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+  /* CHECKLIST */
+  .checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+  .checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+  .checklist li:last-child { border: none; }
+  .box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+  footer strong { color: var(--lavender); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Writing!</span> ✍️</h1>
+  <p class="subtitle">Writing Skills · Grade 4 Elementary School</p>
+  <span class="badge">📘 Module 3 · Complete Learning Material</span>
+</header>
+
+<main>
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    🌟 <strong>Welcome to the Writing Module!</strong><br>
+    Writing is how we share our thoughts, ideas, and stories through words on paper.
+    In Grade 4, you will learn how to write complete sentences, short paragraphs, and simple texts clearly and neatly.
+    Let's get started — you are going to be a great writer!
+  </div>
+
+  <!-- TOPICS -->
+  <div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <div class="icon">🔤</div>
+      <h3>Sentence Structure</h3>
+      <p>How to build correct and complete English sentences.</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">📖</div>
+      <h3>Descriptive Text</h3>
+      <p>Describing a person, animal, object, or place in detail.</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">📅</div>
+      <h3>Recount Text</h3>
+      <p>Retelling a past experience or event in the correct order.</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">💌</div>
+      <h3>Short Message</h3>
+      <p>Writing a short message or greeting card in English.</p>
+    </div>
+  </div>
+
+  <!-- LESSON 1 -->
+  <div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Sentence Structure</div>
+  <div class="lesson">
+    <div class="lesson-header c1">📝 What Is a Sentence?</div>
+    <div class="lesson-body">
+      <div class="explain">
+        A sentence in English must have a <strong>Subject (S)</strong> and a <strong>Verb (V)</strong>.
+        It starts with a <strong>capital letter</strong> and ends with a <strong>full stop (.)</strong>, question mark (?), or exclamation mark (!).
+      </div>
+      <div class="structure">
+        <div class="struct-row">
+          <div class="struct-label s1">Subject</div>
+          <div class="struct-content">The person, animal, or thing that does the action.<br><em>Examples: I, She, My cat, The students</em></div>
+        </div>
+        <div class="struct-row">
+          <div class="struct-label s2">Verb</div>
+          <div class="struct-content">The action word — what the subject does.<br><em>Examples: eat, play, is, go, write</em></div>
+        </div>
+        <div class="struct-row">
+          <div class="struct-label s3">Object</div>
+          <div class="struct-content">The thing that receives the action (optional).<br><em>Examples: rice, a book, football</em></div>
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="label">✨ Example Sentences</div>
+        <ul>
+          <li><b>I</b> eat rice every morning.</li>
+          <li><b>She</b> reads a book in the library.</li>
+          <li><b>My cat</b> plays with a ball.</li>
+          <li><b>The students</b> write English sentences.</li>
+        </ul>
+      </div>
+      <div class="practice">
+        <div class="ptitle">🖊️ Practice – Arrange the Words into a Sentence!</div>
+        <ol>
+          <li>[ play / They / football ] → <span class="blank"></span></li>
+          <li>[ is / happy / She ] → <span class="blank"></span></li>
+          <li>[ a cake / bakes / My mother ] → <span class="blank"></span></li>
+          <li>[ to school / every day / We / go ] → <span class="blank"></span></li>
+          <li>[ in the garden / beautiful flowers / There are ] → <span class="blank"></span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 2 -->
+  <div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – Descriptive Text</div>
+  <div class="lesson">
+    <div class="lesson-header c2">🔍 Describing Something</div>
+    <div class="lesson-body">
+      <div class="explain">
+        A <strong>descriptive text</strong> describes a person, animal, object, or place in detail.
+        We use <strong>adjectives</strong> (describing words) to make our writing more vivid and interesting.
+      </div>
+      <div class="structure">
+        <div class="struct-row">
+          <div class="struct-label s2">Identification</div>
+          <div class="struct-content">Introduce the subject you are describing.<br><em>"This is my pet. Its name is Milo."</em></div>
+        </div>
+        <div class="struct-row">
+          <div class="struct-label s3">Description</div>
+          <div class="struct-content">Describe its features: colour, size, character, shape, etc.<br><em>"Milo is small and fluffy. He has orange fur and green eyes."</em></div>
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="label">📄 Sample Text – My Pet</div>
+        <p>
+          This is my pet cat. His name is <b>Milo</b>. He is small and fluffy.
+          He has soft orange fur and bright green eyes. Milo is very friendly and playful.
+          He loves to sleep on my bed. I always give him milk in the morning.
+          Milo is my best friend at home.
+        </p>
+      </div>
+      <div class="example-box">
+        <div class="label">🎨 Useful Adjectives</div>
+        <table class="vocab-table">
+          <thead><tr><th>Adjective</th><th>Meaning</th><th>Example Sentence</th></tr></thead>
+          <tbody>
+            <tr><td>big / small</td><td>large / little in size</td><td>My school is big.</td></tr>
+            <tr><td>tall / short</td><td>high / low in height</td><td>He is tall.</td></tr>
+            <tr><td>beautiful</td><td>very attractive</td><td>She has beautiful hair.</td></tr>
+            <tr><td>friendly</td><td>kind and easy to talk to</td><td>My teacher is friendly.</td></tr>
+            <tr><td>delicious</td><td>very tasty</td><td>The food is delicious.</td></tr>
+            <tr><td>colourful</td><td>having many bright colours</td><td>The garden is colourful.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="practice">
+        <div class="ptitle">✏️ Practice – Write Your Description!</div>
+        <ol>
+          <li>Write 5 sentences describing <b>your bedroom</b>.</li>
+          <li>Draw and describe your <b>favourite animal</b> in 4–5 sentences.</li>
+          <li>Complete the sentences: "My best friend's name is ___. He/She is ___ and ___. He/She likes to ___."</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 3 -->
+  <div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Recount Text</div>
+  <div class="lesson">
+    <div class="lesson-header c3">🕐 Retelling an Experience</div>
+    <div class="lesson-body">
+      <div class="explain">
+        A <strong>recount text</strong> retells a past experience or event in the order it happened.
+        We use the <strong>Simple Past Tense</strong>: verbs change to their past form.
+        <br><em>Examples: go → went · eat → ate · see → saw · play → played</em>
+      </div>
+      <div class="structure">
+        <div class="struct-row">
+          <div class="struct-label s1">Orientation</div>
+          <div class="struct-content">Who? Where? When? Sets the scene.<br><em>"Last Sunday, I went to the zoo with my family."</em></div>
+        </div>
+        <div class="struct-row">
+          <div class="struct-label s2">Events</div>
+          <div class="struct-content">What happened, in order. Use time connectives.<br><em>First… Then… After that… Finally…</em></div>
+        </div>
+        <div class="struct-row">
+          <div class="struct-label s3">Re-orientation</div>
+          <div class="struct-content">Closing — your feelings or a summary.<br><em>"It was a wonderful day. I was very happy."</em></div>
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="label">📄 Sample Text – My Trip to the Zoo</div>
+        <p>
+          Last Sunday, I <b>went</b> to the zoo with my family. We <b>left</b> home at eight o'clock in the morning.<br><br>
+          <b>First</b>, we <b>visited</b> the elephant enclosure. The elephants were very big and funny.
+          <b>Then</b>, we <b>saw</b> colourful birds and playful monkeys. I <b>ate</b> ice cream near the lake.
+          <b>After that</b>, my little sister <b>fed</b> the rabbits. She was very excited.<br><br>
+          <b>Finally</b>, we <b>went</b> home at four o'clock. It was a wonderful day. I <b>felt</b> very happy and tired.
+        </p>
+      </div>
+      <div class="example-box">
+        <div class="label">🕐 Common Past Tense Verbs</div>
+        <table class="vocab-table">
+          <thead><tr><th>Present</th><th>Past</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>go</td><td>went</td><td>to travel somewhere</td></tr>
+            <tr><td>eat</td><td>ate</td><td>to have food</td></tr>
+            <tr><td>see</td><td>saw</td><td>to look at something</td></tr>
+            <tr><td>play</td><td>played</td><td>to have fun / do sport</td></tr>
+            <tr><td>visit</td><td>visited</td><td>to go and see a place</td></tr>
+            <tr><td>feel</td><td>felt</td><td>to experience an emotion</td></tr>
+            <tr><td>buy</td><td>bought</td><td>to purchase something</td></tr>
+            <tr><td>take</td><td>took</td><td>to pick up or bring</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="practice">
+        <div class="ptitle">✏️ Practice – Tell Your Story!</div>
+        <ol>
+          <li>Write a recount text about your <b>most memorable holiday</b> (at least 5 sentences).</li>
+          <li>Change these sentences to <b>Past Tense</b>:
+            <ul style="margin-top:6px;">
+              <li>I go to school by bus.</li>
+              <li>She plays badminton with her friends.</li>
+              <li>We eat noodles at the restaurant.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 4 -->
+  <div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Short Message &amp; Greeting Card</div>
+  <div class="lesson">
+    <div class="lesson-header c4">💌 Writing a Short Message</div>
+    <div class="lesson-body">
+      <div class="explain">
+        A <strong>short message</strong> is a brief piece of writing to share information or express a feeling.
+        It has three parts: <strong>To</strong> (receiver), <strong>Message</strong> (content), and <strong>From</strong> (sender).
+      </div>
+      <div class="example-box">
+        <div class="label">💌 Sample Short Message</div>
+        <p><b>To: Risa</b><br>
+        Hi Risa! I cannot come to school today because I am sick. Please tell our teacher. I will be back tomorrow. See you!<br>
+        <b>From: Andi</b></p>
+      </div>
+      <div class="example-box">
+        <div class="label">🎉 Sample Greeting Card – Birthday</div>
+        <p><b>To: Dina</b><br>
+        Happy Birthday, Dina! 🎂<br>
+        I hope you have a wonderful day. May all your wishes come true.
+        You are the best friend ever! Let's celebrate together!<br>
+        <b>With love, Sari</b></p>
+      </div>
+      <div class="example-box">
+        <div class="label">📝 Useful Phrases</div>
+        <table class="vocab-table">
+          <thead><tr><th>Situation</th><th>Useful Phrase</th></tr></thead>
+          <tbody>
+            <tr><td>Birthday</td><td>Happy Birthday! May your day be very special.</td></tr>
+            <tr><td>Cannot attend</td><td>I am sorry, I cannot come because…</td></tr>
+            <tr><td>Inviting someone</td><td>Please come to my birthday party on…</td></tr>
+            <tr><td>Saying thank you</td><td>Thank you so much for your help.</td></tr>
+            <tr><td>Get well soon</td><td>I hope you feel better very soon!</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="practice">
+        <div class="ptitle">✏️ Practice – Write Your Message!</div>
+        <ol>
+          <li>Write a <b>short message</b> to your friend explaining that you cannot attend their birthday party.</li>
+          <li>Create a <b>birthday card</b> for your teacher.</li>
+          <li>Write a message to <b>invite a friend to study together</b> this afternoon.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="sec-title" style="color:var(--sun);">💡 Tips for Good Writing</div>
+  <div class="tips-grid">
+    <div class="tip">
+      <div class="ticon">🔡</div>
+      <strong>Capital Letters</strong>
+      Always start a sentence with a capital letter. Names of people and places are also capitalised.
+    </div>
+    <div class="tip">
+      <div class="ticon">⏱️</div>
+      <strong>Punctuation</strong>
+      End every sentence with a full stop (.), question mark (?), or exclamation mark (!). Don't forget commas (,).
+    </div>
+    <div class="tip">
+      <div class="ticon">🧩</div>
+      <strong>Logical Order</strong>
+      Write events in order: beginning – middle – end. Use First, Then, and Finally.
+    </div>
+    <div class="tip">
+      <div class="ticon">📖</div>
+      <strong>Read It Again</strong>
+      Always re-read your writing after you finish. Check spelling and punctuation!
+    </div>
+    <div class="tip">
+      <div class="ticon">🎨</div>
+      <strong>Use Adjectives</strong>
+      Add describing words to make your writing more vivid and interesting.
+    </div>
+    <div class="tip">
+      <div class="ticon">✏️</div>
+      <strong>Write Neatly</strong>
+      Neat writing is easier to read and shows your reader that you care about your work.
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+  <ul class="checklist">
+    <li><span class="box"></span> I can write an English sentence using Subject + Verb + Object correctly.</li>
+    <li><span class="box"></span> I can write a descriptive text about a person, animal, or object.</li>
+    <li><span class="box"></span> I can retell a past experience using the Simple Past Tense.</li>
+    <li><span class="box"></span> I can write a short message and a greeting card.</li>
+    <li><span class="box"></span> I always use a capital letter at the start of every sentence.</li>
+    <li><span class="box"></span> I use adjectives to make my writing more detailed and interesting.</li>
+    <li><span class="box"></span> I read my writing again before handing it in.</li>
+  </ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Writing Module · Grade 4 Elementary School · Keep Writing! 🌟
+</footer>
+
+</body>
+</html>
