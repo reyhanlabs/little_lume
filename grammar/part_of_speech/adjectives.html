@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Adjectives Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:      #4BB8F0;
+    --sun:      #FFD94A;
+    --grass:    #5CC86A;
+    --coral:    #FF6E6E;
+    --lavender: #B48BF2;
+    --cream:    #FFF8EE;
+    --ink:      #2E2A4A;
+    --card-bg:  #FFFFFF;
+    --shadow:   0 4px 16px rgba(46,42,74,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  header {
+    background: linear-gradient(135deg, var(--coral) 0%, var(--sun) 100%);
+    padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+  }
+  header::before {
+    content: "🌈 ⭐ 🌈 ⭐ 🌈 ⭐ 🌈 ⭐ 🌈 ⭐";
+    position: absolute; top: 8px; left: 0; right: 0;
+    font-size: 18px; letter-spacing: 12px; opacity: .25;
+  }
+  .brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.9); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+  header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+  header h1 span { color: var(--ink); }
+  .subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.95); font-weight: 700; }
+  .badge { display: inline-block; margin-top: 14px; background: #fff; color: var(--coral); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  .sec-title { font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink); margin: 36px 0 16px; display: flex; align-items: center; gap: 10px; }
+  .sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+  .intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--coral); font-size: 15px; line-height: 1.75; }
+  .intro-card strong { color: var(--coral); }
+
+  .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--sky); transition: transform .2s; }
+  .topic-card:nth-child(2) { border-color: var(--grass); }
+  .topic-card:nth-child(3) { border-color: var(--lavender); }
+  .topic-card:nth-child(4) { border-color: var(--coral); }
+  .topic-card:nth-child(5) { border-color: var(--sun); }
+  .topic-card:hover { transform: translateY(-4px); }
+  .topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+  .topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+  .lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+  .lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+  .lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+  .lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+  .lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+  .lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+  .lesson-header.c5 { background: linear-gradient(90deg,#FFD94A,#FFB347); }
+  .lesson-body { padding: 20px 22px; }
+
+  .explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+  .explain strong { color: var(--lavender); }
+
+  .example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+  .example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+  .example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+  .example-box ul { padding-left: 18px; }
+
+  .structure { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .struct-row { display: flex; align-items: stretch; border-radius: 10px; overflow: hidden; font-size: 13.5px; }
+  .struct-label { min-width: 130px; font-weight: 800; color: #fff; padding: 10px 12px; display: flex; align-items: center; }
+  .struct-label.s1 { background: #FF6E6E; }
+  .struct-label.s2 { background: #4BB8F0; }
+  .struct-label.s3 { background: #5CC86A; }
+  .struct-label.s4 { background: #B48BF2; }
+  .struct-content { flex: 1; background: #F7F7F7; padding: 10px 14px; line-height: 1.6; color: #444; }
+
+  .practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+  .practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .practice ol, .practice ul { padding-left: 20px; }
+  .practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+  .blank { display: inline-block; border-bottom: 2px solid var(--ink); min-width: 110px; height: 18px; margin: 0 4px; }
+
+  .vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+  .vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+  .vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+  .vocab-table thead th:last-child  { border-radius: 0 10px 10px 0; }
+  .vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+  .vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+  .vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; margin-bottom: 16px; }
+  .vocab-chip { background: #F5FBFF; border-radius: 12px; padding: 10px 12px; text-align: center; font-size: 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+  .vocab-chip .emo { font-size: 24px; display: block; margin-bottom: 4px; }
+  .vocab-chip b { color: var(--sky); display: block; }
+  .vocab-chip span.opp { color: var(--coral); font-weight: 700; }
+
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+  .tip .ticon { font-size: 28px; margin-bottom: 8px; }
+  .tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+  .checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+  .checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+  .checklist li:last-child { border: none; }
+  .box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+  footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+  footer strong { color: var(--lavender); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Amazing <span>Adjectives!</span> 🌈</h1>
+  <p class="subtitle">Grammar Focus: Adjectives · Grade 4 Elementary School</p>
+  <span class="badge">📘 Module · Describing Words</span>
+</header>
+
+<main>
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    🌟 <strong>Welcome to the Adjectives Module!</strong><br>
+    An <strong>adjective</strong> is a word that describes a noun — it tells us more about a person, animal, place, or thing.
+    Adjectives can describe size, colour, shape, feeling, taste, and many more things.
+    They make our sentences more interesting and colourful. Let's explore together!
+  </div>
+
+  <!-- TOPICS -->
+  <div class="sec-title" style="color:var(--coral);">🗂️ What We Will Learn</div>
+  <div class="topic-grid">
+    <div class="topic-card">
+      <div class="icon">❓</div>
+      <h3>What Is an Adjective?</h3>
+      <p>Understanding what adjectives are and how they work in a sentence.</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">🎨</div>
+      <h3>Types of Adjectives</h3>
+      <p>Size, colour, shape, feeling, taste, and personality words.</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">📍</div>
+      <h3>Adjective Position</h3>
+      <p>Where to put adjectives in a sentence — before a noun or after "be".</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">🔄</div>
+      <h3>Opposites</h3>
+      <p>Learning pairs of opposite adjectives (antonyms).</p>
+    </div>
+    <div class="topic-card">
+      <div class="icon">✏️</div>
+      <h3>Using Adjectives in Writing</h3>
+      <p>Making sentences and descriptions more vivid and detailed.</p>
+    </div>
+  </div>
+
+  <!-- LESSON 1 -->
+  <div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – What Is an Adjective?</div>
+  <div class="lesson">
+    <div class="lesson-header c1">🔍 Describing Words</div>
+    <div class="lesson-body">
+      <div class="explain">
+        An <strong>adjective</strong> is a word that gives more information about a <strong>noun</strong> (a person, animal, place, or thing).
+        It answers questions like: What colour? What size? How does it feel? What is it like?
+      </div>
+      <div class="example-box">
+        <div class="label">✨ Example Sentences</div>
+        <ul>
+          <li>The <b>big</b> elephant is walking slowly. <em>(big describes the elephant)</em></li>
+          <li>I have a <b>red</b> bag. <em>(red describes the bag)</em></li>
+          <li>This soup is <b>hot</b>. <em>(hot describes the soup)</em></li>
+          <li>My grandmother is very <b>kind</b>. <em>(kind describes my grandmother)</em></li>
+        </ul>
+      </div>
+      <div class="practice">
+        <div class="ptitle">🖊️ Practice – Find the Adjective!</div>
+        <ol>
+          <li>The cat is <u>small</u> and <u>cute</u>. → Adjectives: <span class="blank"></span></li>
+          <li>I saw a <u>tall</u> building near my school. → Adjective: <span class="blank"></span></li>
+          <li>She is wearing a <u>beautiful</u> dress. → Adjective: <span class="blank"></span></li>
+          <li>The water in the river is <u>clean</u> and <u>cold</u>. → Adjectives: <span class="blank"></span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 2 -->
+  <div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – Types of Adjectives</div>
+  <div class="lesson">
+    <div class="lesson-header c2">🎨 Different Kinds of Describing Words</div>
+    <div class="lesson-body">
+      <div class="explain">
+        Adjectives can describe many different things. Here are some common types you should know.
+      </div>
+
+      <div class="example-box">
+        <div class="label">📏 Size</div>
+        <div class="vocab-grid">
+          <div class="vocab-chip"><span class="emo">🐘</span><b>big</b> ↔ <span class="opp">small</span></div>
+          <div class="vocab-chip"><span class="emo">📏</span><b>long</b> ↔ <span class="opp">short</span></div>
+          <div class="vocab-chip"><span class="emo">🦒</span><b>tall</b> ↔ <span class="opp">short</span></div>
+          <div class="vocab-chip"><span class="emo">🐜</span><b>tiny</b> ↔ <span class="opp">huge</span></div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="label">🎨 Colour</div>
+        <div class="vocab-grid">
+          <div class="vocab-chip"><span class="emo">❤️</span><b>red</b></div>
+          <div class="vocab-chip"><span class="emo">💙</span><b>blue</b></div>
+          <div class="vocab-chip"><span class="emo">💛</span><b>yellow</b></div>
+          <div class="vocab-chip"><span class="emo">💚</span><b>green</b></div>
+          <div class="vocab-chip"><span class="emo">🤍</span><b>white</b></div>
+          <div class="vocab-chip"><span class="emo">🖤</span><b>black</b></div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="label">😊 Feelings</div>
+        <div class="vocab-grid">
+          <div class="vocab-chip"><span class="emo">😄</span><b>happy</b> ↔ <span class="opp">sad</span></div>
+          <div class="vocab-chip"><span class="emo">😠</span><b>angry</b></div>
+          <div class="vocab-chip"><span class="emo">😨</span><b>scared</b></div>
+          <div class="vocab-chip"><span class="emo">😴</span><b>tired</b></div>
+          <div class="vocab-chip"><span class="emo">🤩</span><b>excited</b></div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="label">👅 Taste & Texture</div>
+        <div class="vocab-grid">
+          <div class="vocab-chip"><span class="emo">🍯</span><b>sweet</b> ↔ <span class="opp">sour</span></div>
+          <div class="vocab-chip"><span class="emo">🌶️</span><b>spicy</b></div>
+          <div class="vocab-chip"><span class="emo">🍲</span><b>hot</b> ↔ <span class="opp">cold</span></div>
+          <div class="vocab-chip"><span class="emo">🧊</span><b>smooth</b> ↔ <span class="opp">rough</span></div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="label">🙂 Personality / Character</div>
+        <div class="vocab-grid">
+          <div class="vocab-chip"><span class="emo">🤗</span><b>friendly</b></div>
+          <div class="vocab-chip"><span class="emo">🧠</span><b>clever</b></div>
+          <div class="vocab-chip"><span class="emo">💪</span><b>brave</b></div>
+          <div class="vocab-chip"><span class="emo">😇</span><b>kind</b></div>
+          <div class="vocab-chip"><span class="emo">😴</span><b>lazy</b> ↔ <span class="opp">diligent</span></div>
+        </div>
+      </div>
+
+      <div class="practice">
+        <div class="ptitle">🖊️ Practice – Choose the Correct Adjective!</div>
+        <ol>
+          <li>The ice cream is very ___ (hot / cold).</li>
+          <li>My brother is ___ (happy / sad) because he won the race.</li>
+          <li>The giraffe has a very ___ (long / short) neck.</li>
+          <li>This lemon tastes ___ (sweet / sour).</li>
+          <li>The new student is very ___ (friendly / shy) and talks to everyone.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 3 -->
+  <div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Adjective Position</div>
+  <div class="lesson">
+    <div class="lesson-header c3">📍 Where Does the Adjective Go?</div>
+    <div class="lesson-body">
+      <div class="explain">
+        Adjectives usually go in <strong>two positions</strong>: before a noun, or after the verb <strong>"to be"</strong> (am, is, are).
+      </div>
+      <div class="structure">
+        <div class="struct-row">
+          <div class="struct-label s2">Before a Noun</div>
+          <div class="struct-content">Adjective + Noun<br><em>"I have a <b>big</b> dog." · "She bought a <b>blue</b> bag."</em></div>
+        </div>
+        <div class="struct-row">
+          <div class="struct-label s3">After "to be"</div>
+          <div class="struct-content">Subject + am/is/are + Adjective<br><em>"The dog <b>is big</b>." · "Her bag <b>is blue</b>."</em></div>
+        </div>
+      </div>
+      <div class="example-box">
+        <div class="label">✨ Compare the Sentences</div>
+        <ul>
+          <li>This is a <b>delicious</b> cake. → The cake <b>is delicious</b>.</li>
+          <li>I saw a <b>scary</b> movie. → The movie <b>was scary</b>.</li>
+          <li>He is a <b>brave</b> boy. → He <b>is brave</b>.</li>
+        </ul>
+      </div>
+      <div class="practice">
+        <div class="ptitle">🖊️ Practice – Make Two Sentences!</div>
+        <ol>
+          <li>cat / fluffy → a) <span class="blank"></span> b) <span class="blank"></span></li>
+          <li>house / big → a) <span class="blank"></span> b) <span class="blank"></span></li>
+          <li>flower / beautiful → a) <span class="blank"></span> b) <span class="blank"></span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 4 -->
+  <div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Opposite Adjectives</div>
+  <div class="lesson">
+    <div class="lesson-header c4">🔄 Antonyms</div>
+    <div class="lesson-body">
+      <div class="explain">
+        Many adjectives have an <strong>opposite</strong> (a word with the opposite meaning). Learning opposites helps you describe things in more ways!
+      </div>
+      <div class="example-box">
+        <div class="label">🔄 Common Opposite Pairs</div>
+        <table class="vocab-table">
+          <thead><tr><th>Adjective</th><th>Opposite</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>big</td><td>small</td><td>An elephant is big, but a mouse is small.</td></tr>
+            <tr><td>fast</td><td>slow</td><td>A cheetah is fast, but a turtle is slow.</td></tr>
+            <tr><td>new</td><td>old</td><td>I have a new bike and an old hat.</td></tr>
+            <tr><td>clean</td><td>dirty</td><td>My room is clean, but my shoes are dirty.</td></tr>
+            <tr><td>easy</td><td>difficult</td><td>This question is easy, but that one is difficult.</td></tr>
+            <tr><td>full</td><td>empty</td><td>The bottle is full, but the box is empty.</td></tr>
+            <tr><td>strong</td><td>weak</td><td>The rope is strong, but the thread is weak.</td></tr>
+            <tr><td>noisy</td><td>quiet</td><td>The market is noisy, but the library is quiet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="practice">
+        <div class="ptitle">🖊️ Practice – Write the Opposite!</div>
+        <ol>
+          <li>hot → <span class="blank"></span></li>
+          <li>happy → <span class="blank"></span></li>
+          <li>tall → <span class="blank"></span></li>
+          <li>expensive → <span class="blank"></span></li>
+          <li>young → <span class="blank"></span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- LESSON 5 -->
+  <div class="sec-title" style="color:var(--sun);">📌 Lesson 5 – Using Adjectives in Writing</div>
+  <div class="lesson">
+    <div class="lesson-header c5">✏️ Make Your Writing Colourful</div>
+    <div class="lesson-body">
+      <div class="explain">
+        Using adjectives helps readers <strong>imagine</strong> what you are describing. Compare these two sentences — which one is more interesting?
+      </div>
+      <div class="example-box">
+        <div class="label">📄 Without vs. With Adjectives</div>
+        <p>
+          ❌ Plain: "I have a dog. It plays in the garden."<br><br>
+          ✅ With adjectives: "I have a <b>small, fluffy</b> dog. It plays happily in the <b>green and colourful</b> garden."
+        </p>
+      </div>
+      <div class="example-box">
+        <div class="label">📄 Sample Paragraph – My Classroom</div>
+        <p>
+          My classroom is <b>big</b> and <b>bright</b>. It has <b>white</b> walls and <b>large</b> windows.
+          There are <b>colourful</b> posters on the wall. My desk is <b>clean</b> and <b>tidy</b>.
+          My classmates are <b>friendly</b> and <b>helpful</b>. I feel <b>happy</b> when I am at school.
+        </p>
+      </div>
+      <div class="practice">
+        <div class="ptitle">✏️ Practice – Add Adjectives!</div>
+        <ol>
+          <li>Rewrite this sentence with at least 2 adjectives: "I saw a bird in the tree."</li>
+          <li>Write 4 sentences describing your <b>school bag</b> using different adjectives (size, colour, feeling).</li>
+          <li>Write a short paragraph (4–5 sentences) about <b>your favourite food</b>, using as many adjectives as you can.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="sec-title" style="color:var(--sun);">💡 Tips for Using Adjectives</div>
+  <div class="tips-grid">
+    <div class="tip">
+      <div class="ticon">🎯</div>
+      <strong>Be Specific</strong>
+      Instead of "good", try "delicious", "amazing", or "wonderful" to be more precise.
+    </div>
+    <div class="tip">
+      <div class="ticon">🔢</div>
+      <strong>Don't Overdo It</strong>
+      Use 1–2 adjectives per noun so your sentence stays clear and natural.
+    </div>
+    <div class="tip">
+      <div class="ticon">📍</div>
+      <strong>Check the Position</strong>
+      Remember: adjective before a noun, or after "is/am/are".
+    </div>
+    <div class="tip">
+      <div class="ticon">📚</div>
+      <strong>Build Your Word Bank</strong>
+      Learn new adjectives every day and try using them in your sentences.
+    </div>
+    <div class="tip">
+      <div class="ticon">🔄</div>
+      <strong>Learn Opposites Together</strong>
+      Learning a word and its opposite at the same time helps you remember both!
+    </div>
+    <div class="tip">
+      <div class="ticon">🗣️</div>
+      <strong>Use Them When Speaking</strong>
+      Practise using adjectives in conversation, not just in writing.
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+  <ul class="checklist">
+    <li><span class="box"></span> I can explain what an adjective is.</li>
+    <li><span class="box"></span> I know adjectives for size, colour, feeling, taste, and personality.</li>
+    <li><span class="box"></span> I can put adjectives in the correct position in a sentence.</li>
+    <li><span class="box"></span> I know at least 8 pairs of opposite adjectives.</li>
+    <li><span class="box"></span> I can use adjectives to make my writing more interesting.</li>
+    <li><span class="box"></span> I can find adjectives in a sentence or text.</li>
+  </ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Adjectives Module · Grade 4 Elementary School · Keep Exploring! 🌟
+</footer>
+
+</body>
+</html>
