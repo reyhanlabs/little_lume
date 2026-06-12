@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening Grade 2 – Module 5: Daily Activities</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4BB8F0;
+  --sun: #FFD94A;
+  --grass: #5CC86A;
+  --coral: #FF6E6E;
+  --lavender: #B48BF2;
+  --cream: #FFF8EE;
+  --ink: #2E2A4A;
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 16px rgba(46,42,74,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+header {
+  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+}
+header::before {
+  content: "🌅 🍳 🏫 🎮 🍽️ 🛏️ 🌙 💤 🏃 🧼";
+  position: absolute; top: 8px; left: 0; right: 0;
+  font-size: 18px; letter-spacing: 12px; opacity: .22;
+}
+.brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+header h1 span { color: var(--sun); }
+.subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+.badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+  margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+.intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+.intro-card strong { color: var(--grass); }
+
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+.topic-card:nth-child(2) { border-color: var(--sky); }
+.topic-card:nth-child(3) { border-color: var(--grass); }
+.topic-card:nth-child(4) { border-color: var(--lavender); }
+.topic-card:hover { transform: translateY(-4px); }
+.topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+.topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+.topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+.lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+.lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+.lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+.lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+.lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+.lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+.lesson-body { padding: 20px 22px; }
+
+.explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+.explain strong { color: var(--lavender); }
+
+.example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+.example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+.example-box ul { padding-left: 18px; }
+
+.timeline {
+  background: #F0F8FF;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  border-left: 4px solid var(--sky);
+}
+.timeline-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #ddd;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.timeline-time { 
+  font-weight: bold;
+  color: var(--sky);
+  min-width: 50px;
+}
+.timeline-activity {
+  flex: 1;
+  color: var(--ink);
+}
+
+.practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+.practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.practice ol, .practice ul { padding-left: 20px; }
+.practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+
+.vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+.vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+.vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+.vocab-table thead th:last-child { border-radius: 0 10px 10px 0; }
+.vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+.vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+.vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+.tip .ticon { font-size: 28px; margin-bottom: 8px; }
+.tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+.checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+.checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border: none; }
+.box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+footer strong { color: var(--lavender); }
+
+@media (max-width: 768px) {
+  .topic-grid, .tips-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+  .timeline-item { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Daily Activities!</span> 🌅</h1>
+  <p class="subtitle">Listening Skills · Grade 2 Elementary School</p>
+  <span class="badge">📘 Module 5 · Daily Activities</span>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<div class="intro-card">
+  🌟 <strong>Welcome to Daily Activities Module!</strong><br>
+  Every day has many activities! You wake up, eat breakfast, go to school, play, eat dinner, and sleep. 
+  In this module, you will practice listening to activity words and understand your daily routine in English. Let's learn about your day! 🌅
+</div>
+
+<!-- TOPICS -->
+<div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+<div class="topic-grid">
+  <div class="topic-card">
+    <div class="icon">🌅</div>
+    <h3>Morning Activities</h3>
+    <p>Wake up, eat, get ready for school.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🏫</div>
+    <h3>School Activities</h3>
+    <p>Learning and playing at school.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🎮</div>
+    <h3>Afternoon & Evening</h3>
+    <p>Playing, eating, homework, relaxing.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">😴</div>
+    <h3>Daily Routine</h3>
+    <p>Order of activities in your day.</p>
+  </div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Morning Activities</div>
+<div class="lesson">
+  <div class="lesson-header c1">🌅 Morning Routine</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Every morning, you do many things. <strong>Listen to the activity words</strong> that describe your morning. 
+      Common morning activities are: wake up, brush teeth, take a bath, get dressed, eat breakfast, and go to school.
+    </div>
+    
+    <div class="example-box">
+      <div class="label">🎧 Listen to Morning Activities</div>
+      <ul>
+        <li><strong>WAKE UP</strong> 🌅 - Open your eyes and get out of bed (bangun)</li>
+        <li><strong>BRUSH TEETH</strong> 🪥 - Clean your teeth with a toothbrush (sikat gigi)</li>
+        <li><strong>TAKE A BATH / SHOWER</strong> 🚿 - Wash your body with water (mandi)</li>
+        <li><strong>GET DRESSED</strong> 👕 - Put on your clothes (berpakaian)</li>
+        <li><strong>EAT BREAKFAST</strong> 🥞 - Eat food in the morning (sarapan)</li>
+        <li><strong>GO TO SCHOOL</strong> 🏫 - Travel to your school (pergi ke sekolah)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🌅 Morning Timeline</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">6:00 AM</div>
+          <div class="timeline-activity"><strong>Wake up</strong> - Get out of bed</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">6:15 AM</div>
+          <div class="timeline-activity"><strong>Brush teeth</strong> - Brush your teeth</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">6:30 AM</div>
+          <div class="timeline-activity"><strong>Take a bath</strong> - Shower and get clean</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">6:50 AM</div>
+          <div class="timeline-activity"><strong>Get dressed</strong> - Put on your school uniform</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">7:00 AM</div>
+          <div class="timeline-activity"><strong>Eat breakfast</strong> - Eat rice/bread with egg</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">7:30 AM</div>
+          <div class="timeline-activity"><strong>Go to school</strong> - Travel to school</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Morning Conversation</div>
+      <p><strong>Mother:</strong> "Good morning! Wake up!"<br>
+      <strong>Child:</strong> "Good morning, Mom!"<br><br>
+      <strong>Mother:</strong> "Have you brushed your teeth?"<br>
+      <strong>Child:</strong> "Yes! I brushed my teeth."<br><br>
+      <strong>Mother:</strong> "Hurry! Go take a bath!"<br>
+      <strong>Child:</strong> "Okay, Mom! I'm taking a bath now!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Morning Actions</div>
+      <ol>
+        <li>Teacher says "Wake up!" You act it out (pretend to wake up).</li>
+        <li>Listen to: "Brush your teeth / Get dressed / Eat breakfast." You do the action.</li>
+        <li>Your teacher mixes up the order. You tell the correct morning order.</li>
+        <li>Tell your partner your morning routine: "I wake up at 6 o'clock. I brush my teeth..."</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – School Activities</div>
+<div class="lesson">
+  <div class="lesson-header c2">🏫 At School</div>
+  <div class="lesson-body">
+    <div class="explain">
+      At school, you do many things with your teacher and friends. <strong>Listen to school activity words</strong>: 
+      study, read, write, listen, speak, play, sit, stand, answer questions, and raise your hand.
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to School Activities</div>
+      <ul>
+        <li><strong>STUDY</strong> 📚 - Learn new things from your teacher (belajar)</li>
+        <li><strong>READ</strong> 📖 - Look at words and understand them (membaca)</li>
+        <li><strong>WRITE</strong> ✏️ - Put words on paper with pen/pencil (menulis)</li>
+        <li><strong>LISTEN</strong> 👂 - Hear what the teacher says (mendengarkan)</li>
+        <li><strong>SPEAK</strong> 🗣️ - Say words out loud (berbicara)</li>
+        <li><strong>PLAY</strong> 🎮 - Have fun with friends (bermain)</li>
+        <li><strong>SIT DOWN</strong> 🪑 - Be in a seat (duduk)</li>
+        <li><strong>STAND UP</strong> 🧍 - Get up from your seat (berdiri)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🏫 A School Day Timeline</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">7:30</div>
+          <div class="timeline-activity"><strong>Arrive at school</strong> - Come to school</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">8:00</div>
+          <div class="timeline-activity"><strong>Study</strong> - Learn English/Math</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">9:00</div>
+          <div class="timeline-activity"><strong>Read and write</strong> - Practice reading/writing</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-activity"><strong>Break / Play</strong> - Rest and play with friends</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-activity"><strong>Study more</strong> - Learn more subjects</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:00</div>
+          <div class="timeline-activity"><strong>Eat lunch</strong> - Eat at school</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 School Dialogue</div>
+      <p><strong>Teacher:</strong> "Children, sit down and listen!"<br>
+      <strong>Students:</strong> (sit and listen)<br><br>
+      <strong>Teacher:</strong> "Now, open your books and read page 5."<br>
+      <strong>Student:</strong> "Can you help me write?"<br>
+      <strong>Teacher:</strong> "Of course! Here, write this word."</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – School Actions</div>
+      <ol>
+        <li>Teacher says "Sit down / Stand up / Listen / Speak." You do the action.</li>
+        <li>Listen to school activity descriptions. Guess what activity it is.</li>
+        <li>Tell your class what you do at school: "I study English. I read books. I play with friends."</li>
+        <li>Play "School Day": Teacher gives commands. You follow each one in order.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Afternoon & Evening Activities</div>
+<div class="lesson">
+  <div class="lesson-header c3">🌆 After School & Evening</div>
+  <div class="lesson-body">
+    <div class="explain">
+      After school, you go home and do many activities. <strong>Listen to afternoon and evening activity words</strong>: 
+      go home, do homework, play outside, watch TV, eat dinner, take a bath, sleep.
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to Afternoon & Evening Activities</div>
+      <ul>
+        <li><strong>GO HOME</strong> 🏠 - Return to your house (pulang ke rumah)</li>
+        <li><strong>DO HOMEWORK</strong> 📝 - Complete schoolwork at home (mengerjakan PR)</li>
+        <li><strong>PLAY OUTSIDE</strong> 🏃 - Have fun in the yard/park (bermain di luar)</li>
+        <li><strong>WATCH TV</strong> 📺 - See programs on television (menonton TV)</li>
+        <li><strong>EAT DINNER</strong> 🍽️ - Eat food at evening (makan malam)</li>
+        <li><strong>TAKE A BATH</strong> 🛁 - Wash before sleep (mandi malam)</li>
+        <li><strong>GO TO BED</strong> 🛏️ - Lie down to sleep (pergi tidur)</li>
+        <li><strong>SLEEP</strong> 😴 - Rest at night (tidur)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🌆 Afternoon & Evening Timeline</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">1:00 PM</div>
+          <div class="timeline-activity"><strong>Go home</strong> - Leave school and go to house</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">2:00 PM</div>
+          <div class="timeline-activity"><strong>Eat lunch</strong> - Have lunch at home</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">2:30 PM</div>
+          <div class="timeline-activity"><strong>Do homework</strong> - Complete school tasks</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">3:30 PM</div>
+          <div class="timeline-activity"><strong>Play outside</strong> - Have fun with friends</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">5:00 PM</div>
+          <div class="timeline-activity"><strong>Watch TV / Read</strong> - Relax (if allowed)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">6:00 PM</div>
+          <div class="timeline-activity"><strong>Eat dinner</strong> - Family dinner time</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">7:00 PM</div>
+          <div class="timeline-activity"><strong>Take a bath</strong> - Wash before sleep</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">8:00 PM</div>
+          <div class="timeline-activity"><strong>Go to bed</strong> - Sleep for the night</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Evening Actions</div>
+      <ol>
+        <li>Tell your routine after school: "I go home. I do homework. I play..."</li>
+        <li>Teacher says afternoon activities. You show the actions or draw them.</li>
+        <li>Listen to a story about someone's afternoon. Answer: "What did they do?"</li>
+        <li>Create your own evening routine and describe it in English.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – My Daily Routine</div>
+<div class="lesson">
+  <div class="lesson-header c4">📅 A Full Day in Order</div>
+  <div class="lesson-body">
+    <div class="explain">
+      When we talk about a full day, we say activities in <strong>order</strong> - what we do first, second, third, etc. 
+      Use words like "First, Then, After that, Finally" to show the order of activities. This helps others understand your entire day!
+    </div>
+
+    <div class="example-box">
+      <div class="label">📋 A Student's Daily Routine</div>
+      <p><strong>"My Daily Routine"</strong><br><br>
+      <strong>First,</strong> I wake up at 6:00 AM. (wake up)<br>
+      <strong>Then,</strong> I brush my teeth and take a bath. (brush teeth, take bath)<br>
+      <strong>After that,</strong> I get dressed and eat breakfast. (get dressed, eat)<br>
+      <strong>Next,</strong> I go to school by bus. (go to school)<br>
+      <strong>At school,</strong> I study and play with friends. (study, play)<br>
+      <strong>After school,</strong> I go home and do homework. (go home, homework)<br>
+      <strong>Then,</strong> I play outside and watch TV. (play, watch TV)<br>
+      <strong>Finally,</strong> I eat dinner, take a bath, and go to bed. (dinner, bath, sleep)<br>
+      <strong>I sleep at 8:00 PM!</strong> (sleep)</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Conversation About Daily Routine</div>
+      <p><strong>Mother:</strong> "Tell me about your school day!"<br>
+      <strong>Child:</strong> "First, I listened to the teacher. Then, I read a book. After that, I played with my friends. Finally, I came home!"<br><br>
+      <strong>Friend:</strong> "What do you do in the morning?"<br>
+      <strong>You:</strong> "I wake up, brush my teeth, take a bath, get dressed, eat breakfast, and go to school!"</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎯 Time Words for Routine</div>
+      <ul>
+        <li><strong>First</strong> - The first activity (pertama)</li>
+        <li><strong>Then / Next</strong> - The second activity (kemudian)</li>
+        <li><strong>After that</strong> - The third activity (setelah itu)</li>
+        <li><strong>Finally / At the end</strong> - The last activity (akhirnya)</li>
+      </ul>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – My Routine</div>
+      <ol>
+        <li>Listen to a person's daily routine. Write what they do and in what order.</li>
+        <li>Tell your partner your daily routine using First, Then, After that, Finally.</li>
+        <li>Your teacher mixes up activities. You put them in the correct order.</li>
+        <li>Draw pictures of your day and describe each picture in English.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="sec-title" style="color:var(--sky);">📚 Vocabulary Bank</div>
+<table class="vocab-table">
+  <thead>
+    <tr>
+      <th>Activity Words</th>
+      <th>Meaning / When We Do It</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wake up</td>
+      <td>Get out of bed in the morning</td>
+    </tr>
+    <tr>
+      <td>Brush teeth</td>
+      <td>Clean teeth in morning and evening</td>
+    </tr>
+    <tr>
+      <td>Take a bath/shower</td>
+      <td>Wash your body with water</td>
+    </tr>
+    <tr>
+      <td>Get dressed</td>
+      <td>Put on your clothes</td>
+    </tr>
+    <tr>
+      <td>Eat breakfast/lunch/dinner</td>
+      <td>Have meals at different times</td>
+    </tr>
+    <tr>
+      <td>Go to school</td>
+      <td>Travel to and arrive at school</td>
+    </tr>
+    <tr>
+      <td>Study / Learn</td>
+      <td>Understand new things in class</td>
+    </tr>
+    <tr>
+      <td>Play</td>
+      <td>Have fun with friends</td>
+    </tr>
+    <tr>
+      <td>Do homework</td>
+      <td>Complete school tasks at home</td>
+    </tr>
+    <tr>
+      <td>Sleep</td>
+      <td>Rest at night</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- TIPS -->
+<div class="sec-title" style="color:var(--sun);">💡 Tips for Learning Daily Activities</div>
+<div class="tips-grid">
+  <div class="tip">
+    <div class="ticon">⏰</div>
+    <strong>Use Your Routine</strong>
+    Your real routine is the best teacher! Say activity words as you do them.
+  </div>
+  <div class="tip">
+    <div class="ticon">🎭</div>
+    <strong>Act Them Out</strong>
+    Do the actions while saying the words. This helps you remember!
+  </div>
+  <div class="tip">
+    <div class="ticon">📝</div>
+    <strong>Draw a Timeline</strong>
+    Draw your daily schedule and label each activity in English.
+  </div>
+  <div class="tip">
+    <div class="ticon">🗣️</div>
+    <strong>Tell Your Routine</strong>
+    Practice telling your day to parents, friends, or teachers in English!
+  </div>
+  <div class="tip">
+    <div class="ticon">📚</div>
+    <strong>Use Order Words</strong>
+    Always use First, Then, After that, Finally when explaining your day.
+  </div>
+  <div class="tip">
+    <div class="ticon">🎧</div>
+    <strong>Listen Every Day</strong>
+    Ask your teacher to describe their daily routine. Listen carefully!
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+<ul class="checklist">
+  <li><span class="box"></span> I can listen to and understand morning activity words.</li>
+  <li><span class="box"></span> I can listen to and understand school activity words.</li>
+  <li><span class="box"></span> I can listen to and understand afternoon/evening activity words.</li>
+  <li><span class="box"></span> I can understand "First, Then, After that, Finally."</li>
+  <li><span class="box"></span> I can tell my daily routine in order using English.</li>
+  <li><span class="box"></span> I can listen to someone's daily routine and understand what they do.</li>
+  <li><span class="box"></span> I can act out activities when I hear them in English.</li>
+</ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Listening Module · Grade 2 Elementary School · Enjoy Your Day! 🌅
+</footer>
+
+</body>
+</html>

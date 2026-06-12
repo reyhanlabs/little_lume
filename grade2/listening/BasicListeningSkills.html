@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening Grade 2 – Module 1: Basic Listening Skills</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4BB8F0;
+  --sun: #FFD94A;
+  --grass: #5CC86A;
+  --coral: #FF6E6E;
+  --lavender: #B48BF2;
+  --cream: #FFF8EE;
+  --ink: #2E2A4A;
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 16px rgba(46,42,74,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+header {
+  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+}
+header::before {
+  content: "👂 🎧 👂 🎧 👂 🎧 👂 🎧 👂 🎧";
+  position: absolute; top: 8px; left: 0; right: 0;
+  font-size: 18px; letter-spacing: 12px; opacity: .22;
+}
+.brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+header h1 span { color: var(--sun); }
+.subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+.badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+  margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+.intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+.intro-card strong { color: var(--grass); }
+
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+.topic-card:nth-child(2) { border-color: var(--sky); }
+.topic-card:nth-child(3) { border-color: var(--grass); }
+.topic-card:nth-child(4) { border-color: var(--lavender); }
+.topic-card:hover { transform: translateY(-4px); }
+.topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+.topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+.topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+.lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+.lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+.lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+.lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+.lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+.lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+.lesson-body { padding: 20px 22px; }
+
+.explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+.explain strong { color: var(--lavender); }
+
+.example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+.example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+.example-box ul { padding-left: 18px; }
+
+.structure { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.struct-row { display: flex; align-items: stretch; border-radius: 10px; overflow: hidden; font-size: 13.5px; }
+.struct-label { min-width: 120px; font-weight: 800; color: #fff; padding: 10px 12px; display: flex; align-items: center; }
+.struct-label.s1 { background: #FF6E6E; }
+.struct-label.s2 { background: #4BB8F0; }
+.struct-label.s3 { background: #5CC86A; }
+.struct-label.s4 { background: #B48BF2; }
+.struct-content { flex: 1; background: #F7F7F7; padding: 10px 14px; line-height: 1.6; color: #444; }
+
+.practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+.practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.practice ol, .practice ul { padding-left: 20px; }
+.practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+
+.vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+.vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+.vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+.vocab-table thead th:last-child { border-radius: 0 10px 10px 0; }
+.vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+.vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+.vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+.tip .ticon { font-size: 28px; margin-bottom: 8px; }
+.tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+.checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+.checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border: none; }
+.box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+footer strong { color: var(--lavender); }
+
+@media (max-width: 768px) {
+  .topic-grid, .tips-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Listening!</span> 👂</h1>
+  <p class="subtitle">Listening Skills · Grade 2 Elementary School</p>
+  <span class="badge">📘 Module 1 · Basic Listening Skills</span>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<div class="intro-card">
+  🌟 <strong>Welcome to Listening Module 1!</strong><br>
+  Listening is the first step in learning English. In this module, you will practice listening to simple words, sounds, and short instructions. 
+  Get ready to use your ears and have fun! Let's listen carefully! 👂
+</div>
+
+<!-- TOPICS -->
+<div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+<div class="topic-grid">
+  <div class="topic-card">
+    <div class="icon">🔤</div>
+    <h3>Listening to Letters</h3>
+    <p>Learn to identify English letter sounds.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🎵</div>
+    <h3>Sounds & Phonics</h3>
+    <p>Practice basic English sounds and phonics.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">📢</div>
+    <h3>Simple Words</h3>
+    <p>Listen to common Grade 2 vocabulary.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🎧</div>
+    <h3>Follow Instructions</h3>
+    <p>Understand and follow simple directions.</p>
+  </div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Listening to the Alphabet</div>
+<div class="lesson">
+  <div class="lesson-header c1">🔤 The English Alphabet Sounds</div>
+  <div class="lesson-body">
+    <div class="explain">
+      The English alphabet has 26 letters. Each letter has a <strong>name</strong> and a <strong>sound</strong>. 
+      When you learn English, you must practice listening to how each letter sounds.
+    </div>
+    
+    <div class="example-box">
+      <div class="label">🎧 Listen to These Letters</div>
+      <p><strong>A</strong> - sounds like "ay" (apple, ant, apple pie)<br>
+      <strong>B</strong> - sounds like "bee" (ball, bat, book)<br>
+      <strong>C</strong> - sounds like "cee" or "kuh" (cat, car, cup)<br>
+      <strong>E</strong> - sounds like "ee" (egg, elephant, eleven)<br>
+      <strong>I</strong> - sounds like "eye" (ice, insect, igloo)</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Vowel Sounds (Easy to Remember)</div>
+      <ul>
+        <li><strong>A</strong> - "ay" - Apple 🍎</li>
+        <li><strong>E</strong> - "eh" - Elephant 🐘</li>
+        <li><strong>I</strong> - "eye" - Ice cream 🍦</li>
+        <li><strong>O</strong> - "oh" - Orange 🍊</li>
+        <li><strong>U</strong> - "oo" - Umbrella ☂️</li>
+      </ul>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Identify the Letter Sound</div>
+      <ol>
+        <li>Your teacher says "A, A, A". What letter is it? <em>(Answer: A)</em></li>
+        <li>Listen: "B, B, B". Write the letter you hear.</li>
+        <li>I say "E, E, E". Can you say it back?</li>
+        <li>Clap your hands for each vowel sound you hear: A, E, I, O, U.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – Listening to Word Sounds</div>
+<div class="lesson">
+  <div class="lesson-header c2">🎵 Phonics & Beginning Sounds</div>
+  <div class="lesson-body">
+    <div class="explain">
+      <strong>Phonics</strong> is learning how letters make sounds. When letters come together, they make words. 
+      Listen carefully to the <strong>beginning sound</strong> (first sound) of each word.
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to Beginning Sounds</div>
+      <ul>
+        <li><strong>/b/</strong> - ball, boy, book, bed - All start with the "b" sound</li>
+        <li><strong>/c/</strong> - cat, car, cake, cap - All start with the "c" sound</li>
+        <li><strong>/d/</strong> - dog, day, desk, door - All start with the "d" sound</li>
+        <li><strong>/p/</strong> - pen, pig, play, park - All start with the "p" sound</li>
+        <li><strong>/s/</strong> - sun, sit, smile, sit - All start with the "s" sound</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Sound Matching Pairs</div>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background: #F5FBFF;"><td style="padding: 8px;"><strong>Word</strong></td><td style="padding: 8px;"><strong>Beginning Sound</strong></td></tr>
+        <tr style="background: #fff;"><td style="padding: 8px;">cat</td><td style="padding: 8px;">/k/ sound</td></tr>
+        <tr style="background: #F5FBFF;"><td style="padding: 8px;">dog</td><td style="padding: 8px;">/d/ sound</td></tr>
+        <tr style="background: #fff;"><td style="padding: 8px;">sit</td><td style="padding: 8px;">/s/ sound</td></tr>
+        <tr style="background: #F5FBFF;"><td style="padding: 8px;">pig</td><td style="padding: 8px;">/p/ sound</td></tr>
+      </table>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Listening to Word Sounds</div>
+      <ol>
+        <li>I say "cat". What sound is at the beginning? <em>(/k/ sound)</em></li>
+        <li>Listen to: dog, desk, door. What sound do they all have?</li>
+        <li>Which word starts with the /p/ sound? (pig, sit, book) - Answer: pig</li>
+        <li>Clap twice when you hear a word that starts with /s/.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Listening to Simple Words</div>
+<div class="lesson">
+  <div class="lesson-header c3">🎧 Common Classroom Words</div>
+  <div class="lesson-body">
+    <div class="explain">
+      In Grade 2, you learn to listen to <strong>simple, everyday words</strong>. These are words your teacher uses in class every day. 
+      Listen carefully so you understand what your teacher is asking you to do.
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to These Classroom Words</div>
+      <ul>
+        <li><strong>sit down</strong> - Please sit down now</li>
+        <li><strong>stand up</strong> - Stand up, please</li>
+        <li><strong>open your book</strong> - Open your book</li>
+        <li><strong>listen to me</strong> - Listen to me, please</li>
+        <li><strong>raise your hand</strong> - Raise your hand if you know</li>
+        <li><strong>be quiet</strong> - Be quiet, please</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 Simple Object Words for Grade 2</div>
+      <ul>
+        <li>pen ✏️, pencil ✏️, book 📖, bag 🎒</li>
+        <li>apple 🍎, desk 📚, chair 🪑, door 🚪</li>
+        <li>sun ☀️, moon 🌙, star ⭐, tree 🌳</li>
+      </ul>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Understanding Classroom Words</div>
+      <ol>
+        <li>When I say "sit down", you sit. When I say "stand up", you stand. Let's practice!</li>
+        <li>Listen: I say different words. Circle the words you hear: (pen, apple, chair, tree)</li>
+        <li>Match the word to the action:
+          <ul style="margin-top: 8px;">
+            <li>"open your book" → You open a book</li>
+            <li>"raise your hand" → You put up your hand</li>
+            <li>"be quiet" → You stop talking</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Following Simple Instructions</div>
+<div class="lesson">
+  <div class="lesson-header c4">📢 Listen and Do!</div>
+  <div class="lesson-body">
+    <div class="explain">
+      <strong>Instructions</strong> tell you what to do. When your teacher gives an instruction in English, you must listen carefully 
+      and understand what to do. Simple instructions use action words like: sit, stand, open, close, point, touch, clap.
+    </div>
+
+    <div class="example-box">
+      <div class="label">📢 Common Instructions for Grade 2</div>
+      <ul>
+        <li>"Sit down" - Move to a seat and sit</li>
+        <li>"Stand up" - Get up from your seat</li>
+        <li>"Open your book" - Take your book and open it</li>
+        <li>"Close your eyes" - Keep your eyes shut</li>
+        <li>"Point to the door" - Use your finger to show the door</li>
+        <li>"Clap your hands" - Hit your hands together</li>
+        <li>"Touch your nose" - Put your finger on your nose</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Sample Instruction Sequences</div>
+      <p><strong>Instruction 1:</strong> "Sit down and open your book to page 5."<br>
+      <em>What you do: Find a seat, sit, open your book, turn to page 5</em></p>
+      <p style="margin-top: 10px;"><strong>Instruction 2:</strong> "Stand up, close your eyes, and point to the window."<br>
+      <em>What you do: Stand up, close your eyes, point to where the window is</em></p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Follow the Instructions!</div>
+      <ol>
+        <li><strong>Simple:</strong> Your teacher says "clap your hands". You clap.</li>
+        <li><strong>Two parts:</strong> "Stand up and touch your head."</li>
+        <li><strong>Three parts:</strong> "Sit down, open your book, and point to a picture."</li>
+        <li>Listen to your teacher give 5 different instructions. Do each one!</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="sec-title" style="color:var(--sky);">📚 Vocabulary Bank</div>
+<table class="vocab-table">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Meaning / Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Listen</td>
+      <td>Use your ears to hear - "Listen to the teacher"</td>
+    </tr>
+    <tr>
+      <td>Sound</td>
+      <td>What you hear - "The /a/ sound"</td>
+    </tr>
+    <tr>
+      <td>Letter</td>
+      <td>A-B-C-D... part of alphabet</td>
+    </tr>
+    <tr>
+      <td>Word</td>
+      <td>Group of letters that has meaning - "apple" is a word</td>
+    </tr>
+    <tr>
+      <td>Instruction</td>
+      <td>Direction telling you what to do</td>
+    </tr>
+    <tr>
+      <td>Phonics</td>
+      <td>How letters and sounds go together</td>
+    </tr>
+    <tr>
+      <td>Vowel</td>
+      <td>Letters A, E, I, O, U</td>
+    </tr>
+    <tr>
+      <td>Beginning Sound</td>
+      <td>The first sound of a word - /c/ for "cat"</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- TIPS -->
+<div class="sec-title" style="color:var(--sun);">💡 Tips for Good Listening</div>
+<div class="tips-grid">
+  <div class="tip">
+    <div class="ticon">👂</div>
+    <strong>Focus</strong>
+    Look at the speaker and listen carefully. Close your eyes if it helps you hear better.
+  </div>
+  <div class="tip">
+    <div class="ticon">🤐</div>
+    <strong>Be Quiet</strong>
+    No talking when someone is speaking. Your friends need quiet to listen too.
+  </div>
+  <div class="tip">
+    <div class="ticon">🎧</div>
+    <strong>Repeat</strong>
+    Say the words you hear out loud. This helps you remember and practice.
+  </div>
+  <div class="tip">
+    <div class="ticon">🤔</div>
+    <strong>Think</strong>
+    Think about what you hear. What word is it? What sound? What should you do?
+  </div>
+  <div class="tip">
+    <div class="ticon">✋</div>
+    <strong>Raise Your Hand</strong>
+    If you don't understand, raise your hand. Ask your teacher to explain.
+  </div>
+  <div class="tip">
+    <div class="ticon">💪</div>
+    <strong>Practice Every Day</strong>
+    Listen to English songs, videos, and stories. This helps you get better!
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+<ul class="checklist">
+  <li><span class="box"></span> I can identify the sounds of English letters (A-Z).</li>
+  <li><span class="box"></span> I understand the beginning sounds (phonics) of simple words.</li>
+  <li><span class="box"></span> I can listen to and understand simple classroom vocabulary.</li>
+  <li><span class="box"></span> I can follow simple one-part instructions (sit down, stand up).</li>
+  <li><span class="box"></span> I can follow two-part instructions (sit down + open your book).</li>
+  <li><span class="box"></span> I can listen carefully without talking when others are speaking.</li>
+  <li><span class="box"></span> I can repeat words and sounds I hear.</li>
+</ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Listening Module · Grade 2 Elementary School · Keep Listening! 👂
+</footer>
+
+</body>
+</html>

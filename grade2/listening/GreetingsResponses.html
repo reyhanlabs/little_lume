@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening Grade 2 – Module 2: Greetings & Responses</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4BB8F0;
+  --sun: #FFD94A;
+  --grass: #5CC86A;
+  --coral: #FF6E6E;
+  --lavender: #B48BF2;
+  --cream: #FFF8EE;
+  --ink: #2E2A4A;
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 16px rgba(46,42,74,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+header {
+  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+}
+header::before {
+  content: "👋 😊 👋 😊 👋 😊 👋 😊 👋 😊";
+  position: absolute; top: 8px; left: 0; right: 0;
+  font-size: 18px; letter-spacing: 12px; opacity: .22;
+}
+.brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+header h1 span { color: var(--sun); }
+.subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+.badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+  margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+.intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+.intro-card strong { color: var(--grass); }
+
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+.topic-card:nth-child(2) { border-color: var(--sky); }
+.topic-card:nth-child(3) { border-color: var(--grass); }
+.topic-card:nth-child(4) { border-color: var(--lavender); }
+.topic-card:hover { transform: translateY(-4px); }
+.topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+.topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+.topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+.lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+.lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+.lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+.lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+.lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+.lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+.lesson-body { padding: 20px 22px; }
+
+.explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+.explain strong { color: var(--lavender); }
+
+.example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+.example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+.example-box ul { padding-left: 18px; }
+
+.dialogue-box { background: #F0F8FF; border-left: 4px solid var(--sky); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.dialogue-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #0D47A1; margin-bottom: 8px; }
+.dialogue-box p { font-size: 14px; line-height: 1.8; color: var(--ink); margin-bottom: 6px; }
+.dialogue-box p strong { color: var(--sky); }
+
+.practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+.practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.practice ol, .practice ul { padding-left: 20px; }
+.practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+
+.vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+.vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+.vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+.vocab-table thead th:last-child { border-radius: 0 10px 10px 0; }
+.vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+.vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+.vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+.tip .ticon { font-size: 28px; margin-bottom: 8px; }
+.tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+.checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+.checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border: none; }
+.box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+footer strong { color: var(--lavender); }
+
+@media (max-width: 768px) {
+  .topic-grid, .tips-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Greetings!</span> 👋</h1>
+  <p class="subtitle">Listening Skills · Grade 2 Elementary School</p>
+  <span class="badge">📘 Module 2 · Greetings & Responses</span>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<div class="intro-card">
+  🌟 <strong>Welcome to Greetings Module!</strong><br>
+  Greetings are the first words you say to people. They show kindness and respect. In this module, you will practice 
+  listening to different greetings and learn how to answer them. Let's be friendly and learn to say hello! 👋
+</div>
+
+<!-- TOPICS -->
+<div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+<div class="topic-grid">
+  <div class="topic-card">
+    <div class="icon">👋</div>
+    <h3>Morning Greetings</h3>
+    <p>Say hello in the morning.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">😊</div>
+    <h3>How Are You?</h3>
+    <p>Ask and answer about feelings.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🌙</div>
+    <h3>Evening Greetings</h3>
+    <p>Say goodbye and goodnight.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">💬</div>
+    <h3>Short Dialogues</h3>
+    <p>Listen to friendly conversations.</p>
+  </div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Morning Greetings</div>
+<div class="lesson">
+  <div class="lesson-header c1">👋 Hello! Good Morning!</div>
+  <div class="lesson-body">
+    <div class="explain">
+      When you see a friend or teacher in the morning, you should say hello or good morning. 
+      <strong>Greetings</strong> show that you are happy to see them. People will often answer your greeting with a friendly greeting back!
+    </div>
+    
+    <div class="dialogue-box">
+      <div class="label">👂 Listen to These Greetings</div>
+      <p><strong>Person A:</strong> "Hello!" → <strong>Person B:</strong> "Hello!"</p>
+      <p><strong>Person A:</strong> "Good morning!" → <strong>Person B:</strong> "Good morning!"</p>
+      <p><strong>Person A:</strong> "Hi, how are you?" → <strong>Person B:</strong> "I'm fine, thank you!"</p>
+      <p><strong>Person A:</strong> "Hello! Nice to meet you!" → <strong>Person B:</strong> "Nice to meet you too!"</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Common Morning Greetings for Grade 2</div>
+      <ul>
+        <li>"Hello!" (most common, use anytime)</li>
+        <li>"Good morning!" (use in the morning)</li>
+        <li>"Hi!" (short, friendly)</li>
+        <li>"Hey!" (friendly, informal)</li>
+        <li>"Good morning! How are you?" (polite & friendly)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Sample Greeting Conversations</div>
+      <p><strong>Conversation 1:</strong><br>
+      Teacher: "Good morning, class!"<br>
+      Students: "Good morning, teacher!"</p>
+      <p style="margin-top: 10px;"><strong>Conversation 2:</strong><br>
+      Rina: "Hello, Budi!"<br>
+      Budi: "Hi, Rina! How are you?"<br>
+      Rina: "I'm fine, thank you!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Listen & Respond</div>
+      <ol>
+        <li>Your teacher says "Good morning!" What do you say? <em>(Good morning!)</em></li>
+        <li>You hear "Hello, how are you?" How do you answer?</li>
+        <li>Listen to your teacher say different greetings and repeat each one.</li>
+        <li>Practice with a classmate: Take turns saying greetings and responding.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – How Are You? (Feelings)</div>
+<div class="lesson">
+  <div class="lesson-header c2">😊 Asking About Feelings</div>
+  <div class="lesson-body">
+    <div class="explain">
+      After you say hello, friends often ask "How are you?" This question asks about how you feel. 
+      In Grade 2, you learn to listen to this question and give simple answers about your feelings: fine, happy, sad, tired, excited!
+    </div>
+
+    <div class="dialogue-box">
+      <div class="label">👂 Listen to the Question & Answers</div>
+      <p><strong>Question:</strong> "How are you?"</p>
+      <p style="margin-top: 8px;"><strong>Possible Answers:</strong><br>
+      ✓ "I'm fine, thank you!" (good, healthy)<br>
+      ✓ "I'm happy!" (full of joy)<br>
+      ✓ "I'm sad." (not happy)<br>
+      ✓ "I'm tired." (need sleep)<br>
+      ✓ "I'm excited!" (very happy about something)</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Words About Feelings</div>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background: #F5FBFF;"><td style="padding: 8px;"><strong>Feeling</strong></td><td style="padding: 8px;"><strong>Example</strong></td></tr>
+        <tr style="background: #fff;"><td style="padding: 8px;">happy 😊</td><td style="padding: 8px;">I'm happy! (You smile)</td></tr>
+        <tr style="background: #F5FBFF;"><td style="padding: 8px;">sad 😢</td><td style="padding: 8px;">I'm sad. (You don't smile)</td></tr>
+        <tr style="background: #fff;"><td style="padding: 8px;">fine ✓</td><td style="padding: 8px;">I'm fine! (Everything is okay)</td></tr>
+        <tr style="background: #F5FBFF;"><td style="padding: 8px;">tired 😴</td><td style="padding: 8px;">I'm tired. (Need sleep)</td></tr>
+        <tr style="background: #fff;"><td style="padding: 8px;">excited 🎉</td><td style="padding: 8px;">I'm excited! (Very, very happy)</td></tr>
+      </table>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Conversation Examples</div>
+      <p><strong>Example 1:</strong><br>
+      Friend: "How are you today?"<br>
+      You: "I'm happy! I have a birthday cake!"</p>
+      <p style="margin-top: 10px;"><strong>Example 2:</strong><br>
+      Mom: "How are you?"<br>
+      You: "I'm tired. I want to sleep."</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Feeling Words</div>
+      <ol>
+        <li>Teacher asks "How are you?" Answer with a feeling word: happy, sad, fine, tired, or excited.</li>
+        <li>Listen to sentences and identify the feeling:
+          <ul style="margin-top: 8px;">
+            <li>"I want to sleep." → You are _____ (tired)</li>
+            <li>"I have a new toy!" → You are _____ (happy)</li>
+          </ul>
+        </li>
+        <li>Your teacher says "I'm sad." Can you ask why? ("Why are you sad?")</li>
+        <li>Practice with a friend: Ask "How are you?" and give different feeling answers each time.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Goodbye & Evening Greetings</div>
+<div class="lesson">
+  <div class="lesson-header c3">🌙 Saying Goodbye</div>
+  <div class="lesson-body">
+    <div class="explain">
+      When you finish playing or learning, you say goodbye to your friends. <strong>Goodbye</strong> means you will see them again later. 
+      There are different ways to say goodbye: Goodbye, Bye, See you soon, Goodnight (at bedtime).
+    </div>
+
+    <div class="dialogue-box">
+      <div class="label">👂 Listen to Goodbyes</div>
+      <p><strong>Friend 1:</strong> "Goodbye!" → <strong>Friend 2:</strong> "Goodbye!"</p>
+      <p><strong>Friend 1:</strong> "Bye, see you tomorrow!" → <strong>Friend 2:</strong> "See you!"</p>
+      <p><strong>Parent:</strong> "Goodnight, sweet dreams!" → <strong>Child:</strong> "Goodnight!"</p>
+      <p><strong>Friend 1:</strong> "See you later!" → <strong>Friend 2:</strong> "See you!"</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Different Ways to Say Goodbye</div>
+      <ul>
+        <li>"Goodbye!" - formal, polite</li>
+        <li>"Bye!" - short, friendly</li>
+        <li>"See you later!" - you will see them soon</li>
+        <li>"See you tomorrow!" - you will see them the next day</li>
+        <li>"See you soon!" - you will see them very soon</li>
+        <li>"Goodnight!" - when going to sleep</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Evening Goodbye Conversations</div>
+      <p><strong>After School:</strong><br>
+      Teacher: "Goodbye, children! Have a nice day!"<br>
+      Students: "Goodbye, teacher!"</p>
+      <p style="margin-top: 10px;"><strong>Bedtime at Home:</strong><br>
+      Mom: "Goodnight, sweet dreams!"<br>
+      Child: "Goodnight, Mom!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Say Goodbye</div>
+      <ol>
+        <li>Your teacher says "Goodbye, class!" What do you answer? <em>(Goodbye!)</em></li>
+        <li>You hear "See you tomorrow!" What can you say back?</li>
+        <li>Listen to different goodbyes and repeat: Bye! / See you! / Goodnight!</li>
+        <li>Say goodbye to your teacher with feeling: "Goodbye, teacher! Thank you!"</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Short Friendly Dialogues</div>
+<div class="lesson">
+  <div class="lesson-header c4">💬 Listening to Conversations</div>
+  <div class="lesson-body">
+    <div class="explain">
+      A <strong>dialogue</strong> is a conversation between two people. In this lesson, you listen to short, simple dialogues 
+      using greetings and responses. This helps you understand how English speakers talk to each other!
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Full Dialogue Examples</div>
+      <p><strong>Dialogue 1: Morning at School</strong><br>
+      Ani: "Good morning, Rudi!"<br>
+      Rudi: "Good morning, Ani! How are you?"<br>
+      Ani: "I'm fine, thank you! How are you?"<br>
+      Rudi: "I'm happy! I have a new book!"<br>
+      Ani: "That's nice!"</p>
+      
+      <p style="margin-top: 15px;"><strong>Dialogue 2: Meeting a New Friend</strong><br>
+      Tina: "Hi! I'm Tina."<br>
+      Sani: "Hello! I'm Sani. Nice to meet you!"<br>
+      Tina: "Nice to meet you too! How are you?"<br>
+      Sani: "I'm fine! Do you want to play?"<br>
+      Tina: "Yes! Let's play together!"</p>
+
+      <p style="margin-top: 15px;"><strong>Dialogue 3: End of School Day</strong><br>
+      Teacher: "Goodbye, children! See you tomorrow!"<br>
+      Students: "Goodbye, teacher! Thank you!"<br>
+      Budi: "Bye, Rina! See you tomorrow!"<br>
+      Rina: "See you, Budi!"</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 Key Words in Greetings & Farewells</div>
+      <ul>
+        <li><strong>Hello / Hi</strong> - to say hi to someone</li>
+        <li><strong>Good morning</strong> - greeting in the morning</li>
+        <li><strong>How are you?</strong> - ask about someone's feelings</li>
+        <li><strong>I'm fine / happy / sad / tired</strong> - answer about feelings</li>
+        <li><strong>Thank you</strong> - say thanks</li>
+        <li><strong>Goodbye / Bye</strong> - say bye to someone</li>
+        <li><strong>See you later / tomorrow</strong> - you will see them again</li>
+      </ul>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Listen to Dialogues</div>
+      <ol>
+        <li>Listen to your teacher read a dialogue. Repeat the same dialogue with a classmate.</li>
+        <li>Your teacher says the first part. You say the second part:
+          <ul style="margin-top: 8px;">
+            <li>Teacher: "Good morning!" → You: "Good morning!"</li>
+            <li>Teacher: "How are you?" → You: "I'm ___" (fine/happy/sad/tired)</li>
+          </ul>
+        </li>
+        <li>Create your own short dialogue with a friend (3-4 lines).</li>
+        <li>Listen to a dialogue and answer: "How many people are talking?" "What are they saying?"</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="sec-title" style="color:var(--sky);">📚 Vocabulary Bank</div>
+<table class="vocab-table">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Meaning / Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hello / Hi</td>
+      <td>Way to greet someone - "Hello, friend!"</td>
+    </tr>
+    <tr>
+      <td>Good morning</td>
+      <td>Greeting said in the morning</td>
+    </tr>
+    <tr>
+      <td>Goodbye / Bye</td>
+      <td>Way to say see you later - "Goodbye!"</td>
+    </tr>
+    <tr>
+      <td>How are you?</td>
+      <td>Question asking about someone's feelings</td>
+    </tr>
+    <tr>
+      <td>I'm fine</td>
+      <td>Answer saying you are healthy and okay</td>
+    </tr>
+    <tr>
+      <td>Happy 😊</td>
+      <td>Feeling when you are joyful and smiling</td>
+    </tr>
+    <tr>
+      <td>Sad 😢</td>
+      <td>Feeling when you are not happy</td>
+    </tr>
+    <tr>
+      <td>Goodnight</td>
+      <td>Greeting said before sleep</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- TIPS -->
+<div class="sec-title" style="color:var(--sun);">💡 Tips for Learning Greetings</div>
+<div class="tips-grid">
+  <div class="tip">
+    <div class="ticon">😊</div>
+    <strong>Be Friendly</strong>
+    When you greet someone, smile and look happy. This shows you are kind and friendly.
+  </div>
+  <div class="tip">
+    <div class="ticon">👂</div>
+    <strong>Listen Carefully</strong>
+    Pay attention to how your teacher or friends say greetings. Copy the same tone and feeling.
+  </div>
+  <div class="tip">
+    <div class="ticon">🔊</div>
+    <strong>Speak Clearly</strong>
+    Speak loud enough. Say each word slowly so people can understand you.
+  </div>
+  <div class="tip">
+    <div class="ticon">👀</div>
+    <strong>Look at People</strong>
+    When you say hello or goodbye, look at the other person's face. This is polite!
+  </div>
+  <div class="tip">
+    <div class="ticon">🎭</div>
+    <strong>Use Your Voice</strong>
+    Use happy, friendly voice for hellos. Use warm, kind voice for goodbyes.
+  </div>
+  <div class="tip">
+    <div class="ticon">💪</div>
+    <strong>Practice Always</strong>
+    Say greetings every day! Morning hello, goodbye at night, and with your friends!
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+<ul class="checklist">
+  <li><span class="box"></span> I can listen to and understand "Hello" or "Good morning".</li>
+  <li><span class="box"></span> I can understand the question "How are you?"</li>
+  <li><span class="box"></span> I can listen to and recognize feeling words (happy, sad, fine, tired, excited).</li>
+  <li><span class="box"></span> I can understand "Goodbye" and other goodbye phrases.</li>
+  <li><span class="box"></span> I can respond with a greeting or goodbye when someone greets me.</li>
+  <li><span class="box"></span> I can listen to a simple greeting dialogue and understand what is happening.</li>
+  <li><span class="box"></span> I can say greetings and goodbyes with a friendly tone of voice.</li>
+</ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Listening Module · Grade 2 Elementary School · Be Friendly! 👋
+</footer>
+
+</body>
+</html>

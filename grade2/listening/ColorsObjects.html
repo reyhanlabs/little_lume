@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening Grade 2 – Module 4: Colors & Objects</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4BB8F0;
+  --sun: #FFD94A;
+  --grass: #5CC86A;
+  --coral: #FF6E6E;
+  --lavender: #B48BF2;
+  --cream: #FFF8EE;
+  --ink: #2E2A4A;
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 16px rgba(46,42,74,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+header {
+  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+}
+header::before {
+  content: "🔴 🟡 🟢 🟦 🟪 ⭕ 🟠 ▪️ 🟫 ⚪";
+  position: absolute; top: 8px; left: 0; right: 0;
+  font-size: 18px; letter-spacing: 12px; opacity: .22;
+}
+.brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+header h1 span { color: var(--sun); }
+.subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+.badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+  margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+.intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+.intro-card strong { color: var(--grass); }
+
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+.topic-card:nth-child(2) { border-color: var(--sky); }
+.topic-card:nth-child(3) { border-color: var(--grass); }
+.topic-card:nth-child(4) { border-color: var(--lavender); }
+.topic-card:hover { transform: translateY(-4px); }
+.topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+.topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+.topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+.lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+.lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+.lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+.lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+.lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+.lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+.lesson-body { padding: 20px 22px; }
+
+.explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+.explain strong { color: var(--lavender); }
+
+.example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+.example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+.example-box ul { padding-left: 18px; }
+
+.color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin: 12px 0; }
+.color-card { border-radius: 12px; padding: 15px 10px; text-align: center; color: white; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.color-red { background: #FF5252; }
+.color-blue { background: #42A5F5; }
+.color-yellow { background: #FFD54F; color: #333; text-shadow: none; }
+.color-green { background: #66BB6A; }
+.color-purple { background: #AB47BC; }
+.color-orange { background: #FF7043; }
+.color-pink { background: #EC407A; }
+.color-brown { background: #A1887F; }
+.color-black { background: #333; }
+.color-white { background: #EFEFEF; color: #333; text-shadow: none; }
+
+.practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+.practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.practice ol, .practice ul { padding-left: 20px; }
+.practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+
+.vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+.vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+.vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+.vocab-table thead th:last-child { border-radius: 0 10px 10px 0; }
+.vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+.vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+.vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+.tip .ticon { font-size: 28px; margin-bottom: 8px; }
+.tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+.checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+.checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border: none; }
+.box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+footer strong { color: var(--lavender); }
+
+@media (max-width: 768px) {
+  .topic-grid, .tips-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+  .color-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Colors!</span> 🌈</h1>
+  <p class="subtitle">Listening Skills · Grade 2 Elementary School</p>
+  <span class="badge">📘 Module 4 · Colors & Objects</span>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<div class="intro-card">
+  🌟 <strong>Welcome to Colors & Objects Module!</strong><br>
+  Colors make the world beautiful! In this module, you will practice listening to color names and learn to describe objects using colors. 
+  We will also learn the names of common objects in English. Let's enjoy learning about colors! 🌈
+</div>
+
+<!-- TOPICS -->
+<div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+<div class="topic-grid">
+  <div class="topic-card">
+    <div class="icon">🌈</div>
+    <h3>Basic Colors</h3>
+    <p>Listen to 10 main color names.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🟦</div>
+    <h3>Color Questions</h3>
+    <p>Answer "What color is...?"</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">📚</div>
+    <h3>Classroom Objects</h3>
+    <p>Listen to school item names.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🎨</div>
+    <h3>Describing Objects</h3>
+    <p>Say color + object together.</p>
+  </div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Basic Colors</div>
+<div class="lesson">
+  <div class="lesson-header c1">🌈 The Rainbow Colors</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Colors are everywhere! In Grade 2, you learn the 10 most common color names in English. 
+      <strong>Listen carefully to how each color sounds</strong> when your teacher says it. Repeat each color after you hear it!
+    </div>
+    
+    <div class="example-box">
+      <div class="label">🎧 Listen to Basic Colors</div>
+      <div class="color-grid">
+        <div class="color-card color-red">RED 🔴</div>
+        <div class="color-card color-orange">ORANGE 🟠</div>
+        <div class="color-card color-yellow">YELLOW 🟡</div>
+        <div class="color-card color-green">GREEN 🟢</div>
+        <div class="color-card color-blue">BLUE 🔵</div>
+        <div class="color-card color-purple">PURPLE 🟣</div>
+        <div class="color-card color-pink">PINK 💗</div>
+        <div class="color-card color-brown">BROWN 🟫</div>
+        <div class="color-card color-black">BLACK ⚫</div>
+        <div class="color-card color-white">WHITE ⚪</div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎨 Colors in Nature & Life</div>
+      <ul>
+        <li><strong>RED</strong> - apple 🍎, fire 🔥, heart ❤️</li>
+        <li><strong>YELLOW</strong> - sun ☀️, banana 🍌, flower 🌻</li>
+        <li><strong>BLUE</strong> - sky 🌤️, ocean 🌊, water 💧</li>
+        <li><strong>GREEN</strong> - grass 🌱, leaf 🍃, tree 🌳</li>
+        <li><strong>ORANGE</strong> - orange 🍊, carrot 🥕</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Color Word Examples</div>
+      <p>"This is a <strong>red</strong> apple." (apple = merah)<br>
+      "The sky is <strong>blue</strong>." (sky = langit)<br>
+      "I like the <strong>green</strong> color." (warna hijau)<br>
+      "My favorite color is <strong>purple</strong>." (favorit = kesukaan)</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Listen & Point</div>
+      <ol>
+        <li>Your teacher says a color (red, blue, green...). You point to something that color in your classroom.</li>
+        <li>Listen to: "Show me something red / blue / yellow / green." Point and say "This is red!"</li>
+        <li>Repeat each color after your teacher: red, orange, yellow, green, blue, purple, pink, brown, black, white.</li>
+        <li>What colors do you see? Say it: "I see red. I see blue. I see green."</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – Asking About Colors</div>
+<div class="lesson">
+  <div class="lesson-header c2">🎨 "What Color Is...?"</div>
+  <div class="lesson-body">
+    <div class="explain">
+      The question <strong>"What color is...?"</strong> asks you to identify the color of an object. 
+      When you hear this question, listen to the object name, look at its color, and answer with the color word!
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Listen to Color Questions & Answers</div>
+      <p><strong>Question:</strong> "What color is the apple?"<br>
+      <strong>Answer:</strong> "It is red." (It = itu)</p>
+      <p style="margin-top: 10px;"><strong>Question:</strong> "What color is the sky?"<br>
+      <strong>Answer:</strong> "It is blue."</p>
+      <p style="margin-top: 10px;"><strong>Question:</strong> "What color is your book?"<br>
+      <strong>Answer:</strong> "My book is green."</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 Practice Questions</div>
+      <ul>
+        <li>"What color is the sun?" → "It is yellow."</li>
+        <li>"What color is the grass?" → "It is green."</li>
+        <li>"What color is your pencil?" → "My pencil is blue."</li>
+        <li>"What color is your bag?" → "My bag is black."</li>
+        <li>"What color is the teacher's shirt?" → "It is white."</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Sample Conversation</div>
+      <p><strong>Teacher:</strong> "Children, look at this apple. What color is it?"<br>
+      <strong>Student 1:</strong> "It is red!"<br>
+      <strong>Teacher:</strong> "Very good! And what color is this banana?"<br>
+      <strong>Student 2:</strong> "The banana is yellow!"<br>
+      <strong>Teacher:</strong> "Excellent! Very smart!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Answer Color Questions</div>
+      <ol>
+        <li>Teacher asks: "What color is the board?" You answer: "It is (black/white/green)."</li>
+        <li>Listen to 5 color questions and answer each one.</li>
+        <li>Point to an object and your friend asks: "What color is it?" You answer with the color.</li>
+        <li>Ask your classmate: "What color is your shirt?" and listen to their answer.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Classroom Objects</div>
+<div class="lesson">
+  <div class="lesson-header c3">📚 Things in Our Classroom</div>
+  <div class="lesson-body">
+    <div class="explain">
+      You see many objects every day in your classroom: desk, chair, book, pen, pencil, bag, window, door, etc. 
+      <strong>Listen to the object names carefully</strong>. These words are very important for daily school life.
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to Classroom Objects</div>
+      <ul>
+        <li><strong>BOOK 📖</strong> - You read from this</li>
+        <li><strong>PEN ✒️</strong> - You write with this (has ink)</li>
+        <li><strong>PENCIL ✏️</strong> - You write with this (has lead)</li>
+        <li><strong>DESK 📚</strong> - You sit and work at this</li>
+        <li><strong>CHAIR 🪑</strong> - You sit on this</li>
+        <li><strong>BAG 🎒</strong> - You carry your books in this</li>
+        <li><strong>ERASER 🧹</strong> - You erase pencil marks with this</li>
+        <li><strong>RULER 📏</strong> - You draw straight lines with this</li>
+        <li><strong>DOOR 🚪</strong> - You enter through this</li>
+        <li><strong>WINDOW 🪟</strong> - You see outside through this</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎨 Objects Dialogue</div>
+      <p><strong>Teacher:</strong> "Point to the desk."<br>
+      <strong>Student:</strong> (points to desk)<br><br>
+      <strong>Teacher:</strong> "Show me your pencil."<br>
+      <strong>Student:</strong> (shows pencil)</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 Object Sentences</div>
+      <p>"I have a <strong>book</strong>." (Saya punya buku)<br>
+      "This is my <strong>desk</strong>." (Ini meja saya)<br>
+      "Where is my <strong>pen</strong>?" (Mana penku?)<br>
+      "I see a <strong>window</strong>." (Saya lihat jendela)</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Recognize & Point</div>
+      <ol>
+        <li>Teacher says "Show me a pen." You point to or hold up a pen.</li>
+        <li>Listen: "Where is the door/window/desk/chair?" Point to it.</li>
+        <li>Teacher says object names. You say what each object is for: "A pen is for writing."</li>
+        <li>Look around your classroom and name objects you see in English.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Colors + Objects Together</div>
+<div class="lesson">
+  <div class="lesson-header c4">🎨 Describing Things</div>
+  <div class="lesson-body">
+    <div class="explain">
+      When you describe something, you say both the color AND the object name together. 
+      For example: "<strong>red apple</strong>" (not just "red" or just "apple"). 
+      Listen for how we put color words and object names together!
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Listen to Color + Object</div>
+      <p><strong>Color first, then object:</strong><br>
+      "a <strong>red</strong> apple" 🍎<br>
+      "a <strong>blue</strong> pen" ✒️<br>
+      "a <strong>green</strong> book" 📖<br>
+      "a <strong>brown</strong> desk" 📚<br>
+      "a <strong>yellow</strong> pencil" ✏️<br>
+      "a <strong>white</strong> board" 📋<br>
+      "a <strong>black</strong> chair" 🪑</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Conversation with Descriptions</div>
+      <p><strong>Friend 1:</strong> "I have a red book."<br>
+      <strong>Friend 2:</strong> "Wow! A red book is nice!"<br><br>
+      <strong>Teacher:</strong> "Can you find a blue pen?"<br>
+      <strong>Student:</strong> "Yes! I have a blue pen!"<br><br>
+      <strong>Child:</strong> "Look! I have a yellow pencil."<br>
+      <strong>Mother:</strong> "That's a pretty yellow pencil!"</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎨 My School Things</div>
+      <p>"I have a <strong>red pencil</strong>." (My pencil is red)<br>
+      "This is my <strong>blue bag</strong>." (My bag is blue)<br>
+      "I like this <strong>green book</strong>." (This book is green)<br>
+      "Look at my <strong>yellow pen</strong>!" (My pen is yellow)</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Color + Object</div>
+      <ol>
+        <li>Listen: "I have a blue pencil." What color? What object? Answer: blue pencil.</li>
+        <li>Your teacher shows an object. Say the color + object: "It is a (red) (pen)."</li>
+        <li>Describe your own things: "I have a ___ (color) ___ (object)." Example: "I have a blue pen."</li>
+        <li>Look at your classroom. Describe 5 things using color + object words.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="sec-title" style="color:var(--sky);">📚 Vocabulary Bank</div>
+<table class="vocab-table">
+  <thead>
+    <tr>
+      <th>Word Category</th>
+      <th>Words & Examples</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Colors</td>
+      <td>red, orange, yellow, green, blue, purple, pink, brown, black, white</td>
+    </tr>
+    <tr>
+      <td>Classroom Objects</td>
+      <td>book, pen, pencil, desk, chair, bag, eraser, ruler, door, window</td>
+    </tr>
+    <tr>
+      <td>Color Question</td>
+      <td>"What color is...?" - Question asking for a color</td>
+    </tr>
+    <tr>
+      <td>Describing</td>
+      <td>"a red apple" - color + object together</td>
+    </tr>
+    <tr>
+      <td>My/This</td>
+      <td>"My pen" / "My book" - things that belong to you</td>
+    </tr>
+    <tr>
+      <td>Color Sentences</td>
+      <td>"It is red." / "My pen is blue." - Saying the color</td>
+    </tr>
+    <tr>
+      <td>School Items</td>
+      <td>book, pen, pencil, desk, chair, bag, eraser, ruler</td>
+    </tr>
+    <tr>
+      <td>Location Words</td>
+      <td>"in" / "on" / "at" - where things are</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- TIPS -->
+<div class="sec-title" style="color:var(--sun);">💡 Tips for Learning Colors & Objects</div>
+<div class="tips-grid">
+  <div class="tip">
+    <div class="ticon">🌈</div>
+    <strong>Use Real Objects</strong>
+    Point to real things and say colors. "This is a red book." Practice with real items!
+  </div>
+  <div class="tip">
+    <div class="ticon">🔍</div>
+    <strong>Look Around</strong>
+    Find 5 objects of each color. Red things, blue things, green things in your room.
+  </div>
+  <div class="tip">
+    <div class="ticon">👂</div>
+    <strong>Listen & Repeat</strong>
+    Hear the teacher say a color. Repeat it. Say it many times to remember!
+  </div>
+  <div class="tip">
+    <div class="ticon">🎨</div>
+    <strong>Draw & Name</strong>
+    Draw something and color it. Say the color + object: "I draw a blue flower."
+  </div>
+  <div class="tip">
+    <div class="ticon">🗣️</div>
+    <strong>Ask Friends</strong>
+    Ask classmates: "What color is your bag?" Listen and learn!
+  </div>
+  <div class="tip">
+    <div class="ticon">🌟</div>
+    <strong>Make Sentences</strong>
+    Put color + object together: "I have a green pen." / "This is a yellow pencil."
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+<ul class="checklist">
+  <li><span class="box"></span> I can listen to and recognize 10 basic color names.</li>
+  <li><span class="box"></span> I understand the question "What color is...?"</li>
+  <li><span class="box"></span> I can answer color questions correctly.</li>
+  <li><span class="box"></span> I can listen to and identify classroom objects.</li>
+  <li><span class="box"></span> I can understand sentences with color + object together.</li>
+  <li><span class="box"></span> I can describe my own things using color words.</li>
+  <li><span class="box"></span> I can point to or find objects when asked in English.</li>
+</ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Listening Module · Grade 2 Elementary School · See the Colors! 🌈
+</footer>
+
+</body>
+</html>

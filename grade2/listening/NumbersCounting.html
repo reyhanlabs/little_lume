@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening Grade 2 – Module 3: Numbers & Counting</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4BB8F0;
+  --sun: #FFD94A;
+  --grass: #5CC86A;
+  --coral: #FF6E6E;
+  --lavender: #B48BF2;
+  --cream: #FFF8EE;
+  --ink: #2E2A4A;
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 16px rgba(46,42,74,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+header {
+  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+}
+header::before {
+  content: "1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟";
+  position: absolute; top: 8px; left: 0; right: 0;
+  font-size: 18px; letter-spacing: 8px; opacity: .22;
+}
+.brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+header h1 span { color: var(--sun); }
+.subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+.badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+  margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+.intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+.intro-card strong { color: var(--grass); }
+
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+.topic-card:nth-child(2) { border-color: var(--sky); }
+.topic-card:nth-child(3) { border-color: var(--grass); }
+.topic-card:nth-child(4) { border-color: var(--lavender); }
+.topic-card:hover { transform: translateY(-4px); }
+.topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+.topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+.topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+.lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+.lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+.lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+.lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+.lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+.lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+.lesson-body { padding: 20px 22px; }
+
+.explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+.explain strong { color: var(--lavender); }
+
+.example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+.example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+.example-box ul { padding-left: 18px; }
+
+.number-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; margin: 12px 0; }
+.number-card { background: #E3F2FD; border-radius: 8px; padding: 10px; text-align: center; border: 2px solid var(--sky); }
+.number-card .num { font-size: 20px; font-weight: bold; color: var(--sky); }
+.number-card .word { font-size: 12px; color: var(--ink); }
+
+.practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+.practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.practice ol, .practice ul { padding-left: 20px; }
+.practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+
+.vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+.vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+.vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+.vocab-table thead th:last-child { border-radius: 0 10px 10px 0; }
+.vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+.vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+.vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+.tip .ticon { font-size: 28px; margin-bottom: 8px; }
+.tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+.checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+.checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border: none; }
+.box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+footer strong { color: var(--lavender); }
+
+@media (max-width: 768px) {
+  .topic-grid, .tips-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+  .number-grid { grid-template-columns: repeat(5, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Numbers!</span> 🔢</h1>
+  <p class="subtitle">Listening Skills · Grade 2 Elementary School</p>
+  <span class="badge">📘 Module 3 · Numbers & Counting</span>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<div class="intro-card">
+  🌟 <strong>Welcome to Numbers Module!</strong><br>
+  Numbers are everywhere! We use numbers to count, tell time, and talk about age. In this module, you will practice 
+  listening to English numbers from 1 to 20. Let's learn to count in English! 🔢
+</div>
+
+<!-- TOPICS -->
+<div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+<div class="topic-grid">
+  <div class="topic-card">
+    <div class="icon">🔢</div>
+    <h3>Numbers 1-10</h3>
+    <p>Listen to and recognize basic numbers.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🔟</div>
+    <h3>Numbers 11-20</h3>
+    <p>Learn teen numbers (11, 12, 13...).</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">📊</div>
+    <h3>Counting & Quantities</h3>
+    <p>Count objects and say the total.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🎂</div>
+    <h3>Age & Numbers in Life</h3>
+    <p>Say age and use numbers daily.</p>
+  </div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Numbers 1-10</div>
+<div class="lesson">
+  <div class="lesson-header c1">🔢 Count from One to Ten</div>
+  <div class="lesson-body">
+    <div class="explain">
+      The numbers 1-10 are the foundation for all counting in English. You will hear these numbers every day in school and life. 
+      <strong>Listen carefully to each number</strong> so you can recognize it when you hear it.
+    </div>
+    
+    <div class="example-box">
+      <div class="label">🎧 Listen to Numbers 1-10</div>
+      <div class="number-grid">
+        <div class="number-card"><div class="num">1</div><div class="word">one</div></div>
+        <div class="number-card"><div class="num">2</div><div class="word">two</div></div>
+        <div class="number-card"><div class="num">3</div><div class="word">three</div></div>
+        <div class="number-card"><div class="num">4</div><div class="word">four</div></div>
+        <div class="number-card"><div class="num">5</div><div class="word">five</div></div>
+        <div class="number-card"><div class="num">6</div><div class="word">six</div></div>
+        <div class="number-card"><div class="num">7</div><div class="word">seven</div></div>
+        <div class="number-card"><div class="num">8</div><div class="word">eight</div></div>
+        <div class="number-card"><div class="num">9</div><div class="word">nine</div></div>
+        <div class="number-card"><div class="num">10</div><div class="word">ten</div></div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Sound Patterns in Numbers</div>
+      <ul>
+        <li><strong>ONE, TWO, THREE, FOUR, FIVE</strong> - Each has different sound</li>
+        <li><strong>SIX, SEVEN, EIGHT, NINE</strong> - All end in similar sounds</li>
+        <li><strong>TEN</strong> - Special number, very common</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 Numbers in Use</div>
+      <p>Examples of using numbers 1-10:<br>
+      "I have <strong>three</strong> books." (you have 3)<br>
+      "She is <strong>five</strong> years old." (age 5)<br>
+      "The answer is <strong>eight</strong>." (answer = 8)<br>
+      "Can you count to <strong>ten</strong>?" (count: 1,2,3...10)</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Listen & Identify Numbers</div>
+      <ol>
+        <li>Teacher says "three". You show 3 fingers.</li>
+        <li>Listen to a number and write it: one, five, seven, ten, etc.</li>
+        <li>Count from 1-10 out loud after your teacher.</li>
+        <li>Your teacher says a number, you clap that many times. (e.g., "five" → you clap 5 times)</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – Numbers 11-20</div>
+<div class="lesson">
+  <div class="lesson-header c2">🔟 Counting Teen Numbers</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Numbers 11-20 are called "teen" numbers (thirteen, fourteen, fifteen...). 
+      <strong>Listen to the ending "-teen"</strong> which makes these numbers special. It's different from numbers 1-10.
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to Numbers 11-20</div>
+      <div class="number-grid">
+        <div class="number-card"><div class="num">11</div><div class="word">eleven</div></div>
+        <div class="number-card"><div class="num">12</div><div class="word">twelve</div></div>
+        <div class="number-card"><div class="num">13</div><div class="word">thirteen</div></div>
+        <div class="number-card"><div class="num">14</div><div class="word">fourteen</div></div>
+        <div class="number-card"><div class="num">15</div><div class="word">fifteen</div></div>
+        <div class="number-card"><div class="num">16</div><div class="word">sixteen</div></div>
+        <div class="number-card"><div class="num">17</div><div class="word">seventeen</div></div>
+        <div class="number-card"><div class="num">18</div><div class="word">eighteen</div></div>
+        <div class="number-card"><div class="num">19</div><div class="word">nineteen</div></div>
+        <div class="number-card"><div class="num">20</div><div class="word">twenty</div></div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Important Teen Numbers</div>
+      <ul>
+        <li><strong>ELEVEN (11)</strong> - Different! Not "one-teen"</li>
+        <li><strong>TWELVE (12)</strong> - Different! Not "two-teen"</li>
+        <li><strong>THIRTEEN to NINETEEN</strong> - Have "-teen" sound</li>
+        <li><strong>TWENTY (20)</strong> - New word, not "two-teen"</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 How Old Are You?</div>
+      <p>"How old are you?" - Question asking your age<br>
+      Answers: <strong>"I am five." / "I am twelve." / "I am twenty."</strong><br><br>
+      "How old is your sister?"<br>
+      "She is <strong>fifteen</strong>."</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Teen Numbers</div>
+      <ol>
+        <li>Listen and say numbers 11-20 after your teacher.</li>
+        <li>Your teacher says a teen number (11-20). Write it: thirteen, eighteen, fourteen, etc.</li>
+        <li>Practice your age: "I am _____ years old." (Use numbers 5-10 or 11-20)</li>
+        <li>Tell about your friends: "My friend is ____ years old." (Use a number)</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Counting & Quantities</div>
+<div class="lesson">
+  <div class="lesson-header c3">📊 How Many?</div>
+  <div class="lesson-body">
+    <div class="explain">
+      When you see objects, you count them and say "how many". <strong>Listen for the word "how many"</strong> - it's a question asking about quantity. 
+      Then you answer with a number and the name of the objects.
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Listen to Quantity Questions & Answers</div>
+      <p><strong>Question:</strong> "How many apples?" →<br>
+      <strong>Answer:</strong> "Five apples." (5 🍎)</p>
+      <p style="margin-top: 10px;"><strong>Question:</strong> "How many students?" →<br>
+      <strong>Answer:</strong> "Twelve students." (12 👧👦)</p>
+      <p style="margin-top: 10px;"><strong>Question:</strong> "How many books do you have?" →<br>
+      <strong>Answer:</strong> "I have three books." (3 📖)</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">📚 Common Things to Count</div>
+      <ul>
+        <li>Apples 🍎 - "How many apples?" / "Three apples"</li>
+        <li>Books 📖 - "How many books?" / "Eight books"</li>
+        <li>Friends 👫 - "How many friends?" / "Seven friends"</li>
+        <li>Pencils ✏️ - "How many pencils?" / "Ten pencils"</li>
+        <li>Fingers 👆 - "How many fingers?" / "Ten fingers"</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Sample Counting Dialogue</div>
+      <p><strong>Teacher:</strong> "Count the chairs in our classroom."<br>
+      <strong>Student:</strong> "One, two, three... fifteen. There are fifteen chairs."<br><br>
+      <strong>Teacher:</strong> "How many girls in our class?"<br>
+      <strong>Student:</strong> "There are eight girls."</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Counting Objects</div>
+      <ol>
+        <li>Teacher asks "How many ___?" (apples/books/friends). You count and answer.</li>
+        <li>Look at classroom objects. Teacher points, you count and say the number.</li>
+        <li>Listen to a counting story: "I have two cats. I have one dog. How many pets?" Answer: three.</li>
+        <li>Practice your own: "I have __ pencils / __ books / __ friends." (Use a number)</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Age & Numbers in Real Life</div>
+<div class="lesson">
+  <div class="lesson-header c4">🎂 Numbers Every Day</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Numbers are used every day for many things: to tell <strong>age</strong>, to write <strong>dates</strong>, to show <strong>time</strong>, 
+      to count <strong>money</strong>, and much more. In this lesson, you practice listening to numbers used in real life situations.
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Numbers in Daily Life</div>
+      <ul>
+        <li><strong>Age:</strong> "I am six years old." / "My brother is ten."</li>
+        <li><strong>Classroom:</strong> "We have twenty students in our class."</li>
+        <li><strong>School Subjects:</strong> "This book has fifteen chapters."</li>
+        <li><strong>Sports & Games:</strong> "I scored eight points!" / "The score is four to one."</li>
+        <li><strong>Home:</strong> "I have two sisters." / "My house number is thirteen."</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Real Conversations with Numbers</div>
+      <p><strong>Conversation 1 – About Age:</strong><br>
+      Friend: "How old are you?"<br>
+      You: "I am seven years old!"<br>
+      Friend: "I am seven too! We are the same age!"</p>
+
+      <p style="margin-top: 10px;"><strong>Conversation 2 – About School:</strong><br>
+      Teacher: "How many students are here today?"<br>
+      Student: "Eighteen students are here, teacher."<br>
+      Teacher: "Good! Two students are absent."</p>
+
+      <p style="margin-top: 10px;"><strong>Conversation 3 – About Family:</strong><br>
+      Grandmother: "How many cousins do you have?"<br>
+      Child: "I have five cousins!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Real-Life Numbers</div>
+      <ol>
+        <li>When someone asks "How old are you?", answer with your real age in English.</li>
+        <li>Look around: Count students in class, pencils, books, etc. Say the total number.</li>
+        <li>Listen to your teacher ask number questions about your school and family. Answer with numbers.</li>
+        <li>Share: "I have ___ friends / ___ toys / ___ pets." (Use a number)</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="sec-title" style="color:var(--sky);">📚 Vocabulary Bank</div>
+<table class="vocab-table">
+  <thead>
+    <tr>
+      <th>Number Words</th>
+      <th>Usage / Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>One, two, three...ten</td>
+      <td>Basic numbers - "I have three books"</td>
+    </tr>
+    <tr>
+      <td>Eleven, twelve...twenty</td>
+      <td>Teen numbers - "I am twelve years old"</td>
+    </tr>
+    <tr>
+      <td>How many?</td>
+      <td>Question asking about quantity</td>
+    </tr>
+    <tr>
+      <td>Count</td>
+      <td>To say numbers in order - "Count from one to ten"</td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>The final number when you add - "The total is five"</td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td>How old someone is - "I am seven years old"</td>
+    </tr>
+    <tr>
+      <td>Number</td>
+      <td>A symbol or word for quantity (1, 2, one, two)</td>
+    </tr>
+    <tr>
+      <td>Zero</td>
+      <td>The number 0 - nothing - "Zero apples"</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- TIPS -->
+<div class="sec-title" style="color:var(--sun);">💡 Tips for Learning Numbers</div>
+<div class="tips-grid">
+  <div class="tip">
+    <div class="ticon">👂</div>
+    <strong>Repeat Out Loud</strong>
+    Say numbers 1-20 every day. The more you say them, the better you remember!
+  </div>
+  <div class="tip">
+    <div class="ticon">🖐️</div>
+    <strong>Use Your Fingers</strong>
+    Count on your fingers while saying numbers. This helps you remember.
+  </div>
+  <div class="tip">
+    <div class="ticon">🎧</div>
+    <strong>Listen Many Times</strong>
+    Listen to English songs about numbers. YouTube has many counting songs!
+  </div>
+  <div class="tip">
+    <div class="ticon">🔢</div>
+    <strong>Count Everything</strong>
+    Count things around you: pencils, students, apples. Say numbers in English!
+  </div>
+  <div class="tip">
+    <div class="ticon">🎲</div>
+    <strong>Play Games</strong>
+    Play number games with friends. Clap, draw, or point when you hear numbers.
+  </div>
+  <div class="tip">
+    <div class="ticon">📝</div>
+    <strong>Write Numbers</strong>
+    Write number words: one, two, three... and practice saying them.
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+<ul class="checklist">
+  <li><span class="box"></span> I can listen to and recognize numbers 1-10.</li>
+  <li><span class="box"></span> I can listen to and recognize numbers 11-20.</li>
+  <li><span class="box"></span> I can count from 1-20 out loud in English.</li>
+  <li><span class="box"></span> I understand the question "How many?"</li>
+  <li><span class="box"></span> I can count objects and say the total in English.</li>
+  <li><span class="box"></span> I can tell my age using English numbers.</li>
+  <li><span class="box"></span> I can use numbers in simple sentences about my life.</li>
+</ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Listening Module · Grade 2 Elementary School · Keep Counting! 🔢
+</footer>
+
+</body>
+</html>

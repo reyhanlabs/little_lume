@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Listening Grade 2 – Module 6: Animal Sounds</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky: #4BB8F0;
+  --sun: #FFD94A;
+  --grass: #5CC86A;
+  --coral: #FF6E6E;
+  --lavender: #B48BF2;
+  --cream: #FFF8EE;
+  --ink: #2E2A4A;
+  --card-bg: #FFFFFF;
+  --shadow: 0 4px 16px rgba(46,42,74,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+header {
+  background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+  padding: 36px 24px 28px; text-align: center; position: relative; overflow: hidden;
+}
+header::before {
+  content: "🐶 🐱 🐮 🐷 🐑 🐓 🦆 🐢 🦁 🐘";
+  position: absolute; top: 8px; left: 0; right: 0;
+  font-size: 18px; letter-spacing: 12px; opacity: .22;
+}
+.brand { font-family: 'Fredoka One', cursive; font-size: 15px; color: rgba(255,255,255,.85); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+header h1 { font-family: 'Fredoka One', cursive; font-size: clamp(28px,6vw,48px); color: #fff; line-height: 1.15; text-shadow: 0 3px 10px rgba(0,0,0,.18); }
+header h1 span { color: var(--sun); }
+.subtitle { margin-top: 10px; font-size: 15px; color: rgba(255,255,255,.90); font-weight: 600; }
+.badge { display: inline-block; margin-top: 14px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: 13px; padding: 5px 16px; border-radius: 99px; }
+
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--ink);
+  margin: 36px 0 16px; display: flex; align-items: center; gap: 10px;
+}
+.sec-title::after { content: ''; flex: 1; height: 3px; border-radius: 99px; background: linear-gradient(90deg, currentColor, transparent); }
+
+.intro-card { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); padding: 24px 26px; border-left: 6px solid var(--grass); font-size: 15px; line-height: 1.75; }
+.intro-card strong { color: var(--grass); }
+
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.topic-card { background: var(--card-bg); border-radius: 18px; box-shadow: var(--shadow); padding: 20px 18px; border-top: 5px solid var(--coral); transition: transform .2s; }
+.topic-card:nth-child(2) { border-color: var(--sky); }
+.topic-card:nth-child(3) { border-color: var(--grass); }
+.topic-card:nth-child(4) { border-color: var(--lavender); }
+.topic-card:hover { transform: translateY(-4px); }
+.topic-card .icon { font-size: 32px; margin-bottom: 8px; }
+.topic-card h3 { font-family: 'Fredoka One', cursive; font-size: 17px; margin-bottom: 6px; }
+.topic-card p { font-size: 13px; line-height: 1.6; color: #555; }
+
+.lesson { background: var(--card-bg); border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; overflow: hidden; }
+.lesson-header { display: flex; align-items: center; gap: 12px; padding: 16px 22px; font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; }
+.lesson-header.c1 { background: linear-gradient(90deg,#FF6E6E,#FFB347); }
+.lesson-header.c2 { background: linear-gradient(90deg,#4BB8F0,#6EC6FF); }
+.lesson-header.c3 { background: linear-gradient(90deg,#5CC86A,#A8E063); }
+.lesson-header.c4 { background: linear-gradient(90deg,#B48BF2,#D09AFF); }
+.lesson-body { padding: 20px 22px; }
+
+.explain { background: #F5F0FF; border-radius: 12px; padding: 14px 16px; font-size: 14px; line-height: 1.75; margin-bottom: 16px; border-left: 4px solid var(--lavender); }
+.explain strong { color: var(--lavender); }
+
+.example-box { background: #FFFBE6; border: 2px dashed var(--sun); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+.example-box .label { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #B8860B; margin-bottom: 6px; }
+.example-box p, .example-box li { font-size: 14px; line-height: 1.8; color: var(--ink); }
+.example-box ul { padding-left: 18px; }
+
+.animal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 12px 0; }
+.animal-card {
+  background: linear-gradient(135deg, #F3E5F5, #E8EAF6);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  border: 2px solid var(--lavender);
+}
+.animal-card .emoji { font-size: 36px; margin-bottom: 8px; }
+.animal-card .name { font-weight: bold; color: var(--ink); margin-bottom: 6px; }
+.animal-card .sound { font-size: 12px; color: var(--lavender); font-style: italic; }
+
+.practice { background: linear-gradient(135deg,#E8F9EE,#D6F3FF); border-radius: 14px; padding: 16px 18px; margin-top: 10px; }
+.practice .ptitle { font-family: 'Fredoka One', cursive; font-size: 15px; color: var(--grass); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.practice ol, .practice ul { padding-left: 20px; }
+.practice li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.65; color: var(--ink); }
+
+.vocab-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13.5px; }
+.vocab-table thead th { font-family: 'Fredoka One', cursive; font-size: 14px; padding: 8px 14px; text-align: left; color: #fff; background: var(--sky); }
+.vocab-table thead th:first-child { border-radius: 10px 0 0 10px; }
+.vocab-table thead th:last-child { border-radius: 0 10px 10px 0; }
+.vocab-table tbody tr td { padding: 9px 14px; background: #F5FBFF; vertical-align: top; line-height: 1.6; }
+.vocab-table tbody tr td:first-child { font-weight: 700; color: var(--sky); border-radius: 10px 0 0 10px; }
+.vocab-table tbody tr td:last-child { border-radius: 0 10px 10px 0; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.tip { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 18px 16px; text-align: center; font-size: 13px; line-height: 1.65; }
+.tip .ticon { font-size: 28px; margin-bottom: 8px; }
+.tip strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; margin-bottom: 4px; }
+
+.checklist { background: var(--card-bg); border-radius: 16px; box-shadow: var(--shadow); padding: 20px 22px; }
+.checklist li { list-style: none; font-size: 14px; line-height: 1.7; padding: 6px 0; border-bottom: 1px dashed #EEE; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border: none; }
+.box { width: 18px; height: 18px; border: 2.5px solid #CCC; border-radius: 5px; flex-shrink: 0; margin-top: 2px; }
+
+footer { text-align: center; padding: 20px; font-size: 13px; color: #999; }
+footer strong { color: var(--lavender); }
+
+@media (max-width: 768px) {
+  .topic-grid, .tips-grid { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+  .animal-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">BunRey English Course</div>
+  <h1>Let's Learn <span>Animal Sounds!</span> 🐾</h1>
+  <p class="subtitle">Listening Skills · Grade 2 Elementary School</p>
+  <span class="badge">📘 Module 6 · Animal Sounds</span>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<div class="intro-card">
+  🌟 <strong>Welcome to Animal Sounds Module!</strong><br>
+  Animals are wonderful! Each animal has its own name and sound. In this module, you will practice listening to animal names 
+  and the sounds they make. This is fun and helps you remember better! Let's listen to the animals! 🐾
+</div>
+
+<!-- TOPICS -->
+<div class="sec-title" style="color:var(--coral);">🗂️ Topics We Will Learn</div>
+<div class="topic-grid">
+  <div class="topic-card">
+    <div class="icon">🐕</div>
+    <h3>Domestic Animals</h3>
+    <p>Animals we have at home (dog, cat, cow).</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🦁</div>
+    <h3>Wild Animals</h3>
+    <p>Animals in the jungle and forest.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🐦</div>
+    <h3>Birds & Water Animals</h3>
+    <p>Birds and creatures in water.</p>
+  </div>
+  <div class="topic-card">
+    <div class="icon">🎵</div>
+    <h3>Animal Sounds & Rhymes</h3>
+    <p>Listen to sounds and songs about animals.</p>
+  </div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="sec-title" style="color:var(--coral);">📌 Lesson 1 – Domestic Animals</div>
+<div class="lesson">
+  <div class="lesson-header c1">🐕 Animals at Home</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Domestic animals are animals we keep at home or on farms. <strong>Listen to the animal name and its sound</strong>. 
+      For example, a dog says "woof woof!" and a cat says "meow meow!". Different animals make different sounds!
+    </div>
+    
+    <div class="example-box">
+      <div class="label">🎧 Listen to Domestic Animals & Sounds</div>
+      <div class="animal-grid">
+        <div class="animal-card">
+          <div class="emoji">🐶</div>
+          <div class="name">DOG</div>
+          <div class="sound">"Woof! Woof!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐱</div>
+          <div class="name">CAT</div>
+          <div class="sound">"Meow! Meow!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐮</div>
+          <div class="name">COW</div>
+          <div class="sound">"Moo! Moo!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐷</div>
+          <div class="name">PIG</div>
+          <div class="sound">"Oink! Oink!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐑</div>
+          <div class="name">SHEEP</div>
+          <div class="sound">"Baa! Baa!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐓</div>
+          <div class="name">CHICKEN</div>
+          <div class="sound">"Cluck! Cluck!"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Sentences About Domestic Animals</div>
+      <ul>
+        <li>"I have a dog. The dog says woof woof!" (anjing berkata woof)</li>
+        <li>"A cat says meow. I like cats!" (kucing berkata meow)</li>
+        <li>"The cow gives milk. It says moo!" (sapi memberikan susu)</li>
+        <li>"On the farm, we see pigs, sheep, and chickens." (di farm kami lihat babi, domba, ayam)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Conversation About Domestic Animals</div>
+      <p><strong>Child:</strong> "Listen! What animal is that?"<br>
+      <strong>Mother:</strong> "That's a dog! It says woof woof!"<br><br>
+      <strong>Friend:</strong> "Do you have a cat?"<br>
+      <strong>You:</strong> "Yes! My cat says meow meow! It is very cute!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Domestic Animals</div>
+      <ol>
+        <li>Teacher makes an animal sound (meow, woof, moo). You say the animal name.</li>
+        <li>Listen to: "The ___ says moo." You say: "The cow says moo!"</li>
+        <li>Repeat animal sounds after your teacher: Woof! Meow! Moo! Oink! Baa!</li>
+        <li>Make animal sounds. Your classmate guesses what animal it is.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="sec-title" style="color:var(--sky);">📌 Lesson 2 – Wild Animals</div>
+<div class="lesson">
+  <div class="lesson-header c2">🦁 Animals in the Jungle</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Wild animals live in the jungle, forest, or savanna. Some wild animals are big and strong, like lions and elephants. 
+      <strong>Listen to wild animal names and their sounds</strong>. They make different sounds than farm animals!
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to Wild Animals & Their Sounds</div>
+      <div class="animal-grid">
+        <div class="animal-card">
+          <div class="emoji">🦁</div>
+          <div class="name">LION</div>
+          <div class="sound">"Roar! Roar!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐯</div>
+          <div class="name">TIGER</div>
+          <div class="sound">"Roar! Growl!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐘</div>
+          <div class="name">ELEPHANT</div>
+          <div class="sound">"Trumpet! Trumpet!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐒</div>
+          <div class="name">MONKEY</div>
+          <div class="sound">"Ooh! Ah! Ah!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🦒</div>
+          <div class="name">GIRAFFE</div>
+          <div class="sound">(quiet, no sound)</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐻</div>
+          <div class="name">BEAR</div>
+          <div class="sound">"Growl! Roar!"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Sentences About Wild Animals</div>
+      <ul>
+        <li>"The lion is big and strong. It roars very loud!" (singa mengaum keras)</li>
+        <li>"An elephant is the biggest animal. It says trumpet!" (gajah adalah hewan terbesar)</li>
+        <li>"Monkeys live in trees. They say ooh ooh ah ah!" (monyet hidup di pohon)</li>
+        <li>"Tigers are fast and dangerous. They roar like lions!" (harimau cepat dan berbahaya)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Jungle Sound Dialogue</div>
+      <p><strong>Teacher:</strong> "Listen! What animal is this?" (makes roaring sound)<br>
+      <strong>Student:</strong> "Is it a lion?"<br>
+      <strong>Teacher:</strong> "Yes! A lion roars!"<br><br>
+      <strong>Child:</strong> "Elephants are so big!"<br>
+      <strong>Friend:</strong> "Yes! And they trumpet very loud!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Wild Animals</div>
+      <ol>
+        <li>Your teacher makes a wild animal sound. You name the animal.</li>
+        <li>Listen: "The lion says ____." You complete: "roar!"</li>
+        <li>Which sound is this: meow, roar, trumpet, ooh ooh? Name the animal!</li>
+        <li>Make wild animal sounds. Your classmates guess which animal.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="sec-title" style="color:var(--grass);">📌 Lesson 3 – Birds & Water Animals</div>
+<div class="lesson">
+  <div class="lesson-header c3">🐦 Animals in the Sky & Water</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Birds fly in the sky and have beautiful sounds. Fish and water animals live in water. 
+      <strong>Listen to bird and water animal names and their sounds</strong>. Some are soft sounds, some are loud!
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎧 Listen to Birds & Water Animals</div>
+      <div class="animal-grid">
+        <div class="animal-card">
+          <div class="emoji">🦆</div>
+          <div class="name">DUCK</div>
+          <div class="sound">"Quack! Quack!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🦆</div>
+          <div class="name">CHICKEN</div>
+          <div class="sound">"Cluck! Cluck!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🦜</div>
+          <div class="name">PARROT</div>
+          <div class="sound">"Squawk! Squawk!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🕊️</div>
+          <div class="name">DOVE</div>
+          <div class="sound">"Coo! Coo!"</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐠</div>
+          <div class="name">FISH</div>
+          <div class="sound">(no sound, silent)</div>
+        </div>
+        <div class="animal-card">
+          <div class="emoji">🐢</div>
+          <div class="name">TURTLE</div>
+          <div class="sound">(mostly quiet)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Sentences About Birds & Water Animals</div>
+      <ul>
+        <li>"Ducks swim in the water. They say quack quack!" (bebek berenang di air)</li>
+        <li>"Birds sing beautiful songs in the morning." (burung menyanyi indah)</li>
+        <li>"Fish are silent. They don't make sounds." (ikan diam/tidak bersuara)</li>
+        <li>"Parrots are smart birds. They can copy sounds!" (burung beo pandai dan bisa meniru suara)</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">💬 Conversation About Birds</div>
+      <p><strong>Child:</strong> "Listen to that sound! What is it?"<br>
+      <strong>Father:</strong> "That's a duck! It says quack quack!"<br><br>
+      <strong>Friend:</strong> "I love birds!"<br>
+      <strong>You:</strong> "Yes! Parrots can talk. They are so smart!"</p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Birds & Water Animals</div>
+      <ol>
+        <li>Your teacher makes a bird sound (quack, cluck, squawk). You name the bird!</li>
+        <li>Listen: "This animal swims and says quack." What is it? (duck)</li>
+        <li>Can you imitate bird sounds? Say: quack, cluck, coo, squawk!</li>
+        <li>Draw a bird or fish and describe it in English with sounds (if any).</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="sec-title" style="color:var(--lavender);">📌 Lesson 4 – Animal Sounds & Songs</div>
+<div class="lesson">
+  <div class="lesson-header c4">🎵 Fun with Animal Sounds</div>
+  <div class="lesson-body">
+    <div class="explain">
+      Kids all over the world love songs about animals! <strong>Listen to animal rhymes and songs</strong>. 
+      These songs help you remember animal names and sounds. Singing is a fun way to learn English!
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎵 Popular Animal Song (Example)</div>
+      <p><strong>"Old MacDonald Had a Farm"</strong><br><br>
+      <em>Old MacDonald had a farm, E-I-E-I-O,<br>
+      And on that farm he had a <strong>cow</strong>, E-I-E-I-O,<br>
+      With a <strong>moo moo</strong> here and a <strong>moo moo</strong> there,<br>
+      Here a <strong>moo</strong>, there a <strong>moo</strong>, everywhere a <strong>moo moo</strong>,<br>
+      Old MacDonald had a farm, E-I-E-I-O!</em><br><br>
+      (You can replace "cow/moo" with: pig/oink, duck/quack, dog/woof, etc.)</p>
+    </div>
+
+    <div class="example-box">
+      <div class="label">👂 Animal Name + Sound Patterns</div>
+      <ul>
+        <li>A <strong>dog</strong> says <strong>woof!</strong> (Seekor anjing berkata woof!)</li>
+        <li>A <strong>cat</strong> says <strong>meow!</strong></li>
+        <li>A <strong>cow</strong> says <strong>moo!</strong></li>
+        <li>A <strong>pig</strong> says <strong>oink!</strong></li>
+        <li>A <strong>duck</strong> says <strong>quack!</strong></li>
+        <li>A <strong>lion</strong> says <strong>roar!</strong></li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <div class="label">🎵 Simple Animal Rhyme</div>
+      <p><strong>"What Does the Animal Say?"</strong><br><br>
+      <em>What does the dog say? Woof, woof, woof!<br>
+      What does the cat say? Meow, meow, meow!<br>
+      What does the cow say? Moo, moo, moo!<br>
+      All these sounds, I hear today!<br>
+      What do the animals say? Say, say, say!</em></p>
+    </div>
+
+    <div class="practice">
+      <div class="ptitle">👂 Practice – Animal Songs & Sounds</div>
+      <ol>
+        <li>Sing "Old MacDonald Had a Farm" with different animals and sounds!</li>
+        <li>Learn the animal name + sound pattern: "A dog says woof!"</li>
+        <li>Your teacher says an animal name. You say and do the sound action.</li>
+        <li>Make up your own short animal song or rhyme!</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="sec-title" style="color:var(--sky);">📚 Vocabulary Bank</div>
+<table class="vocab-table">
+  <thead>
+    <tr>
+      <th>Animal Type</th>
+      <th>Animals & Their Sounds</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Domestic</td>
+      <td>Dog (woof), Cat (meow), Cow (moo), Pig (oink), Sheep (baa), Chicken (cluck)</td>
+    </tr>
+    <tr>
+      <td>Wild</td>
+      <td>Lion (roar), Tiger (roar/growl), Elephant (trumpet), Monkey (ooh ooh), Bear (growl)</td>
+    </tr>
+    <tr>
+      <td>Birds</td>
+      <td>Duck (quack), Parrot (squawk), Dove (coo), Chicken (cluck)</td>
+    </tr>
+    <tr>
+      <td>Water Animals</td>
+      <td>Fish (silent), Turtle (silent), Duck (quack)</td>
+    </tr>
+    <tr>
+      <td>Sound Words</td>
+      <td>Woof, Meow, Moo, Oink, Baa, Roar, Quack, Trumpet, Squawk, Coo</td>
+    </tr>
+    <tr>
+      <td>Animal Sentences</td>
+      <td>A dog says woof / The cat meows / Lions roar</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- TIPS -->
+<div class="sec-title" style="color:var(--sun);">💡 Tips for Learning Animal Sounds</div>
+<div class="tips-grid">
+  <div class="tip">
+    <div class="ticon">🎵</div>
+    <strong>Sing Songs</strong>
+    Sing "Old MacDonald" and other animal songs many times. Music helps memory!
+  </div>
+  <div class="tip">
+    <div class="ticon">🔊</div>
+    <strong>Make the Sounds</strong>
+    Imitate animal sounds loud and proud! Woof! Meow! Moo! Have fun!
+  </div>
+  <div class="tip">
+    <div class="ticon">🎬</div>
+    <strong>Act It Out</strong>
+    Do actions while saying sounds. Move like the animal while saying its sound!
+  </div>
+  <div class="tip">
+    <div class="ticon">📚</div>
+    <strong>Read Animal Books</strong>
+    Look at animal pictures and books. Name each animal in English.
+  </div>
+  <div class="tip">
+    <div class="ticon">🐾</div>
+    <strong>Visit the Zoo</strong>
+    If you can go to a zoo, listen to real animal sounds and say their English names!
+  </div>
+  <div class="tip">
+    <div class="ticon">🎥</div>
+    <strong>Watch Animal Videos</strong>
+    Watch videos of animals. Listen to real sounds and repeat animal names!
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="sec-title" style="color:var(--grass);">✅ Self-Check – Can You Do This?</div>
+<ul class="checklist">
+  <li><span class="box"></span> I can listen to and identify 6 domestic animals and their sounds.</li>
+  <li><span class="box"></span> I can listen to and identify 6 wild animals and their sounds.</li>
+  <li><span class="box"></span> I can listen to and identify birds and water animals.</li>
+  <li><span class="box"></span> I can make animal sounds and say the animal name.</li>
+  <li><span class="box"></span> I understand sentences about what animals say.</li>
+  <li><span class="box"></span> I can sing "Old MacDonald Had a Farm" with different animals.</li>
+  <li><span class="box"></span> I can match animal sounds to their names in English.</li>
+</ul>
+
+</main>
+
+<footer>
+  <strong>BunRey English Course</strong> · Listening Module · Grade 2 Elementary School · Listen to the Animals! 🐾
+</footer>
+
+</body>
+</html>
