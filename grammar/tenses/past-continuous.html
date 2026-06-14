@@ -1358,7 +1358,7 @@ function renderQuizStep() {
   const q = QUIZ[quizStep];
   const pct = (quizStep / QUIZ.length) * 100;
   const opts = q.opts.map((o,i)=>`
-    <button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${['A','B','C','D'][i]}. ${o}</button>`).join('');
+    <button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${['A','B','C','D'][i]}. ${o.txt}</button>`).join('');
 
   qcard.innerHTML = `
     <div class="quiz-toprow">
@@ -1374,11 +1374,12 @@ function answerQuiz(i) {
   if (quizAnswered) return;
   quizAnswered = true;
   const q = QUIZ[quizStep];
-  if (i === q.ans) quizScore++;
+  const correctIdx = q.opts.findIndex(o => o.correct);
+  if (i === correctIdx) quizScore++;
 
   document.querySelectorAll('.quiz-opt').forEach((btn, idx) => {
     btn.disabled = true;
-    if (idx === q.ans) btn.classList.add('correct');
+    if (idx === correctIdx) btn.classList.add('correct');
     else if (idx === i) btn.classList.add('wrong');
   });
 
