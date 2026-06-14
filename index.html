@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LittleLume</title>
+<title>LittleLume - English Learning Platform</title>
 <link rel="icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -241,12 +241,37 @@ header > p{
 }
 
 
-/* LittleLume text styling */
+/* LittleLume text styling with animated gradient */
 .littlelume-text{
-  color: var(--yellow);
-  text-shadow: 0 0 20px rgba(255, 217, 61, 0.6), 0 3px 16px rgba(90,50,150,0.25);
+  background: linear-gradient(90deg, 
+    #FFD93D,    /* Kuning */
+    #FF6B35,    /* Orange */
+    #FF4D8D,    /* Pink */
+    #7C5CBF,    /* Ungu */
+    #3A86FF,    /* Biru */
+    #06D6A0,    /* Hijau */
+    #FFD93D     /* Kembali ke Kuning untuk loop smooth */
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
   letter-spacing: 1px;
   font-weight: 800;
+  filter: drop-shadow(0 3px 16px rgba(90,50,150,0.25));
+}
+
+@keyframes gradient-shift {
+  0% { 
+    background-position: 0% 50%;
+  }
+  50% { 
+    background-position: 100% 50%;
+  }
+  100% { 
+    background-position: 0% 50%;
+  }
 }
 
 /* Subtitle styles */
