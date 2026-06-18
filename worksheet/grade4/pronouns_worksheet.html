@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LittleLume English – Pronouns Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --teal:#00C2A8;--orange:#FF7D3B;--purple:#9B5DE5;
+  --pink:#F72585;--yellow:#FFD166;--sky:#4D96FF;
+  --ink:#1E1E2E;--white:#FFFFFF;
+  --lt:#E6FBF8;--lo:#FFF3ED;--lp:#F3EEFF;
+  --lpk:#FFF0F8;--ly:#FFFBE6;--lsky:#EAF3FF;
+  --card:#FFFEF9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(145deg,#E8FFF9 0%,#EEF2FF 50%,#FFF0FB 100%);min-height:100vh;color:var(--ink)}
+
+/* HEADER */
+header{background:linear-gradient(120deg,#00C2A8 0%,#4D96FF 50%,#9B5DE5 100%);position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,194,168,.3)}
+.hb-wrap{position:absolute;inset:0;pointer-events:none}
+.hb{position:absolute;border-radius:50%;animation:hbf 7s ease-in-out infinite;opacity:.15}
+.hb:nth-child(1){width:90px;height:90px;background:var(--yellow);top:-20px;left:3%;animation-delay:0s}
+.hb:nth-child(2){width:60px;height:60px;background:var(--orange);top:10px;left:15%;animation-delay:.8s}
+.hb:nth-child(3){width:110px;height:110px;background:var(--pink);bottom:-28px;left:35%;animation-delay:.4s}
+.hb:nth-child(4){width:70px;height:70px;background:var(--white);top:6px;left:55%;animation-delay:1.8s}
+.hb:nth-child(5){width:85px;height:85px;background:var(--yellow);bottom:-12px;left:72%;animation-delay:1.2s}
+.hb:nth-child(6){width:55px;height:55px;background:var(--teal);top:12px;left:88%;animation-delay:.6s}
+@keyframes hbf{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-14px) scale(1.05)}}
+.hdr-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:14px;padding:22px 20px 12px}
+.logo-icon{font-size:46px;animation:wg 3s ease-in-out infinite;filter:drop-shadow(0 4px 10px rgba(0,0,0,.2))}
+@keyframes wg{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.brand{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,5vw,3rem);color:var(--white);letter-spacing:1px;text-shadow:0 3px 12px rgba(0,0,0,.2)}
+.brand span{color:var(--yellow)}
+.tagline{font-size:.85rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:3px}
+.hdr-topic{position:relative;z-index:1;text-align:center;padding:0 20px 16px}
+.hdr-topic h1{font-family:'Fredoka One',cursive;font-size:clamp(1.2rem,4vw,1.9rem);color:var(--white);background:rgba(255,255,255,.16);display:inline-block;padding:8px 30px;border-radius:50px;border:2px solid rgba(255,255,255,.3)}
+.type-chips{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:0 20px 22px}
+.type-chip{font-family:'Fredoka One',cursive;font-size:.88rem;padding:5px 16px;border-radius:50px;color:var(--white);border:2px solid rgba(255,255,255,.4);background:rgba(255,255,255,.18)}
+
+/* INFO BAR */
+.info-bar{max-width:940px;margin:20px auto 0;padding:0 16px;display:flex;gap:12px;flex-wrap:wrap}
+.info-field{flex:1;min-width:150px;background:var(--white);border-radius:12px;padding:10px 16px;box-shadow:0 3px 12px rgba(0,0,0,.07);display:flex;flex-direction:column;gap:4px}
+.info-field label{font-size:.7rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#bbb}
+.info-field input{border:none;border-bottom:2.5px solid var(--teal);background:transparent;outline:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;color:var(--ink);padding:2px 0;width:100%}
+.score-pill{background:linear-gradient(135deg,var(--teal),var(--sky));border-radius:12px;padding:10px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,194,168,.3);min-width:120px}
+.score-pill .sl{font-size:.68rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.score-pill .sv{font-size:1.85rem;font-family:'Fredoka One',cursive;color:var(--white);line-height:1}
+
+main{max-width:940px;margin:20px auto 60px;padding:0 16px}
+
+/* REFERENCE */
+.ref-card{background:var(--white);border-radius:20px;padding:24px 28px;margin-bottom:28px;box-shadow:0 5px 24px rgba(0,0,0,.07);border:2px solid rgba(0,194,168,.2)}
+.ref-title{font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.pron-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.pron-group{border-radius:14px;padding:14px;border:2px solid transparent}
+.pron-group.g-subj{background:var(--lt);border-color:rgba(0,194,168,.3)}
+.pron-group.g-obj{background:var(--lo);border-color:rgba(255,125,59,.3)}
+.pron-group.g-poss{background:var(--lp);border-color:rgba(155,93,229,.3)}
+.pron-group.g-refl{background:var(--lpk);border-color:rgba(247,37,133,.3)}
+.pron-group h4{font-family:'Fredoka One',cursive;font-size:1rem;margin-bottom:8px}
+.pron-group.g-subj h4{color:var(--teal)}
+.pron-group.g-obj h4{color:var(--orange)}
+.pron-group.g-poss h4{color:var(--purple)}
+.pron-group.g-refl h4{color:var(--pink)}
+.pron-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ptag{font-weight:800;font-size:.88rem;padding:4px 12px;border-radius:50px;color:var(--white)}
+.g-subj .ptag{background:var(--teal)}
+.g-obj .ptag{background:var(--orange)}
+.g-poss .ptag{background:var(--purple)}
+.g-refl .ptag{background:var(--pink)}
+
+/* SECTION CARD */
+.ws-card{background:var(--card);border-radius:20px;padding:28px;margin-bottom:28px;box-shadow:0 5px 24px rgba(0,0,0,.07);position:relative;overflow:hidden}
+.ws-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;border-radius:20px 20px 0 0}
+.c1::before{background:linear-gradient(90deg,var(--teal),var(--sky))}
+.c2::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.c3::before{background:linear-gradient(90deg,var(--purple),var(--pink))}
+.c4::before{background:linear-gradient(90deg,var(--pink),var(--orange))}
+.c5::before{background:linear-gradient(90deg,var(--sky),var(--teal))}
+.c6::before{background:linear-gradient(90deg,var(--yellow),var(--orange))}
+.sec-title{font-family:'Fredoka One',cursive;font-size:1.35rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.sec-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1rem;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.c1 .sec-num{background:var(--teal)}.c2 .sec-num{background:var(--orange)}.c3 .sec-num{background:var(--purple)}.c4 .sec-num{background:var(--pink)}.c5 .sec-num{background:var(--sky)}.c6 .sec-num{background:var(--yellow);color:var(--ink)}
+.sec-badge{font-size:.72rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:50px;color:var(--white);margin-left:auto}
+.c1 .sec-badge{background:var(--teal)}.c2 .sec-badge{background:var(--orange)}.c3 .sec-badge{background:var(--purple)}.c4 .sec-badge{background:var(--pink)}.c5 .sec-badge{background:var(--sky)}.c6 .sec-badge{background:var(--yellow);color:var(--ink)}
+.sec-inst{font-size:.9rem;color:#777;font-weight:700;font-style:italic;margin-bottom:18px}
+
+/* S1 choose */
+.choose-item{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:11px 16px;border-radius:12px;margin-bottom:10px;font-size:1.02rem;font-weight:700}
+.choose-item:nth-child(odd){background:var(--lt)}.choose-item:nth-child(even){background:var(--lo)}
+.choose-sent{flex:1;min-width:180px;line-height:1.7}
+.choose-opts{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.c-btn{font-family:'Nunito',sans-serif;font-weight:900;font-size:.92rem;padding:6px 14px;border-radius:50px;border:2.5px solid var(--teal);color:var(--teal);background:var(--white);cursor:pointer;transition:all .18s}
+.c-btn:hover{background:var(--teal);color:var(--white);transform:translateY(-2px)}
+.c-btn.correct{background:var(--teal);color:var(--white);border-color:var(--teal);animation:pop .3s ease}
+.c-btn.wrong{background:var(--pink);color:var(--white);border-color:var(--pink);animation:shk .35s ease}
+.c-btn.dim{pointer-events:none;opacity:.38}
+@keyframes pop{0%{transform:scale(.82)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes shk{0%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}70%{transform:translateX(5px)}}
+
+/* fill */
+.fill-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px;padding:11px 16px;border-radius:12px;margin-bottom:10px;font-size:1.02rem;font-weight:700;line-height:2}
+.fill-row:nth-child(odd){background:var(--lp)}.fill-row:nth-child(even){background:var(--lpk)}
+.s5-row:nth-child(odd){background:var(--lsky)}.s5-row:nth-child(even){background:var(--lt)}
+.f-input{font-family:'Nunito',sans-serif;font-weight:900;font-size:.98rem;width:100px;text-align:center;border:none;border-bottom:3px solid var(--purple);background:transparent;outline:none;color:var(--purple);border-radius:4px 4px 0 0;padding:2px 4px;transition:border-color .2s}
+.f-input:focus{border-color:var(--pink);background:var(--lpk)}
+.f-input.ok{border-color:var(--teal);color:var(--teal);background:var(--lt)}
+.f-input.err{border-color:var(--pink);color:var(--pink);background:var(--lpk)}
+.s5-row .f-input{border-color:var(--sky)}
+
+/* match */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+.match-col h4{font-family:'Fredoka One',cursive;font-size:1rem;margin-bottom:10px;text-align:center;color:#999;letter-spacing:1px;text-transform:uppercase}
+.m-item{background:var(--white);border:2.5px solid #E0E0E0;border-radius:12px;padding:10px 16px;margin-bottom:8px;cursor:pointer;font-weight:800;font-size:.98rem;text-align:center;transition:all .2s;user-select:none}
+.m-item:hover{border-color:var(--purple);transform:scale(1.03)}
+.m-item.selected{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.m-item.matched{background:var(--teal);color:var(--white);border-color:var(--teal);cursor:default}
+.m-item.flash-wrong{background:var(--pink);color:var(--white);border-color:var(--pink)}
+.match-fb{text-align:center;font-weight:800;font-size:.95rem;margin-top:10px;min-height:24px}
+
+/* sort */
+.sort-bank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px}
+.sort-word{background:var(--white);border:2.5px solid var(--pink);color:var(--pink);border-radius:10px;padding:7px 16px;font-weight:800;font-size:.9rem;cursor:pointer;transition:all .2s;user-select:none}
+.sort-word:hover{background:var(--pink);color:var(--white);transform:scale(1.06)}
+.sort-word.placed{opacity:.3;pointer-events:none}
+.sort-zones{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.sort-zone{border:2.5px dashed;border-radius:14px;padding:12px;min-height:120px;cursor:pointer;transition:background .2s}
+.sz-subj{border-color:var(--teal)}.sz-obj{border-color:var(--orange)}.sz-poss{border-color:var(--purple)}.sz-refl{border-color:var(--pink)}
+.sz-title{font-family:'Fredoka One',cursive;font-size:1rem;text-align:center;margin-bottom:8px}
+.sz-subj .sz-title{color:var(--teal)}.sz-obj .sz-title{color:var(--orange)}.sz-poss .sz-title{color:var(--purple)}.sz-refl .sz-title{color:var(--pink)}
+.sz-item{display:inline-block;font-weight:800;font-size:.85rem;padding:4px 12px;border-radius:8px;margin:3px;color:var(--white)}
+.sz-subj .sz-item{background:var(--teal)}.sz-obj .sz-item{background:var(--orange)}.sz-poss .sz-item{background:var(--purple)}.sz-refl .sz-item{background:var(--pink)}
+.sort-fb{text-align:center;font-weight:800;font-size:.95rem;margin-top:12px;min-height:24px}
+
+/* rewrite */
+.rw-item{padding:14px 18px;border-radius:12px;margin-bottom:12px}
+.rw-item:nth-child(odd){background:var(--ly)}.rw-item:nth-child(even){background:var(--lo)}
+.rw-wrong{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--orange)}
+.rw-wrong s{opacity:.6}
+.rw-hint{font-size:.78rem;color:#AAA;font-style:italic;margin-left:8px}
+.rw-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rw-label{font-size:.85rem;font-weight:800;color:#999;white-space:nowrap}
+.rw-input{flex:1;min-width:200px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;border:none;border-bottom:2.5px solid var(--orange);background:transparent;outline:none;color:var(--ink);padding:3px 4px}
+.rw-input:focus{border-color:var(--sky)}
+.rw-input.ok{border-color:var(--teal);color:var(--teal)}
+.rw-input.err{border-color:var(--pink);color:var(--pink)}
+
+/* buttons */
+.check-btn{display:block;margin:20px auto 0;font-family:'Fredoka One',cursive;font-size:1.1rem;padding:12px 38px;border:none;border-radius:50px;cursor:pointer;color:var(--white);transition:transform .2s,box-shadow .2s}
+.check-btn:hover{transform:translateY(-3px)}
+.c1 .check-btn,.c5 .check-btn{background:linear-gradient(135deg,var(--teal),var(--sky));box-shadow:0 6px 18px rgba(0,194,168,.35)}
+.c2 .check-btn,.c6 .check-btn{background:linear-gradient(135deg,var(--orange),var(--yellow));box-shadow:0 6px 18px rgba(255,125,59,.35)}
+.c3 .check-btn{background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 6px 18px rgba(155,93,229,.35)}
+.c4 .check-btn{background:linear-gradient(135deg,var(--pink),var(--orange));box-shadow:0 6px 18px rgba(247,37,133,.35)}
+.sec-result{text-align:center;font-family:'Fredoka One',cursive;font-size:1.05rem;margin-top:14px;min-height:24px}
+
+/* progress */
+.prog-wrap{margin:28px 0 8px}
+.prog-label{font-family:'Fredoka One',cursive;font-size:1.05rem;text-align:center;color:var(--teal);margin-bottom:8px}
+.prog-track{background:#D4F5F0;border-radius:50px;height:26px;overflow:hidden;box-shadow:inset 0 2px 6px rgba(0,0,0,.1)}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--sky),var(--purple));border-radius:50px;transition:width .7s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:flex-end;padding-right:12px;color:#fff;font-weight:900;font-size:.82rem;min-width:36px}
+
+/* submit */
+.submit-wrap{text-align:center;margin:24px 0 8px}
+.submit-btn{font-family:'Fredoka One',cursive;font-size:1.3rem;padding:16px 56px;border:none;border-radius:50px;color:var(--white);cursor:pointer;background:linear-gradient(135deg,var(--teal),var(--sky),var(--purple));box-shadow:0 8px 28px rgba(0,194,168,.4);transition:transform .2s,box-shadow .2s}
+.submit-btn:hover{transform:translateY(-4px);box-shadow:0 12px 34px rgba(0,194,168,.45)}
+
+/* final */
+.final-box{background:var(--white);border-radius:20px;padding:32px;text-align:center;box-shadow:0 6px 28px rgba(0,0,0,.1);margin-bottom:28px;display:none}
+.final-trophy{font-size:4.5rem;animation:bn 1s ease infinite alternate}
+@keyframes bn{0%{transform:translateY(0) rotate(-5deg)}100%{transform:translateY(-14px) rotate(5deg)}}
+.final-box h2{font-family:'Fredoka One',cursive;font-size:2rem;margin:10px 0 4px}
+.final-box p{font-size:1.05rem;font-weight:700;color:#777}
+.big-score{font-family:'Fredoka One',cursive;font-size:3.5rem;background:linear-gradient(135deg,var(--teal),var(--sky),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:8px 0}
+.final-stars{font-size:2rem;letter-spacing:4px;margin:4px 0}
+
+footer{text-align:center;padding:22px;font-family:'Fredoka One',cursive;font-size:.88rem;color:#AAA;letter-spacing:1px}
+footer span{color:var(--pink)}
+
+@media(max-width:560px){.ws-card{padding:18px 14px}.match-wrap{grid-template-columns:1fr}.choose-item{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hb-wrap">
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div>
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div>
+  </div>
+  <div class="hdr-top">
+    <div class="logo-icon">🌟</div>
+    <div>
+      <div class="brand">Little<span>Lume</span></div>
+      <div class="tagline">English Learning ✦ Grade 4</div>
+    </div>
+    <div class="logo-icon">🗣️</div>
+  </div>
+  <div class="hdr-topic">
+    <h1>✨ Interactive Worksheet: Pronouns ✨</h1>
+  </div>
+  <div class="type-chips">
+    <div class="type-chip">👤 Subject Pronouns</div>
+    <div class="type-chip">🎯 Object Pronouns</div>
+    <div class="type-chip">🏷️ Possessive Pronouns</div>
+    <div class="type-chip">🔄 Reflexive Pronouns</div>
+  </div>
+</header>
+
+<div class="info-bar">
+  <div class="info-field"><label>Name</label><input type="text" placeholder="Your name here…"/></div>
+  <div class="info-field"><label>Date</label><input type="text" id="dateField"/></div>
+  <div class="info-field"><label>Class</label><input type="text" placeholder="e.g. 4A"/></div>
+  <div class="score-pill"><div class="sl">Score</div><div class="sv" id="totalScore">0 / 0</div></div>
+</div>
+
+<main>
+
+<div class="ref-card">
+  <div class="ref-title">📖 Pronoun Reference Chart</div>
+  <div class="pron-grid">
+    <div class="pron-group g-subj">
+      <h4>👤 Subject Pronouns</h4>
+      <div class="pron-tags"><span class="ptag">I</span><span class="ptag">You</span><span class="ptag">He</span><span class="ptag">She</span><span class="ptag">It</span><span class="ptag">We</span><span class="ptag">They</span></div>
+      <p style="font-size:.82rem;color:#777;margin-top:8px;font-weight:700">Used as the subject of a sentence</p>
+    </div>
+    <div class="pron-group g-obj">
+      <h4>🎯 Object Pronouns</h4>
+      <div class="pron-tags"><span class="ptag">Me</span><span class="ptag">You</span><span class="ptag">Him</span><span class="ptag">Her</span><span class="ptag">It</span><span class="ptag">Us</span><span class="ptag">Them</span></div>
+      <p style="font-size:.82rem;color:#777;margin-top:8px;font-weight:700">Used as the object (after verbs / prepositions)</p>
+    </div>
+    <div class="pron-group g-poss">
+      <h4>🏷️ Possessive Pronouns</h4>
+      <div class="pron-tags"><span class="ptag">My/Mine</span><span class="ptag">Your/Yours</span><span class="ptag">His</span><span class="ptag">Her/Hers</span><span class="ptag">Its</span><span class="ptag">Our/Ours</span><span class="ptag">Their/Theirs</span></div>
+      <p style="font-size:.82rem;color:#777;margin-top:8px;font-weight:700">Shows ownership or belonging</p>
+    </div>
+    <div class="pron-group g-refl">
+      <h4>🔄 Reflexive Pronouns</h4>
+      <div class="pron-tags"><span class="ptag">Myself</span><span class="ptag">Yourself</span><span class="ptag">Himself</span><span class="ptag">Herself</span><span class="ptag">Itself</span><span class="ptag">Ourselves</span><span class="ptag">Themselves</span></div>
+      <p style="font-size:.82rem;color:#777;margin-top:8px;font-weight:700">When subject and object are the same person</p>
+    </div>
+  </div>
+</div>
+
+<!-- S1 -->
+<div class="ws-card c1">
+  <div class="sec-title"><span class="sec-num">1</span>🔵 Choose the Correct Pronoun<span class="sec-badge">8 Questions</span></div>
+  <div class="sec-inst">Tap the correct pronoun for each sentence. You only get one try!</div>
+  <div id="s1"></div>
+  <div class="sec-result" id="r1"></div>
+</div>
+
+<!-- S2 -->
+<div class="ws-card c2">
+  <div class="sec-title"><span class="sec-num">2</span>✏️ Fill with the Right Subject Pronoun<span class="sec-badge">8 Blanks</span></div>
+  <div class="sec-inst">Fill each blank with: <strong>I, you, he, she, it, we, they</strong>.</div>
+  <div id="s2"></div>
+  <button class="check-btn" onclick="checkFillSection('s2fill')">Check Answers ✅</button>
+  <div class="sec-result" id="r2"></div>
+</div>
+
+<!-- S3 -->
+<div class="ws-card c3">
+  <div class="sec-title"><span class="sec-num">3</span>🔗 Match the Pronoun<span class="sec-badge">8 Pairs</span></div>
+  <div class="sec-inst">Click a noun on the left, then click its matching pronoun on the right.</div>
+  <div class="match-wrap">
+    <div class="match-col"><h4>Noun / Phrase</h4><div id="matchLeft"></div></div>
+    <div class="match-col"><h4>Pronoun</h4><div id="matchRight"></div></div>
+  </div>
+  <div class="match-fb" id="matchFb"></div>
+  <div class="sec-result" id="r3"></div>
+</div>
+
+<!-- S4 -->
+<div class="ws-card c4">
+  <div class="sec-title"><span class="sec-num">4</span>🗂️ Sort the Pronouns<span class="sec-badge">12 Words</span></div>
+  <div class="sec-inst">Click a pronoun from the bank, then click the correct category box.</div>
+  <div class="sort-bank" id="sortBank"></div>
+  <div class="sort-zones" id="sortZones"></div>
+  <div class="sort-fb" id="sortFb"></div>
+  <div class="sec-result" id="r4"></div>
+</div>
+
+<!-- S5 -->
+<div class="ws-card c5">
+  <div class="sec-title"><span class="sec-num">5</span>🎯 Fill with Object, Possessive or Reflexive<span class="sec-badge">10 Blanks</span></div>
+  <div class="sec-inst">Fill in the blank. The pronoun type is shown in [ brackets ] as a hint.</div>
+  <div id="s5"></div>
+  <button class="check-btn" onclick="checkFillSection('s5fill')">Check Answers ✅</button>
+  <div class="sec-result" id="r5"></div>
+</div>
+
+<!-- S6 -->
+<div class="ws-card c6">
+  <div class="sec-title"><span class="sec-num">6</span>🔍 Correct the Mistake<span class="sec-badge">5 Sentences</span></div>
+  <div class="sec-inst">Each sentence has a wrong pronoun. Rewrite the corrected sentence in the box.</div>
+  <div id="s6"></div>
+  <button class="check-btn" onclick="checkRewrite()">Check Answers ✅</button>
+  <div class="sec-result" id="r6"></div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label" id="progLabel">Overall Progress: 0%</div>
+  <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%">0%</div></div>
+</div>
+
+<div class="submit-wrap">
+  <button class="submit-btn" onclick="showFinal()">🎉 See My Final Score!</button>
+</div>
+
+<div class="final-box" id="finalBox">
+  <div class="final-trophy" id="ft">🏆</div>
+  <div class="final-stars" id="fs">⭐⭐⭐</div>
+  <div class="big-score" id="fsc">0 / 0</div>
+  <h2 id="fm">Amazing!</h2>
+  <p id="fp">You are a Pronoun Master! 🌟</p>
+</div>
+
+</main>
+
+<footer>Made with <span>♥</span> by LittleLume English &nbsp;✦&nbsp; Grade 4 &nbsp;✦&nbsp; Pronouns Worksheet &nbsp;✦&nbsp; Keep Shining! 🌟</footer>
+
+<script>
+// DATA
+const s1d=[
+  {sent:"___ is my best friend.",opts:["She","Her","Herself"],ans:"She",type:"subject"},
+  {sent:"Can you help ___?",opts:["I","me","mine"],ans:"me",type:"object"},
+  {sent:"This book is ___.",opts:["her","hers","herself"],ans:"hers",type:"possessive"},
+  {sent:"The dog hurt ___.",opts:["it","itself","its"],ans:"itself",type:"reflexive"},
+  {sent:"___ are going to the park.",opts:["Them","They","Their"],ans:"They",type:"subject"},
+  {sent:"She made the cake by ___.",opts:["herself","her","she"],ans:"herself",type:"reflexive"},
+  {sent:"Please give ___ the pen.",opts:["I","him","his"],ans:"him",type:"object"},
+  {sent:"The red bag is ___.",opts:["my","mine","me"],ans:"mine",type:"possessive"},
+];
+const s2d=[
+  {parts:["___"," is eight years old. (Tom)"],ans:"He"},
+  {parts:["___"," are my favourite fruits. (apples)"],ans:"They"},
+  {parts:["___"," loves to sing. (Sara)"],ans:"She"},
+  {parts:["My sister and ___ went swimming."],ans:"I"},
+  {parts:["Look at the cat! ___ is so fluffy!"],ans:"It"},
+  {parts:["___ are best friends. (Dina and I)"],ans:"We"},
+  {parts:["Did ___ finish your homework?"],ans:"you"},
+  {parts:["___ rains a lot in December."],ans:"It"},
+];
+const s3d=[
+  {noun:"Tom and Lisa",pronoun:"They"},
+  {noun:"My mum",pronoun:"She"},
+  {noun:"The sun",pronoun:"It"},
+  {noun:"My dad",pronoun:"He"},
+  {noun:"You and I",pronoun:"We"},
+  {noun:"The books",pronoun:"They"},
+  {noun:"Sofia",pronoun:"She"},
+  {noun:"The robot",pronoun:"It"},
+];
+const s4d=[
+  {word:"I",cat:"subject"},{word:"them",cat:"object"},{word:"his",cat:"possessive"},{word:"herself",cat:"reflexive"},
+  {word:"we",cat:"subject"},{word:"us",cat:"object"},{word:"theirs",cat:"possessive"},{word:"myself",cat:"reflexive"},
+  {word:"she",cat:"subject"},{word:"him",cat:"object"},{word:"ours",cat:"possessive"},{word:"yourself",cat:"reflexive"},
+];
+const s4cats=[
+  {key:"subject",label:"Subject Pronouns",cls:"sz-subj"},
+  {key:"object",label:"Object Pronouns",cls:"sz-obj"},
+  {key:"possessive",label:"Possessive Pronouns",cls:"sz-poss"},
+  {key:"reflexive",label:"Reflexive Pronouns",cls:"sz-refl"},
+];
+const s5d=[
+  {parts:["My mum gave ___ a gift."],ans:"me",hint:"object"},
+  {parts:["This is ___ pencil. (belongs to him)"],ans:"his",hint:"possessive"},
+  {parts:["They cooked dinner by ___."],ans:"themselves",hint:"reflexive"},
+  {parts:["The teacher called ___ to the board. (object of us)"],ans:"us",hint:"object"},
+  {parts:["Is this bag ___? (belongs to her)"],ans:"hers",hint:"possessive"},
+  {parts:["I hurt ___ while playing."],ans:"myself",hint:"reflexive"},
+  {parts:["She gave ___ the letter. (object of them)"],ans:"them",hint:"object"},
+  {parts:["___ dog is very cute. (belongs to our family)"],ans:"Our",hint:"possessive"},
+  {parts:["He built the toy car by ___."],ans:"himself",hint:"reflexive"},
+  {parts:["Did you see ___? (object of her)"],ans:"her",hint:"object"},
+];
+const s6d=[
+  {wrong:"Her is my teacher.",hint:"use subject pronoun for a woman",key:"she is"},
+  {wrong:"Please help I with this.",hint:"use object pronoun for 'I'",key:"help me"},
+  {wrong:"The dog bit it's own tail.",hint:"use reflexive pronoun for 'it'",key:"itself"},
+  {wrong:"This book belongs to they.",hint:"use object pronoun for 'they'",key:"them"},
+  {wrong:"We enjoyed ourself at the party.",hint:"use reflexive pronoun for 'we'",key:"ourselves"},
+];
+
+// SCORE
+const totals={s1:s1d.length,s2:s2d.length,s3:s3d.length,s4:s4d.length,s5:s5d.length,s6:s6d.length};
+const scores={s1:0,s2:0,s3:0,s4:0,s5:0,s6:0};
+function gt(){return Object.values(totals).reduce((a,b)=>a+b,0)}
+function gs(){return Object.values(scores).reduce((a,b)=>a+b,0)}
+function updateUI(){
+  document.getElementById('totalScore').textContent=gs()+' / '+gt();
+  const pct=gt()?Math.round(gs()/gt()*100):0;
+  document.getElementById('progLabel').textContent='Overall Progress: '+pct+'%';
+  const f=document.getElementById('progFill');
+  f.style.width=Math.max(pct,4)+'%';f.textContent=pct+'%';
+}
+function showResult(correct,total,elId,key){
+  scores[key]=correct;
+  const pct=Math.round(correct/total*100);
+  const el=document.getElementById(elId);
+  const s=pct===100?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';
+  el.textContent=s+'  '+correct+' / '+total+' correct  ('+pct+'%)  '+s;
+  el.style.color=pct>=70?'var(--teal)':'var(--pink)';
+  updateUI();
+}
+
+// BUILD S1
+const s1ans=new Array(s1d.length).fill(false);let s1c=0;
+function buildS1(){
+  const c=document.getElementById('s1');
+  s1d.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='choose-item';
+    const sent=q.sent.replace('___','<span style="color:var(--purple);font-family:\'Fredoka One\',cursive;font-size:1.1rem">?</span>');
+    div.innerHTML='<div class="choose-sent">'+(i+1)+'.&nbsp;'+sent+'<span style="font-size:.75rem;color:#bbb;font-style:italic;margin-left:6px">('+q.type+')</span></div>'
+      +'<div class="choose-opts" id="co'+i+'">'+q.opts.map(o=>'<button class="c-btn" onclick="pickS1('+i+',\''+o+'\',this)">'+o+'</button>').join('')+'</div>';
+    c.appendChild(div);
+  });
+}
+function pickS1(i,choice,btn){
+  if(s1ans[i])return;
+  const q=s1d[i];
+  const btns=document.querySelectorAll('#co'+i+' .c-btn');
+  if(choice.toLowerCase()===q.ans.toLowerCase()){
+    btn.classList.add('correct');s1c++;s1ans[i]=true;
+    btns.forEach(b=>{if(b!==btn)b.classList.add('dim');});
+    const el=btn.closest('.choose-item').querySelector('.choose-sent');
+    el.innerHTML=el.innerHTML.replace(/<span[^>]*>\?<\/span>/,'<span style="color:var(--teal);font-family:\'Fredoka One\',cursive">'+choice+'</span>');
+    showResult(s1c,s1d.length,'r1','s1');
+  }else{btn.classList.add('wrong');setTimeout(()=>btn.classList.remove('wrong'),380);}
+}
+
+// BUILD S2
+function buildS2(){
+  const c=document.getElementById('s2');
+  s2d.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='fill-row';
+    let html='<span style="font-weight:900;margin-right:4px">'+(i+1)+'.</span>';
+    q.parts.forEach(p=>{
+      const segments=p.split('___');
+      segments.forEach((seg,si)=>{
+        if(seg!=='')html+='<span>'+seg+'</span>';
+        if(si<segments.length-1)
+          html+='<input class="f-input" id="s2i'+i+'" maxlength="10" placeholder="___" autocomplete="off"/>';
+      });
+    });
+    div.innerHTML=html;c.appendChild(div);
+  });
+}
+
+// BUILD S3 MATCH
+let matchSel=null,matchDone=0;
+function buildS3(){
+  const shuffled=[...s3d].sort(()=>Math.random()-.5);
+  const lc=document.getElementById('matchLeft'),rc=document.getElementById('matchRight');
+  s3d.forEach((d,i)=>{
+    const el=document.createElement('div');el.className='m-item';el.id='ml'+i;
+    el.textContent=d.noun;el.onclick=()=>selectLeft(i,el);lc.appendChild(el);
+  });
+  shuffled.forEach((d,j)=>{
+    const origIdx=s3d.indexOf(d);
+    const el=document.createElement('div');el.className='m-item';el.id='mr'+j;
+    el.dataset.origIdx=origIdx;el.textContent=d.pronoun;
+    el.onclick=()=>selectRight(j,el);rc.appendChild(el);
+  });
+}
+function selectLeft(i,el){
+  if(el.classList.contains('matched'))return;
+  document.querySelectorAll('.m-item').forEach(e=>e.classList.remove('selected'));
+  el.classList.add('selected');matchSel={type:'left',idx:i,el};
+}
+function selectRight(j,el){
+  if(el.classList.contains('matched'))return;
+  if(!matchSel||matchSel.type==='right'){
+    document.querySelectorAll('.m-item').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected');matchSel={type:'right',idx:j,el};return;
+  }
+  const leftOrig=s3d[matchSel.idx];
+  const rightOrigIdx=parseInt(el.dataset.origIdx);
+  const fb=document.getElementById('matchFb');
+  if(s3d[rightOrigIdx].pronoun===leftOrig.pronoun){
+    matchSel.el.classList.remove('selected');matchSel.el.classList.add('matched');
+    el.classList.remove('selected');el.classList.add('matched');
+    matchDone++;
+    fb.textContent='✅ "'+leftOrig.noun+'" → "'+leftOrig.pronoun+'" — Great!';fb.style.color='var(--teal)';
+    showResult(matchDone,s3d.length,'r3','s3');
+  }else{
+    [el,matchSel.el].forEach(e=>{e.classList.add('flash-wrong');setTimeout(()=>e.classList.remove('flash-wrong'),400);});
+    fb.textContent='❌ Not a match! Try again.';fb.style.color='var(--pink)';
+  }
+  matchSel=null;document.querySelectorAll('.m-item').forEach(e=>e.classList.remove('selected'));
+}
+
+// BUILD S4 SORT
+let sortSel=null,sortCorrect=0;
+function buildS4(){
+  const bank=document.getElementById('sortBank'),zones=document.getElementById('sortZones');
+  [...s4d].sort(()=>Math.random()-.5).forEach(d=>{
+    const idx=s4d.indexOf(d);
+    const sp=document.createElement('span');sp.className='sort-word';sp.id='sw'+idx;
+    sp.textContent=d.word;sp.onclick=()=>selSortWord(idx,sp);bank.appendChild(sp);
+  });
+  s4cats.forEach(cat=>{
+    const z=document.createElement('div');z.className='sort-zone '+cat.cls;z.id='sz-'+cat.key;
+    z.innerHTML='<div class="sz-title">'+cat.label+'</div><div id="szd-'+cat.key+'"></div>';
+    z.onclick=()=>dropInZone(cat.key);zones.appendChild(z);
+  });
+}
+function selSortWord(idx,el){
+  if(el.classList.contains('placed'))return;
+  document.querySelectorAll('.sort-word').forEach(e=>e.style.outline='');
+  el.style.outline='3px solid var(--purple)';sortSel={idx,el};
+  document.getElementById('sortFb').textContent='Selected: "'+s4d[idx].word+'" — click a category!';
+  document.getElementById('sortFb').style.color='var(--purple)';
+}
+function dropInZone(catKey){
+  if(!sortSel){document.getElementById('sortFb').textContent='👆 First click a word!';return;}
+  const {idx,el}=sortSel;const correct=s4d[idx].cat;const fb=document.getElementById('sortFb');
+  if(catKey===correct){
+    const item=document.createElement('span');item.className='sz-item';item.textContent=s4d[idx].word;
+    document.getElementById('szd-'+catKey).appendChild(item);
+    el.classList.add('placed');el.style.outline='';sortCorrect++;
+    fb.textContent='✅ "'+s4d[idx].word+'" → '+catKey+'! Correct!';fb.style.color='var(--teal)';
+    showResult(sortCorrect,s4d.length,'r4','s4');
+  }else{
+    fb.textContent='❌ "'+s4d[idx].word+'" doesn\'t belong in '+catKey+'. Try again!';fb.style.color='var(--pink)';
+    el.style.animation='shk .35s ease';setTimeout(()=>{el.style.animation='';el.style.outline='';},400);
+  }
+  sortSel=null;
+}
+
+// BUILD S5
+function buildS5(){
+  const c=document.getElementById('s5');
+  s5d.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='fill-row s5-row';
+    let html='<span style="font-weight:900;margin-right:4px">'+(i+1)+'.</span>';
+    q.parts.forEach(p=>{
+      // split on ___ so blanks embedded inside a string are handled too
+      const segments=p.split('___');
+      segments.forEach((seg,si)=>{
+        if(seg!=='')html+='<span>'+seg+'</span>';
+        if(si<segments.length-1)
+          html+='<input class="f-input" id="s5i'+i+'" maxlength="12" placeholder="___" autocomplete="off"/>';
+      });
+    });
+    html+='<span style="font-size:.75rem;color:#aaa;font-style:italic;margin-left:6px">['+q.hint+']</span>';
+    div.innerHTML=html;c.appendChild(div);
+  });
+}
+
+// CHECK FILL
+function checkFillSection(type){
+  const isS2=(type==='s2fill');
+  const data=isS2?s2d:s5d,prefix=isS2?'s2i':'s5i',resultEl=isS2?'r2':'r5',key=isS2?'s2':'s5';
+  let correct=0;
+  data.forEach((q,i)=>{
+    const inp=document.getElementById(prefix+i);if(!inp)return;
+    inp.classList.remove('ok','err');
+    if(inp.value.trim().toLowerCase()===q.ans.toLowerCase()){inp.classList.add('ok');correct++;}
+    else{inp.classList.add('err');inp.setAttribute('placeholder',q.ans);}
+  });
+  showResult(correct,data.length,resultEl,key);
+}
+
+// BUILD S6
+function buildS6(){
+  const c=document.getElementById('s6');
+  s6d.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='rw-item';
+    div.innerHTML='<div class="rw-wrong">'+(i+1)+'.&nbsp;<s>'+q.wrong+'</s><span class="rw-hint">Hint: '+q.hint+'</span></div>'
+      +'<div class="rw-line"><span class="rw-label">✏️ Correct:</span>'
+      +'<input class="rw-input" id="rwi'+i+'" placeholder="Rewrite the sentence correctly…" autocomplete="off"/></div>';
+    c.appendChild(div);
+  });
+}
+function checkRewrite(){
+  let correct=0;
+  s6d.forEach((q,i)=>{
+    const inp=document.getElementById('rwi'+i);inp.classList.remove('ok','err');
+    if(inp.value.trim().toLowerCase().includes(q.key.toLowerCase())){inp.classList.add('ok');correct++;}
+    else inp.classList.add('err');
+  });
+  showResult(correct,s6d.length,'r6','s6');
+}
+
+// FINAL
+function showFinal(){
+  const total=gt(),score=gs(),pct=Math.round(score/total*100);
+  const box=document.getElementById('finalBox');box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+  document.getElementById('fsc').textContent=score+' / '+total;
+  let tr,st,msg,sub;
+  if(pct===100){tr='🏆';st='⭐⭐⭐';msg='Perfect! You nailed it!';sub='You are a Pronoun Master! 🌟';}
+  else if(pct>=80){tr='🥇';st='⭐⭐⭐';msg='Excellent Work!';sub='You really know your pronouns! 💪';}
+  else if(pct>=60){tr='🥈';st='⭐⭐';msg='Good Job!';sub='Review the tricky parts and try again! 📚';}
+  else{tr='🌱';st='⭐';msg='Keep Practising!';sub="You're growing — don't give up! 🌸";}
+  document.getElementById('ft').textContent=tr;document.getElementById('fs').textContent=st;
+  document.getElementById('fm').textContent=msg;document.getElementById('fp').textContent=sub;
+  updateUI();
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  const d=new Date();
+  document.getElementById('dateField').value=d.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
+  buildS1();buildS2();buildS3();buildS4();buildS5();buildS6();updateUI();
+});
+</script>
+</body>
+</html>

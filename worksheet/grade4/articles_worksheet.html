@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LittleLume English – Articles Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+/* ── Variables ── */
+:root{
+  --coral:#FF6B6B; --sky:#4D96FF; --mint:#6BCB77;
+  --sun:#FFD93D;   --lav:#C77DFF; --peach:#FFB347;
+  --ink:#2D2D2D;   --white:#FFFFFF;
+  --lc:#FFF0F0; --ls:#EAF3FF; --lm:#EAFAF1;
+  --ll:#F5EEFF; --ly:#FFFBE6;
+  --card:#FFFDF5;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Nunito',sans-serif;
+  background:linear-gradient(160deg,#FFF8DC 0%,#E8F5FF 50%,#F3E8FF 100%);
+  min-height:100vh; color:var(--ink);
+}
+
+/* ── HEADER ── */
+header{
+  background:linear-gradient(135deg,var(--sky),var(--lav));
+  position:relative; overflow:hidden;
+  box-shadow:0 6px 28px rgba(77,150,255,.35);
+}
+.hdr-bubbles{position:absolute;inset:0;pointer-events:none}
+.hb{position:absolute;border-radius:50%;opacity:.18;animation:fb 6s ease-in-out infinite}
+.hb:nth-child(1){width:80px;height:80px;background:var(--sun);top:-15px;left:4%;animation-delay:0s}
+.hb:nth-child(2){width:55px;height:55px;background:var(--coral);top:8px;left:18%;animation-delay:1s}
+.hb:nth-child(3){width:100px;height:100px;background:var(--mint);bottom:-25px;left:38%;animation-delay:.5s}
+.hb:nth-child(4){width:65px;height:65px;background:var(--white);top:4px;left:58%;animation-delay:2s}
+.hb:nth-child(5){width:75px;height:75px;background:var(--peach);bottom:-10px;left:74%;animation-delay:1.5s}
+.hb:nth-child(6){width:50px;height:50px;background:var(--sun);top:14px;left:90%;animation-delay:.8s}
+@keyframes fb{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.hdr-inner{
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;padding:24px 20px 16px;
+}
+.logo-icon{font-size:48px;animation:wg 3s ease-in-out infinite;filter:drop-shadow(0 3px 8px rgba(0,0,0,.2))}
+@keyframes wg{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.logo-text .brand{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(1.9rem,5vw,3rem);
+  color:var(--white);letter-spacing:1px;
+  text-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+.logo-text .brand span{color:var(--sun)}
+.logo-text .tagline{
+  font-size:.88rem;font-weight:700;
+  color:rgba(255,255,255,.85);
+  letter-spacing:2px;text-transform:uppercase;margin-top:2px;
+}
+.hdr-topic{
+  position:relative;z-index:1;
+  text-align:center;padding:0 20px 18px;
+}
+.hdr-topic h1{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(1.3rem,4vw,2rem);
+  color:var(--white);
+  background:rgba(255,255,255,.18);
+  display:inline-block;padding:7px 28px;
+  border-radius:50px;border:2px solid rgba(255,255,255,.35);
+}
+
+/* ── INFO BAR ── */
+.info-bar{
+  max-width:900px;margin:20px auto 0;padding:0 16px;
+  display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;
+}
+.info-field{
+  flex:1;min-width:160px;
+  background:var(--white);border-radius:12px;
+  padding:10px 16px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  display:flex;flex-direction:column;gap:4px;
+}
+.info-field label{
+  font-size:.72rem;font-weight:900;letter-spacing:1.5px;
+  text-transform:uppercase;color:#AAA;
+}
+.info-field input{
+  border:none;border-bottom:2.5px solid var(--sky);
+  background:transparent;outline:none;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;
+  color:var(--ink);padding:2px 0;width:100%;
+}
+.score-display{
+  background:linear-gradient(135deg,var(--sun),var(--peach));
+  border-radius:12px;padding:10px 20px;
+  font-family:'Fredoka One',cursive;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 3px 12px rgba(255,179,71,.35);
+  min-width:120px;
+}
+.score-display .s-label{font-size:.7rem;font-weight:900;letter-spacing:2px;color:rgba(255,255,255,.8);text-transform:uppercase}
+.score-display .s-val{font-size:1.8rem;color:var(--white);line-height:1}
+
+/* ── MAIN ── */
+main{max-width:900px;margin:20px auto 60px;padding:0 16px}
+
+/* ── SECTION CARD ── */
+.ws-card{
+  background:var(--card);border-radius:20px;
+  padding:28px;margin-bottom:28px;
+  box-shadow:0 5px 24px rgba(0,0,0,.07);
+  position:relative;overflow:hidden;
+}
+.ws-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:100%;height:5px;border-radius:20px 20px 0 0;
+}
+.ws-card.c1::before{background:linear-gradient(90deg,var(--coral),var(--peach))}
+.ws-card.c2::before{background:linear-gradient(90deg,var(--sky),var(--lav))}
+.ws-card.c3::before{background:linear-gradient(90deg,var(--mint),var(--sky))}
+.ws-card.c4::before{background:linear-gradient(90deg,var(--lav),var(--coral))}
+.ws-card.c5::before{background:linear-gradient(90deg,var(--peach),var(--sun))}
+
+.sec-title{
+  font-family:'Fredoka One',cursive;
+  font-size:1.35rem;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-num{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:1rem;flex-shrink:0;
+  box-shadow:0 3px 8px rgba(0,0,0,.18);
+}
+.c1 .sec-num{background:var(--coral)}
+.c2 .sec-num{background:var(--sky)}
+.c3 .sec-num{background:var(--mint)}
+.c4 .sec-num{background:var(--lav)}
+.c5 .sec-num{background:var(--peach)}
+
+.sec-inst{
+  font-size:.92rem;color:#666;font-weight:600;
+  margin-bottom:16px;font-style:italic;
+}
+
+/* ── SECTION 1: Circle ── */
+.circle-item{
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;
+  padding:11px 16px;border-radius:12px;margin-bottom:10px;
+  font-size:1.02rem;font-weight:700;
+}
+.circle-item:nth-child(odd){background:var(--lc)}
+.circle-item:nth-child(even){background:var(--lm)}
+.circle-sent{flex:1;min-width:200px}
+.circle-opts{display:flex;gap:8px;flex-shrink:0}
+.circle-btn{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;
+  padding:6px 16px;border-radius:50px;
+  border:2.5px solid var(--sky);color:var(--sky);
+  background:var(--white);cursor:pointer;
+  transition:all .18s;
+}
+.circle-btn:hover{background:var(--sky);color:var(--white);transform:translateY(-2px)}
+.circle-btn.chosen-correct{
+  background:var(--mint);color:var(--white);border-color:var(--mint);
+  animation:pop .3s ease;
+}
+.circle-btn.chosen-wrong{
+  background:var(--coral);color:var(--white);border-color:var(--coral);
+  animation:shake .35s ease;
+}
+.circle-btn.disabled-btn{pointer-events:none;opacity:.45}
+@keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}70%{transform:translateX(5px)}}
+
+/* ── SECTION 2: Fill Blank ── */
+.fill-item{
+  padding:11px 16px;border-radius:12px;
+  font-size:1.02rem;font-weight:700;
+  margin-bottom:10px;line-height:2;
+  display:flex;align-items:center;flex-wrap:wrap;gap:4px;
+}
+.fill-item:nth-child(odd){background:var(--ls)}
+.fill-item:nth-child(even){background:var(--ll)}
+.fill-input{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;
+  width:72px;text-align:center;
+  border:none;border-bottom:3px solid var(--sky);
+  background:transparent;outline:none;color:var(--sky);
+  border-radius:4px 4px 0 0;padding:1px 4px;
+  transition:border-color .2s;
+}
+.fill-input:focus{border-color:var(--lav);background:var(--ll)}
+.fill-input.ok{border-color:var(--mint);color:var(--mint);background:var(--lm)}
+.fill-input.err{border-color:var(--coral);color:var(--coral);background:var(--lc)}
+
+/* ── SECTION 3: A or An ── */
+.noun-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;
+}
+.noun-item{
+  background:var(--white);border-radius:12px;
+  padding:12px 16px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
+  display:flex;align-items:center;gap:8px;
+  font-weight:700;font-size:1rem;
+  border:2px solid transparent;
+  transition:border-color .2s;
+}
+.noun-item:hover{border-color:var(--lav)}
+.noun-input{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;
+  width:52px;text-align:center;
+  border:none;border-bottom:2.5px solid var(--lav);
+  background:transparent;outline:none;color:var(--lav);
+  padding:1px 3px;
+}
+.noun-input.ok{border-color:var(--mint);color:var(--mint)}
+.noun-input.err{border-color:var(--coral);color:var(--coral)}
+.noun-word{color:#555;font-size:1rem}
+
+/* ── SECTION 4: True / False ── */
+.tf-item{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 16px;border-radius:12px;margin-bottom:10px;
+  font-size:1rem;font-weight:700;
+}
+.tf-item:nth-child(odd){background:var(--ll)}
+.tf-item:nth-child(even){background:var(--ls)}
+.tf-sent{flex:1}
+.tf-btns{display:flex;gap:8px;flex-shrink:0}
+.tf-btn{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:.9rem;
+  padding:6px 14px;border-radius:50px;
+  cursor:pointer;transition:all .18s;
+  border:2.5px solid;
+}
+.tf-btn.t-btn{border-color:var(--mint);color:var(--mint);background:var(--white)}
+.tf-btn.f-btn{border-color:var(--coral);color:var(--coral);background:var(--white)}
+.tf-btn.t-btn:hover{background:var(--mint);color:var(--white)}
+.tf-btn.f-btn:hover{background:var(--coral);color:var(--white)}
+.tf-btn.chosen-correct{animation:pop .3s ease}
+.tf-btn.t-btn.chosen-correct{background:var(--mint);color:var(--white)}
+.tf-btn.f-btn.chosen-correct{background:var(--coral);color:var(--white)}
+.tf-btn.chosen-wrong{animation:shake .35s ease;opacity:.5}
+.tf-btn.disabled-tf{pointer-events:none}
+
+/* ── SECTION 5: Rewrite ── */
+.rw-item{
+  padding:14px 18px;border-radius:12px;margin-bottom:12px;
+  font-size:1rem;font-weight:700;
+}
+.rw-item:nth-child(odd){background:var(--ly)}
+.rw-item:nth-child(even){background:var(--lc)}
+.rw-wrong{color:var(--coral);margin-bottom:8px;font-size:1rem}
+.rw-wrong s{opacity:.6}
+.rw-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rw-label{font-size:.85rem;color:#888;font-weight:700;white-space:nowrap}
+.rw-input{
+  flex:1;min-width:200px;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;
+  border:none;border-bottom:2.5px solid var(--peach);
+  background:transparent;outline:none;color:var(--ink);
+  padding:3px 4px;
+}
+.rw-input:focus{border-color:var(--sky)}
+.rw-input.ok{border-color:var(--mint);color:var(--mint)}
+.rw-input.err{border-color:var(--coral);color:var(--coral)}
+
+/* ── BUTTONS ── */
+.check-btn{
+  display:block;margin:22px auto 0;
+  font-family:'Fredoka One',cursive;font-size:1.15rem;
+  padding:13px 40px;
+  border:none;border-radius:50px;cursor:pointer;
+  color:var(--white);
+  transition:transform .2s,box-shadow .2s;
+}
+.check-btn:hover{transform:translateY(-3px)}
+.c1 .check-btn{background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 6px 18px rgba(255,107,107,.35)}
+.c2 .check-btn{background:linear-gradient(135deg,var(--sky),var(--lav));box-shadow:0 6px 18px rgba(77,150,255,.35)}
+.c3 .check-btn{background:linear-gradient(135deg,var(--mint),var(--sky));box-shadow:0 6px 18px rgba(107,203,119,.35)}
+.c4 .check-btn{background:linear-gradient(135deg,var(--lav),var(--coral));box-shadow:0 6px 18px rgba(199,125,255,.35)}
+.c5 .check-btn{background:linear-gradient(135deg,var(--peach),var(--sun));box-shadow:0 6px 18px rgba(255,179,71,.35)}
+
+.sec-result{
+  text-align:center;font-family:'Fredoka One',cursive;
+  font-size:1.1rem;margin-top:14px;min-height:26px;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{margin-top:28px}
+.prog-label{
+  font-family:'Fredoka One',cursive;font-size:1.1rem;
+  text-align:center;color:var(--sky);margin-bottom:8px;
+}
+.prog-track{
+  background:#DDE9FF;border-radius:50px;height:26px;
+  overflow:hidden;box-shadow:inset 0 2px 6px rgba(0,0,0,.1);
+}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--sky),var(--lav));
+  border-radius:50px;
+  transition:width .7s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:center;justify-content:flex-end;
+  padding-right:12px;color:#fff;font-weight:900;font-size:.85rem;
+  min-width:36px;
+}
+
+/* ── SUBMIT ALL ── */
+.submit-wrap{
+  text-align:center;margin:28px 0 8px;
+}
+.submit-btn{
+  font-family:'Fredoka One',cursive;font-size:1.3rem;
+  padding:16px 56px;border:none;border-radius:50px;
+  color:var(--white);cursor:pointer;
+  background:linear-gradient(135deg,var(--sky),var(--lav));
+  box-shadow:0 8px 24px rgba(77,150,255,.4);
+  transition:transform .2s,box-shadow .2s;
+}
+.submit-btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(77,150,255,.45)}
+
+/* ── FINAL RESULT ── */
+.final-result{
+  background:var(--card);border-radius:20px;
+  padding:32px;text-align:center;
+  box-shadow:0 5px 24px rgba(0,0,0,.1);
+  margin-bottom:28px;display:none;
+}
+.final-result .trophy{font-size:4rem;animation:bounce 1s ease infinite alternate}
+@keyframes bounce{0%{transform:translateY(0)}100%{transform:translateY(-12px)}}
+.final-result h2{
+  font-family:'Fredoka One',cursive;font-size:2rem;
+  margin:12px 0 6px;
+}
+.final-result p{font-size:1.1rem;font-weight:700;color:#555}
+.final-result .big-score{
+  font-family:'Fredoka One',cursive;font-size:3.5rem;
+  background:linear-gradient(135deg,var(--sky),var(--lav));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin:10px 0;
+}
+.stars{font-size:2rem;letter-spacing:4px;margin:4px 0}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:22px;
+  font-family:'Fredoka One',cursive;
+  font-size:.9rem;color:#999;letter-spacing:1px;
+}
+footer span{color:var(--coral)}
+
+@media(max-width:540px){
+  .ws-card{padding:18px 14px}
+  .circle-item{flex-direction:column;align-items:flex-start}
+  .tf-item{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="hdr-bubbles">
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div>
+    <div class="hb"></div><div class="hb"></div><div class="hb"></div>
+  </div>
+  <div class="hdr-inner">
+    <div class="logo-icon">🌟</div>
+    <div class="logo-text">
+      <div class="brand">Little<span>Lume</span></div>
+      <div class="tagline">English Learning ✦ Grade 4</div>
+    </div>
+    <div class="logo-icon">📝</div>
+  </div>
+  <div class="hdr-topic">
+    <h1>✨ Interactive Worksheet: Articles – A, An &amp; The ✨</h1>
+  </div>
+</header>
+
+<!-- ══ INFO BAR ══ -->
+<div class="info-bar">
+  <div class="info-field">
+    <label>Name</label>
+    <input type="text" placeholder="Your name here…"/>
+  </div>
+  <div class="info-field">
+    <label>Date</label>
+    <input type="text" id="dateField" placeholder=""/>
+  </div>
+  <div class="info-field">
+    <label>Class</label>
+    <input type="text" placeholder="e.g. 4A"/>
+  </div>
+  <div class="score-display">
+    <div class="s-label">Total Score</div>
+    <div class="s-val" id="totalScore">0 / 0</div>
+  </div>
+</div>
+
+<main>
+
+<!-- ══ SECTION 1: Circle the article ══ -->
+<div class="ws-card c1">
+  <div class="sec-title"><span class="sec-num">1</span>🔵 Circle the Correct Article</div>
+  <div class="sec-inst">Tap the correct article for each sentence. You only get one chance!</div>
+  <div id="s1"></div>
+  <div class="sec-result" id="r1"></div>
+</div>
+
+<!-- ══ SECTION 2: Fill in the blank ══ -->
+<div class="ws-card c2">
+  <div class="sec-title"><span class="sec-num">2</span>✏️ Fill in the Blank</div>
+  <div class="sec-inst">Type <strong>a</strong>, <strong>an</strong>, or <strong>the</strong> in each blank.</div>
+  <div id="s2"></div>
+  <button class="check-btn" onclick="checkFill()">Check Answers ✅</button>
+  <div class="sec-result" id="r2"></div>
+</div>
+
+<!-- ══ SECTION 3: A or An ══ -->
+<div class="ws-card c3">
+  <div class="sec-title"><span class="sec-num">3</span>🍎 Write A or An</div>
+  <div class="sec-inst">Type <strong>a</strong> or <strong>an</strong> before each word.</div>
+  <div class="noun-grid" id="s3"></div>
+  <button class="check-btn" onclick="checkNouns()">Check Answers ✅</button>
+  <div class="sec-result" id="r3"></div>
+</div>
+
+<!-- ══ SECTION 4: True or False ══ -->
+<div class="ws-card c4">
+  <div class="sec-title"><span class="sec-num">4</span>☑️ True or False</div>
+  <div class="sec-inst">Is the sentence about articles correct? Tap T (True) or F (False).</div>
+  <div id="s4"></div>
+  <div class="sec-result" id="r4"></div>
+</div>
+
+<!-- ══ SECTION 5: Correct the mistake ══ -->
+<div class="ws-card c5">
+  <div class="sec-title"><span class="sec-num">5</span>🔍 Correct the Mistake</div>
+  <div class="sec-inst">Each sentence has a wrong article. Rewrite the sentence correctly in the box.</div>
+  <div id="s5"></div>
+  <button class="check-btn" onclick="checkRewrite()">Check Answers ✅</button>
+  <div class="sec-result" id="r5"></div>
+</div>
+
+<!-- ══ PROGRESS ══ -->
+<div class="progress-wrap">
+  <div class="prog-label" id="progLabel">Overall Progress: 0%</div>
+  <div class="prog-track">
+    <div class="prog-fill" id="progFill" style="width:0%">0%</div>
+  </div>
+</div>
+
+<!-- ══ SUBMIT ══ -->
+<div class="submit-wrap">
+  <button class="submit-btn" onclick="showFinal()">🎉 See My Final Score!</button>
+</div>
+
+<!-- ══ FINAL RESULT ══ -->
+<div class="final-result" id="finalBox">
+  <div class="trophy" id="finalTrophy">🏆</div>
+  <div class="stars" id="finalStars">⭐⭐⭐</div>
+  <div class="big-score" id="finalScore">0 / 0</div>
+  <h2 id="finalMsg">Amazing!</h2>
+  <p id="finalSub">You did a great job learning articles!</p>
+</div>
+
+</main>
+
+<footer>Made with <span>♥</span> by LittleLume English &nbsp;✦&nbsp; Grade 4 &nbsp;✦&nbsp; Keep Learning &amp; Shining! 🌟</footer>
+
+<script>
+/* ══════════════════════════════════════
+   DATA
+══════════════════════════════════════ */
+
+// Section 1 – circle
+const s1Data = [
+  { sent:"I have ___ cat at home.",               opts:["a","an","the"], ans:"a" },
+  { sent:"She ate ___ orange after lunch.",        opts:["a","an","the"], ans:"an" },
+  { sent:"___ sun is very bright today.",          opts:["A","An","The"], ans:"The" },
+  { sent:"He found ___ old coin in the garden.",   opts:["a","an","the"], ans:"an" },
+  { sent:"We visited ___ Eiffel Tower in Paris.",  opts:["a","an","the"], ans:"the" },
+  { sent:"Can I have ___ banana, please?",         opts:["a","an","the"], ans:"a" },
+  { sent:"___ elephant has a very long trunk.",    opts:["A","An","The"], ans:"An" },
+  { sent:"She is ___ honest student.",             opts:["a","an","the"], ans:"an" },
+];
+
+// Section 2 – fill blank; items may have multiple blanks: use |split|
+// Format: segments array, blanks marked as {n} where n = index in answers
+const s2Data = [
+  { parts:["I want ","___"," ice cream cone."],             answers:["an"] },
+  { parts:["___"," Pacific Ocean is the largest ocean."],   answers:["The"] },
+  { parts:["My dad drives ","___"," car to work."],          answers:["a"] },
+  { parts:["There is ","___"," egg in the basket."],         answers:["an"] },
+  { parts:["___"," moon looks beautiful tonight."],          answers:["The"] },
+  { parts:["She is reading ","___"," interesting book."],    answers:["an"] },
+  { parts:["He wants to be ","___"," engineer."],            answers:["an"] },
+  { parts:["___"," Earth goes around ","___"," sun."],       answers:["The","the"] },
+  { parts:["I saw ","___"," dog. ","___"," dog was cute."],  answers:["a","The"] },
+  { parts:["Can you pass me ","___"," umbrella?"],           answers:["an"] },
+];
+
+// Section 3 – a or an
+const s3Data = [
+  { word:"apple",      ans:"an", emoji:"🍎" },
+  { word:"book",       ans:"a",  emoji:"📚" },
+  { word:"hour",       ans:"an", emoji:"⏰" },
+  { word:"uniform",    ans:"a",  emoji:"👕" },
+  { word:"elephant",   ans:"an", emoji:"🐘" },
+  { word:"car",        ans:"a",  emoji:"🚗" },
+  { word:"egg",        ans:"an", emoji:"🥚" },
+  { word:"university", ans:"a",  emoji:"🎓" },
+  { word:"pen",        ans:"a",  emoji:"🖊️" },
+  { word:"ant",        ans:"an", emoji:"🐜" },
+  { word:"igloo",      ans:"an", emoji:"🏔️" },
+  { word:"kite",       ans:"a",  emoji:"🪁" },
+];
+
+// Section 4 – true / false
+const s4Data = [
+  { sent:'We use "a" before words that start with a vowel sound.',             ans:"F" },
+  { sent:'"An umbrella" is correct because "umbrella" starts with a vowel.',   ans:"T" },
+  { sent:'"A honest man" is correct.',                                          ans:"F" },
+  { sent:'"The" is used to talk about something specific.',                     ans:"T" },
+  { sent:'"A uniform" uses "a" because uniform sounds like a consonant (Y).',  ans:"T" },
+  { sent:'"An egg" is correct.',                                                ans:"T" },
+  { sent:'"A" and "an" are used for things we mention for the first time.',     ans:"T" },
+];
+
+// Section 5 – rewrite
+const s5Data = [
+  { wrong:'I saw a owl in the tree.',         hint:'owl starts with a vowel 🦉',     key:"an owl" },
+  { wrong:'She has a umbrella.',              hint:'"umbrella" starts with a vowel ☂️', key:"an umbrella" },
+  { wrong:'He is a honest person.',           hint:'H is silent — sounds like "onest" 🤫', key:"an honest" },
+  { wrong:'We went to a Eiffel Tower.',       hint:'we mean a specific tower 🗼',    key:"the Eiffel" },
+  { wrong:'The cat sat on an chair.',         hint:'"chair" starts with a consonant 🪑', key:"a chair" },
+];
+
+/* ══════════════════════════════════════
+   SCORE TRACKING
+══════════════════════════════════════ */
+const sectionScores = { s1:0, s2:0, s3:0, s4:0, s5:0 };
+const sectionTotals = { s1:s1Data.length, s2:0, s3:s3Data.length, s4:s4Data.length, s5:s5Data.length };
+// s2 total depends on blanks
+s2Data.forEach(d => sectionTotals.s2 += d.answers.length);
+
+function grandTotal(){ return Object.values(sectionTotals).reduce((a,b)=>a+b,0) }
+function grandScore() { return Object.values(sectionScores).reduce((a,b)=>a+b,0) }
+
+function updateScoreDisplay(){
+  const gt = grandTotal(), gs = grandScore();
+  document.getElementById('totalScore').textContent = `${gs} / ${gt}`;
+  const pct = gt ? Math.round(gs/gt*100) : 0;
+  document.getElementById('progLabel').textContent = `Overall Progress: ${pct}%`;
+  const fill = document.getElementById('progFill');
+  fill.style.width = Math.max(pct,4)+'%';
+  fill.textContent = pct+'%';
+}
+
+function resultLine(correct, total, elId, sectionKey){
+  const pct = Math.round(correct/total*100);
+  sectionScores[sectionKey] = correct;
+  const el = document.getElementById(elId);
+  const stars = pct===100?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';
+  el.textContent = `${stars}  ${correct} / ${total} correct  (${pct}%)  ${stars}`;
+  el.style.color = pct>=70 ? 'var(--mint)' : 'var(--coral)';
+  updateScoreDisplay();
+}
+
+/* ══════════════════════════════════════
+   BUILD SECTION 1 – CIRCLE
+══════════════════════════════════════ */
+const s1answered = new Array(s1Data.length).fill(false);
+let s1correct = 0;
+
+function buildS1(){
+  const c = document.getElementById('s1');
+  s1Data.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className = 'circle-item';
+    const sentHtml = q.sent.replace('___','<span style="color:var(--lav);font-family:\'Fredoka One\',cursive">?</span>');
+    div.innerHTML = `
+      <div class="circle-sent">${i+1}.&nbsp; ${sentHtml}</div>
+      <div class="circle-opts" id="co-${i}">
+        ${q.opts.map(o=>`<button class="circle-btn" onclick="pickCircle(${i},'${o}',this)">${o}</button>`).join('')}
+      </div>`;
+    c.appendChild(div);
+  });
+}
+
+function pickCircle(idx, choice, btn){
+  if(s1answered[idx]) return;
+  const q = s1Data[idx];
+  const allBtns = document.querySelectorAll(`#co-${idx} .circle-btn`);
+  if(choice.toLowerCase() === q.ans.toLowerCase()){
+    btn.classList.add('chosen-correct');
+    s1correct++;
+    s1answered[idx] = true;
+    allBtns.forEach(b=>{ if(b!==btn) b.classList.add('disabled-btn'); });
+    // update sent to show answer
+    const sent = btn.closest('.circle-item').querySelector('.circle-sent');
+    sent.innerHTML = sent.innerHTML.replace(
+      /<span[^>]*>\?<\/span>/,
+      `<span style="color:var(--mint);font-family:'Fredoka One',cursive">${choice}</span>`
+    );
+    resultLine(s1correct, s1Data.length, 'r1', 's1');
+    updateScoreDisplay();
+  } else {
+    btn.classList.add('chosen-wrong');
+    setTimeout(()=>btn.classList.remove('chosen-wrong'),400);
+  }
+}
+
+/* ══════════════════════════════════════
+   BUILD SECTION 2 – FILL BLANK
+══════════════════════════════════════ */
+function buildS2(){
+  const c = document.getElementById('s2');
+  s2Data.forEach((q,qi)=>{
+    const div = document.createElement('div');
+    div.className = 'fill-item';
+    let blankIdx = 0;
+    let html = '';
+    q.parts.forEach(p=>{
+      if(p==='___'){
+        html += `<input class="fill-input" id="fi-${qi}-${blankIdx}" maxlength="4" placeholder="___" autocomplete="off"/>`;
+        blankIdx++;
+      } else {
+        html += `<span>${qi+1}.&nbsp;</span>`.replace(`<span>${qi+1}.&nbsp;</span>`,blankIdx===0?`<span>${qi+1}.&nbsp;</span>`:'') + p;
+      }
+    });
+    // rebuild cleanly
+    blankIdx = 0;
+    let cleanHtml = `<span style="margin-right:4px;font-weight:900">${qi+1}.</span>`;
+    q.parts.forEach(p=>{
+      if(p==='___'){
+        cleanHtml += `<input class="fill-input" id="fi-${qi}-${blankIdx}" maxlength="4" placeholder="___" autocomplete="off"/>`;
+        blankIdx++;
+      } else {
+        cleanHtml += `<span>${p}</span>`;
+      }
+    });
+    div.innerHTML = cleanHtml;
+    c.appendChild(div);
+  });
+}
+
+function checkFill(){
+  let correct=0, total=0;
+  s2Data.forEach((q,qi)=>{
+    q.answers.forEach((ans,ai)=>{
+      total++;
+      const inp = document.getElementById(`fi-${qi}-${ai}`);
+      if(!inp) return;
+      const val = inp.value.trim().toLowerCase();
+      inp.classList.remove('ok','err');
+      if(val === ans.toLowerCase()){
+        inp.classList.add('ok'); correct++;
+      } else {
+        inp.classList.add('err');
+        inp.placeholder = ans; // show hint
+      }
+    });
+  });
+  resultLine(correct, total, 'r2', 's2');
+}
+
+/* ══════════════════════════════════════
+   BUILD SECTION 3 – A or AN
+══════════════════════════════════════ */
+function buildS3(){
+  const c = document.getElementById('s3');
+  s3Data.forEach((n,i)=>{
+    const div = document.createElement('div');
+    div.className = 'noun-item';
+    div.innerHTML = `
+      <input class="noun-input" id="ni-${i}" maxlength="3" placeholder="___" autocomplete="off"/>
+      <span class="noun-word">${n.emoji} ${n.word}</span>`;
+    c.appendChild(div);
+  });
+}
+
+function checkNouns(){
+  let correct=0;
+  s3Data.forEach((n,i)=>{
+    const inp = document.getElementById(`ni-${i}`);
+    inp.classList.remove('ok','err');
+    if(inp.value.trim().toLowerCase() === n.ans){
+      inp.classList.add('ok'); correct++;
+    } else {
+      inp.classList.add('err');
+      inp.placeholder = n.ans;
+    }
+  });
+  resultLine(correct, s3Data.length, 'r3', 's3');
+}
+
+/* ══════════════════════════════════════
+   BUILD SECTION 4 – TRUE / FALSE
+══════════════════════════════════════ */
+const s4answered = new Array(s4Data.length).fill(false);
+let s4correct = 0;
+
+function buildS4(){
+  const c = document.getElementById('s4');
+  s4Data.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className = 'tf-item';
+    div.innerHTML = `
+      <div class="tf-sent">${i+1}.&nbsp; ${q.sent}</div>
+      <div class="tf-btns" id="tf-${i}">
+        <button class="tf-btn t-btn" onclick="pickTF(${i},'T',this)">T</button>
+        <button class="tf-btn f-btn" onclick="pickTF(${i},'F',this)">F</button>
+      </div>`;
+    c.appendChild(div);
+  });
+}
+
+function pickTF(idx, choice, btn){
+  if(s4answered[idx]) return;
+  const q = s4Data[idx];
+  const allBtns = document.querySelectorAll(`#tf-${idx} .tf-btn`);
+  allBtns.forEach(b=>b.classList.add('disabled-tf'));
+  if(choice === q.ans){
+    btn.classList.add('chosen-correct');
+    s4correct++;
+  } else {
+    btn.classList.add('chosen-wrong');
+    // show correct
+    allBtns.forEach(b=>{
+      if((q.ans==='T' && b.classList.contains('t-btn'))||(q.ans==='F' && b.classList.contains('f-btn')))
+        b.classList.add('chosen-correct');
+    });
+  }
+  s4answered[idx] = true;
+  resultLine(s4correct, s4Data.length, 'r4', 's4');
+  updateScoreDisplay();
+}
+
+/* ══════════════════════════════════════
+   BUILD SECTION 5 – REWRITE
+══════════════════════════════════════ */
+function buildS5(){
+  const c = document.getElementById('s5');
+  s5Data.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className = 'rw-item';
+    div.innerHTML = `
+      <div class="rw-wrong">${i+1}.&nbsp; <s>${q.wrong}</s>
+        &nbsp;<span style="font-size:.82rem;color:#AAA;font-style:italic">Hint: ${q.hint}</span>
+      </div>
+      <div class="rw-row">
+        <span class="rw-label">✏️ Correct:</span>
+        <input class="rw-input" id="rw-${i}" placeholder="Rewrite the sentence here…" autocomplete="off"/>
+      </div>`;
+    c.appendChild(div);
+  });
+}
+
+function checkRewrite(){
+  let correct = 0;
+  s5Data.forEach((q,i)=>{
+    const inp = document.getElementById(`rw-${i}`);
+    inp.classList.remove('ok','err');
+    const val = inp.value.trim().toLowerCase();
+    // check key phrase presence
+    if(val.includes(q.key.toLowerCase())){
+      inp.classList.add('ok'); correct++;
+    } else {
+      inp.classList.add('err');
+    }
+  });
+  resultLine(correct, s5Data.length, 'r5', 's5');
+}
+
+/* ══════════════════════════════════════
+   FINAL SCORE
+══════════════════════════════════════ */
+function showFinal(){
+  const gs = grandScore(), gt = grandTotal();
+  const pct = Math.round(gs/gt*100);
+  const box = document.getElementById('finalBox');
+  box.style.display = 'block';
+  box.scrollIntoView({behavior:'smooth', block:'center'});
+
+  document.getElementById('finalScore').textContent = `${gs} / ${gt}`;
+
+  let trophy, stars, msg, sub;
+  if(pct===100){
+    trophy='🏆'; stars='⭐⭐⭐'; msg='Perfect Score! Amazing!!'; sub='You are an Articles superstar! 🌟';
+  } else if(pct>=80){
+    trophy='🥇'; stars='⭐⭐⭐'; msg='Excellent Work!'; sub='Almost perfect — you really know your articles!';
+  } else if(pct>=60){
+    trophy='🥈'; stars='⭐⭐'; msg='Good Job!'; sub='Review the tricky ones and try again! 💪';
+  } else {
+    trophy='🌱'; stars='⭐'; msg='Keep Practising!'; sub='You\'re learning — don\'t give up! 📚';
+  }
+  document.getElementById('finalTrophy').textContent = trophy;
+  document.getElementById('finalStars').textContent = stars;
+  document.getElementById('finalMsg').textContent = msg;
+  document.getElementById('finalSub').textContent = sub;
+  updateScoreDisplay();
+}
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded',()=>{
+  // Auto-fill today's date
+  const d = new Date();
+  document.getElementById('dateField').value =
+    d.toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
+
+  buildS1(); buildS2(); buildS3(); buildS4(); buildS5();
+  updateScoreDisplay();
+});
+</script>
+</body>
+</html>
