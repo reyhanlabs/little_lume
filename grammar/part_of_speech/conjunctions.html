@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Conjunctions Adventure!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sun:#FFC93C;
+    --sun-dark:#F2A91C;
+    --coral:#FF6B6B;
+    --coral-dark:#E84F4F;
+    --sky:#3DC2EC;
+    --sky-dark:#1FA3D1;
+    --grass:#4ECB71;
+    --grass-dark:#33B358;
+    --grape:#9B6BFF;
+    --grape-dark:#7E4FE0;
+    --cream:#FFF9EC;
+    --ink:#2E2A4A;
+    --ink-soft:#5B5578;
+    --white:#ffffff;
+    --shadow: 0 8px 0 rgba(46,42,74,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    font-family:'Quicksand', sans-serif;
+    background:
+      radial-gradient(circle at 10% 10%, #FFF4D6 0%, transparent 35%),
+      radial-gradient(circle at 90% 20%, #DFF6FF 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, #E9FFEF 0%, transparent 45%),
+      var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4{ font-family:'Baloo 2', sans-serif; margin:0; }
+
+  .wrap{ max-width:1000px; margin:0 auto; padding:0 20px; }
+
+  /* ---------- floating decorations ---------- */
+  .bg-deco{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+  .cloud{ position:absolute; opacity:0.8; animation:drift 40s linear infinite; }
+  .cloud svg{ width:120px; }
+  .cloud.c1{ top:6%; left:-10%; animation-duration:55s; }
+  .cloud.c2{ top:18%; left:-15%; animation-duration:70s; animation-delay:-20s; }
+  .cloud.c3{ top:3%; left:-20%; animation-duration:90s; animation-delay:-45s; }
+  @keyframes drift{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(135vw); }
+  }
+  .star{ position:absolute; animation:twinkle 3s ease-in-out infinite; }
+  @keyframes twinkle{
+    0%,100%{ opacity:0.3; transform:scale(0.8); }
+    50%{ opacity:1; transform:scale(1.15); }
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:relative;
+    z-index:2;
+    background:linear-gradient(135deg, var(--grape) 0%, #6E4FE0 45%, var(--sky) 100%);
+    padding:26px 0 70px;
+    overflow:hidden;
+    border-bottom:6px solid var(--sun);
+  }
+  header.site::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.18) 2px, transparent 2.5px);
+    background-size:34px 34px;
+    opacity:0.5;
+  }
+  .header-inner{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .brand-badge{
+    width:64px; height:64px;
+    background:var(--sun);
+    border-radius:20px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:34px;
+    box-shadow:0 6px 0 var(--sun-dark);
+    transform:rotate(-8deg);
+    flex-shrink:0;
+  }
+  .brand-text h1{
+    color:#fff;
+    font-size:clamp(26px, 5vw, 38px);
+    letter-spacing:0.5px;
+    text-shadow:0 3px 0 rgba(0,0,0,0.12);
+  }
+  .brand-text h1 span{ color:var(--sun); }
+  .brand-text p{
+    margin:2px 0 0;
+    color:#EDE7FF;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+  .header-badge-pill{
+    background:rgba(255,255,255,0.16);
+    border:2px dashed rgba(255,255,255,0.55);
+    color:#fff;
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:14px;
+    backdrop-filter:blur(2px);
+  }
+  .hero-title{
+    position:relative;
+    z-index:1;
+    text-align:center;
+    margin-top:34px;
+  }
+  .hero-title .eyebrow{
+    display:inline-block;
+    background:var(--coral);
+    color:#fff;
+    font-weight:700;
+    padding:6px 16px;
+    border-radius:999px;
+    font-size:13px;
+    letter-spacing:2px;
+    box-shadow:0 4px 0 var(--coral-dark);
+    margin-bottom:14px;
+  }
+  .hero-title h2{
+    color:#fff;
+    font-size:clamp(32px, 7vw, 56px);
+    line-height:1.05;
+    text-shadow:0 4px 0 rgba(0,0,0,0.15);
+  }
+  .hero-title h2 .pop{
+    color:var(--sun);
+    display:inline-block;
+    animation:bounce 2.2s ease-in-out infinite;
+  }
+  @keyframes bounce{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-10px) rotate(-4deg); }
+  }
+  .hero-title .sub{
+    color:#F1EBFF;
+    font-size:clamp(15px,2.4vw,19px);
+    font-weight:600;
+    max-width:560px;
+    margin:14px auto 0;
+  }
+  .wave-divider{
+    position:relative;
+    margin-top:-4px;
+  }
+  .wave-divider svg{ display:block; width:100%; height:auto; }
+
+  /* ---------- main layout ---------- */
+  main{ position:relative; z-index:1; padding-bottom:80px; }
+  section{ padding:50px 0; }
+
+  .section-head{ text-align:center; margin-bottom:34px; }
+  .section-head .tag{
+    display:inline-block;
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:2px;
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
+  .section-head h3{ font-size:clamp(24px,4.5vw,34px); color:var(--ink); }
+  .section-head p{ color:var(--ink-soft); font-weight:600; max-width:560px; margin:8px auto 0; }
+
+  /* progress nav */
+  .progress-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,249,236,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid #FFE3A8;
+    padding:10px 0;
+  }
+  .progress-track{
+    display:flex; gap:8px; align-items:center;
+    overflow-x:auto;
+    padding:4px 4px;
+    scrollbar-width:none;
+  }
+  .progress-track::-webkit-scrollbar{ display:none; }
+  .progress-step{
+    flex-shrink:0;
+    display:flex; align-items:center; gap:6px;
+    background:#fff;
+    border:2px solid #F0E6CC;
+    color:var(--ink-soft);
+    font-weight:700;
+    font-size:13px;
+    padding:7px 14px 7px 9px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+    white-space:nowrap;
+  }
+  .progress-step .dot{
+    width:20px; height:20px; border-radius:50%;
+    background:#F0E6CC;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; color:#fff; font-weight:800;
+  }
+  .progress-step.done{ border-color:var(--grass); color:var(--grass-dark); }
+  .progress-step.done .dot{ background:var(--grass); }
+  .progress-step.active{ border-color:var(--coral); color:var(--coral-dark); background:#FFF0EF; }
+  .progress-step.active .dot{ background:var(--coral); }
+
+  /* generic card */
+  .card{
+    background:#fff;
+    border-radius:26px;
+    border:3px solid #fff;
+    box-shadow:var(--shadow), 0 2px 20px rgba(46,42,74,0.06);
+    padding:30px;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:#fff;
+    background:var(--coral);
+    border:none;
+    padding:13px 26px;
+    border-radius:999px;
+    cursor:pointer;
+    box-shadow:0 6px 0 var(--coral-dark);
+    transition:transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn:active{ transform:translateY(4px); box-shadow:0 2px 0 var(--coral-dark); }
+  .btn.blue{ background:var(--sky); box-shadow:0 6px 0 var(--sky-dark); }
+  .btn.green{ background:var(--grass); box-shadow:0 6px 0 var(--grass-dark); }
+  .btn.purple{ background:var(--grape); box-shadow:0 6px 0 var(--grape-dark); }
+  .btn.yellow{ background:var(--sun); color:var(--ink); box-shadow:0 6px 0 var(--sun-dark); }
+  .btn:disabled{ opacity:0.5; cursor:not-allowed; transform:none; }
+
+  .pill{
+    display:inline-block;
+    padding:4px 12px;
+    border-radius:999px;
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:1px;
+  }
+
+  /* fanboys cards */
+  .fanboys-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:16px;
+  }
+  .fb-card{
+    position:relative;
+    height:220px;
+    border-radius:22px;
+    cursor:pointer;
+    perspective:1000px;
+  }
+  .fb-inner{
+    position:relative;
+    width:100%; height:100%;
+    transition:transform 0.55s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .fb-card.flipped .fb-inner{ transform:rotateY(180deg); }
+  .fb-face{
+    position:absolute; inset:0;
+    border-radius:22px;
+    backface-visibility:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:16px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 8px 0 rgba(0,0,0,0.14);
+  }
+  .fb-front .letter{ font-family:'Baloo 2',sans-serif; font-size:44px; font-weight:800; text-shadow:0 3px 0 rgba(0,0,0,0.15); }
+  .fb-front .word{ font-family:'Baloo 2',sans-serif; font-size:20px; font-weight:700; margin-top:4px; }
+  .fb-front .hint{ font-size:12px; font-weight:700; opacity:0.85; margin-top:10px; }
+  .fb-back{
+    transform:rotateY(180deg);
+    background:#fff !important;
+    color:var(--ink) !important;
+    box-shadow:0 8px 0 rgba(46,42,74,0.12) !important;
+    border:3px solid;
+  }
+  .fb-back .meaning{ font-weight:800; font-size:15px; margin-bottom:6px; }
+  .fb-back .example{ font-size:13px; font-weight:600; color:var(--ink-soft); line-height:1.5; }
+  .fb-back .example b{ color:var(--ink); }
+
+  /* playground */
+  .pg-sentence{
+    font-family:'Baloo 2',sans-serif;
+    font-size:clamp(17px,3vw,22px);
+    text-align:center;
+    color:var(--ink);
+    line-height:1.6;
+    margin-bottom:22px;
+  }
+  .pg-blank{
+    display:inline-block;
+    min-width:90px;
+    border-bottom:4px dotted var(--ink-soft);
+    text-align:center;
+    color:var(--coral-dark);
+    font-weight:800;
+  }
+  .pg-options{
+    display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  }
+  .balloon{
+    font-family:'Baloo 2',sans-serif;
+    font-weight:700;
+    font-size:17px;
+    color:#fff;
+    border:none;
+    padding:14px 26px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:transform 0.15s ease;
+    box-shadow:0 6px 0 rgba(0,0,0,0.18);
+  }
+  .balloon:hover{ transform:translateY(-3px) scale(1.04); }
+  .balloon.correct-flash{ background:var(--grass) !important; animation:pulseGood 0.5s; }
+  .balloon.wrong-flash{ background:var(--coral) !important; animation:shake 0.4s; }
+  @keyframes pulseGood{ 0%{transform:scale(1);} 50%{transform:scale(1.15);} 100%{transform:scale(1);} }
+  @keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-8px);} 75%{transform:translateX(8px);} }
+  .pg-feedback{
+    text-align:center; font-weight:800; margin-top:18px; font-size:15px; min-height:24px;
+  }
+  .pg-next-wrap{ text-align:center; margin-top:16px; }
+
+  /* because/so challenge */
+  .bs-row{
+    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:16px; color:var(--ink);
+    background:#fff; border-radius:16px; padding:14px 18px;
+  }
+  .bs-choice{
+    font-weight:800; border:none; border-radius:999px; padding:8px 18px; cursor:pointer; color:#fff; font-size:14px;
+    box-shadow:0 4px 0 rgba(0,0,0,0.16);
+  }
+  .bs-choice.because{ background:var(--grape); box-shadow:0 4px 0 var(--grape-dark); }
+  .bs-choice.so{ background:var(--sky); box-shadow:0 4px 0 var(--sky-dark); }
+  .bs-result{ font-size:18px; }
+</style>
+</head>
+<body>
+
+<div class="bg-deco" id="bgDeco">
+  <div class="cloud c1"><svg viewBox="0 0 100 60" fill="white"><ellipse cx="30" cy="35" rx="28" ry="18"/><ellipse cx="55" cy="25" rx="22" ry="20"/><ellipse cx="75" cy="38" rx="20" ry="15"/></svg></div>
+  <div class="cloud c2"><svg viewBox="0 0 100 60" fill="white"><ellipse cx="30" cy="35" rx="28" ry="18"/><ellipse cx="55" cy="25" rx="22" ry="20"/><ellipse cx="75" cy="38" rx="20" ry="15"/></svg></div>
+  <div class="cloud c3"><svg viewBox="0 0 100 60" fill="white"><ellipse cx="30" cy="35" rx="28" ry="18"/><ellipse cx="55" cy="25" rx="22" ry="20"/><ellipse cx="75" cy="38" rx="20" ry="15"/></svg></div>
+</div>
+
+<header class="site">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <div class="brand-badge">💡</div>
+      <div class="brand-text">
+        <h1>Little<span>Lume</span> English</h1>
+        <p>Lighting up little learners</p>
+      </div>
+    </div>
+    <div class="header-badge-pill">⭐ Grade 4 · English Adventure</div>
+  </div>
+
+  <div class="wrap hero-title">
+    <span class="eyebrow">UNIT · WORD CONNECTORS</span>
+    <h2>Conjunction <span class="pop">Junction</span>! 🚂</h2>
+    <p class="sub">Let's ride the conjunction train and become a master of cool sentences with Lumi, the smart lamp mascot! 🌟</p>
+  </div>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="#FFF9EC" d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,30 L1440,80 L0,80 Z"/></svg>
+  </div>
+</header>
+
+<nav class="progress-nav">
+  <div class="wrap">
+    <div class="progress-track" id="progressTrack">
+      <div class="progress-step active" data-target="sec-intro"><span class="dot">1</span> Meet</div>
+      <div class="progress-step" data-target="sec-fanboys"><span class="dot">2</span> FANBOYS</div>
+      <div class="progress-step" data-target="sec-playground"><span class="dot">3</span> Playground</div>
+      <div class="progress-step" data-target="sec-because"><span class="dot">4</span> Because vs So</div>
+      <div class="progress-step" data-target="sec-build"><span class="dot">5</span> Builder</div>
+      <div class="progress-step" data-target="sec-game"><span class="dot">6</span> Fun Game</div>
+      <div class="progress-step" data-target="sec-quiz"><span class="dot">7</span> Final Quiz</div>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== SECTION 1: INTRO ===================== -->
+  <section id="sec-intro">
+    <div class="wrap">
+      <div class="card" style="display:flex; gap:28px; align-items:center; flex-wrap:wrap; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-30px; right:-30px; width:140px; height:140px; background:#FFF4D6; border-radius:50%; z-index:0;"></div>
+        <div style="font-size:90px; flex-shrink:0; position:relative; z-index:1; animation:bounce 3s ease-in-out infinite;">💡</div>
+        <div style="flex:1; min-width:240px; position:relative; z-index:1;">
+          <span class="pill" style="background:#FFE3A8; color:#8A5A00;">HI, I'M LUMI!</span>
+          <h3 style="margin-top:10px; font-size:26px;">What is a Conjunction? 🤔</h3>
+          <p style="color:var(--ink-soft); font-weight:600; line-height:1.7; margin-top:10px;">
+            <b>Conjunction</b> (word connector) is a magic word that connects two words,
+            two ideas, or two sentences into one! Conjunctions are like <b>word glue</b> 🧩 —
+            without them, our sentences will be choppy and boring.
+          </p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:24px;">
+        <div class="card" style="border-left:8px solid var(--coral); padding:24px;">
+          <span style="font-size:34px;">😴</span>
+          <h4 style="margin-top:8px; font-size:18px; color:var(--coral-dark);">Without Conjunction</h4>
+          <p style="font-weight:600; color:var(--ink-soft); margin-top:8px; line-height:1.6;">
+            "I like cats. I like dogs."<br>
+            "It rained. We stayed home."
+          </p>
+          <p style="font-size:13px; color:#B05A5A; margin-top:8px; font-weight:700;">Sounds stiff & choppy ✂️</p>
+        </div>
+        <div class="card" style="border-left:8px solid var(--grass); padding:24px;">
+          <span style="font-size:34px;">🤩</span>
+          <h4 style="margin-top:8px; font-size:18px; color:var(--grass-dark);">With Conjunction</h4>
+          <p style="font-weight:600; color:var(--ink-soft); margin-top:8px; line-height:1.6;">
+            "I like cats <u>and</u> dogs."<br>
+            "It rained, <u>so</u> we stayed home."
+          </p>
+          <p style="font-size:13px; color:#3B9B58; margin-top:8px; font-weight:700;">Flows & reads nicely! 🌊</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 2: FANBOYS ===================== -->
+  <section id="sec-fanboys" style="background:linear-gradient(180deg, transparent, #FFF1D6 15%, #FFF1D6 85%, transparent);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--sun); color:#7A4E00;">7 MAGIC WORDS</span>
+        <h3>Ride the <span style="color:var(--coral);">FANBOYS</span> Train! 🚂</h3>
+        <p>FANBOYS is an acronym for 7 of the most important conjunctions. Click each train car to see its meaning!</p>
+      </div>
+
+      <div class="fanboys-grid" id="fanboysGrid">
+        <!-- cards injected styled below -->
+      </div>
+
+      <p style="text-align:center; margin-top:18px; color:var(--ink-soft); font-weight:700; font-size:14px;">
+        👆 Tap the cards to see example sentences!
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 3: PLAYGROUND ===================== -->
+  <section id="sec-playground">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--sky); color:#fff;">TRY IT OUT!</span>
+        <h3>Conjunction <span style="color:var(--sky-dark);">Playground</span> 🎪</h3>
+        <p>Choose the word connector that best completes each sentence. Click the balloon!</p>
+      </div>
+
+      <div class="card" id="playgroundCard">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:10px;">
+          <div style="font-weight:800; color:var(--ink-soft);" id="pgProgress">Question 1 of 6</div>
+          <div style="font-weight:800; color:var(--grass-dark);" id="pgScore">⭐ Score: 0</div>
+        </div>
+        <div id="pgQuestionBox"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 4: BECAUSE VS SO ===================== -->
+  <section id="sec-because" style="background:linear-gradient(180deg, transparent, #E9F8FF 15%, #E9F8FF 85%, transparent);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--grape); color:#fff;">CAUSE & EFFECT</span>
+        <h3>"Because" vs "So" — Don't Mix Them Up! 🔄</h3>
+        <p>These two words often confuse students. Let's see the arrow direction so you never mix them up again!</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px;" id="becauseSoGrid">
+        <div class="card" style="text-align:center; border-bottom:8px solid var(--grape);">
+          <span class="pill" style="background:#EDE3FF; color:var(--grape-dark);">BECAUSE = SINCE</span>
+          <p style="font-weight:700; margin-top:14px; color:var(--ink-soft);">Explains the <b>REASON</b> (cause), usually mentioned after the effect</p>
+          <div style="background:#F8F4FF; border-radius:16px; padding:18px; margin-top:14px; font-weight:700;">
+            <span style="color:var(--grass-dark);">Effect ✅</span>
+            <div style="font-size:22px; margin:4px 0; color:var(--grape-dark);">⬅ because</div>
+            <span style="color:var(--coral-dark);">Reason 💡</span>
+          </div>
+          <p style="margin-top:14px; font-weight:600; color:var(--ink);">
+            "I stayed home <b style="color:var(--grape-dark);">because</b> it rained."
+          </p>
+          <p style="font-size:13px; color:var(--ink-soft); margin-top:4px;">(Effect: stayed home) ⬅ (Reason: rained)</p>
+        </div>
+
+        <div class="card" style="text-align:center; border-bottom:8px solid var(--sky);">
+          <span class="pill" style="background:#DFF6FF; color:var(--sky-dark);">SO = THEREFORE / THUS</span>
+          <p style="font-weight:700; margin-top:14px; color:var(--ink-soft);">Explains the <b>REASON</b> first, then the effect</p>
+          <div style="background:#F0FBFF; border-radius:16px; padding:18px; margin-top:14px; font-weight:700;">
+            <span style="color:var(--coral-dark);">Reason 💡</span>
+            <div style="font-size:22px; margin:4px 0; color:var(--sky-dark);">so ➡</div>
+            <span style="color:var(--grass-dark);">Effect ✅</span>
+          </div>
+          <p style="margin-top:14px; font-weight:600; color:var(--ink);">
+            "It rained, <b style="color:var(--sky-dark);">so</b> I stayed home."
+          </p>
+          <p style="font-size:13px; color:var(--ink-soft); margin-top:4px;">(Reason: rained) ➡ (Effect: stayed home)</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px; text-align:center; background:linear-gradient(135deg,#FFF9EC,#FFF1D6);">
+        <h4 style="font-size:18px;">🎯 Quick Challenge</h4>
+        <p style="color:var(--ink-soft); font-weight:600; margin-top:6px;">Click the right word for each sentence below!</p>
+        <div id="becauseSoChallenge" style="margin-top:16px; display:flex; flex-direction:column; gap:14px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 5: SENTENCE BUILDER ===================== -->
+  <section id="sec-build">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--grass); color:#fff;">BUILD SENTENCES</span>
+        <h3>Sentence <span style="color:var(--grass-dark);">Builder</span> 🧱</h3>
+        <p>Combine two short sentences into one long cool sentence using a conjunction!</p>
+      </div>
+
+      <div class="card" id="builderCard">
+        <div id="builderBox"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 6: GAME SERU ===================== -->
+  <section id="sec-game" style="background:linear-gradient(180deg, transparent, #FFE9EC 15%, #FFE9EC 85%, transparent);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--coral); color:#fff;">PLAY NOW!</span>
+        <h3>Catch the Conjunction! 🎯</h3>
+        <p>Read the sentence, then click the word that acts as a conjunction as fast as you can before time runs out!</p>
+      </div>
+
+      <div class="card" style="text-align:center;">
+        <div style="display:flex; justify-content:center; gap:30px; margin-bottom:18px; flex-wrap:wrap;">
+          <div style="font-weight:800; color:var(--coral-dark); font-size:16px;">⏱️ Time: <span id="gameTimer">15</span>s</div>
+          <div style="font-weight:800; color:var(--grass-dark); font-size:16px;">🏆 Score: <span id="gameScore">0</span></div>
+          <div style="font-weight:800; color:var(--grape-dark); font-size:16px;">📝 Question: <span id="gameRound">0</span>/8</div>
+        </div>
+        <div id="gameArea">
+          <p style="color:var(--ink-soft); font-weight:700; margin-bottom:18px;">Ready to catch word connectors? Click start to play!</p>
+          <button class="btn" id="gameStartBtn">▶️ Start Game</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 7: QUIZ AKHIR ===================== -->
+  <section id="sec-quiz" style="background:linear-gradient(180deg, transparent, #EDE3FF 15%, #EDE3FF 85%, transparent);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--grape); color:#fff;">TEST YOUR SKILLS</span>
+        <h3>Final Quiz: Conjunction Master! 🏅</h3>
+        <p>10 mixed questions to prove you're a conjunction expert. Let's go!</p>
+      </div>
+
+      <div class="card" id="quizCard">
+        <div id="quizIntro" style="text-align:center;">
+          <div style="font-size:60px;">🎓</div>
+          <p style="font-weight:700; color:var(--ink-soft); margin:14px 0;">10 questions • Multiple choice • Score & badge at the end!</p>
+          <button class="btn purple" id="quizStartBtn">🚀 Start Quiz</button>
+        </div>
+        <div id="quizBody" style="display:none;"></div>
+        <div id="quizResult" style="display:none; text-align:center;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CHEAT SHEET / SUMMARY ===================== -->
+  <section id="sec-summary">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag" style="background:var(--sun); color:#7A4E00;">CHEAT SHEET</span>
+        <h3>Summary Cards 📋</h3>
+        <p>Keep this in your mind! The seven FANBOYS words + 2 additional words you've learned.</p>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#2E2A4A,#473F75); color:#fff;">
+        <div id="summaryGrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px;"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer style="background:linear-gradient(135deg,#2E2A4A,#1F1B38); padding:40px 0; text-align:center; color:#CFC9F0; position:relative; z-index:1;">
+  <div class="wrap">
+    <div style="font-size:36px;">💡</div>
+    <h4 style="color:#fff; margin-top:8px; font-size:20px;">LittleLume English</h4>
+    <p style="font-size:13px; margin-top:6px; font-weight:600;">Lighting up little learners, one lesson at a time ✨</p>
+    <p style="font-size:12px; margin-top:14px; opacity:0.6;">Grade 4 Material · Topic: Conjunctions (FANBOYS, Because, So)</p>
+  </div>
+</footer>
+
+<div id="confettiLayer" style="position:fixed; inset:0; pointer-events:none; z-index:999;"></div>
+
+
+<style>
+  /* builder */
+  .builder-pair{
+    background:#F8FAFB; border-radius:18px; padding:20px; margin-bottom:18px;
+  }
+  .builder-sentences{
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-bottom:16px;
+  }
+  .mini-sentence{
+    background:#fff; border:2px solid #E4E9EC; border-radius:14px; padding:10px 16px;
+    font-weight:700; font-size:14px; color:var(--ink-soft);
+  }
+  .conj-bank{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;
+  }
+  .conj-chip{
+    font-family:'Baloo 2',sans-serif; font-weight:700; font-size:15px; color:#fff;
+    border:none; border-radius:999px; padding:10px 20px; cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,0.18); transition:transform 0.12s;
+  }
+  .conj-chip:hover{ transform:translateY(-2px); }
+  .conj-chip:disabled{ opacity:0.35; cursor:not-allowed; }
+  .builder-result{
+    text-align:center; font-family:'Baloo 2',sans-serif; font-size:18px; font-weight:700;
+    min-height:30px; color:var(--ink);
+  }
+  .builder-feedback{ text-align:center; font-weight:800; margin-top:10px; min-height:22px; font-size:14px; }
+  .builder-nav{ text-align:center; margin-top:16px; }
+
+  /* game */
+  .game-sentence-box{
+    font-family:'Baloo 2',sans-serif;
+    font-size:clamp(18px,3.4vw,26px);
+    line-height:1.8;
+    color:var(--ink);
+    background:#FFF7F2;
+    border-radius:18px;
+    padding:24px;
+  }
+  .game-word{
+    display:inline-block; padding:2px 6px; border-radius:8px; cursor:pointer;
+    transition:background 0.15s;
+  }
+  .game-word:hover{ background:#FFE3DD; }
+  .game-word.correct{ background:var(--grass); color:#fff; }
+  .game-word.wrong{ background:var(--coral); color:#fff; }
+  .game-bar-outer{
+    height:10px; background:#FFD9DC; border-radius:999px; overflow:hidden; margin-top:18px;
+  }
+  .game-bar-inner{
+    height:100%; background:var(--coral); width:100%; transition:width 1s linear;
+  }
+
+  /* quiz */
+  .quiz-q-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;}
+  .quiz-progress-bar{ height:10px; background:#EDE3FF; border-radius:999px; overflow:hidden; flex:1; margin:0 14px; }
+  .quiz-progress-fill{ height:100%; background:var(--grape); border-radius:999px; transition:width 0.3s; }
+  .quiz-question{
+    font-family:'Baloo 2',sans-serif; font-size:clamp(17px,3vw,21px); font-weight:700;
+    color:var(--ink); margin-bottom:18px; text-align:center; line-height:1.5;
+  }
+  .quiz-options{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .quiz-opt{
+    background:#F8F4FF; border:3px solid #E9DEFF; border-radius:16px; padding:14px 16px;
+    font-weight:700; color:var(--ink); cursor:pointer; text-align:left; font-size:15px;
+    transition:all 0.15s;
+  }
+  .quiz-opt:hover{ border-color:var(--grape); transform:translateY(-2px); }
+  .quiz-opt.qcorrect{ background:#E3FBE9; border-color:var(--grass); color:var(--grass-dark); }
+  .quiz-opt.qwrong{ background:#FFE9E7; border-color:var(--coral); color:var(--coral-dark); }
+  .quiz-opt:disabled{ cursor:not-allowed; }
+  .quiz-explain{
+    margin-top:14px; text-align:center; font-weight:700; font-size:14px; color:var(--ink-soft);
+    background:#FBF8FF; border-radius:12px; padding:12px; min-height:20px;
+  }
+  .quiz-next-wrap{ text-align:center; margin-top:18px; }
+
+  .badge-result{
+    font-size:70px;
+  }
+  .summary-tile{
+    background:rgba(255,255,255,0.08); border-radius:16px; padding:16px; text-align:center;
+    border:2px solid rgba(255,255,255,0.15);
+  }
+  .summary-tile .w{ font-family:'Baloo 2',sans-serif; font-weight:800; font-size:18px; color:var(--sun); }
+  .summary-tile .m{ font-size:12px; color:#CFC9F0; margin-top:4px; font-weight:600; }
+
+  @media (max-width:560px){
+    .quiz-options{ grid-template-columns:1fr; }
+    .builder-sentences{ flex-direction:column; align-items:stretch; }
+  }
+
+  /* confetti */
+  .confetti-piece{
+    position:absolute; top:-20px; width:10px; height:14px; opacity:0.95;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(540deg); opacity:0.4; }
+  }
+</style>
+
+
+<script>
+/* ============ DATA ============ */
+const FANBOYS = [
+  { letter:"F", word:"For", color1:"#FF6B6B", color2:"#E84F4F", meaning:"Because (formal)", example:"She studied hard, <b>for</b> she wanted to pass the test." },
+  { letter:"A", word:"And", color1:"#4ECB71", color2:"#33B358", meaning:"And (adding)", example:"I have a cat <b>and</b> a dog." },
+  { letter:"N", word:"Nor", color1:"#3DC2EC", color2:"#1FA3D1", meaning:"Nor (for negatives)", example:"She doesn't like tea, <b>nor</b> does she like coffee." },
+  { letter:"B", word:"But", color1:"#9B6BFF", color2:"#7E4FE0", meaning:"But (contrast)", example:"It's small <b>but</b> powerful." },
+  { letter:"O", word:"Or", color1:"#FFC93C", color2:"#F2A91C", meaning:"Or (choice)", example:"Do you want juice <b>or</b> milk?" },
+  { letter:"Y", word:"Yet", color1:"#FF8FB1", color2:"#E55C8A", meaning:"Yet (similar to 'but')", example:"The bag is old, <b>yet</b> it still works great." },
+  { letter:"S", word:"So", color1:"#6BD1C9", color2:"#3CA89F", meaning:"So / Therefore (result)", example:"I was tired, <b>so</b> I went to bed early." },
+];
+
+const PLAYGROUND_QUESTIONS = [
+  { sentence:"I want to play outside ___ it is raining.", options:["but","and","or"], answer:"but", explain:"'But' is used because these two things are CONTRADICTORY (want to play, but it's raining)." },
+  { sentence:"You can have an apple ___ a banana.", options:["so","or","but"], answer:"or", explain:"'Or' is used to give a CHOICE between two things." },
+  { sentence:"He brushed his teeth ___ went to bed.", options:["and","but","nor"], answer:"and", explain:"'And' is used to ADD the second action in sequence." },
+  { sentence:"The cake looked amazing, ___ it tasted even better!", options:["nor","yet","or"], answer:"yet", explain:"'Yet' shows something surprising/opposite to expectations, similar to 'but'." },
+  { sentence:"She didn't finish her homework, ___ she got in trouble.", options:["so","for","nor"], answer:"so", explain:"'So' shows the EFFECT/RESULT of the cause before it (didn't finish homework → got in trouble)." },
+  { sentence:"My sister doesn't eat meat, ___ does she eat fish.", options:["nor","and","but"], answer:"nor", explain:"'Nor' is used after a negative sentence to add another negative thing." },
+];
+
+const BECAUSE_SO_ITEMS = [
+  { before:"The ground was wet", blankPos:"after", options:["because","so"], answer:"because", after:"it had rained all night.", note:"Effect (ground wet) ⬅ Reason (rained) → use BECAUSE" },
+  { before:"It was very cold outside,", blankPos:"after", options:["because","so"], answer:"so", after:"we wore thick jackets.", note:"Reason (cold) ➡ Effect (wore jackets) → use SO" },
+  { before:"Lumi felt happy", blankPos:"after", options:["because","so"], answer:"because", after:"he passed his English test.", note:"Effect (felt happy) ⬅ Reason (passed test) → use BECAUSE" },
+  { before:"The puppy was hungry,", blankPos:"after", options:["because","so"], answer:"so", after:"it barked for food.", note:"Reason (hungry) ➡ Effect (barked) → use SO" },
+];
+
+const BUILDER_ITEMS = [
+  { a:"I finished my homework.", b:"I watched cartoons.", conjs:[{w:"and",hint:"adding sequence of events"},{w:"so",hint:"result"}], best:["and","so"], sample:"I finished my homework, and I watched cartoons." },
+  { a:"It was raining heavily.", b:"We decided to stay inside.", conjs:[{w:"so",hint:"result"},{w:"but",hint:"contrast"}], best:["so"], sample:"It was raining heavily, so we decided to stay inside." },
+  { a:"Andi likes football.", b:"Andi likes basketball too.", conjs:[{w:"and",hint:"adding"},{w:"or",hint:"choice"}], best:["and"], sample:"Andi likes football and basketball." },
+  { a:"The movie was long.", b:"It was very exciting.", conjs:[{w:"but",hint:"contrast"},{w:"and",hint:"adding"}], best:["but"], sample:"The movie was long, but it was very exciting." },
+  { a:"You can choose pizza.", b:"You can choose noodles.", conjs:[{w:"or",hint:"choice"},{w:"and",hint:"adding"}], best:["or"], sample:"You can choose pizza or noodles." },
+];
+
+const GAME_SENTENCES = [
+  { words:["I","like","apples","and","oranges"], target:"and" },
+  { words:["She","is","small","but","strong"], target:"but" },
+  { words:["We","can","walk","or","take","the","bus"], target:"or" },
+  { words:["He","was","sick,","so","he","stayed","home"], target:"so" },
+  { words:["I","stayed","home","because","it","rained"], target:"because" },
+  { words:["They","don't","sing,","nor","do","they","dance"], target:"nor" },
+  { words:["The","tea","is","hot,","yet","I","will","drink","it"], target:"yet" },
+  { words:["Lina","studied","hard,","for","she","loves","learning"], target:"for" },
+];
+
+const QUIZ_QUESTIONS = [
+  { q:"I wanted ice cream, ___ the shop was closed.", opts:["and","but","or","so"], a:"but", ex:"'But' is used because these two things are contradictory (wanted ice cream, but the shop was closed)." },
+  { q:"You can sit here ___ over there.", opts:["but","nor","or","because"], a:"or", ex:"'Or' gives a choice of where to sit." },
+  { q:"My dog barked, ___ I woke up.", opts:["so","yet","nor","but"], a:"so", ex:"'So' shows the result: dog barked → I woke up." },
+  { q:"I woke up early ___ I heard my dog barking.", opts:["so","because","or","and"], a:"because", ex:"'Because' explains the reason/cause why I woke up." },
+  { q:"She likes painting ___ drawing.", opts:["but","or","and","nor"], a:"and", ex:"'And' adds two hobbies she likes." },
+  { q:"He doesn't play piano, ___ does he play guitar.", opts:["nor","so","yet","for"], a:"nor", ex:"'Nor' continues a negative sentence with another negative thing." },
+  { q:"This puzzle is hard, ___ I won't give up.", opts:["so","yet","because","or"], a:"yet", ex:"'Yet' shows a surprising contrast (it's hard, yet I won't give up)." },
+  { q:"We must hurry, ___ we will miss the bus.", opts:["and","or","but","because"], a:"or", ex:"'Or' here means 'or else' — a consequence of the choice." },
+  { q:"Choose the BEST conjunction: 'It was dark, ___ I turned on the light.'", opts:["so","but","nor","yet"], a:"so", ex:"'So' shows the result: it was dark → I turned on the light." },
+  { q:"The cat was tired, ___ it kept playing.", opts:["so","and","yet","or"], a:"yet", ex:"'Yet' shows something surprising: tired, yet kept playing." },
+];
+
+const SUMMARY_WORDS = [
+  {w:"For", m:"because (formal)"}, {w:"And", m:"and"}, {w:"Nor", m:"nor (negative)"},
+  {w:"But", m:"but"}, {w:"Or", m:"or"}, {w:"Yet", m:"yet"}, {w:"So", m:"so/therefore"},
+  {w:"Because", m:"because"}, {w:"Although", m:"although"}
+];
+
+const COLORS = ["#FF6B6B","#4ECB71","#3DC2EC","#9B6BFF","#FFC93C","#FF8FB1","#6BD1C9"];
+
+/* ============ UTIL ============ */
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function lowerFirst(str){
+  // Don't change the word "I" (pronoun) to lowercase
+  if(/^I\b/.test(str)) return str;
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+function fireConfetti(count=40){
+  const layer = document.getElementById('confettiLayer');
+  for(let i=0;i<count;i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100 + 'vw';
+    piece.style.background = COLORS[Math.floor(Math.random()*COLORS.length)];
+    piece.style.animationDuration = (2 + Math.random()*1.5) + 's';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+    layer.appendChild(piece);
+    setTimeout(()=>piece.remove(), 4000);
+  }
+}
+
+/* ============ PROGRESS NAV ============ */
+const steps = document.querySelectorAll('.progress-step');
+steps.forEach(step=>{
+  step.addEventListener('click', ()=>{
+    const target = document.getElementById(step.dataset.target);
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+const sectionIds = ['sec-intro','sec-fanboys','sec-playground','sec-because','sec-build','sec-game','sec-quiz'];
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const idx = sectionIds.indexOf(entry.target.id);
+      steps.forEach((s,i)=>{
+        s.classList.remove('active');
+        if(i===idx) s.classList.add('active');
+        if(i<idx) s.classList.add('done');
+      });
+    }
+  });
+}, { threshold:0.4 });
+sectionIds.forEach(id=>{
+  const el = document.getElementById(id);
+  if(el) observer.observe(el);
+});
+</script>
+
+<script>
+/* ============ FANBOYS CARDS ============ */
+const fanboysGrid = document.getElementById('fanboysGrid');
+FANBOYS.forEach((item, idx)=>{
+  const card = document.createElement('div');
+  card.className = 'fb-card';
+  card.innerHTML = `
+    <div class="fb-inner">
+      <div class="fb-face fb-front" style="background:linear-gradient(160deg, ${item.color1}, ${item.color2});">
+        <div class="letter">${item.letter}</div>
+        <div class="word">${item.word}</div>
+        <div class="hint">👆 Tap to see examples</div>
+      </div>
+      <div class="fb-face fb-back" style="border-color:${item.color1};">
+        <div class="meaning" style="color:${item.color2};">${item.meaning}</div>
+        <div class="example">${item.example}</div>
+      </div>
+    </div>
+  `;
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+  fanboysGrid.appendChild(card);
+});
+
+/* ============ PLAYGROUND ============ */
+let pgIndex = 0;
+let pgScore = 0;
+let pgAnswered = false;
+
+function renderPlayground(){
+  const q = PLAYGROUND_QUESTIONS[pgIndex];
+  document.getElementById('pgProgress').textContent = `Question ${pgIndex+1} of ${PLAYGROUND_QUESTIONS.length}`;
+  document.getElementById('pgScore').textContent = `⭐ Score: ${pgScore}`;
+  pgAnswered = false;
+
+  const box = document.getElementById('pgQuestionBox');
+  const sentenceHtml = q.sentence.replace('___', '<span class="pg-blank" id="pgBlankSpan">?</span>');
+  const opts = shuffle(q.options);
+
+  box.innerHTML = `
+    <div class="pg-sentence">${sentenceHtml}</div>
+    <div class="pg-options" id="pgOptionsRow">
+      ${opts.map((o,i)=>`<button class="balloon" style="background:${COLORS[i % COLORS.length]};" data-word="${o}">${o}</button>`).join('')}
+    </div>
+    <div class="pg-feedback" id="pgFeedback"></div>
+    <div class="pg-next-wrap" id="pgNextWrap"></div>
+  `;
+
+  box.querySelectorAll('.balloon').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(pgAnswered) return;
+      pgAnswered = true;
+      const chosen = btn.dataset.word;
+      const correct = chosen === q.answer;
+      document.getElementById('pgBlankSpan').textContent = q.answer;
+
+      if(correct){
+        btn.classList.add('correct-flash');
+        pgScore++;
+        document.getElementById('pgScore').textContent = `⭐ Score: ${pgScore}`;
+        document.getElementById('pgFeedback').innerHTML = `✅ <span style="color:var(--grass-dark);">Correct!</span> ${q.explain}`;
+        fireConfetti(16);
+      } else {
+        btn.classList.add('wrong-flash');
+        document.getElementById('pgFeedback').innerHTML = `❌ <span style="color:var(--coral-dark);">Not quite right.</span> The correct answer is: <b>${q.answer}</b>. ${q.explain}`;
+      }
+
+      box.querySelectorAll('.balloon').forEach(b=>b.disabled = true);
+
+      const nextWrap = document.getElementById('pgNextWrap');
+      if(pgIndex < PLAYGROUND_QUESTIONS.length - 1){
+        nextWrap.innerHTML = `<button class="btn blue" id="pgNextBtn">Next Question ➡️</button>`;
+        document.getElementById('pgNextBtn').addEventListener('click', ()=>{
+          pgIndex++;
+          renderPlayground();
+        });
+      } else {
+        nextWrap.innerHTML = `<div style="font-weight:800; color:var(--grape-dark); margin-top:6px;">🎉 You're done! Final score: ${pgScore}/${PLAYGROUND_QUESTIONS.length}</div>
+          <button class="btn purple" id="pgRestartBtn" style="margin-top:10px;">🔄 Try Again</button>`;
+        document.getElementById('pgRestartBtn').addEventListener('click', ()=>{
+          pgIndex = 0; pgScore = 0; renderPlayground();
+        });
+      }
+    });
+  });
+}
+renderPlayground();
+
+/* ============ BECAUSE VS SO CHALLENGE ============ */
+const bsContainer = document.getElementById('becauseSoChallenge');
+BECAUSE_SO_ITEMS.forEach((item, idx)=>{
+  const row = document.createElement('div');
+  row.className = 'bs-row';
+  row.innerHTML = `
+    <span>${item.before}</span>
+    <span id="bsBlank${idx}" class="bs-result" style="color:var(--ink-soft);">[ ___ ]</span>
+    <span>${item.after}</span>
+  `;
+  const optWrap = document.createElement('div');
+  optWrap.style.display = 'flex';
+  optWrap.style.gap = '8px';
+  shuffle(item.options).forEach(opt=>{
+    const b = document.createElement('button');
+    b.className = `bs-choice ${opt}`;
+    b.textContent = opt;
+    b.addEventListener('click', ()=>{
+      if(row.dataset.done) return;
+      row.dataset.done = '1';
+      const blankSpan = document.getElementById(`bsBlank${idx}`);
+      const correct = opt === item.answer;
+      blankSpan.textContent = opt;
+      blankSpan.style.color = correct ? 'var(--grass-dark)' : 'var(--coral-dark)';
+      const feedback = document.createElement('div');
+      feedback.style.cssText = 'flex-basis:100%; font-size:12px; font-weight:700; margin-top:4px; color:' + (correct ? 'var(--grass-dark)' : 'var(--coral-dark)');
+      feedback.textContent = (correct ? '✅ ' : `❌ It should be "${item.answer}". `) + item.note;
+      row.appendChild(feedback);
+      optWrap.querySelectorAll('button').forEach(btn=>btn.disabled = true);
+      if(correct) fireConfetti(14);
+    });
+    optWrap.appendChild(b);
+  });
+  row.appendChild(optWrap);
+  bsContainer.appendChild(row);
+});
+
+</script>
+
+<script>
+/* ============ SENTENCE BUILDER ============ */
+let buildIndex = 0;
+
+function renderBuilder(){
+  const item = BUILDER_ITEMS[buildIndex];
+  const box = document.getElementById('builderBox');
+  box.innerHTML = `
+    <div style="text-align:center; font-weight:800; color:var(--ink-soft); margin-bottom:10px;">Sentence ${buildIndex+1} of ${BUILDER_ITEMS.length}</div>
+    <div class="builder-pair">
+      <div class="builder-sentences">
+        <div class="mini-sentence">📍 ${item.a}</div>
+        <div class="mini-sentence">📍 ${item.b}</div>
+      </div>
+      <div class="conj-bank" id="conjBank">
+        ${shuffle(item.conjs).map((c,i)=>`<button class="conj-chip" style="background:${COLORS[(i+buildIndex) % COLORS.length]};" data-word="${c.w}" title="${c.hint}">${c.w}</button>`).join('')}
+      </div>
+      <div class="builder-result" id="builderResult">${item.a} <span style="color:var(--ink-soft);">[ ... ]</span> ${lowerFirst(item.b)}</div>
+      <div class="builder-feedback" id="builderFeedback"></div>
+    </div>
+    <div class="builder-nav" id="builderNav"></div>
+  `;
+
+  document.querySelectorAll('#conjBank .conj-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      const word = chip.dataset.word;
+      const isBest = item.best.includes(word);
+      document.getElementById('builderResult').innerHTML =
+        `${item.a} <span style="color:var(--grape-dark);">${word}</span> ${lowerFirst(item.b)}`;
+
+      const fb = document.getElementById('builderFeedback');
+      if(isBest){
+        fb.innerHTML = `✅ <span style="color:var(--grass-dark);">Perfect match!</span> Example: "<i>${item.sample}</i>"`;
+        fireConfetti(16);
+      } else {
+        fb.innerHTML = `🤔 Good try, but think again about the word's meaning. Best example: "<i>${item.sample}</i>"`;
+      }
+
+      document.querySelectorAll('#conjBank .conj-chip').forEach(c=>c.disabled = true);
+
+      const nav = document.getElementById('builderNav');
+      if(buildIndex < BUILDER_ITEMS.length - 1){
+        nav.innerHTML = `<button class="btn green" id="builderNextBtn">Next ➡️</button>`;
+        document.getElementById('builderNextBtn').addEventListener('click', ()=>{
+          buildIndex++; renderBuilder();
+        });
+      } else {
+        nav.innerHTML = `<div style="font-weight:800; color:var(--grass-dark);">🎉 All sentences successfully built!</div>
+          <button class="btn green" id="builderRestartBtn" style="margin-top:10px;">🔄 Retry</button>`;
+        document.getElementById('builderRestartBtn').addEventListener('click', ()=>{
+          buildIndex = 0; renderBuilder();
+        });
+      }
+    });
+  });
+}
+renderBuilder();
+
+/* ============ GAME: TANGKAP CONJUNCTION ============ */
+let gameRound = 0;
+let gameScore = 0;
+let gameTimerInterval = null;
+let gameTimeLeft = 15;
+const GAME_TOTAL = GAME_SENTENCES.length;
+
+document.getElementById('gameStartBtn').addEventListener('click', startGame);
+
+function startGame(){
+  gameRound = 0;
+  gameScore = 0;
+  document.getElementById('gameScore').textContent = gameScore;
+  document.getElementById('gameRound').textContent = gameRound;
+  playGameRound();
+}
+
+function playGameRound(){
+  clearInterval(gameTimerInterval);
+  gameTimeLeft = 15;
+  document.getElementById('gameTimer').textContent = gameTimeLeft;
+  document.getElementById('gameRound').textContent = gameRound;
+
+  const data = shuffle(GAME_SENTENCES)[0] === undefined ? GAME_SENTENCES[gameRound] : GAME_SENTENCES[gameRound];
+  const area = document.getElementById('gameArea');
+
+  area.innerHTML = `
+    <div class="game-sentence-box" id="gameSentenceBox">
+      ${data.words.map((w,i)=>`<span class="game-word" data-clean="${w.replace(/[,.]/g,'').toLowerCase()}" data-i="${i}">${w}</span>`).join(' ')}
+    </div>
+    <div class="game-bar-outer"><div class="game-bar-inner" id="gameBarInner"></div></div>
+    <div class="pg-feedback" id="gameFeedback" style="margin-top:10px;"></div>
+  `;
+
+  let locked = false;
+  area.querySelectorAll('.game-word').forEach(span=>{
+    span.addEventListener('click', ()=>{
+      if(locked) return;
+      locked = true;
+      clearInterval(gameTimerInterval);
+      const clean = span.dataset.clean;
+      const correct = clean === data.target;
+      const fb = document.getElementById('gameFeedback');
+
+      area.querySelectorAll('.game-word').forEach(s=>{
+        if(s.dataset.clean === data.target) s.classList.add('correct');
+      });
+      if(!correct) span.classList.add('wrong');
+
+      if(correct){
+        gameScore += 10;
+        fb.innerHTML = `✅ <span style="color:var(--grass-dark);">Correct!</span> "${data.target}" is the conjunction. +10 points`;
+        fireConfetti(10);
+      } else {
+        fb.innerHTML = `❌ The correct word is "<b>${data.target}</b>".`;
+      }
+      document.getElementById('gameScore').textContent = gameScore;
+
+      setTimeout(nextGameRoundOrFinish, 1300);
+    });
+  });
+
+  gameTimerInterval = setInterval(()=>{
+    gameTimeLeft--;
+    document.getElementById('gameTimer').textContent = Math.max(gameTimeLeft,0);
+    const inner = document.getElementById('gameBarInner');
+    if(inner) inner.style.width = (gameTimeLeft/15*100) + '%';
+    if(gameTimeLeft <= 0){
+      clearInterval(gameTimerInterval);
+      if(!locked){
+        locked = true;
+        area.querySelectorAll('.game-word').forEach(s=>{
+          if(s.dataset.clean === data.target) s.classList.add('correct');
+        });
+        document.getElementById('gameFeedback').innerHTML = `⏰ Time's up! The answer was: "<b>${data.target}</b>"`;
+        setTimeout(nextGameRoundOrFinish, 1300);
+      }
+    }
+  }, 1000);
+}
+
+function nextGameRoundOrFinish(){
+  gameRound++;
+  if(gameRound < GAME_TOTAL){
+    playGameRound();
+  } else {
+    clearInterval(gameTimerInterval);
+    const area = document.getElementById('gameArea');
+    const stars = gameScore >= 70 ? '⭐⭐⭐' : gameScore >= 40 ? '⭐⭐' : '⭐';
+    area.innerHTML = `
+      <div style="font-size:56px;">🏆</div>
+      <h4 style="margin-top:10px;">Game Complete!</h4>
+      <p style="font-weight:800; color:var(--grass-dark); font-size:20px; margin-top:6px;">Final Score: ${gameScore} ${stars}</p>
+      <button class="btn" id="gameRestartBtn" style="margin-top:14px;">🔄 Play Again</button>
+    `;
+    document.getElementById('gameRestartBtn').addEventListener('click', startGame);
+    fireConfetti(30);
+  }
+}
+
+</script>
+
+<script>
+/* ============ QUIZ AKHIR ============ */
+let quizIndex = 0;
+let quizScore = 0;
+
+document.getElementById('quizStartBtn').addEventListener('click', ()=>{
+  quizIndex = 0;
+  quizScore = 0;
+  document.getElementById('quizIntro').style.display = 'none';
+  document.getElementById('quizResult').style.display = 'none';
+  document.getElementById('quizBody').style.display = 'block';
+  renderQuiz();
+});
+
+function renderQuiz(){
+  const q = QUIZ_QUESTIONS[quizIndex];
+  const body = document.getElementById('quizBody');
+  const pct = (quizIndex / QUIZ_QUESTIONS.length) * 100;
+
+  body.innerHTML = `
+    <div class="quiz-q-head">
+      <span style="font-weight:800; color:var(--grape-dark); font-size:13px;">Question ${quizIndex+1}/${QUIZ_QUESTIONS.length}</span>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%;"></div></div>
+      <span style="font-weight:800; color:var(--grass-dark); font-size:13px;">⭐ ${quizScore}</span>
+    </div>
+    <div class="quiz-question">${q.q}</div>
+    <div class="quiz-options" id="quizOptions">
+      ${q.opts.map(o=>`<button class="quiz-opt" data-opt="${o}">${o}</button>`).join('')}
+    </div>
+    <div class="quiz-explain" id="quizExplain"></div>
+    <div class="quiz-next-wrap" id="quizNextWrap"></div>
+  `;
+
+  document.querySelectorAll('#quizOptions .quiz-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const chosen = btn.dataset.opt;
+      const correct = chosen === q.a;
+      document.querySelectorAll('#quizOptions .quiz-opt').forEach(b=>{
+        b.disabled = true;
+        if(b.dataset.opt === q.a) b.classList.add('qcorrect');
+        else if(b === btn) b.classList.add('qwrong');
+      });
+
+      if(correct){
+        quizScore++;
+        fireConfetti(12);
+      }
+      document.getElementById('quizExplain').innerHTML = (correct ? '✅ Correct! ' : `❌ The correct answer is: "<b>${q.a}</b>". `) + q.ex;
+
+      const nextWrap = document.getElementById('quizNextWrap');
+      if(quizIndex < QUIZ_QUESTIONS.length - 1){
+        nextWrap.innerHTML = `<button class="btn purple" id="quizNextBtn">Next ➡️</button>`;
+        document.getElementById('quizNextBtn').addEventListener('click', ()=>{
+          quizIndex++;
+          renderQuiz();
+        });
+      } else {
+        nextWrap.innerHTML = `<button class="btn purple" id="quizFinishBtn">See Results 🎉</button>`;
+        document.getElementById('quizFinishBtn').addEventListener('click', showQuizResult);
+      }
+    });
+  });
+}
+
+function showQuizResult(){
+  document.getElementById('quizBody').style.display = 'none';
+  const resultBox = document.getElementById('quizResult');
+  resultBox.style.display = 'block';
+
+  let badge, title, msg;
+  const total = QUIZ_QUESTIONS.length;
+  if(quizScore >= 9){ badge='🏆'; title='Conjunction Master!'; msg='Amazing! You\'re really great with conjunctions!'; }
+  else if(quizScore >= 7){ badge='🌟'; title='Great Job!'; msg='You understand conjunctions very well. Just a little more to perfection!'; }
+  else if(quizScore >= 5){ badge='👍'; title='Good!'; msg='You understand the basics. Let\'s try again to get even better!'; }
+  else { badge='💪'; title='Keep Practicing!'; msg='Don\'t give up! Try studying the FANBOYS and Because vs So sections again.'; }
+
+  resultBox.innerHTML = `
+    <div class="badge-result">${badge}</div>
+    <h4 style="font-size:24px; margin-top:8px;">${title}</h4>
+    <p style="font-weight:800; font-size:20px; color:var(--grape-dark); margin-top:8px;">Score: ${quizScore} / ${total}</p>
+    <p style="color:var(--ink-soft); font-weight:600; max-width:420px; margin:10px auto 0;">${msg}</p>
+    <button class="btn purple" id="quizRetryBtn" style="margin-top:18px;">🔄 Try Again</button>
+  `;
+  document.getElementById('quizRetryBtn').addEventListener('click', ()=>{
+    resultBox.style.display = 'none';
+    document.getElementById('quizIntro').style.display = 'block';
+  });
+
+  if(quizScore >= 7) fireConfetti(50);
+}
+
+/* ============ SUMMARY CARDS ============ */
+const summaryGrid = document.getElementById('summaryGrid');
+SUMMARY_WORDS.forEach(item=>{
+  const tile = document.createElement('div');
+  tile.className = 'summary-tile';
+  tile.innerHTML = `<div class="w">${item.w}</div><div class="m">${item.m}</div>`;
+  summaryGrid.appendChild(tile);
+});
+</script>
+</body>
+</html>
