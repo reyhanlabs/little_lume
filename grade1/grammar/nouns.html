@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Nouns Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #8B9FA6;
+  --brand-dark: #6B7D8A;
+  --teal:       #7BA89D;
+  --teal-light: #E8F1EF;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #B8A3D8;
+  --rose:       #D9B5A5;
+  --rose-lt:    #F0E8E1;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #4A5568;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #A8D8D8 0%, #9BC4C8 50%, #C4B5D8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .12; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.1)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--teal) 0%, #6BBF96 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'📚'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.categ { background: var(--brand); color: #fff; }
+.fp.example { background: var(--teal); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid var(--rose); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+.example-list { margin-top: 12px; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 12px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--brand-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--white); border-radius: 14px; padding: 20px; border: 2px solid var(--teal); margin-top: 12px; }
+.dialogue-item { margin-bottom: 14px; font-size: 14px; }
+.dialogue-person { font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.dialogue-text { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; line-height: 1.6; }
+
+.qsection { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); }
+.qitem { border: 2px solid #e8e8e8; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.qnum { font-family:'Baloo 2',cursive; font-weight:700; font-size:13px; color:var(--brand); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.qtext { font-size:15px; font-weight:600; margin-bottom:14px; color:var(--ink); }
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opt { background:#f5f5f5; border:2px solid #ddd; padding:12px 14px; border-radius:8px; font-size:14px; text-align:left; cursor:pointer; transition:all .2s; font-weight:500; }
+.opt:hover { border-color:var(--brand); background:#fafafa; }
+.opt.correct { background:#d4edda; border-color:#6BBF96; color:#155724; font-weight:700; }
+.opt.wrong { background:#f8d7da; border-color:#c4a1a1; color:#721c24; }
+.qfb { font-size:13px; margin-top:10px; font-weight:600; display:none; padding:8px 12px; border-radius:6px; }
+.qfb.show { display:block; }
+.qfb.ok { background:#d4edda; color:#155724; }
+.qfb.no { background:#f8d7da; color:#721c24; }
+
+.score-section { background: linear-gradient(135deg, var(--yellow-lt) 0%, var(--rose-lt) 100%); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; }
+.score-label { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.score-num { font-family:'Baloo 2',cursive; font-size: 36px; font-weight: 800; color: var(--brand); }
+.stars { font-size: 24px; margin-top: 12px; }
+
+.reset-btn { background: var(--brand); color: #fff; border: none; padding: 12px 28px; border-radius: 20px; font-weight: 700; cursor: pointer; margin-top: 20px; font-size: 14px; transition: all .2s; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media(max-width:640px) { .compare { grid-template-columns: 1fr; } .header-inner { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes">
+    <div class="hs hs1"></div>
+    <div class="hs hs2"></div>
+    <div class="hs hs3"></div>
+  </div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">Grade 1</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grammar Lesson</div>
+      <h1 class="header-title">Nouns <span>🏠</span></h1>
+      <p class="header-sub">Learn about people, places, animals, and things!</p>
+    </div>
+    <div class="header-mascot">🏠</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">📖 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', this)">🎯 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', this)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', this)">💡 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', this)">💬 Practice</button>
+    <button class="tab-btn" onclick="showTab('quiz', this)">🎓 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">📖 Introduction to Nouns <span class="pill">Starter</span></h2>
+  
+  <div class="concept-box">
+    <h3>What is a Noun?</h3>
+    <p>A <strong>noun</strong> is a word that names a <strong>PERSON</strong>, <strong>PLACE</strong>, <strong>ANIMAL</strong>, or <strong>THING</strong>. Nouns are all around us! They help us talk about people we know, places we go, animals we see, and objects we use.</p>
+  </div>
+
+  <div class="card">
+    <h3>Why Do We Need Nouns?</h3>
+    <p>Nouns are the building blocks of sentences. Without nouns, we cannot name anything! For example:</p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">🧑 Person:</div>
+        <div class="ex-text">Sarah, teacher, friend, boy, girl</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">📍 Place:</div>
+        <div class="ex-text">school, park, home, garden, beach</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🐾 Animal:</div>
+        <div class="ex-text">dog, cat, bird, elephant, fish</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🎮 Thing:</div>
+        <div class="ex-text">ball, book, toy, apple, pencil</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Fun Fact! 🌟</h3>
+    <p>Did you know? The word <strong>"noun"</strong> itself is a noun! It names a type of word. Many English words are nouns. In fact, almost everything around you has a noun name!</p>
+  </div>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">🎯 Noun Concepts <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>The Four Types of Nouns</h3>
+    <p>There are four main categories of nouns that we learn in Grade 1. Each one names something different in our world.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">PERSON</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp example">PLACE</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp categ">ANIMAL</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp example">THING</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:12px;">= Complete Nouns Group</div>
+    </div>
+    <div class="formula-sub">Every noun falls into one of these four categories.</div>
+  </div>
+
+  <div class="card purple">
+    <h3>1. Person Nouns 🧑</h3>
+    <p><strong>People's names and jobs.</strong> Any word that names a human being is a person noun.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> John, Maria, teacher, doctor, mother, friend, baby, student</p>
+  </div>
+
+  <div class="card teal">
+    <h3>2. Place Nouns 📍</h3>
+    <p><strong>Locations and spaces.</strong> Any word that names where something is located is a place noun.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> school, home, park, street, beach, hospital, garden, city</p>
+  </div>
+
+  <div class="card rose">
+    <h3>3. Animal Nouns 🐾</h3>
+    <p><strong>Living creatures.</strong> Any word that names an animal is an animal noun.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> dog, cat, bird, lion, fish, elephant, butterfly, rabbit</p>
+  </div>
+
+  <div class="card yellow">
+    <h3>4. Thing Nouns 🎮</h3>
+    <p><strong>Objects and items.</strong> Any word that names something you can see or touch is a thing noun.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> ball, book, pencil, apple, chair, table, toy, flower</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>🟢 Correct (Nouns)</h4>
+      <ul>
+        <li><b>Sarah</b> is my friend.</li>
+        <li>We go to <b>school</b> every day.</li>
+        <li>The <b>dog</b> is happy.</li>
+        <li>I like my <b>toy</b>.</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>🔴 Not Nouns</h4>
+      <ul>
+        <li><b>Run</b> (action - verb)</li>
+        <li><b>Red</b> (color - adjective)</li>
+        <li><b>Happy</b> (feeling - adjective)</li>
+        <li><b>Jump</b> (action - verb)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Nouns <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Position of Nouns in Sentences</h3>
+    <p>Nouns usually come after articles (a, an, the) or at the beginning of a sentence. They tell us <strong>WHO</strong> or <strong>WHAT</strong> we are talking about.</p>
+  </div>
+
+  <div class="card">
+    <h3>Nouns in Different Positions</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">At the Start of Sentence:</div>
+        <div class="ex-text"><strong>Sarah</strong> plays in the park. | <strong>The dog</strong> is sleeping.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">After Action Words:</div>
+        <div class="ex-text">I eat an <strong>apple</strong>. | She reads a <strong>book</strong>.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">After Describing Words:</div>
+        <div class="ex-text">The red <strong>ball</strong> is big. | My happy <strong>friend</strong> laughs.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">After "In," "On," "Under":</div>
+        <div class="ex-text">The toy is in the <strong>box</strong>. | The cat is on the <strong>chair</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Key Rule: Articles + Noun</h3>
+    <p>When we use "a" or "an," we need a noun after it. When we use "the," we need a noun after it.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> a <u>dog</u>, an <u>apple</u>, the <u>school</u>, a <u>teacher</u></p>
+  </div>
+
+  <div class="card purple">
+    <h3>Singular vs. Plural Nouns</h3>
+    <p><strong>Singular</strong> = One thing. <strong>Plural</strong> = More than one thing. We usually add <strong>-s</strong> to make plurals.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> one <strong>cat</strong> → two <strong>cats</strong>, one <strong>book</strong> → three <strong>books</strong></p>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">💡 Real Examples <span class="pill">Learning</span></h2>
+
+  <div class="card">
+    <h3>Nouns in Everyday Life</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">🏠 At Home:</div>
+        <div class="ex-text">mother, father, sister, brother, kitchen, bedroom, table, chair, toy, book</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🏫 At School:</div>
+        <div class="ex-text">teacher, student, classroom, desk, pencil, paper, playground, friend, ball</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🌳 Outdoors:</div>
+        <div class="ex-text">park, tree, flower, bird, butterfly, dog, sky, grass, rock, water</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🍎 Food & Drink:</div>
+        <div class="ex-text">apple, bread, milk, water, banana, orange, cookie, rice, fish, egg</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>🎯 Complete Sentences with Nouns</h3>
+    <p><strong>1. Sarah</strong> is my best <strong>friend</strong>.</p>
+    <p><strong>2. My</strong> <strong>dog</strong> runs in the <strong>park</strong>.</p>
+    <p><strong>3. The</strong> <strong>teacher</strong> reads a <strong>story</strong>.</p>
+    <p><strong>4. I eat an</strong> <strong>apple</strong> at <strong>school</strong>.</p>
+    <p><strong>5.</strong> <strong>Birds</strong> fly in the <strong>sky</strong>.</p>
+  </div>
+
+  <div class="card rose">
+    <h3>🔍 Find the Nouns!</h3>
+    <p>Look at this sentence: <strong>"The cat sleeps on the soft bed."</strong></p>
+    <p style="margin-top:10px;"><strong>Nouns:</strong> cat, bed</p>
+    <p style="margin-top:8px;"><strong>Not nouns:</strong> the (article), sleeps (verb), on (preposition), soft (adjective)</p>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Practice Dialogue <span class="pill">Interactive</span></h2>
+
+  <div class="concept-box">
+    <h3>Talking About Nouns in Real Life</h3>
+    <p>Here are some conversations using nouns. See how many nouns you can find!</p>
+  </div>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Sarah:</div>
+      <div class="dialogue-text">Hi John! What's in your <strong>bag</strong>?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 John:</div>
+      <div class="dialogue-text">I have my <strong>book</strong>, <strong>pencil</strong>, and <strong>apple</strong>.</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Sarah:</div>
+      <div class="dialogue-text">Cool! Let's play in the <strong>park</strong> after <strong>school</strong>!</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 John:</div>
+      <div class="dialogue-text">Great! My <strong>dog</strong> can come too!</div>
+    </div>
+  </div>
+
+  <div class="card yellow" style="margin-top:18px;">
+    <h3>📢 Counting Nouns Exercise</h3>
+    <p><strong>How many nouns are in the dialogue above?</strong></p>
+    <p style="margin-top:12px;">bag, book, pencil, apple, park, school, dog</p>
+    <p style="margin-top:8px;"><strong>Answer: 7 nouns!</strong> Can you identify each one and say what category it is (person, place, animal, thing)?</p>
+  </div>
+
+  <div class="card purple">
+    <h3>🎯 Let's Practice!</h3>
+    <p><strong>Complete these sentences with nouns:</strong></p>
+    <p style="margin-top:12px;">1. I play with my _____ at <strong>school</strong>.</p>
+    <p>2. The _____ runs in the <strong>park</strong>.</p>
+    <p>3. I eat a <strong>____</strong> for breakfast.</p>
+    <p style="margin-top:12px;"><em>(Answers: 1. friend/toy, 2. dog/bird, 3. apple/bread)</em></p>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎓 Quiz Time! <span class="pill">Test</span></h2>
+
+  <div class="score-section">
+    <div class="score-label">Your Score</div>
+    <div class="score-num" id="scoreNum">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="qsection">
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Definition</div>
+      <div class="qtext">What is a noun?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">A word that describes something</button>
+        <button class="opt" onclick="ans('q1',this,true)">A word that names a person, place, animal, or thing</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that shows action</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that shows location</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — Person Nouns</div>
+      <div class="qtext">Which word is a PERSON noun?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,false)">park</button>
+        <button class="opt" onclick="ans('q2',this,true)">teacher</button>
+        <button class="opt" onclick="ans('q2',this,false)">dog</button>
+        <button class="opt" onclick="ans('q2',this,false)">apple</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Place Nouns</div>
+      <div class="qtext">Which word is a PLACE noun?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">cat</button>
+        <button class="opt" onclick="ans('q3',this,true)">school</button>
+        <button class="opt" onclick="ans('q3',this,false)">book</button>
+        <button class="opt" onclick="ans('q3',this,false)">friend</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Animal Nouns</div>
+      <div class="qtext">Which word is an ANIMAL noun?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">ball</button>
+        <button class="opt" onclick="ans('q4',this,false)">table</button>
+        <button class="opt" onclick="ans('q4',this,true)">bird</button>
+        <button class="opt" onclick="ans('q4',this,false)">happy</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Thing Nouns</div>
+      <div class="qtext">Which word is a THING noun?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,true)">pencil</button>
+        <button class="opt" onclick="ans('q5',this,false)">run</button>
+        <button class="opt" onclick="ans('q5',this,false)">big</button>
+        <button class="opt" onclick="ans('q5',this,false)">mother</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Identify the Noun</div>
+      <div class="qtext">In the sentence "The <em>cat</em> sleeps," which word is the noun?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,true)">cat</button>
+        <button class="opt" onclick="ans('q6',this,false)">the</button>
+        <button class="opt" onclick="ans('q6',this,false)">sleeps</button>
+        <button class="opt" onclick="ans('q6',this,false)">sentence</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Noun Categories</div>
+      <div class="qtext">Sarah plays in the park. How many nouns are in this sentence?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">1</button>
+        <button class="opt" onclick="ans('q7',this,true)">2</button>
+        <button class="opt" onclick="ans('q7',this,false)">3</button>
+        <button class="opt" onclick="ans('q7',this,false)">4</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Understanding Nouns</div>
+      <div class="qtext">Which set contains ONLY nouns?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">run, jump, happy</button>
+        <button class="opt" onclick="ans('q8',this,true)">teacher, dog, apple</button>
+        <button class="opt" onclick="ans('q8',this,false)">red, big, small</button>
+        <button class="opt" onclick="ans('q8',this,false)">play, eat, sleep</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</section>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Excellent!', '✅ Perfect! Well done!', '✅ That\'s right! Smart!', '✅ Great job!'],
+  wrong:   ['❌ Not quite. Try again!', '❌ Keep trying!', '❌ Review the lesson above!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'⭐⭐⭐⭐':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>
