@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Reading Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8E7;
+    --cream-deep:#FFEFC9;
+    --ink:#3A2E1F;
+    --red:#FF5757;
+    --blue:#4D9DE0;
+    --yellow:#FFC93C;
+    --green:#6BCB77;
+    --purple:#9B72CF;
+    --shadow: 0 6px 0 rgba(58,46,31,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 8% 12%, #FFE8B0 0%, transparent 40%),
+      radial-gradient(circle at 92% 18%, #C9F0D2 0%, transparent 38%),
+      radial-gradient(circle at 50% 95%, #CDE6FB 0%, transparent 45%),
+      var(--cream);
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px 60px;}
+
+  /* HEADER */
+  header.hero{
+    position:relative;
+    padding:38px 18px 54px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(28px, 6vw, 44px);
+    letter-spacing:0.5px;
+    background:#fff;
+    padding:10px 26px;
+    border-radius:60px;
+    box-shadow:var(--shadow);
+    border:4px solid var(--ink);
+    transform:rotate(-2deg);
+  }
+  .brand .little{color:var(--red);}
+  .brand .lume{color:var(--blue);}
+  .brand .eng{color:var(--ink); font-size:0.5em; align-self:flex-end; margin-bottom:6px; font-weight:700;}
+  .bulb{font-size:0.9em;}
+  .grade-badge{
+    display:inline-block;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:1px;
+    color:#fff;
+    background:var(--green);
+    padding:6px 18px;
+    border-radius:30px;
+    margin-top:14px;
+    box-shadow:0 4px 0 rgba(58,46,31,0.2);
+    transform:rotate(1deg);
+  }
+  .hero h1{
+    font-family:'Baloo 2', sans-serif;
+    font-size:clamp(26px, 6.5vw, 48px);
+    margin:26px 0 8px;
+    color:var(--ink);
+  }
+  .hero h1 span{color:var(--purple);}
+  .hero p.sub{
+    font-size:clamp(15px,3vw,19px);
+    font-weight:600;
+    color:#6b5a3e;
+    max-width:520px;
+    margin:0 auto;
+  }
+  .float-emoji{
+    position:absolute;
+    font-size:34px;
+    animation:bob 3.2s ease-in-out infinite;
+    filter:drop-shadow(0 4px 0 rgba(0,0,0,0.08));
+  }
+  .float-emoji.e1{top:8%; left:6%; animation-delay:0s;}
+  .float-emoji.e2{top:14%; right:8%; animation-delay:0.6s;}
+  .float-emoji.e3{bottom:6%; left:12%; animation-delay:1.1s;}
+  .float-emoji.e4{bottom:2%; right:14%; animation-delay:1.7s;}
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(-4deg);}
+    50%{transform:translateY(-14px) rotate(6deg);}
+  }
+
+  /* SECTION GENERIC */
+  section{margin:40px 0;}
+  .section-tag{
+    display:inline-block;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:#fff;
+    background:var(--purple);
+    padding:5px 16px;
+    border-radius:20px;
+    margin-bottom:10px;
+    box-shadow:0 3px 0 rgba(0,0,0,0.15);
+  }
+  h2.section-title{
+    font-family:'Baloo 2', sans-serif;
+    font-size:clamp(22px,4.5vw,30px);
+    margin:0 0 18px;
+  }
+  .card{
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    padding:22px;
+  }
+
+  /* INTRO EXPLAIN - 5W GRID */
+  .explain-grid{display:grid; gap:14px;}
+  .explain-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:var(--cream-deep);
+    border:3px solid var(--ink);
+    border-radius:18px;
+    padding:14px 16px;
+  }
+  .explain-card .ico{font-size:30px; flex-shrink:0;}
+  .explain-card p{margin:0; font-weight:600; font-size:15px; line-height:1.4;}
+  .explain-card b{color:var(--red);}
+
+  .fivew-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+    gap:12px;
+  }
+  .fivew-card{
+    border-radius:18px;
+    padding:14px 10px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 5px 0 rgba(0,0,0,0.15);
+    cursor:default;
+  }
+  .fivew-card .big{font-size:26px; font-family:'Baloo 2',sans-serif; font-weight:800;}
+  .fivew-card .label{font-size:12px; font-weight:700; margin-top:4px;}
+  .fivew-card:nth-child(1){background:linear-gradient(155deg,var(--red),#ff8a65);}
+  .fivew-card:nth-child(2){background:linear-gradient(155deg,var(--blue),#7ec4ef);}
+  .fivew-card:nth-child(3){background:linear-gradient(155deg,var(--green),#9be3a8);}
+  .fivew-card:nth-child(4){background:linear-gradient(155deg,var(--purple),#c08bf0);}
+  .fivew-card:nth-child(5){background:linear-gradient(155deg,var(--yellow),#ffe08a); color:var(--ink);}
+
+  /* STORY BOOK */
+  .story-box{
+    background:linear-gradient(160deg,#fff,#FFFCF3);
+    border:3px solid var(--ink);
+    border-radius:24px;
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+  .story-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:22px;
+    text-align:center;
+    color:var(--red);
+    margin:0 0 14px;
+  }
+  .story-emoji-row{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:16px;
+    letter-spacing:6px;
+  }
+  .story-para{
+    font-size:15px;
+    line-height:1.8;
+    font-weight:600;
+    margin:0 0 14px;
+  }
+  .story-para .hl{
+    background:var(--yellow);
+    padding:1px 5px;
+    border-radius:5px;
+  }
+
+  /* COMPREHENSION (click to answer) */
+  .comp-q{
+    background:var(--cream-deep);
+    border:3px solid var(--ink);
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+  }
+  .comp-q p.q-text{font-weight:700; margin:0 0 10px; font-size:15px;}
+  .comp-options{display:grid; gap:8px;}
+  .comp-opt{
+    text-align:left;
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    border:2px solid var(--ink);
+    background:#fff;
+    border-radius:14px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .comp-opt.correct{background:var(--green); color:#fff;}
+  .comp-opt.wrong{background:var(--red); color:#fff;}
+  .comp-opt:disabled{cursor:default;}
+
+  /* SEQUENCING GAME */
+  .seq-game{
+    background:linear-gradient(160deg,#FFEFC9,#fff);
+    border:3px dashed var(--ink);
+    border-radius:22px;
+    padding:22px;
+  }
+  .seq-instructions{font-weight:700; text-align:center; margin:0 0 14px;}
+  .seq-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .seq-item{
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:14px;
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    font-size:14px;
+    cursor:grab;
+    user-select:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .seq-item.dragging{opacity:0.4;}
+  .seq-item .num{
+    background:var(--blue);
+    color:#fff;
+    font-family:'Baloo 2',sans-serif;
+    font-weight:800;
+    width:28px; height:28px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .seq-handle{font-size:16px; opacity:0.5; margin-left:auto;}
+
+  /* VOCAB MATCH GAME */
+  .match-wrap{display:flex; flex-direction:column; gap:10px;}
+  .match-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .match-q{
+    font-weight:700;
+    background:var(--cream-deep);
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:10px 14px;
+    min-width:170px;
+    flex:1;
+  }
+  .match-options{display:flex; gap:8px; flex-wrap:wrap;}
+  .opt-btn{
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    border:2px solid var(--ink);
+    background:#fff;
+    border-radius:12px;
+    padding:8px 14px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .opt-btn.correct{background:var(--green); color:#fff;}
+  .opt-btn.wrong{background:var(--red); color:#fff;}
+  .opt-btn:disabled{cursor:default; opacity:0.85;}
+
+  .btn{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    border:3px solid var(--ink);
+    background:var(--yellow);
+    color:var(--ink);
+    padding:12px 26px;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(58,46,31,0.25);
+    transition:transform .1s ease, box-shadow .1s ease;
+  }
+  .btn:active{transform:translateY(4px); box-shadow:0 1px 0 rgba(58,46,31,0.25);}
+  .btn.alt{background:var(--green); color:#fff;}
+  .btn.blue{background:var(--blue); color:#fff;}
+  .score-pill{
+    display:inline-block;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    background:var(--ink);
+    color:#FFC93C;
+    padding:6px 18px;
+    border-radius:30px;
+    font-size:15px;
+    margin-top:10px;
+  }
+  #seqResult{
+    text-align:center;
+    font-family:'Baloo 2', sans-serif;
+    font-size:17px;
+    margin-top:6px;
+    min-height:24px;
+  }
+
+  /* QUIZ */
+  .quiz-card{margin-bottom:16px;}
+  .quiz-q{font-weight:700; font-size:16px; margin-bottom:10px;}
+  .quiz-options{display:grid; gap:8px;}
+  .quiz-opt{
+    text-align:left;
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    border:2px solid var(--ink);
+    background:#fff;
+    border-radius:14px;
+    padding:10px 14px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .quiz-opt.correct{background:var(--green); color:#fff;}
+  .quiz-opt.wrong{background:var(--red); color:#fff;}
+  .quiz-opt:disabled{cursor:default;}
+  #quizResult{
+    text-align:center;
+    font-family:'Baloo 2', sans-serif;
+    font-size:20px;
+    margin-top:14px;
+  }
+
+  /* FOOTER */
+  footer{
+    text-align:center;
+    padding:30px 10px 10px;
+    font-weight:700;
+    color:#9c8a68;
+    font-size:13px;
+  }
+
+  /* CONFETTI */
+  .confetti{
+    position:fixed;
+    top:-20px;
+    width:10px; height:14px;
+    border-radius:2px;
+    z-index:999;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(540deg); opacity:0.9;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .float-emoji{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="float-emoji e1">📖</span>
+  <span class="float-emoji e2">🔍</span>
+  <span class="float-emoji e3">🐱</span>
+  <span class="float-emoji e4">✨</span>
+  <div class="brand">
+    <span class="bulb">💡</span><span class="little">Little</span><span class="lume">Lume</span><span class="eng">English</span>
+  </div>
+  <div class="grade-badge">⭐ GRADE 3 ⭐</div>
+  <h1>Let's Go <span>READING!</span> 📚</h1>
+  <p class="sub">Become a Story Detective! Read carefully, find clues, and solve fun reading puzzles with LittleLume!</p>
+</header>
+
+<div class="wrap">
+
+  <!-- WHAT IS READING COMPREHENSION -->
+  <section>
+    <span class="section-tag">STEP 1</span>
+    <h2 class="section-title">What is a Good Reader? 🌟</h2>
+    <div class="card explain-grid">
+      <div class="explain-card">
+        <span class="ico">👀</span>
+        <p>A good reader pays attention to <b>details</b> — the small clues hidden in a story.</p>
+      </div>
+      <div class="explain-card">
+        <span class="ico">🧠</span>
+        <p>A good reader asks questions like <b>Who? What? Where? When? Why?</b></p>
+      </div>
+      <div class="explain-card">
+        <span class="ico">🔁</span>
+        <p>A good reader can <b>retell</b> the story in the right order, from beginning to end.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5W DETECTIVE TOOLS -->
+  <section>
+    <span class="section-tag">STEP 2</span>
+    <h2 class="section-title">Detective Question Tools 🔍</h2>
+    <p style="font-weight:600; margin-bottom:14px;">Every story detective uses these 5 magic questions to understand a story!</p>
+    <div class="fivew-row">
+      <div class="fivew-card"><div class="big">WHO?</div><div class="label">the characters</div></div>
+      <div class="fivew-card"><div class="big">WHAT?</div><div class="label">what happens</div></div>
+      <div class="fivew-card"><div class="big">WHERE?</div><div class="label">the setting</div></div>
+      <div class="fivew-card"><div class="big">WHEN?</div><div class="label">the time</div></div>
+      <div class="fivew-card"><div class="big">WHY?</div><div class="label">the reason</div></div>
+    </div>
+  </section>
+
+  <!-- THE STORY -->
+  <section>
+    <span class="section-tag">STEP 3</span>
+    <h2 class="section-title">Read the Story 📖</h2>
+    <div class="story-box">
+      <div class="story-title">Mia and the Lost Kitten</div>
+      <div class="story-emoji-row">👧🐱🌳🏡</div>
+      <p class="story-para">On <span class="hl">Saturday morning</span>, Mia was playing in her garden. Suddenly, she heard a tiny sound: "Meow! Meow!" She looked under the big tree and found a small, gray kitten. It looked hungry and scared.</p>
+      <p class="story-para">Mia gently picked up the kitten and brought it home. She gave it warm milk and a soft blanket. The kitten was happy and began to purr. Mia named the kitten <span class="hl">"Cloud"</span> because its fur was soft and gray like a cloud.</p>
+      <p class="story-para">The next day, Mia and her mom made posters to find Cloud's real owner. They walked around the <span class="hl">neighborhood</span> and put up the posters. That evening, a little boy named Sam saw the poster and called Mia's house. Cloud was his kitten! He was very happy to see Cloud again.</p>
+      <p class="story-para">Sam thanked Mia for taking care of his kitten. Mia felt proud and happy because she had helped a friend in need.</p>
+    </div>
+  </section>
+
+  <!-- COMPREHENSION QUESTIONS -->
+  <section>
+    <span class="section-tag">STEP 4</span>
+    <h2 class="section-title">Story Detective Questions 🕵️</h2>
+    <p style="font-weight:600; margin-bottom:14px;">Click the best answer for each question!</p>
+
+    <div class="comp-q">
+      <p class="q-text">1. WHO found the lost kitten?</p>
+      <div class="comp-options" data-correct="1">
+        <button class="comp-opt" onclick="checkComp(this)">Sam</button>
+        <button class="comp-opt" onclick="checkComp(this)">Mia</button>
+        <button class="comp-opt" onclick="checkComp(this)">Mia's mom</button>
+      </div>
+    </div>
+
+    <div class="comp-q">
+      <p class="q-text">2. WHERE did Mia find the kitten?</p>
+      <div class="comp-options" data-correct="2">
+        <button class="comp-opt" onclick="checkComp(this)">In the kitchen</button>
+        <button class="comp-opt" onclick="checkComp(this)">At school</button>
+        <button class="comp-opt" onclick="checkComp(this)">Under a big tree</button>
+      </div>
+    </div>
+
+    <div class="comp-q">
+      <p class="q-text">3. WHY did Mia name the kitten "Cloud"?</p>
+      <div class="comp-options" data-correct="0">
+        <button class="comp-opt" onclick="checkComp(this)">Its fur was soft and gray</button>
+        <button class="comp-opt" onclick="checkComp(this)">It liked to sleep a lot</button>
+        <button class="comp-opt" onclick="checkComp(this)">It was Sam's favorite name</button>
+      </div>
+    </div>
+
+    <div class="comp-q">
+      <p class="q-text">4. WHAT did Mia and her mom do to find the owner?</p>
+      <div class="comp-options" data-correct="1">
+        <button class="comp-opt" onclick="checkComp(this)">They called the police</button>
+        <button class="comp-opt" onclick="checkComp(this)">They made posters</button>
+        <button class="comp-opt" onclick="checkComp(this)">They posted online</button>
+      </div>
+    </div>
+
+    <div class="comp-q">
+      <p class="q-text">5. HOW did Mia feel at the end of the story?</p>
+      <div class="comp-options" data-correct="2">
+        <button class="comp-opt" onclick="checkComp(this)">Sad and tired</button>
+        <button class="comp-opt" onclick="checkComp(this)">Scared and worried</button>
+        <button class="comp-opt" onclick="checkComp(this)">Proud and happy</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME 1: SEQUENCING -->
+  <section>
+    <span class="section-tag">GAME 1</span>
+    <h2 class="section-title">Put the Story in Order! 🔢</h2>
+    <div class="seq-game">
+      <p class="seq-instructions">Drag the events to put them in the correct order (1 = first thing that happened).</p>
+      <div class="seq-list" id="seqList">
+        <div class="seq-item" draggable="true" data-order="3"><span class="num">?</span><span>Sam saw the poster and called Mia.</span><span class="seq-handle">⠿</span></div>
+        <div class="seq-item" draggable="true" data-order="1"><span class="num">?</span><span>Mia heard "Meow!" under the tree.</span><span class="seq-handle">⠿</span></div>
+        <div class="seq-item" draggable="true" data-order="4"><span class="num">?</span><span>Sam and Cloud were happily reunited.</span><span class="seq-handle">⠿</span></div>
+        <div class="seq-item" draggable="true" data-order="2"><span class="num">?</span><span>Mia and her mom made posters.</span><span class="seq-handle">⠿</span></div>
+      </div>
+      <div style="text-align:center;">
+        <button class="btn alt" onclick="checkSequence()">✅ Check My Order</button>
+        <div id="seqResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME 2: VOCAB MATCH -->
+  <section>
+    <span class="section-tag">GAME 2</span>
+    <h2 class="section-title">Match the Word! 🧩</h2>
+    <div class="card match-wrap" id="matchGame">
+      <div class="match-row">
+        <div class="match-q">😨 "Scared" means...</div>
+        <div class="match-options" data-correct="afraid">
+          <button class="opt-btn" onclick="checkMatch(this)">afraid</button>
+          <button class="opt-btn" onclick="checkMatch(this)">happy</button>
+          <button class="opt-btn" onclick="checkMatch(this)">sleepy</button>
+        </div>
+      </div>
+      <div class="match-row">
+        <div class="match-q">🏘️ "Neighborhood" means...</div>
+        <div class="match-options" data-correct="the area where you live">
+          <button class="opt-btn" onclick="checkMatch(this)">a type of food</button>
+          <button class="opt-btn" onclick="checkMatch(this)">the area where you live</button>
+          <button class="opt-btn" onclick="checkMatch(this)">a kind of animal</button>
+        </div>
+      </div>
+      <div class="match-row">
+        <div class="match-q">😻 "Purr" means...</div>
+        <div class="match-options" data-correct="the soft sound a happy cat makes">
+          <button class="opt-btn" onclick="checkMatch(this)">the soft sound a happy cat makes</button>
+          <button class="opt-btn" onclick="checkMatch(this)">to jump very high</button>
+          <button class="opt-btn" onclick="checkMatch(this)">a loud cry</button>
+        </div>
+      </div>
+      <div class="match-row">
+        <div class="match-q">🤗 "Proud" means...</div>
+        <div class="match-options" data-correct="feeling good about something you did">
+          <button class="opt-btn" onclick="checkMatch(this)">feeling tired</button>
+          <button class="opt-btn" onclick="checkMatch(this)">feeling good about something you did</button>
+          <button class="opt-btn" onclick="checkMatch(this)">feeling hungry</button>
+        </div>
+      </div>
+      <div style="text-align:center;"><span class="score-pill" id="matchScore">Score: 0 / 4</span></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section>
+    <span class="section-tag">QUIZ TIME</span>
+    <h2 class="section-title">Final Reading Quiz! 🏆</h2>
+    <div class="card" id="quizCard">
+      <div class="quiz-card">
+        <div class="quiz-q">1. What is the main idea of the story?</div>
+        <div class="quiz-options" data-correct="1">
+          <button class="quiz-opt" onclick="checkQuiz(this)">Mia wanted a new pet for herself</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">Mia helped a lost kitten find its owner</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">Sam got lost in the neighborhood</button>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">2. What did Mia give the kitten first?</div>
+        <div class="quiz-options" data-correct="0">
+          <button class="quiz-opt" onclick="checkQuiz(this)">Warm milk and a soft blanket</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">A new toy</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">A bowl of fish</button>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">3. Who is the owner of the kitten?</div>
+        <div class="quiz-options" data-correct="2">
+          <button class="quiz-opt" onclick="checkQuiz(this)">Mia's mom</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">Mia</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">Sam</button>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-q">4. This story mostly teaches us about...</div>
+        <div class="quiz-options" data-correct="1">
+          <button class="quiz-opt" onclick="checkQuiz(this)">how to build a poster</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">being kind and helpful</button>
+          <button class="quiz-opt" onclick="checkQuiz(this)">how cats sleep</button>
+        </div>
+      </div>
+      <button class="btn alt" onclick="finishQuiz()">✅ Finish & See Score</button>
+      <div id="quizResult"></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>✨ Made with love by LittleLume English ✨</footer>
+
+<script>
+  // COMPREHENSION QUESTIONS
+  function checkComp(btn){
+    const group = btn.parentElement;
+    if(group.dataset.done) return;
+    const correctIndex = parseInt(group.dataset.correct);
+    const buttons = Array.from(group.querySelectorAll('.comp-opt'));
+    const chosenIndex = buttons.indexOf(btn);
+    buttons.forEach(b => b.disabled = true);
+    if(chosenIndex === correctIndex){
+      btn.classList.add('correct');
+      burstConfetti(10);
+    } else {
+      btn.classList.add('wrong');
+      buttons[correctIndex].classList.add('correct');
+    }
+    group.dataset.done = "true";
+  }
+
+  // SEQUENCING GAME (drag and drop)
+  const seqList = document.getElementById('seqList');
+  let dragEl = null;
+
+  Array.from(seqList.children).forEach(item => {
+    item.addEventListener('dragstart', () => {
+      dragEl = item;
+      item.classList.add('dragging');
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      dragEl = null;
+    });
+  });
+
+  seqList.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(seqList, e.clientY);
+    if(!dragEl) return;
+    if(afterElement == null){
+      seqList.appendChild(dragEl);
+    } else {
+      seqList.insertBefore(dragEl, afterElement);
+    }
+  });
+
+  function getDragAfterElement(container, y){
+    const items = [...container.querySelectorAll('.seq-item:not(.dragging)')];
+    return items.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height/2;
+      if(offset < 0 && offset > closest.offset){
+        return {offset: offset, element: child};
+      } else {
+        return closest;
+      }
+    }, {offset: -Infinity}).element;
+  }
+
+  // Touch support fallback: simple tap-to-move-up isn't implemented;
+  // also allow click-based reordering via number badges for touch devices
+  function refreshNumbers(){
+    Array.from(seqList.children).forEach((item, idx) => {
+      item.querySelector('.num').textContent = idx + 1;
+    });
+  }
+  refreshNumbers();
+  const seqObserver = new MutationObserver(refreshNumbers);
+  seqObserver.observe(seqList, {childList:true});
+
+  function checkSequence(){
+    const items = Array.from(seqList.children);
+    const result = document.getElementById('seqResult');
+    let correct = true;
+    items.forEach((item, idx) => {
+      if(parseInt(item.dataset.order) !== idx + 1){
+        correct = false;
+      }
+    });
+    if(correct){
+      result.textContent = "🎉 Perfect! That's the right order!";
+      result.style.color = "#6BCB77";
+      burstConfetti(30);
+    } else {
+      result.textContent = "🤔 Not quite! Try dragging the cards again.";
+      result.style.color = "#FF5757";
+    }
+  }
+
+  // VOCAB MATCH GAME
+  let matchScore = 0;
+  function checkMatch(btn){
+    const group = btn.parentElement;
+    if(group.dataset.done) return;
+    const correctWord = group.dataset.correct;
+    const buttons = group.querySelectorAll('.opt-btn');
+    buttons.forEach(b => b.disabled = true);
+    if(btn.textContent.trim() === correctWord){
+      btn.classList.add('correct');
+      matchScore++;
+      burstConfetti();
+    } else {
+      btn.classList.add('wrong');
+      buttons.forEach(b => { if(b.textContent.trim() === correctWord) b.classList.add('correct'); });
+    }
+    group.dataset.done = "true";
+    document.getElementById('matchScore').textContent = "Score: " + matchScore + " / 4";
+  }
+
+  // QUIZ
+  function checkQuiz(btn){
+    const group = btn.parentElement;
+    if(group.dataset.done) return;
+    const correctIndex = parseInt(group.dataset.correct);
+    const buttons = Array.from(group.querySelectorAll('.quiz-opt'));
+    const chosenIndex = buttons.indexOf(btn);
+    buttons.forEach(b => b.disabled = true);
+    if(chosenIndex === correctIndex){
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('wrong');
+      buttons[correctIndex].classList.add('correct');
+    }
+    group.dataset.done = "true";
+    group.dataset.score = (chosenIndex === correctIndex) ? "1" : "0";
+  }
+  function finishQuiz(){
+    const groups = document.querySelectorAll('#quizCard .quiz-options');
+    let score = 0, total = groups.length;
+    groups.forEach(g => { if(g.dataset.score === "1") score++; });
+    const allAnswered = Array.from(groups).every(g => g.dataset.done);
+    const result = document.getElementById('quizResult');
+    if(!allAnswered){
+      result.textContent = "Please answer all the questions first! 😊";
+      result.style.color = "#3A2E1F";
+      return;
+    }
+    let msg = "";
+    if(score === total){ msg = "🌟 PERFECT! You're a Reading Star! 🌟"; burstConfetti(40); }
+    else if(score >= total/2){ msg = "👏 Great job! Score: " + score + "/" + total; burstConfetti(15); }
+    else { msg = "💪 Keep practicing! Score: " + score + "/" + total; }
+    result.textContent = msg;
+    result.style.color = "#FF5757";
+  }
+
+  // CONFETTI EFFECT
+  function burstConfetti(count){
+    count = count || 18;
+    const colors = ['#FF5757','#4D9DE0','#FFC93C','#6BCB77','#9B72CF'];
+    for(let i=0;i<count;i++){
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random()*100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random()*colors.length)];
+      c.style.animationDuration = (2 + Math.random()*1.5) + 's';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 3600);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittleLume English Grade 3 - Simple Past Tense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 50%, #F8B500 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .floating-bubble {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .bubble1 { width: 80px; height: 80px; background: #FFD700; top: 10%; left: 5%; animation-delay: 0s; }
+        .bubble2 { width: 60px; height: 60px; background: #00D4FF; top: 60%; right: 10%; animation-delay: 2s; }
+        .bubble3 { width: 100px; height: 100px; background: #FF6B9D; top: 30%; right: 5%; animation-delay: 1s; }
+        .bubble4 { width: 70px; height: 70px; background: #FFB347; bottom: 15%; left: 8%; animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 50%, #F8B500 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 8px solid #FFD700;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,30 Q300,0 600,30 T1200,30 L1200,120 L0,120" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: wave 3s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(1200px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-logo {
+            font-size: 13px;
+            color: #FFD700;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 55px;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            animation: slideInDown 0.8s ease-out;
+        }
+        
+        @keyframes slideInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header-subtitle {
+            font-size: 18px;
+            color: #e0e0e0;
+            font-weight: 400;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .stars {
+            font-size: 24px;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .content {
+            padding: 50px 35px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #FF6B9D;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 4px dashed #FF6B9D;
+            font-weight: 800;
+        }
+        
+        .section-icon {
+            font-size: 40px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .definition-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-left: 8px solid #FF6B9D;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 17px;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.2);
+            position: relative;
+        }
+        
+        .definition-box::before {
+            content: '💡';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 35px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .example-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 3px solid white;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .example-card.positive {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+        
+        .example-card.negative {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .example-card.question {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+        }
+        
+        .example-card h5 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .example-card .example-text {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #555;
+            border-left: 4px solid #FF6B9D;
+        }
+        
+        .game-section {
+            background: linear-gradient(135deg, #FFE66D 0%, #FF6B9D 50%, #F8B500 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 20s linear infinite;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .game-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .game-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .spinning-wheel {
+            width: 300px;
+            height: 300px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #FF6B9D 0deg 60deg, #F8B500 60deg 120deg, #00D4FF 120deg 180deg, #00FF88 180deg 240deg, #FFB347 240deg 300deg, #FF1493 300deg 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3), inset 0 0 30px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .wheel.spinning {
+            animation: spin 2s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(1440deg); }
+        }
+        
+        .wheel::before {
+            content: '🎯';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+        }
+        
+        .multiple-choice {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #FF6B9D 0%, #F8B500 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 16px;
+        }
+        
+        .choice-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .choice-btn {
+            padding: 15px;
+            border: 3px solid #ddd;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .choice-btn:hover {
+            border-color: #FF6B9D;
+            background: #fff0f5;
+            transform: translateY(-3px);
+        }
+        
+        .choice-btn.selected {
+            border-color: #FF6B9D;
+            background: linear-gradient(135deg, #FF6B9D 0%, #F8B500 100%);
+            color: white;
+        }
+        
+        .choice-btn.correct {
+            border-color: #28a745;
+            background: #d4edda;
+            color: #155724;
+            animation: pulse 0.5s ease-out;
+        }
+        
+        .choice-btn.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+            color: #721c24;
+            animation: shake 0.5s ease-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .btn-check {
+            background: linear-gradient(135deg, #FF6B9D 0%, #F8B500 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-check::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+        
+        .btn-check:hover::before {
+            left: 100%;
+        }
+        
+        .btn-check:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.6);
+        }
+        
+        .btn-check:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-reset {
+            background: white;
+            color: #FF6B9D;
+            padding: 12px 25px;
+            border: 3px solid #FF6B9D;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .btn-reset:hover {
+            background: #FF6B9D;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            display: none;
+            font-weight: 700;
+            font-size: 17px;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 3px solid #28a745;
+            display: block;
+        }
+        
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            color: #721c24;
+            border: 3px solid #dc3545;
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 15px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B9D 0%, #F8B500 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .points-display {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 18px;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            text-align: center;
+            color: #FF6B9D;
+            font-weight: 700;
+        }
+        
+        .celebrate {
+            animation: celebrate 0.8s ease-out;
+        }
+        
+        @keyframes celebrate {
+            0% { transform: scale(0.5) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1) rotate(360deg); opacity: 1; }
+        }
+        
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+        
+        @keyframes confettiFall {
+            to {
+                transform: translateY(800px) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .irregular-box {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+            border-left: 5px solid #FF6B9D;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 8px 0;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .rule-card {
+            background: white;
+            border: 2px solid #FF6B9D;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .rule-card h4 {
+            color: #FF6B9D;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .rule-card p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .verb-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .verb-item {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 100%);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .choice-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Bubbles -->
+    <div class="floating-bubble bubble1"></div>
+    <div class="floating-bubble bubble2"></div>
+    <div class="floating-bubble bubble3"></div>
+    <div class="floating-bubble bubble4"></div>
+    
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <span class="stars">✨</span> LittleLume English Grade 3 <span class="stars">✨</span>
+                </div>
+                <h1>Simple Past Tense</h1>
+                <div class="header-subtitle">🎮 Discover what happened in the past! Learn about yesterday's adventures! 🎮</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- INTRODUCTION SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🎯</span>
+                    What is Simple Past Tense?
+                </div>
+                
+                <div class="definition-box">
+                    We use <strong>Simple Past Tense</strong> to talk about actions that happened in the past and are now finished! It's like telling stories about what you did yesterday, last week, or a long time ago!
+                </div>
+                
+                <div class="example-grid">
+                    <div class="example-card positive">
+                        <h5>✅ What You Did</h5>
+                        <div class="example-text">I played soccer yesterday.</div>
+                    </div>
+                    <div class="example-card positive">
+                        <h5>✅ Actions in the Past</h5>
+                        <div class="example-text">She ate lunch at noon.</div>
+                    </div>
+                    <div class="example-card positive">
+                        <h5>✅ Completed Events</h5>
+                        <div class="example-text">They went to the park.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WHEN TO USE SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">⏰</span>
+                    When Do We Use Simple Past?
+                </div>
+                
+                <div class="rule-card">
+                    <h4>1. Actions That Finished in the Past</h4>
+                    <p>Things that happened and are completely done now.</p>
+                    <div class="example-text">I watched a movie last night.</div>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>2. Completed Events or Routines</h4>
+                    <p>Regular things you did in the past that you don't do anymore.</p>
+                    <div class="example-text">She studied hard for the exam last week.</div>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>3. Telling Stories</h4>
+                    <p>When you tell someone what happened in the past.</p>
+                    <div class="example-text">The children played in the garden yesterday.</div>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>4. Specific Time in the Past</h4>
+                    <p>When you mention when something happened (yesterday, last week, etc).</p>
+                    <div class="example-text">I ate breakfast two hours ago.</div>
+                </div>
+            </div>
+            
+            <!-- REGULAR VERBS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">⭐</span>
+                    Regular Verbs: Add -ed!
+                </div>
+                
+                <div class="definition-box" style="background: linear-gradient(135deg, #c2e9fb 0%, #d4edda 100%);">
+                    For <strong>most verbs</strong>, we add <strong>-ed</strong> to make the past tense! It's like adding a special ending to show that it happened in the past!
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div class="irregular-box">
+                        <strong>play → played</strong><br>I played soccer. ⚽
+                    </div>
+                    <div class="irregular-box">
+                        <strong>watch → watched</strong><br>She watched TV. 📺
+                    </div>
+                    <div class="irregular-box">
+                        <strong>walk → walked</strong><br>They walked home. 🚶
+                    </div>
+                    <div class="irregular-box">
+                        <strong>study → studied</strong><br>He studied math. 📚
+                    </div>
+                    <div class="irregular-box">
+                        <strong>dance → danced</strong><br>She danced at the party. 💃
+                    </div>
+                    <div class="irregular-box">
+                        <strong>jump → jumped</strong><br>They jumped high. 🤸
+                    </div>
+                </div>
+            </div>
+            
+            <!-- IRREGULAR VERBS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🎲</span>
+                    Irregular Verbs: Special Friends!
+                </div>
+                
+                <div class="definition-box" style="background: linear-gradient(135deg, #FFDDC1 0%, #FFB6C1 100%);">
+                    Some verbs are <strong>SPECIAL</strong>! They don't follow the regular pattern. They have their own special past tense forms! These are called <strong>Irregular Verbs</strong>! 🌟
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0;">
+                    <div class="verb-item">
+                        <strong>go → went</strong><br>I went to school.
+                    </div>
+                    <div class="verb-item">
+                        <strong>eat → ate</strong><br>She ate lunch.
+                    </div>
+                    <div class="verb-item">
+                        <strong>see → saw</strong><br>They saw a movie.
+                    </div>
+                    <div class="verb-item">
+                        <strong>have → had</strong><br>He had fun.
+                    </div>
+                    <div class="verb-item">
+                        <strong>get → got</strong><br>I got a new toy.
+                    </div>
+                    <div class="verb-item">
+                        <strong>do → did</strong><br>They did homework.
+                    </div>
+                    <div class="verb-item">
+                        <strong>come → came</strong><br>She came to school.
+                    </div>
+                    <div class="verb-item">
+                        <strong>make → made</strong><br>We made a cake.
+                    </div>
+                    <div class="verb-item">
+                        <strong>sit → sat</strong><br>I sat down.
+                    </div>
+                    <div class="verb-item">
+                        <strong>write → wrote</strong><br>She wrote a letter.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WAS/WERE SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🌟</span>
+                    Was and Were (Past of "To Be")
+                </div>
+                
+                <div class="rule-card">
+                    <h4>Using WAS (for I, He, She, It)</h4>
+                    <p>Use "was" for one person or thing in the past.</p>
+                    <div class="example-text">I was happy yesterday.</div>
+                    <div class="example-text">She was a good student.</div>
+                    <div class="example-text">He was at school.</div>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>Using WERE (for You, We, They)</h4>
+                    <p>Use "were" for more than one person or thing in the past.</p>
+                    <div class="example-text">We were excited at the party.</div>
+                    <div class="example-text">They were playing outside.</div>
+                    <div class="example-text">You were very funny!</div>
+                </div>
+            </div>
+            
+            <!-- SENTENCE FORMS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📝</span>
+                    Three Forms of Simple Past
+                </div>
+                
+                <div class="example-grid">
+                    <div class="example-card positive">
+                        <h5>✅ POSITIVE</h5>
+                        <p style="color: #555; font-size: 14px; margin-bottom: 10px;">Saying what happened</p>
+                        <div class="example-text">I played soccer.</div>
+                        <div class="example-text">She ate lunch.</div>
+                        <div class="example-text">They went home.</div>
+                    </div>
+                    
+                    <div class="example-card negative">
+                        <h5>❌ NEGATIVE</h5>
+                        <p style="color: #555; font-size: 14px; margin-bottom: 10px;">Saying what did NOT happen</p>
+                        <div class="example-text">I did not play soccer.</div>
+                        <div class="example-text">She did not eat lunch.</div>
+                        <div class="example-text">They did not go home.</div>
+                    </div>
+                    
+                    <div class="example-card question">
+                        <h5>❓ QUESTION</h5>
+                        <p style="color: #555; font-size: 14px; margin-bottom: 10px;">Asking about the past</p>
+                        <div class="example-text">Did you play soccer?</div>
+                        <div class="example-text">Did she eat lunch?</div>
+                        <div class="example-text">Did they go home?</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DID/DIDN'T SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🎯</span>
+                    Using Did and Didn't
+                </div>
+                
+                <div class="rule-card">
+                    <h4>For NEGATIVE Sentences: Did NOT (Didn't)</h4>
+                    <p>Use "did not" or "didn't" + the base verb (without -ed)!</p>
+                    <div class="example-text">I did not play soccer. (NOT: did not played)</div>
+                    <div class="example-text">She didn't eat lunch. (NOT: didn't ate)</div>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>For YES/NO QUESTIONS: Did</h4>
+                    <p>Use "did" + subject + base verb!</p>
+                    <div class="example-text">Did you play soccer? (NOT: Did you played?)</div>
+                    <div class="example-text">Did she eat lunch?</div>
+                </div>
+                
+                <div class="rule-card">
+                    <h4>🔑 Important Rule!</h4>
+                    <p style="color: #dc3545; font-weight: 700;">When using "did," the main verb stays in its base form (without -ed)!</p>
+                    <div class="example-text">✅ She did NOT play. (correct)</div>
+                    <div class="example-text">❌ She did NOT played. (wrong!)</div>
+                </div>
+            </div>
+            
+            <!-- GAME 1: SPIN THE WHEEL -->
+            <div class="game-section">
+                <div class="game-title">
+                    🎪 GAME 1: SPIN THE WHEEL OF IRREGULAR VERBS!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Spin the wheel and see what irregular verb you get! What's the past form?
+                    </p>
+                    
+                    <div class="spinning-wheel">
+                        <div class="wheel" id="theWheel" onclick="spinWheel()">
+                            <span>SPIN!</span>
+                        </div>
+                    </div>
+                    
+                    <div id="wheelResult" style="text-align: center; color: white; font-size: 20px; font-weight: 700; margin: 20px 0; display: none;">
+                        <p style="font-size: 18px; margin-top: 20px;">Present: <span id="resultPresent" style="background: white; color: #FF6B9D; padding: 10px 20px; border-radius: 10px; display: inline-block; margin: 10px 5px;"></span></p>
+                        <p style="font-size: 16px; color: #FFD700; margin: 15px 0;">↓</p>
+                        <p style="font-size: 18px;">Past: <span id="resultPast" style="background: white; color: #FF6B9D; padding: 10px 20px; border-radius: 10px; display: inline-block;"></span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 2: MULTIPLE CHOICE QUIZ -->
+            <div class="game-section">
+                <div class="game-title">
+                    🎯 GAME 2: PAST TENSE QUIZ TIME!
+                </div>
+                <div class="game-content">
+                    <div class="points-display" id="pointsDisplay">
+                        🌟 POINTS: 0
+                    </div>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    
+                    <!-- Question 1 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            "I _____ to the park yesterday."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q1', false)">go</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q1', true)">went</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            "She _____ a delicious lunch."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q2', false)">eat</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q2', true)">ate</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            "They _____ a funny movie last night."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q3', false)">see</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q3', true)">saw</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">4</span>
+                            "I _____ my homework last night."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q4', false)">do</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q4', true)">did</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">5</span>
+                            "He _____ a beautiful cake yesterday."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q5', false)">make</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q5', true)">made</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 6 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">6</span>
+                            "We _____ to school yesterday."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q6', false)">come</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q6', true)">came</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 7 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">7</span>
+                            "I _____ happy yesterday."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q7', true)">was</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q7', false)">were</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 8 -->
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">8</span>
+                            "They _____ at the park last week."
+                        </div>
+                        <div class="choice-group">
+                            <button class="choice-btn" onclick="selectChoice(this, 'q8', false)">was</button>
+                            <button class="choice-btn" onclick="selectChoice(this, 'q8', true)">were</button>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button class="btn-check" onclick="finishQuiz()">FINISH QUIZ!</button>
+                        <button class="btn-reset" onclick="resetQuiz()">START OVER</button>
+                    </div>
+                    
+                    <div id="quizFeedback" class="feedback"></div>
+                </div>
+            </div>
+            
+            <!-- GAME 3: NEGATIVE SENTENCES -->
+            <div class="game-section">
+                <div class="game-title">
+                    🚫 GAME 3: MAKE NEGATIVE SENTENCES!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Rewrite these positive sentences as negative sentences using "didn't"!
+                    </p>
+                    
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">1</span>
+                            Positive: "I played soccer."
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <p style="font-size: 14px; font-weight: 600; margin-bottom: 10px; color: #555;">Negative:</p>
+                            <input type="text" id="neg1" placeholder="Type your answer here..." style="width: 100%; padding: 10px; border: 2px solid #FF6B9D; border-radius: 8px; font-size: 14px; font-family: 'Fredoka', sans-serif; font-weight: 600;">
+                        </div>
+                    </div>
+                    
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">2</span>
+                            Positive: "She went home."
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <p style="font-size: 14px; font-weight: 600; margin-bottom: 10px; color: #555;">Negative:</p>
+                            <input type="text" id="neg2" placeholder="Type your answer here..." style="width: 100%; padding: 10px; border: 2px solid #FF6B9D; border-radius: 8px; font-size: 14px; font-family: 'Fredoka', sans-serif; font-weight: 600;">
+                        </div>
+                    </div>
+                    
+                    <div class="multiple-choice">
+                        <div class="question-text">
+                            <span class="question-number">3</span>
+                            Positive: "They ate lunch."
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <p style="font-size: 14px; font-weight: 600; margin-bottom: 10px; color: #555;">Negative:</p>
+                            <input type="text" id="neg3" placeholder="Type your answer here..." style="width: 100%; padding: 10px; border: 2px solid #FF6B9D; border-radius: 8px; font-size: 14px; font-family: 'Fredoka', sans-serif; font-weight: 600;">
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button class="btn-check" onclick="checkNegativeAnswers()">CHECK ANSWERS!</button>
+                        <button class="btn-reset" onclick="resetNegativeAnswers()">CLEAR ALL</button>
+                    </div>
+                    
+                    <div id="negFeedback" class="feedback"></div>
+                </div>
+            </div>
+            
+            <!-- GAME 4: MATCHING -->
+            <div class="game-section">
+                <div class="game-title">
+                    🔗 GAME 4: MATCH PAST & PRESENT!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Match the present verbs with their past forms!
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h4 style="color: white; margin-bottom: 15px; font-weight: 700;">PRESENT</h4>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); border-color: #667eea;">go</button>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); border-color: #667eea;">eat</button>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); border-color: #667eea;">see</button>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); border-color: #667eea;">make</button>
+                        </div>
+                        
+                        <div>
+                            <h4 style="color: white; margin-bottom: 15px; font-weight: 700;">PAST</h4>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-color: #FF6B9D;">made</button>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-color: #FF6B9D;">went</button>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; margin-bottom: 10px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-color: #FF6B9D;">saw</button>
+                            <button class="choice-btn" onclick="matchGame(this)" style="width: 100%; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-color: #FF6B9D;">ate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CELEBRATION -->
+            <div class="section">
+                <div class="game-section" style="text-align: center; background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF1493 100%);">
+                    <h2 style="color: white; font-size: 40px; font-family: 'Poppins', sans-serif; font-weight: 800; margin-bottom: 20px;">
+                        🏆 YOU ARE AMAZING! 🏆
+                    </h2>
+                    <p style="color: white; font-size: 18px; font-weight: 600; margin: 10px 0;">
+                        You have learned about Simple Past Tense!
+                    </p>
+                    <p style="color: white; font-size: 16px; margin: 10px 0;">
+                        Now you can tell stories about the past! 🌟
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 15px;">
+                🎨 LittleLume English Grade 3 - Simple Past Tense 🎨
+            </h3>
+            <p>Making English Learning FUN, COLORFUL, and EXCITING!</p>
+            <p style="margin-top: 15px; font-size: 14px;">
+                Remember: Learn, Play, and Master English! 🚀
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Wheel Spin Game
+        const irregularVerbs = [
+            { present: 'go', past: 'went' },
+            { present: 'eat', past: 'ate' },
+            { present: 'see', past: 'saw' },
+            { present: 'have', past: 'had' },
+            { present: 'do', past: 'did' },
+            { present: 'make', past: 'made' },
+            { present: 'come', past: 'came' },
+            { present: 'write', past: 'wrote' }
+        ];
+        
+        function spinWheel() {
+            const wheel = document.getElementById('theWheel');
+            const resultDiv = document.getElementById('wheelResult');
+            
+            wheel.classList.add('spinning');
+            resultDiv.style.display = 'none';
+            
+            setTimeout(() => {
+                wheel.classList.remove('spinning');
+                const randomVerb = irregularVerbs[Math.floor(Math.random() * irregularVerbs.length)];
+                document.getElementById('resultPresent').textContent = randomVerb.present;
+                document.getElementById('resultPast').textContent = randomVerb.past;
+                resultDiv.style.display = 'block';
+                createConfetti();
+            }, 2000);
+        }
+        
+        // Quiz Game
+        let quizScore = 0;
+        
+        function selectChoice(btn, question, isCorrect) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.choice-btn').forEach(b => {
+                b.classList.remove('selected', 'correct', 'incorrect');
+            });
+            btn.classList.add('selected');
+            btn.setAttribute('data-correct', isCorrect);
+        }
+        
+        function finishQuiz() {
+            quizScore = 0;
+            
+            const questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
+            
+            questions.forEach((q) => {
+                const allButtons = document.querySelectorAll(`.choice-btn[onclick*="${q}"]`);
+                let selectedBtn = null;
+                let isCorrectAnswer = false;
+                
+                allButtons.forEach(btn => {
+                    if (btn.classList.contains('selected')) {
+                        selectedBtn = btn;
+                        isCorrectAnswer = btn.onclick.toString().includes(`, true)`);
+                    }
+                });
+                
+                if (selectedBtn) {
+                    if (isCorrectAnswer) {
+                        selectedBtn.classList.add('correct');
+                        quizScore++;
+                    } else {
+                        selectedBtn.classList.add('incorrect');
+                    }
+                }
+            });
+            
+            const feedback = document.getElementById('quizFeedback');
+            const pointsValue = quizScore * 10;
+            document.getElementById('pointsDisplay').textContent = '🌟 POINTS: ' + pointsValue;
+            document.getElementById('progressFill').style.width = ((quizScore / 8) * 100) + '%';
+            
+            if (quizScore === 8) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🎉🎉🎉 PERFECT SCORE! 8/8! You are a GENIUS! 🎉🎉🎉';
+                createConfetti();
+            } else if (quizScore >= 6) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `⭐ Excellent! You got ${quizScore}/8 correct!`;
+                createConfetti();
+            } else if (quizScore >= 4) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `Good job! You got ${quizScore}/8 correct. Keep practicing!`;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `You got ${quizScore}/8 correct. Review the rules and try again!`;
+            }
+        }
+        
+        function resetQuiz() {
+            document.querySelectorAll('.choice-btn').forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+            });
+            document.getElementById('quizFeedback').className = 'feedback';
+            document.getElementById('quizFeedback').innerHTML = '';
+            document.getElementById('pointsDisplay').textContent = '🌟 POINTS: 0';
+            document.getElementById('progressFill').style.width = '0%';
+            quizScore = 0;
+        }
+        
+        // Matching Game
+        function matchGame(btn) {
+            btn.classList.add('celebrate');
+            setTimeout(() => {
+                btn.style.opacity = '0.5';
+                btn.style.pointerEvents = 'none';
+            }, 800);
+        }
+        
+        // Game 3: Negative Sentences
+        function checkNegativeAnswers() {
+            const ans1 = document.getElementById('neg1').value.toLowerCase().trim();
+            const ans2 = document.getElementById('neg2').value.toLowerCase().trim();
+            const ans3 = document.getElementById('neg3').value.toLowerCase().trim();
+            
+            const correctAnswers = [
+                "i didn't play soccer",
+                "she didn't go home",
+                "they didn't eat lunch"
+            ];
+            
+            let score = 0;
+            const feedback = document.getElementById('negFeedback');
+            let feedbackText = '';
+            
+            // Check answer 1
+            if (ans1.includes("didn't") && ans1.includes("play") && ans1.includes("soccer")) {
+                score++;
+                feedbackText += '✅ Question 1: Correct!<br>';
+            } else if (ans1 === '') {
+                feedbackText += '❓ Question 1: Please write an answer<br>';
+            } else {
+                feedbackText += '❌ Question 1: Try again! (Hint: I didn\'t play soccer)<br>';
+            }
+            
+            // Check answer 2
+            if (ans2.includes("didn't") && ans2.includes("go") && ans2.includes("home")) {
+                score++;
+                feedbackText += '✅ Question 2: Correct!<br>';
+            } else if (ans2 === '') {
+                feedbackText += '❓ Question 2: Please write an answer<br>';
+            } else {
+                feedbackText += '❌ Question 2: Try again! (Hint: She didn\'t go home)<br>';
+            }
+            
+            // Check answer 3
+            if (ans3.includes("didn't") && ans3.includes("eat") && ans3.includes("lunch")) {
+                score++;
+                feedbackText += '✅ Question 3: Correct!<br>';
+            } else if (ans3 === '') {
+                feedbackText += '❓ Question 3: Please write an answer<br>';
+            } else {
+                feedbackText += '❌ Question 3: Try again! (Hint: They didn\'t eat lunch)<br>';
+            }
+            
+            feedback.innerHTML = feedbackText;
+            
+            if (score === 3) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '🎉 PERFECT! 3/3 CORRECT! You are a negative sentence master! 🎉<br>' + feedbackText;
+                createConfetti();
+            } else if (score >= 1) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = feedbackText;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = feedbackText;
+            }
+        }
+        
+        function resetNegativeAnswers() {
+            document.getElementById('neg1').value = '';
+            document.getElementById('neg2').value = '';
+            document.getElementById('neg3').value = '';
+            document.getElementById('negFeedback').className = 'feedback';
+            document.getElementById('negFeedback').innerHTML = '';
+        }
+        
+        // Confetti Effect
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = ['🎉', '⭐', '🌟', '✨', '🎊'][Math.floor(Math.random() * 5)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.fontSize = Math.random() * 10 + 20 + 'px';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
