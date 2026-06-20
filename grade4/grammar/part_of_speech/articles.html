@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LittleLume English – Articles</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sun:    #FFD93D;
+      --coral:  #FF6B6B;
+      --mint:   #6BCB77;
+      --sky:    #4D96FF;
+      --lavender:#C77DFF;
+      --peach:  #FFB347;
+      --white:  #FFFFFF;
+      --ink:    #2D2D2D;
+      --card-bg:#FFFDF5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(160deg, #FFF8DC 0%, #E8F5FF 50%, #F3E8FF 100%);
+      min-height: 100vh;
+      color: var(--ink);
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(77,150,255,.35);
+    }
+    .header-bubbles {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+      animation: floatBubble 6s ease-in-out infinite;
+    }
+    .bubble:nth-child(1){width:90px;height:90px;background:var(--sun);  top:-20px;left:5%;  animation-delay:0s;}
+    .bubble:nth-child(2){width:60px;height:60px;background:var(--coral);top:10px; left:20%; animation-delay:1s;}
+    .bubble:nth-child(3){width:110px;height:110px;background:var(--mint);bottom:-30px;left:40%;animation-delay:.5s;}
+    .bubble:nth-child(4){width:70px;height:70px;background:var(--white);top:5px; left:60%; animation-delay:2s;}
+    .bubble:nth-child(5){width:85px;height:85px;background:var(--peach);bottom:-10px;left:75%;animation-delay:1.5s;}
+    .bubble:nth-child(6){width:50px;height:50px;background:var(--sun);  top:15px;left:90%; animation-delay:.8s;}
+    @keyframes floatBubble {
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-12px);}
+    }
+
+    .header-inner {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 18px; padding: 28px 24px 22px;
+    }
+    .logo-icon {
+      font-size: 52px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+      animation: wiggle 3s ease-in-out infinite;
+    }
+    @keyframes wiggle {
+      0%,100%{transform:rotate(-4deg);}
+      50%{transform:rotate(4deg);}
+    }
+    .logo-text { text-align: left; line-height: 1; }
+    .logo-text .brand {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: 1px;
+      text-shadow: 0 3px 12px rgba(0,0,0,.2);
+    }
+    .logo-text .brand span { color: var(--sun); }
+    .logo-text .tagline {
+      font-size: .95rem; font-weight: 700;
+      color: rgba(255,255,255,.88);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .header-topic {
+      text-align: center;
+      padding: 0 24px 20px;
+      position: relative; z-index: 1;
+    }
+    .header-topic h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+      color: var(--white);
+      background: rgba(255,255,255,.18);
+      display: inline-block;
+      padding: 8px 32px;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,.4);
+      text-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+
+    /* ─── MAIN ─── */
+    main { max-width: 860px; margin: 0 auto; padding: 36px 20px 60px; }
+
+    /* ─── SECTION CARD ─── */
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 6px 28px rgba(0,0,0,.08);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 6px;
+      border-radius: 24px 24px 0 0;
+    }
+    .card-sky::before  { background: linear-gradient(90deg,var(--sky),var(--lavender)); }
+    .card-coral::before{ background: linear-gradient(90deg,var(--coral),var(--peach)); }
+    .card-mint::before { background: linear-gradient(90deg,var(--mint),var(--sky)); }
+    .card-sun::before  { background: linear-gradient(90deg,var(--sun),var(--coral)); }
+    .card-lav::before  { background: linear-gradient(90deg,var(--lavender),var(--coral)); }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.7rem;
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title .num {
+      background: var(--sky);
+      color: var(--white);
+      border-radius: 50%;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      box-shadow: 0 3px 8px rgba(77,150,255,.4);
+    }
+    .card-coral .section-title .num  { background: var(--coral); box-shadow: 0 3px 8px rgba(255,107,107,.4); }
+    .card-mint .section-title .num   { background: var(--mint);  box-shadow: 0 3px 8px rgba(107,203,119,.4); }
+    .card-sun .section-title .num    { background: var(--peach); box-shadow: 0 3px 8px rgba(255,179,71,.4); }
+    .card-lav .section-title .num    { background: var(--lavender); box-shadow: 0 3px 8px rgba(199,125,255,.4); }
+
+    /* ─── ARTICLE PILLS ─── */
+    .article-pills {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      justify-content: center; margin: 20px 0;
+    }
+    .pill {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.4rem;
+      padding: 14px 28px;
+      border-radius: 20px;
+      color: var(--white);
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+      transform: rotate(-2deg);
+      transition: transform .2s;
+    }
+    .pill:nth-child(2){ transform: rotate(2deg); }
+    .pill.a-pill { background: linear-gradient(135deg,#FF6B6B,#FF8E53); }
+    .pill.an-pill{ background: linear-gradient(135deg,#4D96FF,#6BCFF6); }
+    .pill.the-pill{background: linear-gradient(135deg,#6BCB77,#43C59E); }
+    .pill:hover { transform: scale(1.1) rotate(0deg) !important; }
+
+    /* ─── RULE BOX ─── */
+    .rule-box {
+      background: linear-gradient(135deg,rgba(77,150,255,.1),rgba(199,125,255,.1));
+      border-left: 5px solid var(--sky);
+      border-radius: 0 16px 16px 0;
+      padding: 16px 20px;
+      margin: 12px 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .rule-box strong { color: var(--sky); }
+    .card-coral .rule-box { border-left-color: var(--coral); background: linear-gradient(135deg,rgba(255,107,107,.1),rgba(255,179,71,.1)); }
+    .card-coral .rule-box strong { color: var(--coral); }
+    .card-mint .rule-box  { border-left-color: var(--mint); background: linear-gradient(135deg,rgba(107,203,119,.1),rgba(77,150,255,.1)); }
+    .card-mint .rule-box strong  { color: var(--mint); }
+    .card-lav .rule-box   { border-left-color: var(--lavender); background: linear-gradient(135deg,rgba(199,125,255,.1),rgba(255,107,107,.1)); }
+    .card-lav .rule-box strong   { color: var(--lavender); }
+
+    /* ─── EXAMPLE CHIPS ─── */
+    .example-grid {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;
+    }
+    .chip {
+      background: var(--white);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-weight: 700;
+      font-size: .95rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,.1);
+      border: 2px solid transparent;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .chip:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.15); }
+    .chip-a   { border-color: var(--coral);   color: var(--coral); }
+    .chip-an  { border-color: var(--sky);     color: var(--sky); }
+    .chip-the { border-color: var(--mint);    color: var(--mint); }
+
+    /* ─── QUIZ SECTION ─── */
+    .quiz-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem; margin-bottom: 18px;
+      text-align: center;
+    }
+    .quiz-item {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.07);
+    }
+    .quiz-sentence {
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 14px; line-height: 1.6;
+    }
+    .quiz-sentence .blank {
+      display: inline-block;
+      background: #EDE9FE;
+      border-radius: 8px;
+      min-width: 64px; padding: 2px 10px;
+      text-align: center;
+      color: var(--lavender);
+      font-family: 'Fredoka One', cursive;
+      letter-spacing: 2px;
+      border-bottom: 3px solid var(--lavender);
+    }
+    .quiz-options { display: flex; gap: 10px; flex-wrap: wrap; }
+    .quiz-btn {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 2px solid;
+      cursor: pointer;
+      transition: all .2s;
+      background: var(--white);
+    }
+    .quiz-btn.opt-a   { border-color: var(--coral);    color: var(--coral); }
+    .quiz-btn.opt-an  { border-color: var(--sky);      color: var(--sky); }
+    .quiz-btn.opt-the { border-color: var(--mint);     color: var(--mint); }
+    .quiz-btn:hover   { transform: translateY(-2px); }
+    .quiz-btn.correct {
+      background: var(--mint); color: var(--white);
+      border-color: var(--mint);
+      animation: pop .3s ease;
+    }
+    .quiz-btn.wrong {
+      background: var(--coral); color: var(--white);
+      border-color: var(--coral);
+      animation: shake .3s ease;
+    }
+    @keyframes pop  { 0%{transform:scale(.9)}60%{transform:scale(1.15)}100%{transform:scale(1)} }
+    @keyframes shake{ 0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)} }
+
+    .feedback {
+      margin-top: 10px; font-weight: 800;
+      font-size: .98rem; min-height: 22px;
+    }
+    .feedback.ok  { color: var(--mint); }
+    .feedback.err { color: var(--coral); }
+
+    /* ─── SCORE ─── */
+    .score-bar {
+      text-align: center; padding: 16px;
+      background: linear-gradient(135deg,var(--sun),var(--peach));
+      border-radius: 16px; margin-top: 20px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem; color: var(--white);
+      box-shadow: 0 4px 14px rgba(255,179,71,.4);
+    }
+
+    /* ─── MATCH GAME ─── */
+    .match-wrap { display: flex; gap: 20px; flex-wrap: wrap; }
+    .match-col  { flex: 1; min-width: 180px; }
+    .match-col h4 {
+      font-family:'Fredoka One',cursive; font-size:1.1rem;
+      margin-bottom:10px; text-align:center;
+    }
+    .match-item {
+      background: var(--white);
+      border: 2px solid #E0E0E0;
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .95rem;
+      transition: all .2s;
+      text-align: center;
+    }
+    .match-item:hover    { border-color: var(--lavender); transform: scale(1.03); }
+    .match-item.selected { background: var(--lavender); color: var(--white); border-color: var(--lavender); }
+    .match-item.matched  { background: var(--mint); color: var(--white); border-color: var(--mint); cursor: default; }
+    .match-item.wrong-flash { background: var(--coral); color: var(--white); border-color: var(--coral); }
+
+    /* ─── FILL BLANKS ─── */
+    .fill-item {
+      background: var(--white);
+      border-radius: 14px; padding: 16px 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.07);
+      font-size: 1.05rem; font-weight: 600;
+      line-height: 2;
+    }
+    .fill-item input {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      width: 80px; text-align: center;
+      border: none; border-bottom: 3px solid var(--sky);
+      background: transparent; outline: none;
+      color: var(--sky);
+      padding: 2px 4px;
+      border-radius: 4px 4px 0 0;
+    }
+    .fill-item input.correct-input { border-color: var(--mint); color: var(--mint); }
+    .fill-item input.wrong-input   { border-color: var(--coral); color: var(--coral); }
+    .check-btn {
+      display: block; margin: 18px auto 0;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.15rem;
+      padding: 12px 36px;
+      background: linear-gradient(135deg,var(--sky),var(--lavender));
+      color: var(--white); border: none;
+      border-radius: 50px; cursor: pointer;
+      box-shadow: 0 6px 18px rgba(77,150,255,.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .check-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(77,150,255,.4); }
+
+    /* ─── SORT GAME ─── */
+    .sort-wrap { display: flex; gap: 16px; flex-wrap: wrap; }
+    .sort-zone {
+      flex: 1; min-width: 180px;
+      min-height: 140px;
+      border: 2.5px dashed;
+      border-radius: 16px; padding: 12px;
+      transition: background .2s;
+    }
+    .sort-zone.a-zone   { border-color: var(--coral); }
+    .sort-zone.an-zone  { border-color: var(--sky); }
+    .sort-zone.the-zone { border-color: var(--mint); }
+    .sort-zone h4 {
+      font-family: 'Fredoka One', cursive;
+      text-align: center; font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .sort-zone.a-zone h4   { color: var(--coral); }
+    .sort-zone.an-zone h4  { color: var(--sky); }
+    .sort-zone.the-zone h4 { color: var(--mint); }
+    .word-bank {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-bottom: 16px;
+    }
+    .drag-word {
+      background: var(--white);
+      border: 2px solid var(--lavender);
+      color: var(--lavender);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-weight: 800; font-size: .9rem;
+      cursor: pointer;
+      transition: all .2s;
+      user-select: none;
+    }
+    .drag-word:hover { background: var(--lavender); color: var(--white); transform: scale(1.05); }
+    .drag-word.placed { opacity: .35; cursor: default; pointer-events: none; }
+    .sort-item {
+      background: var(--white);
+      border-radius: 8px; padding: 6px 14px;
+      font-weight: 700; font-size: .88rem;
+      margin-bottom: 6px;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .sort-item .remove-x {
+      cursor: pointer; color: #aaa; font-size: .8rem;
+    }
+    .sort-item .remove-x:hover { color: var(--coral); }
+
+    /* ─── PROGRESS ─── */
+    .progress-wrap { margin-top: 28px; }
+    .progress-label {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem; margin-bottom: 8px;
+      text-align: center; color: var(--sky);
+    }
+    .progress-track {
+      background: #E8F0FE;
+      border-radius: 50px; height: 22px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,.1);
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg,var(--sky),var(--lavender));
+      border-radius: 50px;
+      transition: width .6s cubic-bezier(.4,0,.2,1);
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 10px;
+      color: #fff; font-weight: 800; font-size: .8rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 24px;
+      font-weight: 700; font-size: .9rem;
+      color: #888;
+      font-family: 'Fredoka One', cursive;
+      letter-spacing: 1px;
+    }
+    footer span { color: var(--coral); }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:540px){
+      .section-card { padding: 22px 16px; }
+      .pill { font-size: 1.8rem; padding: 10px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<header>
+  <div class="header-bubbles">
+    <div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div>
+  </div>
+  <div class="header-inner">
+    <div class="logo-icon">🌟</div>
+    <div class="logo-text">
+      <div class="brand">Little<span>Lume</span></div>
+      <div class="tagline">English Learning ✦ Grade 4</div>
+    </div>
+    <div class="logo-icon">📚</div>
+  </div>
+  <div class="header-topic">
+    <h1>✨ Articles: A, An &amp; The ✨</h1>
+  </div>
+</header>
+
+<main>
+
+  <!-- ═══ 1. WHAT ARE ARTICLES? ═══ -->
+  <div class="section-card card-sky">
+    <div class="section-title"><span class="num">1</span>🤔 What Are Articles?</div>
+    <p style="font-size:1.05rem;line-height:1.8;margin-bottom:18px;">
+      Articles are <strong>small but super important words</strong> that go before nouns.<br>
+      They help us know <em>which</em> thing we're talking about — or <em>how many</em>!
+    </p>
+    <div class="article-pills">
+      <div class="pill a-pill">A</div>
+      <div class="pill an-pill">An</div>
+      <div class="pill the-pill">The</div>
+    </div>
+    <p style="text-align:center;font-size:.95rem;color:#777;margin-top:10px;font-weight:700;">
+      👆 Hover over each article to see it jump!
+    </p>
+  </div>
+
+  <!-- ═══ 2. INDEFINITE ARTICLES ═══ -->
+  <div class="section-card card-coral">
+    <div class="section-title"><span class="num">2</span>🌀 Indefinite Articles: <em style="color:var(--coral)">A</em> &amp; <em style="color:var(--sky)">An</em></div>
+
+    <div class="rule-box">
+      <strong>🔴 Use A</strong> before words that start with a <strong>consonant sound</strong>.<br>
+      (b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z)
+    </div>
+    <div class="example-grid">
+      <span class="chip chip-a">a cat 🐱</span>
+      <span class="chip chip-a">a ball ⚽</span>
+      <span class="chip chip-a">a dog 🐶</span>
+      <span class="chip chip-a">a house 🏠</span>
+      <span class="chip chip-a">a tree 🌳</span>
+      <span class="chip chip-a">a uniform 👕</span>
+    </div>
+
+    <div class="rule-box" style="margin-top:18px;">
+      <strong>🔵 Use An</strong> before words that start with a <strong>vowel sound</strong>.<br>
+      (a, e, i, o, u)
+    </div>
+    <div class="example-grid">
+      <span class="chip chip-an">an apple 🍎</span>
+      <span class="chip chip-an">an egg 🥚</span>
+      <span class="chip chip-an">an ice cream 🍦</span>
+      <span class="chip chip-an">an orange 🍊</span>
+      <span class="chip chip-an">an umbrella ☂️</span>
+      <span class="chip chip-an">an hour ⏰</span>
+    </div>
+
+    <div class="rule-box" style="margin-top:18px;background:rgba(255,211,61,.15);border-color:var(--sun);">
+      <strong>💡 Fun Tip!</strong> "A uniform" uses <strong>A</strong> because "uniform" sounds like <strong>YOO</strong>-niform (starts with a Y sound, not a vowel sound!). And "An hour" uses <strong>AN</strong> because the H is silent — it sounds like <strong>OW</strong>-er!
+    </div>
+  </div>
+
+  <!-- ═══ 3. DEFINITE ARTICLE ═══ -->
+  <div class="section-card card-mint">
+    <div class="section-title"><span class="num">3</span>🎯 Definite Article: <em style="color:var(--mint)">The</em></div>
+
+    <div class="rule-box">
+      <strong>🟢 Use The</strong> when you're talking about something <strong>specific</strong> that both the speaker and listener know about.
+    </div>
+
+    <p style="margin:14px 0 10px;font-weight:700;font-size:1.05rem;">📖 Look at these examples:</p>
+    <div style="background:#F0FFF4;border-radius:14px;padding:16px 20px;line-height:2.1;font-size:1rem;">
+      🐱 I saw <span style="color:var(--coral);font-weight:800">a cat</span> in the garden. <span style="color:var(--mint);font-weight:800">The cat</span> was black.<br>
+      🏫 I go to <span style="color:var(--coral);font-weight:800">a school</span> near my house. <span style="color:var(--mint);font-weight:800">The school</span> has a big playground.<br>
+      🌞 <span style="color:var(--mint);font-weight:800">The sun</span> is bright today. (There is only one sun!)<br>
+      🌍 <span style="color:var(--mint);font-weight:800">The Earth</span> goes around the sun.
+    </div>
+
+    <div class="example-grid" style="margin-top:14px;">
+      <span class="chip chip-the">the moon 🌙</span>
+      <span class="chip chip-the">the president 🎖️</span>
+      <span class="chip chip-the">the book I like 📖</span>
+      <span class="chip chip-the">the tallest mountain 🏔️</span>
+    </div>
+  </div>
+
+  <!-- ═══ 4. QUIZ ═══ -->
+  <div class="section-card card-sun">
+    <div class="section-title"><span class="num">4</span>🎮 Quick Quiz!</div>
+    <p style="margin-bottom:18px;font-weight:700;">Choose the correct article for each sentence. Tap your answer!</p>
+
+    <div id="quizContainer"></div>
+    <div class="score-bar" id="scoreBar" style="display:none;"></div>
+
+    <div class="progress-wrap">
+      <div class="progress-label" id="progressLabel">Progress: 0 / 8</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 5. SORT GAME ═══ -->
+  <div class="section-card card-lav">
+    <div class="section-title"><span class="num">5</span>🗂️ Sort It Out!</div>
+    <p style="margin-bottom:18px;font-weight:700;">Click a word, then click the correct article box to sort it!</p>
+
+    <div class="word-bank" id="wordBank"></div>
+
+    <div class="sort-wrap">
+      <div class="sort-zone a-zone" id="zone-a">
+        <h4>A</h4>
+        <div id="drop-a"></div>
+      </div>
+      <div class="sort-zone an-zone" id="zone-an">
+        <h4>An</h4>
+        <div id="drop-an"></div>
+      </div>
+      <div class="sort-zone the-zone" id="zone-the">
+        <h4>The</h4>
+        <div id="drop-the"></div>
+      </div>
+    </div>
+
+    <div id="sortFeedback" style="text-align:center;font-weight:800;font-size:1.05rem;margin-top:16px;min-height:28px;"></div>
+  </div>
+
+  <!-- ═══ 6. FILL IN THE BLANKS ═══ -->
+  <div class="section-card card-sky">
+    <div class="section-title"><span class="num">6</span>✍️ Fill in the Blanks!</div>
+    <p style="margin-bottom:16px;font-weight:700;">Type <strong>a</strong>, <strong>an</strong>, or <strong>the</strong> in each blank.</p>
+
+    <div id="fillContainer"></div>
+    <button class="check-btn" onclick="checkFill()">Check My Answers ✅</button>
+    <div id="fillScore" style="text-align:center;font-weight:800;font-size:1.05rem;margin-top:14px;min-height:24px;"></div>
+  </div>
+
+</main>
+
+<footer>
+  Made with <span>♥</span> by LittleLume English &nbsp;|&nbsp; Grade 4 &nbsp;✦&nbsp; Keep Learning &amp; Shining! 🌟
+</footer>
+
+<!-- ═══════════════ JAVASCRIPT ═══════════════ -->
+<script>
+/* ─── QUIZ DATA ─── */
+const quizData = [
+  { sentence: "___ elephant never forgets.", blank: "An", options:["A","An","The"], answer:"An", hint:"elephant starts with a vowel 🐘" },
+  { sentence: "I want ___ ice cream.", blank: "an", options:["a","an","the"], answer:"an", hint:"ice cream starts with a vowel 🍦" },
+  { sentence: "Look at ___ stars! They're beautiful.", blank: "the", options:["a","an","the"], answer:"the", hint:"we know which stars – the ones we can see! ⭐" },
+  { sentence: "She has ___ umbrella.", blank: "an", options:["a","an","the"], answer:"an", hint:"umbrella starts with a vowel ☂️" },
+  { sentence: "I saw ___ bird on ___ roof.", blank: "a / the", options:["a","an","the"], answer:"a", hint:"any bird – first time we mention it 🐦" },
+  { sentence: "He is ___ honest man.", blank: "an", options:["a","an","the"], answer:"an", hint:"honest – the H is silent, sounds like 'onest'! 🤫" },
+  { sentence: "___ sun rises in the east.", blank: "The", options:["A","An","The"], answer:"The", hint:"there is only one sun! ☀️" },
+  { sentence: "Can I borrow ___ pencil?", blank: "a", options:["a","an","the"], answer:"a", hint:"pencil starts with P – a consonant ✏️" },
+];
+
+let scores = 0;
+let answered = new Array(quizData.length).fill(false);
+
+function buildQuiz() {
+  const c = document.getElementById('quizContainer');
+  quizData.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-item';
+    div.innerHTML = `
+      <div class="quiz-sentence">
+        ${q.sentence.replace('___', `<span class="blank" id="blank-${i}">?</span>`)}
+      </div>
+      <div class="quiz-options">
+        ${q.options.map(o => `<button class="quiz-btn opt-${o.toLowerCase()}" onclick="pick(${i},'${o}',this)">${o}</button>`).join('')}
+      </div>
+      <div class="feedback" id="fb-${i}"></div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function pick(idx, choice, btn) {
+  if (answered[idx]) return;
+  const q = quizData[idx];
+  const fb = document.getElementById(`fb-${idx}`);
+  if (choice.toLowerCase() === q.answer.toLowerCase()) {
+    btn.classList.add('correct');
+    fb.textContent = `✅ Great job! Hint: ${q.hint}`;
+    fb.className = 'feedback ok';
+    const blankEl = document.getElementById(`blank-${idx}`);
+    blankEl.textContent = q.answer;
+    blankEl.style.background = '#D1FAE5';
+    blankEl.style.color = 'var(--mint)';
+    blankEl.style.borderBottom = '3px solid var(--mint)';
+    scores++;
+    answered[idx] = true;
+  } else {
+    btn.classList.add('wrong');
+    setTimeout(() => btn.classList.remove('wrong'), 400);
+    fb.textContent = `❌ Try again! Hint: ${q.hint}`;
+    fb.className = 'feedback err';
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = answered.filter(Boolean).length;
+  const pct  = Math.round(done / quizData.length * 100);
+  document.getElementById('progressLabel').textContent = `Progress: ${done} / ${quizData.length}`;
+  const fill = document.getElementById('progressFill');
+  fill.style.width = pct + '%';
+  fill.textContent = pct + '%';
+
+  if (done === quizData.length) {
+    const bar = document.getElementById('scoreBar');
+    const stars = scores >= 7 ? '⭐⭐⭐' : scores >= 5 ? '⭐⭐' : '⭐';
+    bar.textContent = `${stars}  You got ${scores} / ${quizData.length} correct! ${stars}`;
+    bar.style.display = 'block';
+  }
+}
+
+buildQuiz();
+
+/* ─── SORT GAME ─── */
+const sortWords = [
+  { word: "book",     answer: "a" },
+  { word: "apple",    answer: "an" },
+  { word: "moon",     answer: "the" },
+  { word: "umbrella", answer: "an" },
+  { word: "dog",      answer: "a" },
+  { word: "ocean",    answer: "the" },
+  { word: "hour",     answer: "an" },
+  { word: "kite",     answer: "a" },
+  { word: "Earth",    answer: "the" },
+];
+
+let selectedWord = null;
+
+function buildSort() {
+  const wb = document.getElementById('wordBank');
+  sortWords.forEach((w, i) => {
+    const span = document.createElement('span');
+    span.className = 'drag-word';
+    span.id = `dw-${i}`;
+    span.textContent = w.word;
+    span.onclick = () => selectWord(i, span);
+    wb.appendChild(span);
+  });
+
+  ['a','an','the'].forEach(zone => {
+    document.getElementById(`zone-${zone}`).onclick = () => dropInZone(zone);
+  });
+}
+
+function selectWord(idx, el) {
+  if (el.classList.contains('placed')) return;
+  document.querySelectorAll('.drag-word').forEach(e => e.style.outline='');
+  el.style.outline = '3px solid var(--lavender)';
+  selectedWord = { idx, el };
+  document.getElementById('sortFeedback').textContent = `Selected: "${sortWords[idx].word}" — now click the right box!`;
+}
+
+function dropInZone(zone) {
+  if (!selectedWord) {
+    document.getElementById('sortFeedback').textContent = '👆 First click a word from the bank!';
+    return;
+  }
+  const { idx, el } = selectedWord;
+  const correct = sortWords[idx].answer;
+  const drop = document.getElementById(`drop-${zone}`);
+
+  if (zone === correct) {
+    const item = document.createElement('div');
+    item.className = 'sort-item';
+    item.textContent = sortWords[idx].word + ' ✅';
+    drop.appendChild(item);
+    el.classList.add('placed');
+    el.style.outline = '';
+    document.getElementById('sortFeedback').textContent = `✅ Correct! "${sortWords[idx].word}" → ${zone}`;
+    document.getElementById('sortFeedback').style.color = 'var(--mint)';
+  } else {
+    document.getElementById('sortFeedback').textContent = `❌ Oops! "${sortWords[idx].word}" doesn't go with "${zone}". Try again!`;
+    document.getElementById('sortFeedback').style.color = 'var(--coral)';
+    el.style.animation = 'shake .3s ease';
+    setTimeout(() => { el.style.animation=''; el.style.outline=''; }, 400);
+  }
+  selectedWord = null;
+}
+
+buildSort();
+
+/* ─── FILL IN THE BLANKS ─── */
+const fillData = [
+  { text: ["I have ", "a|an|the", "a", " dog named Max. ", "a|an|the", "the", " dog loves to play in the park."],
+    sentence: `I have ___ dog named Max. ___ dog loves to play in the park.`,
+    answers: ["a","the"] },
+  { sentence: "___ Eiffel Tower is in France.", answers: ["The"] },
+  { sentence: "She ate ___ orange for breakfast.", answers: ["an"] },
+  { sentence: "We found ___ empty bottle on the beach.", answers: ["an"] },
+  { sentence: "He wants to be ___ engineer.", answers: ["an"] },
+  { sentence: "___ Pacific Ocean is the largest ocean.", answers: ["The"] },
+];
+
+const fillSimple = [
+  { sentence: "I have ___ dog named Max. ___ dog loves to play.", answers: ["a","the"] },
+  { sentence: "___ Eiffel Tower is in France.", answers: ["The"] },
+  { sentence: "She ate ___ orange for breakfast.", answers: ["an"] },
+  { sentence: "We found ___ empty bottle on the beach.", answers: ["an"] },
+  { sentence: "He wants to be ___ engineer.", answers: ["an"] },
+  { sentence: "___ Pacific Ocean is the largest ocean.", answers: ["The"] },
+];
+
+function buildFill() {
+  const c = document.getElementById('fillContainer');
+  fillSimple.forEach((f, i) => {
+    const div = document.createElement('div');
+    div.className = 'fill-item';
+    let html = f.sentence;
+    let counter = 0;
+    html = html.replace(/___/g, () => `<input type="text" id="fi-${i}-${counter++}" maxlength="3" placeholder="___" />`);
+    div.innerHTML = html;
+    c.appendChild(div);
+  });
+}
+
+function checkFill() {
+  let total = 0, correct = 0;
+  fillSimple.forEach((f, i) => {
+    f.answers.forEach((ans, j) => {
+      total++;
+      const inp = document.getElementById(`fi-${i}-${j}`);
+      if (!inp) return;
+      if (inp.value.trim().toLowerCase() === ans.toLowerCase()) {
+        inp.className = 'correct-input';
+        correct++;
+      } else {
+        inp.className = 'wrong-input';
+      }
+    });
+  });
+  const pct = Math.round(correct / total * 100);
+  const scoreEl = document.getElementById('fillScore');
+  const stars = pct === 100 ? '🌟🌟🌟' : pct >= 70 ? '⭐⭐' : '⭐';
+  scoreEl.textContent = `${stars} Score: ${correct} / ${total} — ${pct}% ${stars}`;
+  scoreEl.style.color = pct >= 70 ? 'var(--mint)' : 'var(--coral)';
+}
+
+buildFill();
+</script>
+</body>
+</html>

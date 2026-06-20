@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Present Perfect Tense Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #4EBDB5;
+  --brand-dark: #3A9A91;
+  --teal:       #6BBF96;
+  --teal-light: #E8F5ED;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #C8B3E8;
+  --rose:       #F5B8A5;
+  --rose-lt:    #FDF3E8;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #3D4851;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+/* HEADER */
+.site-header { background: linear-gradient(135deg, #A8D8D8 0%, #5DADE2 50%, #D4B8E8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .18; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.15); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.3); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.12); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.15)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* NAV */
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+/* MAIN */
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+/* CARDS */
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card.green  { border-color: #4CAF50; }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+
+/* CONCEPT BOX */
+.concept-box { background: linear-gradient(135deg, var(--teal) 0%, #00C6B8 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'🔗'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.15; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+/* TIMELINE */
+.timeline-box { background: #fff; border-radius: 16px; padding: 24px 20px 16px; margin-top: 14px; position: relative; }
+.timeline-track { position: relative; height: 60px; background: linear-gradient(90deg, #E8F5ED, #FDF3E8); border-radius: 30px; display: flex; align-items: center; padding: 0 24px; }
+.timeline-track::before { content:''; position:absolute; left:24px; right:24px; top:50%; height:3px; background:#ccc; transform:translateY(-50%); }
+.tl-point { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
+.tl-dot { width: 18px; height: 18px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+.tl-dot.past  { background: var(--teal); }
+.tl-dot.now   { background: var(--brand); width: 22px; height: 22px; }
+.tl-label { font-size: 10.5px; font-weight: 800; text-align: center; white-space: nowrap; }
+.tl-label.past { color: var(--teal); }
+.tl-label.now  { color: var(--brand); }
+.tl-spacer { flex: 1; }
+.tl-bracket { position: absolute; top: -10px; left: 24px; right: calc(50% - 11px); height: 18px; border: 2px solid var(--teal); border-bottom: none; border-radius: 10px 10px 0 0; }
+.tl-bracket-label { position: absolute; top: -32px; left: 24px; right: calc(50% - 11px); text-align: center; font-size: 10px; font-weight: 800; color: var(--teal); }
+.tl-caption { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 30px; font-weight: 600; }
+.tl-caption b { color: var(--ink); }
+
+/* COMPARE */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: #FDF3E8; border: 2px solid #F5B8A5; }
+.compare-col.right { background: #E8F5ED; border: 2px solid #6BBF96; }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+/* TABLE */
+.pro-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); margin-top:12px; font-size:14px; }
+.pro-table thead tr { background: var(--brand); color:#fff; }
+.pro-table th { padding:12px 14px; text-align:left; font-weight:700; font-size:12.5px; letter-spacing:.4px; }
+.pro-table td { padding:11px 14px; vertical-align:top; border-bottom:1px solid #f0ebe4; }
+.pro-table tr:last-child td { border:none; }
+.pro-table tr:nth-child(even) td { background:#FFF8F2; }
+.pro-table tr:hover td { background:#FFF3E8; }
+.pro-table .en { font-weight:700; color:var(--brand-dark); }
+.pro-table .muted { color:var(--muted); font-size:12.5px; }
+.pro-table .ex { font-style:italic; color:#444; }
+.pro-table .exsub { font-size:12px; color:var(--muted); display:block; margin-top:2px; }
+
+/* FORMULA BOX */
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.subj { background: var(--brand); color: #fff; }
+.fp.aux  { background: var(--teal); color: #fff; }
+.fp.verb { background: var(--purple); color: #fff; }
+.fp.plus { background: transparent; color: var(--muted); font-size: 18px; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+/* HAVE/HAS CHIPS */
+.havechip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; justify-content: center; }
+.havechip { border-radius: 14px; padding: 12px 18px; text-align: center; min-width: 90px; border: 2px solid transparent; }
+.havechip.have { background: #E8F5ED; border-color: #6BBF96; }
+.havechip.has  { background: #FDF3E8; border-color: #F5B8A5; }
+.havechip-word { font-family:'Baloo 2',cursive; font-size: 20px; font-weight: 800; }
+.havechip.have .havechip-word { color: #2E6B62; }
+.havechip.has  .havechip-word { color: #B24800; }
+.havechip-sub { font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 2px; }
+
+/* BUILDER */
+.builder-row { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:10px; background:var(--yellow-lt); border:2px solid var(--yellow); border-radius:12px; padding:12px 16px; }
+.slot { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; padding:5px 12px; border-radius:8px; }
+.slot.pronoun { background:var(--brand); color:#fff; }
+.slot.aux     { background:var(--teal); color:#fff; }
+.slot.verb    { background:var(--purple); color:#fff; }
+.slot.obj     { background:#999; color:#fff; }
+.slot.plus    { background:transparent; color:var(--muted); font-size:18px; }
+.builder-row .meaning { margin-left:auto; font-size:12px; color:var(--muted); font-style:italic; }
+
+/* DIALOGUE */
+.dialogue { display:flex; flex-direction:column; gap:12px; }
+.brow { display:flex; align-items:flex-start; gap:10px; }
+.brow.right { flex-direction:row-reverse; }
+.av { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; background:#f0ece6; }
+.bc { display:flex; flex-direction:column; max-width:76%; }
+.brow.right .bc { align-items:flex-end; }
+.bname { font-size:11px; font-weight:700; color:var(--muted); margin-bottom:3px; }
+.bubble { padding:11px 15px; border-radius:16px; font-size:14px; font-weight:500; line-height:1.55; }
+.brow:not(.right) .bubble { background:var(--teal-light); border-bottom-left-radius:4px; color:#003D3A; }
+.brow.right .bubble { background:#FFF0E5; border-bottom-right-radius:4px; color:#4A1A00; }
+.bubble .hi { font-weight:700; color:var(--brand); }
+.bexp { font-size:12px; color:var(--muted); margin-top:4px; font-style:italic; }
+.brow.right .bexp { text-align:right; }
+
+/* TIP */
+.tip { background:var(--yellow-lt); border:2px dashed var(--yellow); border-radius:14px; padding:14px 18px; display:flex; gap:12px; align-items:flex-start; margin-top:14px; }
+.tip-ico { font-size:26px; flex-shrink:0; }
+.tip-body { font-size:13.5px; line-height:1.7; color:#5A4200; font-weight:500; }
+.tip-body strong { color:var(--brand-dark); }
+
+/* QUIZ */
+.score-bar { background:var(--white); border-radius:14px; padding:14px 20px; margin-bottom:20px; display:flex; align-items:center; gap:14px; box-shadow:var(--shadow-sm); }
+.sc-label { font-weight:700; font-size:13px; color:var(--muted); }
+.sc-num { font-family:'Baloo 2',cursive; font-size:32px; font-weight:800; color:var(--brand); line-height:1; }
+.sc-max { font-size:15px; color:var(--muted); font-weight:600; }
+.sc-stars { font-size:22px; margin-left:auto; }
+.quiz-wrap { display:flex; flex-direction:column; gap:16px; }
+.qitem { background:var(--white); border-radius:16px; padding:18px 20px; box-shadow:var(--shadow-sm); border-left:5px solid var(--teal); }
+.qnum { font-size:10.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:6px; }
+.qtext { font-size:15px; font-weight:600; color:var(--ink); margin-bottom:12px; line-height:1.5; }
+.qtext em { color:var(--brand); font-style:normal; font-weight:800; }
+.opts { display:flex; flex-wrap:wrap; gap:8px; }
+.opt { padding:8px 20px; border:2.5px solid #DDD; border-radius:30px; background:var(--white); font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; cursor:pointer; transition:all .18s; }
+.opt:hover { border-color:var(--teal); color:var(--teal); }
+.opt.correct { background:#E8F5E9; border-color:#4CAF50; color:#1B5E20; }
+.opt.wrong   { background:var(--rose-lt); border-color:var(--rose); color:#7f0021; }
+.qfb { margin-top:10px; font-size:13.5px; font-weight:700; display:none; }
+.qfb.show { display:block; }
+.qfb.ok { color:#2e7d32; }
+.qfb.no { color:#c62828; }
+
+/* PROGRESS */
+.progress-box { background:linear-gradient(135deg,var(--purple) 0%,#9B6FD8 100%); border-radius:var(--card-r); padding:20px 24px; color:#fff; margin-bottom:18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.progress-box h4 { font-family:'Baloo 2',cursive; font-size:18px; margin-bottom:4px; }
+.progress-box p { font-size:13px; opacity:.9; }
+.prog-dots { display:flex; gap:8px; margin-left:auto; }
+.pdot { width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,.35); border:2px solid rgba(255,255,255,.5); transition:all .3s; }
+.pdot.done { background:var(--yellow); border-color:var(--yellow); }
+
+.reset-btn { display:block; margin:24px auto 0; padding:14px 40px; background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%); color:#fff; border:none; border-radius:40px; font-family:'Baloo 2',cursive; font-size:18px; font-weight:700; cursor:pointer; box-shadow:0 6px 20px rgba(255,107,43,.4); transition:transform .2s,box-shadow .2s; }
+.reset-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,107,43,.45); }
+
+@media(max-width:520px) {
+  .compare { grid-template-columns:1fr; }
+  .header-mascot { display:none; }
+  .tab-btn { padding:12px 14px; font-size:12px; }
+  .timeline-track { padding: 0 10px; }
+  .tl-label { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes"><div class="hs hs1"></div><div class="hs hs2"></div><div class="hs hs3"></div></div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">English Course</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grade 4 · English</div>
+      <div class="header-title">Learning <span>Present Perfect</span><br>Tense</div>
+      <div class="header-sub">Connecting the past with NOW! 🔗</div>
+    </div>
+    <div class="header-mascot">🦊</div>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro',this)">🏠 Introduction</button>
+    <button class="tab-btn" onclick="showTab('form',this)">🔨 Form & Formula</button>
+    <button class="tab-btn" onclick="showTab('usage',this)">⏰ When to Use</button>
+    <button class="tab-btn" onclick="showTab('negative',this)">❌ Negative & ❓ Question</button>
+    <button class="tab-btn" onclick="showTab('dialogue',this)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz',this)">🏆 Quiz</button>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- ══ SECTION 1: INTRODUCTION ══ -->
+<div class="section active" id="intro">
+
+  <div class="progress-box">
+    <div>
+      <h4>📍 You are here</h4>
+      <p>Start with the introduction, then explore each part step by step!</p>
+    </div>
+    <div class="prog-dots">
+      <div class="pdot done"></div><div class="pdot"></div><div class="pdot"></div>
+      <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
+    </div>
+  </div>
+
+  <div class="sec-title">🔗 What is Present Perfect Tense? <span class="pill">Core Concept</span></div>
+
+  <div class="concept-box">
+    <h3>Definition</h3>
+    <p>The <strong>Present Perfect Tense</strong> is used to talk about something that happened in the past but is <strong>still connected to the present moment</strong>. It links a past action or experience to "now".<br><br>
+    Think of it as a <strong>bridge</strong> between the past and the present — it shows that something has an effect, result, or meaning right now!</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Visualizing Time</div>
+    <h3>📍 An Action Connected to Now</h3>
+    <div class="timeline-box">
+      <div class="tl-bracket"></div>
+      <div class="tl-bracket-label">has happened</div>
+      <div class="timeline-track">
+        <div class="tl-point">
+          <div class="tl-dot past"></div>
+          <div class="tl-label past">Past<br>(action happened)</div>
+        </div>
+        <div class="tl-spacer"></div>
+        <div class="tl-point">
+          <div class="tl-dot now"></div>
+          <div class="tl-label now">Now<br>(connection / result)</div>
+        </div>
+      </div>
+      <div class="tl-caption">
+        Example: <b>"I have finished my homework."</b><br>
+        The action happened in the past, but the result is true <em>right now</em> — my homework is done!
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Simple Past vs. Present Perfect</div>
+    <h3>Why We Need Two Different Tenses</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>🔹 Simple Past</h4>
+        <ul>
+          <li>I <b>watched</b> that movie <b>yesterday</b>.</li>
+          <li>She <b>visited</b> Bali <b>last year</b>.</li>
+          <li>We <b>cleaned</b> the house <b>on Monday</b>.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">Tells us <b>exactly when</b> it happened — finished and done, with a specific time.</p>
+      </div>
+      <div class="compare-col right">
+        <h4>🔸 Present Perfect</h4>
+        <ul>
+          <li>I <b>have watched</b> that movie.</li>
+          <li>She <b>has visited</b> Bali.</li>
+          <li>We <b>have cleaned</b> the house.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">No specific time — focuses on the <b>result or experience now</b>, not when it happened.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>BunRey Fox says:</strong> Present Perfect uses two helper words: <strong>have</strong> and <strong>has</strong>. We use words like <strong>already</strong>, <strong>just</strong>, <strong>yet</strong>, <strong>ever</strong>, and <strong>never</strong> with this tense — but NOT exact times like "yesterday" or "last week"!
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: FORM & FORMULA ══ -->
+<div class="section" id="form">
+  <div class="sec-title">🔨 Form & Formula <span class="pill">How to Build It</span></div>
+
+  <div class="concept-box">
+    <h3>The Magic Formula</h3>
+    <p>Present Perfect Tense always uses <strong>have</strong> or <strong>has</strong> + the <strong>past participle (V3)</strong> of the verb. The trick is choosing the right helper word for the subject!</p>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-label">Formula</div>
+    <h3>📐 Present Perfect Formula</h3>
+    <div class="formula-box">
+      <div class="formula-main">
+        <span class="fp subj">Subject</span>
+        <span class="fp plus">+</span>
+        <span class="fp aux">have / has</span>
+        <span class="fp plus">+</span>
+        <span class="fp verb">Past Participle (V3)</span>
+      </div>
+      <div class="formula-sub">Example: She + has + eaten = "She has eaten."</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Choosing have vs. has</div>
+    <h3>🔀 When to Use "have" or "has"</h3>
+    <div class="havechip-row">
+      <div class="havechip have"><div class="havechip-word">have</div><div class="havechip-sub">I / You / We / They</div></div>
+      <div class="havechip has"><div class="havechip-word">has</div><div class="havechip-sub">He / She / It</div></div>
+    </div>
+    <table class="pro-table" style="margin-top:18px">
+      <thead><tr><th>Subject</th><th>Helper Word</th><th>Example Sentence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">I</span></td><td><span class="en" style="color:#1B5E20">have</span></td><td><span class="ex">I <b>have</b> done my homework.</span></td></tr>
+        <tr><td><span class="en">You</span></td><td><span class="en" style="color:#1B5E20">have</span></td><td><span class="ex">You <b>have</b> grown taller!</span></td></tr>
+        <tr><td><span class="en">He</span></td><td><span class="en" style="color:#B24800">has</span></td><td><span class="ex">He <b>has</b> lost his pencil.</span></td></tr>
+        <tr><td><span class="en">She</span></td><td><span class="en" style="color:#B24800">has</span></td><td><span class="ex">She <b>has</b> finished reading.</span></td></tr>
+        <tr><td><span class="en">It</span></td><td><span class="en" style="color:#B24800">has</span></td><td><span class="ex">It <b>has</b> rained a lot this week.</span></td></tr>
+        <tr><td><span class="en">We</span></td><td><span class="en" style="color:#1B5E20">have</span></td><td><span class="ex">We <b>have</b> visited the museum.</span></td></tr>
+        <tr><td><span class="en">They</span></td><td><span class="en" style="color:#1B5E20">have</span></td><td><span class="ex">They <b>have</b> arrived at school.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card purple">
+    <div class="card-label">Regular vs. Irregular Verbs (V3)</div>
+    <h3>Common Past Participles (V3)</h3>
+    <table class="pro-table">
+      <thead><tr><th>Base Verb (V1)</th><th>Simple Past (V2)</th><th>Past Participle (V3)</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">eat</span></td><td class="muted">ate</td><td><span class="en">eaten</span></td><td><span class="ex">I have <b>eaten</b> my lunch.</span></td></tr>
+        <tr><td><span class="en">do</span></td><td class="muted">did</td><td><span class="en">done</span></td><td><span class="ex">She has <b>done</b> her chores.</span></td></tr>
+        <tr><td><span class="en">go</span></td><td class="muted">went</td><td><span class="en">gone / been</span></td><td><span class="ex">He has <b>gone</b> to the library.</span></td></tr>
+        <tr><td><span class="en">see</span></td><td class="muted">saw</td><td><span class="en">seen</span></td><td><span class="ex">We have <b>seen</b> that movie.</span></td></tr>
+        <tr><td><span class="en">write</span></td><td class="muted">wrote</td><td><span class="en">written</span></td><td><span class="ex">I have <b>written</b> a story.</span></td></tr>
+        <tr><td><span class="en">clean</span></td><td class="muted">cleaned</td><td><span class="en">cleaned</span></td><td><span class="ex">They have <b>cleaned</b> the classroom.</span></td></tr>
+        <tr><td><span class="en">finish</span></td><td class="muted">finished</td><td><span class="en">finished</span></td><td><span class="ex">She has <b>finished</b> her drawing.</span></td></tr>
+        <tr><td><span class="en">break</span></td><td class="muted">broke</td><td><span class="en">broken</span></td><td><span class="ex">He has <b>broken</b> his pencil.</span></td></tr>
+      </tbody>
+    </table>
+    <div class="tip" style="margin-top:14px">
+      <div class="tip-ico">💡</div>
+      <div class="tip-body">
+        <strong>Easy tip:</strong> Regular verbs add <strong>-ed</strong> for both V2 and V3 (clean → cleaned → cleaned). Irregular verbs change their spelling and must be memorized (eat → ate → eaten).
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Sentence Builder</div>
+    <h3>🔧 Building Present Perfect Sentences</h3>
+    <div class="builder-row">
+      <span class="slot pronoun">I</span><span class="slot aux">have</span><span class="slot verb">finished</span><span class="slot plus">+</span><span class="slot obj">my homework</span>
+      <span class="meaning">→ I have finished my homework.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">She</span><span class="slot aux">has</span><span class="slot verb">cleaned</span><span class="slot plus">+</span><span class="slot obj">her room</span>
+      <span class="meaning">→ She has cleaned her room.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">We</span><span class="slot aux">have</span><span class="slot verb">visited</span><span class="slot plus">+</span><span class="slot obj">Bandung twice</span>
+      <span class="meaning">→ We have visited Bandung twice.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">He</span><span class="slot aux">has</span><span class="slot verb">lost</span><span class="slot plus">+</span><span class="slot obj">his bag</span>
+      <span class="meaning">→ He has lost his bag.</span>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">⚠️</div>
+    <div class="tip-body">
+      <strong>Remember!</strong> Always match the helper word to the subject.<br>
+      ✅ <em>He has eaten. They have eaten.</em><br>
+      ❌ <em>He have eaten. They has eaten.</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: WHEN TO USE ══ -->
+<div class="section" id="usage">
+  <div class="sec-title">⏰ When Do We Use It? <span class="pill">Real-life Situations</span></div>
+
+  <div class="concept-box">
+    <h3>3 Common Situations</h3>
+    <p>We use Present Perfect Tense to show:<br>
+    1️⃣ Something that <strong>just finished</strong>, with a result we can see now<br>
+    2️⃣ A <strong>life experience</strong> — something you have done at some point (no specific time)<br>
+    3️⃣ Something that <strong>hasn't happened yet</strong>, but might happen soon</p>
+  </div>
+
+  <div class="card rose">
+    <div class="card-label">Situation 1</div>
+    <h3>✅ Recently Completed Action (Result Now)</h3>
+    <table class="pro-table">
+      <thead><tr><th>Example Sentence</th><th>Result / Meaning Now</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">I have <b>just</b> finished my homework.</span></td><td class="muted">My homework is done — I can play now!</td></tr>
+        <tr><td><span class="ex">She has <b>already</b> cleaned her room.</span></td><td class="muted">Her room is clean now.</td></tr>
+        <tr><td><span class="ex">They have <b>just</b> arrived.</span></td><td class="muted">They are here now!</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Situation 2</div>
+    <h3>🌍 Life Experience (No Specific Time)</h3>
+    <table class="pro-table">
+      <thead><tr><th>Example Sentence</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">I have <b>visited</b> Yogyakarta.</span></td><td class="muted">At some point in my life, I went there. (when isn't important)</td></tr>
+        <tr><td><span class="ex">Have you <b>ever</b> ridden a horse?</span></td><td class="muted">Asking about your life experience.</td></tr>
+        <tr><td><span class="ex">She has <b>never</b> tried durian.</span></td><td class="muted">Not once in her life, until now.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card purple">
+    <div class="card-label">Situation 3</div>
+    <h3>⏳ Not Yet Happened</h3>
+    <table class="pro-table">
+      <thead><tr><th>Example Sentence</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">I haven't finished my drawing <b>yet</b>.</span></td><td class="muted">Still not done, but might finish soon.</td></tr>
+        <tr><td><span class="ex">Have you done your homework <b>yet</b>?</span></td><td class="muted">Asking if it's done by now.</td></tr>
+        <tr><td><span class="ex">She hasn't called me <b>yet</b>.</span></td><td class="muted">Up to now, no call has come.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🔑</div>
+    <div class="tip-body">
+      <strong>Key signal words for Present Perfect:</strong><br>
+      <strong>already</strong> · <strong>just</strong> · <strong>yet</strong> · <strong>ever</strong> · <strong>never</strong> · <strong>since</strong> · <strong>for</strong><br><br>
+      🚫 We do NOT use Present Perfect with exact past times like <em>yesterday, last week, in 2020, two days ago</em>.
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 4: NEGATIVE & QUESTION ══ -->
+<div class="section" id="negative">
+  <div class="sec-title">❌ Negative & ❓ Question Forms</div>
+
+  <div class="concept-box">
+    <h3>Making Negative & Question Sentences</h3>
+    <p>To make a sentence negative, add <strong>not</strong> after "have/has" → <strong>haven't / hasn't</strong>.<br>
+    To make a question, simply move <strong>have/has</strong> to the beginning of the sentence!</p>
+  </div>
+
+  <div class="card rose">
+    <div class="card-label">Negative Form</div>
+    <h3>❌ Subject + haven't / hasn't + V3</h3>
+    <table class="pro-table">
+      <thead><tr><th>Positive</th><th>Negative</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">I have finished my homework.</span></td><td><span class="ex">I <b>haven't</b> finished my homework <b>yet</b>.</span></td></tr>
+        <tr><td><span class="ex">She has eaten breakfast.</span></td><td><span class="ex">She <b>hasn't</b> eaten breakfast <b>yet</b>.</span></td></tr>
+        <tr><td><span class="ex">They have arrived.</span></td><td><span class="ex">They <b>haven't</b> arrived <b>yet</b>.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Question Form</div>
+    <h3>❓ Have / Has + Subject + V3 + ... ?</h3>
+    <table class="pro-table">
+      <thead><tr><th>Statement</th><th>Question</th><th>Possible Answer</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">You have finished homework.</span></td><td><span class="ex"><b>Have</b> you finished your homework?</span></td><td class="muted">Yes, I have. / No, I haven't.</td></tr>
+        <tr><td><span class="ex">She has visited Bali.</span></td><td><span class="ex"><b>Has</b> she visited Bali?</span></td><td class="muted">Yes, she has. / No, she hasn't.</td></tr>
+        <tr><td><span class="ex">They have eaten lunch.</span></td><td><span class="ex"><b>Have</b> they eaten lunch?</span></td><td class="muted">Yes, they have. / No, they haven't.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-label">Summary Table</div>
+    <h3>📋 All Three Forms at a Glance</h3>
+    <table class="pro-table">
+      <thead><tr><th>Form</th><th>Formula</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en" style="color:#4CAF50">Positive (+)</span></td><td class="muted">Subject + have/has + V3</td><td><span class="ex">She has gone home.</span></td></tr>
+        <tr><td><span class="en" style="color:var(--rose)">Negative (−)</span></td><td class="muted">Subject + haven't/hasn't + V3</td><td><span class="ex">She hasn't gone home yet.</span></td></tr>
+        <tr><td><span class="en" style="color:var(--teal)">Question (?)</span></td><td class="muted">Have/Has + Subject + V3 ... ?</td><td><span class="ex">Has she gone home?</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>Practice trick:</strong> Take any Present Perfect sentence and try all 3 forms!<br>
+      ✅ <em>We have watched the new movie.</em><br>
+      ❌ <em>We haven't watched the new movie yet.</em><br>
+      ❓ <em>Have we watched the new movie?</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 5: DIALOGUE ══ -->
+<div class="section" id="dialogue">
+  <div class="sec-title">💬 Dialogue Practice <span class="pill">Real Conversations</span></div>
+
+  <div class="card green">
+    <div class="card-label">Dialogue 1 – Finished Homework?</div>
+    <h3>Have You Done It Yet? 📚</h3>
+    <div class="dialogue">
+      <div class="brow">
+        <div class="av">👩‍🏫</div>
+        <div class="bc">
+          <div class="bname">Teacher</div>
+          <div class="bubble"><span class="hi">Have</span> you finished your English homework <span class="hi">yet</span>, Dani?</div>
+          <div class="bexp">→ Question form: Have + subject + V3 ... + yet?</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Dani</div>
+          <div class="bubble">Yes, I <span class="hi">have</span>! I <span class="hi">have already finished</span> it this morning.</div>
+          <div class="bexp">→ "have already finished" = the task is done, with a result now.</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👩‍🏫</div>
+        <div class="bc">
+          <div class="bname">Teacher</div>
+          <div class="bubble">Great! How about you, Sari? <span class="hi">Has</span> she finished hers too?</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Sari</div>
+          <div class="bubble">I'm sorry, Ma'am. I <span class="hi">haven't</span> finished mine <span class="hi">yet</span>. I will finish it at home.</div>
+          <div class="bexp">→ "haven't finished yet" = not done up to now, but might be done soon.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card rose" style="margin-top:18px">
+    <div class="card-label">Dialogue 2 – Life Experiences</div>
+    <h3>Have You Ever...? 🌍</h3>
+    <div class="dialogue">
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Wulan</div>
+          <div class="bubble"><span class="hi">Have</span> you <span class="hi">ever</span> been to a zoo, Rafi?</div>
+          <div class="bexp">→ "ever" asks about life experience, no specific time needed.</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Rafi</div>
+          <div class="bubble">Yes, I <span class="hi">have</span>! I <span class="hi">have visited</span> Ragunan Zoo many times. I <span class="hi">have</span> even <span class="hi">seen</span> a real tiger!</div>
+          <div class="bexp">→ "have visited" and "have seen" describe past experiences connected to now (he can talk about it today).</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Wulan</div>
+          <div class="bubble">Wow! I <span class="hi">have never seen</span> a real tiger before. I would love to go there!</div>
+          <div class="bexp">→ "have never seen" = not even once in her life so far.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>Try this practice!</strong> Read both dialogues and find all the Present Perfect verbs (have/has + V3). Can you spot the signal words: <em>yet, already, ever, never</em>? 🎉
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 6: QUIZ ══ -->
+<div class="section" id="quiz">
+  <div class="sec-title">🏆 Quiz Time! <span class="pill">Test Yourself</span></div>
+
+  <div class="score-bar">
+    <div class="sc-label">⭐ YOUR SCORE</div>
+    <div class="sc-num" id="scoreNum">0</div>
+    <div class="sc-max">/ 8</div>
+    <div class="sc-stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="quiz-wrap">
+
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Formula</div>
+      <div class="qtext">What is the correct formula for Present Perfect Tense?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">Subject + had + V3</button>
+        <button class="opt" onclick="ans('q1',this,true)">Subject + have/has + V3</button>
+        <button class="opt" onclick="ans('q1',this,false)">Subject + V2</button>
+        <button class="opt" onclick="ans('q1',this,false)">Subject + will + V1</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — have vs has</div>
+      <div class="qtext">She <em>___</em> already <em>___</em> her breakfast.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,true)">has … eaten</button>
+        <button class="opt" onclick="ans('q2',this,false)">have … eaten</button>
+        <button class="opt" onclick="ans('q2',this,false)">has … eat</button>
+        <button class="opt" onclick="ans('q2',this,false)">had … eaten</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — have vs has</div>
+      <div class="qtext">Choose the correct sentence.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">They has finished the game.</button>
+        <button class="opt" onclick="ans('q3',this,true)">They have finished the game.</button>
+        <button class="opt" onclick="ans('q3',this,false)">They has finish the game.</button>
+        <button class="opt" onclick="ans('q3',this,false)">They had finish the game.</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Negative Form</div>
+      <div class="qtext">Choose the correct negative sentence.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">I don't finished my drawing yet.</button>
+        <button class="opt" onclick="ans('q4',this,true)">I haven't finished my drawing yet.</button>
+        <button class="opt" onclick="ans('q4',this,false)">I not have finished my drawing.</button>
+        <button class="opt" onclick="ans('q4',this,false)">I hasn't finish my drawing.</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Question Form</div>
+      <div class="qtext"><em>___</em> you ever ridden a horse?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,true)">Have</button>
+        <button class="opt" onclick="ans('q5',this,false)">Has</button>
+        <button class="opt" onclick="ans('q5',this,false)">Had</button>
+        <button class="opt" onclick="ans('q5',this,false)">Did</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Signal Words</div>
+      <div class="qtext">Which sentence is correct for Present Perfect Tense?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,true)">I have already cleaned my room.</button>
+        <button class="opt" onclick="ans('q6',this,false)">I have cleaned my room yesterday.</button>
+        <button class="opt" onclick="ans('q6',this,false)">I have cleaned my room last week.</button>
+        <button class="opt" onclick="ans('q6',this,false)">I have cleaned my room two days ago.</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Choosing V3</div>
+      <div class="qtext">He <em>___</em> his pencil. (break → broke → broken)</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">has break</button>
+        <button class="opt" onclick="ans('q7',this,false)">has broke</button>
+        <button class="opt" onclick="ans('q7',this,true)">has broken</button>
+        <button class="opt" onclick="ans('q7',this,false)">have broken</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Complete the Sentence</div>
+      <div class="qtext">"<em>___</em> you <em>___</em> your homework yet?" — "No, not yet."</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,true)">Have … done</button>
+        <button class="opt" onclick="ans('q8',this,false)">Has … done</button>
+        <button class="opt" onclick="ans('q8',this,false)">Had … done</button>
+        <button class="opt" onclick="ans('q8',this,false)">Did … did</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</div>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const tabs = ['intro','form','usage','negative','dialogue','quiz'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.pdot').forEach((d,i) => d.classList.toggle('done', i <= idx));
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Great job!', '✅ Excellent! Well done!', '✅ That\'s right! Smart!', '✅ Perfect answer!'],
+  wrong:   ['❌ Not quite. Review the formula above!', '❌ Close! Check the lesson again.', '❌ Keep trying, you\'ve got this!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'🌟🌟🌟🌟':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>

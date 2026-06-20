@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Past Perfect Tense Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #4EBDB5;
+  --brand-dark: #3A9A91;
+  --teal:       #6BBF96;
+  --teal-light: #E8F5ED;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #C8B3E8;
+  --rose:       #F5B8A5;
+  --rose-lt:    #FDF3E8;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #3D4851;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+/* HEADER */
+.site-header { background: linear-gradient(135deg, #A8D8D8 0%, #5DADE2 50%, #D4B8E8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .18; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.15); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.3); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.12); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.15)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* NAV */
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+/* MAIN */
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+/* CARDS */
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card.green  { border-color: #4CAF50; }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+
+/* CONCEPT BOX */
+.concept-box { background: linear-gradient(135deg, var(--teal) 0%, #00C6B8 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'⏳'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.15; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+/* TIMELINE */
+.timeline-box { background: #fff; border-radius: 16px; padding: 24px 20px 16px; margin-top: 14px; position: relative; }
+.timeline-track { position: relative; height: 60px; background: linear-gradient(90deg, #FDF3E8, #E8F5ED); border-radius: 30px; display: flex; align-items: center; padding: 0 24px; }
+.timeline-track::before { content:''; position:absolute; left:24px; right:24px; top:50%; height:3px; background:#ccc; transform:translateY(-50%); }
+.tl-point { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
+.tl-dot { width: 18px; height: 18px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+.tl-dot.event1 { background: var(--rose); }
+.tl-dot.event2 { background: var(--teal); }
+.tl-dot.now    { background: var(--brand); width: 22px; height: 22px; }
+.tl-label { font-size: 10.5px; font-weight: 800; text-align: center; white-space: nowrap; }
+.tl-label.event1 { color: var(--rose); }
+.tl-label.event2 { color: var(--teal); }
+.tl-label.now    { color: var(--brand); }
+.tl-spacer { flex: 1; }
+.tl-caption { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 14px; font-weight: 600; }
+.tl-caption b { color: var(--ink); }
+
+/* COMPARE */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: #FDF3E8; border: 2px solid #F5B8A5; }
+.compare-col.right { background: #E8F5ED; border: 2px solid #6BBF96; }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+/* TABLE */
+.pro-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); margin-top:12px; font-size:14px; }
+.pro-table thead tr { background: var(--brand); color:#fff; }
+.pro-table th { padding:12px 14px; text-align:left; font-weight:700; font-size:12.5px; letter-spacing:.4px; }
+.pro-table td { padding:11px 14px; vertical-align:top; border-bottom:1px solid #f0ebe4; }
+.pro-table tr:last-child td { border:none; }
+.pro-table tr:nth-child(even) td { background:#FFF8F2; }
+.pro-table tr:hover td { background:#FFF3E8; }
+.pro-table .en { font-weight:700; color:var(--brand-dark); }
+.pro-table .muted { color:var(--muted); font-size:12.5px; }
+.pro-table .ex { font-style:italic; color:#444; }
+.pro-table .exsub { font-size:12px; color:var(--muted); display:block; margin-top:2px; }
+
+/* FORMULA BOX */
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 18px; font-weight: 800; color: var(--ink); line-height: 1.8; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 15px; }
+.fp.subj { background: var(--brand); color: #fff; }
+.fp.had  { background: var(--teal); color: #fff; }
+.fp.verb { background: var(--purple); color: #fff; }
+.fp.plus { background: transparent; color: var(--muted); font-size: 18px; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+/* BUILDER */
+.builder-row { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:10px; background:var(--yellow-lt); border:2px solid var(--yellow); border-radius:12px; padding:12px 16px; }
+.slot { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; padding:5px 12px; border-radius:8px; }
+.slot.pronoun { background:var(--brand); color:#fff; }
+.slot.had     { background:var(--teal); color:#fff; }
+.slot.verb    { background:var(--purple); color:#fff; }
+.slot.obj     { background:#999; color:#fff; }
+.slot.plus    { background:transparent; color:var(--muted); font-size:18px; }
+.builder-row .meaning { margin-left:auto; font-size:12px; color:var(--muted); font-style:italic; }
+
+/* DIALOGUE */
+.dialogue { display:flex; flex-direction:column; gap:12px; }
+.brow { display:flex; align-items:flex-start; gap:10px; }
+.brow.right { flex-direction:row-reverse; }
+.av { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; background:#f0ece6; }
+.bc { display:flex; flex-direction:column; max-width:76%; }
+.brow.right .bc { align-items:flex-end; }
+.bname { font-size:11px; font-weight:700; color:var(--muted); margin-bottom:3px; }
+.bubble { padding:11px 15px; border-radius:16px; font-size:14px; font-weight:500; line-height:1.55; }
+.brow:not(.right) .bubble { background:var(--teal-light); border-bottom-left-radius:4px; color:#003D3A; }
+.brow.right .bubble { background:#FFF0E5; border-bottom-right-radius:4px; color:#4A1A00; }
+.bubble .hi { font-weight:700; color:var(--brand); }
+.bexp { font-size:12px; color:var(--muted); margin-top:4px; font-style:italic; }
+.brow.right .bexp { text-align:right; }
+
+/* TIP */
+.tip { background:var(--yellow-lt); border:2px dashed var(--yellow); border-radius:14px; padding:14px 18px; display:flex; gap:12px; align-items:flex-start; margin-top:14px; }
+.tip-ico { font-size:26px; flex-shrink:0; }
+.tip-body { font-size:13.5px; line-height:1.7; color:#5A4200; font-weight:500; }
+.tip-body strong { color:var(--brand-dark); }
+
+/* QUIZ */
+.score-bar { background:var(--white); border-radius:14px; padding:14px 20px; margin-bottom:20px; display:flex; align-items:center; gap:14px; box-shadow:var(--shadow-sm); }
+.sc-label { font-weight:700; font-size:13px; color:var(--muted); }
+.sc-num { font-family:'Baloo 2',cursive; font-size:32px; font-weight:800; color:var(--brand); line-height:1; }
+.sc-max { font-size:15px; color:var(--muted); font-weight:600; }
+.sc-stars { font-size:22px; margin-left:auto; }
+.quiz-wrap { display:flex; flex-direction:column; gap:16px; }
+.qitem { background:var(--white); border-radius:16px; padding:18px 20px; box-shadow:var(--shadow-sm); border-left:5px solid var(--teal); }
+.qnum { font-size:10.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:6px; }
+.qtext { font-size:15px; font-weight:600; color:var(--ink); margin-bottom:12px; line-height:1.5; }
+.qtext em { color:var(--brand); font-style:normal; font-weight:800; }
+.opts { display:flex; flex-wrap:wrap; gap:8px; }
+.opt { padding:8px 20px; border:2.5px solid #DDD; border-radius:30px; background:var(--white); font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; cursor:pointer; transition:all .18s; }
+.opt:hover { border-color:var(--teal); color:var(--teal); }
+.opt.correct { background:#E8F5E9; border-color:#4CAF50; color:#1B5E20; }
+.opt.wrong   { background:var(--rose-lt); border-color:var(--rose); color:#7f0021; }
+.qfb { margin-top:10px; font-size:13.5px; font-weight:700; display:none; }
+.qfb.show { display:block; }
+.qfb.ok { color:#2e7d32; }
+.qfb.no { color:#c62828; }
+
+/* PROGRESS */
+.progress-box { background:linear-gradient(135deg,var(--purple) 0%,#9B6FD8 100%); border-radius:var(--card-r); padding:20px 24px; color:#fff; margin-bottom:18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.progress-box h4 { font-family:'Baloo 2',cursive; font-size:18px; margin-bottom:4px; }
+.progress-box p { font-size:13px; opacity:.9; }
+.prog-dots { display:flex; gap:8px; margin-left:auto; }
+.pdot { width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,.35); border:2px solid rgba(255,255,255,.5); transition:all .3s; }
+.pdot.done { background:var(--yellow); border-color:var(--yellow); }
+
+.reset-btn { display:block; margin:24px auto 0; padding:14px 40px; background:linear-gradient(135deg,var(--brand) 0%,var(--brand-dark) 100%); color:#fff; border:none; border-radius:40px; font-family:'Baloo 2',cursive; font-size:18px; font-weight:700; cursor:pointer; box-shadow:0 6px 20px rgba(255,107,43,.4); transition:transform .2s,box-shadow .2s; }
+.reset-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,107,43,.45); }
+
+@media(max-width:520px) {
+  .compare { grid-template-columns:1fr; }
+  .header-mascot { display:none; }
+  .tab-btn { padding:12px 14px; font-size:12px; }
+  .timeline-track { padding: 0 10px; }
+  .tl-label { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes"><div class="hs hs1"></div><div class="hs hs2"></div><div class="hs hs3"></div></div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">English Course</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grade 4 · English</div>
+      <div class="header-title">Learning <span>Past Perfect</span><br>Tense</div>
+      <div class="header-sub">What happened FIRST? Let's find out! ⏳</div>
+    </div>
+    <div class="header-mascot">🦊</div>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro',this)">🏠 Introduction</button>
+    <button class="tab-btn" onclick="showTab('form',this)">🔨 Form & Formula</button>
+    <button class="tab-btn" onclick="showTab('usage',this)">⏰ When to Use</button>
+    <button class="tab-btn" onclick="showTab('negative',this)">❌ Negative & ❓ Question</button>
+    <button class="tab-btn" onclick="showTab('dialogue',this)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz',this)">🏆 Quiz</button>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- ══ SECTION 1: INTRODUCTION ══ -->
+<div class="section active" id="intro">
+
+  <div class="progress-box">
+    <div>
+      <h4>📍 You are here</h4>
+      <p>Start with the introduction, then explore each part step by step!</p>
+    </div>
+    <div class="prog-dots">
+      <div class="pdot done"></div><div class="pdot"></div><div class="pdot"></div>
+      <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
+    </div>
+  </div>
+
+  <div class="sec-title">⏳ What is Past Perfect Tense? <span class="pill">Core Concept</span></div>
+
+  <div class="concept-box">
+    <h3>Definition</h3>
+    <p>The <strong>Past Perfect Tense</strong> is used to talk about something that happened <strong>before another action in the past</strong>. It shows that one event finished <strong>first</strong>, before a second past event happened.<br><br>
+    Think of it as the <strong>"past of the past"</strong> — the earlier event in a story about yesterday, last week, or any time before now.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Visualizing Time</div>
+    <h3>📍 Two Events on a Timeline</h3>
+    <div class="timeline-box">
+      <div class="timeline-track">
+        <div class="tl-point">
+          <div class="tl-dot event1"></div>
+          <div class="tl-label event1">Event 1<br>(Past Perfect)</div>
+        </div>
+        <div class="tl-spacer"></div>
+        <div class="tl-point">
+          <div class="tl-dot event2"></div>
+          <div class="tl-label event2">Event 2<br>(Simple Past)</div>
+        </div>
+        <div class="tl-spacer"></div>
+        <div class="tl-point">
+          <div class="tl-dot now"></div>
+          <div class="tl-label now">Now</div>
+        </div>
+      </div>
+      <div class="tl-caption">
+        Example: <b>"The movie had started</b> (Event 1) <b>before I arrived</b> (Event 2)."<br>
+        The movie started <em>first</em>. I arrived <em>after that</em>.
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Simple Past vs. Past Perfect</div>
+    <h3>Why We Need Two Different Tenses</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>🔹 Simple Past</h4>
+        <ul>
+          <li>I <b>ate</b> breakfast.</li>
+          <li>She <b>finished</b> her homework.</li>
+          <li>They <b>arrived</b> at school.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">Just one action in the past — no comparison with another action.</p>
+      </div>
+      <div class="compare-col right">
+        <h4>🔸 Past Perfect</h4>
+        <ul>
+          <li>I <b>had eaten</b> breakfast before I left.</li>
+          <li>She <b>had finished</b> her homework before dinner.</li>
+          <li>They <b>had arrived</b> at school before the bell rang.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">Shows which action happened <b>first</b>, before another past action.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>BunRey Fox says:</strong> Past Perfect always needs a "partner" — another past action! We usually connect them with words like <strong>before</strong>, <strong>after</strong>, <strong>when</strong>, <strong>by the time</strong>, and <strong>already</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 2: FORM & FORMULA ══ -->
+<div class="section" id="form">
+  <div class="sec-title">🔨 Form & Formula <span class="pill">How to Build It</span></div>
+
+  <div class="concept-box">
+    <h3>The Magic Formula</h3>
+    <p>Past Perfect Tense always uses <strong>had</strong> + the <strong>past participle (V3)</strong> of the verb. The good news: <strong>had</strong> never changes — it stays the same for every subject (I, you, he, she, it, we, they)!</p>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-label">Formula</div>
+    <h3>📐 Past Perfect Formula</h3>
+    <div class="formula-box">
+      <div class="formula-main">
+        <span class="fp subj">Subject</span>
+        <span class="fp plus">+</span>
+        <span class="fp had">had</span>
+        <span class="fp plus">+</span>
+        <span class="fp verb">Past Participle (V3)</span>
+      </div>
+      <div class="formula-sub">Example: She + had + eaten = "She had eaten."</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Regular vs. Irregular Verbs (V3)</div>
+    <h3>Common Past Participles (V3)</h3>
+    <table class="pro-table">
+      <thead><tr><th>Base Verb (V1)</th><th>Simple Past (V2)</th><th>Past Participle (V3)</th><th>Example Sentence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">eat</span></td><td class="muted">ate</td><td><span class="en">eaten</span></td><td><span class="ex">I had <b>eaten</b> dinner before 7 PM.</span></td></tr>
+        <tr><td><span class="en">go</span></td><td class="muted">went</td><td><span class="en">gone</span></td><td><span class="ex">She had <b>gone</b> home before it got dark.</span></td></tr>
+        <tr><td><span class="en">finish</span></td><td class="muted">finished</td><td><span class="en">finished</span></td><td><span class="ex">We had <b>finished</b> our homework by 6 PM.</span></td></tr>
+        <tr><td><span class="en">do</span></td><td class="muted">did</td><td><span class="en">done</span></td><td><span class="ex">He had <b>done</b> his chores before lunch.</span></td></tr>
+        <tr><td><span class="en">write</span></td><td class="muted">wrote</td><td><span class="en">written</span></td><td><span class="ex">They had <b>written</b> the letter before noon.</span></td></tr>
+        <tr><td><span class="en">see</span></td><td class="muted">saw</td><td><span class="en">seen</span></td><td><span class="ex">I had <b>seen</b> that movie before.</span></td></tr>
+        <tr><td><span class="en">leave</span></td><td class="muted">left</td><td><span class="en">left</span></td><td><span class="ex">The bus had <b>left</b> before we got to the station.</span></td></tr>
+        <tr><td><span class="en">study</span></td><td class="muted">studied</td><td><span class="en">studied</span></td><td><span class="ex">She had <b>studied</b> hard before the test.</span></td></tr>
+      </tbody>
+    </table>
+    <div class="tip" style="margin-top:14px">
+      <div class="tip-ico">💡</div>
+      <div class="tip-body">
+        <strong>Easy tip:</strong> Regular verbs add <strong>-ed</strong> for both V2 and V3 (finish → finished → finished). Irregular verbs change their spelling and must be memorized (eat → ate → eaten).
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <div class="card-label">Sentence Builder</div>
+    <h3>🔧 Building Past Perfect Sentences</h3>
+    <div class="builder-row">
+      <span class="slot pronoun">I</span><span class="slot had">had</span><span class="slot verb">finished</span><span class="slot plus">+</span><span class="slot obj">my homework</span>
+      <span class="meaning">→ I had finished my homework.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">She</span><span class="slot had">had</span><span class="slot verb">left</span><span class="slot plus">+</span><span class="slot obj">already</span>
+      <span class="meaning">→ She had already left.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">They</span><span class="slot had">had</span><span class="slot verb">eaten</span><span class="slot plus">+</span><span class="slot obj">breakfast</span>
+      <span class="meaning">→ They had eaten breakfast.</span>
+    </div>
+    <div class="builder-row">
+      <span class="slot pronoun">We</span><span class="slot had">had</span><span class="slot verb">arrived</span><span class="slot plus">+</span><span class="slot obj">on time</span>
+      <span class="meaning">→ We had arrived on time.</span>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">⚠️</div>
+    <div class="tip-body">
+      <strong>Remember!</strong> "had" stays the SAME for all subjects.<br>
+      ✅ <em>I had gone. He had gone. They had gone.</em><br>
+      ❌ <em>I haved gone. He has gone (this is present perfect, not past perfect!).</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 3: WHEN TO USE ══ -->
+<div class="section" id="usage">
+  <div class="sec-title">⏰ When Do We Use It? <span class="pill">Real-life Situations</span></div>
+
+  <div class="concept-box">
+    <h3>3 Common Situations</h3>
+    <p>We use Past Perfect Tense to show:<br>
+    1️⃣ An action that finished <strong>before another action in the past</strong><br>
+    2️⃣ An action that happened <strong>before a specific time in the past</strong><br>
+    3️⃣ Something that was <strong>"already"</strong> done before something else happened</p>
+  </div>
+
+  <div class="card rose">
+    <div class="card-label">Situation 1</div>
+    <h3>🥇 Action Before Another Past Action</h3>
+    <table class="pro-table">
+      <thead><tr><th>Past Perfect (happened first)</th><th>Simple Past (happened second)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">The train <b>had left</b></span></td><td><span class="ex">before we <b>arrived</b> at the station.</span></td></tr>
+        <tr><td><span class="ex">She <b>had finished</b> cooking</span></td><td><span class="ex">when her mom <b>came</b> home.</span></td></tr>
+        <tr><td><span class="ex">I <b>had cleaned</b> my room</span></td><td><span class="ex">before my friends <b>visited</b>.</span></td></tr>
+      </tbody>
+    </table>
+    <div class="tip" style="margin-top:14px">
+      <div class="tip-ico">🦊</div>
+      <div class="tip-body">Notice the keywords <strong>before</strong> and <strong>when</strong>. They connect the earlier event (Past Perfect) with the later event (Simple Past).</div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Situation 2</div>
+    <h3>🕐 Action Before a Specific Time</h3>
+    <table class="pro-table">
+      <thead><tr><th>Example Sentence</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">By 8 PM, I <b>had done</b> all my homework.</span></td><td class="muted">Homework was finished before 8 PM.</td></tr>
+        <tr><td><span class="ex">By the time the bell rang, we <b>had sat down</b>.</span></td><td class="muted">Sitting down happened before the bell rang.</td></tr>
+        <tr><td><span class="ex">By last Monday, she <b>had read</b> the whole book.</span></td><td class="muted">Reading finished before last Monday.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card purple">
+    <div class="card-label">Situation 3</div>
+    <h3>✅ Using "Already"</h3>
+    <table class="pro-table">
+      <thead><tr><th>Example Sentence</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">When I got home, my brother <b>had already eaten</b> dinner.</span></td><td class="muted">He finished eating before I got home.</td></tr>
+        <tr><td><span class="ex">The party <b>had already started</b> when we arrived.</span></td><td class="muted">It started before we arrived.</td></tr>
+        <tr><td><span class="ex">She <b>had already left</b> when I called her.</span></td><td class="muted">She left before the phone call.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🔑</div>
+    <div class="tip-body">
+      <strong>Key signal words for Past Perfect:</strong><br>
+      <strong>before</strong> · <strong>after</strong> · <strong>when</strong> · <strong>by the time</strong> · <strong>already</strong> · <strong>just</strong> · <strong>never</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 4: NEGATIVE & QUESTION ══ -->
+<div class="section" id="negative">
+  <div class="sec-title">❌ Negative & ❓ Question Forms</div>
+
+  <div class="concept-box">
+    <h3>Making Negative & Question Sentences</h3>
+    <p>To make a sentence negative, just add <strong>not</strong> after "had" → <strong>hadn't</strong> (had not).<br>
+    To make a question, simply move <strong>had</strong> to the beginning of the sentence!</p>
+  </div>
+
+  <div class="card rose">
+    <div class="card-label">Negative Form</div>
+    <h3>❌ Subject + had not (hadn't) + V3</h3>
+    <table class="pro-table">
+      <thead><tr><th>Positive</th><th>Negative</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">I had finished my homework.</span></td><td><span class="ex">I <b>had not (hadn't)</b> finished my homework.</span></td></tr>
+        <tr><td><span class="ex">She had eaten breakfast.</span></td><td><span class="ex">She <b>hadn't</b> eaten breakfast.</span></td></tr>
+        <tr><td><span class="ex">They had arrived on time.</span></td><td><span class="ex">They <b>hadn't</b> arrived on time.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Question Form</div>
+    <h3>❓ Had + Subject + V3 + ... ?</h3>
+    <table class="pro-table">
+      <thead><tr><th>Statement</th><th>Question</th><th>Possible Answer</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">You had finished homework.</span></td><td><span class="ex"><b>Had</b> you finished your homework?</span></td><td class="muted">Yes, I had. / No, I hadn't.</td></tr>
+        <tr><td><span class="ex">She had left the house.</span></td><td><span class="ex"><b>Had</b> she left the house?</span></td><td class="muted">Yes, she had. / No, she hadn't.</td></tr>
+        <tr><td><span class="ex">They had eaten dinner.</span></td><td><span class="ex"><b>Had</b> they eaten dinner?</span></td><td class="muted">Yes, they had. / No, they hadn't.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-label">Summary Table</div>
+    <h3>📋 All Three Forms at a Glance</h3>
+    <table class="pro-table">
+      <thead><tr><th>Form</th><th>Formula</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en" style="color:#4CAF50">Positive (+)</span></td><td class="muted">Subject + had + V3</td><td><span class="ex">She had gone home.</span></td></tr>
+        <tr><td><span class="en" style="color:var(--rose)">Negative (−)</span></td><td class="muted">Subject + hadn't + V3</td><td><span class="ex">She hadn't gone home.</span></td></tr>
+        <tr><td><span class="en" style="color:var(--teal)">Question (?)</span></td><td class="muted">Had + Subject + V3 ... ?</td><td><span class="ex">Had she gone home?</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>Practice trick:</strong> Take any Past Perfect sentence and try all 3 forms!<br>
+      ✅ <em>We had watched the movie.</em><br>
+      ❌ <em>We hadn't watched the movie.</em><br>
+      ❓ <em>Had we watched the movie?</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 5: DIALOGUE ══ -->
+<div class="section" id="dialogue">
+  <div class="sec-title">💬 Dialogue Practice <span class="pill">Real Conversations</span></div>
+
+  <div class="card green">
+    <div class="card-label">Dialogue 1 – A Late Arrival</div>
+    <h3>The Movie Already Started! 🎬</h3>
+    <div class="dialogue">
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Sari</div>
+          <div class="bubble">I'm so sorry I'm late! Did I miss the beginning?</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Andi</div>
+          <div class="bubble">Yes. By the time you arrived, the movie <span class="hi">had already started</span>.</div>
+          <div class="bexp">→ "had already started" = the movie started BEFORE Sari arrived.</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Sari</div>
+          <div class="bubble">Oh no! <span class="hi">Had</span> the main character appeared yet?</div>
+          <div class="bexp">→ Question form: Had + subject + V3.</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Andi</div>
+          <div class="bubble">No, she <span class="hi">hadn't</span> appeared yet when you came in. Don't worry, you didn't miss much!</div>
+          <div class="bexp">→ Negative form: hadn't + V3.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card rose" style="margin-top:18px">
+    <div class="card-label">Dialogue 2 – A Busy Morning</div>
+    <h3>Before School Started 🏫</h3>
+    <div class="dialogue">
+      <div class="brow">
+        <div class="av">👩‍🏫</div>
+        <div class="bc">
+          <div class="bname">Teacher</div>
+          <div class="bubble">Good morning, class! Before you came to school, what <span class="hi">had</span> you done at home?</div>
+          <div class="bexp">→ Question form asking about an earlier action.</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👦</div>
+        <div class="bc">
+          <div class="bname">Dani</div>
+          <div class="bubble">I <span class="hi">had eaten</span> breakfast and <span class="hi">had packed</span> my bag before I left home.</div>
+          <div class="bexp">→ Two Past Perfect actions, both happened before "left home".</div>
+        </div>
+      </div>
+      <div class="brow">
+        <div class="av">👩‍🏫</div>
+        <div class="bc">
+          <div class="bname">Teacher</div>
+          <div class="bubble">Great! How about you, Wulan?</div>
+        </div>
+      </div>
+      <div class="brow right">
+        <div class="av">👧</div>
+        <div class="bc">
+          <div class="bname">Wulan</div>
+          <div class="bubble">I'm afraid I <span class="hi">hadn't finished</span> my breakfast when my mom called me, so I ate quickly!</div>
+          <div class="bexp">→ "hadn't finished" + "when..." shows the unfinished action before another past event.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>Try this practice!</strong> Read both dialogues and find all the Past Perfect verbs (had + V3). Can you tell which action happened FIRST in each sentence? 🎉
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 6: QUIZ ══ -->
+<div class="section" id="quiz">
+  <div class="sec-title">🏆 Quiz Time! <span class="pill">Test Yourself</span></div>
+
+  <div class="score-bar">
+    <div class="sc-label">⭐ YOUR SCORE</div>
+    <div class="sc-num" id="scoreNum">0</div>
+    <div class="sc-max">/ 8</div>
+    <div class="sc-stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="quiz-wrap">
+
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Formula</div>
+      <div class="qtext">What is the correct formula for Past Perfect Tense?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">Subject + has + V3</button>
+        <button class="opt" onclick="ans('q1',this,true)">Subject + had + V3</button>
+        <button class="opt" onclick="ans('q1',this,false)">Subject + V2</button>
+        <button class="opt" onclick="ans('q1',this,false)">Subject + will + V1</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — Past Participle</div>
+      <div class="qtext">By the time I arrived, she <em>___</em> already <em>___</em> the door.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,true)">had … locked</button>
+        <button class="opt" onclick="ans('q2',this,false)">have … locked</button>
+        <button class="opt" onclick="ans('q2',this,false)">has … lock</button>
+        <button class="opt" onclick="ans('q2',this,false)">did … lock</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Negative Form</div>
+      <div class="qtext">Choose the correct negative sentence.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">I haven't gone to school yesterday.</button>
+        <button class="opt" onclick="ans('q3',this,true)">I hadn't gone to school before the rain started.</button>
+        <button class="opt" onclick="ans('q3',this,false)">I don't went to school.</button>
+        <button class="opt" onclick="ans('q3',this,false)">I not had gone to school.</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Question Form</div>
+      <div class="qtext">Choose the correct question form.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,true)">Had they finished dinner before you arrived?</button>
+        <button class="opt" onclick="ans('q4',this,false)">They had finished dinner before you arrived?</button>
+        <button class="opt" onclick="ans('q4',this,false)">Did they had finished dinner?</button>
+        <button class="opt" onclick="ans('q4',this,false)">Have they had finished dinner?</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Choosing V3</div>
+      <div class="qtext">She <em>___</em> her homework before dinner. (eat → ate → eaten)</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,false)">had finish</button>
+        <button class="opt" onclick="ans('q5',this,false)">had finishes</button>
+        <button class="opt" onclick="ans('q5',this,true)">had finished</button>
+        <button class="opt" onclick="ans('q5',this,false)">have finished</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Order of Events</div>
+      <div class="qtext">"The bus had left before we got to the station." Which happened FIRST?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,true)">The bus left</button>
+        <button class="opt" onclick="ans('q6',this,false)">We got to the station</button>
+        <button class="opt" onclick="ans('q6',this,false)">Both happened at the same time</button>
+        <button class="opt" onclick="ans('q6',this,false)">We cannot tell</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Signal Words</div>
+      <div class="qtext">Which word is commonly used with Past Perfect Tense?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">tomorrow</button>
+        <button class="opt" onclick="ans('q7',this,false)">next week</button>
+        <button class="opt" onclick="ans('q7',this,true)">already</button>
+        <button class="opt" onclick="ans('q7',this,false)">soon</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Complete the Sentence</div>
+      <div class="qtext">When the teacher entered the classroom, the students <em>___</em> already <em>___</em> their books.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">have … opened</button>
+        <button class="opt" onclick="ans('q8',this,false)">has … open</button>
+        <button class="opt" onclick="ans('q8',this,true)">had … opened</button>
+        <button class="opt" onclick="ans('q8',this,false)">did … open</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</div>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const tabs = ['intro','form','usage','negative','dialogue','quiz'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.pdot').forEach((d,i) => d.classList.toggle('done', i <= idx));
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Great job!', '✅ Excellent! Well done!', '✅ That\'s right! Smart!', '✅ Perfect answer!'],
+  wrong:   ['❌ Not quite. Review the formula above!', '❌ Close! Check the lesson again.', '❌ Keep trying, you\'ve got this!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'🌟🌟🌟🌟':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>

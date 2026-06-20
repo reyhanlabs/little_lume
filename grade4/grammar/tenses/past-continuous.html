@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BunRey English Course – Past Continuous Tense Grade 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7EA876;
+      --purple-light: #F0F4E8;
+      --blue: #1B3A52;
+      --blue-light: #FFFFFF;
+      --teal: #7EA876;
+      --teal-light: #F0F4E8;
+      --green: #7EA876;
+      --green-light: #F0F4E8;
+      --cyan: #2D7A4A;
+      --cyan-light: #F5EFE7;
+      --yellow: #D4AF89;
+      --yellow-light: #FFFAF0;
+      --orange: #2D7A4A;
+      --orange-light: #F5EFE7;
+      --gray-50: #FFFFFF;
+      --gray-100: #FFFFFF;
+      --gray-200: #F5F5F5;
+      --gray-400: #2D7A4A;
+      --gray-600: #FFC700;
+      --gray-800: #0F5F8F;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #F0F4FF;
+      color: var(--gray-800);
+      min-height: 100vh;
+    }
+
+    /* ── VIEWS ── */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ══════════════════════════════
+       HOME
+    ══════════════════════════════ */
+    #home {
+      background: linear-gradient(160deg, #1B3A52 0%, #2D7A4A 60%, #7EA876 100%);
+      min-height: 100vh;
+    }
+
+    .home-hero {
+      text-align: center;
+      padding: 60px 24px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .home-hero::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -100px; right: -100px;
+    }
+    .home-hero::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -60px; left: -60px;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 24px;
+      padding: 7px 24px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-emoji { font-size: 72px; display: block; margin-bottom: 16px; animation: bounce 2s infinite; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(36px, 8vw, 56px);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 48px;
+    }
+
+    .stats-row {
+      display: none;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 10px 18px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+    .stat-pill .num { color: #fff; font-size: 22px; font-weight: 900; display: block; }
+    .stat-pill .lbl { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 700; }
+
+    /* Lesson grid */
+    .lessons-section {
+      padding: 0 20px 32px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .section-label {
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .lesson-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+      border-left: 6px solid var(--card-color, #3B82F6);
+      position: relative;
+      overflow: hidden;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+    }
+    .lesson-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60px; height: 60px;
+      background: var(--card-bg, #DBEAFE);
+      border-radius: 0 0 0 60px;
+      opacity: 0.5;
+    }
+
+    .card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: var(--card-bg, #DBEAFE);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .card-title { font-size: 17px; font-weight: 900; color: var(--gray-800); line-height: 1.2; }
+    .card-sub { font-size: 13px; color: var(--gray-400); margin-top: 2px; font-weight: 600; }
+    .card-obj {
+      font-size: 12px;
+      color: var(--gray-600);
+      border-top: 1px solid var(--gray-100);
+      padding-top: 10px;
+      line-height: 1.5;
+    }
+    .card-btn {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .card-btn span {
+      background: var(--card-color, #3B82F6);
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .quiz-btn-wrap { text-align: center; margin-top: 16px; padding-bottom: 20px; }
+    .quiz-main-btn {
+      background: var(--yellow);
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 18px 44px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(245,158,11,0.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .quiz-main-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245,158,11,0.5); }
+
+    /* ══════════════════════════════
+       LESSON
+    ══════════════════════════════ */
+    #lesson { min-height: 100vh; background: var(--gray-50); }
+
+    .lesson-header {
+      padding: 28px 24px 24px;
+      background: linear-gradient(135deg, var(--lcolor, #3B82F6), var(--lcolor2, #0EA5E9));
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.22);
+      border: none;
+      border-radius: 20px;
+      padding: 7px 18px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 18px;
+      display: inline-block;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.35); }
+
+    .lheader-inner { display: flex; align-items: center; gap: 18px; }
+    .lheader-emoji { font-size: 52px; }
+    .lheader-num { color: rgba(255,255,255,0.75); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
+    .lheader-title { font-family: 'Fredoka One', cursive; font-size: 28px; color: #fff; margin: 4px 0 2px; }
+    .lheader-sub { color: rgba(255,255,255,0.8); font-size: 14px; margin-top: 4px; }
+
+    .l-obj {
+      background: var(--lbg, #DBEAFE);
+      border-left: 5px solid var(--lcolor, #3B82F6);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .lesson-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 20px 20px;
+    }
+
+    /* Content Blocks */
+    .block {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .block-label {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--lcolor, #3B82F6);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Tip Block */
+    .tip-block {
+      background: var(--lbg, #DBEAFE);
+      border-left: 5px solid var(--lcolor, #3B82F6);
+      padding: 18px;
+    }
+    .tip-label { font-size: 14px; font-weight: 800; color: var(--lcolor, #3B82F6); margin-bottom: 8px; }
+    .tip-text { font-size: 14px; color: var(--gray-700); line-height: 1.6; }
+
+    /* Steps */
+    .step-item {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--lcolor, #3B82F6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+    .step-text { font-size: 14px; line-height: 1.6; padding-top: 6px; color: var(--gray-700); }
+
+    /* Practice Block */
+    .practice-block {
+      background: var(--lbg, #DBEAFE);
+      border-left: 5px solid var(--lcolor, #3B82F6);
+    }
+    .practice-label { font-size: 14px; font-weight: 800; color: var(--lcolor, #3B82F6); margin-bottom: 10px; }
+    .practice-text { font-size: 14px; line-height: 1.6; margin-bottom: 12px; color: var(--gray-700); }
+
+    .trace-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .trace-chip {
+      background: #fff;
+      border: 2px dashed var(--lcolor, #3B82F6);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--lcolor, #3B82F6);
+    }
+
+    .prompt-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    /* Alphabet Grid */
+    .alpha-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+      gap: 8px;
+    }
+    .alpha-tile {
+      background: var(--lbg, #DBEAFE);
+      border: 2px solid var(--lcolor, #3B82F6);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--lcolor, #3B82F6);
+    }
+
+    /* Examples */
+    .example-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: 14px;
+    }
+    .example-row:last-child { border-bottom: none; }
+    .example-word { font-weight: 700; color: var(--lcolor, #3B82F6); }
+    .example-note { color: var(--gray-600); font-size: 13px; }
+
+    /* Pairs */
+    .pairs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .pair-item {
+      background: var(--lbg, #DBEAFE);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .pair-cap { color: var(--lcolor, #3B82F6); }
+    .pair-arr { color: var(--gray-400); }
+    .pair-low { color: var(--gray-700); }
+
+    /* Word List */
+    .word-cat {
+      margin-bottom: 14px;
+    }
+    .word-cat-name { font-size: 13px; font-weight: 800; color: var(--lcolor, #3B82F6); margin-bottom: 8px; text-transform: uppercase; }
+    .word-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .word-chip {
+      background: var(--lbg, #DBEAFE);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--lcolor, #3B82F6);
+      border: 1px solid var(--lcolor, #3B82F6);
+    }
+
+    /* Sentence Parts */
+    .sent-parts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .sent-part {
+      background: var(--lbg, #DBEAFE);
+      border: 2px solid var(--spc, #3B82F6);
+      border-radius: 12px;
+      padding: 12px;
+      flex: 1;
+      min-width: 120px;
+    }
+    .sent-part-text { font-weight: 800; font-size: 15px; margin-bottom: 4px; }
+    .sent-part-role { font-size: 11px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; }
+    .sent-full {
+      background: var(--lbg, #DBEAFE);
+      border-left: 5px solid var(--lcolor, #3B82F6);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    /* Sentences */
+    .sent-item {
+      background: var(--lbg, #DBEAFE);
+      border-left: 4px solid var(--lcolor, #3B82F6);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    /* Punctuation Cards */
+    .punct-card {
+      background: var(--lbg, #DBEAFE);
+      border-left: 5px solid var(--pc, #3B82F6);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 12px;
+    }
+    .punct-sym {
+      font-size: 28px;
+      font-weight: 900;
+      min-width: 40px;
+      text-align: center;
+    }
+    .punct-name { font-weight: 800; font-size: 13px; color: var(--gray-800); text-transform: uppercase; }
+    .punct-use { font-size: 12px; color: var(--gray-600); margin-top: 2px; }
+    .punct-ex { font-size: 12px; color: var(--lcolor, #3B82F6); font-weight: 700; margin-top: 4px; }
+
+    /* Punctuation Exercise */
+    .punct-ex-block { background: var(--lbg, #DBEAFE); border-left: 5px solid var(--lcolor, #3B82F6); }
+    .punct-ex-label { font-size: 14px; font-weight: 900; color: var(--lcolor, #3B82F6); margin-bottom: 10px; text-transform: uppercase; }
+    .punct-ex-text { font-size: 14px; color: var(--gray-700); margin-bottom: 12px; line-height: 1.6; }
+    .punct-q {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray-700);
+    }
+    .punct-ans { color: var(--lcolor, #3B82F6); font-weight: 800; border-bottom: 2px dashed var(--lcolor, #3B82F6); }
+    .punct-hint { font-size: 11px; color: var(--gray-400); display: block; margin-top: 6px; }
+
+    /* ══════════════════════════════
+       QUIZ
+    ══════════════════════════════ */
+    #quiz {
+      background: linear-gradient(160deg, #1B3A52 0%, #2D7A4A 60%, #7EA876 100%);
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      width: 100%;
+    }
+
+    #quiz-q-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .quiz-toprow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .quiz-counter { font-size: 13px; font-weight: 800; color: var(--gray-600); text-transform: uppercase; letter-spacing: 1px; }
+    .quiz-score-badge { background: #FFE5B4; color: var(--orange); font-weight: 800; padding: 6px 14px; border-radius: 20px; font-size: 12px; }
+
+    .quiz-progress {
+      height: 6px;
+      background: var(--gray-200);
+      border-radius: 10px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #3B82F6, #06B6D4);
+      transition: width 0.3s ease;
+    }
+
+    .quiz-q {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--gray-800);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .quiz-opt {
+      background: var(--gray-100);
+      border: 2px solid transparent;
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-800);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt:hover:not(:disabled) {
+      background: var(--blue-light);
+      border-color: var(--blue);
+    }
+    .quiz-opt:disabled {
+      cursor: not-allowed;
+    }
+    .quiz-opt.correct {
+      background: var(--green-light);
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .quiz-opt.wrong {
+      background: var(--red-light);
+      border-color: #EF4444;
+      color: #EF4444;
+    }
+
+    #quiz-result-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 40px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      text-align: center;
+      display: none;
+    }
+
+    .result-trophy { font-size: 64px; display: block; margin-bottom: 16px; }
+    .result-title { font-family: 'Fredoka One', cursive; font-size: 28px; color: var(--gray-800); margin-bottom: 8px; }
+    .result-sub { font-size: 14px; color: var(--gray-600); margin-bottom: 24px; line-height: 1.6; }
+    .result-score-box {
+      background: var(--blue-light);
+      border: 2px solid var(--blue);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .result-score-label { font-size: 12px; font-weight: 800; color: var(--gray-600); text-transform: uppercase; letter-spacing: 1px; }
+    .result-pct { font-family: 'Fredoka One', cursive; font-size: 42px; margin-top: 6px; }
+    .pct-green { color: var(--green); }
+    .pct-yellow { color: var(--orange); }
+    .pct-red { color: #EF4444; }
+
+    .result-btns {
+      display: flex;
+      gap: 12px;
+      flex-direction: column;
+    }
+    .result-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .result-btn.retry {
+      background: var(--blue-light);
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .result-btn.retry:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+    .result-btn.home {
+      background: var(--blue);
+      color: #fff;
+    }
+    .result-btn.home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    }
+
+    /* ══════════════════════════════
+       NAVIGATION
+    ══════════════════════════════ */
+    #lesson-nav {
+      display: flex;
+      gap: 12px;
+      max-width: 720px;
+      margin: 24px auto 0;
+      padding: 0 20px 20px;
+      justify-content: space-between;
+    }
+    .nav-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 12px 20px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex: 1;
+    }
+    .nav-btn.prev {
+      background: var(--gray-200);
+      color: var(--gray-800);
+      border: 2px solid var(--gray-300, #D1D5DB);
+    }
+    .nav-btn.prev:hover {
+      background: var(--gray-100);
+    }
+    .nav-btn.next, .nav-btn.quiz-nav {
+      color: #fff;
+      background: var(--lcolor, #3B82F6);
+    }
+    .nav-btn.next:hover, .nav-btn.quiz-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      color: rgba(255,255,255,0.8);
+      padding: 24px 20px;
+      text-align: center;
+      margin-top: 16px;
+      border-top: 2px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .footer-content {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .footer-quote {
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 600;
+      color: rgba(59, 130, 246, 0.9);
+      margin-bottom: 16px;
+      line-height: 1.6;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+      margin: 14px 0;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-copyright strong {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ══════════════════════════════
+       UTILITY
+    ══════════════════════════════ */
+    .text-center { text-align: center; }
+    .mt-2 { margin-top: 8px; }
+    .mt-4 { margin-top: 16px; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HOME VIEW
+     ════════════════════════════════════════ -->
+<div id="home" class="view active">
+  <div class="home-hero">
+    <span class="brand-badge">📚 BunRey English Course</span>
+    <span class="hero-emoji">⏳</span>
+    <h1 class="hero-title">Past Continuous Tense</h1>
+    <p class="hero-sub">Master the "Was/Were Doing" Tense</p>
+    <div class="stats-row">
+      <div class="stat-pill">
+        <span class="num">4</span>
+        <span class="lbl">Lessons</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">20</span>
+        <span class="lbl">Questions</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">Grade 4</span>
+        <span class="lbl">Level</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lessons-section">
+    <p class="section-label">📖 All Lessons</p>
+    <div class="lesson-grid" id="home-cards"></div>
+  </div>
+
+  <div class="quiz-btn-wrap">
+    <button class="quiz-main-btn" onclick="openQuiz()">🏆 Take the Full Quiz</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     LESSON VIEW
+     ════════════════════════════════════════ -->
+<div id="lesson" class="view">
+  <div class="lesson-header" id="lheader">
+    <button class="back-btn" onclick="showHome()">← Back Home</button>
+    <div class="lheader-inner">
+      <span class="lheader-emoji" id="l-emoji">⏰</span>
+      <div>
+        <div class="lheader-num" id="l-num">Lesson 1 of 4</div>
+        <h2 class="lheader-title" id="l-title">Lesson Title</h2>
+        <p class="lheader-sub" id="l-sub">Subtitle</p>
+      </div>
+    </div>
+    <div class="l-obj" id="l-obj"></div>
+  </div>
+
+  <div class="lesson-body">
+    <div id="lesson-content"></div>
+  </div>
+
+  <div id="lesson-nav"></div>
+</div>
+
+<!-- ════════════════════════════════════════
+     QUIZ VIEW
+     ════════════════════════════════════════ -->
+<div id="quiz" class="view">
+  <div class="quiz-container">
+    <div id="quiz-q-card"></div>
+    <div id="quiz-result-card"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════
+
+const QUOTES = [
+  "✨ Every lesson learned is a step towards success!",
+  "🌟 Keep practicing, and you'll become an expert!",
+  "💪 Learning English opens doors to the world!",
+  "🎯 Small steps every day lead to big achievements!",
+  "📚 The more you learn, the more you grow!",
+  "🚀 You are doing amazing! Keep it up!",
+  "💎 Mistakes are proof you are trying!",
+  "🌈 English is fun when you practice with joy!"
+];
+
+const LESSONS = [
+  {
+    id: 1,
+    icon: '⏳',
+    title: 'What is Past Continuous?',
+    sub: 'Introduction to the Tense',
+    color: '#1B3A52',
+    color2: '#2D7A4A',
+    bg: '#FFFFFF',
+    objective: 'Understand what past continuous tense means and when to use it',
+    content: [
+      {
+        type: 'tip',
+        label: 'What is Past Continuous?',
+        text: 'Past Continuous Tense tells us about something that WAS HAPPENING in the past. It shows that an action was in progress at a specific moment in the past.'
+      },
+      {
+        type: 'examples',
+        label: 'Simple Examples',
+        items: [
+          { word: 'I was playing football at 3 PM.', note: 'Action was happening at 3 PM' },
+          { word: 'She was reading a book when I called.', note: 'Action was happening when something else happened' },
+          { word: 'They were eating lunch at noon.', note: 'Action was in progress at noon' }
+        ]
+      },
+      {
+        type: 'tip',
+        label: '💡 Key Point',
+        text: 'Past Continuous = Something WAS HAPPENING at a specific moment in the past. The action was still going on, not finished yet.'
+      },
+      {
+        type: 'sentences',
+        label: 'More Examples to Read',
+        items: [
+          'When you arrived, I was preparing dinner.',
+          'She was finishing the book when it started to rain.',
+          'They were visiting grandma yesterday afternoon.',
+          'We were watching the movie at 8 PM.'
+        ]
+      }
+    ]
+  },
+
+  {
+    id: 2,
+    icon: '🧩',
+    title: 'Structure & Formation',
+    sub: 'How to Build Past Continuous Sentences',
+    color: '#2D7A4A',
+    color2: '#2D7A4A',
+    bg: '#E8F5ED',
+    objective: 'Learn the correct structure: Was/Were + -ing',
+    content: [
+      {
+        type: 'tip',
+        label: 'The Formula',
+        text: 'WAS / WERE + VERB + -ing (base form of verb + -ing)'
+      },
+      {
+        type: 'steps',
+        label: 'Building Steps',
+        steps: [
+          'Start with the Subject (I, You, He, She, It, We, They)',
+          'Add WAS (for I/He/She/It) or WERE (for You/We/They)',
+          'Add the -ing form of the verb',
+          'Complete the sentence'
+        ]
+      },
+      {
+        type: 'examples',
+        label: 'Structure Breakdown',
+        items: [
+          { word: 'I was + playing', note: '(Subject + Was + -ing form)' },
+          { word: 'She was + reading', note: '(Subject + Was + -ing form)' },
+          { word: 'They were + eating', note: '(Subject + Were + -ing form)' }
+        ]
+      },
+      {
+        type: 'wordlist',
+        label: 'Common -ing Forms',
+        categories: [
+          {
+            name: 'Regular -ing Additions',
+            words: ['playing', 'reading', 'eating', 'writing', 'walking', 'running']
+          },
+          {
+            name: 'Special Cases (-ing)',
+            words: ['stopping (drop e)', 'swimming (double p)', 'making (drop e)', 'hopping (double p)']
+          }
+        ]
+      },
+      {
+        type: 'practice',
+        label: 'Practice: Fill the Blanks',
+        text: 'Complete these sentences using the formula:',
+        prompts: [
+          'I was _____ (study) when you called.',
+          'She was _____ (read) a book yesterday.',
+          'They were _____ (play) football at 5 PM.'
+        ]
+      }
+    ]
+  },
+
+  {
+    id: 3,
+    icon: '🎯',
+    title: 'Positive, Negative & Questions',
+    sub: 'Three Forms of Past Continuous',
+    color: '#2D7A4A',
+    color2: '#FFD700',
+    bg: '#F5EFE7',
+    objective: 'Master positive, negative, and question forms of past continuous',
+    content: [
+      {
+        type: 'tip',
+        label: 'Three Forms',
+        text: 'Past Continuous can be written in three ways: Positive (affirmative), Negative, and Question forms.'
+      },
+      {
+        type: 'sentenceparts',
+        label: 'Positive Form',
+        parts: [
+          { part: 'Subject', role: 'Who?', color: '#7EA876' },
+          { part: 'Was/Were', role: 'Helper Verb', color: '#7EA876' },
+          { part: 'Verb + -ing', role: 'Action', color: '#7EA876' }
+        ],
+        full: 'Example: I was playing football yesterday.'
+      },
+      {
+        type: 'examples',
+        label: 'Positive Examples',
+        items: [
+          { word: 'I was studying.', note: 'Subject + Was + -ing' },
+          { word: 'She was eating.', note: 'Subject + Was + -ing' },
+          { word: 'They were playing.', note: 'Subject + Were + -ing' }
+        ]
+      },
+      {
+        type: 'sentenceparts',
+        label: 'Negative Form (with NOT)',
+        parts: [
+          { part: 'Subject', role: 'Who?', color: '#EF4444' },
+          { part: 'Was NOT / Were NOT', role: 'Helper Verbs', color: '#EF4444' },
+          { part: 'Verb + -ing', role: 'Action', color: '#EF4444' }
+        ],
+        full: 'Example: I was NOT playing football yesterday.'
+      },
+      {
+        type: 'examples',
+        label: 'Negative Examples',
+        items: [
+          { word: 'I was not studying.', note: 'Negative form' },
+          { word: 'She was not eating.', note: 'Was + not + -ing' },
+          { word: 'They were not playing.', note: 'Denies the action' }
+        ]
+      },
+      {
+        type: 'sentenceparts',
+        label: 'Question Form',
+        parts: [
+          { part: 'Was/Were', role: 'Start', color: '#1B3A52' },
+          { part: 'Subject', role: 'Who?', color: '#1B3A52' },
+          { part: 'Verb + -ing', role: 'Action', color: '#1B3A52' }
+        ],
+        full: 'Example: Were you playing football yesterday?'
+      },
+      {
+        type: 'examples',
+        label: 'Question Examples',
+        items: [
+          { word: 'Were you playing?', note: 'Were + Subject + -ing' },
+          { word: 'Was she eating?', note: 'Simple yes/no question' },
+          { word: 'Were they working?', note: 'Question form' }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: 4,
+    icon: '📖',
+    title: 'Usage & Real Examples',
+    sub: 'When and How to Use Past Continuous',
+    color: '#0F5F8F',
+    color2: '#5B99C8',
+    bg: '#E8F2FA',
+    objective: 'Learn when to use past continuous in real situations',
+    content: [
+      {
+        type: 'tip',
+        label: 'When to Use Past Continuous?',
+        text: 'Use Past Continuous to describe an action that was happening at a specific time in the past, often when another action happened.'
+      },
+      {
+        type: 'examples',
+        label: 'Real Situations',
+        items: [
+          { word: 'I was walking to school when it started raining.', note: 'Two actions at the same time' },
+          { word: 'She was sleeping when the phone rang.', note: 'Interrupted action' },
+          { word: 'They were having lunch at 12:30 PM.', note: 'Action at a specific time' }
+        ]
+      },
+      {
+        type: 'tip',
+        label: '💡 Common Signal Words',
+        text: 'While, When, At that time, At 5 PM, Yesterday, Last week, All day, During'
+      },
+      {
+        type: 'sentences',
+        label: 'Dialogue Examples',
+        items: [
+          '"What were you doing at 3 PM?" "I was playing with my friends."',
+          '"Was she studying when you called?" "Yes, she was studying."',
+          '"What were they doing yesterday?" "They were watching a movie."'
+        ]
+      },
+      {
+        type: 'practice',
+        label: 'Practice: Create Sentences',
+        text: 'Make past continuous sentences about these situations:',
+        prompts: [
+          'What were you doing at 5 PM yesterday?',
+          'What was she doing when it started raining?',
+          'Were they sleeping at midnight last night?'
+        ]
+      }
+    ]
+  }
+];
+
+const QUIZ = [
+  {
+    q: 'Which sentence uses Past Continuous correctly?',
+    opts: [
+      { txt: 'I was play football yesterday.', correct: false },
+      { txt: 'I was playing football yesterday.', correct: true },
+      { txt: 'I playing football yesterday.', correct: false },
+      { txt: 'I am playing football yesterday.', correct: false }
+    ]
+  },
+  {
+    q: 'What is the past continuous of "eat"?',
+    opts: [
+      { txt: 'eat', correct: false },
+      { txt: 'ate', correct: false },
+      { txt: 'was eating', correct: true },
+      { txt: 'will eat', correct: false }
+    ]
+  },
+  {
+    q: 'Choose the sentence with correct was/were:',
+    opts: [
+      { txt: 'They was playing football.', correct: false },
+      { txt: 'They were playing football.', correct: true },
+      { txt: 'They were play football.', correct: false },
+      { txt: 'They are playing football.', correct: false }
+    ]
+  },
+  {
+    q: 'Which is the correct negative form?',
+    opts: [
+      { txt: 'I was not studying.', correct: true },
+      { txt: 'I not was studying.', correct: false },
+      { txt: 'I was studying not.', correct: false },
+      { txt: 'I study not was.', correct: false }
+    ]
+  },
+  {
+    q: 'Complete: "She ___ reading when I called."',
+    opts: [
+      { txt: 'am', correct: false },
+      { txt: 'is', correct: false },
+      { txt: 'was', correct: true },
+      { txt: 'will be', correct: false }
+    ]
+  },
+  {
+    q: 'Which describes an action at a specific past time?',
+    opts: [
+      { txt: 'Simple Past', correct: false },
+      { txt: 'Past Continuous', correct: true },
+      { txt: 'Future Perfect', correct: false },
+      { txt: 'Simple Present', correct: false }
+    ]
+  },
+  {
+    q: 'What does "were you doing at 5 PM?" ask?',
+    opts: [
+      { txt: 'What did you do?', correct: false },
+      { txt: 'What are you doing?', correct: false },
+      { txt: 'What action was happening at 5 PM?', correct: true },
+      { txt: 'What will you do?', correct: false }
+    ]
+  },
+  {
+    q: 'Choose the correct sentence:',
+    opts: [
+      { txt: 'I were playing football.', correct: false },
+      { txt: 'You was studying.', correct: false },
+      { txt: 'They were eating lunch.', correct: true },
+      { txt: 'It were raining.', correct: false }
+    ]
+  },
+  {
+    q: 'Past Continuous shows an action that...',
+    opts: [
+      { txt: 'is happening now', correct: false },
+      { txt: 'was in progress at a past time', correct: true },
+      { txt: 'will happen soon', correct: false },
+      { txt: 'happened and finished immediately', correct: false }
+    ]
+  },
+  {
+    q: 'Which sentence is in past continuous?',
+    opts: [
+      { txt: 'I played football yesterday.', correct: false },
+      { txt: 'I am playing football now.', correct: false },
+      { txt: 'I was playing football at 3 PM.', correct: true },
+      { txt: 'I will play football tomorrow.', correct: false }
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════
+//  STATE & HELPERS
+// ═══════════════════════════════════════════════
+let quizStep = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+}
+
+function showHome() {
+  showView('home');
+  window.scrollTo(0, 0);
+}
+
+function openQuiz() {
+  resetQuiz();
+  renderQuizStep();
+  showView('quiz');
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════
+//  BUILD HOME
+// ═══════════════════════════════════════════════
+function buildHomeCards() {
+  const grid = document.getElementById('home-cards');
+  grid.innerHTML = LESSONS.map((l, idx) => `
+    <div class="lesson-card" style="--card-color:${l.color}; --card-bg:${l.bg};" onclick="openLesson(${idx})">
+      <div class="card-top">
+        <div class="card-icon" style="background:${l.bg}; color:${l.color}">${l.icon}</div>
+        <div>
+          <div class="card-title">${l.title}</div>
+          <div class="card-sub">${l.sub}</div>
+        </div>
+      </div>
+      <div class="card-obj">${l.objective}</div>
+      <div class="card-btn"><span>Open Lesson</span></div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════
+//  OPEN LESSON
+// ═══════════════════════════════════════════════
+function openLesson(idx) {
+  const l = LESSONS[idx];
+  const lheader = document.getElementById('lheader');
+  
+  // set CSS vars on header
+  lheader.style.background = `linear-gradient(135deg, ${l.color}, ${l.color2})`;
+  document.getElementById('l-emoji').textContent = l.icon;
+  document.getElementById('l-num').textContent = `Lesson ${l.id} of ${LESSONS.length}`;
+  document.getElementById('l-title').textContent = l.title;
+  document.getElementById('l-sub').textContent = l.sub;
+
+  const obj = document.getElementById('l-obj');
+  obj.style.background = l.bg;
+  obj.innerHTML = `<strong style="color:${l.color}">🎯 Learning Goal:</strong> ${l.objective}`;
+
+  // Set CSS vars for content colors
+  const body = document.querySelector('.lesson-body');
+  body.style.setProperty('--lcolor', l.color);
+  body.style.setProperty('--lcolor2', l.color2);
+  body.style.setProperty('--lbg', l.bg);
+
+  // Render content
+  document.getElementById('lesson-content').innerHTML = l.content.map(renderBlock).join('');
+
+  // Nav
+  const nav = document.getElementById('lesson-nav');
+  nav.innerHTML = '';
+  if (idx > 0) {
+    const prev = document.createElement('button');
+    prev.className = 'nav-btn prev';
+    prev.style.setProperty('--lcolor', l.color);
+    prev.textContent = '← Previous';
+    prev.onclick = () => openLesson(idx - 1);
+    nav.appendChild(prev);
+  }
+  if (idx < LESSONS.length - 1) {
+    const next = document.createElement('button');
+    next.className = 'nav-btn next';
+    next.style.background = l.color;
+    next.textContent = 'Next Lesson →';
+    next.onclick = () => openLesson(idx + 1);
+    nav.appendChild(next);
+  } else {
+    const qbtn = document.createElement('button');
+    qbtn.className = 'nav-btn quiz-nav';
+    qbtn.style.background = l.color;
+    qbtn.textContent = '🏆 Take the Quiz!';
+    qbtn.onclick = openQuiz;
+    nav.appendChild(qbtn);
+  }
+
+  showView('lesson');
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER CONTENT BLOCKS
+// ═══════════════════════════════════════════════
+function renderBlock(b) {
+  if (b.type === 'tip') {
+    return `<div class="block tip-block">
+      <div class="tip-label">💡 ${b.label}</div>
+      <div class="tip-text">${b.text}</div>
+    </div>`;
+  }
+  if (b.type === 'steps') {
+    const steps = b.steps.map((s,i) => `
+      <div class="step-item">
+        <div class="step-num">${i+1}</div>
+        <div class="step-text">${s}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📋 ${b.label}</div>
+      ${steps}
+    </div>`;
+  }
+  if (b.type === 'practice') {
+    const lines = b.lines ? `<div style="margin-top:10px;">${b.lines.map(l=>`<div style="font-family:monospace;font-size:20px;color:#9CA3AF;letter-spacing:6px;margin-bottom:4px;">${l}</div>`).join('')}</div>` : '';
+    const prompts = b.prompts ? b.prompts.map(p=>`<div class="prompt-item">👉 ${p}</div>`).join('') : '';
+    return `<div class="block practice-block">
+      <div class="practice-label">✏️ ${b.label}</div>
+      <div class="practice-text">${b.text}</div>
+      ${lines}${prompts}
+    </div>`;
+  }
+  if (b.type === 'examples') {
+    const rows = b.items.map(item=>`
+      <div class="example-row">
+        <span class="example-word">${item.word}</span>
+        <span class="example-note">— ${item.note}</span>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📌 ${b.label}</div>
+      ${rows}
+    </div>`;
+  }
+  if (b.type === 'wordlist') {
+    const cats = b.categories.map(cat=>`
+      <div class="word-cat">
+        <div class="word-cat-name">${cat.name}</div>
+        <div class="word-chips">${cat.words.map(w=>`<div class="word-chip">${w}</div>`).join('')}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📖 ${b.label}</div>
+      ${cats}
+    </div>`;
+  }
+  if (b.type === 'sentenceparts') {
+    const parts = b.parts.map(p=>`
+      <div class="sent-part" style="--spc:${p.color}">
+        <div class="sent-part-text" style="color:${p.color}">${p.part}</div>
+        <div class="sent-part-role">${p.role}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🔍 ${b.label}</div>
+      <div class="sent-parts">${parts}</div>
+      <div class="sent-full">➡️ ${b.full}</div>
+    </div>`;
+  }
+  if (b.type === 'sentences') {
+    const items = b.items.map(s=>`<div class="sent-item">📝 ${s}</div>`).join('');
+    return `<div class="block">
+      <div class="block-label">✅ ${b.label}</div>
+      ${items}
+    </div>`;
+  }
+  return '';
+}
+
+// ═══════════════════════════════════════════════
+//  QUIZ
+// ═══════════════════════════════════════════════
+function resetQuiz() {
+  quizStep = 0;
+  quizScore = 0;
+  quizAnswered = false;
+}
+
+function renderQuizStep() {
+  const qcard = document.getElementById('quiz-q-card');
+  const rcard = document.getElementById('quiz-result-card');
+
+  if (quizStep >= QUIZ.length) {
+    qcard.style.display = 'none';
+    rcard.style.display = 'block';
+    const pct = Math.round((quizScore / QUIZ.length) * 100);
+    const emoji = quizScore === QUIZ.length ? '🏆' : quizScore >= 15 ? '🌟' : '📚';
+    const title = quizScore === QUIZ.length ? 'Perfect Score!' : quizScore >= 15 ? 'Great Job!' : 'Keep Practicing!';
+    const pctClass = pct >= 80 ? 'pct-green' : pct >= 60 ? 'pct-yellow' : 'pct-red';
+    rcard.innerHTML = `
+      <span class="result-trophy">${emoji}</span>
+      <div class="result-title">${title}</div>
+      <div class="result-sub">You got <strong>${quizScore} out of ${QUIZ.length}</strong> correct!</div>
+      <div class="result-score-box">
+        <div class="result-score-label">Your Score</div>
+        <div class="result-pct ${pctClass}">${pct}%</div>
+      </div>
+      <div class="result-btns">
+        <button class="result-btn retry" onclick="resetQuiz(); renderQuizStep();">Try Again</button>
+        <button class="result-btn home" onclick="showHome(); resetQuiz();">Back Home</button>
+      </div>`;
+    return;
+  }
+
+  rcard.style.display = 'none';
+  qcard.style.display = 'block';
+  quizAnswered = false;
+
+  const q = QUIZ[quizStep];
+  const pct = (quizStep / QUIZ.length) * 100;
+  const opts = q.opts.map((o,i)=>`
+    <button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${['A','B','C','D'][i]}. ${o.txt}</button>`).join('');
+
+  qcard.innerHTML = `
+    <div class="quiz-toprow">
+      <span class="quiz-counter">Question ${quizStep+1} of ${QUIZ.length}</span>
+      <span class="quiz-score-badge">Score: ${quizScore}</span>
+    </div>
+    <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${pct}%"></div></div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-options">${opts}</div>`;
+}
+
+function answerQuiz(i) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = QUIZ[quizStep];
+  const correctIdx = q.opts.findIndex(o => o.correct);
+  if (i === correctIdx) quizScore++;
+
+  document.querySelectorAll('.quiz-opt').forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === correctIdx) btn.classList.add('correct');
+    else if (idx === i) btn.classList.add('wrong');
+  });
+
+  setTimeout(() => {
+    quizStep++;
+    renderQuizStep();
+  }, 950);
+}
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+function initFooter() {
+  const quoteEl = document.querySelector('.footer-quote');
+  if (quoteEl) {
+    const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+    quoteEl.textContent = quote;
+  }
+}
+
+buildHomeCards();
+
+// Jalankan initFooter setelah DOM selesai
+window.addEventListener('load', initFooter);
+</script>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════ -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-quote"></div>
+    <div class="footer-divider"></div>
+    <div class="footer-copyright">
+      © 2026 <strong>BunRey English Course</strong> | Empowering Young Learners | Grade 4
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

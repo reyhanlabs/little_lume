@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Future Continuous Tense Grade 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #9B5FB4;
+  --brand-dark: #7A3F8C;
+  --teal:       #6B8FD9;
+  --teal-light: #EEF2FC;
+  --yellow:     #F4D89F;
+  --yellow-lt:  #FFFDF5;
+  --purple:     #C9A8D8;
+  --rose:       #E8A8C8;
+  --rose-lt:    #FAF0F5;
+  --bg:         #FDFCFA;
+  --white:      #FFFFFF;
+  --ink:        #453A52;
+  --muted:      #9A8FA0;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+/* HEADER */
+.site-header { background: linear-gradient(135deg, #C9A8E8 0%, #9B5FB4 50%, #6B8FD9 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .18; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.15); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.3); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.12); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.15)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* NAV */
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+/* MAIN */
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+/* CARDS */
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card.green  { border-color: #4CAF50; }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+
+/* CONCEPT BOX */
+.concept-box { background: linear-gradient(135deg, var(--teal) 0%, #7AC962 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'📹'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.15; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+/* PROGRESS BOX */
+.progress-box { background: var(--white); border-radius: var(--card-r); padding: 20px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.progress-box h4 { font-family: 'Baloo 2', cursive; font-size: 16px; font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.progress-box p { font-size: 13px; color: var(--muted); }
+.prog-dots { display: flex; gap: 8px; }
+.pdot { width: 12px; height: 12px; border-radius: 50%; background: #e0e0e0; transition: background .3s; }
+.pdot.done { background: var(--brand); }
+
+/* TIMELINE */
+.timeline-box { background: #fff; border-radius: 16px; padding: 24px 20px 16px; margin-top: 14px; position: relative; }
+.timeline-track { position: relative; height: 60px; background: linear-gradient(90deg, #EEFCE4, #FEF5FA); border-radius: 30px; display: flex; align-items: center; padding: 0 24px; }
+.timeline-track::before { content:''; position:absolute; left:24px; right:24px; top:50%; height:3px; background:#ccc; transform:translateY(-50%); }
+.tl-point { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
+.tl-dot { width: 18px; height: 18px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.15); }
+.tl-dot.past  { background: var(--teal); }
+.tl-dot.now   { background: var(--brand); width: 22px; height: 22px; }
+.tl-label { font-size: 10.5px; font-weight: 800; text-align: center; white-space: nowrap; }
+.tl-label.past { color: var(--teal); }
+.tl-label.now  { color: var(--brand); }
+.tl-spacer { flex: 1; }
+.tl-bracket { position: absolute; top: -10px; left: 24px; right: calc(50% - 11px); height: 18px; border: 2px solid var(--teal); border-bottom: none; border-radius: 10px 10px 0 0; }
+.tl-bracket-label { position: absolute; top: -32px; left: 24px; right: calc(50% - 11px); text-align: center; font-size: 10px; font-weight: 800; color: var(--teal); }
+.tl-caption { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 30px; font-weight: 600; }
+.tl-caption b { color: var(--ink); }
+
+/* COMPARE */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: #FEF5FA; border: 2px solid #F4B8D8; }
+.compare-col.right { background: #EEFCE4; border: 2px solid #70AD47; }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+/* TABLE */
+.pro-table { width:100%; border-collapse:separate; border-spacing:0; border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); margin-top:12px; font-size:14px; }
+.pro-table thead tr { background: var(--brand); color:#fff; }
+.pro-table th { padding:12px 14px; text-align:left; font-weight:700; font-size:12.5px; letter-spacing:.4px; }
+.pro-table td { padding:11px 14px; vertical-align:top; border-bottom:1px solid #f0ebe4; }
+.pro-table tr:last-child td { border:none; }
+.pro-table tr:nth-child(even) td { background:#FFF8F0; }
+.pro-table tr:hover td { background:#FFF3E8; }
+.pro-table .en { font-weight:700; color:var(--brand-dark); }
+.pro-table .muted { color:var(--muted); font-size:12.5px; }
+.pro-table .ex { font-style:italic; color:#444; }
+.pro-table .exsub { font-size:12px; color:var(--muted); display:block; margin-top:2px; }
+
+/* FORMULA BOX */
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.subj { background: var(--brand); color: #fff; }
+.fp.aux  { background: var(--teal); color: #fff; }
+.fp.verb { background: var(--purple); color: #fff; }
+.fp.plus { background: transparent; color: var(--muted); font-size: 18px; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+/* CHIPS */
+.havechip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; justify-content: center; }
+.havechip { border-radius: 14px; padding: 12px 18px; text-align: center; min-width: 90px; border: 2px solid transparent; }
+.havechip.have { background: #EEFCE4; border-color: #70AD47; }
+.havechip.has  { background: #FEF5FA; border-color: #F4B8D8; }
+.havechip-word { font-family:'Baloo 2',cursive; font-size: 20px; font-weight: 800; }
+.havechip.have .havechip-word { color: #4A7C3B; }
+.havechip.has .havechip-word { color: #B85A8F; }
+.havechip-sub { font-size: 10px; color: var(--muted); margin-top: 2px; font-weight: 600; }
+
+/* TIP BOX */
+.tip { background: var(--white); border-left: 5px solid var(--brand); border-radius: 8px; padding: 16px 18px; margin: 18px 0; display: flex; gap: 14px; box-shadow: var(--shadow-sm); }
+.tip-ico { font-size: 32px; flex-shrink: 0; }
+.tip-body { font-size: 14px; line-height: 1.6; }
+.tip-body strong { color: var(--brand); }
+
+/* DIALOGUE */
+.dialogue-item { background: var(--white); border-radius: var(--card-r); padding: 18px; margin-bottom: 14px; box-shadow: var(--shadow-sm); }
+.speaker-a { border-left: 4px solid var(--brand); padding-left: 16px; }
+.speaker-b { border-left: 4px solid var(--teal); padding-left: 16px; }
+.speaker-label { font-weight: 700; color: var(--brand); font-size: 12px; margin-bottom: 4px; }
+.speaker-b .speaker-label { color: var(--teal); }
+.dialogue-text { font-size: 14px; line-height: 1.6; color: var(--ink); }
+
+/* QUIZ */
+.quiz-section { max-width: 100%; }
+.qitem { background: var(--white); border-radius: var(--card-r); padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+.qnum { font-weight: 700; color: var(--brand); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+.qtext { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 16px; }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.opt { padding: 12px 16px; border: 2px solid #ddd; border-radius: 10px; background: #f9f9f9; font-size: 13.5px; cursor: pointer; transition: all .25s; text-align: left; font-weight: 500; }
+.opt:hover:not(.correct):not(.wrong) { border-color: var(--brand); background: var(--yellow-lt); }
+.opt.correct { background: #C8E6C9; border-color: var(--teal); color: var(--teal); font-weight: 700; }
+.opt.wrong { background: #F8BBD0; border-color: var(--rose); color: var(--rose); font-weight: 700; }
+.qfb { display: none; font-weight: 600; margin-top: 12px; padding: 12px 16px; border-radius: 8px; font-size: 14px; }
+.qfb.show { display: block; }
+.qfb.ok { background: #E8F5E9; color: var(--teal); }
+.qfb.no { background: #FCE4EC; color: var(--rose); }
+
+/* SCORE BOX */
+.score-box { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); border-radius: var(--card-r); padding: 28px; text-align: center; color: #fff; margin-bottom: 20px; box-shadow: var(--shadow-md); }
+.score-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: .9; margin-bottom: 8px; }
+.score-num { font-family: 'Baloo 2', cursive; font-size: 52px; font-weight: 800; line-height: 1; }
+.star-display { font-size: 32px; margin-top: 12px; }
+
+/* BUTTONS */
+.reset-btn { display: block; margin: 24px auto 0; padding: 12px 28px; background: var(--brand); color: #fff; border: none; border-radius: 20px; font-weight: 700; cursor: pointer; transition: all .25s; font-size: 14px; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header-inner { gap: 12px; padding: 20px 16px 18px; }
+  .header-mascot { font-size: 40px; }
+  .compare { grid-template-columns: 1fr; }
+  .opts { grid-template-columns: 1fr; }
+  .progress-box { flex-direction: column; align-items: flex-start; }
+  .timeline-track { padding: 0 10px; }
+  .tl-label { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes"><div class="hs hs1"></div><div class="hs hs2"></div><div class="hs hs3"></div></div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">English Course</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grade 4 · English</div>
+      <div class="header-title">Learning <span>Future Continuous</span><br>Tense</div>
+      <div class="header-sub">Actions that will be happening! 🚀</div>
+    </div>
+    <div class="header-mascot">🦊</div>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro',this)">🏠 Introduction</button>
+    <button class="tab-btn" onclick="showTab('form',this)">🔨 Form & Formula</button>
+    <button class="tab-btn" onclick="showTab('usage',this)">⏰ When to Use</button>
+    <button class="tab-btn" onclick="showTab('negative',this)">❌ Negative & ❓ Question</button>
+    <button class="tab-btn" onclick="showTab('dialogue',this)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz',this)">🏆 Quiz</button>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- SECTION 1: INTRODUCTION -->
+<div class="section active" id="intro">
+  <div class="progress-box">
+    <div>
+      <h4>📍 You are here</h4>
+      <p>Start with the introduction, then explore each part step by step!</p>
+    </div>
+    <div class="prog-dots">
+      <div class="pdot done"></div><div class="pdot"></div><div class="pdot"></div>
+      <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
+    </div>
+  </div>
+
+  <div class="sec-title">🚀 What is Future Continuous Tense? <span class="pill">Core Concept</span></div>
+
+  <div class="concept-box">
+    <h3>Definition</h3>
+    <p>The <strong>Future Continuous Tense</strong> is used to talk about actions that <strong>will be happening in the future</strong> — during a specific moment or period in the future. It shows what will be going on!<br><br>
+    Think of it as <strong>looking ahead with a crystal ball</strong> — it shows you actions that will be actively happening at a moment in the future!</p>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Visualizing Time</div>
+    <h3>🚀 An Action That Will Happen TOMORROW</h3>
+    <div class="timeline-box">
+      <div class="timeline-track">
+        <div class="tl-point">
+          <div class="tl-dot past"></div>
+          <div class="tl-label past">NOW<br>(today)</div>
+        </div>
+        <div class="tl-spacer"></div>
+        <div class="tl-point">
+          <div class="tl-dot now"></div>
+          <div class="tl-label now">THEN 🚀<br>(will happen!)</div>
+        </div>
+      </div>
+      <div class="tl-caption">The action <b>will be happening</b> at that future time!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Compare with Other Tenses</div>
+    <h3>🔀 Present Continuous vs. Simple Present</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>🔹 Simple Future</h4>
+        <ul>
+          <li>I <b>will play</b> football.</li>
+          <li>She <b>will read</b> a book.</li>
+          <li>We <b>will eat</b> lunch.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">One action in the future — but we don't know how long it will happen.</p>
+      </div>
+      <div class="compare-col right">
+        <h4>🔸 Future Continuous</h4>
+        <ul>
+          <li>I <b>will be playing</b> football.</li>
+          <li>She <b>will be reading</b> a book.</li>
+          <li>We <b>will be eating</b> lunch.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-top:6px;">Action in progress in the future — it will be happening then!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">🦊</div>
+    <div class="tip-body">
+      <strong>BunRey Fox says:</strong> Future Continuous uses <strong>will be + -ing</strong>. It's the same for all subjects! Use it when you want to describe what will be happening at a specific time in the future!
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FORM & FORMULA -->
+<div class="section" id="form">
+  <div class="sec-title">🔨 Form & Formula <span class="pill">How to Build It</span></div>
+
+  <div class="concept-box">
+    <h3>The Magic Formula</h3>
+    <p>Future Continuous Tense uses <strong>will be</strong> + the <strong>-ing form</strong> of the verb. The formula is the same for all subjects!</p>
+  </div>
+
+  <div class="card yellow">
+    <div class="card-label">Formula</div>
+    <h3>📐 Future Continuous Formula</h3>
+    <div class="formula-box">
+      <div class="formula-main">
+        <span class="fp subj">Subject</span>
+        <span class="fp plus">+</span>
+        <span class="fp aux">will be</span>
+        <span class="fp plus">+</span>
+        <span class="fp verb">Verb + -ing</span>
+      </div>
+      <div class="formula-sub">Example: She + will be + reading = "She will be reading."</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">For All Subjects</div>
+    <h3>🎯 Future Continuous with All Subjects</h3>
+    <div class="havechip-row">
+      <div class="havechip have"><div class="havechip-word">will be</div><div class="havechip-sub">I / You / He / She / It / We / They</div></div>
+    </div>
+    <table class="pro-table" style="margin-top:18px">
+      <thead><tr><th>Subject</th><th>Formula</th><th>Example Sentence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="en">I</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">I <b>will be playing</b> football tomorrow.</span></td></tr>
+        <tr><td><span class="en">You</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">You <b>will be doing</b> homework at 5 PM.</span></td></tr>
+        <tr><td><span class="en">He</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">He <b>will be eating</b> lunch then.</span></td></tr>
+        <tr><td><span class="en">She</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">She <b>will be reading</b> a book next week.</span></td></tr>
+        <tr><td><span class="en">It</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">It <b>will be raining</b> tomorrow morning.</span></td></tr>
+        <tr><td><span class="en">We</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">We <b>will be playing</b> games all day.</span></td></tr>
+        <tr><td><span class="en">They</span></td><td><span class="en" style="color:#7A3F8C">will be + -ing</span></td><td><span class="ex">They <b>will be singing</b> songs next concert.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card teal">
+    <div class="card-label">Important Rule</div>
+    <h3>✏️ Adding "-ing" to Verbs</h3>
+    <p style="margin-bottom:12px;">Most verbs just add <strong>-ing</strong>, but some have special rules:</p>
+    <ul style="list-style-position:inside;color:var(--ink);font-size:14px;line-height:1.8;">
+      <li><strong>play →</strong> playing ✓</li>
+      <li><strong>read →</strong> reading ✓</li>
+      <li><strong>stop →</strong> sto<strong>pp</strong>ing (double the last letter!) ✓</li>
+      <li><strong>make →</strong> making (drop the 'e' first!) ✓</li>
+      <li><strong>hop →</strong> hopping (double the 'p'!) ✓</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 3: WHEN TO USE -->
+<div class="section" id="usage">
+  <div class="sec-title">⏰ When to Use Present Continuous <span class="pill">Usage Guide</span></div>
+
+  <div class="concept-box">
+    <h3>Perfect Moments to Use It</h3>
+    <p>Use Present Continuous when describing <strong>actions happening RIGHT NOW at this very moment</strong>, or actions in progress during a specific time period.</p>
+  </div>
+
+  <div class="card rose">
+    <div class="card-label">Situation 1</div>
+    <h3>📹 Actions Happening Now</h3>
+    <p style="margin-bottom:14px;"><strong>Right now, at this moment:</strong></p>
+    <ul style="list-style-position:inside;color:var(--ink);font-size:14px;line-height:1.8;">
+      <li><strong>I am writing</strong> an essay.</li>
+      <li><strong>She is studying</strong> for the test.</li>
+      <li><strong>They are playing</strong> in the park.</li>
+    </ul>
+  </div>
+
+  <div class="card purple">
+    <div class="card-label">Situation 2</div>
+    <h3>📍 Temporary Actions</h3>
+    <p style="margin-bottom:14px;"><strong>Actions that are temporary or in progress:</strong></p>
+    <ul style="list-style-position:inside;color:var(--ink);font-size:14px;line-height:1.8;">
+      <li><strong>I am learning</strong> English this year.</li>
+      <li><strong>He is building</strong> a house at the moment.</li>
+      <li><strong>We are preparing</strong> for the concert.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Signal Words</div>
+    <h3>🎯 Words That Go With Present Continuous</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">These words often appear with Present Continuous:</p>
+    <ul style="list-style-position:inside;color:var(--ink);font-size:14px;line-height:1.8;">
+      <li><strong>now</strong> — I am eating <b>now</b>.</li>
+      <li><strong>right now</strong> — She is running <b>right now</b>.</li>
+      <li><strong>at the moment</strong> — They are playing <b>at the moment</b>.</li>
+      <li><strong>this week / month / year</strong> — We are studying <b>this week</b>.</li>
+      <li><strong>Look!</strong> — <b>Look!</b> He is jumping!</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: NEGATIVE & QUESTION -->
+<div class="section" id="negative">
+  <div class="sec-title">❌ Negative & ❓ Question Forms <span class="pill">Structure Guide</span></div>
+
+  <div class="card">
+    <div class="card-label">Negative Form</div>
+    <h3>❌ How to Say "NOT Doing"</h3>
+    <div class="formula-box">
+      <div class="formula-main">
+        <span class="fp subj">Subject</span>
+        <span class="fp plus">+</span>
+        <span class="fp aux">am/is/are + NOT</span>
+        <span class="fp plus">+</span>
+        <span class="fp verb">Verb + -ing</span>
+      </div>
+      <div class="formula-sub">Example: I + am not + playing = "I am not playing."</div>
+    </div>
+    <table class="pro-table" style="margin-top:18px">
+      <thead><tr><th>Positive</th><th>Negative</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex">I <b>am</b> reading.</span></td><td><span class="ex">I <b>am not</b> reading.</span></td></tr>
+        <tr><td><span class="ex">She <b>is</b> playing.</span></td><td><span class="ex">She <b>is not</b> playing.</span></td></tr>
+        <tr><td><span class="ex">They <b>are</b> running.</span></td><td><span class="ex">They <b>are not</b> running.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Question Form</div>
+    <h3>❓ How to Ask Questions</h3>
+    <div class="formula-box">
+      <div class="formula-main">
+        <span class="fp aux">Am/Is/Are</span>
+        <span class="fp plus">+</span>
+        <span class="fp subj">Subject</span>
+        <span class="fp plus">+</span>
+        <span class="fp verb">Verb + -ing</span>
+        <span class="fp plus">?</span>
+      </div>
+      <div class="formula-sub">Example: Is + she + reading? = "Is she reading?"</div>
+    </div>
+    <table class="pro-table" style="margin-top:18px">
+      <thead><tr><th>Question</th><th>Short Answer (Yes)</th><th>Short Answer (No)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="ex"><b>Am</b> I playing?</span></td><td><span class="ex"><b>Yes, you are.</b></span></td><td><span class="ex"><b>No, you aren't.</b></span></td></tr>
+        <tr><td><span class="ex"><b>Is</b> she reading?</span></td><td><span class="ex"><b>Yes, she is.</b></span></td><td><span class="ex"><b>No, she isn't.</b></span></td></tr>
+        <tr><td><span class="ex"><b>Are</b> they running?</span></td><td><span class="ex"><b>Yes, they are.</b></span></td><td><span class="ex"><b>No, they aren't.</b></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 5: DIALOGUE -->
+<div class="section" id="dialogue">
+  <div class="sec-title">💬 Real Dialogue Examples <span class="pill">Practice Listening</span></div>
+
+  <div class="dialogue-item speaker-a">
+    <div class="speaker-label">👦 Boy (Rini):</div>
+    <div class="dialogue-text">"Hi, Sinta! What <b>are you doing</b> right now?"</div>
+  </div>
+
+  <div class="dialogue-item speaker-b">
+    <div class="speaker-label">👧 Girl (Sinta):</div>
+    <div class="dialogue-text">"Hi, Rini! I <b>am playing</b> with my cat. It <b>is running</b> around the room!"</div>
+  </div>
+
+  <div class="dialogue-item speaker-a">
+    <div class="speaker-label">👦 Boy (Rini):</div>
+    <div class="dialogue-text">"That sounds fun! <b>Are you coming</b> to the park tomorrow?"</div>
+  </div>
+
+  <div class="dialogue-item speaker-b">
+    <div class="speaker-label">👧 Girl (Sinta):</div>
+    <div class="dialogue-text">"Yes! But right now, we <b>are eating</b> lunch. <b>Are you eating</b> too?"</div>
+  </div>
+
+  <div class="dialogue-item speaker-a">
+    <div class="speaker-label">👦 Boy (Rini):</div>
+    <div class="dialogue-text">"No, I'm not. I <b>am watching</b> my favorite show. But I <b>am getting</b> hungry!"</div>
+  </div>
+
+  <div class="tip">
+    <div class="tip-ico">💡</div>
+    <div class="tip-body">
+      <strong>Notice:</strong> In this conversation, every sentence talks about actions that are <strong>happening RIGHT NOW</strong> — playing, running, coming, eating, watching, getting!
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: QUIZ -->
+<div class="section" id="quiz">
+  <div class="sec-title">🏆 Knowledge Check <span class="pill">Test Yourself</span></div>
+
+  <div class="score-box">
+    <div class="score-label">Your Score</div>
+    <div class="score-num" id="scoreNum">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="star-display" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="quiz-section">
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Structure</div>
+      <div class="qtext">Which sentence uses Present Continuous correctly?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">I am play football.</button>
+        <button class="opt" onclick="ans('q1',this,true)">I am playing football.</button>
+        <button class="opt" onclick="ans('q1',this,false)">I playing football now.</button>
+        <button class="opt" onclick="ans('q1',this,false)">I am football playing.</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — am vs is vs are</div>
+      <div class="qtext">Choose the correct verb form.</div>
+      <div class="qtext"><em>She ___ eating lunch right now.</em></div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,false)">am eating</button>
+        <button class="opt" onclick="ans('q2',this,true)">is eating</button>
+        <button class="opt" onclick="ans('q2',this,false)">are eating</button>
+        <button class="opt" onclick="ans('q2',this,false)">have eating</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Identifying the Action</div>
+      <div class="qtext">Which sentence is in Present Continuous?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">They played football yesterday.</button>
+        <button class="opt" onclick="ans('q3',this,true)">They are playing football now.</button>
+        <button class="opt" onclick="ans('q3',this,false)">They play football every day.</button>
+        <button class="opt" onclick="ans('q3',this,false)">They will play football tomorrow.</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Negative Form</div>
+      <div class="qtext">Choose the correct negative sentence.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">I not am studying English.</button>
+        <button class="opt" onclick="ans('q4',this,true)">I am not studying English.</button>
+        <button class="opt" onclick="ans('q4',this,false)">I am studying not English.</button>
+        <button class="opt" onclick="ans('q4',this,false)">I studying not am English.</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Question Form</div>
+      <div class="qtext"><em>___ you doing your homework right now?</em></div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,true)">Are</button>
+        <button class="opt" onclick="ans('q5',this,false)">Am</button>
+        <button class="opt" onclick="ans('q5',this,false)">Is</button>
+        <button class="opt" onclick="ans('q5',this,false)">Do</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — -ing Form</div>
+      <div class="qtext">What is the correct -ing form of "stop"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,false)">stoping</button>
+        <button class="opt" onclick="ans('q6',this,true)">stopping</button>
+        <button class="opt" onclick="ans('q6',this,false)">stoping</button>
+        <button class="opt" onclick="ans('q6',this,false)">stopping</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Real Situation</div>
+      <div class="qtext">Right now it's raining outside. How would you say this?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">It rains outside.</button>
+        <button class="opt" onclick="ans('q7',this,true)">It is raining outside.</button>
+        <button class="opt" onclick="ans('q7',this,false)">It rained outside.</button>
+        <button class="opt" onclick="ans('q7',this,false)">It will rain outside.</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Multiple Subjects</div>
+      <div class="qtext">Which sentence is correct?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">We is playing basketball.</button>
+        <button class="opt" onclick="ans('q8',this,false)">We am playing basketball.</button>
+        <button class="opt" onclick="ans('q8',this,true)">We are playing basketball.</button>
+        <button class="opt" onclick="ans('q8',this,false)">We does playing basketball.</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</div>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  const tabs = ['intro','form','usage','negative','dialogue','quiz'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.pdot').forEach((d,i) => d.classList.toggle('done', i <= idx));
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Great job!', '✅ Excellent! Well done!', '✅ That\'s right! Smart!', '✅ Perfect answer!'],
+  wrong:   ['❌ Not quite. Review the formula above!', '❌ Close! Check the lesson again.', '❌ Keep trying, you\'ve got this!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'🌟🌟🌟🌟':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>
