@@ -251,6 +251,13 @@ header > p{
   transform:translateX(3px);
 }
 
+.grammar-card p{
+  margin-top:10px;
+  color:#666;
+  font-size:.93rem;
+  line-height:1.55;
+}
+
 /* ── BACK BUTTON ── */
 .back-btn{
   display:inline-flex;
@@ -295,7 +302,7 @@ footer{
 
 <header>
   <h1><span class="littlelume-text">LittleLume</span></h1>
-  <h2 id="gradeTitle">Grammar - Grade 4</h2>
+  <h2 id="gradeTitle">Grammar - Grade 1</h2>
   <p class="subtitle-main">Master English Grammar Rules</p>
   <p class="subtitle-sub">Learn grammar concepts step by step</p>
   <canvas id="plantCanvas"></canvas>
@@ -323,37 +330,37 @@ const grammarTopics = [
     id: 'tenses',
     name: '⏰ Tenses',
     icon: '📘',
-    description: 'Present, Past, and Future tenses'
+    topics: ['Simple Present', 'Present Continuous', 'Simple Past', 'Past Continuous', 'Simple Future', 'Future Continuous', 'Present Perfect', 'Past Perfect']
   },
   {
     id: 'part_of_speech',
     name: '📗 Part of Speech',
     icon: '📗',
-    description: 'Nouns, Verbs, Adjectives, and more'
+    topics: ['Nouns', 'Pronouns', 'Verbs', 'Adjectives', 'Adverbs', 'Prepositions', 'Conjunctions', 'Interjections']
   },
   {
     id: 'sentence_structure',
     name: '📙 Sentence Structure',
     icon: '📙',
-    description: 'Building correct sentences'
+    topics: ['Subject & Predicate', 'Simple Sentences', 'Compound Sentences', 'Complex Sentences', 'Clauses', 'Phrases', 'Word Order', 'Sentence Types']
   },
   {
     id: 'active_passive_voice',
     name: '📕 Active & Passive Voice',
     icon: '📕',
-    description: 'Understanding voice usage'
+    topics: ['Active Voice', 'Passive Voice', 'Converting Active to Passive', 'When to Use Each', 'Agent & Patient', 'Emphasis & Focus']
   },
   {
     id: 'direct_indirect_speech',
     name: '📓 Direct & Indirect Speech',
     icon: '📓',
-    description: 'Reporting speech correctly'
+    topics: ['Direct Speech', 'Indirect Speech', 'Reporting Verbs', 'Tense Changes', 'Pronoun Changes', 'Question Forms', 'Statement Forms']
   },
   {
     id: 'modal_verbs',
     name: '📔 Modal Verbs',
     icon: '📔',
-    description: 'Can, Could, Will, Would, etc.'
+    topics: ['Can & Could', 'Will & Would', 'Shall & Should', 'May & Might', 'Must & Have to', 'Ability', 'Permission', 'Obligation']
   }
 ];
 
@@ -384,8 +391,10 @@ document.addEventListener('DOMContentLoaded', function() {
   grammarTopics.forEach(topic => {
     const card = document.createElement('div');
     card.className = 'grammar-card';
+    const topicsList = topic.topics.slice(0, 3).join(', ') + (topic.topics.length > 3 ? '...' : '');
     card.innerHTML = `
       <a href="${topic.id}/">${topic.icon} ${topic.name.replace(/^[📘📗📙📕📓📔]\s/, '')}</a>
+      <p>${topicsList}</p>
     `;
     grammarGrid.appendChild(card);
   });
