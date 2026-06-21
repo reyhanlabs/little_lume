@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbs - Grade 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:      #00cec9;
+  --primary-dark: #0a7a6f;
+  --teal:         #00cec9;
+  --teal-light:   #d5f9f7;
+  --purple:       #a29bfe;
+  --purple-light: #e8e2ff;
+  --pink:         #fd79a8;
+  --pink-light:   #ffd6e8;
+  --yellow:       #fdcb6e;
+  --yellow-lt:    #fff4cc;
+  --bg:           #f0f6ff;
+  --white:        #ffffff;
+  --ink:          #1a1a2e;
+  --muted:        #8fa3ab;
+  --card-r:       16px;
+  --shadow-sm:    0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:    0 6px 24px rgba(0,0,0,.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #00d4a8 0%, #00cec9 50%, #0099cc 100%); position: relative; overflow: hidden; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 32px 20px 40px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: var(--primary); line-height: 1; }
+.brand-logo .logo-sub { font-size: 8px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', sans-serif; font-size: clamp(28px, 5vw, 42px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-emoji { font-size: 56px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 16px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.sec-title { font-family: 'Baloo 2', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: var(--primary); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--primary); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.pink   { border-color: var(--pink); }
+.card.yellow { border-color: var(--yellow); }
+.card h3 { font-family: 'Baloo 2', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--primary) 0%, #00d4a8 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'✨'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2', sans-serif; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: #fff; }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 20px 24px; margin: 18px 0; text-align: center; }
+.formula-main { font-family:'Baloo 2', sans-serif; font-size: 16px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 5px 14px; border-radius: 8px; margin: 2px; font-size: 13px; font-weight: 700; }
+.fp.categ { background: var(--primary); color: #fff; }
+.fp.example { background: var(--pink); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.compare-col { border-radius: 14px; padding: 18px; }
+.compare-col.left  { background: var(--pink-light); border: 2px solid var(--pink); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2', sans-serif; font-size:15px; font-weight:700; margin-bottom:12px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:8px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.6; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--primary-dark); font-weight: 700; }
+
+.example-list { margin: 18px 0; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--primary); padding: 13px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--primary-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--bg); border: 2px solid var(--teal-light); border-radius: 14px; padding: 20px; margin: 18px 0; }
+.dialogue-item { background: var(--white); border-left: 4px solid var(--primary); padding: 12px 14px; margin-bottom: 10px; border-radius: 6px; }
+.dialogue-item .speaker { font-weight: 700; color: var(--primary-dark); font-size: 13px; }
+.dialogue-item .text { color: #555; margin-top: 4px; font-size: 14px; line-height: 1.6; }
+
+.quiz-container { background: var(--white); padding: 24px; border-radius: var(--card-r); }
+.quiz-q { margin-bottom: 26px; padding-bottom: 24px; border-bottom: 2px solid var(--bg); }
+.quiz-q:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+.q-number { display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; width: 32px; height: 32px; border-radius: 50%; font-weight: 700; font-size: 13px; margin-right: 12px; }
+.q-text { font-weight: 600; color: var(--ink); margin-bottom: 14px; font-size: 15px; display: inline-block; }
+.q-opts { display: grid; gap: 10px; margin-bottom: 14px; }
+.q-opt { padding: 12px 16px; background: var(--bg); border: 2px solid transparent; border-radius: 8px; cursor: pointer; font-size: 14px; transition: all .2s; user-select: none; }
+.q-opt:hover { border-color: var(--primary); background: var(--teal-light); }
+.q-opt.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+.q-opt.correct { background: #00b894; color: #fff; border-color: #00b894; }
+.q-opt.incorrect { background: #ff7675; color: #fff; border-color: #ff7675; }
+.q-feedback { font-size: 13px; padding: 8px 12px; border-radius: 6px; display: none; margin-top: 10px; }
+.q-feedback.show { display: block; }
+.q-feedback.correct { background: rgba(0,184,148,.15); color: #0d6e4a; }
+.q-feedback.incorrect { background: rgba(255,118,117,.15); color: #8a2f2f; }
+
+.btn-group { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+.btn { padding: 12px 28px; border: none; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; transition: .2s; font-family: 'Poppins', sans-serif; }
+.btn-submit { background: var(--primary); color: #fff; }
+.btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); }
+.btn-reset { background: var(--bg); color: var(--primary); border: 2px solid var(--primary); }
+.btn-reset:hover { background: var(--teal-light); }
+
+.score-box { text-align: center; padding: 20px; background: linear-gradient(135deg, var(--teal-light) 0%, var(--purple-light) 100%); border-radius: 14px; margin-top: 24px; display: none; }
+.score-box.show { display: block; }
+.score-box h3 { color: var(--primary-dark); margin-bottom: 8px; font-family: 'Baloo 2', sans-serif; }
+.score-box p { font-size: 28px; font-weight: 800; color: var(--primary); }
+.star-rating { display: flex; gap: 6px; margin-top: 12px; font-size: 24px; justify-content: center; }
+.star { opacity: .3; transition: .2s; }
+.star.active { opacity: 1; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.7); text-align: center; padding: 24px; font-size: 13px; margin-top: 48px; }
+
+@media(max-width:768px) {
+  .header-inner { gap: 12px; }
+  .header-emoji { font-size: 44px; }
+  .compare { grid-template-columns: 1fr; }
+  .tab-btn { padding: 12px 14px; font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">LL</div>
+      <div class="logo-sub">LittleLume</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Grade 2 Grammar</div>
+      <h1 class="header-title">⚡ Verbs</h1>
+      <p class="header-sub">Action words that show what we do</p>
+    </div>
+    <div class="header-emoji">⚡</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', event)">🎯 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', event)">💡 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', event)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', event)">📚 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', event)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz', event)">🎮 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">🎯 What Are Verbs? <span class="pill">Foundation</span></h2>
+  
+  <p style="font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px;">
+    Every day, you do many things - you <strong>run</strong>, <strong>jump</strong>, <strong>eat</strong>, <strong>sleep</strong>, and <strong>play</strong>. These action words are called <strong>verbs</strong>! Verbs are the words that tell us what someone is doing.
+  </p>
+  
+  <div class="concept-box">
+    <h3>What is a Verb?</h3>
+    <p>A <strong>verb</strong> is a word that shows an action or a state of being. Verbs answer the question "What is someone doing?" or "What is happening?"</p>
+  </div>
+
+  <p style="font-size: 14px; line-height: 1.8; color: #555;">
+    Verbs are everywhere in our language! Without verbs, we couldn't describe actions or movement. They give energy to our sentences!
+  </p>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">💡 Types of Verbs <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>Two Kinds of Verbs</h3>
+    <p>Verbs can be divided into two main groups:</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">ACTION VERBS</div>
+      <span style="color: var(--muted);">+</span>
+      <div class="fp example">LINKING VERBS</div>
+      <div style="margin-top: 12px; color: var(--muted); font-size: 12px;">=All Verbs</div>
+    </div>
+    <div class="formula-sub">Different verbs, different purposes</div>
+  </div>
+
+  <div class="card">
+    <h3>🏃 Action Verbs</h3>
+    <p><strong>These show what someone or something is doing.</strong> You can usually act them out!</p>
+    <p style="margin-top: 10px;"><strong>Examples:</strong> run, jump, play, eat, sing, dance, write, draw, kick, throw</p>
+  </div>
+
+  <div class="card purple">
+    <h3>🔗 Linking Verbs</h3>
+    <p><strong>These connect the subject to a description.</strong> The most common linking verb is "be" (am, is, are).</p>
+    <p style="margin-top: 10px;"><strong>Examples:</strong> am, is, are, was, were, feel, look, smell, taste, sound</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>✅ Action Verbs</h4>
+      <ul>
+        <li><b>run</b> - moving fast</li>
+        <li><b>jump</b> - moving upward</li>
+        <li><b>eat</b> - taking food</li>
+        <li><b>sing</b> - making music</li>
+        <li><b>write</b> - making words</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>✅ Linking Verbs</h4>
+      <ul>
+        <li><b>am</b> - I am happy</li>
+        <li><b>is</b> - She is smart</li>
+        <li><b>are</b> - They are friends</li>
+        <li><b>feel</b> - I feel tired</li>
+        <li><b>look</b> - It looks blue</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Verbs <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Verbs in Sentences</h3>
+    <p>Every sentence needs a verb! The verb is the action or state of being in a sentence.</p>
+  </div>
+
+  <div class="card">
+    <h3>Present Tense - What's Happening Now</h3>
+    <p><strong>Use simple verbs to show actions happening now:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">I <b>play</b> football.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">She <b>reads</b> a book.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">They <b>walk</b> to school.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Past Tense - What Happened Before</h3>
+    <p><strong>Add -ed to most verbs to show past actions:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">I <b>played</b> yesterday.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">She <b>walked</b> home.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Special verbs:</div>
+        <div class="ex-text">I <b>went</b>, she <b>ate</b>, he <b>saw</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card pink">
+    <h3>Verbs Change with Subjects</h3>
+    <p><strong>Some verbs change depending on who is doing the action:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">With He/She/It:</div>
+        <div class="ex-text">He <b>plays</b> (add -s)</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">With I/You/We/They:</div>
+        <div class="ex-text">I <b>play</b> (no -s)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">📚 Real Examples <span class="pill">Sentences</span></h2>
+
+  <div class="card">
+    <h3>Action Verbs in Sentences</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">The boy <b>kicks</b> the ball.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I <b>draw</b> a picture.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">They <b>jump</b> on the bed.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">She <b>sings</b> a song.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <h3>Linking Verbs in Sentences</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I <b>am</b> happy.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">The sky <b>is</b> blue.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">They <b>are</b> friends.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">The flower <b>looks</b> beautiful.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Past Tense Examples</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>Present</h4>
+        <ul>
+          <li><b>play</b> → <b>played</b></li>
+          <li><b>walk</b> → <b>walked</b></li>
+          <li><b>cook</b> → <b>cooked</b></li>
+          <li><b>jump</b> → <b>jumped</b></li>
+        </ul>
+      </div>
+      <div class="compare-col right">
+        <h4>Special Past</h4>
+        <ul>
+          <li><b>go</b> → <b>went</b></li>
+          <li><b>eat</b> → <b>ate</b></li>
+          <li><b>see</b> → <b>saw</b></li>
+          <li><b>have</b> → <b>had</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Conversation <span class="pill">Speaking</span></h2>
+
+  <p style="font-size: 14px; color: #555; margin-bottom: 16px;">Listen to how Rina and Fandi use verbs when they talk about their day:</p>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="speaker">Rina:</div>
+      <div class="text">"Hi Fandi! What did you <b>do</b> after school today?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Fandi:</div>
+      <div class="text">"I <b>played</b> football with my friends. We <b>had</b> so much fun!"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Rina:</div>
+      <div class="text">"That sounds fun! I <b>went</b> to the park and <b>rode</b> my bicycle. My legs <b>feel</b> tired now."</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Fandi:</div>
+      <div class="text">"Let's <b>rest</b> for a while. Do you want to <b>eat</b> some snacks?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Rina:</div>
+      <div class="text">"Great idea! I <b>ate</b> breakfast this morning, but I'm hungry now. Let's <b>go</b> to the canteen."</div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎮 Test Your Knowledge <span class="pill">Quiz</span></h2>
+
+  <p style="font-size: 14px; color: #555; margin-bottom: 20px;">Choose the correct answer for each question.</p>
+
+  <div class="quiz-container">
+    <div class="quiz-q">
+      <span class="q-number">1</span>
+      <span class="q-text">Which word is a verb?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. happy</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. run</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. blue</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. book</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">2</span>
+      <span class="q-text">What does a verb show?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. An action or state of being</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. A description</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. A person or place</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. A name</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">3</span>
+      <span class="q-text">Which sentence has the correct verb?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. She plays football.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. She play football.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. She plays footballs.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. She playing football.</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">4</span>
+      <span class="q-text">What is the past tense of "walk"?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. walks</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. walked</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. walking</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. walled</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">5</span>
+      <span class="q-text">Which is a linking verb?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. jump</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. dance</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">C. is</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. kick</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">6</span>
+      <span class="q-text">Choose the correct verb form: "He ___ to school every day."</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. walk</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. walks</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. walking</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. walked</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">7</span>
+      <span class="q-text">What is the past tense of "eat"?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. eated</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. ate</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. eating</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. eatted</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">8</span>
+      <span class="q-text">Which sentence uses a verb correctly?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. The cat is sleeping the bed.</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. The cat is sleeping on the bed.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. The cat sleeping on the bed.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. The cat sleep on the bed.</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-submit" onclick="submitQuiz()">Submit Quiz</button>
+      <button class="btn btn-reset" onclick="resetQuiz()">Reset</button>
+    </div>
+
+    <div class="score-box">
+      <h3>Your Score</h3>
+      <p id="score-text">0/8</p>
+      <div class="star-rating" id="star-rating"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  LittleLume English Course • Grade 2 • Verbs
+</footer>
+
+<script>
+function showTab(tabName, e) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  e.target.classList.add('active');
+}
+
+function checkAns(el, correctness) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  el.classList.add('selected');
+}
+
+function submitQuiz() {
+  let correct = 0;
+  const questions = document.querySelectorAll('.quiz-q');
+  
+  questions.forEach((q) => {
+    const feedback = q.querySelector('.q-feedback');
+    const selected = q.querySelector('.q-opt.selected');
+    
+    if (!selected) {
+      feedback.textContent = '❌ Please select an answer';
+      feedback.classList.add('show', 'incorrect');
+      return;
+    }
+    
+    const correctOpt = q.querySelector('[onclick*="correct"]');
+    if (selected === correctOpt) {
+      selected.classList.add('correct');
+      feedback.textContent = '✅ Correct! Great job!';
+      feedback.classList.add('show', 'correct');
+      correct++;
+    } else {
+      selected.classList.add('incorrect');
+      feedback.textContent = '❌ Incorrect. Try again!';
+      feedback.classList.add('show', 'incorrect');
+    }
+  });
+  
+  displayScore(correct, questions.length);
+}
+
+function displayScore(correct, total) {
+  const scoreBox = document.querySelector('.score-box');
+  const scoreText = document.getElementById('score-text');
+  const starRating = document.getElementById('star-rating');
+  
+  scoreBox.classList.add('show');
+  scoreText.textContent = `${correct}/${total}`;
+  
+  const stars = Math.ceil((correct / total) * 5);
+  starRating.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement('span');
+    star.className = 'star' + (i < stars ? ' active' : '');
+    star.textContent = '⭐';
+    starRating.appendChild(star);
+  }
+}
+
+function resetQuiz() {
+  document.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  document.querySelectorAll('.q-feedback').forEach(fb => {
+    fb.classList.remove('show', 'correct', 'incorrect');
+    fb.textContent = '';
+  });
+  document.querySelector('.score-box').classList.remove('show');
+}
+</script>
+
+</body>
+</html>

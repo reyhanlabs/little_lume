@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Articles - Grade 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:      #a29bfe;
+  --primary-dark: #4a2a8a;
+  --teal:         #00cec9;
+  --teal-light:   #d5f9f7;
+  --purple:       #a29bfe;
+  --purple-light: #e8e2ff;
+  --pink:         #fd79a8;
+  --pink-light:   #ffd6e8;
+  --yellow:       #fdcb6e;
+  --yellow-lt:    #fff4cc;
+  --bg:           #f0f6ff;
+  --white:        #ffffff;
+  --ink:          #1a1a2e;
+  --muted:        #8fa3ab;
+  --card-r:       16px;
+  --shadow-sm:    0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:    0 6px 24px rgba(0,0,0,.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 50%, #00cec9 100%); position: relative; overflow: hidden; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 32px 20px 40px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: var(--primary); line-height: 1; }
+.brand-logo .logo-sub { font-size: 8px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', sans-serif; font-size: clamp(28px, 5vw, 42px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-emoji { font-size: 56px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 16px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.sec-title { font-family: 'Baloo 2', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: var(--primary); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--primary); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.pink   { border-color: var(--pink); }
+.card.yellow { border-color: var(--yellow); }
+.card h3 { font-family: 'Baloo 2', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--primary) 0%, #74b9ff 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'✨'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2', sans-serif; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: #fff; }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 20px 24px; margin: 18px 0; text-align: center; }
+.formula-main { font-family:'Baloo 2', sans-serif; font-size: 16px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 5px 14px; border-radius: 8px; margin: 2px; font-size: 13px; font-weight: 700; }
+.fp.categ { background: var(--primary); color: #fff; }
+.fp.example { background: var(--pink); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.compare-col { border-radius: 14px; padding: 18px; }
+.compare-col.left  { background: var(--pink-light); border: 2px solid var(--pink); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2', sans-serif; font-size:15px; font-weight:700; margin-bottom:12px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:8px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.6; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--primary-dark); font-weight: 700; }
+
+.example-list { margin: 18px 0; }
+.ex-item { background: var(--purple-light); border-left: 4px solid var(--primary); padding: 13px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--primary-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--bg); border: 2px solid var(--purple-light); border-radius: 14px; padding: 20px; margin: 18px 0; }
+.dialogue-item { background: var(--white); border-left: 4px solid var(--primary); padding: 12px 14px; margin-bottom: 10px; border-radius: 6px; }
+.dialogue-item .speaker { font-weight: 700; color: var(--primary-dark); font-size: 13px; }
+.dialogue-item .text { color: #555; margin-top: 4px; font-size: 14px; line-height: 1.6; }
+
+.quiz-container { background: var(--white); padding: 24px; border-radius: var(--card-r); }
+.quiz-q { margin-bottom: 26px; padding-bottom: 24px; border-bottom: 2px solid var(--bg); }
+.quiz-q:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+.q-number { display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; width: 32px; height: 32px; border-radius: 50%; font-weight: 700; font-size: 13px; margin-right: 12px; }
+.q-text { font-weight: 600; color: var(--ink); margin-bottom: 14px; font-size: 15px; display: inline-block; }
+.q-opts { display: grid; gap: 10px; margin-bottom: 14px; }
+.q-opt { padding: 12px 16px; background: var(--bg); border: 2px solid transparent; border-radius: 8px; cursor: pointer; font-size: 14px; transition: all .2s; user-select: none; }
+.q-opt:hover { border-color: var(--primary); background: var(--purple-light); }
+.q-opt.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+.q-opt.correct { background: #00b894; color: #fff; border-color: #00b894; }
+.q-opt.incorrect { background: #ff7675; color: #fff; border-color: #ff7675; }
+.q-feedback { font-size: 13px; padding: 8px 12px; border-radius: 6px; display: none; margin-top: 10px; }
+.q-feedback.show { display: block; }
+.q-feedback.correct { background: rgba(0,184,148,.15); color: #0d6e4a; }
+.q-feedback.incorrect { background: rgba(255,118,117,.15); color: #8a2f2f; }
+
+.btn-group { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+.btn { padding: 12px 28px; border: none; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; transition: .2s; font-family: 'Poppins', sans-serif; }
+.btn-submit { background: var(--primary); color: #fff; }
+.btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); }
+.btn-reset { background: var(--bg); color: var(--primary); border: 2px solid var(--primary); }
+.btn-reset:hover { background: var(--purple-light); }
+
+.score-box { text-align: center; padding: 20px; background: linear-gradient(135deg, var(--purple-light) 0%, var(--teal-light) 100%); border-radius: 14px; margin-top: 24px; display: none; }
+.score-box.show { display: block; }
+.score-box h3 { color: var(--primary-dark); margin-bottom: 8px; font-family: 'Baloo 2', sans-serif; }
+.score-box p { font-size: 28px; font-weight: 800; color: var(--primary); }
+.star-rating { display: flex; gap: 6px; margin-top: 12px; font-size: 24px; justify-content: center; }
+.star { opacity: .3; transition: .2s; }
+.star.active { opacity: 1; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.7); text-align: center; padding: 24px; font-size: 13px; margin-top: 48px; }
+
+@media(max-width:768px) {
+  .header-inner { gap: 12px; }
+  .header-emoji { font-size: 44px; }
+  .compare { grid-template-columns: 1fr; }
+  .tab-btn { padding: 12px 14px; font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">LL</div>
+      <div class="logo-sub">LittleLume</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Grade 2 Grammar</div>
+      <h1 class="header-title">📄 Articles</h1>
+      <p class="header-sub">Master A, An, and The - small words, big importance</p>
+    </div>
+    <div class="header-emoji">📄</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', event)">🎯 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', event)">💡 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', event)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', event)">📚 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', event)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz', event)">🎮 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">🎯 What Are Articles? <span class="pill">Foundation</span></h2>
+  
+  <p style="font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px;">
+    Have you ever noticed small words like <strong>"a," "an,"</strong> and <strong>"the"</strong> before nouns? These special words are called <strong>articles</strong>, and they are very important in English!
+  </p>
+  
+  <div class="concept-box">
+    <h3>Why Do Articles Matter?</h3>
+    <p>Articles are tiny words, but they help us communicate clearly. They tell us if something is general or specific, and whether we're talking about one thing or something we've already mentioned.</p>
+  </div>
+
+  <p style="font-size: 14px; line-height: 1.8; color: #555;">
+    Articles are the most commonly used words in English! We use them many times every day when we speak and write.
+  </p>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">💡 Types of Articles <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>The Three Articles</h3>
+    <p>There are three articles in English, and each one has a special use:</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">A</div>
+      <span style="color: var(--muted);">|</span>
+      <div class="fp example">AN</div>
+      <span style="color: var(--muted);">|</span>
+      <div class="fp categ">THE</div>
+      <div style="margin-top: 12px; color: var(--muted); font-size: 12px;">= All Articles</div>
+    </div>
+    <div class="formula-sub">Each article has a specific purpose and rule</div>
+  </div>
+
+  <div class="card">
+    <h3>A - Consonant Sounds</h3>
+    <p><strong>Used before consonant SOUNDS</strong> (not letters!). Use when talking about something for the first time.</p>
+    <p style="margin-top: 10px;"><strong>Examples:</strong> a boy, a dog, a house, a car, a pencil</p>
+  </div>
+
+  <div class="card teal">
+    <h3>An - Vowel Sounds</h3>
+    <p><strong>Used before vowel SOUNDS</strong> (a, e, i, o, u). Use when talking about something for the first time.</p>
+    <p style="margin-top: 10px;"><strong>Examples:</strong> an apple, an elephant, an ice cream, an umbrella, an orange</p>
+  </div>
+
+  <div class="card purple">
+    <h3>The - Specific Things</h3>
+    <p><strong>The definite article.</strong> Use when talking about something specific - something we already know about or something that is clear which one we mean.</p>
+    <p style="margin-top: 10px;"><strong>Examples:</strong> the teacher, the sun, the classroom, the book</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>✅ A & An (Indefinite)</h4>
+      <ul>
+        <li><b>a</b> cat - any cat</li>
+        <li><b>an</b> apple - any apple</li>
+        <li>First mention</li>
+        <li>General/unknown</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>✅ The (Definite)</h4>
+      <ul>
+        <li><b>the</b> cat - a specific cat</li>
+        <li><b>the</b> apple - we know which one</li>
+        <li>Already mentioned</li>
+        <li>Specific/known</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Articles <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Sound Matters, Not Letters!</h3>
+    <p>Remember: We use A or AN based on SOUNDS, not the first letter!</p>
+  </div>
+
+  <div class="card">
+    <h3>A or An - Sound Rules</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">A (consonant sounds):</div>
+        <div class="ex-text"><b>a</b> boy, <b>a</b> dog, <b>a</b> book, <b>a</b> pencil</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">An (vowel sounds):</div>
+        <div class="ex-text"><b>an</b> apple, <b>an</b> elephant, <b>an</b> orange, <b>an</b> umbrella</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Special cases:</div>
+        <div class="ex-text"><b>a</b> university (u sounds like "yu"), <b>an</b> hour (h is silent)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <h3>First Mention vs Second Mention</h3>
+    <p><strong>Notice how articles change:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">First time:</div>
+        <div class="ex-text">I saw <b>a</b> cat in the street.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Second time:</div>
+        <div class="ex-text"><b>The</b> cat was very cute.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">First time:</div>
+        <div class="ex-text">My friend has <b>a</b> dog.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Second time:</div>
+        <div class="ex-text"><b>The</b> dog likes to play.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>When to Use The</h3>
+    <p><strong>Use "the" for:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Specific/known things:</div>
+        <div class="ex-text"><b>The</b> sun is bright. (There is only one sun)</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Already mentioned:</div>
+        <div class="ex-text">I have a cat. <b>The</b> cat is orange.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Clear which one:</div>
+        <div class="ex-text">I like <b>the</b> teacher. (My teacher, the one we know)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">📚 Real Examples <span class="pill">Sentences</span></h2>
+
+  <div class="card">
+    <h3>Using A</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I have <b>a</b> pencil.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">She is <b>a</b> good student.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">This is <b>a</b> beautiful flower.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <h3>Using An</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I eat <b>an</b> apple every day.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">He is <b>an</b> excellent teacher.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">This is <b>an</b> interesting book.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Using The</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text"><b>The</b> sun rises in <b>the</b> morning.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I like <b>the</b> teacher because she is kind.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text"><b>The</b> book is on <b>the</b> table.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Conversation <span class="pill">Speaking</span></h2>
+
+  <p style="font-size: 14px; color: #555; margin-bottom: 16px;">Listen to how Siti and Ahmad use articles when they talk about their pets:</p>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="speaker">Siti:</div>
+      <div class="text">"Ahmad, do you have <b>a</b> pet?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Ahmad:</div>
+      <div class="text">"Yes! I have <b>a</b> dog and <b>an</b> cat. <b>The</b> dog is brown, and <b>the</b> cat is orange."</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Siti:</div>
+      <div class="text">"How nice! I also have <b>a</b> pet. It's <b>an</b> aquarium with fish."</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Ahmad:</div>
+      <div class="text">"Cool! What's <b>the</b> name of your aquarium?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Siti:</div>
+      <div class="text">"I call it 'Rainbow Home' because <b>the</b> fish have many colors. <b>The</b>y are beautiful!"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Ahmad:</div>
+      <div class="text">"That's <b>a</b> great name! I would like to see <b>the</b> aquarium sometime."</div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎮 Test Your Knowledge <span class="pill">Quiz</span></h2>
+
+  <p style="font-size: 14px; color: #555; margin-bottom: 20px;">Choose the correct article for each sentence.</p>
+
+  <div class="quiz-container">
+    <div class="quiz-q">
+      <span class="q-number">1</span>
+      <span class="q-text">I have ___ apple.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. an</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. a</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. the</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. no article</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">2</span>
+      <span class="q-text">She is ___ teacher.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. the</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. a</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. an</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. no article</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">3</span>
+      <span class="q-text">Which sentence uses the article correctly?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. I have a orange.</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. I have an orange.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. I have the orange.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. I have orange.</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">4</span>
+      <span class="q-text">I saw ___ cat. ___ cat was cute.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. a, The</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. the, A</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. an, The</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. the, The</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">5</span>
+      <span class="q-text">Which needs the article "an"?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. boy</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. dog</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">C. elephant</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. house</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">6</span>
+      <span class="q-text">When do we use "the"?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. Before all nouns</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. When something is specific</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. Only with animals</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. Only at the beginning</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">7</span>
+      <span class="q-text">She is ___ honest person.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. a</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. an</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. the</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. no article</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">8</span>
+      <span class="q-text">___ sun is hot.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. A</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. An</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">C. The</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. no article</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-submit" onclick="submitQuiz()">Submit Quiz</button>
+      <button class="btn btn-reset" onclick="resetQuiz()">Reset</button>
+    </div>
+
+    <div class="score-box">
+      <h3>Your Score</h3>
+      <p id="score-text">0/8</p>
+      <div class="star-rating" id="star-rating"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  LittleLume English Course • Grade 2 • Articles
+</footer>
+
+<script>
+function showTab(tabName, e) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  e.target.classList.add('active');
+}
+
+function checkAns(el, correctness) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  el.classList.add('selected');
+}
+
+function submitQuiz() {
+  let correct = 0;
+  const questions = document.querySelectorAll('.quiz-q');
+  
+  questions.forEach((q) => {
+    const feedback = q.querySelector('.q-feedback');
+    const selected = q.querySelector('.q-opt.selected');
+    
+    if (!selected) {
+      feedback.textContent = '❌ Please select an answer';
+      feedback.classList.add('show', 'incorrect');
+      return;
+    }
+    
+    const correctOpt = q.querySelector('[onclick*="correct"]');
+    if (selected === correctOpt) {
+      selected.classList.add('correct');
+      feedback.textContent = '✅ Correct! Great job!';
+      feedback.classList.add('show', 'correct');
+      correct++;
+    } else {
+      selected.classList.add('incorrect');
+      feedback.textContent = '❌ Incorrect. Try again!';
+      feedback.classList.add('show', 'incorrect');
+    }
+  });
+  
+  displayScore(correct, questions.length);
+}
+
+function displayScore(correct, total) {
+  const scoreBox = document.querySelector('.score-box');
+  const scoreText = document.getElementById('score-text');
+  const starRating = document.getElementById('star-rating');
+  
+  scoreBox.classList.add('show');
+  scoreText.textContent = `${correct}/${total}`;
+  
+  const stars = Math.ceil((correct / total) * 5);
+  starRating.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement('span');
+    star.className = 'star' + (i < stars ? ' active' : '');
+    star.textContent = '⭐';
+    starRating.appendChild(star);
+  }
+}
+
+function resetQuiz() {
+  document.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  document.querySelectorAll('.q-feedback').forEach(fb => {
+    fb.classList.remove('show', 'correct', 'incorrect');
+    fb.textContent = '';
+  });
+  document.querySelector('.score-box').classList.remove('show');
+}
+</script>
+
+</body>
+</html>

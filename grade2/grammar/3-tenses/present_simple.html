@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Simple - Grade 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:      #667eea;
+  --primary-dark: #2d3561;
+  --teal:         #00cec9;
+  --teal-light:   #d5f9f7;
+  --purple:       #a29bfe;
+  --purple-light: #e8e2ff;
+  --pink:         #fd79a8;
+  --pink-light:   #ffd6e8;
+  --yellow:       #fdcb6e;
+  --yellow-lt:    #fff4cc;
+  --bg:           #f0f6ff;
+  --white:        #ffffff;
+  --ink:          #1a1a2e;
+  --muted:        #8fa3ab;
+  --card-r:       16px;
+  --shadow-sm:    0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:    0 6px 24px rgba(0,0,0,.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); position: relative; overflow: hidden; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 32px 20px 40px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: var(--primary); line-height: 1; }
+.brand-logo .logo-sub { font-size: 8px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', sans-serif; font-size: clamp(28px, 5vw, 42px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-emoji { font-size: 56px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 16px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.sec-title { font-family: 'Baloo 2', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: var(--primary); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--primary); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.pink   { border-color: var(--pink); }
+.card.yellow { border-color: var(--yellow); }
+.card h3 { font-family: 'Baloo 2', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'✨'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2', sans-serif; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: #fff; }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 20px 24px; margin: 18px 0; text-align: center; }
+.formula-main { font-family:'Baloo 2', sans-serif; font-size: 16px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 5px 14px; border-radius: 8px; margin: 2px; font-size: 13px; font-weight: 700; }
+.fp.categ { background: var(--primary); color: #fff; }
+.fp.example { background: var(--pink); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.compare-col { border-radius: 14px; padding: 18px; }
+.compare-col.left  { background: var(--pink-light); border: 2px solid var(--pink); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2', sans-serif; font-size:15px; font-weight:700; margin-bottom:12px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:8px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.6; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--primary-dark); font-weight: 700; }
+
+.example-list { margin: 18px 0; }
+.ex-item { background: #e8e2ff; border-left: 4px solid var(--primary); padding: 13px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--primary-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--bg); border: 2px solid #e8e2ff; border-radius: 14px; padding: 20px; margin: 18px 0; }
+.dialogue-item { background: var(--white); border-left: 4px solid var(--primary); padding: 12px 14px; margin-bottom: 10px; border-radius: 6px; }
+.dialogue-item .speaker { font-weight: 700; color: var(--primary-dark); font-size: 13px; }
+.dialogue-item .text { color: #555; margin-top: 4px; font-size: 14px; line-height: 1.6; }
+
+.quiz-container { background: var(--white); padding: 24px; border-radius: var(--card-r); }
+.quiz-q { margin-bottom: 26px; padding-bottom: 24px; border-bottom: 2px solid var(--bg); }
+.quiz-q:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+.q-number { display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; width: 32px; height: 32px; border-radius: 50%; font-weight: 700; font-size: 13px; margin-right: 12px; }
+.q-text { font-weight: 600; color: var(--ink); margin-bottom: 14px; font-size: 15px; display: inline-block; }
+.q-opts { display: grid; gap: 10px; margin-bottom: 14px; }
+.q-opt { padding: 12px 16px; background: var(--bg); border: 2px solid transparent; border-radius: 8px; cursor: pointer; font-size: 14px; transition: all .2s; user-select: none; }
+.q-opt:hover { border-color: var(--primary); background: #e8e2ff; }
+.q-opt.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+.q-opt.correct { background: #00b894; color: #fff; border-color: #00b894; }
+.q-opt.incorrect { background: #ff7675; color: #fff; border-color: #ff7675; }
+.q-feedback { font-size: 13px; padding: 8px 12px; border-radius: 6px; display: none; margin-top: 10px; }
+.q-feedback.show { display: block; }
+.q-feedback.correct { background: rgba(0,184,148,.15); color: #0d6e4a; }
+.q-feedback.incorrect { background: rgba(255,118,117,.15); color: #8a2f2f; }
+
+.btn-group { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+.btn { padding: 12px 28px; border: none; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; transition: .2s; font-family: 'Poppins', sans-serif; }
+.btn-submit { background: var(--primary); color: #fff; }
+.btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); }
+.btn-reset { background: var(--bg); color: var(--primary); border: 2px solid var(--primary); }
+.btn-reset:hover { background: #e8e2ff; }
+
+.score-box { text-align: center; padding: 20px; background: linear-gradient(135deg, #e8e2ff 0%, var(--pink-light) 100%); border-radius: 14px; margin-top: 24px; display: none; }
+.score-box.show { display: block; }
+.score-box h3 { color: var(--primary-dark); margin-bottom: 8px; font-family: 'Baloo 2', sans-serif; }
+.score-box p { font-size: 28px; font-weight: 800; color: var(--primary); }
+.star-rating { display: flex; gap: 6px; margin-top: 12px; font-size: 24px; justify-content: center; }
+.star { opacity: .3; transition: .2s; }
+.star.active { opacity: 1; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.7); text-align: center; padding: 24px; font-size: 13px; margin-top: 48px; }
+
+@media(max-width:768px) {
+  .header-inner { gap: 12px; }
+  .header-emoji { font-size: 44px; }
+  .compare { grid-template-columns: 1fr; }
+  .tab-btn { padding: 12px 14px; font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">LL</div>
+      <div class="logo-sub">LittleLume</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Grade 2 Grammar</div>
+      <h1 class="header-title">⏰ Present Simple</h1>
+      <p class="header-sub">What happens every day and always</p>
+    </div>
+    <div class="header-emoji">⏰</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', event)">🎯 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', event)">💡 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', event)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', event)">📚 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', event)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz', event)">🎮 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">🎯 What is Present Simple? <span class="pill">Foundation</span></h2>
+  
+  <p style="font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 16px;">
+    When we say "I <strong>play</strong> football every day" or "She <strong>goes</strong> to school," we use the <strong>Present Simple</strong> tense. It tells us about things that happen regularly or are always true!
+  </p>
+  
+  <div class="concept-box">
+    <h3>What is Present Simple Tense?</h3>
+    <p>The <strong>Present Simple</strong> tense describes actions that happen regularly, every day, or are always true. It's the most basic and common tense we use!</p>
+  </div>
+
+  <p style="font-size: 14px; line-height: 1.8; color: #555;">
+    We use Present Simple for habits, daily routines, and facts that are always true. It's what we use to talk about normal life!
+  </p>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">💡 Present Simple Structure <span class="pill">Grammar</span></h2>
+
+  <div class="concept-box">
+    <h3>Basic Structure</h3>
+    <p>Present Simple is simple! For most subjects, we just use the base form of the verb.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">Subject</div>
+      <span style="color: var(--muted);">+</span>
+      <div class="fp example">Base Verb</div>
+      <div style="margin-top: 12px; color: var(--muted); font-size: 12px;">=Present Simple</div>
+    </div>
+    <div class="formula-sub">I play, You play, They play</div>
+  </div>
+
+  <div class="card">
+    <h3>Most Subjects (I, You, We, They)</h3>
+    <p><strong>For these subjects, use the basic form of the verb:</strong></p>
+    <p style="margin-top: 10px;"><strong>Formula:</strong> I/You/We/They + base verb<br><strong>Examples:</strong> I play, You eat, We run, They walk</p>
+  </div>
+
+  <div class="card purple">
+    <h3>He/She/It (Third Person Singular)</h3>
+    <p><strong>For He/She/It, add -s or -es to the verb:</strong></p>
+    <p style="margin-top: 10px;"><strong>Formula:</strong> He/She/It + verb + -s/-es<br><strong>Examples:</strong> He plays, She eats, It runs</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>No -s/-es</h4>
+      <ul>
+        <li><b>I</b> play</li>
+        <li><b>You</b> eat</li>
+        <li><b>We</b> run</li>
+        <li><b>They</b> walk</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>Add -s/-es</h4>
+      <ul>
+        <li><b>He</b> plays</li>
+        <li><b>She</b> eats</li>
+        <li><b>It</b> runs</li>
+        <li><b>Ani</b> walks</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ When to Use Present Simple <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Three Main Uses</h3>
+    <p>We use Present Simple in three main situations:</p>
+  </div>
+
+  <div class="card">
+    <h3>1. Regular Habits & Routines</h3>
+    <p><strong>Things we do every day or regularly:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">I <b>brush</b> my teeth every morning.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">She <b>goes</b> to school at 7 AM.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">They <b>play</b> football after school.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>2. General Truths & Facts</h3>
+    <p><strong>Things that are always true:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">Cats <b>like</b> milk.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">The sun <b>rises</b> in the east.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">Water <b>boils</b> at 100 degrees.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card pink">
+    <h3>3. What You Like or Do</h3>
+    <p><strong>Your likes, dislikes, and abilities:</strong></p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">I <b>like</b> chocolate ice cream.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">He <b>can swim</b> very fast.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Example:</div>
+        <div class="ex-text">We <b>don't like</b> vegetables.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">📚 Real Examples <span class="pill">Sentences</span></h2>
+
+  <div class="card">
+    <h3>Daily Routine Examples</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I <b>wake up</b> at 6 AM every day.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">My mother <b>makes</b> breakfast in the morning.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">We <b>eat</b> lunch at noon.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">They <b>watch</b> TV after dinner.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <h3>Facts & General Truths</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">Birds <b>fly</b> in the sky.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">Fish <b>live</b> in water.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">Trees <b>grow</b> from seeds.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Personal Preferences</h3>
+    <div class="compare">
+      <div class="compare-col left">
+        <h4>Like</h4>
+        <ul>
+          <li><b>I like</b> pizza</li>
+          <li><b>She likes</b> dancing</li>
+          <li><b>They like</b> sports</li>
+        </ul>
+      </div>
+      <div class="compare-col right">
+        <h4>Don't Like</h4>
+        <ul>
+          <li><b>I don't like</b> spicy food</li>
+          <li><b>He doesn't like</b> rainy days</li>
+          <li><b>We don't like</b> homework</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Conversation <span class="pill">Speaking</span></h2>
+
+  <p style="font-size: 14px; color: #555; margin-bottom: 16px;">Listen to how Tara and Ravi talk about their daily routines:</p>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="speaker">Tara:</div>
+      <div class="text">"What time do you <b>wake up</b> every day?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Ravi:</div>
+      <div class="text">"I <b>wake up</b> at 6 AM. Then I <b>exercise</b> for 30 minutes."</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Tara:</div>
+      <div class="text">"That's great! I <b>don't exercise</b> much. I <b>go</b> to school at 7 AM."</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Ravi:</div>
+      <div class="text">"What do you <b>do</b> after school? Do you <b>play</b> any sports?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Tara:</div>
+      <div class="text">"Yes! I <b>play</b> basketball. I really <b>like</b> it. What about you?"</div>
+    </div>
+    
+    <div class="dialogue-item">
+      <div class="speaker">Ravi:</div>
+      <div class="text">"I <b>prefer</b> swimming. I <b>go</b> swimming three times a week."</div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎮 Test Your Knowledge <span class="pill">Quiz</span></h2>
+
+  <p style="font-size: 14px; color: #555; margin-bottom: 20px;">Choose the correct verb form.</p>
+
+  <div class="quiz-container">
+    <div class="quiz-q">
+      <span class="q-number">1</span>
+      <span class="q-text">I ___ to school every day.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. go</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. goes</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. going</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. went</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">2</span>
+      <span class="q-text">She ___ breakfast at 7 AM.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. eat</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. eats</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. eating</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. eated</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">3</span>
+      <span class="q-text">We ___ football after school.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. play</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. plays</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. playing</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. played</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">4</span>
+      <span class="q-text">My dog ___ a lot.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. sleep</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. sleeps</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. sleeping</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. slept</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">5</span>
+      <span class="q-text">Do you ___ music?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. like</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. likes</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. liking</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. liked</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">6</span>
+      <span class="q-text">He ___ tea every morning.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. drink</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. drinks</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. drinking</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. drank</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">7</span>
+      <span class="q-text">Birds ___ in trees.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'correct')">A. live</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">B. lives</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. living</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. lived</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <span class="q-number">8</span>
+      <span class="q-text">Which sentence is correct?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. She go to school.</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. She goes to school.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. She going to school.</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. She went to school.</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-submit" onclick="submitQuiz()">Submit Quiz</button>
+      <button class="btn btn-reset" onclick="resetQuiz()">Reset</button>
+    </div>
+
+    <div class="score-box">
+      <h3>Your Score</h3>
+      <p id="score-text">0/8</p>
+      <div class="star-rating" id="star-rating"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  LittleLume English Course • Grade 2 • Present Simple
+</footer>
+
+<script>
+function showTab(tabName, e) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  e.target.classList.add('active');
+}
+
+function checkAns(el, correctness) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  el.classList.add('selected');
+}
+
+function submitQuiz() {
+  let correct = 0;
+  const questions = document.querySelectorAll('.quiz-q');
+  questions.forEach((q) => {
+    const feedback = q.querySelector('.q-feedback');
+    const selected = q.querySelector('.q-opt.selected');
+    if (!selected) {
+      feedback.textContent = '❌ Please select an answer';
+      feedback.classList.add('show', 'incorrect');
+      return;
+    }
+    const correctOpt = q.querySelector('[onclick*="correct"]');
+    if (selected === correctOpt) {
+      selected.classList.add('correct');
+      feedback.textContent = '✅ Correct!';
+      feedback.classList.add('show', 'correct');
+      correct++;
+    } else {
+      selected.classList.add('incorrect');
+      feedback.textContent = '❌ Incorrect!';
+      feedback.classList.add('show', 'incorrect');
+    }
+  });
+  displayScore(correct, questions.length);
+}
+
+function displayScore(correct, total) {
+  const scoreBox = document.querySelector('.score-box');
+  const scoreText = document.getElementById('score-text');
+  const starRating = document.getElementById('star-rating');
+  scoreBox.classList.add('show');
+  scoreText.textContent = `${correct}/${total}`;
+  const stars = Math.ceil((correct / total) * 5);
+  starRating.innerHTML = '';
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement('span');
+    star.className = 'star' + (i < stars ? ' active' : '');
+    star.textContent = '⭐';
+    starRating.appendChild(star);
+  }
+}
+
+function resetQuiz() {
+  document.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  document.querySelectorAll('.q-feedback').forEach(fb => {
+    fb.classList.remove('show', 'correct', 'incorrect');
+    fb.textContent = '';
+  });
+  document.querySelector('.score-box').classList.remove('show');
+}
+</script>
+
+</body>
+</html>

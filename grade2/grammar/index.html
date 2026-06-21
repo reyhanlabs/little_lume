@@ -54,6 +54,11 @@ header h1{
   text-shadow:0 2px 14px rgba(80,40,120,0.22);
   position:relative;
 }
+header p{
+  font-size:1.1rem;
+  margin-top:8px;
+  opacity:0.95;
+}
 
 /* ── CONTAINER ── */
 .container{
@@ -84,77 +89,130 @@ header h1{
   transform:translateX(-3px);
 }
 
-/* ── LESSON GRID ── */
-.lesson-grid{
+/* ── CATEGORY GRID ── */
+.category-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(270px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:24px;
 }
 
-/* ── LESSON CARD ── */
-.lesson-card{
+/* ── CATEGORY CARD ── */
+.category-card{
   background:white;
-  border-radius:22px;
-  padding:22px 22px 20px;
+  border-radius:20px;
+  padding:32px 24px;
   box-shadow:0 8px 24px rgba(0,0,0,0.08);
   transition:.28s cubic-bezier(.34,1.56,.64,1);
   overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  border-top:5px solid transparent;
+  border-left:6px solid transparent;
+  position:relative;
 }
-.lesson-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 40px rgba(0,0,0,0.13);
+.category-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  right:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  pointer-events:none;
 }
 
-.lesson-card:nth-child(1){ border-top-color:#74b9ff; background:linear-gradient(180deg,#dbeeff 0%,white 90px); }
-.lesson-card:nth-child(2){ border-top-color:#00b894; background:linear-gradient(180deg,#d4f5e9 0%,white 90px); }
-.lesson-card:nth-child(3){ border-top-color:#e17055; background:linear-gradient(180deg,#ffe5d9 0%,white 90px); }
-.lesson-card:nth-child(4){ border-top-color:#6c5ce7; background:linear-gradient(180deg,#e8e2ff 0%,white 90px); }
-.lesson-card:nth-child(5){ border-top-color:#fdcb6e; background:linear-gradient(180deg,#fff4cc 0%,white 90px); }
-.lesson-card:nth-child(6){ border-top-color:#fd79a8; background:linear-gradient(180deg,#ffd6e8 0%,white 90px); }
-.lesson-card:nth-child(7){ border-top-color:#6c5ce7; background:linear-gradient(180deg,#e8e2ff 0%,white 90px); }
-.lesson-card:nth-child(8){ border-top-color:#fdcb6e; background:linear-gradient(180deg,#fff4cc 0%,white 90px); }
+.category-card:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 24px 48px rgba(0,0,0,0.15);
+}
 
-.lesson-card a{
-  text-decoration:none;
-  font-size:1.12rem;
-  font-weight:800;
+.category-card:nth-child(1){ border-left-color:#74b9ff; background:linear-gradient(135deg, #dbeeff 0%, white 100%); }
+.category-card:nth-child(2){ border-left-color:#00b894; background:linear-gradient(135deg, #d4f5e9 0%, white 100%); }
+.category-card:nth-child(3){ border-left-color:#a29bfe; background:linear-gradient(135deg, #e8e2ff 0%, white 100%); }
+.category-card:nth-child(4){ border-left-color:#fdcb6e; background:linear-gradient(135deg, #fff4cc 0%, white 100%); }
+
+.category-card h2{
+  font-family:'Fredoka',sans-serif;
+  font-size:1.6rem;
+  margin-bottom:12px;
   display:flex;
   align-items:center;
-  gap:8px;
-  line-height:1.3;
-  transition:.2s;
-}
-.lesson-card:nth-child(1) a{ color:#1a5a9a; }
-.lesson-card:nth-child(2) a{ color:#0d6e4a; }
-.lesson-card:nth-child(3) a{ color:#8a3210; }
-.lesson-card:nth-child(4) a{ color:#3a1a8a; }
-.lesson-card:nth-child(5) a{ color:#7a5500; }
-.lesson-card:nth-child(6) a{ color:#7a0035; }
-.lesson-card:nth-child(7) a{ color:#3a1a8a; }
-.lesson-card:nth-child(8) a{ color:#7a5500; }
-
-.lesson-card a:hover{ opacity:.75; }
-
-.lesson-card a::after{
-  content:'→';
-  margin-left:auto;
-  font-size:1rem;
-  opacity:.5;
-  transition:.2s;
-}
-.lesson-card:hover a::after{
-  opacity:1;
-  transform:translateX(3px);
+  gap:12px;
 }
 
-.lesson-card p{
-  margin-top:10px;
+.category-card:nth-child(1) h2{ color:#1a5a9a; }
+.category-card:nth-child(2) h2{ color:#0d6e4a; }
+.category-card:nth-child(3) h2{ color:#4a2a8a; }
+.category-card:nth-child(4) h2{ color:#7a5500; }
+
+.category-card p{
   color:#666;
-  font-size:.93rem;
-  line-height:1.55;
+  font-size:0.95rem;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+.category-card .topic-list{
+  list-style:none;
+  margin-bottom:20px;
+}
+
+.category-card .topic-list li{
+  font-size:0.9rem;
+  padding:6px 0;
+  color:#555;
+  padding-left:24px;
+  position:relative;
+}
+
+.category-card .topic-list li::before{
+  content:'▸';
+  position:absolute;
+  left:0;
+  font-weight:bold;
+}
+
+.category-card:nth-child(1) .topic-list li::before{ color:#74b9ff; }
+.category-card:nth-child(2) .topic-list li::before{ color:#00b894; }
+.category-card:nth-child(3) .topic-list li::before{ color:#a29bfe; }
+.category-card:nth-child(4) .topic-list li::before{ color:#fdcb6e; }
+
+.category-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:0.95rem;
+  padding:12px 24px;
+  border-radius:50px;
+  transition:.2s;
+  position:relative;
+  z-index:1;
+}
+
+.category-card:nth-child(1) .category-link{ 
+  background:#74b9ff; 
+  color:white;
+}
+.category-card:nth-child(2) .category-link{ 
+  background:#00b894; 
+  color:white;
+}
+.category-card:nth-child(3) .category-link{ 
+  background:#a29bfe; 
+  color:white;
+}
+.category-card:nth-child(4) .category-link{ 
+  background:#fdcb6e; 
+  color:#333;
+}
+
+.category-link:hover{
+  opacity:0.85;
+  transform:translateX(4px);
+}
+
+.category-link::after{
+  content:'→';
+  font-size:1.1rem;
 }
 
 /* ── FOOTER ── */
@@ -169,7 +227,7 @@ footer{
 
 @media(max-width:600px){
   header h1{ font-size:2rem; }
-  .lesson-grid{ grid-template-columns:1fr; }
+  .category-grid{ grid-template-columns:1fr; }
 }
 </style>
 
@@ -177,71 +235,56 @@ footer{
 <body>
 
 <header>
-    <h1>📝 Grade 2 Grammar</h1>
+    <h1>📚 Grade 2 Grammar</h1>
+    <p>LittleLume English Course</p>
 </header>
 
 <div class="container">
 
-<a href="../../index.html" class="back-btn">
-⬅ Back to Grade 2
-</a>
+<div class="category-grid">
 
-<div class="lesson-grid">
-
-<div class="lesson-card">
-    <a href="part_of_speech/">
-        📗 Part of Speech
-    </a>
-    <p>Nouns, Verbs, Adjectives, Adverbs</p>
+<div class="category-card">
+    <h2>🎯 Part of Speech</h2>
+    <p>Fundamental building blocks of English grammar</p>
+    <ul class="topic-list">
+        <li>Nouns</li>
+        <li>Articles</li>
+        <li>Pronouns</li>
+    </ul>
+    <a href="1-part-of-speech/1-part-of-speech-index.html" class="category-link">Explore</a>
 </div>
 
-<div class="lesson-card">
-    <a href="simple_present/">
-        ⏰ Simple Present Tense
-    </a>
-    <p>Do, Does, Regular patterns</p>
+<div class="category-card">
+    <h2>✨ Modification</h2>
+    <p>Words that modify & connect ideas</p>
+    <ul class="topic-list">
+        <li>Verbs</li>
+        <li>Adjectives</li>
+        <li>Prepositions</li>
+    </ul>
+    <a href="2-modification/2-modification-index.html" class="category-link">Explore</a>
 </div>
 
-<div class="lesson-card">
-    <a href="simple_past/">
-        📙 Simple Past Tense
-    </a>
-    <p>Regular & Irregular verbs</p>
+<div class="category-card">
+    <h2>⏰ Tenses</h2>
+    <p>Express when actions happen</p>
+    <ul class="topic-list">
+        <li>Present Simple</li>
+        <li>Present Continuous</li>
+        <li>Past Simple</li>
+    </ul>
+    <a href="3-tenses/3-tenses-index.html" class="category-link">Explore</a>
 </div>
 
-<div class="lesson-card">
-    <a href="present_continuous/">
-        📕 Present Continuous Tense
-    </a>
-    <p>I am, You are, Questions</p>
-</div>
-
-<div class="lesson-card">
-    <a href="countable_uncountable/">
-        📘 Countable & Uncountable Nouns
-    </a>
-    <p>Many, Much, Some, Any</p>
-</div>
-
-<div class="lesson-card">
-    <a href="comparatives/">
-        📗 Comparatives
-    </a>
-    <p>-er, More, Irregular forms</p>
-</div>
-
-<div class="lesson-card">
-    <a href="subject_verb_agreement/">
-        📙 Subject-Verb Agreement
-    </a>
-    <p>Singular & Plural forms</p>
-</div>
-
-<div class="lesson-card">
-    <a href="modal_verbs/">
-        📕 Modal Verbs
-    </a>
-    <p>Can, Could, Will, Would</p>
+<div class="category-card">
+    <h2>🎯 Functional</h2>
+    <p>Using language for real communication</p>
+    <ul class="topic-list">
+        <li>Imperatives</li>
+        <li>Possessives</li>
+        <li>Questions</li>
+    </ul>
+    <a href="4-functional/4-functional-index.html" class="category-link">Explore</a>
 </div>
 
 </div>
@@ -249,7 +292,7 @@ footer{
 </div>
 
 <footer>
-    BunRey English Course • Grade 2 Grammar
+    LittleLume English Course • Grade 2 Grammar
 </footer>
 
 </body>

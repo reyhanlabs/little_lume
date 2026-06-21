@@ -1,0 +1,301 @@
+cat > /mnt/user-data/outputs/grade2-grammar/3-tenses/past_simple.html << 'EOFPS2'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Past Simple - Grade 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:      #667eea;
+  --primary-dark: #2d3561;
+  --teal:         #00cec9;
+  --teal-light:   #d5f9f7;
+  --purple:       #a29bfe;
+  --purple-light: #e8e2ff;
+  --pink:         #fd79a8;
+  --pink-light:   #ffd6e8;
+  --yellow:       #fdcb6e;
+  --yellow-lt:    #fff4cc;
+  --bg:           #f0f6ff;
+  --white:        #ffffff;
+  --ink:          #1a1a2e;
+  --muted:        #8fa3ab;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+.site-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+.header-inner { max-width: 960px; margin: 0 auto; padding: 32px 20px 40px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 14px; padding: 10px 14px; }
+.brand-logo .logo-main { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 26px; color: var(--primary); }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', sans-serif; font-size: 42px; font-weight: 800; color: #fff; }
+.header-sub { color: rgba(255,255,255,.9); font-size: 14px; margin-top: 6px; }
+.header-emoji { font-size: 56px; animation: bounce 2.2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; padding: 0 16px; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; }
+.section.active { display: block; animation: fadeUp .35s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; background: var(--primary); color: #fff; }
+.card { background: var(--white); border-radius: 16px; padding: 22px 24px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,.04); border-top: 5px solid var(--primary); }
+.card h3 { font-family: 'Baloo 2', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+.concept-box { background: linear-gradient(135deg, var(--primary) 0%, #764ba2 100%); border-radius: 16px; padding: 24px 26px; color: #fff; margin-bottom: 18px; }
+.concept-box h3 { font-family:'Baloo 2', sans-serif; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 20px 24px; margin: 18px 0; text-align: center; }
+.formula-main { font-family:'Baloo 2', sans-serif; font-size: 16px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 5px 14px; border-radius: 8px; margin: 2px; font-size: 13px; font-weight: 700; }
+.fp.categ { background: var(--primary); color: #fff; }
+.fp.example { background: var(--pink); color: #fff; }
+.example-list { margin: 18px 0; }
+.ex-item { background: #e8e2ff; border-left: 4px solid var(--primary); padding: 13px 16px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--primary-dark); }
+.dialogue-box { background: var(--bg); border: 2px solid #e8e2ff; border-radius: 14px; padding: 20px; margin: 18px 0; }
+.dialogue-item { background: var(--white); border-left: 4px solid var(--primary); padding: 12px 14px; margin-bottom: 10px; border-radius: 6px; }
+.dialogue-item .speaker { font-weight: 700; color: var(--primary-dark); font-size: 13px; }
+.dialogue-item .text { color: #555; margin-top: 4px; font-size: 14px; }
+.quiz-container { background: var(--white); padding: 24px; border-radius: 16px; }
+.quiz-q { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid var(--bg); }
+.quiz-q:last-child { border: none; }
+.q-number { display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: #fff; width: 32px; height: 32px; border-radius: 50%; font-weight: 700; margin-right: 12px; }
+.q-text { font-weight: 600; color: var(--ink); font-size: 15px; display: inline-block; }
+.q-opts { display: grid; gap: 10px; margin: 14px 0; }
+.q-opt { padding: 12px 16px; background: var(--bg); border: 2px solid transparent; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.q-opt:hover { border-color: var(--primary); background: #e8e2ff; }
+.q-opt.selected { background: var(--primary); color: #fff; }
+.q-opt.correct { background: #00b894; color: #fff; }
+.q-opt.incorrect { background: #ff7675; color: #fff; }
+.q-feedback { font-size: 13px; padding: 8px 12px; border-radius: 6px; display: none; margin-top: 10px; }
+.q-feedback.show { display: block; }
+.q-feedback.correct { background: rgba(0,184,148,.15); color: #0d6e4a; }
+.q-feedback.incorrect { background: rgba(255,118,117,.15); color: #8a2f2f; }
+.btn-group { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+.btn { padding: 12px 28px; border: none; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; }
+.btn-submit { background: var(--primary); color: #fff; }
+.btn-reset { background: var(--bg); color: var(--primary); border: 2px solid var(--primary); }
+.score-box { text-align: center; padding: 20px; background: linear-gradient(135deg, #e8e2ff 0%, var(--pink-light) 100%); border-radius: 14px; margin-top: 24px; display: none; }
+.score-box.show { display: block; }
+.score-box h3 { color: var(--primary-dark); margin-bottom: 8px; }
+.score-box p { font-size: 28px; font-weight: 800; color: var(--primary); }
+footer { background: var(--ink); color: rgba(255,255,255,.7); text-align: center; padding: 24px; font-size: 13px; margin-top: 48px; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">LL</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">Grade 2 Grammar</div>
+      <h1 class="header-title">⏮️ Past Simple</h1>
+      <p class="header-sub">What happened before</p>
+    </div>
+    <div class="header-emoji">⏮️</div>
+  </div>
+</header>
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', event)">🎯 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', event)">💡 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', event)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', event)">📚 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', event)">💬 Dialogue</button>
+    <button class="tab-btn" onclick="showTab('quiz', event)">🎮 Quiz</button>
+  </div>
+</nav>
+<main class="main">
+<section id="intro" class="section active">
+  <h2 class="sec-title">🎯 What is Past Simple? <span class="pill">Foundation</span></h2>
+  <p style="font-size: 15px; color: #555; margin-bottom: 16px;">When we say "I <strong>played</strong> football yesterday" or "She <strong>went</strong> to the park," we use the <strong>Past Simple</strong> tense. It tells us about things that happened in the past!</p>
+  <div class="concept-box">
+    <h3>What is Past Simple Tense?</h3>
+    <p>The <strong>Past Simple</strong> tense describes actions that finished in the past. It's used for things that already happened!</p>
+  </div>
+</section>
+<section id="concept" class="section">
+  <h2 class="sec-title">💡 Past Simple Structure <span class="pill">Grammar</span></h2>
+  <div class="concept-box">
+    <h3>Regular & Irregular Verbs</h3>
+    <p>Most verbs add -ed, but some are special!</p>
+  </div>
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">Verb + ed</div>
+      <span style="color: var(--muted);">or</span>
+      <div class="fp example">Irregular</div>
+      <div style="margin-top: 12px;">= Past Simple</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Regular Verbs: Add -ed</h3>
+    <p><strong>play → played, want → wanted, walk → walked</strong></p>
+  </div>
+  <div class="card purple">
+    <h3>Irregular Verbs: Special Forms</h3>
+    <p><strong>go → went, eat → ate, see → saw, have → had</strong></p>
+  </div>
+</section>
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ When to Use Past Simple <span class="pill">Practice</span></h2>
+  <div class="card">
+    <h3>Finished Actions in the Past</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Yesterday:</div>
+        <div class="ex-text">I <b>played</b> football yesterday.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Last week:</div>
+        <div class="ex-text">She <b>went</b> to the beach last week.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">This morning:</div>
+        <div class="ex-text">We <b>ate</b> breakfast this morning.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="examples" class="section">
+  <h2 class="sec-title">📚 Real Examples <span class="pill">Sentences</span></h2>
+  <div class="card">
+    <h3>Past Simple Sentences</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">I <b>watched</b> TV yesterday.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">She <b>did</b> her homework.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Sentence:</div>
+        <div class="ex-text">They <b>played</b> in the park.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Conversation <span class="pill">Speaking</span></h2>
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="speaker">Ali:</div>
+      <div class="text">"What <b>did</b> you do yesterday?"</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="speaker">Siti:</div>
+      <div class="text">"I <b>went</b> to the park and <b>played</b> with my friends."</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="speaker">Ali:</div>
+      <div class="text">"That sounds fun! I <b>stayed</b> home and <b>read</b> a book."</div>
+    </div>
+  </div>
+</section>
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎮 Test Your Knowledge <span class="pill">Quiz</span></h2>
+  <div class="quiz-container">
+    <div class="quiz-q">
+      <span class="q-number">1</span>
+      <span class="q-text">I ___ football yesterday.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. play</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. played</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. plays</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. am playing</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+    <div class="quiz-q">
+      <span class="q-number">2</span>
+      <span class="q-text">She ___ to the park last week.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. goes</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. went</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. go</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. is going</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+    <div class="quiz-q">
+      <span class="q-number">3</span>
+      <span class="q-text">What ___ you do yesterday?</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. do</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. did</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. does</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. are doing</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+    <div class="quiz-q">
+      <span class="q-number">4</span>
+      <span class="q-text">They ___ lunch two hours ago.</span>
+      <div class="q-opts">
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">A. eat</div>
+        <div class="q-opt" onclick="checkAns(this, 'correct')">B. ate</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">C. eats</div>
+        <div class="q-opt" onclick="checkAns(this, 'incorrect')">D. are eating</div>
+      </div>
+      <div class="q-feedback"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-submit" onclick="submitQuiz()">Submit</button>
+      <button class="btn btn-reset" onclick="resetQuiz()">Reset</button>
+    </div>
+    <div class="score-box">
+      <h3>Your Score</h3>
+      <p id="score-text">0/4</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer>LittleLume English Course • Grade 2 • Past Simple</footer>
+<script>
+function showTab(tabName, e) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tabName).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  e.target.classList.add('active');
+}
+function checkAns(el, correctness) {
+  el.parentElement.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  el.classList.add('selected');
+}
+function submitQuiz() {
+  let correct = 0;
+  document.querySelectorAll('.quiz-q').forEach(q => {
+    const selected = q.querySelector('.q-opt.selected');
+    if(!selected) {
+      q.querySelector('.q-feedback').textContent = '❌ Select one';
+      q.querySelector('.q-feedback').classList.add('show');
+      return;
+    }
+    if(selected.onclick.toString().includes('correct')) {
+      selected.classList.add('correct');
+      correct++;
+    } else {
+      selected.classList.add('incorrect');
+    }
+  });
+  document.querySelector('.score-box').classList.add('show');
+  document.getElementById('score-text').textContent = `${correct}/4`;
+}
+function resetQuiz() {
+  document.querySelectorAll('.q-opt').forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
+  document.querySelector('.score-box').classList.remove('show');
+}
+</script>
+</body>
+</html>
