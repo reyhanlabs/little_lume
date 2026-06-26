@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Grammar Guide - LittleLume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2C3E7A;
+      --secondary: #7C5CBF;
+      --accent: #FFD93D;
+      --bg-dark: #0F1B4C;
+      --bg-light: #F8F9FD;
+      --text-primary: #1A1A2E;
+      --text-secondary: #666;
+      --border: #E0E0E0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* ============= HEADER ============= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+      padding: 1rem 2rem;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .header-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .back-button {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ============= MAIN CONTAINER ============= */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      height: calc(100vh - 100px);
+      gap: 0;
+    }
+
+    /* ============= SIDEBAR ============= */
+    .sidebar {
+      width: 300px;
+      background: white;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 2rem 0;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-section {
+      margin-bottom: 0;
+    }
+
+    .sidebar-header {
+      padding: 1rem 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(44, 62, 122, 0.05);
+      border-left: 3px solid var(--primary);
+    }
+
+    .sidebar-item {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .sidebar-item:hover {
+      background: rgba(44, 62, 122, 0.08);
+      color: var(--primary);
+      border-left-color: var(--accent);
+    }
+
+    .sidebar-item.active {
+      background: rgba(44, 62, 122, 0.15);
+      color: var(--primary);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ============= MAIN CONTENT ============= */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 3rem;
+      background: white;
+    }
+
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .grammar-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .grammar-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ============= CONTENT CARDS ============= */
+    .content-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .content-card:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    /* ============= EXPLANATION ============= */
+    .explanation {
+      background: rgba(255, 217, 61, 0.05);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .explanation-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-size: 1.05rem;
+    }
+
+    .explanation-text {
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ============= FORMULA/STRUCTURE ============= */
+    .formula {
+      background: #f5f5f5;
+      border: 2px dashed var(--primary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      color: var(--primary);
+      overflow-x: auto;
+    }
+
+    .formula-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-size: 1.05rem;
+    }
+
+    /* ============= EXAMPLES ============= */
+    .examples {
+      margin: 2rem 0;
+    }
+
+    .examples-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .example-item {
+      background: linear-gradient(135deg, rgba(44, 62, 122, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
+      border-left: 3px solid var(--secondary);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+    }
+
+    .example-text {
+      font-style: italic;
+      color: #333;
+      margin-bottom: 0.5rem;
+      line-height: 1.8;
+      font-family: 'Georgia', serif;
+      font-size: 1.05rem;
+    }
+
+    .example-translation {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* ============= NOTES ============= */
+    .notes {
+      background: linear-gradient(135deg, rgba(29, 209, 161, 0.05) 0%, rgba(16, 172, 132, 0.05) 100%);
+      border-left: 4px solid #1DD1A1;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .notes-title {
+      font-weight: 700;
+      color: #1DD1A1;
+      margin-bottom: 0.75rem;
+      font-size: 1.05rem;
+    }
+
+    .notes-text {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .notes-text li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .notes-text li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #1DD1A1;
+      font-weight: 700;
+    }
+
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 1024px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 0;
+        overflow-x: auto;
+        padding: 1rem 0;
+      }
+
+      .sidebar-section {
+        min-width: 250px;
+      }
+
+      .main-content {
+        padding: 2rem;
+      }
+
+      .grammar-title {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+
+      .header-title {
+        font-size: 1.2rem;
+      }
+
+      .sidebar {
+        flex-wrap: wrap;
+      }
+
+      .main-content {
+        padding: 1.5rem;
+      }
+
+      .grammar-title {
+        font-size: 1.5rem;
+      }
+
+      .content-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* ============= SCROLLBAR ============= */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(44, 62, 122, 0.3);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(44, 62, 122, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <!-- ============= HEADER ============= -->
+  <header>
+    <div class="header-content">
+      <div>
+        <div class="header-title">📚 Complete Grammar Guide</div>
+        <div class="header-subtitle">Master English Grammar from Basic to Advanced</div>
+      </div>
+      <a href="index.html" class="back-button">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ============= MAIN CONTAINER ============= -->
+  <div class="container">
+    <!-- ============= SIDEBAR ============= -->
+    <aside class="sidebar">
+      <!-- Grade 1 -->
+      <div class="sidebar-section">
+        <div class="sidebar-header">Grade 1</div>
+        <div class="sidebar-item active" onclick="showContent('noun')">📝 Noun (Kata Benda)</div>
+        <div class="sidebar-item" onclick="showContent('verb-basic')">⚡ Verb (Kata Kerja)</div>
+        <div class="sidebar-item" onclick="showContent('adjective')">✨ Adjective (Sifat)</div>
+        <div class="sidebar-item" onclick="showContent('pronoun')">👤 Pronoun (Kata Ganti)</div>
+        <div class="sidebar-item" onclick="showContent('is-am')">🔗 Is/Am</div>
+      </div>
+
+      <!-- Grade 2 -->
+      <div class="sidebar-section">
+        <div class="sidebar-header">Grade 2</div>
+        <div class="sidebar-item" onclick="showContent('present-simple')">📅 Present Simple</div>
+        <div class="sidebar-item" onclick="showContent('imperative')">🎯 Imperative</div>
+        <div class="sidebar-item" onclick="showContent('plural')">🔢 Plural Nouns</div>
+        <div class="sidebar-item" onclick="showContent('adverb-basic')">🚀 Adverb (Basic)</div>
+      </div>
+
+      <!-- Grade 3 -->
+      <div class="sidebar-section">
+        <div class="sidebar-header">Grade 3</div>
+        <div class="sidebar-item" onclick="showContent('past-simple')">⏰ Past Simple</div>
+        <div class="sidebar-item" onclick="showContent('present-continuous')">🎬 Present Continuous</div>
+        <div class="sidebar-item" onclick="showContent('question-formation')">❓ Question Formation</div>
+        <div class="sidebar-item" onclick="showContent('object-pronoun')">👫 Object Pronouns</div>
+      </div>
+
+      <!-- Grade 4 -->
+      <div class="sidebar-section">
+        <div class="sidebar-header">Grade 4</div>
+        <div class="sidebar-item" onclick="showContent('present-perfect')">✅ Present Perfect</div>
+        <div class="sidebar-item" onclick="showContent('past-continuous')">🌀 Past Continuous</div>
+        <div class="sidebar-item" onclick="showContent('comparatives')">⚖️ Comparatives</div>
+        <div class="sidebar-item" onclick="showContent('superlatives')">🏆 Superlatives</div>
+      </div>
+
+      <!-- Grade 5 -->
+      <div class="sidebar-section">
+        <div class="sidebar-header">Grade 5</div>
+        <div class="sidebar-item" onclick="showContent('conditional')">🔀 Conditional (If...)</div>
+        <div class="sidebar-item" onclick="showContent('modal-verbs')">💪 Modal Verbs</div>
+        <div class="sidebar-item" onclick="showContent('passive-voice')">🔄 Passive Voice</div>
+        <div class="sidebar-item" onclick="showContent('relative-clause')">🔗 Relative Clause</div>
+      </div>
+
+      <!-- Grade 6 -->
+      <div class="sidebar-section">
+        <div class="sidebar-header">Grade 6 (Advanced)</div>
+        <div class="sidebar-item" onclick="showContent('subjunctive')">🎭 Subjunctive Mood</div>
+        <div class="sidebar-item" onclick="showContent('inversion')">↔️ Inversion</div>
+        <div class="sidebar-item" onclick="showContent('reported-speech')">💬 Reported Speech</div>
+        <div class="sidebar-item" onclick="showContent('word-order')">📍 Word Order</div>
+      </div>
+    </aside>
+
+    <!-- ============= MAIN CONTENT ============= -->
+    <main class="main-content">
+      <!-- NOUN -->
+      <div id="noun" class="content-section active">
+        <h1 class="grammar-title">📝 Noun (Kata Benda)</h1>
+        <p class="grammar-subtitle">Grade 1 - Basic Level</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">📚</div>
+            <div>
+              <h2 class="card-title">What is a Noun?</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              A noun is a word that names a person, place, thing, or animal. Nouns are fundamental building blocks of English grammar.
+            </div>
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Types of Nouns</div>
+            <div class="explanation-text">
+              <strong>1. Common Nouns:</strong> General names (cat, house, book)<br>
+              <strong>2. Proper Nouns:</strong> Specific names (John, London, Sunday) - Always capitalized<br>
+              <strong>3. Concrete Nouns:</strong> Things you can touch (apple, chair, water)<br>
+              <strong>4. Abstract Nouns:</strong> Ideas or feelings (love, happiness, freedom)
+            </div>
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I have a cat named Whiskers."</div>
+              <div class="example-translation">Cat (common noun), Whiskers (proper noun)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"The book is on the table."</div>
+              <div class="example-translation">Book dan table adalah benda yang dapat disentuh (concrete nouns)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Love makes people happy."</div>
+              <div class="example-translation">Love dan happiness adalah ide/perasaan (abstract nouns)</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>Proper nouns selalu dimulai dengan huruf capital</li>
+              <li>Nouns dapat menjadi subject atau object dalam sebuah kalimat</li>
+              <li>Kebanyakan nouns dapat plural dengan menambah -s atau -es</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERB BASIC -->
+      <div id="verb-basic" class="content-section">
+        <h1 class="grammar-title">⚡ Verb (Kata Kerja)</h1>
+        <p class="grammar-subtitle">Grade 1 - Basic Level</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">⚡</div>
+            <div>
+              <h2 class="card-title">What is a Verb?</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              A verb is a word that shows action or state. Verbs tell us what someone or something is doing, or what condition they are in.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Basic Verb Forms:</div>
+            run, eat, sleep, play, read, write, jump, dance, sing, walk
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"She runs every morning."</div>
+              <div class="example-translation">Runs = aksi lari yang dilakukan secara rutin</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"I eat breakfast at 7 AM."</div>
+              <div class="example-translation">Eat = aksi makan</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"They play football."</div>
+              <div class="example-translation">Play = aksi bermain</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADJECTIVE -->
+      <div id="adjective" class="content-section">
+        <h1 class="grammar-title">✨ Adjective (Kata Sifat)</h1>
+        <p class="grammar-subtitle">Grade 1 - Basic Level</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">✨</div>
+            <div>
+              <h2 class="card-title">What is an Adjective?</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              An adjective is a word that describes or modifies a noun. It tells us more information about a person, place, or thing.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Common Adjectives:</div>
+            big, small, red, blue, happy, sad, fast, slow, hot, cold, beautiful, ugly, good, bad
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"The big dog is playing."</div>
+              <div class="example-translation">Big = mendeskripsikan ukuran anjing</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She has a red notebook."</div>
+              <div class="example-translation">Red = mendeskripsikan warna notebook</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"The happy children are laughing."</div>
+              <div class="example-translation">Happy = mendeskripsikan perasaan anak-anak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRONOUN -->
+      <div id="pronoun" class="content-section">
+        <h1 class="grammar-title">👤 Pronoun (Kata Ganti)</h1>
+        <p class="grammar-subtitle">Grade 1 - Basic Level</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">👤</div>
+            <div>
+              <h2 class="card-title">What is a Pronoun?</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              A pronoun is a word that replaces a noun. Pronouns help us avoid repetition when we talk about people or things.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Subject Pronouns:</div>
+            I, you, he, she, it, we, they
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"John is a student. He likes English."</div>
+              <div class="example-translation">He = mengganti John (subject pronoun)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"My sister and I go to school together. We walk every day."</div>
+              <div class="example-translation">We = mengganti my sister and I</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IS/AM -->
+      <div id="is-am" class="content-section">
+        <h1 class="grammar-title">🔗 Is/Am</h1>
+        <p class="grammar-subtitle">Grade 1 - Basic Level</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🔗</div>
+            <div>
+              <h2 class="card-title">To Be: Am / Is / Are</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              "To be" adalah verb yang paling penting dalam Bahasa Inggris. Digunakan untuk menunjukkan identitas, kondisi, atau keberadaan.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            I am / You are / He is / She is / It is / We are / They are
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I am a student." (Saya adalah seorang siswa)</div>
+              <div class="example-translation">Subject: I → Verb: am</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She is happy." (Dia senang)</div>
+              <div class="example-translation">Subject: She → Verb: is</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"They are teachers." (Mereka adalah guru)</div>
+              <div class="example-translation">Subject: They → Verb: are</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>I → am</li>
+              <li>He, She, It → is</li>
+              <li>You, We, They → are</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESENT SIMPLE -->
+      <div id="present-simple" class="content-section">
+        <h1 class="grammar-title">📅 Present Simple Tense</h1>
+        <p class="grammar-subtitle">Grade 2</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">📅</div>
+            <div>
+              <h2 class="card-title">Present Simple: Habitual Actions</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Present Simple digunakan untuk menyatakan kebiasaan, fakta umum, rutinitas, atau hal-hal yang selalu benar.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula (Affirmative):</div>
+            Subject + Verb (base form/+s) + Object<br><br>
+            <strong>Examples:</strong><br>
+            I/You/We/They + play<br>
+            He/She/It + plays
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I play football every Saturday."</div>
+              <div class="example-translation">Kebiasaan: bermain sepak bola setiap hari Sabtu</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She drinks coffee in the morning."</div>
+              <div class="example-translation">Rutinitas: minum kopi di pagi hari</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"The Earth goes around the Sun."</div>
+              <div class="example-translation">Fakta umum: Bumi mengelilingi Matahari</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>Untuk he/she/it: tambahkan -s atau -es pada verb</li>
+              <li>Sering digunakan dengan adverbs: always, usually, often, sometimes, never</li>
+              <li>Untuk negative: do/does + not + verb</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAST SIMPLE -->
+      <div id="past-simple" class="content-section">
+        <h1 class="grammar-title">⏰ Past Simple Tense</h1>
+        <p class="grammar-subtitle">Grade 3</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">⏰</div>
+            <div>
+              <h2 class="card-title">Past Simple: Completed Actions</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Past Simple digunakan untuk menyatakan tindakan yang telah selesai di masa lalu. Digunakan dengan waktu spesifik (yesterday, last week, etc).
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula (Affirmative):</div>
+            Subject + Verb (past form) + Object<br><br>
+            <strong>Regular verbs:</strong> verb + -ed (played, walked, studied)<br>
+            <strong>Irregular verbs:</strong> went, ate, saw, had, was, did
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I played football yesterday."</div>
+              <div class="example-translation">Aksi bermain yang sudah selesai kemarin</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She went to Paris last summer."</div>
+              <div class="example-translation">Went = irregular verb dari go</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"They watched a movie last night."</div>
+              <div class="example-translation">Watched = regular verb + -ed</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>Regular verbs: tambahkan -ed (worked, studied, played)</li>
+              <li>Irregular verbs perlu dihafal (go-went, eat-ate, see-saw)</li>
+              <li>Time markers: yesterday, last week, 2 days ago, in 2020</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESENT CONTINUOUS -->
+      <div id="present-continuous" class="content-section">
+        <h1 class="grammar-title">🎬 Present Continuous Tense</h1>
+        <p class="grammar-subtitle">Grade 3</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🎬</div>
+            <div>
+              <h2 class="card-title">Present Continuous: Ongoing Actions NOW</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Present Continuous digunakan untuk tindakan yang sedang berlangsung SEKARANG, pada saat kita berbicara.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            Subject + am/is/are + Verb + -ing<br><br>
+            <strong>Examples:</strong><br>
+            I am playing<br>
+            She is reading<br>
+            They are studying
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I am eating lunch right now."</div>
+              <div class="example-translation">Sedang makan sekarang (aksi berlangsung)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She is watching TV at the moment."</div>
+              <div class="example-translation">Sedang menonton TV saat ini</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"We are learning English today."</div>
+              <div class="example-translation">Sedang belajar bahasa Inggris hari ini</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>Gunakan be verb (am/is/are) + -ing form</li>
+              <li>Time markers: now, right now, at the moment, today</li>
+              <li>Sering digunakan dengan "Look!" atau "Listen!"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONDITIONALS -->
+      <div id="conditional" class="content-section">
+        <h1 class="grammar-title">🔀 Conditional Sentences (If...)</h1>
+        <p class="grammar-subtitle">Grade 5</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🔀</div>
+            <div>
+              <h2 class="card-title">If Clauses: Real & Unreal Conditions</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Conditional sentences digunakan untuk membicarakan situasi yang kemungkinan terjadi atau tidak mungkin terjadi, dengan konsekuensi-nya.
+            </div>
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Tiga Tipe Conditional</div>
+            <div class="explanation-text">
+              <strong>Type 1 (Real):</strong> Kemungkinan terjadi di masa depan<br>
+              <strong>Type 2 (Unreal):</strong> Bayangan situasi di masa sekarang<br>
+              <strong>Type 3 (Impossible):</strong> Situasi yang tidak mungkin terjadi di masa lalu
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Type 1: If + Present Simple → Future Simple</div>
+            If you study hard, you will pass the exam.
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Type 2: If + Past Simple → would + verb</div>
+            If you were rich, you would travel around the world.
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Type 3: If + Past Perfect → would have + past participle</div>
+            If you had studied, you would have passed the exam.
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"If it rains tomorrow, I will stay at home."</div>
+              <div class="example-translation">Type 1: Kemungkinan nyata di masa depan</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"If I were a bird, I would fly to the sky."</div>
+              <div class="example-translation">Type 2: Situasi bayangan (tidak nyata) sekarang</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"If I had known about the party, I would have come."</div>
+              <div class="example-translation">Type 3: Menyesal tentang masa lalu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL VERBS -->
+      <div id="modal-verbs" class="content-section">
+        <h1 class="grammar-title">💪 Modal Verbs</h1>
+        <p class="grammar-subtitle">Grade 5</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">💪</div>
+            <div>
+              <h2 class="card-title">Expressing Ability, Permission, Obligation</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Modal verbs digunakan untuk mengekspresikan kemampuan, izin, kewajiban, atau kemungkinan. Modal verbs tidak berubah bentuk.
+            </div>
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Jenis-Jenis Modal Verbs</div>
+            <div class="explanation-text">
+              <strong>can:</strong> Kemampuan (I can swim)<br>
+              <strong>could:</strong> Kemampuan masa lalu (She could dance)<br>
+              <strong>must:</strong> Kewajiban kuat (You must come)<br>
+              <strong>should:</strong> Saran/nasihat (You should rest)<br>
+              <strong>may:</strong> Izin formal (May I help?)<br>
+              <strong>might:</strong> Kemungkinan (It might rain)<br>
+              <strong>will:</strong> Masa depan (I will come)<br>
+              <strong>would:</strong> Kemungkinan hypothetical (I would go if...)
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            Subject + Modal Verb + Base Verb + Object
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I can speak English fluently."</div>
+              <div class="example-translation">Can = kemampuan</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"You must finish your homework."</div>
+              <div class="example-translation">Must = kewajiban/keharusan</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"You should drink more water."</div>
+              <div class="example-translation">Should = saran/nasihat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASSIVE VOICE -->
+      <div id="passive-voice" class="content-section">
+        <h1 class="grammar-title">🔄 Passive Voice</h1>
+        <p class="grammar-subtitle">Grade 5</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🔄</div>
+            <div>
+              <h2 class="card-title">Shifting Focus from Subject to Object</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Passive voice digunakan ketika kita ingin memusatkan perhatian pada aksi (objek) daripada orang yang melakukan aksi (subjek).
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            Object + be verb + past participle + by + subject (optional)
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">
+                <strong>Active:</strong> "The teacher wrote the report."<br>
+                <strong>Passive:</strong> "The report was written by the teacher."
+              </div>
+              <div class="example-translation">Fokus bergeser dari teacher ke report</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">
+                <strong>Active:</strong> "John cleaned the house."<br>
+                <strong>Passive:</strong> "The house was cleaned by John."
+              </div>
+              <div class="example-translation">Fokus ke objek (house) daripada subjek (John)</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>Gunakan be verb yang sesuai dengan waktu: is/are (present), was/were (past)</li>
+              <li>"By" clause opsional jika sudah jelas siapa yang melakukan</li>
+              <li>Past participle berbeda untuk setiap tense</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELATIVE CLAUSE -->
+      <div id="relative-clause" class="content-section">
+        <h1 class="grammar-title">🔗 Relative Clause</h1>
+        <p class="grammar-subtitle">Grade 5</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🔗</div>
+            <div>
+              <h2 class="card-title">Who, Which, That: Combining Sentences</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Relative clause menghubungkan dua kalimat dengan menggunakan relative pronouns (who, which, that, whose, where) untuk memberikan informasi tambahan tentang noun.
+            </div>
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Relative Pronouns</div>
+            <div class="explanation-text">
+              <strong>who:</strong> Untuk orang (subject atau object)<br>
+              <strong>which:</strong> Untuk benda/binatang<br>
+              <strong>that:</strong> Bisa untuk orang atau benda<br>
+              <strong>whose:</strong> Menunjukkan kepemilikan<br>
+              <strong>where:</strong> Untuk tempat
+            </div>
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"The girl who studies English is my sister."</div>
+              <div class="example-translation">Who = relative pronoun untuk orang (subject)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"The book which I read last week was interesting."</div>
+              <div class="example-translation">Which = relative pronoun untuk benda</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"This is the place where I was born."</div>
+              <div class="example-translation">Where = relative pronoun untuk tempat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBJUNCTIVE MOOD -->
+      <div id="subjunctive" class="content-section">
+        <h1 class="grammar-title">🎭 Subjunctive Mood</h1>
+        <p class="grammar-subtitle">Grade 6 - Advanced</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🎭</div>
+            <div>
+              <h2 class="card-title">Expressing Wishes, Suggestions, and Requirements</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Subjunctive mood digunakan untuk mengekspresikan keinginan, saran, atau persyaratan yang tidak (belum) menjadi kenyataan. Dalam bahasa Inggris modern, subjunctive mood jarang digunakan tapi masih penting dalam konteks formal.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Bentuk Subjunctive:</div>
+            "I wish that I were a doctor."<br>
+            "It is important that she be on time."<br>
+            "I suggest that he study harder."
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I wish I were taller." (Padahal saya tidak tinggi)</div>
+              <div class="example-translation">Were = subjunctive form (bukan was)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"It is crucial that she attend the meeting."</div>
+              <div class="example-translation">Attend = base form (bukan attends)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INVERSION -->
+      <div id="inversion" class="content-section">
+        <h1 class="grammar-title">↔️ Inversion</h1>
+        <p class="grammar-subtitle">Grade 6 - Advanced</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">↔️</div>
+            <div>
+              <h2 class="card-title">Changing Word Order for Emphasis</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Inversion adalah perubahan urutan kata (mengurangi subjek dan auxilary verb) untuk emphasis atau style tertentu. Umumnya digunakan dalam bahasa formal atau sastra.
+            </div>
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Jenis Inversion</div>
+            <div class="explanation-text">
+              <strong>1. Dengan negative adverbs:</strong> Never have I seen such a thing.<br>
+              <strong>2. Dengan "had":</strong> Had I known, I would have helped.<br>
+              <strong>3. Dengan "should":</strong> Should you need help, call me.<br>
+              <strong>4. Dengan "may/might":</strong> May you live long!
+            </div>
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"Never have I heard such beautiful music."</div>
+              <div class="example-translation">Normal: I have never heard... → Inversion untuk emphasis</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Had I been there, I would have helped you."</div>
+              <div class="example-translation">Normal: If I had been... → Inversion formal/literary</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REPORTED SPEECH -->
+      <div id="reported-speech" class="content-section">
+        <h1 class="grammar-title">💬 Reported Speech (Indirect Speech)</h1>
+        <p class="grammar-subtitle">Grade 6 - Advanced</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">💬</div>
+            <div>
+              <h2 class="card-title">Quoting Someone Indirectly</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definition</div>
+            <div class="explanation-text">
+              Reported speech digunakan untuk melaporkan apa yang dikatakan orang lain tanpa menggunakan quotation marks. Beberapa perubahan tenses dan pronouns diperlukan.
+            </div>
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Perubahan Tenses (Backshift)</div>
+            <div class="explanation-text">
+              <strong>Present Simple → Past Simple:</strong> "I eat" → He said he ate<br>
+              <strong>Present Continuous → Past Continuous:</strong> "I am reading" → She said she was reading<br>
+              <strong>Will → Would:</strong> "I will come" → He said he would come<br>
+              <strong>Can → Could:</strong> "I can help" → She said she could help
+            </div>
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">
+                <strong>Direct:</strong> "I love English," she said.<br>
+                <strong>Reported:</strong> She said that she loved English.
+              </div>
+              <div class="example-translation">Tense berubah: present → past (loved)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">
+                <strong>Direct:</strong> "Will you come tomorrow?" he asked.<br>
+                <strong>Reported:</strong> He asked if I would come the next day.
+              </div>
+              <div class="example-translation">Will → would, tomorrow → the next day</div>
+            </div>
+          </div>
+
+          <div class="notes">
+            <div class="notes-title">💡 Important Notes</div>
+            <ul class="notes-text">
+              <li>Time expressions juga berubah: today → that day, tomorrow → the next day</li>
+              <li>Pronouns bisa berubah tergantung konteks</li>
+              <li>Untuk pertanyaan, gunakan if/whether</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORD ORDER -->
+      <div id="word-order" class="content-section">
+        <h1 class="grammar-title">📍 Word Order</h1>
+        <p class="grammar-subtitle">Grade 6 - Advanced</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">📍</div>
+            <div>
+              <h2 class="card-title">Standard & Advanced Word Order Patterns</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Basic Word Order (SVO)</div>
+            <div class="explanation-text">
+              Bahasa Inggris mengikuti pattern: Subject - Verb - Object (Pelaku - Tindakan - Penerima Tindakan)
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Standard English Word Order:</div>
+            Subject + Auxiliary Verb + Main Verb + Object + Prepositional Phrase<br><br>
+            <strong>Example:</strong><br>
+            She has been reading a book in the library.
+          </div>
+
+          <div class="explanation">
+            <div class="explanation-title">Adverb Placement</div>
+            <div class="explanation-text">
+              <strong>Frequency adverbs:</strong> Sebelum main verb (usually, often, always, never)<br>
+              "I always drink coffee in the morning."<br><br>
+              <strong>Manner adverbs:</strong> Setelah object atau di akhir kalimat<br>
+              "She speaks English fluently."
+            </div>
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"The cat sat on the mat." (SVO)</div>
+              <div class="example-translation">Subject: The cat, Verb: sat, Object: on the mat</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She has already finished her work."</div>
+              <div class="example-translation">Already = frequency adverb, ditempatkan sebelum main verb</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Yesterday, I went to the market with my mother."</div>
+              <div class="example-translation">Time expression di depan untuk emphasis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function showContent(id) {
+      // Hide all content sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Remove active class dari all sidebar items
+      const items = document.querySelectorAll('.sidebar-item');
+      items.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Show selected content
+      document.getElementById(id).classList.add('active');
+
+      // Add active class to clicked sidebar item
+      event.target.classList.add('active');
+
+      // Scroll to top of main content
+      document.querySelector('.main-content').scrollTop = 0;
+    }
+  </script>
+</body>
+</html>
