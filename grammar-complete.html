@@ -72,20 +72,22 @@
     }
 
     .back-button {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+      color: #0F1B4C;
+      border: none;
       padding: 0.6rem 1.2rem;
-      border-radius: 6px;
+      border-radius: 8px;
+      font-weight: 600;
       cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
       font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-block;
     }
 
     .back-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
     }
 
     /* ============= MAIN CONTAINER ============= */
@@ -1322,6 +1324,426 @@
             <div class="example-item">
               <div class="example-text">"Yesterday, I went to the market with my mother."</div>
               <div class="example-translation">Time expression di depan untuk emphasis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPERATIVE -->
+      <div id="imperative" class="content-section">
+        <h1 class="grammar-title">🎯 Imperative</h1>
+        <p class="grammar-subtitle">Grade 2 - Basic</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <div>
+              <h2 class="card-title">Commands & Instructions (Perintah & Instruksi)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Imperative adalah bentuk kata kerja yang digunakan untuk memberikan perintah, instruksi, atau permintaan langsung kepada seseorang.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            Verb (Base Form) + Object/Complement<br><br>
+            <strong>Contoh:</strong><br>
+            Close the door. / Tutup pintu.<br>
+            Sit down. / Duduk.
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"Open the window!"</div>
+              <div class="example-translation">Buka jendela! (Perintah langsung)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Please help me."</div>
+              <div class="example-translation">Tolong bantu saya. (Permintaan sopan)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Don't run!"</div>
+              <div class="example-translation">Jangan lari! (Perintah negatif)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLURAL NOUNS -->
+      <div id="plural" class="content-section">
+        <h1 class="grammar-title">🔢 Plural Nouns</h1>
+        <p class="grammar-subtitle">Grade 2 - Basic</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🔢</div>
+            <div>
+              <h2 class="card-title">Membentuk Kata Benda Jamak (Plural Forms)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Plural noun adalah bentuk kata benda yang menunjukkan lebih dari satu benda atau makhluk hidup.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Aturan Dasar:</div>
+            1. Kebanyakan: Noun + s → cats, dogs, books<br>
+            2. Berakhir -s, -x, -z, -ch, -sh: + es → boxes, buses<br>
+            3. Berakhir consonant + y: Ubah y → ies → baby → babies<br>
+            4. Berakhir -f atau -fe: Ubah → ves → knife → knives<br>
+            5. Irregular: child → children, man → men
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">cat → cats, dog → dogs</div>
+              <div class="example-translation">Aturan dasar: tambah -s</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">box → boxes, glass → glasses</div>
+              <div class="example-translation">Berakhir -x, -s: tambah -es</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">baby → babies, lady → ladies</div>
+              <div class="example-translation">Consonant + y: ubah jadi -ies</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADVERB BASIC -->
+      <div id="adverb-basic" class="content-section">
+        <h1 class="grammar-title">🚀 Adverb (Basic)</h1>
+        <p class="grammar-subtitle">Grade 2 - Basic</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🚀</div>
+            <div>
+              <h2 class="card-title">Kata Keterangan Dasar (Basic Adverbs)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Adverb adalah kata yang menjelaskan verb, adjective, atau adverb lain. Kebanyakan dibentuk dengan menambahkan -ly pada adjective.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Cara Membentuk:</div>
+            Adjective + ly = Adverb<br><br>
+            quick → quickly<br>
+            slow → slowly<br>
+            happy → happily
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"She runs quickly."</div>
+              <div class="example-translation">Dia berlari dengan cepat. (quickly = manner adverb)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"He speaks softly."</div>
+              <div class="example-translation">Dia berbicara dengan lembut.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"I work hard."</div>
+              <div class="example-translation">Saya bekerja keras. (hard = adverb tidak berakhir -ly)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUESTION FORMATION -->
+      <div id="question-formation" class="content-section">
+        <h1 class="grammar-title">❓ Question Formation</h1>
+        <p class="grammar-subtitle">Grade 3 - Intermediate</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">❓</div>
+            <div>
+              <h2 class="card-title">Membentuk Pertanyaan (Question Patterns)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Dalam bahasa Inggris, pertanyaan dibentuk dengan menginversi posisi auxiliary verb dan subject, atau menggunakan question words.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Pola Pertanyaan:</div>
+            1. Yes/No Questions: Auxiliary + Subject + Verb?<br>
+            "Do you like coffee?" "Are they coming?"<br><br>
+            2. Wh- Questions: Question Word + Auxiliary + Subject + Verb?<br>
+            "Where do you live?" "What are you doing?"
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"Do you play soccer?"</div>
+              <div class="example-translation">Kamu bermain sepak bola? (Yes/No question)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Where are you going?"</div>
+              <div class="example-translation">Kemana kamu pergi? (Wh- question)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"When did they arrive?"</div>
+              <div class="example-translation">Kapan mereka tiba? (Wh- question dengan past)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OBJECT PRONOUNS -->
+      <div id="object-pronoun" class="content-section">
+        <h1 class="grammar-title">👫 Object Pronouns</h1>
+        <p class="grammar-subtitle">Grade 3 - Intermediate</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">👫</div>
+            <div>
+              <h2 class="card-title">Kata Ganti Obyek (Object Pronouns)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Object pronouns adalah kata ganti yang digunakan sebagai objek dari kata kerja atau preposisi. Contoh: me, you, him, her, it, us, them.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Object Pronouns Chart:</div>
+            I → me<br>
+            You → you<br>
+            He → him<br>
+            She → her<br>
+            It → it<br>
+            We → us<br>
+            They → them
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"She gave me a book."</div>
+              <div class="example-translation">Dia memberi saya sebuah buku. (me = object pronoun)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"I love them."</div>
+              <div class="example-translation">Saya mencintai mereka. (them = object pronoun)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Please help us."</div>
+              <div class="example-translation">Tolong bantu kami. (us = object pronoun)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESENT PERFECT -->
+      <div id="present-perfect" class="content-section">
+        <h1 class="grammar-title">✅ Present Perfect</h1>
+        <p class="grammar-subtitle">Grade 4 - Intermediate</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">✅</div>
+            <div>
+              <h2 class="card-title">Waktu Sekarang Sempurna (Present Perfect Tense)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Present Perfect menunjukkan tindakan yang dimulai di masa lalu tapi masih memiliki pengaruh di sekarang atau baru saja selesai.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            Have/Has + Past Participle<br><br>
+            Subject (I, You, We, They) + Have + V3<br>
+            Subject (He, She, It) + Has + V3<br><br>
+            <strong>Example:</strong><br>
+            "I have finished my homework." / "She has seen that movie."
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I have been to Paris twice."</div>
+              <div class="example-translation">Saya telah pergi ke Paris dua kali. (Pengalaman)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She has completed her project."</div>
+              <div class="example-translation">Dia telah menyelesaikan proyeknya. (Baru selesai)</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"They have lived here for 5 years."</div>
+              <div class="example-translation">Mereka telah tinggal di sini selama 5 tahun. (Berlanjut)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAST CONTINUOUS -->
+      <div id="past-continuous" class="content-section">
+        <h1 class="grammar-title">🌀 Past Continuous</h1>
+        <p class="grammar-subtitle">Grade 4 - Intermediate</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🌀</div>
+            <div>
+              <h2 class="card-title">Waktu Lampau Sedang Berlangsung (Past Continuous Tense)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Past Continuous menunjukkan tindakan yang sedang berlangsung pada waktu tertentu di masa lalu.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Formula:</div>
+            Was/Were + Verb-ing<br><br>
+            I/He/She/It + Was + V-ing<br>
+            You/We/They + Were + V-ing<br><br>
+            <strong>Example:</strong><br>
+            "I was reading when she called." / "They were playing football yesterday."
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"I was sleeping when the phone rang."</div>
+              <div class="example-translation">Saya sedang tidur ketika telepon berdering.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"She was cooking dinner at 6 PM."</div>
+              <div class="example-translation">Dia sedang memasak makan malam pada jam 6 sore.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"We were watching a movie while they were studying."</div>
+              <div class="example-translation">Kami sedang menonton film sementara mereka sedang belajar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARATIVES -->
+      <div id="comparatives" class="content-section">
+        <h1 class="grammar-title">⚖️ Comparatives</h1>
+        <p class="grammar-subtitle">Grade 4 - Intermediate</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">⚖️</div>
+            <div>
+              <h2 class="card-title">Membandingkan Dua Hal (Comparative Adjectives)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Comparative adjectives digunakan untuk membandingkan dua orang, benda, atau hal yang berbeda.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Cara Membentuk:</div>
+            1. Short adjectives (-er form): tall → taller, fast → faster<br>
+            2. Long adjectives (more + adjective): beautiful → more beautiful<br>
+            3. Irregular: good → better, bad → worse<br><br>
+            Pattern: Subject + Verb + Comparative + than + Object
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"John is taller than Mary."</div>
+              <div class="example-translation">John lebih tinggi daripada Mary.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"This car is more expensive than that one."</div>
+              <div class="example-translation">Mobil ini lebih mahal daripada yang itu.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"English is easier than Chinese for me."</div>
+              <div class="example-translation">Bahasa Inggris lebih mudah daripada Bahasa Mandarin bagi saya.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUPERLATIVES -->
+      <div id="superlatives" class="content-section">
+        <h1 class="grammar-title">🏆 Superlatives</h1>
+        <p class="grammar-subtitle">Grade 4 - Intermediate</p>
+
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon">🏆</div>
+            <div>
+              <h2 class="card-title">Tingkatan Tertinggi (Superlative Adjectives)</h2>
+            </div>
+          </div>
+          
+          <div class="explanation">
+            <div class="explanation-title">Definisi</div>
+            <div class="explanation-text">
+              Superlative adjectives digunakan untuk menunjukkan bahwa sesuatu memiliki kualitas tertinggi atau terendah di antara yang lain.
+            </div>
+          </div>
+
+          <div class="formula">
+            <div class="formula-title">Cara Membentuk:</div>
+            1. Short adjectives (-est form): tall → the tallest, fast → the fastest<br>
+            2. Long adjectives (the most + adjective): beautiful → the most beautiful<br>
+            3. Irregular: good → the best, bad → the worst<br><br>
+            Pattern: Subject + Verb + The + Superlative + Noun
+          </div>
+
+          <div class="examples">
+            <div class="examples-title">📌 Examples</div>
+            <div class="example-item">
+              <div class="example-text">"She is the smartest student in the class."</div>
+              <div class="example-translation">Dia adalah murid paling pintar di kelas.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"Mount Everest is the highest mountain in the world."</div>
+              <div class="example-translation">Gunung Everest adalah gunung tertinggi di dunia.</div>
+            </div>
+            <div class="example-item">
+              <div class="example-text">"This is the most beautiful sunset I've ever seen."</div>
+              <div class="example-translation">Ini adalah matahari terbenam paling indah yang pernah saya lihat.</div>
             </div>
           </div>
         </div>
