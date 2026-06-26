@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Phrasal Verbs Guide - LittleLume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2C3E7A;
+      --secondary: #7C5CBF;
+      --accent: #FFD93D;
+      --bg-dark: #0F1B4C;
+      --bg-light: #F8F9FD;
+      --text-primary: #1A1A2E;
+      --text-secondary: #666;
+      --border: #E0E0E0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* ============= HEADER ============= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+      padding: 1rem 2rem;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+      margin: 0;
+    }
+
+    .header-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .back-button {
+      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+      color: #0F1B4C;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+    }
+
+    /* ============= MAIN CONTAINER ============= */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      height: calc(100vh - 100px);
+      gap: 0;
+    }
+
+    /* ============= SIDEBAR ============= */
+    .sidebar {
+      width: 300px;
+      background: white;
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-section {
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-header {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-item {
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      background: transparent;
+      border: none;
+      text-align: left;
+      width: 100%;
+    }
+
+    .sidebar-item:hover {
+      background: #F0F0F0;
+      color: var(--primary);
+    }
+
+    .sidebar-item.active {
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-weight: 600;
+    }
+
+    /* ============= MAIN CONTENT ============= */
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .phrasal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .phrasal-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    /* ============= PHRASAL VERB CARDS ============= */
+    .verb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .verb-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .verb-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .verb-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .verb-meaning {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .verb-examples {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .example-item {
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .example-text {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      font-style: italic;
+    }
+
+    .example-translation {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* ============= QUIZ SECTION ============= */
+    .quiz-section {
+      background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .quiz-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quiz-question {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .quiz-option {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .quiz-option:hover {
+      background: #F0F0F0;
+      border-color: var(--accent);
+    }
+
+    .quiz-option input {
+      margin-right: 0.75rem;
+      cursor: pointer;
+    }
+
+    .quiz-button {
+      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+      color: var(--bg-dark);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+    }
+
+    .quiz-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+    }
+
+    .quiz-result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .quiz-result.show {
+      display: block;
+    }
+
+    .quiz-result.correct {
+      background: #D4EDDA;
+      color: #155724;
+      border: 1px solid #C3E6CB;
+    }
+
+    .quiz-result.incorrect {
+      background: #F8D7DA;
+      color: #721C24;
+      border: 1px solid #F5C6CB;
+    }
+
+    /* ============= SCROLLBAR ============= */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(44, 62, 122, 0.3);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(44, 62, 122, 0.5);
+    }
+
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+        display: flex;
+        gap: 1rem;
+      }
+
+      .sidebar-section {
+        margin-bottom: 0;
+        min-width: 200px;
+      }
+
+      .main-content {
+        padding: 1.5rem;
+      }
+
+      .verb-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phrasal-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============= HEADER ============= -->
+  <header>
+    <div class="header-content">
+      <div>
+        <div class="header-title">📝 Complete Phrasal Verbs Guide</div>
+        <div class="header-subtitle">Master 200+ essential phrasal verbs</div>
+      </div>
+      <a href="index-updated.html" class="back-button">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ============= MAIN CONTAINER ============= -->
+  <div class="container">
+    <!-- ============= SIDEBAR ============= -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-header">Categories</div>
+        <button class="sidebar-item active" onclick="showCategory('movement')">🚀 Movement & Direction</button>
+        <button class="sidebar-item" onclick="showCategory('time')">⏰ Time & Continuation</button>
+        <button class="sidebar-item" onclick="showCategory('relationships')">💬 Relationships & Communication</button>
+        <button class="sidebar-item" onclick="showCategory('work')">💼 Work & Business</button>
+        <button class="sidebar-item" onclick="showCategory('completion')">✅ Completion & Change</button>
+        <button class="sidebar-item" onclick="showCategory('getting')">📦 Getting & Taking</button>
+        <button class="sidebar-item" onclick="showCategory('putting')">🔧 Putting & Placing</button>
+        <button class="sidebar-item" onclick="showCategory('out')">OUT Phrasal Verbs</button>
+        <button class="sidebar-item" onclick="showCategory('up')">UP Phrasal Verbs</button>
+        <button class="sidebar-item" onclick="showCategory('down')">DOWN Phrasal Verbs</button>
+      </div>
+    </aside>
+
+    <!-- ============= MAIN CONTENT ============= -->
+    <main class="main-content">
+      <!-- MOVEMENT & DIRECTION -->
+      <div id="movement" class="content-section">
+        <div class="phrasal-title">🚀 Movement & Direction</div>
+        <div class="phrasal-subtitle">Phrasal verbs about going from place to place</div>
+        <div class="verb-grid" id="movement-grid"></div>
+      </div>
+
+      <!-- TIME & CONTINUATION -->
+      <div id="time" class="content-section" style="display: none;">
+        <div class="phrasal-title">⏰ Time & Continuation</div>
+        <div class="phrasal-subtitle">Phrasal verbs about continuing, waiting, and postponing</div>
+        <div class="verb-grid" id="time-grid"></div>
+      </div>
+
+      <!-- RELATIONSHIPS & COMMUNICATION -->
+      <div id="relationships" class="content-section" style="display: none;">
+        <div class="phrasal-title">💬 Relationships & Communication</div>
+        <div class="phrasal-subtitle">Phrasal verbs about people and talking</div>
+        <div class="verb-grid" id="relationships-grid"></div>
+      </div>
+
+      <!-- WORK & BUSINESS -->
+      <div id="work" class="content-section" style="display: none;">
+        <div class="phrasal-title">💼 Work & Business</div>
+        <div class="phrasal-subtitle">Phrasal verbs in professional contexts</div>
+        <div class="verb-grid" id="work-grid"></div>
+      </div>
+
+      <!-- COMPLETION & CHANGE -->
+      <div id="completion" class="content-section" style="display: none;">
+        <div class="phrasal-title">✅ Completion & Change</div>
+        <div class="phrasal-subtitle">Phrasal verbs about finishing and changing</div>
+        <div class="verb-grid" id="completion-grid"></div>
+      </div>
+
+      <!-- GETTING & TAKING -->
+      <div id="getting" class="content-section" style="display: none;">
+        <div class="phrasal-title">📦 Getting & Taking</div>
+        <div class="phrasal-subtitle">Phrasal verbs with get and take</div>
+        <div class="verb-grid" id="getting-grid"></div>
+      </div>
+
+      <!-- PUTTING & PLACING -->
+      <div id="putting" class="content-section" style="display: none;">
+        <div class="phrasal-title">🔧 Putting & Placing</div>
+        <div class="phrasal-subtitle">Phrasal verbs with put</div>
+        <div class="verb-grid" id="putting-grid"></div>
+      </div>
+
+      <!-- OUT PHRASAL VERBS -->
+      <div id="out" class="content-section" style="display: none;">
+        <div class="phrasal-title">OUT Phrasal Verbs</div>
+        <div class="phrasal-subtitle">Phrasal verbs with OUT particle</div>
+        <div class="verb-grid" id="out-grid"></div>
+      </div>
+
+      <!-- UP PHRASAL VERBS -->
+      <div id="up" class="content-section" style="display: none;">
+        <div class="phrasal-title">UP Phrasal Verbs</div>
+        <div class="phrasal-subtitle">Phrasal verbs with UP particle</div>
+        <div class="verb-grid" id="up-grid"></div>
+      </div>
+
+      <!-- DOWN PHRASAL VERBS -->
+      <div id="down" class="content-section" style="display: none;">
+        <div class="phrasal-title">DOWN Phrasal Verbs</div>
+        <div class="phrasal-subtitle">Phrasal verbs with DOWN particle</div>
+        <div class="verb-grid" id="down-grid"></div>
+      </div>
+
+      <!-- QUIZ SECTION -->
+      <div class="quiz-section">
+        <div class="quiz-title">🎯 Test Your Knowledge</div>
+        <div id="quiz-container"></div>
+        <button class="quiz-button" onclick="submitQuiz()">Check Answers</button>
+        <div id="quiz-result" class="quiz-result"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Comprehensive Phrasal Verbs Data
+    const phrasalVerbsData = {
+      movement: [
+        { verb: "Come back", meaning: "Return to a place", examples: ["I'll come back tomorrow.", "She came back home after college."] },
+        { verb: "Go away", meaning: "Leave a place", examples: ["We're going away for vacation.", "He went away to study."] },
+        { verb: "Run away", meaning: "Escape or flee", examples: ["The dog ran away from home.", "They ran away from the flood."] },
+        { verb: "Walk away", meaning: "Leave by walking", examples: ["She walked away from the argument.", "I walked away feeling confused."] },
+        { verb: "Fly away", meaning: "Leave by flying", examples: ["The bird flew away quickly.", "The plane flew away into the sky."] },
+        { verb: "Move away", meaning: "Change residence", examples: ["They moved away last month.", "I moved away for work."] },
+        { verb: "Get away", meaning: "Escape or go on vacation", examples: ["I need to get away from stress.", "Let's get away for the weekend."] },
+        { verb: "Turn back", meaning: "Return the way you came", examples: ["We turned back because of the rain.", "The hikers turned back at the summit."] },
+        { verb: "Come in", meaning: "Enter", examples: ["Come in, the door is open.", "Please come in and sit down."] },
+        { verb: "Go out", meaning: "Leave home", examples: ["I'm going out tonight.", "Do you want to go out to dinner?"] },
+        { verb: "Put back", meaning: "Return something to its place", examples: ["Put the book back on the shelf.", "Put the glasses back in the cabinet."] },
+        { verb: "Bring back", meaning: "Return with something", examples: ["Bring back milk from the store.", "I brought back souvenirs from Paris."] },
+        { verb: "Carry forward", meaning: "Continue to next period", examples: ["We'll carry forward these plans.", "The balance carries forward to next month."] },
+        { verb: "Go down", meaning: "Move downward", examples: ["Go down the stairs carefully.", "The price went down significantly."] },
+        { verb: "Come up", meaning: "Move upward or arise", examples: ["Come up to the next floor.", "A problem came up unexpectedly."] },
+        { verb: "Jump in", meaning: "Enter quickly", examples: ["Jump in the car, we're late.", "He jumped in the pool."] },
+        { verb: "Climb up", meaning: "Go up", examples: ["Climb up the mountain.", "The child climbed up the tree."] },
+        { verb: "Break through", meaning: "Pass through a barrier", examples: ["The team broke through the defense.", "Scientists broke through in their research."] },
+        { verb: "Cross over", meaning: "Go from one side to another", examples: ["Cross over the bridge.", "The river crossed over three countries."] },
+        { verb: "Back away", meaning: "Move backward away from something", examples: ["Back away slowly from the dog.", "He backed away from the decision."] }
+      ],
+      time: [
+        { verb: "Carry on", meaning: "Continue doing something", examples: ["Carry on with your work.", "We carried on despite the difficulties."] },
+        { verb: "Go on", meaning: "Continue", examples: ["What's going on here?", "The meeting went on for hours."] },
+        { verb: "Keep on", meaning: "Continue persistently", examples: ["Keep on trying, don't give up.", "She keeps on asking questions."] },
+        { verb: "Put off", meaning: "Postpone", examples: ["Don't put off your homework.", "We put off the meeting until next week."] },
+        { verb: "Hold on", meaning: "Wait, be patient", examples: ["Hold on, I'm coming!", "Hold on a moment please."] },
+        { verb: "Drag on", meaning: "Continue longer than expected", examples: ["The speech dragged on for hours.", "This project is dragging on."] },
+        { verb: "Catch up", meaning: "Move at the same pace as others", examples: ["I need to catch up on my work.", "Wait, I'll catch up with you."] },
+        { verb: "Look back", meaning: "Remember the past", examples: ["Looking back, I made a mistake.", "We looked back on our memories."] },
+        { verb: "Look forward", meaning: "Anticipate something", examples: ["I'm looking forward to vacation.", "She looks forward to seeing you."] },
+        { verb: "Stay up", meaning: "Not sleep, remain awake", examples: ["I stayed up late studying.", "We stayed up all night."] },
+        { verb: "Wake up", meaning: "Stop sleeping", examples: ["Wake up, it's morning!", "I woke up at 6 AM."] },
+        { verb: "Turn up", meaning: "Arrive unexpectedly", examples: ["He turned up at the party uninvited.", "A solution turned up suddenly."] },
+        { verb: "Slow down", meaning: "Reduce speed", examples: ["Slow down, you're driving too fast.", "Business slowed down in winter."] },
+        { verb: "Speed up", meaning: "Increase speed", examples: ["Speed up the process.", "The train sped up on the straight track."] },
+        { verb: "Pass by", meaning: "Go near without stopping", examples: ["I passed by your house yesterday.", "The car passed by quickly."] },
+        { verb: "Hang around", meaning: "Spend time in a place", examples: ["Don't hang around after school.", "Let's hang around the mall."] },
+        { verb: "Stick around", meaning: "Stay in a place", examples: ["Stick around, we're having fun.", "Will you stick around for coffee?"] },
+        { verb: "Rush through", meaning: "Do quickly", examples: ["Don't rush through your meal.", "I rushed through the assignment."] },
+        { verb: "Drag along", meaning: "Go slowly while pulling", examples: ["Stop dragging along, we're late!", "He dragged along his suitcase."] },
+        { verb: "Zip through", meaning: "Move or do something very quickly", examples: ["I zipped through the test.", "She zipped through the presentation."] }
+      ],
+      relationships: [
+        { verb: "Break up", meaning: "End a romantic relationship", examples: ["They broke up last month.", "I broke up with my girlfriend."] },
+        { verb: "Get along", meaning: "Have a good relationship", examples: ["They get along really well.", "I don't get along with him."] },
+        { verb: "Fall out", meaning: "Have an argument", examples: ["We fell out over money.", "The friends fell out and didn't talk."] },
+        { verb: "Hang out", meaning: "Spend time together", examples: ["Let's hang out this weekend.", "I hang out with my friends after school."] },
+        { verb: "Talk about", meaning: "Discuss", examples: ["We talked about the project.", "Everyone is talking about the new movie."] },
+        { verb: "Bring up", meaning: "Mention or raise (a topic)", examples: ["He brought up the sensitive issue.", "Don't bring up old arguments."] },
+        { verb: "Look after", meaning: "Take care of", examples: ["She looks after her younger siblings.", "Who will look after the plants?"] },
+        { verb: "Take after", meaning: "Resemble", examples: ["He takes after his father.", "The daughter takes after her mother."] },
+        { verb: "Tell off", meaning: "Scold or reprimand", examples: ["The teacher told him off for being late.", "She told me off for the mistake."] },
+        { verb: "Cheer up", meaning: "Make someone happy", examples: ["Cheer up, things will get better.", "This gift cheered me up."] },
+        { verb: "Make up", meaning: "Become friends again after an argument", examples: ["They made up after their fight.", "Did you make up with him?"] },
+        { verb: "Stand by", meaning: "Support someone", examples: ["I'll stand by you no matter what.", "He stood by me during tough times."] },
+        { verb: "Call on", meaning: "Visit or ask someone to speak", examples: ["The teacher called on me to answer.", "I called on my friend yesterday."] },
+        { verb: "Stick with", meaning: "Stay loyal to", examples: ["Stick with me, we'll succeed.", "She sticks with her friends."] },
+        { verb: "Look down on", meaning: "Treat as inferior", examples: ["Don't look down on others.", "He looked down on people who were poor."] },
+        { verb: "Look up to", meaning: "Respect and admire", examples: ["I look up to my mentor.", "Children look up to their parents."] },
+        { verb: "Go out with", meaning: "Date romantically", examples: ["They've been going out with each other.", "How long have you gone out with her?"] },
+        { verb: "Ask out", meaning: "Invite on a date", examples: ["He asked her out to dinner.", "Would you ask me out?"] },
+        { verb: "Pick on", meaning: "Bully or tease", examples: ["Stop picking on your brother.", "Other kids picked on him."] },
+        { verb: "Help out", meaning: "Assist", examples: ["Can you help out with the project?", "She helped us out when we needed it."] }
+      ],
+      work: [
+        { verb: "Take over", meaning: "Assume control or responsibility", examples: ["She took over as manager.", "The new CEO took over the company."] },
+        { verb: "Set up", meaning: "Establish or arrange", examples: ["We set up the meeting for tomorrow.", "He set up his own business."] },
+        { verb: "Close down", meaning: "Stop operating", examples: ["The factory closed down last year.", "They closed down the restaurant."] },
+        { verb: "Lay off", meaning: "Dismiss employees", examples: ["The company laid off 100 workers.", "They laid me off due to budget cuts."] },
+        { verb: "Turn down", meaning: "Reject an offer", examples: ["I turned down the job offer.", "She turned down the promotion."] },
+        { verb: "Turn up", meaning: "Arrive or appear", examples: ["He turned up late for the meeting.", "Solutions turned up unexpectedly."] },
+        { verb: "Work out", meaning: "Exercise or solve", examples: ["I work out at the gym.", "We worked out a solution."] },
+        { verb: "Figure out", meaning: "Understand or solve", examples: ["I figured out the problem.", "Can you figure out how to fix it?"] },
+        { verb: "Point out", meaning: "Indicate or highlight", examples: ["She pointed out the mistakes.", "Let me point out the benefits."] },
+        { verb: "Run into", meaning: "Meet by chance or face a problem", examples: ["I ran into an old friend.", "We ran into some issues."] },
+        { verb: "Deal with", meaning: "Handle or manage", examples: ["I'll deal with the customer complaints.", "How will we deal with this problem?"] },
+        { verb: "Look into", meaning: "Investigate", examples: ["I'll look into that matter.", "The police looked into the crime."] },
+        { verb: "Check in", meaning: "Register or verify", examples: ["Check in at the hotel.", "I'll check in on the progress."] },
+        { verb: "Check out", meaning: "Leave a hotel or inspect", examples: ["I checked out this morning.", "Check out the new product."] },
+        { verb: "Carry out", meaning: "Execute or conduct", examples: ["We carried out the plan successfully.", "They carried out the experiment."] },
+        { verb: "Break down", meaning: "Stop functioning or analyze", examples: ["The car broke down on the highway.", "Let me break down the process."] },
+        { verb: "Pick up", meaning: "Resume or collect", examples: ["I'll pick up where we left off.", "Can you pick up the files?"] },
+        { verb: "Put through", meaning: "Connect by phone or cause to experience", examples: ["Put me through to the manager.", "He's putting me through a difficult time."] },
+        { verb: "Ramp up", meaning: "Increase significantly", examples: ["We ramped up production.", "Sales ramped up last quarter."] },
+        { verb: "Scale down", meaning: "Reduce in size or scope", examples: ["We scaled down the project.", "They scaled down operations."] }
+      ],
+      completion: [
+        { verb: "Finish up", meaning: "Complete something", examples: ["Finish up your work before leaving.", "We finished up the project yesterday."] },
+        { verb: "Wrap up", meaning: "Complete or summarize", examples: ["Let's wrap up the meeting.", "I wrapped up my presentation."] },
+        { verb: "Calm down", meaning: "Stop being angry or upset", examples: ["Calm down, it's not that bad.", "She finally calmed down."] },
+        { verb: "Break down", meaning: "Stop working or lose control emotionally", examples: ["The system broke down.", "She broke down in tears."] },
+        { verb: "Cut down", meaning: "Reduce the amount of something", examples: ["I need to cut down on sugar.", "Cut down the trees."] },
+        { verb: "Slow down", meaning: "Reduce speed or intensity", examples: ["Slow down, you're going too fast.", "Business slowed down."] },
+        { verb: "Calm back down", meaning: "Become calm again", examples: ["He calmed back down after getting angry.", "Once she calmed back down, we could talk."] },
+        { verb: "Clean up", meaning: "Make something neat or tidy", examples: ["Clean up your room.", "I cleaned up the mess."] },
+        { verb: "Clear up", meaning: "Clarify or make clean", examples: ["Let me clear up this confusion.", "The weather cleared up."] },
+        { verb: "Close up", meaning: "Shut a business or come together", examples: ["Close up the shop.", "The wound closed up."] },
+        { verb: "Cover up", meaning: "Hide or conceal", examples: ["Don't cover up the truth.", "She covered up the stain."] },
+        { verb: "Cut back", meaning: "Reduce spending or use", examples: ["We cut back on expenses.", "Cut back on coffee."] },
+        { verb: "Cool down", meaning: "Lower temperature or become less angry", examples: ["Let it cool down.", "Cool down before you speak."] },
+        { verb: "Ease up", meaning: "Reduce intensity or stress", examples: ["Ease up on the pressure.", "She eased up on her strict rules."] },
+        { verb: "End up", meaning: "Eventually be in a situation", examples: ["I ended up going to the party.", "How did you end up here?"] },
+        { verb: "Grow up", meaning: "Mature from childhood", examples: ["She grew up in London.", "When are you going to grow up?"] },
+        { verb: "Hold up", meaning: "Delay or support", examples: ["What's holding up the project?", "Hold up the sign."] },
+        { verb: "Keep up", meaning: "Maintain the pace", examples: ["Keep up with the trend.", "Can you keep up with me?"] },
+        { verb: "Let up", meaning: "Reduce intensity or stop", examples: ["The rain won't let up.", "She didn't let up on her criticism."] },
+        { verb: "Sum up", meaning: "Summarize", examples: ["Let me sum up the main points.", "He summed up the situation well."] }
+      ],
+      getting: [
+        { verb: "Get away", meaning: "Escape or take a holiday", examples: ["I need to get away.", "We're getting away this weekend."] },
+        { verb: "Get back", meaning: "Return", examples: ["I'll get back soon.", "When did you get back home?"] },
+        { verb: "Get down", meaning: "Lower yourself or become sad", examples: ["Get down from the ladder.", "Don't let it get you down."] },
+        { verb: "Get in", meaning: "Enter a vehicle or building", examples: ["Get in the car.", "Get in line."] },
+        { verb: "Get off", meaning: "Leave a vehicle", examples: ["Get off at the next stop.", "Get off the grass."] },
+        { verb: "Get on", meaning: "Board a vehicle or progress", examples: ["Get on the bus.", "How are you getting on?"] },
+        { verb: "Get out", meaning: "Leave or escape", examples: ["Get out of here!", "We got out of the house."] },
+        { verb: "Get through", meaning: "Complete or endure", examples: ["I'll get through this difficult time.", "Did you get through the test?"] },
+        { verb: "Get up", meaning: "Rise from bed or stand", examples: ["Get up, it's morning!", "I got up at 6 AM."] },
+        { verb: "Take in", meaning: "Understand or accept", examples: ["Take in all the information.", "I couldn't take it in."] },
+        { verb: "Take over", meaning: "Assume control", examples: ["He took over the project.", "New management took over."] },
+        { verb: "Take off", meaning: "Depart or become successful", examples: ["The plane took off.", "Her career took off."] },
+        { verb: "Take on", meaning: "Accept a challenge or employ", examples: ["He took on the challenge.", "The company took on new staff."] },
+        { verb: "Take out", meaning: "Remove or eliminate", examples: ["Take out the trash.", "Take her out to dinner."] },
+        { verb: "Take up", meaning: "Start a hobby or occupy space", examples: ["I took up painting.", "The furniture takes up space."] },
+        { verb: "Pick up", meaning: "Lift or collect", examples: ["Pick up the papers.", "I'll pick you up at 5."] },
+        { verb: "Bring back", meaning: "Return with something", examples: ["Bring back milk.", "I brought back souvenirs."] },
+        { verb: "Bring in", meaning: "Earn or introduce", examples: ["Bring in the harvest.", "They brought in a new policy."] },
+        { verb: "Bring out", meaning: "Make more noticeable or publish", examples: ["The color brings out her eyes.", "They brought out a new product."] },
+        { verb: "Bring up", meaning: "Raise a child or mention", examples: ["She brought up three children.", "Don't bring up old issues."] }
+      ],
+      putting: [
+        { verb: "Put aside", meaning: "Save or ignore", examples: ["Put aside your differences.", "I put aside some money."] },
+        { verb: "Put away", meaning: "Store or imprison", examples: ["Put away your toys.", "He was put away for his crimes."] },
+        { verb: "Put back", meaning: "Return something", examples: ["Put the book back.", "Put it back on the shelf."] },
+        { verb: "Put down", meaning: "Place down or criticize", examples: ["Put down your pen.", "Stop putting me down."] },
+        { verb: "Put forward", meaning: "Suggest or propose", examples: ["Put forward your ideas.", "She put forward a new plan."] },
+        { verb: "Put in", meaning: "Install or apply for", examples: ["Put in a new door.", "Put in an application."] },
+        { verb: "Put off", meaning: "Postpone or switch off", examples: ["Put off the meeting.", "Put off the light."] },
+        { verb: "Put on", meaning: "Wear or perform", examples: ["Put on your shoes.", "Put on a show."] },
+        { verb: "Put out", meaning: "Extinguish or broadcast", examples: ["Put out the fire.", "They put out a new album."] },
+        { verb: "Put through", meaning: "Connect or subject to", examples: ["Put me through to reception.", "I'm putting you through tough training."] },
+        { verb: "Put up", meaning: "Construct or tolerate", examples: ["Put up a tent.", "I can't put up with this."] },
+        { verb: "Put up with", meaning: "Tolerate or endure", examples: ["I won't put up with this behavior.", "How long can you put up with it?"] },
+        { verb: "Lay down", meaning: "Place down or establish", examples: ["Lay down the carpet.", "Lay down the rules."] },
+        { verb: "Lay off", meaning: "Stop or dismiss", examples: ["Lay off the negative comments.", "Workers were laid off."] },
+        { verb: "Lay out", meaning: "Arrange or spend", examples: ["Lay out the plan.", "I laid out a lot of money."] }
+      ],
+      out: [
+        { verb: "Work out", meaning: "Exercise or solve", examples: ["Work out at the gym.", "Work out the math problem."] },
+        { verb: "Figure out", meaning: "Understand or solve", examples: ["I figured out the answer.", "Can you figure it out?"] },
+        { verb: "Find out", meaning: "Discover", examples: ["I found out the truth.", "How did you find out?"] },
+        { verb: "Point out", meaning: "Indicate or highlight", examples: ["Point out the mistakes.", "I pointed out the problem."] },
+        { verb: "Carry out", meaning: "Execute or perform", examples: ["Carry out the plan.", "They carried out the experiment."] },
+        { verb: "Leave out", meaning: "Omit or exclude", examples: ["Leave out the details.", "Don't leave me out."] },
+        { verb: "Bring out", meaning: "Reveal or release", examples: ["Bring out your true potential.", "They brought out a new product."] },
+        { verb: "Check out", meaning: "Inspect or leave hotel", examples: ["Check out the new place.", "I checked out this morning."] },
+        { verb: "Sort out", meaning: "Organize or resolve", examples: ["Sort out your files.", "Let's sort out this issue."] },
+        { verb: "Spell out", meaning: "Explain clearly", examples: ["Spell out your expectations.", "Let me spell it out for you."] },
+        { verb: "Turn out", meaning: "Result in or attend", examples: ["It turned out well.", "How many people turned out?"] },
+        { verb: "Work out", meaning: "Calculate or solve", examples: ["Work out the total.", "I worked out the problem."] },
+        { verb: "Rule out", meaning: "Exclude as possibility", examples: ["Rule out that option.", "We ruled out that idea."] },
+        { verb: "Burn out", meaning: "Become exhausted", examples: ["I burned out from stress.", "He burned out at work."] },
+        { verb: "Put out", meaning: "Extinguish or broadcast", examples: ["Put out the fire.", "They put out a new album."] },
+        { verb: "Run out", meaning: "Use up completely", examples: ["We ran out of milk.", "The food ran out."] },
+        { verb: "Strike out", meaning: "Fail or cross out", examples: ["Strike out that line.", "The team struck out."] },
+        { verb: "Stand out", meaning: "Be noticeable", examples: ["She stands out in the crowd.", "The building stands out."] },
+        { verb: "Wear out", meaning: "Damage from use", examples: ["I wore out my shoes.", "Don't wear yourself out."] },
+        { verb: "Wipe out", meaning: "Destroy or eliminate", examples: ["Wipe out the debt.", "The virus wiped out the colony."] }
+      ],
+      up: [
+        { verb: "Wake up", meaning: "Stop sleeping", examples: ["Wake up at 6 AM.", "I woke up late."] },
+        { verb: "Stand up", meaning: "Rise or be brave", examples: ["Stand up from the chair.", "Stand up for yourself."] },
+        { verb: "Give up", meaning: "Surrender or stop trying", examples: ["Don't give up!", "I gave up smoking."] },
+        { verb: "Look up", meaning: "Search for information or improve", examples: ["Look up the word.", "Things are looking up."] },
+        { verb: "Set up", meaning: "Arrange or establish", examples: ["Set up the equipment.", "Set up a business."] },
+        { verb: "Clean up", meaning: "Make tidy", examples: ["Clean up your room.", "Clean up the mess."] },
+        { verb: "Dress up", meaning: "Wear formal clothes", examples: ["Dress up for the party.", "She dressed up nicely."] },
+        { verb: "Bring up", meaning: "Raise a child or mention", examples: ["Bring up your children.", "Bring up that issue."] },
+        { verb: "Cover up", meaning: "Conceal or wear protection", examples: ["Cover up the stain.", "Cover up in the sun."] },
+        { verb: "Fill up", meaning: "Make completely full", examples: ["Fill up the glass.", "Fill up the tank."] },
+        { verb: "Grow up", meaning: "Mature", examples: ["Grow up in London.", "When will you grow up?"] },
+        { verb: "Hold up", meaning: "Support or delay", examples: ["Hold up the sign.", "What's holding up progress?"] },
+        { verb: "Keep up", meaning: "Maintain pace", examples: ["Keep up with the group.", "I can't keep up."] },
+        { verb: "Light up", meaning: "Illuminate or brighten", examples: ["Light up the room.", "Her face lit up."] },
+        { verb: "Make up", meaning: "Invent or become friendly", examples: ["Make up a story.", "We made up after arguing."] },
+        { verb: "Open up", meaning: "Unfold or become more communicative", examples: ["Open up the door.", "Open up about your feelings."] },
+        { verb: "Pick up", meaning: "Lift or collect", examples: ["Pick up the papers.", "Pick you up at five."] },
+        { verb: "Sign up", meaning: "Register", examples: ["Sign up for the class.", "I signed up online."] },
+        { verb: "Speed up", meaning: "Increase pace", examples: ["Speed up the process.", "The train sped up."] },
+        { verb: "Tie up", meaning: "Fasten or finish", examples: ["Tie up your shoelaces.", "Tie up loose ends."] }
+      ],
+      down: [
+        { verb: "Sit down", meaning: "Be seated", examples: ["Sit down on the chair.", "She sat down quickly."] },
+        { verb: "Calm down", meaning: "Stop being upset", examples: ["Calm down please.", "He finally calmed down."] },
+        { verb: "Slow down", meaning: "Reduce speed", examples: ["Slow down, you're speeding.", "Slow down and think."] },
+        { verb: "Cut down", meaning: "Reduce", examples: ["Cut down on sugar.", "Cut down the trees."] },
+        { verb: "Shut down", meaning: "Close or stop", examples: ["Shut down the computer.", "The factory shut down."] },
+        { verb: "Break down", meaning: "Stop working", examples: ["The car broke down.", "She broke down crying."] },
+        { verb: "Bring down", meaning: "Reduce or cause to fall", examples: ["Bring down the price.", "Bring down the government."] },
+        { verb: "Burn down", meaning: "Destroy by fire", examples: ["The house burned down.", "The fire burned down."] },
+        { verb: "Narrow down", meaning: "Reduce options", examples: ["Narrow down the choices.", "We narrowed it down."] },
+        { verb: "Settle down", meaning: "Calm or establish", examples: ["Settle down, children.", "She settled down in town."] },
+        { verb: "Slow down", meaning: "Reduce pace", examples: ["Slow down, you're rushing.", "Slow down the music."] },
+        { verb: "Track down", meaning: "Find or hunt", examples: ["Track down the culprit.", "I tracked down the information."] },
+        { verb: "Wear down", meaning: "Tire or erode", examples: ["Don't wear yourself down.", "The water wore down the stone."] },
+        { verb: "Write down", meaning: "Record in writing", examples: ["Write down the address.", "I wrote it down."] },
+        { verb: "Put down", meaning: "Place or criticize", examples: ["Put down your pen.", "Stop putting me down."] }
+      ]
+    };
+
+    // Quiz questions - specific untuk setiap kategori
+    const quizQuestionsData = {
+      movement: [
+        { question: "What does 'come back' mean?", options: ["Leave quickly", "Return to a place", "Arrive on time", "Move forward"], correct: 1 },
+        { question: "She _____ away after the argument.", options: ["came back", "walked away", "flew away", "ran into"], correct: 1 },
+        { question: "What means to enter a place?", options: ["Go away", "Come in", "Turn back", "Get away"], correct: 1 },
+        { question: "The bird _____ away into the sky.", options: ["ran", "flew", "came", "walked"], correct: 1 },
+        { question: "We need to _____ back to the starting point.", options: ["turn", "go", "come", "get"], correct: 2 }
+      ],
+      time: [
+        { question: "What does 'carry on' mean?", options: ["Stop working", "Continue doing something", "Take something away", "Hold something"], correct: 1 },
+        { question: "Don't _____ off your homework, do it now!", options: ["put", "hold", "go", "carry"], correct: 0 },
+        { question: "The meeting _____ on for hours.", options: ["kept", "carried", "went", "stayed"], correct: 2 },
+        { question: "What means to wait and be patient?", options: ["Drag on", "Hold on", "Stay up", "Slow down"], correct: 1 },
+        { question: "I _____ up late last night to finish the project.", options: ["held", "stayed", "kept", "went"], correct: 1 }
+      ],
+      relationships: [
+        { question: "What does 'break up' mean?", options: ["To go on vacation", "End a romantic relationship", "Fix something", "Become tired"], correct: 1 },
+        { question: "They _____ out over a silly misunderstanding.", options: ["hung", "fell", "got", "broke"], correct: 1 },
+        { question: "How do you _____ along with your new classmates?", options: ["get", "hang", "fall", "break"], correct: 0 },
+        { question: "What means to spend time together casually?", options: ["Fall out", "Make up", "Hang out", "Break up"], correct: 2 },
+        { question: "After the argument, they _____ up and became friends again.", options: ["broke", "made", "got", "looked"], correct: 1 }
+      ],
+      work: [
+        { question: "What does 'take over' mean?", options: ["Dismiss employees", "Start a new job", "Assume control or responsibility", "Delay a project"], correct: 2 },
+        { question: "The company plans to _____ up a new office.", options: ["take", "set", "put", "get"], correct: 1 },
+        { question: "What means to establish or arrange something?", options: ["Turn down", "Set up", "Close down", "Lay off"], correct: 1 },
+        { question: "The manager _____ over the project last month.", options: ["laid", "set", "took", "turned"], correct: 2 },
+        { question: "What means to reject an offer?", options: ["Take on", "Turn down", "Deal with", "Look into"], correct: 1 }
+      ],
+      completion: [
+        { question: "What does 'wrap up' mean?", options: ["Become upset", "Complete or summarize", "Reduce the amount", "Organize items"], correct: 1 },
+        { question: "_____ down, everything will be okay.", options: ["Calm", "Clean", "Break", "Cut"], correct: 0 },
+        { question: "What means to stop being angry or upset?", options: ["Speed up", "Calm down", "Grow up", "Cut down"], correct: 1 },
+        { question: "Let's _____ up this meeting, it's getting late.", options: ["clean", "wrap", "calm", "break"], correct: 1 },
+        { question: "I need to _____ down on sugar.", options: ["speed", "cut", "break", "clean"], correct: 1 }
+      ],
+      getting: [
+        { question: "What does 'get away' mean?", options: ["Start a journey", "Escape or take a holiday", "Understand something", "Arrive somewhere"], correct: 1 },
+        { question: "Can you _____ me up at the station?", options: ["bring", "take", "pick", "get"], correct: 2 },
+        { question: "When did you _____ back home?", options: ["get", "come", "bring", "take"], correct: 0 },
+        { question: "What means to return from somewhere?", options: ["Get in", "Get through", "Get back", "Get up"], correct: 2 },
+        { question: "I _____ up late this morning.", options: ["got", "brought", "took", "came"], correct: 0 }
+      ],
+      putting: [
+        { question: "What does 'put on' mean?", options: ["Delay something", "Wear clothing", "Store something", "Reduce amount"], correct: 1 },
+        { question: "_____ on your shoes before leaving.", options: ["Put", "Take", "Get", "Bring"], correct: 0 },
+        { question: "What means to tolerate or endure something?", options: ["Put in", "Put off", "Put up with", "Put down"], correct: 2 },
+        { question: "I can't _____ up with his behavior anymore.", options: ["put", "take", "get", "bring"], correct: 0 },
+        { question: "She _____ off the meeting until next week.", options: ["put", "took", "got", "brought"], correct: 0 }
+      ],
+      out: [
+        { question: "What does 'work out' mean?", options: ["Stop exercising", "Exercise or solve a problem", "Begin a project", "Complete a task"], correct: 1 },
+        { question: "Can you help me _____ out this math problem?", options: ["work", "figure", "point", "find"], correct: 0 },
+        { question: "What means to discover something?", options: ["Look into", "Find out", "Sort out", "Work out"], correct: 1 },
+        { question: "I _____ out that I had made a mistake.", options: ["worked", "figured", "found", "pointed"], correct: 2 },
+        { question: "What means to exclude as a possibility?", options: ["Rule out", "Run out", "Burn out", "Wear out"], correct: 0 }
+      ],
+      up: [
+        { question: "What does 'wake up' mean?", options: ["Go to bed", "Stop sleeping", "Sleep longer", "Dress up"], correct: 1 },
+        { question: "I _____ up at 6 AM every morning.", options: ["give", "stand", "wake", "look"], correct: 2 },
+        { question: "What means to establish or arrange something?", options: ["Give up", "Look up", "Set up", "Stand up"], correct: 2 },
+        { question: "Don't _____ up on your dreams!", options: ["give", "stand", "grow", "sign"], correct: 0 },
+        { question: "She _____ up her children with love and care.", options: ["woke", "brought", "dressed", "set"], correct: 1 }
+      ],
+      down: [
+        { question: "What does 'sit down' mean?", options: ["Stand up", "Be seated", "Slow down", "Close down"], correct: 1 },
+        { question: "_____ down, you're driving too fast!", options: ["Speed", "Slow", "Sit", "Calm"], correct: 1 },
+        { question: "What means to reduce or lower something?", options: ["Shut down", "Cut down", "Calm down", "Slow down"], correct: 1 },
+        { question: "The factory _____ down last year.", options: ["shut", "cut", "slowed", "calmed"], correct: 0 },
+        { question: "What means to record something in writing?", options: ["Write down", "Track down", "Shut down", "Settle down"], correct: 0 }
+      ]
+    };
+
+    // Load phrasal verbs into grids
+    function loadVerbsIntoGrid(category) {
+      const grid = document.getElementById(`${category}-grid`);
+      if (!grid) return;
+      
+      grid.innerHTML = '';
+      phrasalVerbsData[category].forEach(verb => {
+        const card = document.createElement('div');
+        card.className = 'verb-card';
+        card.innerHTML = `
+          <div class="verb-name">${verb.verb}</div>
+          <div class="verb-meaning">${verb.meaning}</div>
+          <div class="verb-examples">
+            ${verb.examples.map(ex => `
+              <div class="example-item">
+                <div class="example-text">"${ex}"</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Show category
+    function showCategory(category) {
+      currentCategory = category; // Update current category
+      
+      // Hide all sections
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.style.display = 'none';
+      });
+      
+      // Show selected section
+      document.getElementById(category).style.display = 'block';
+      
+      // Update sidebar
+      document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Load verbs if not already loaded
+      loadVerbsIntoGrid(category);
+      
+      // Load category-specific quiz
+      initializeQuiz(category);
+    }
+
+    // Initialize quiz with category-specific questions
+    function initializeQuiz(category = 'movement') {
+      const quizContainer = document.getElementById('quiz-container');
+      quizContainer.innerHTML = '';
+      
+      const questions = quizQuestionsData[category] || quizQuestionsData.movement;
+      
+      questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'quiz-question';
+        questionDiv.innerHTML = `
+          <div class="question-text">${index + 1}. ${q.question}</div>
+          <div class="quiz-options">
+            ${q.options.map((option, optIndex) => `
+              <label class="quiz-option">
+                <input type="radio" name="question-${index}" value="${optIndex}" required>
+                ${option}
+              </label>
+            `).join('')}
+          </div>
+        `;
+        quizContainer.appendChild(questionDiv);
+      });
+      
+      // Clear previous result
+      document.getElementById('quiz-result').className = 'quiz-result';
+      document.getElementById('quiz-result').textContent = '';
+    }
+
+    // Submit quiz with category-specific answers
+    let currentCategory = 'movement';
+    
+    function submitQuiz() {
+      const resultDiv = document.getElementById('quiz-result');
+      const questions = quizQuestionsData[currentCategory] || quizQuestionsData.movement;
+      let score = 0;
+      
+      questions.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="question-${index}"]:checked`);
+        if (selected && parseInt(selected.value) === q.correct) {
+          score++;
+        }
+      });
+      
+      const percentage = Math.round((score / questions.length) * 100);
+      const isCorrect = score >= 3;
+      
+      resultDiv.textContent = `You scored ${score}/${questions.length} (${percentage}%)${isCorrect ? ' 🎉 Excellent!' : ' Keep practicing!'}`;
+      resultDiv.className = `quiz-result show ${isCorrect ? 'correct' : 'incorrect'}`;
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      currentCategory = 'movement';
+      loadVerbsIntoGrid('movement');
+      initializeQuiz('movement');
+    });
+  </script>
+</body>
+</html>
