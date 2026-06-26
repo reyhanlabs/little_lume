@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English - Simple Present Tense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFC93C;
+    --yellow-dark:#F2A60D;
+    --blue:#4FB6F0;
+    --blue-dark:#2E93D1;
+    --pink:#FF6FA5;
+    --pink-dark:#E84B85;
+    --green:#3DD6A3;
+    --green-dark:#1FB987;
+    --purple:#9B6BF2;
+    --purple-dark:#7C46E0;
+    --cream:#FFF9EE;
+    --ink:#3A3358;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Nunito',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2',cursive;
+  }
+
+  /* ---------- background decor ---------- */
+  .sky-bg{
+    position:relative;
+    background:linear-gradient(180deg,#7FD4FF 0%, #BDE9FF 35%, var(--cream) 70%);
+    padding-bottom:10px;
+    overflow:hidden;
+  }
+  .cloud{
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+    opacity:.85;
+    filter:blur(0.5px);
+  }
+  .sun{
+    position:absolute;
+    top:30px; right:8%;
+    width:90px; height:90px;
+    background:radial-gradient(circle, #FFE07A 0%, var(--yellow) 70%);
+    border-radius:50%;
+    box-shadow:0 0 0 14px rgba(255,201,60,0.25);
+    animation:spin 18s linear infinite;
+  }
+  @keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+  @keyframes float{
+    0%,100%{ transform:translateY(0px); }
+    50%{ transform:translateY(-14px); }
+  }
+  @keyframes bob{
+    0%,100%{ transform:translateY(0) rotate(-3deg); }
+    50%{ transform:translateY(-10px) rotate(3deg); }
+  }
+  @keyframes wiggle{
+    0%,100%{ transform:rotate(-2deg); }
+    50%{ transform:rotate(2deg); }
+  }
+  @keyframes pop{
+    0%{ transform:scale(0.6); opacity:0; }
+    80%{ transform:scale(1.08); opacity:1; }
+    100%{ transform:scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+  /* ---------- header ---------- */
+  .header-wrap{
+    position:relative;
+    text-align:center;
+    padding:38px 20px 70px;
+    z-index:2;
+  }
+  .brand-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .mascot{
+    width:64px; height:64px;
+    animation:float 3s ease-in-out infinite;
+    flex-shrink:0;
+  }
+  .brand-name{
+    font-size:clamp(2rem, 6vw, 3.2rem);
+    font-weight:800;
+    color:var(--white);
+    text-shadow:3px 3px 0 var(--pink-dark), 0 0 18px rgba(0,0,0,0.08);
+    letter-spacing:0.5px;
+    margin:0;
+  }
+  .brand-name span{ color:var(--yellow); text-shadow:3px 3px 0 var(--purple-dark); }
+  .grade-badge{
+    display:inline-block;
+    margin-top:14px;
+    background:var(--white);
+    color:var(--purple-dark);
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    font-size:1rem;
+    padding:8px 22px;
+    border-radius:999px;
+    border:3px dashed var(--purple);
+    box-shadow:0 6px 0 rgba(122,70,224,0.25);
+  }
+  .lesson-title{
+    margin:22px auto 0;
+    max-width:700px;
+    font-size:clamp(1.4rem, 4vw, 2.1rem);
+    font-weight:700;
+    color:var(--ink);
+    background:var(--white);
+    padding:14px 26px;
+    border-radius:22px;
+    box-shadow:0 8px 0 rgba(0,0,0,0.06);
+    border:4px solid var(--yellow);
+  }
+  .wave-divider{
+    display:block;
+    width:100%;
+    line-height:0;
+    margin-top:-6px;
+  }
+
+  /* ---------- layout shell ---------- */
+  .container{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 18px 80px;
+    position:relative;
+    z-index:2;
+  }
+
+  .nav-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin:-40px 0 36px;
+    position:relative;
+    z-index:3;
+  }
+  .nav-pills a{
+    text-decoration:none;
+    background:var(--white);
+    color:var(--ink);
+    font-weight:800;
+    font-size:0.85rem;
+    padding:10px 16px;
+    border-radius:999px;
+    box-shadow:0 5px 0 rgba(0,0,0,0.08);
+    border:2px solid #eee;
+    transition:transform .15s ease;
+    white-space:nowrap;
+  }
+  .nav-pills a:hover{ transform:translateY(-3px); }
+
+  /* ---------- section cards ---------- */
+  .section-card{
+    background:var(--white);
+    border-radius:32px;
+    padding:32px clamp(18px,4vw,40px);
+    margin-bottom:34px;
+    box-shadow:0 10px 0 rgba(58,51,88,0.08), 0 14px 30px rgba(58,51,88,0.06);
+    position:relative;
+    scroll-margin-top:20px;
+    border:4px solid transparent;
+  }
+  .section-card.blue{ border-color:var(--blue); }
+  .section-card.pink{ border-color:var(--pink); }
+  .section-card.green{ border-color:var(--green); }
+  .section-card.purple{ border-color:var(--purple); }
+  .section-card.yellow{ border-color:var(--yellow); }
+
+  .section-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    font-size:0.85rem;
+    color:var(--white);
+    padding:6px 16px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  .eyebrow-blue{ background:var(--blue-dark); }
+  .eyebrow-pink{ background:var(--pink-dark); }
+  .eyebrow-green{ background:var(--green-dark); }
+  .eyebrow-purple{ background:var(--purple-dark); }
+  .eyebrow-yellow{ background:var(--yellow-dark); }
+
+  .section-card h2{
+    font-size:clamp(1.5rem,4vw,2rem);
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .section-card p{
+    font-size:1.05rem;
+    line-height:1.65;
+    margin:0 0 14px;
+  }
+
+  /* ---------- speech bubble (mascot talk) ---------- */
+  .lumi-row{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    margin-bottom:18px;
+  }
+  .lumi-row img{
+    width:54px; height:54px;
+    flex-shrink:0;
+    animation:bob 2.6s ease-in-out infinite;
+  }
+  .speech-bubble{
+    background:#FFF3D6;
+    border:3px solid var(--yellow);
+    border-radius:20px 20px 20px 4px;
+    padding:14px 18px;
+    font-weight:700;
+    font-size:1.05rem;
+    position:relative;
+  }
+
+  /* ---------- formula box ---------- */
+  .formula-box{
+    background:linear-gradient(135deg, #EAF6FF, #F4EEFF);
+    border:3px dashed var(--blue);
+    border-radius:20px;
+    padding:18px 22px;
+    margin:18px 0;
+    font-family:'Baloo 2',cursive;
+    text-align:center;
+  }
+  .formula-box .big{
+    font-size:clamp(1.1rem,3.5vw,1.5rem);
+    font-weight:700;
+    color:var(--blue-dark);
+  }
+  .formula-box .small{
+    font-size:0.9rem;
+    color:var(--ink);
+    margin-top:6px;
+    font-family:'Nunito',sans-serif;
+    font-weight:700;
+  }
+
+  /* ---------- example pills ---------- */
+  .example-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+    margin:16px 0;
+  }
+  .example-card{
+    background:var(--cream);
+    border-radius:16px;
+    padding:14px 16px;
+    border-left:6px solid var(--green);
+    font-weight:700;
+  }
+  .example-card .verb-hl{
+    color:var(--pink-dark);
+    background:#FFE3EE;
+    padding:1px 6px;
+    border-radius:6px;
+  }
+  .example-card .meaning{
+    display:block;
+    font-weight:600;
+    font-size:0.85rem;
+    color:#7a7395;
+    margin-top:4px;
+  }
+
+  /* ---------- rule table ---------- */
+  .rule-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 8px;
+    margin:16px 0;
+  }
+  .rule-table th{
+    font-family:'Baloo 2',cursive;
+    text-align:left;
+    padding:8px 12px;
+    color:var(--purple-dark);
+    font-size:0.95rem;
+  }
+  .rule-table td{
+    background:var(--cream);
+    padding:12px;
+    font-weight:700;
+    font-size:0.95rem;
+  }
+  .rule-table tr td:first-child{ border-radius:12px 0 0 12px; }
+  .rule-table tr td:last-child{ border-radius:0 12px 12px 0; }
+  .tag-end{
+    display:inline-block;
+    background:var(--purple);
+    color:#fff;
+    font-family:'Baloo 2',cursive;
+    padding:2px 10px;
+    border-radius:8px;
+    font-size:0.85rem;
+  }
+
+  /* ---------- yes/no box ---------- */
+  .yn-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin:16px 0;
+  }
+  @media (max-width:520px){ .yn-grid{ grid-template-columns:1fr; } }
+  .yn-box{
+    border-radius:18px;
+    padding:16px;
+  }
+  .yn-box.pos{ background:#E3FBF3; border:3px solid var(--green); }
+  .yn-box.neg{ background:#FFE9EE; border:3px solid var(--pink); }
+  .yn-box h4{
+    margin:0 0 8px;
+    font-family:'Baloo 2',cursive;
+    font-size:1.05rem;
+  }
+  .yn-box.pos h4{ color:var(--green-dark); }
+  .yn-box.neg h4{ color:var(--pink-dark); }
+  .yn-box li{ margin-bottom:6px; font-weight:700; }
+
+  /* ---------- buttons (general) ---------- */
+  .btn{
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    border:none;
+    cursor:pointer;
+    border-radius:999px;
+    padding:12px 26px;
+    font-size:1rem;
+    color:#fff;
+    background:var(--purple);
+    box-shadow:0 5px 0 var(--purple-dark);
+    transition:transform .1s ease;
+  }
+  .btn:active{ transform:translateY(4px); box-shadow:0 1px 0 var(--purple-dark); }
+  .btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .btn.blue-btn{ background:var(--blue); box-shadow:0 5px 0 var(--blue-dark); }
+  .btn.green-btn{ background:var(--green); box-shadow:0 5px 0 var(--green-dark); }
+  .btn.pink-btn{ background:var(--pink); box-shadow:0 5px 0 var(--pink-dark); }
+  .btn.small{ padding:8px 16px; font-size:0.85rem; }
+
+  /* ---------- GAME 1: Sentence Builder ---------- */
+  .builder-wrap{
+    background:#F4F1FF;
+    border-radius:22px;
+    padding:20px;
+    margin-top:14px;
+  }
+  .builder-slot-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    min-height:60px;
+    background:#fff;
+    border:3px dashed var(--purple);
+    border-radius:16px;
+    padding:12px;
+    margin-bottom:16px;
+    align-items:center;
+  }
+  .slot{
+    width:90px; height:42px;
+    border-radius:12px;
+    border:2px dashed #c9c0f5;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.8rem; color:#b5acdb; font-weight:700;
+  }
+  .slot.filled{
+    border-style:solid;
+    color:#fff;
+    font-family:'Baloo 2',cursive;
+  }
+  .word-bank{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .word-chip{
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    padding:10px 18px;
+    border-radius:14px;
+    border:none;
+    cursor:pointer;
+    color:#fff;
+    font-size:0.95rem;
+    transition:transform .12s ease;
+  }
+  .word-chip:hover{ transform:translateY(-3px) scale(1.04); }
+  .word-chip:disabled{ opacity:0.35; cursor:not-allowed; transform:none; }
+  .chip-subject{ background:var(--blue); }
+  .chip-verb{ background:var(--pink); }
+  .chip-object{ background:var(--green-dark); }
+  .builder-feedback{
+    font-weight:800;
+    font-family:'Baloo 2',cursive;
+    min-height:28px;
+    text-align:center;
+  }
+  .builder-controls{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:14px;
+    flex-wrap:wrap;
+  }
+  .round-counter{
+    text-align:center;
+    font-weight:800;
+    color:var(--purple-dark);
+    margin-bottom:10px;
+    font-family:'Baloo 2',cursive;
+  }
+
+  /* ---------- GAME 2: Sorting ---------- */
+  .sort-zone-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:12px;
+    margin:16px 0;
+  }
+  @media (max-width:600px){ .sort-zone-wrap{ grid-template-columns:1fr; } }
+  .sort-zone{
+    border-radius:18px;
+    padding:14px;
+    min-height:120px;
+    text-align:center;
+  }
+  .sort-zone h4{ font-family:'Baloo 2',cursive; margin:0 0 10px; }
+  .sort-zone.s{ background:#E3FBF3; border:3px solid var(--green); }
+  .sort-zone.es{ background:#FFF3D6; border:3px solid var(--yellow-dark); }
+  .sort-zone.ies{ background:#FFE3EE; border:3px solid var(--pink); }
+  .sort-pool{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin:16px 0;
+  }
+  .sort-chip{
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    background:var(--white);
+    border:3px solid var(--purple);
+    color:var(--purple-dark);
+    padding:9px 16px;
+    border-radius:12px;
+    cursor:pointer;
+  }
+  .sort-chip.placed{ opacity:0.3; cursor:default; pointer-events:none; }
+  .dropped-item{
+    display:inline-block;
+    background:var(--white);
+    border-radius:10px;
+    padding:5px 10px;
+    margin:3px;
+    font-weight:800;
+    font-size:0.85rem;
+  }
+
+  /* ---------- GAME 3 / QUIZ ---------- */
+  .quiz-card{
+    background:#FFF9EE;
+    border:3px solid var(--yellow);
+    border-radius:20px;
+    padding:18px 20px;
+    margin-bottom:16px;
+  }
+  .quiz-q{
+    font-weight:800;
+    font-size:1.05rem;
+    margin-bottom:12px;
+    font-family:'Baloo 2',cursive;
+    color:var(--ink);
+  }
+  .quiz-opts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  @media (max-width:480px){ .quiz-opts{ grid-template-columns:1fr; } }
+  .quiz-opt{
+    background:#fff;
+    border:2px solid #e6dfc9;
+    border-radius:14px;
+    padding:11px 14px;
+    font-weight:700;
+    cursor:pointer;
+    text-align:left;
+    font-size:0.95rem;
+    transition:all .12s ease;
+  }
+  .quiz-opt:hover{ border-color:var(--blue); transform:translateY(-2px); }
+  .quiz-opt.correct{ background:#D8F8E9; border-color:var(--green-dark); }
+  .quiz-opt.wrong{ background:#FFE0E6; border-color:var(--pink-dark); }
+  .quiz-opt:disabled{ cursor:default; }
+  .quiz-fb{
+    margin-top:10px;
+    font-weight:700;
+    font-size:0.9rem;
+    min-height:20px;
+  }
+  .score-banner{
+    background:var(--purple);
+    color:#fff;
+    text-align:center;
+    border-radius:18px;
+    padding:18px;
+    font-family:'Baloo 2',cursive;
+    font-size:1.2rem;
+    margin-top:10px;
+    display:none;
+  }
+  .score-banner.show{ display:block; animation:pop .4s ease; }
+
+  /* ---------- fill in blank game ---------- */
+  .fib-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    background:var(--cream);
+    border-radius:14px;
+    padding:12px 16px;
+    margin-bottom:10px;
+    font-weight:700;
+  }
+  .fib-input{
+    width:110px;
+    padding:8px 10px;
+    border-radius:10px;
+    border:2px solid var(--blue);
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    font-size:0.95rem;
+    text-align:center;
+  }
+  .fib-check{
+    font-size:1.3rem;
+    width:26px;
+    text-align:center;
+  }
+
+  /* ---------- progress stars ---------- */
+  .progress-wrap{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--white);
+    border-bottom:3px solid var(--yellow);
+    padding:8px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    font-size:0.85rem;
+    color:var(--purple-dark);
+  }
+  .progress-bar-bg{
+    flex:1;
+    height:14px;
+    background:#eee;
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .progress-bar-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--green), var(--blue));
+    transition:width .4s ease;
+    border-radius:999px;
+  }
+
+  /* footer */
+  .footer{
+    text-align:center;
+    padding:30px 16px 50px;
+    color:#9b93b8;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .footer .mascot-small{ width:36px; vertical-align:middle; margin-right:6px; }
+
+  .confetti-pop{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+    display:none;
+  }
+
+  /* checkmark badge */
+  .badge-done{
+    display:none;
+    background:var(--green-dark);
+    color:#fff;
+    font-family:'Baloo 2',cursive;
+    font-size:0.75rem;
+    padding:3px 10px;
+    border-radius:999px;
+    margin-left:8px;
+  }
+  .badge-done.show{ display:inline-block; }
+</style>
+</head>
+<body>
+
+<div class="progress-wrap">
+  <span>🔥 Progress:</span>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+  <span id="progressLabel">0%</span>
+</div>
+
+<!-- ================= HEADER ================= -->
+<div class="sky-bg">
+  <div class="cloud" style="width:90px;height:50px;top:20px;left:5%;animation:float 5s ease-in-out infinite;"></div>
+  <div class="cloud" style="width:60px;height:36px;top:60px;left:18%;animation:float 6s ease-in-out infinite;"></div>
+  <div class="cloud" style="width:110px;height:60px;top:10px;left:55%;animation:float 7s ease-in-out infinite;"></div>
+  <div class="cloud" style="width:70px;height:40px;bottom:10px;left:75%;animation:float 5.5s ease-in-out infinite;"></div>
+  <div class="sun"></div>
+
+  <div class="header-wrap">
+    <div class="brand-row">
+      <svg class="mascot" viewBox="0 0 100 100" aria-hidden="true">
+        <ellipse cx="50" cy="60" rx="22" ry="26" fill="#FFC93C"/>
+        <ellipse cx="50" cy="60" rx="22" ry="26" fill="url(#glow)"/>
+        <circle cx="50" cy="32" r="16" fill="#FFD96B"/>
+        <circle cx="44" cy="30" r="3.2" fill="#3A3358"/>
+        <circle cx="56" cy="30" r="3.2" fill="#3A3358"/>
+        <path d="M44 38 Q50 43 56 38" stroke="#3A3358" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="28" cy="50" rx="14" ry="9" fill="#BDEFFF" opacity="0.85" transform="rotate(-20 28 50)"/>
+        <ellipse cx="72" cy="50" rx="14" ry="9" fill="#BDEFFF" opacity="0.85" transform="rotate(20 72 50)"/>
+        <circle cx="50" cy="78" r="6" fill="#FF6FA5"/>
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#FFE07A"/>
+            <stop offset="100%" stop-color="#FFC93C"/>
+          </radialGradient>
+        </defs>
+      </svg>
+      <h1 class="brand-name">LittleLume <span>English</span></h1>
+    </div>
+    <div class="grade-badge">⭐ GRADE 3 ⭐</div>
+    <div class="lesson-title">🌈 Simple Present Tense: Everyday Adventures! 🌈</div>
+  </div>
+
+  <svg class="wave-divider" viewBox="0 0 1440 90" preserveAspectRatio="none" style="height:60px;width:100%;">
+    <path fill="#FFF9EE" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,100 L0,100 Z"></path>
+  </svg>
+</div>
+
+<div class="container">
+
+  <!-- NAV -->
+  <div class="nav-pills">
+    <a href="#intro">👋 Meet Lumi</a>
+    <a href="#what-is">📖 What is it?</a>
+    <a href="#formula">🧩 Formula</a>
+    <a href="#endings">🔤 Verb Endings</a>
+    <a href="#negative">🚫 Yes / No</a>
+    <a href="#timewords">⏰ Time Words</a>
+    <a href="#game1">🎮 Game 1</a>
+    <a href="#game2">🎯 Game 2</a>
+    <a href="#game3">✍️ Game 3</a>
+    <a href="#quiz">🏆 Final Quiz</a>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section class="section-card yellow" id="intro">
+    <span class="section-eyebrow eyebrow-yellow">👋 Hello Friend!</span>
+    <div class="lumi-row">
+      <svg width="54" height="54" viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="22" ry="26" fill="#FFC93C"/><circle cx="50" cy="32" r="16" fill="#FFD96B"/><circle cx="44" cy="30" r="3.2" fill="#3A3358"/><circle cx="56" cy="30" r="3.2" fill="#3A3358"/><path d="M44 38 Q50 43 56 38" stroke="#3A3358" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="50" cy="78" r="6" fill="#FF6FA5"/></svg>
+      <div class="speech-bubble">
+        Hi! I'm <strong>Lumi the Firefly</strong> 🦟✨! Today we are going on an adventure to learn the <strong>Simple Present Tense</strong>. It's super easy and super fun. Are you ready? Let's glow and go!
+      </div>
+    </div>
+    <p>The Simple Present Tense helps us talk about things we do <strong>every day</strong>, things that are <strong>always true</strong>, and things we <strong>like or don't like</strong>. Scroll down with me to discover all its secrets! 🌟</p>
+  </section>
+
+  <!-- ============ WHAT IS IT ============ -->
+  <section class="section-card blue" id="what-is">
+    <span class="section-eyebrow eyebrow-blue">📖 Let's Learn</span>
+    <h2>What is the Simple Present Tense?</h2>
+    <p>We use the <strong>Simple Present Tense</strong> for three big reasons:</p>
+    <div class="example-grid">
+      <div class="example-card">1️⃣ Daily habits & routines
+        <span class="meaning">I <span class="verb-hl">brush</span> my teeth every morning.</span>
+      </div>
+      <div class="example-card">2️⃣ Facts that are always true
+        <span class="meaning">The sun <span class="verb-hl">rises</span> in the east.</span>
+      </div>
+      <div class="example-card">3️⃣ Likes, dislikes & feelings
+        <span class="meaning">She <span class="verb-hl">loves</span> ice cream.</span>
+      </div>
+    </div>
+    <p>🐢 Think of it like a turtle's favorite path — it walks it again and again, every single day. That's what Simple Present is all about: things that happen <strong>regularly</strong> or are <strong>always true</strong>!</p>
+  </section>
+
+  <!-- ============ FORMULA ============ -->
+  <section class="section-card pink" id="formula">
+    <span class="section-eyebrow eyebrow-pink">🧩 The Magic Formula</span>
+    <h2>How Do We Build a Sentence?</h2>
+    <div class="formula-box">
+      <div class="big">Subject + Verb (base form / +s / +es) + Object</div>
+      <div class="small">I / You / We / They + Verb&nbsp;&nbsp;|&nbsp;&nbsp; He / She / It + Verb + s/es</div>
+    </div>
+    <p>Here is the most important rule of Simple Present — remember Lumi's golden rule:</p>
+    <div class="lumi-row">
+      <svg width="48" height="48" viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="22" ry="26" fill="#FFC93C"/><circle cx="50" cy="32" r="16" fill="#FFD96B"/><circle cx="44" cy="30" r="3.2" fill="#3A3358"/><circle cx="56" cy="30" r="3.2" fill="#3A3358"/><path d="M44 38 Q50 43 56 38" stroke="#3A3358" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="50" cy="78" r="6" fill="#FF6FA5"/></svg>
+      <div class="speech-bubble">When the subject is <strong>He, She, or It</strong> (just ONE person, animal, or thing), the verb wears a little hat: <strong>+s</strong> or <strong>+es</strong>! 🎩</div>
+    </div>
+    <div class="example-grid">
+      <div class="example-card">I <span class="verb-hl">play</span> football. <span class="meaning">no extra letter</span></div>
+      <div class="example-card">You <span class="verb-hl">play</span> football. <span class="meaning">no extra letter</span></div>
+      <div class="example-card">We <span class="verb-hl">play</span> football. <span class="meaning">no extra letter</span></div>
+      <div class="example-card">They <span class="verb-hl">play</span> football. <span class="meaning">no extra letter</span></div>
+      <div class="example-card">He <span class="verb-hl">plays</span> football. <span class="meaning">add +s 🎩</span></div>
+      <div class="example-card">She <span class="verb-hl">plays</span> football. <span class="meaning">add +s 🎩</span></div>
+      <div class="example-card">It <span class="verb-hl">plays</span> in the yard. <span class="meaning">add +s 🎩</span></div>
+      <div class="example-card">The cat <span class="verb-hl">runs</span> fast. <span class="meaning">add +s 🎩</span></div>
+    </div>
+  </section>
+
+  <!-- ============ VERB ENDINGS ============ -->
+  <section class="section-card green" id="endings">
+    <span class="section-eyebrow eyebrow-green">🔤 Spelling Rules</span>
+    <h2>How Do We Spell the +s / +es Verbs?</h2>
+    <table class="rule-table">
+      <tr><th>Rule</th><th>Example</th></tr>
+      <tr><td><span class="tag-end">most verbs</span> add <strong>+s</strong></td><td>walk → walk<strong>s</strong>, eat → eat<strong>s</strong>, run → run<strong>s</strong></td></tr>
+      <tr><td>verb ends in <strong>s, x, ch, sh, o</strong> → add <strong>+es</strong></td><td>watch → watch<strong>es</strong>, fix → fix<strong>es</strong>, go → go<strong>es</strong>, wash → wash<strong>es</strong></td></tr>
+      <tr><td>verb ends in <strong>consonant + y</strong> → change y to <strong>i</strong> + es</td><td>study → stud<strong>ies</strong>, fly → fl<strong>ies</strong>, cry → cr<strong>ies</strong></td></tr>
+      <tr><td>verb ends in <strong>vowel + y</strong> → just add <strong>+s</strong></td><td>play → play<strong>s</strong>, say → say<strong>s</strong></td></tr>
+      <tr><td>special verb <strong>have</strong> → becomes</td><td>have → <strong>has</strong> (He <strong>has</strong> a dog 🐶)</td></tr>
+    </table>
+    <p>🌟 Don't worry if this feels tricky at first — practice makes it stick like glue! We'll play a sorting game below to help you remember.</p>
+  </section>
+
+  <!-- ============ NEGATIVE / QUESTION ============ -->
+  <section class="section-card purple" id="negative">
+    <span class="section-eyebrow eyebrow-purple">🚫 Yes & No</span>
+    <h2>Saying "No" and Asking Questions</h2>
+    <div class="yn-grid">
+      <div class="yn-box pos">
+        <h4>✅ Positive (true)</h4>
+        <ul>
+          <li>I <strong>like</strong> mangoes.</li>
+          <li>She <strong>plays</strong> the piano.</li>
+        </ul>
+      </div>
+      <div class="yn-box neg">
+        <h4>❌ Negative (not true)</h4>
+        <ul>
+          <li>I / You / We / They + <strong>don't</strong> + verb</li>
+          <li>He / She / It + <strong>doesn't</strong> + verb</li>
+          <li>I <strong>don't like</strong> spinach.</li>
+          <li>He <strong>doesn't play</strong> the piano.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="big">Do/Does + Subject + Verb (base form) + ... ?</div>
+      <div class="small">Do you like pizza? &nbsp;|&nbsp; Does she like pizza?</div>
+    </div>
+    <p>💡 Remember: when we use <strong>doesn't</strong> or <strong>does</strong>, the main verb goes back to its plain form — NO +s! <br>Example: <em>He doesn't play</em> (not "plays") and <em>Does he play?</em> (not "plays?")</p>
+  </section>
+
+  <!-- ============ TIME WORDS ============ -->
+  <section class="section-card yellow" id="timewords">
+    <span class="section-eyebrow eyebrow-yellow">⏰ Time Word Friends</span>
+    <h2>Words That Love the Simple Present</h2>
+    <p>These special "time word friends" often appear in Simple Present sentences. Spot them and you'll know which tense to use!</p>
+    <div class="example-grid">
+      <div class="example-card">always <span class="meaning">I always brush my teeth.</span></div>
+      <div class="example-card">usually <span class="meaning">She usually walks to school.</span></div>
+      <div class="example-card">often <span class="meaning">We often play outside.</span></div>
+      <div class="example-card">sometimes <span class="meaning">He sometimes reads comics.</span></div>
+      <div class="example-card">never <span class="meaning">They never tell lies.</span></div>
+      <div class="example-card">every day/week <span class="meaning">I eat breakfast every day.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ GAME 1: SENTENCE BUILDER ============ -->
+  <section class="section-card blue" id="game1">
+    <span class="section-eyebrow eyebrow-blue">🎮 Game 1</span>
+    <h2>Sentence Builder Puzzle <span class="badge-done" id="badge1">DONE! ⭐</span></h2>
+    <p>Click the correct word chips in order to build a true Simple Present sentence! Watch out for the +s / +es rule! 🧩</p>
+    <div class="round-counter" id="g1Round">Round 1 of 5</div>
+    <div class="builder-wrap">
+      <div class="builder-slot-row" id="g1Slots"></div>
+      <div class="word-bank" id="g1Bank"></div>
+      <div class="builder-feedback" id="g1Feedback"></div>
+      <div class="builder-controls">
+        <button class="btn small" onclick="g1Reset()">🔄 Clear</button>
+        <button class="btn green-btn small" onclick="g1Check()">✅ Check My Sentence</button>
+        <button class="btn pink-btn small" id="g1Next" onclick="g1NextRound()" disabled>➡️ Next Round</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GAME 2: SORTING ============ -->
+  <section class="section-card green" id="game2">
+    <span class="section-eyebrow eyebrow-green">🎯 Game 2</span>
+    <h2>Verb Ending Sort <span class="badge-done" id="badge2">DONE! ⭐</span></h2>
+    <p>Click each verb, then click the basket it belongs in: <strong>+s</strong>, <strong>+es</strong>, or <strong>+ies</strong>!</p>
+    <div class="sort-pool" id="sortPool"></div>
+    <div class="sort-zone-wrap">
+      <div class="sort-zone s"><h4>+s 🟢</h4><div id="zoneS"></div></div>
+      <div class="sort-zone es"><h4>+es 🟡</h4><div id="zoneES"></div></div>
+      <div class="sort-zone ies"><h4>+ies 🌸</h4><div id="zoneIES"></div></div>
+    </div>
+    <div class="builder-feedback" id="g2Feedback"></div>
+    <div style="text-align:center;"><button class="btn small" onclick="g2Reset()">🔄 Try Again</button></div>
+  </section>
+
+  <!-- ============ GAME 3: FILL IN THE BLANK ============ -->
+  <section class="section-card pink" id="game3">
+    <span class="section-eyebrow eyebrow-pink">✍️ Game 3</span>
+    <h2>Fill in the Missing Verb <span class="badge-done" id="badge3">DONE! ⭐</span></h2>
+    <p>Type the correct form of the verb in the box. Capital letters don't matter!</p>
+    <div id="fibContainer"></div>
+    <div style="text-align:center; margin-top:10px;">
+      <button class="btn blue-btn small" onclick="fibCheckAll()">✅ Check All Answers</button>
+    </div>
+    <div class="builder-feedback" id="fibFeedback"></div>
+  </section>
+
+  <!-- ============ FINAL QUIZ ============ -->
+  <section class="section-card purple" id="quiz">
+    <span class="section-eyebrow eyebrow-purple">🏆 Final Challenge</span>
+    <h2>Final Quiz: Show What You Know! <span class="badge-done" id="badge4">DONE! ⭐</span></h2>
+    <p>Answer all 6 questions. Choose the best answer for each one!</p>
+    <div id="quizContainer"></div>
+    <div style="text-align:center;">
+      <button class="btn green-btn" id="quizSubmit" onclick="quizSubmit()">🎉 See My Score!</button>
+    </div>
+    <div class="score-banner" id="scoreBanner"></div>
+  </section>
+
+  <!-- ============ SUMMARY ============ -->
+  <section class="section-card yellow" id="summary">
+    <span class="section-eyebrow eyebrow-yellow">🌟 Quick Recap</span>
+    <h2>Lumi's Cheat Sheet</h2>
+    <div class="example-grid">
+      <div class="example-card">✅ Used for habits, facts & feelings</div>
+      <div class="example-card">✅ He/She/It → verb + s/es</div>
+      <div class="example-card">✅ I/You/We/They → base verb</div>
+      <div class="example-card">✅ Negative: don't / doesn't + verb</div>
+      <div class="example-card">✅ Question: Do / Does + subject + verb?</div>
+      <div class="example-card">✅ Time friends: always, usually, often, sometimes, never</div>
+    </div>
+    <div class="lumi-row">
+      <svg width="48" height="48" viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="22" ry="26" fill="#FFC93C"/><circle cx="50" cy="32" r="16" fill="#FFD96B"/><circle cx="44" cy="30" r="3.2" fill="#3A3358"/><circle cx="56" cy="30" r="3.2" fill="#3A3358"/><path d="M44 38 Q50 43 56 38" stroke="#3A3358" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="50" cy="78" r="6" fill="#FF6FA5"/></svg>
+      <div class="speech-bubble">Great job, superstar! 🌟 You just leveled up your English skills. Come back anytime to practice with me again. Bye for now — keep glowing! ✨🦟</div>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">
+  <svg class="mascot-small" viewBox="0 0 100 100"><ellipse cx="50" cy="60" rx="22" ry="26" fill="#FFC93C"/><circle cx="50" cy="32" r="16" fill="#FFD96B"/><circle cx="44" cy="30" r="3.2" fill="#3A3358"/><circle cx="56" cy="30" r="3.2" fill="#3A3358"/><circle cx="50" cy="78" r="6" fill="#FF6FA5"/></svg>
+  LittleLume English &middot; Grade 3 &middot; Simple Present Tense
+</div>
+
+<script>
+/* ================= PROGRESS TRACKER ================= */
+const progressState = { game1:false, game2:false, game3:false, quiz:false };
+function updateProgress(){
+  const total = Object.keys(progressState).length;
+  const done = Object.values(progressState).filter(Boolean).length;
+  const pct = Math.round((done/total)*100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '%';
+}
+function markDone(key, badgeId){
+  progressState[key] = true;
+  document.getElementById(badgeId).classList.add('show');
+  updateProgress();
+}
+
+/* ================= GAME 1: SENTENCE BUILDER ================= */
+const g1Rounds = [
+  { subject:"He", correctVerb:"plays", wrongVerb:"play", object:"football.", subjectColor:'blue' },
+  { subject:"They", correctVerb:"watch", wrongVerb:"watches", object:"TV.", subjectColor:'blue' },
+  { subject:"The cat", correctVerb:"runs", wrongVerb:"run", object:"fast.", subjectColor:'blue' },
+  { subject:"I", correctVerb:"go", wrongVerb:"goes", object:"to school.", subjectColor:'blue' },
+  { subject:"She", correctVerb:"studies", wrongVerb:"studys", object:"every night.", subjectColor:'blue' }
+];
+let g1Index = 0;
+let g1Picked = [];
+
+function g1Render(){
+  const r = g1Rounds[g1Index];
+  document.getElementById('g1Round').textContent = `Round ${g1Index+1} of ${g1Rounds.length}`;
+  g1Picked = [];
+  document.getElementById('g1Feedback').textContent = '';
+  document.getElementById('g1Next').disabled = true;
+
+  // slots
+  const slotsEl = document.getElementById('g1Slots');
+  slotsEl.innerHTML = `
+    <div class="slot filled" style="background:var(--blue);">${r.subject}</div>
+    <div class="slot" id="g1VerbSlot">verb?</div>
+    <div class="slot filled" style="background:var(--green-dark);">${r.object}</div>
+  `;
+
+  // word bank: verb options shuffled (only verb choice matters here)
+  const options = Math.random() > 0.5 ? [r.correctVerb, r.wrongVerb] : [r.wrongVerb, r.correctVerb];
+  const bankEl = document.getElementById('g1Bank');
+  bankEl.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'word-chip chip-verb';
+    btn.textContent = opt;
+    btn.onclick = () => g1Pick(opt, r);
+    bankEl.appendChild(btn);
+  });
+}
+
+function g1Pick(word, r){
+  const slot = document.getElementById('g1VerbSlot');
+  slot.textContent = word;
+  slot.classList.add('filled');
+  slot.style.background = 'var(--pink)';
+  g1Picked = [word];
+  // disable bank buttons
+  document.querySelectorAll('#g1Bank .word-chip').forEach(b => b.disabled = true);
+}
+
+function g1Check(){
+  const r = g1Rounds[g1Index];
+  const fb = document.getElementById('g1Feedback');
+  if(g1Picked.length === 0){
+    fb.style.color = 'var(--purple-dark)';
+    fb.textContent = '👆 Pick a verb first!';
+    return;
+  }
+  if(g1Picked[0] === r.correctVerb){
+    fb.style.color = 'var(--green-dark)';
+    fb.textContent = `🎉 Yes! "${r.subject} ${r.correctVerb} ${r.object}" is correct!`;
+    document.getElementById('g1Next').disabled = false;
+    if(g1Index === g1Rounds.length - 1){
+      markDone('game1','badge1');
+    }
+  } else {
+    fb.style.color = 'var(--pink-dark)';
+    fb.textContent = `🤔 Not quite! Remember the +s rule. Try again!`;
+    document.querySelectorAll('#g1Bank .word-chip').forEach(b => b.disabled = false);
+    document.getElementById('g1VerbSlot').textContent = 'verb?';
+    document.getElementById('g1VerbSlot').classList.remove('filled');
+    g1Picked = [];
+  }
+}
+
+function g1NextRound(){
+  g1Index = (g1Index + 1) % g1Rounds.length;
+  g1Render();
+}
+
+function g1Reset(){
+  g1Render();
+}
+g1Render();
+
+/* ================= GAME 2: SORTING ================= */
+const sortVerbs = [
+  {word:'play', group:'s'},
+  {word:'eat', group:'s'},
+  {word:'run', group:'s'},
+  {word:'watch', group:'es'},
+  {word:'wash', group:'es'},
+  {word:'fix', group:'es'},
+  {word:'go', group:'es'},
+  {word:'study', group:'ies'},
+  {word:'fly', group:'ies'},
+  {word:'cry', group:'ies'}
+];
+let sortSelected = null;
+let sortCorrectCount = 0;
+let sortPlacedTotal = 0;
+
+function g2Render(){
+  const pool = document.getElementById('sortPool');
+  pool.innerHTML = '';
+  document.getElementById('zoneS').innerHTML = '';
+  document.getElementById('zoneES').innerHTML = '';
+  document.getElementById('zoneIES').innerHTML = '';
+  document.getElementById('g2Feedback').textContent = '';
+  sortSelected = null;
+  sortCorrectCount = 0;
+  sortPlacedTotal = 0;
+
+  // shuffle
+  const shuffled = [...sortVerbs].sort(() => Math.random() - 0.5);
+  shuffled.forEach(v => {
+    const chip = document.createElement('button');
+    chip.className = 'sort-chip';
+    chip.textContent = v.word;
+    chip.dataset.word = v.word;
+    chip.dataset.group = v.group;
+    chip.onclick = () => {
+      document.querySelectorAll('.sort-chip').forEach(c => c.style.outline = 'none');
+      sortSelected = chip;
+      chip.style.outline = '3px solid var(--blue)';
+    };
+    pool.appendChild(chip);
+  });
+}
+
+function g2Drop(targetGroup, zoneElId){
+  if(!sortSelected) {
+    document.getElementById('g2Feedback').style.color = 'var(--purple-dark)';
+    document.getElementById('g2Feedback').textContent = '👆 Click a verb first, then click a basket!';
+    return;
+  }
+  const word = sortSelected.dataset.word;
+  const group = sortSelected.dataset.group;
+  const fb = document.getElementById('g2Feedback');
+  sortPlacedTotal++;
+  if(group === targetGroup){
+    const item = document.createElement('span');
+    item.className = 'dropped-item';
+    item.textContent = '✅ ' + word;
+    document.getElementById(zoneElId).appendChild(item);
+    sortSelected.classList.add('placed');
+    sortCorrectCount++;
+    fb.style.color = 'var(--green-dark)';
+    fb.textContent = `🎉 Correct! "${word}" goes in +${targetGroup === 'ies' ? 'ies' : targetGroup}.`;
+  } else {
+    fb.style.color = 'var(--pink-dark)';
+    fb.textContent = `🤔 Oops! "${word}" doesn't belong there. Try another basket!`;
+    sortPlacedTotal--;
+  }
+  sortSelected.style.outline = 'none';
+  sortSelected = null;
+
+  if(document.querySelectorAll('.sort-chip:not(.placed)').length === 0){
+    fb.style.color = 'var(--green-dark)';
+    fb.textContent = '🏆 Amazing! You sorted every verb correctly!';
+    markDone('game2','badge2');
+  }
+}
+
+document.getElementById('zoneS').parentElement.addEventListener('click', () => g2Drop('s','zoneS'));
+document.getElementById('zoneES').parentElement.addEventListener('click', () => g2Drop('es','zoneES'));
+document.getElementById('zoneIES').parentElement.addEventListener('click', () => g2Drop('ies','zoneIES'));
+
+function g2Reset(){ g2Render(); }
+g2Render();
+
+/* ================= GAME 3: FILL IN THE BLANK ================= */
+const fibData = [
+  { sentence:"She ___ (read) a book every night.", answer:"reads" },
+  { sentence:"They ___ (live) in Jakarta.", answer:"live" },
+  { sentence:"My brother ___ (go) to school by bike.", answer:"goes" },
+  { sentence:"We ___ (have) lunch at noon.", answer:"have" },
+  { sentence:"The baby ___ (cry) when she is hungry.", answer:"cries" }
+];
+
+function fibRender(){
+  const container = document.getElementById('fibContainer');
+  container.innerHTML = '';
+  fibData.forEach((item, i) => {
+    const row = document.createElement('div');
+    row.className = 'fib-row';
+    row.innerHTML = `
+      <span>${i+1}. ${item.sentence}</span>
+      <input type="text" class="fib-input" id="fibInput${i}" placeholder="type here">
+      <span class="fib-check" id="fibCheck${i}"></span>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function fibCheckAll(){
+  let correctCount = 0;
+  fibData.forEach((item, i) => {
+    const input = document.getElementById('fibInput' + i);
+    const checkSpan = document.getElementById('fibCheck' + i);
+    const val = input.value.trim().toLowerCase();
+    if(val === item.answer){
+      checkSpan.textContent = '✅';
+      correctCount++;
+    } else if(val === ''){
+      checkSpan.textContent = '❔';
+    } else {
+      checkSpan.textContent = '❌';
+    }
+  });
+  const fb = document.getElementById('fibFeedback');
+  fb.style.color = correctCount === fibData.length ? 'var(--green-dark)' : 'var(--purple-dark)';
+  fb.textContent = `You got ${correctCount} out of ${fibData.length} correct! ${correctCount === fibData.length ? '🏆 Perfect!' : 'Keep trying! 💪'}`;
+  if(correctCount === fibData.length){
+    markDone('game3','badge3');
+  }
+}
+fibRender();
+
+/* ================= FINAL QUIZ ================= */
+const quizData = [
+  {
+    q: "1. She ___ to school every day.",
+    opts: ["walk", "walks", "walking", "walked"],
+    correct: 1
+  },
+  {
+    q: "2. I ___ ice cream.",
+    opts: ["loves", "loving", "love", "loved"],
+    correct: 2
+  },
+  {
+    q: "3. The dog ___ very loudly.",
+    opts: ["bark", "barks", "barking", "barked"],
+    correct: 1
+  },
+  {
+    q: "4. They ___ play in the rain. (negative)",
+    opts: ["doesn't", "don't", "isn't", "not"],
+    correct: 1
+  },
+  {
+    q: "5. ___ he like pizza? (question)",
+    opts: ["Do", "Is", "Does", "Are"],
+    correct: 2
+  },
+  {
+    q: "6. We ___ our homework every afternoon.",
+    opts: ["does", "do", "doing", "did"],
+    correct: 1
+  }
+];
+let quizAnswers = new Array(quizData.length).fill(null);
+
+function quizRender(){
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  quizData.forEach((item, qi) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card';
+    card.innerHTML = `<div class="quiz-q">${item.q}</div><div class="quiz-opts" id="quizOpts${qi}"></div><div class="quiz-fb" id="quizFb${qi}"></div>`;
+    container.appendChild(card);
+    const optsDiv = card.querySelector(`#quizOpts${qi}`);
+    item.opts.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.onclick = () => {
+        quizAnswers[qi] = oi;
+        optsDiv.querySelectorAll('.quiz-opt').forEach(b => b.style.outline = 'none');
+        btn.style.outline = '3px solid var(--purple)';
+      };
+      optsDiv.appendChild(btn);
+    });
+  });
+}
+quizRender();
+
+function quizSubmit(){
+  let score = 0;
+  let allAnswered = true;
+  quizData.forEach((item, qi) => {
+    if(quizAnswers[qi] === null) allAnswered = false;
+  });
+
+  if(!allAnswered){
+    const banner = document.getElementById('scoreBanner');
+    banner.className = 'score-banner show';
+    banner.style.background = 'var(--pink)';
+    banner.textContent = '👀 Please answer every question first!';
+    return;
+  }
+
+  quizData.forEach((item, qi) => {
+    const optsDiv = document.getElementById('quizOpts' + qi);
+    const buttons = optsDiv.querySelectorAll('.quiz-opt');
+    buttons.forEach((b, oi) => {
+      b.disabled = true;
+      if(oi === item.correct) b.classList.add('correct');
+      else if(oi === quizAnswers[qi]) b.classList.add('wrong');
+    });
+    const fb = document.getElementById('quizFb' + qi);
+    if(quizAnswers[qi] === item.correct){
+      fb.style.color = 'var(--green-dark)';
+      fb.textContent = '✅ Correct!';
+      score++;
+    } else {
+      fb.style.color = 'var(--pink-dark)';
+      fb.textContent = `❌ The correct answer is "${item.opts[item.correct]}".`;
+    }
+  });
+
+  document.getElementById('quizSubmit').disabled = true;
+
+  const banner = document.getElementById('scoreBanner');
+  banner.className = 'score-banner show';
+  let msg = '';
+  let bg = 'var(--purple)';
+  if(score === quizData.length){ msg = `🏆 PERFECT SCORE! ${score}/${quizData.length} — You are a Simple Present Superstar! 🌟`; bg='var(--green-dark)'; }
+  else if(score >= quizData.length - 2){ msg = `🎉 Great Job! You got ${score}/${quizData.length}! Keep practicing!`; bg='var(--blue-dark)'; }
+  else { msg = `💪 You got ${score}/${quizData.length}. Scroll up and review with Lumi, then try again!`; bg='var(--pink-dark)'; }
+  banner.style.background = bg;
+  banner.textContent = msg;
+
+  markDone('quiz','badge4');
+}
+
+updateProgress();
+</script>
+
+</body>
+</html>

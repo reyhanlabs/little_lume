@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Learn Nouns!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD93D;
+    --pink:#FF6FA5;
+    --sky:#4ECDC4;
+    --green:#7BD389;
+    --purple:#9B5DE5;
+    --orange:#FFB347;
+    --cream:#FFFBF0;
+    --ink:#3A2E45;
+    --ink-soft:#6B5D78;
+    --white:#ffffff;
+    --shadow: 0 8px 0 rgba(58,46,69,0.12);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin:0;
+    font-family:'Quicksand', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display {
+    font-family:'Baloo 2', cursive;
+    margin:0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* ===== Background ===== */
+  .sky-bg {
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(circle at 10% 15%, rgba(255,217,61,0.25) 0, transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(78,205,196,0.25) 0, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(255,111,165,0.2) 0, transparent 40%),
+      radial-gradient(circle at 5% 85%, rgba(155,93,229,0.18) 0, transparent 40%),
+      var(--cream);
+  }
+  .cloud { position:absolute; background:white; border-radius:50%; opacity:0.7; }
+
+  /* ===== Header ===== */
+  header { text-align:center; padding: 28px 20px 18px; position:relative; }
+
+  .logo-wrap {
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    background: var(--white);
+    padding: 12px 28px;
+    border-radius: 100px;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--ink);
+    position:relative;
+  }
+
+  .logo-star { width:38px; height:38px; animation: spin-slow 6s linear infinite; }
+  @keyframes spin-slow { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+  .logo-text { font-size: clamp(22px, 5vw, 32px); font-weight:800; letter-spacing: 0.5px; }
+  .logo-text .little { color: var(--purple); }
+  .logo-text .lume { color: var(--pink); }
+  .logo-text .english { color: var(--sky); font-size:0.7em; display:block; margin-top:-4px; font-weight:700; }
+
+  .grade-badge {
+    position:absolute;
+    top:-14px;
+    right:-14px;
+    background: var(--orange);
+    color: var(--ink);
+    font-family:'Baloo 2';
+    font-weight:800;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 3px solid var(--ink);
+    box-shadow: 0 4px 0 rgba(58,46,69,0.15);
+    transform: rotate(8deg);
+  }
+
+  .tagline { margin-top:10px; color: var(--ink-soft); font-weight:600; font-size: 15px; }
+
+  /* ===== Hero ===== */
+  .hero { max-width: 920px; margin: 10px auto 0; padding: 20px 20px 40px; text-align:center; position:relative; }
+
+  .mascot { width: 130px; margin: 0 auto 6px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  .speech-bubble {
+    background: white; border: 3px solid var(--ink); border-radius: 24px;
+    padding: 14px 22px; display:inline-block; box-shadow: var(--shadow);
+    font-weight:700; font-size: 17px; max-width: 400px; position:relative;
+  }
+
+  .hero h1 { font-size: clamp(30px, 7vw, 52px); color: var(--ink); margin-top: 22px; line-height: 1.15; }
+  .hero h1 span { color: var(--pink); }
+  .hero h1 .accent2 { color: var(--sky); }
+
+  .hero p.lead { margin-top: 14px; font-size: 18px; color: var(--ink-soft); font-weight:600; }
+
+  .scroll-hint {
+    margin-top: 26px; display:inline-flex; align-items:center; gap:8px;
+    background: var(--yellow); border: 3px solid var(--ink); padding: 10px 22px;
+    border-radius: 100px; font-weight:700; cursor:pointer; box-shadow: var(--shadow);
+    transition: transform 0.15s; text-decoration:none; color: var(--ink);
+  }
+  .scroll-hint:active { transform: translateY(4px); box-shadow:none; }
+
+  /* ===== Section base ===== */
+  section { max-width: 1000px; margin: 0 auto; padding: 50px 20px; }
+  .section-head { text-align:center; margin-bottom: 34px; }
+
+  .pill {
+    display:inline-block; background: var(--purple); color:white; font-weight:700;
+    font-size:13px; padding: 6px 16px; border-radius: 100px; margin-bottom: 12px; letter-spacing:0.5px;
+  }
+
+  .section-head h2 { font-size: clamp(26px, 5vw, 38px); color: var(--ink); }
+  .section-head p { color: var(--ink-soft); font-weight:600; margin-top:8px; font-size:16px; }
+
+  /* ===== Explainer ===== */
+  .explainer {
+    background: white; border: 3px solid var(--ink); border-radius: 28px; padding: 28px;
+    box-shadow: var(--shadow); display:flex; gap: 24px; align-items:center; flex-wrap:wrap;
+  }
+  .explainer-icon { font-size: 70px; flex-shrink:0; }
+  .explainer-text h3 { font-size:22px; color: var(--pink); margin-bottom:8px; }
+  .explainer-text p { font-size:16px; font-weight:600; color: var(--ink-soft); line-height:1.6; }
+  .explainer-text .example-row { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+  .ex-chip { background: var(--sky); color:white; font-weight:700; padding:6px 14px; border-radius:100px; font-size:14px; }
+
+  /* ===== Noun categories ===== */
+  .category-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .category-card {
+    border: 3px solid var(--ink);
+    border-radius: 22px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    text-align:center;
+  }
+  .category-card .cat-icon { font-size: 44px; margin-bottom: 8px; }
+  .category-card h4 { font-family:'Baloo 2'; font-size: 19px; color:white; margin-bottom:6px; }
+  .category-card .cat-desc { font-size: 13px; font-weight:700; color: var(--ink-soft); background:white; border-radius:14px; padding:8px 10px; }
+  .cat-person { background: var(--pink); }
+  .cat-place { background: var(--sky); }
+  .cat-animal { background: var(--green); }
+  .cat-thing { background: var(--purple); }
+
+  /* ===== Flip cards ===== */
+  .verb-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 18px; }
+
+  .flip-card { perspective: 1000px; height: 170px; cursor:pointer; }
+  .flip-inner { position:relative; width:100%; height:100%; transition: transform 0.5s; transform-style: preserve-3d; }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+  .flip-front, .flip-back {
+    position:absolute; inset:0; backface-visibility:hidden; border-radius: 22px;
+    border: 3px solid var(--ink); display:flex; flex-direction:column; align-items:center;
+    justify-content:center; text-align:center; padding:10px; box-shadow: var(--shadow);
+  }
+  .flip-front { color:white; font-weight:800; }
+  .flip-front .emoji { font-size: 46px; margin-bottom:8px; }
+  .flip-front .word { font-family:'Baloo 2'; font-size:18px; }
+  .flip-front .cat-tag { font-size:10px; font-weight:700; background:rgba(255,255,255,0.3); padding:3px 10px; border-radius:100px; margin-top:6px; }
+
+  .flip-back { background: white; transform: rotateY(180deg); color: var(--ink); }
+  .flip-back .label { font-size:12px; font-weight:700; color: var(--purple); margin-bottom:4px; }
+  .flip-back .sentence { font-size:14px; font-weight:700; line-height:1.4; }
+  .flip-back .hint { margin-top:8px; font-size:11px; color: var(--ink-soft); font-weight:600; }
+
+  /* ===== Game: Sort the Noun ===== */
+  .game-box {
+    background: linear-gradient(180deg, #FFF3D6 0%, #FFE3EE 100%);
+    border: 3px solid var(--ink); border-radius: 28px; padding: 22px; box-shadow: var(--shadow);
+  }
+
+  .game-toolbar { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom: 14px; }
+
+  .game-instruction { background:white; border:3px solid var(--ink); border-radius:16px; padding:10px 18px; font-weight:700; font-size:15px; }
+
+  .game-stats { display:flex; gap:10px; }
+  .stat-chip { background: var(--yellow); border:3px solid var(--ink); border-radius:100px; padding:6px 16px; font-weight:800; font-size:14px; }
+
+  .word-pool {
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    background: white; border: 3px dashed var(--purple); border-radius: 20px;
+    padding: 18px; min-height: 70px; margin-bottom: 16px;
+  }
+
+  .pool-word {
+    font-family:'Baloo 2'; font-weight:700; font-size:16px; color:white;
+    padding: 10px 20px; border-radius: 100px; border: 3px solid var(--ink);
+    cursor:pointer; user-select:none; box-shadow: 0 4px 0 rgba(58,46,69,0.2);
+    transition: transform 0.12s, opacity 0.2s;
+  }
+  .pool-word:active { transform: scale(0.92); }
+  .pool-word.placed { opacity:0; pointer-events:none; }
+
+  .drop-zones {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+  }
+
+  .drop-zone {
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    padding: 14px 10px;
+    text-align:center;
+    min-height: 90px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    gap: 6px;
+    cursor:pointer;
+  }
+  .drop-zone .dz-icon { font-size: 30px; }
+  .drop-zone .dz-label { font-family:'Baloo 2'; font-weight:700; font-size:14px; color:white; }
+  .drop-zone .dz-items { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
+  .dz-chip { background:white; color:var(--ink); font-weight:700; font-size:12px; padding:4px 10px; border-radius:100px; border:2px solid var(--ink); }
+
+  .dz-person { background: var(--pink); }
+  .dz-place { background: var(--sky); }
+  .dz-animal { background: var(--green); }
+  .dz-thing { background: var(--purple); }
+
+  .dz-flash { animation: pulse-yes 0.4s; }
+  @keyframes pulse-yes { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
+
+  .game-controls { margin-top: 16px; text-align:center; }
+
+  .btn {
+    font-family:'Baloo 2'; font-weight:700; font-size:16px; border: 3px solid var(--ink);
+    border-radius: 100px; padding: 12px 30px; cursor:pointer; box-shadow: var(--shadow);
+    transition: transform 0.12s, box-shadow 0.12s; color: var(--ink);
+  }
+  .btn:active { transform: translateY(5px); box-shadow:none; }
+  .btn-pink { background: var(--pink); color:white; }
+  .btn-green { background: var(--green); }
+  .btn-sky { background: var(--sky); color:white; }
+  .btn-yellow { background: var(--yellow); }
+
+  .game-feedback { margin-top: 10px; text-align:center; font-weight:800; font-size:18px; min-height: 26px; }
+
+  /* ===== Quiz ===== */
+  .quiz-card { background:white; border:3px solid var(--ink); border-radius: 28px; padding: 28px; box-shadow: var(--shadow); }
+
+  .quiz-progress { display:flex; gap:8px; margin-bottom: 20px; }
+  .progress-dot { flex:1; height: 10px; border-radius: 100px; background: #EDE7F6; border: 2px solid var(--ink); }
+  .progress-dot.done { background: var(--green); }
+  .progress-dot.current { background: var(--yellow); }
+
+  .quiz-question { text-align:center; }
+  .quiz-emoji { font-size: 64px; margin-bottom: 10px; }
+  .quiz-question h3 { font-size: 22px; color: var(--ink); margin-bottom: 22px; }
+
+  .quiz-options { display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 480px) { .quiz-options { grid-template-columns: 1fr; } }
+
+  .quiz-opt {
+    background: var(--cream); border: 3px solid var(--ink); border-radius: 18px; padding: 16px;
+    font-family:'Baloo 2'; font-weight:700; font-size: 17px; cursor:pointer; transition: transform 0.12s, background 0.2s;
+  }
+  .quiz-opt:hover { transform: translateY(-3px); background: var(--yellow); }
+  .quiz-opt.correct { background: var(--green); }
+  .quiz-opt.wrong { background: var(--pink); color:white; }
+
+  .quiz-result { text-align:center; }
+  .quiz-result .big-emoji { font-size: 80px; }
+  .quiz-result h3 { font-size: 28px; margin: 10px 0; color: var(--pink); }
+  .quiz-result p { font-weight:700; color: var(--ink-soft); font-size:17px; margin-bottom: 18px;}
+
+  /* ===== Footer ===== */
+  footer { text-align:center; padding: 40px 20px 60px; color: var(--ink-soft); font-weight:700; }
+  footer .foot-star { font-size:28px; margin-bottom:8px;}
+
+  /* confetti */
+  .confetti-piece { position:fixed; top:-20px; width:10px; height:10px; z-index:999; pointer-events:none; border-radius:2px; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(540deg); opacity:0.3; } }
+
+  a:focus-visible, button:focus-visible, .flip-card:focus-visible, .quiz-opt:focus-visible, .pool-word:focus-visible {
+    outline: 3px solid var(--purple); outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sky-bg" aria-hidden="true">
+  <div class="cloud" style="width:120px;height:50px;top:8%;left:8%;"></div>
+  <div class="cloud" style="width:90px;height:40px;top:14%;left:75%;"></div>
+  <div class="cloud" style="width:70px;height:30px;top:40%;left:88%;"></div>
+  <div class="cloud" style="width:80px;height:35px;top:60%;left:3%;"></div>
+</div>
+
+<header>
+  <div class="logo-wrap">
+    <span class="grade-badge">GRADE 1</span>
+    <svg class="logo-star" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="50,3 61,38 98,38 68,59 79,95 50,73 21,95 32,59 2,38 39,38"
+        fill="#FFD93D" stroke="#3A2E45" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+    <div class="logo-text">
+      <span class="little">Little</span><span class="lume">Lume</span>
+      <span class="english">ENGLISH</span>
+    </div>
+  </div>
+  <p class="tagline">Learning English is fun! ✨</p>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <img class="mascot" alt="Lume the cheerful star mascot smiling" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='100,10 122,75 192,75 135,115 157,185 100,143 43,185 65,115 8,75 78,75' fill='%23FFD93D' stroke='%233A2E45' stroke-width='6' stroke-linejoin='round'/%3E%3Ccircle cx='80' cy='95' r='7' fill='%233A2E45'/%3E%3Ccircle cx='120' cy='95' r='7' fill='%233A2E45'/%3E%3Cpath d='M75 115 Q100 135 125 115' stroke='%233A2E45' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='65' cy='105' r='8' fill='%23FF6FA5' opacity='0.6'/%3E%3Ccircle cx='135' cy='105' r='8' fill='%23FF6FA5' opacity='0.6'/%3E%3C/svg%3E">
+    <div class="speech-bubble">Hi, I'm Lume! Let's learn <em>nouns</em> together! 🌟</div>
+    <h1>Let's Learn <span>Nouns</span><br>(Naming <span class="accent2">Words</span>)!</h1>
+    <p class="lead">A noun is a word that names a person, a place, an animal, or a thing! 🧑‍🎓🏠🐶🍔</p>
+    <a href="#explainer" class="scroll-hint">Start Learning ⬇️</a>
+  </section>
+
+  <!-- EXPLAINER -->
+  <section id="explainer">
+    <div class="section-head">
+      <span class="pill">STEP 1</span>
+      <h2>What is a Noun? 🤔</h2>
+      <p>Let's get to know nouns first!</p>
+    </div>
+    <div class="explainer">
+      <div class="explainer-icon">🏷️</div>
+      <div class="explainer-text">
+        <h3>Noun = A Naming Word</h3>
+        <p>A noun is a word that names someone or something. It can be a person, a place, an animal, or a thing. Look around you — everything you can point to and name is a noun!</p>
+        <div class="example-row">
+          <span class="ex-chip">teacher 🧑‍🏫</span>
+          <span class="ex-chip">school 🏫</span>
+          <span class="ex-chip">dog 🐶</span>
+          <span class="ex-chip">ball ⚽</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-grid">
+      <div class="category-card cat-person">
+        <div class="cat-icon">🧑‍🎓</div>
+        <h4>Person</h4>
+        <div class="cat-desc">mom, friend, teacher, doctor</div>
+      </div>
+      <div class="category-card cat-place">
+        <div class="cat-icon">🏠</div>
+        <h4>Place</h4>
+        <div class="cat-desc">school, park, home, zoo</div>
+      </div>
+      <div class="category-card cat-animal">
+        <div class="cat-icon">🐶</div>
+        <h4>Animal</h4>
+        <div class="cat-desc">dog, cat, bird, fish</div>
+      </div>
+      <div class="category-card cat-thing">
+        <div class="cat-icon">🍔</div>
+        <h4>Thing</h4>
+        <div class="cat-desc">ball, book, chair, apple</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOUN CARDS -->
+  <section id="cards">
+    <div class="section-head">
+      <span class="pill">STEP 2</span>
+      <h2>Noun Cards 🎴</h2>
+      <p>Tap a card to see an example sentence!</p>
+    </div>
+    <div class="verb-grid" id="nounGrid"></div>
+  </section>
+
+  <!-- GAME -->
+  <section id="game">
+    <div class="section-head">
+      <span class="pill">STEP 3</span>
+      <h2>Game: Sort the Noun! 🎯</h2>
+      <p>Tap a word, then tap the basket where it belongs!</p>
+    </div>
+    <div class="game-box">
+      <div class="game-toolbar">
+        <div class="game-instruction">Sort all the words into the right basket! 🧺</div>
+        <div class="game-stats">
+          <div class="stat-chip">⭐ <span id="scoreVal">0</span></div>
+          <div class="stat-chip">🎯 <span id="leftVal">0</span> left</div>
+        </div>
+      </div>
+
+      <div class="word-pool" id="wordPool"></div>
+
+      <div class="drop-zones">
+        <div class="drop-zone dz-person" data-cat="person">
+          <div class="dz-icon">🧑‍🎓</div>
+          <div class="dz-label">Person</div>
+          <div class="dz-items" id="zone-person"></div>
+        </div>
+        <div class="drop-zone dz-place" data-cat="place">
+          <div class="dz-icon">🏠</div>
+          <div class="dz-label">Place</div>
+          <div class="dz-items" id="zone-place"></div>
+        </div>
+        <div class="drop-zone dz-animal" data-cat="animal">
+          <div class="dz-icon">🐶</div>
+          <div class="dz-label">Animal</div>
+          <div class="dz-items" id="zone-animal"></div>
+        </div>
+        <div class="drop-zone dz-thing" data-cat="thing">
+          <div class="dz-icon">🍔</div>
+          <div class="dz-label">Thing</div>
+          <div class="dz-items" id="zone-thing"></div>
+        </div>
+      </div>
+
+      <div class="game-feedback" id="gameFeedback"></div>
+      <div class="game-controls">
+        <button class="btn btn-green" id="startGameBtn">▶️ Start Game</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="section-head">
+      <span class="pill">STEP 4</span>
+      <h2>Quiz Time! 📝</h2>
+      <p>Let's test how well you know nouns!</p>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div id="quizBody"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-star">⭐🌈⭐</div>
+  <p>LittleLume English — Making learning fun!</p>
+</footer>
+
+<script>
+/* ===================== DATA ===================== */
+const nouns = [
+  { word:"Teacher", emoji:"🧑‍🏫", cat:"person", color:"#FF6FA5", sentence:"My teacher is kind." },
+  { word:"Friend", emoji:"🧑‍🤝‍🧑", cat:"person", color:"#FF6FA5", sentence:"He is my best friend." },
+  { word:"School", emoji:"🏫", cat:"place", color:"#4ECDC4", sentence:"I go to school every day." },
+  { word:"Park", emoji:"🌳", cat:"place", color:"#4ECDC4", sentence:"We play at the park." },
+  { word:"Dog", emoji:"🐶", cat:"animal", color:"#7BD389", sentence:"The dog runs fast." },
+  { word:"Bird", emoji:"🐦", cat:"animal", color:"#7BD389", sentence:"A bird can fly." },
+  { word:"Ball", emoji:"⚽", cat:"thing", color:"#9B5DE5", sentence:"I kick the ball." },
+  { word:"Book", emoji:"📚", cat:"thing", color:"#9B5DE5", sentence:"She reads a book." },
+  { word:"Doctor", emoji:"🧑‍⚕️", cat:"person", color:"#FF6FA5", sentence:"The doctor helps sick people." },
+  { word:"Zoo", emoji:"🦁", cat:"place", color:"#4ECDC4", sentence:"We saw a lion at the zoo." },
+  { word:"Cat", emoji:"🐱", cat:"animal", color:"#7BD389", sentence:"My cat likes to sleep." },
+  { word:"Chair", emoji:"🪑", cat:"thing", color:"#9B5DE5", sentence:"Sit on the chair, please." }
+];
+
+/* ===================== NOUN CARDS ===================== */
+const grid = document.getElementById('nounGrid');
+const catLabel = { person:"PERSON", place:"PLACE", animal:"ANIMAL", thing:"THING" };
+
+nouns.forEach(n => {
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  card.tabIndex = 0;
+  card.setAttribute('role','button');
+  card.setAttribute('aria-label', `Noun card ${n.word}, tap to see an example sentence`);
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front" style="background:${n.color};">
+        <div class="emoji">${n.emoji}</div>
+        <div class="word">${n.word}</div>
+        <div class="cat-tag">${catLabel[n.cat]}</div>
+      </div>
+      <div class="flip-back">
+        <div class="label">EXAMPLE SENTENCE</div>
+        <div class="sentence">${n.sentence}</div>
+        <div class="hint">tap again to flip back ↩️</div>
+      </div>
+    </div>
+  `;
+  const toggle = () => card.classList.toggle('flipped');
+  card.addEventListener('click', toggle);
+  card.addEventListener('keypress', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  grid.appendChild(card);
+});
+
+/* ===================== GAME: Sort the Noun ===================== */
+const wordPool = document.getElementById('wordPool');
+const scoreVal = document.getElementById('scoreVal');
+const leftVal = document.getElementById('leftVal');
+const feedback = document.getElementById('gameFeedback');
+const startBtn = document.getElementById('startGameBtn');
+const zones = {
+  person: document.getElementById('zone-person'),
+  place: document.getElementById('zone-place'),
+  animal: document.getElementById('zone-animal'),
+  thing: document.getElementById('zone-thing')
+};
+const dropZoneEls = document.querySelectorAll('.drop-zone');
+
+let gameWords = [];
+let selectedWord = null;
+let score = 0;
+let remaining = 0;
+
+function shuffle(arr){
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function buildGame(){
+  wordPool.innerHTML = '';
+  Object.values(zones).forEach(z => z.innerHTML = '');
+  score = 0;
+  scoreVal.textContent = 0;
+  feedback.textContent = '';
+  selectedWord = null;
+
+  gameWords = shuffle(nouns).slice(0, 8);
+  remaining = gameWords.length;
+  leftVal.textContent = remaining;
+
+  gameWords.forEach((n, idx) => {
+    const chip = document.createElement('div');
+    chip.className = 'pool-word';
+    chip.textContent = `${n.emoji} ${n.word}`;
+    chip.dataset.index = idx;
+    chip.style.background = n.color;
+    chip.tabIndex = 0;
+    chip.setAttribute('role','button');
+    chip.setAttribute('aria-label', `Select word ${n.word}`);
+    chip.addEventListener('click', () => selectWord(chip, n));
+    wordPool.appendChild(chip);
+  });
+
+  startBtn.textContent = '🔁 New Words';
+}
+
+function selectWord(chipEl, nounObj){
+  if(chipEl.classList.contains('placed')) return;
+  document.querySelectorAll('.pool-word').forEach(c => c.style.outline = 'none');
+  selectedWord = { chipEl, nounObj };
+  chipEl.style.outline = '4px solid #3A2E45';
+  feedback.style.color = '#9B5DE5';
+  feedback.textContent = `Now tap the basket for "${nounObj.word}"!`;
+}
+
+dropZoneEls.forEach(zone => {
+  zone.addEventListener('click', () => {
+    if(!selectedWord) {
+      feedback.style.color = '#FF6FA5';
+      feedback.textContent = 'Tap a word first! 👆';
+      return;
+    }
+    const cat = zone.dataset.cat;
+    const { chipEl, nounObj } = selectedWord;
+
+    if(cat === nounObj.cat){
+      chipEl.classList.add('placed');
+      const dzChip = document.createElement('div');
+      dzChip.className = 'dz-chip';
+      dzChip.textContent = `${nounObj.emoji} ${nounObj.word}`;
+      zones[cat].appendChild(dzChip);
+      zone.classList.add('dz-flash');
+      setTimeout(() => zone.classList.remove('dz-flash'), 400);
+
+      score += 10;
+      scoreVal.textContent = score;
+      remaining -= 1;
+      leftVal.textContent = remaining;
+      feedback.style.color = '#7BD389';
+      feedback.textContent = `Correct! ${nounObj.word} is a ${nounObj.cat}! 🎉`;
+      launchConfettiSmall();
+
+      if(remaining <= 0){
+        setTimeout(() => {
+          feedback.style.color = '#9B5DE5';
+          feedback.textContent = `All sorted! Final score: ${score} ⭐`;
+        }, 500);
+      }
+    } else {
+      feedback.style.color = '#FF6FA5';
+      feedback.textContent = `Oops! ${nounObj.word} is not a ${cat}. Try another basket! 😅`;
+    }
+    selectedWord = null;
+    document.querySelectorAll('.pool-word').forEach(c => c.style.outline = 'none');
+  });
+});
+
+startBtn.addEventListener('click', buildGame);
+buildGame();
+
+/* ===================== QUIZ ===================== */
+const quizData = [
+  { emoji:"🐶", q:"Which word is a NOUN that names an animal?", options:["Dog","Run","Happy","Blue"], answer:"Dog" },
+  { emoji:"🏫", q:"Which word names a PLACE?", options:["School","Jump","Pretty","Sing"], answer:"School" },
+  { emoji:"🧑‍🏫", q:"\"My ___ is kind.\" Which noun names a person?", options:["Teacher","Run","Fast","Eat"], answer:"Teacher" },
+  { emoji:"⚽", q:"Which word is a NOUN that names a thing?", options:["Jump","Ball","Quickly","Sing"], answer:"Ball" },
+  { emoji:"🐦", q:"\"A ___ can fly.\" Which noun fits?", options:["Bird","Read","Yellow","Slow"], answer:"Bird" }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+const quizBody = document.getElementById('quizBody');
+const quizProgress = document.getElementById('quizProgress');
+
+function renderProgress(){
+  quizProgress.innerHTML = '';
+  quizData.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'progress-dot' + (i < quizIndex ? ' done' : (i === quizIndex ? ' current' : ''));
+    quizProgress.appendChild(dot);
+  });
+}
+
+function renderQuestion(){
+  if(quizIndex >= quizData.length){ renderResult(); return; }
+  renderProgress();
+  const q = quizData[quizIndex];
+  const shuffled = [...q.options].sort(() => Math.random() - 0.5);
+
+  quizBody.innerHTML = `
+    <div class="quiz-question">
+      <div class="quiz-emoji">${q.emoji}</div>
+      <h3>${q.q}</h3>
+      <div class="quiz-options" id="quizOptions"></div>
+    </div>
+  `;
+  const optWrap = document.getElementById('quizOptions');
+  shuffled.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => handleAnswer(opt, q.answer, btn, optWrap));
+    optWrap.appendChild(btn);
+  });
+}
+
+function handleAnswer(selected, correct, btnEl, wrap){
+  const allBtns = wrap.querySelectorAll('.quiz-opt');
+  allBtns.forEach(b => b.disabled = true);
+
+  if(selected === correct){
+    btnEl.classList.add('correct');
+    quizScore += 1;
+    launchConfetti();
+  } else {
+    btnEl.classList.add('wrong');
+    allBtns.forEach(b => { if(b.textContent === correct) b.classList.add('correct'); });
+  }
+
+  setTimeout(() => { quizIndex += 1; renderQuestion(); }, 1100);
+}
+
+function renderResult(){
+  renderProgress();
+  let msg, emoji;
+  if(quizScore === quizData.length){
+    msg = "Perfect! You're a Noun champion! 🏆"; emoji = "🌟";
+  } else if(quizScore >= quizData.length / 2){
+    msg = "Great job! Keep practicing! 💪"; emoji = "🎉";
+  } else {
+    msg = "Let's try again, you can do it! 🌈"; emoji = "🙂";
+  }
+  quizBody.innerHTML = `
+    <div class="quiz-result">
+      <div class="big-emoji">${emoji}</div>
+      <h3>Score: ${quizScore} / ${quizData.length}</h3>
+      <p>${msg}</p>
+      <button class="btn btn-sky" id="retryQuizBtn">🔁 Try Again</button>
+    </div>
+  `;
+  document.getElementById('retryQuizBtn').addEventListener('click', () => {
+    quizIndex = 0; quizScore = 0; renderQuestion();
+  });
+}
+
+renderQuestion();
+
+/* ===================== CONFETTI ===================== */
+function launchConfetti(){
+  const colors = ['#FFD93D','#FF6FA5','#4ECDC4','#7BD389','#9B5DE5'];
+  for(let i=0; i<24; i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animation = `fall ${1.2 + Math.random()}s ease-in forwards`;
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 2300);
+  }
+}
+
+function launchConfettiSmall(){
+  const colors = ['#FFD93D','#FF6FA5','#4ECDC4','#7BD389','#9B5DE5'];
+  for(let i=0; i<10; i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = (40 + Math.random()*20) + 'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animation = `fall ${1 + Math.random()*0.6}s ease-in forwards`;
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 1800);
+  }
+}
+</script>
+</body>
+</html>

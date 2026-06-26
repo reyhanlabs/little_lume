@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Self Introduction Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root {
+  --coral:   #FF6B6B;
+  --peach:   #FF9A6C;
+  --lemon:   #FFD93D;
+  --lime:    #6BCB77;
+  --sky:     #4D96FF;
+  --lavender:#9B72CF;
+  --navy:    #1A2456;
+  --ink:     #2B2D42;
+  --muted:   #7A7F9A;
+  --soft:    #F5F7FF;
+  --border:  #DDE2F5;
+  --white:   #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #E4E9F7;
+  color: var(--ink);
+}
+
+/* ============================================================
+   SCREEN BANNER
+   ============================================================ */
+.screen-only {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 11px 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.screen-only strong { color: var(--lemon); }
+
+.pages-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding: 36px 16px 64px;
+}
+
+/* ============================================================
+   PAGE (A4)
+   ============================================================ */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 14px 52px rgba(26,36,86,.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ============================================================
+   COVER
+   ============================================================ */
+.cover {
+  background: #fff;
+  flex: 1;
+  min-height: 297mm;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* top band */
+.cover-band {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF9A6C 40%, #FFD93D 100%);
+  padding: 32px 36px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.cover-band::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+}
+.cover-band::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+
+.cb-logo {
+  font-family: 'Chewy', cursive;
+  font-size: 16px;
+  color: rgba(255,255,255,.9);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative; z-index:1;
+}
+.cb-logo span {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+  margin-top: 1px;
+}
+
+.cb-title {
+  margin-top: 18px;
+  position: relative; z-index:1;
+}
+.cb-title h1 {
+  font-family: 'Chewy', cursive;
+  font-size: 52px;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 3px 4px 0 rgba(0,0,0,.12);
+}
+.cb-title h1 em {
+  font-style: normal;
+  display: block;
+  font-size: 60px;
+  color: var(--navy);
+}
+.cb-sub {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255,255,255,.8);
+  letter-spacing: .5px;
+}
+
+/* character illustration area */
+.cover-scene {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+  position: relative;
+}
+
+.scene-left {
+  background: #FFF8EC;
+  padding: 28px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  border-right: 3px dashed #FFE0B2;
+}
+.scene-right {
+  background: #F0F5FF;
+  padding: 28px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.intro-char {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.char-bubble {
+  background: #fff;
+  border: 2.5px solid #FFD93D;
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  padding: 10px 14px;
+  position: relative;
+  box-shadow: 3px 3px 0 rgba(255,217,61,.3);
+}
+.char-bubble.right-tail {
+  border-color: #4D96FF;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 16px;
+  box-shadow: 3px 3px 0 rgba(77,150,255,.3);
+}
+.char-emoji { font-size: 42px; flex-shrink: 0; }
+.bubble-en {
+  font-family: 'Chewy', cursive;
+  font-size: 15px;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.bubble-id {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* bottom strip */
+.cover-bottom {
+  background: var(--navy);
+  padding: 16px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cover-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cover-pill {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+.pill-coral   { background: var(--coral);   color: #fff; }
+.pill-lemon   { background: var(--lemon);   color: var(--navy); }
+.pill-lime    { background: var(--lime);    color: #fff; }
+.pill-sky     { background: var(--sky);     color: #fff; }
+.cover-grade {
+  font-family: 'Chewy', cursive;
+  font-size: 20px;
+  color: var(--lemon);
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   CONTENT HEADER
+   ============================================================ */
+.content-header {
+  background: linear-gradient(90deg, #FF6B6B 0%, #FF9A6C 60%, #FFD93D 100%);
+  padding: 13px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ch-brand {
+  font-family: 'Chewy', cursive;
+  font-size: 19px;
+  color: #fff;
+  letter-spacing: .5px;
+  text-shadow: 1px 2px 0 rgba(0,0,0,.15);
+}
+.ch-brand sub {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: rgba(255,255,255,.7);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ch-pill {
+  background: var(--navy);
+  color: var(--lemon);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+/* ============================================================
+   PAGE BODY
+   ============================================================ */
+.page-body {
+  flex: 1;
+  padding: 18px 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.sec-icon {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.ic-coral   { background: #FFE5E5; }
+.ic-lemon   { background: #FFF8D0; }
+.ic-lime    { background: #E5F9E7; }
+.ic-sky     { background: #E0EEFF; }
+.ic-lav     { background: #F0E8FF; }
+.ic-peach   { background: #FFF0E5; }
+
+.sec-title {
+  font-family: 'Chewy', cursive;
+  font-size: 20px;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.sec-title em {
+  font-style: normal;
+  color: var(--coral);
+}
+.sec-desc {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+/* ============================================================
+   TIP BOX
+   ============================================================ */
+.tip-box {
+  border-radius: 12px;
+  padding: 11px 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+.tip-coral  { background: #FFF0F0; border: 2px solid #FFB3B3; }
+.tip-lemon  { background: #FFFBE6; border: 2px solid #FFE066; }
+.tip-sky    { background: #EAF3FF; border: 2px solid #99C5FF; }
+.tip-lime   { background: #EDFAEE; border: 2px solid #8EE095; }
+.tip-lav    { background: #F4EEFF; border: 2px solid #C9ADFF; }
+
+.tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.tip-label {
+  font-family: 'Chewy', cursive;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.tip-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.tip-text strong { color: var(--coral); }
+.tip-text b { color: var(--sky); }
+
+/* ============================================================
+   PHRASE CARDS
+   ============================================================ */
+.phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.phrase-card {
+  border-radius: 14px;
+  padding: 13px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  border: 2.5px solid transparent;
+}
+.pc-coral  { background: #FFF0F0; border-color: #FFB3B3; }
+.pc-lemon  { background: #FFFBE6; border-color: #FFE066; }
+.pc-lime   { background: #EDFAEE; border-color: #8EE095; }
+.pc-sky    { background: #EAF3FF; border-color: #99C5FF; }
+.pc-lav    { background: #F4EEFF; border-color: #C9ADFF; }
+.pc-peach  { background: #FFF5EC; border-color: #FFB98A; }
+
+.pc-emoji { font-size: 28px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+.pc-body {}
+.pc-en {
+  font-family: 'Chewy', cursive;
+  font-size: 16px;
+  color: var(--navy);
+  line-height: 1.15;
+}
+.pc-blank {
+  display: inline-block;
+  border-bottom: 2.5px solid var(--coral);
+  min-width: 70px;
+  color: var(--coral);
+  font-family: 'Chewy', cursive;
+  font-size: 16px;
+}
+.pc-pron {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--lavender);
+  margin: 2px 0;
+}
+.pc-pron::before { content: '🔊 '; }
+.pc-id {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  font-style: italic;
+}
+.pc-example {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-top: 5px;
+  background: rgba(255,255,255,.7);
+  padding: 4px 8px;
+  border-radius: 7px;
+  display: inline-block;
+}
+
+/* ============================================================
+   DIALOGUE
+   ============================================================ */
+.dialogue-wrap {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.dialogue-label {
+  font-family: 'Chewy', cursive;
+  font-size: 14px;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 2px;
+}
+
+.bubble-row { display: flex; align-items: flex-end; gap: 8px; }
+.bubble-row.flip { flex-direction: row-reverse; }
+
+.av {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  border: 2px solid rgba(0,0,0,.07);
+}
+.av-a { background: #FFE5CC; }
+.av-b { background: #CCE5FF; }
+
+.bbl {
+  max-width: 74%;
+  border-radius: 14px;
+  padding: 7px 13px;
+}
+.bbl-l {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-bottom-left-radius: 3px;
+}
+.bbl-r {
+  background: var(--coral);
+  border: 2px solid #E85555;
+  border-bottom-right-radius: 3px;
+}
+.bbl-name {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1px;
+}
+.bbl-r .bbl-name { color: rgba(255,255,255,.7); }
+.bbl-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.bbl-r .bbl-text { color: #fff; }
+.bbl-id {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+.bbl-r .bbl-id { color: rgba(255,255,255,.65); }
+
+/* ============================================================
+   VOCAB TABLE
+   ============================================================ */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  font-size: 12.5px;
+}
+.vocab-table thead tr { background: var(--navy); color: #fff; }
+.vocab-table th {
+  padding: 8px 12px;
+  text-align: left;
+  font-family: 'Chewy', cursive;
+  font-size: 13px;
+  letter-spacing: .3px;
+}
+.vocab-table th:first-child { width: 30px; text-align: center; }
+.vocab-table tbody tr:nth-child(odd)  { background: var(--soft); }
+.vocab-table tbody tr:nth-child(even) { background: #fff; }
+.vocab-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.vocab-table td:first-child { text-align: center; font-size: 17px; }
+.v-en { font-family: 'Chewy', cursive; font-size: 14px; color: var(--navy); }
+.v-pron { font-size: 11px; font-weight: 700; color: var(--lavender); }
+.v-id { font-size: 11.5px; color: var(--muted); font-style: italic; font-weight: 600; }
+.v-ex { font-size: 11.5px; font-weight: 700; color: var(--ink); }
+
+/* ============================================================
+   FILL TEMPLATE
+   ============================================================ */
+.fill-template {
+  background: linear-gradient(135deg, #FFF8EC 0%, #FFEEDD 100%);
+  border: 2.5px solid #FFD093;
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+.fill-template-title {
+  font-family: 'Chewy', cursive;
+  font-size: 15px;
+  color: var(--navy);
+  margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.fill-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.fill-line-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.fill-lbl {
+  font-family: 'Chewy', cursive;
+  font-size: 14.5px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.fill-blank {
+  flex: 1;
+  min-width: 100px;
+  border-bottom: 2.5px solid var(--coral);
+  height: 20px;
+}
+.fill-hint {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--muted);
+  white-space: nowrap;
+  font-style: italic;
+}
+
+/* ============================================================
+   MINI QUIZ
+   ============================================================ */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+.quiz-card {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 11px 13px;
+}
+.quiz-q {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.35;
+}
+.qn {
+  background: var(--coral);
+  color: #fff;
+  font-family: 'Chewy', cursive;
+  font-size: 12px;
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.quiz-opts { display: flex; flex-direction: column; gap: 4px; }
+.qopt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.qcircle {
+  width: 16px; height: 16px;
+  border: 2px solid #C8D0F0;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.qopt.ok .qcircle {
+  background: var(--lime);
+  border-color: #4CAF50;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: #fff;
+}
+.qopt.ok { color: #1B5E20; }
+
+.answer-key {
+  background: #EDFAEE;
+  border: 2px solid #8EE095;
+  border-radius: 10px;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.ak-lbl {
+  font-family: 'Chewy', cursive;
+  font-size: 13px;
+  color: #1B5E20;
+  white-space: nowrap;
+}
+.ak-items { display: flex; gap: 7px; flex-wrap: wrap; }
+.ak-item {
+  background: #fff;
+  border: 1.5px solid #8EE095;
+  border-radius: 20px;
+  padding: 2px 11px;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #1B5E20;
+}
+
+/* ============================================================
+   FUN FACT
+   ============================================================ */
+.fun-fact {
+  background: linear-gradient(135deg, var(--navy) 0%, #2B3E8C 100%);
+  border-radius: 13px;
+  padding: 14px 17px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.fun-fact::after {
+  content: '🌟';
+  position: absolute;
+  right: 14px; top: 10px;
+  font-size: 40px;
+  opacity: .15;
+}
+.ff-title {
+  font-family: 'Chewy', cursive;
+  font-size: 15px;
+  color: var(--lemon);
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 7px;
+}
+.ff-text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: rgba(255,255,255,.85);
+}
+.ff-text strong { color: var(--lemon); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.page-footer {
+  background: var(--soft);
+  border-top: 2px dashed var(--border);
+  padding: 9px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pf-brand { font-family: 'Chewy', cursive; font-size: 13px; color: var(--coral); }
+.pf-stars { font-size: 14px; letter-spacing: 3px; }
+.pf-page  { font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: .5px; }
+
+/* ============================================================
+   TWO-COLUMN LAYOUT
+   ============================================================ */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+/* ============================================================
+   INFO CARD
+   ============================================================ */
+.info-card {
+  border-radius: 12px;
+  padding: 11px 13px;
+  text-align: center;
+  border: 2.5px solid transparent;
+}
+.ic-c  { background: #FFF0F0; border-color: #FFB3B3; }
+.ic-l  { background: #FFFBE6; border-color: #FFE066; }
+.ic-g  { background: #EDFAEE; border-color: #8EE095; }
+.ic-b  { background: #EAF3FF; border-color: #99C5FF; }
+.ic-p  { background: #F4EEFF; border-color: #C9ADFF; }
+.ic-o  { background: #FFF5EC; border-color: #FFB98A; }
+
+.info-card-emoji { font-size: 28px; margin-bottom: 5px; }
+.info-card-q {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 3px;
+}
+.info-card-answer {
+  font-family: 'Chewy', cursive;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.info-card-id {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+
+@media print {
+  @page { size: A4 portrait; margin: 0mm; }
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff !important; }
+  .screen-only { display: none !important; }
+  .pages-wrap { display: block; padding: 0; gap: 0; background: #fff; }
+
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .page:last-child { page-break-after: auto !important; break-after: auto !important; }
+
+  /* Cover — let it breathe */
+  .cover { min-height: 297mm !important; }
+  .cover-band { padding: 28px 34px 24px !important; }
+  .cb-logo { font-size: 15px !important; }
+  .cb-title h1 { font-size: 46px !important; }
+  .cb-sub { font-size: 14px !important; margin-top: 8px !important; }
+  .cover-scene { padding: 22px 28px !important; gap: 18px !important; flex: 1 !important; }
+  .char-bubble { padding: 10px 14px !important; border-radius: 12px !important; }
+  .bubble-en { font-size: 14px !important; }
+  .bubble-id { font-size: 11px !important; margin-top: 3px !important; }
+  .cover-pill { padding: 6px 16px !important; font-size: 12px !important; }
+  .cover-bottom { padding: 16px 34px !important; }
+  .cb-bottom-title { font-size: 14px !important; }
+  .cb-badge { padding: 6px 15px !important; font-size: 11.5px !important; }
+
+  /* Content header */
+  .content-header { padding: 13px 26px 12px !important; }
+  .ch-brand { font-size: 16px !important; }
+  .ch-pill { font-size: 10.5px !important; padding: 4px 12px !important; }
+
+  /* Page body — more breathing room with 4 pages */
+  .page-body { padding: 17px 26px 20px !important; gap: 16px !important; flex: 1 !important; }
+
+  /* Section heads */
+  .sec-head { gap: 9px !important; margin-bottom: 4px !important; }
+  .sec-icon { width: 33px !important; height: 33px !important; font-size: 17px !important; }
+  .sec-title { font-size: 19px !important; }
+  .sec-desc { font-size: 11.5px !important; }
+
+  /* Tip box */
+  .tip-box { padding: 11px 14px !important; gap: 11px !important; border-radius: 11px !important; }
+  .tip-icon { font-size: 21px !important; }
+  .tip-text { font-size: 11.5px !important; line-height: 1.6 !important; }
+
+  /* Phrase cards */
+  .phrase-grid { gap: 9px !important; }
+  .phrase-card { padding: 12px 13px !important; border-radius: 11px !important; }
+  .pc-en { font-size: 16px !important; }
+  .pc-id { font-size: 11px !important; }
+  .pc-use { font-size: 10px !important; margin-top: 5px !important; }
+  .pc-icon { font-size: 24px !important; margin-bottom: 6px !important; }
+
+  /* Info / hobby cards */
+  .info-grid { gap: 9px !important; }
+  .info-card { padding: 11px 13px !important; border-radius: 11px !important; }
+  .ic-title { font-size: 14px !important; margin-bottom: 5px !important; }
+  .ic-body { font-size: 11px !important; line-height: 1.55 !important; }
+  .three-col { gap: 9px !important; }
+  .info-card-emoji { font-size: 24px !important; margin-bottom: 4px !important; }
+  .info-card-answer { font-size: 13px !important; }
+  .info-card-id { font-size: 10px !important; }
+
+  /* Dialogue — page 3, 4 bubbles */
+  .dialogue-wrap { padding: 12px 15px !important; gap: 10px !important; border-radius: 12px !important; }
+  .dialogue-label { font-size: 11px !important; margin-bottom: 6px !important; }
+  .bubble-row { gap: 9px !important; }
+  .av { width: 36px !important; height: 36px !important; font-size: 22px !important; }
+  .bbl { padding: 8px 12px !important; border-radius: 10px !important; }
+  .bbl-name { font-size: 9.5px !important; margin-bottom: 3px !important; }
+  .bbl-text { font-size: 12px !important; line-height: 1.4 !important; }
+  .bbl-id { font-size: 10px !important; margin-top: 3px !important; }
+
+  /* Fill template — page 4 */
+  .fill-template { padding: 14px 18px !important; border-radius: 12px !important; }
+  .fill-template-title { font-size: 13px !important; margin-bottom: 10px !important; }
+  .fill-line-item { gap: 9px !important; margin-bottom: 11px !important; }
+  .fill-lbl { font-size: 13px !important; }
+  .fill-blank { height: 20px !important; }
+  .fill-hint { font-size: 10px !important; }
+
+  /* Quiz */
+  .quiz-grid { gap: 10px !important; }
+  .quiz-card { padding: 12px 14px !important; border-radius: 11px !important; }
+  .quiz-q { font-size: 12px !important; margin-bottom: 8px !important; gap: 7px !important; }
+  .qn { width: 20px !important; height: 20px !important; font-size: 11px !important; }
+  .quiz-opts { gap: 5px !important; }
+  .qopt { font-size: 11px !important; padding: 4px 10px !important; gap: 7px !important; }
+  .qcircle { width: 16px !important; height: 16px !important; font-size: 10px !important; }
+
+  /* Answer key */
+  .answer-key { padding: 10px 14px !important; border-radius: 10px !important; }
+  .ak-lbl { font-size: 11.5px !important; margin-bottom: 5px !important; }
+  .ak-items { gap: 8px !important; }
+  .ak-item { font-size: 11px !important; padding: 3px 9px !important; }
+
+  /* Fun fact */
+  .fun-fact { padding: 12px 15px !important; gap: 11px !important; border-radius: 11px !important; }
+  .ff-title { font-size: 13px !important; margin-bottom: 5px !important; }
+  .ff-text { font-size: 11px !important; line-height: 1.6 !important; }
+
+  /* Vocab table */
+  .vocab-table { font-size: 11px !important; }
+  .vocab-table th { padding: 6px 10px !important; font-size: 11.5px !important; }
+  .vocab-table td { padding: 6px 10px !important; }
+
+  /* Footer */
+  .page-footer { padding: 8px 26px !important; }
+  .pf-brand { font-size: 12px !important; }
+  .pf-stars { font-size: 13px !important; }
+  .pf-page { font-size: 10.5px !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="screen-only">
+  🖨️ Print: <strong>Ctrl+P</strong> (Win) / <strong>Cmd+P</strong> (Mac) → Kertas: <strong>A4</strong> · Margin: <strong>None</strong> · Aktifkan <strong>Background graphics</strong>
+</div>
+
+<div class="pages-wrap">
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+
+    <div class="cover-band">
+      <div class="cb-logo">BunRey <span>English Course</span></div>
+      <div class="cb-title">
+        <h1>Let's Talk About<em>Myself! 🙋</em></h1>
+        <div class="cb-sub">Materi Bahasa Inggris — Kelas 1 SD · Self Introduction</div>
+      </div>
+    </div>
+
+    <div class="cover-scene">
+      <!-- Left: boy introducing himself -->
+      <div class="scene-left">
+        <div class="intro-char" style="flex-direction: column; align-items: flex-start; gap:10px">
+          <div style="font-family:'Chewy',cursive;font-size:13px;color:var(--muted);letter-spacing:.5px">👦 BOY</div>
+          <div style="display:flex;align-items:flex-end;gap:10px">
+            <div style="font-size:56px">👦</div>
+            <div class="char-bubble">
+              <div class="bubble-en">Hi! My name is Budi.</div>
+              <div class="bubble-id">Hai! Namaku Budi.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:10px">
+            <div style="font-size:56px">👦</div>
+            <div class="char-bubble">
+              <div class="bubble-en">I am 6 years old.</div>
+              <div class="bubble-id">Aku berumur 6 tahun.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:10px">
+            <div style="font-size:56px">👦</div>
+            <div class="char-bubble">
+              <div class="bubble-en">I am from Bandung.</div>
+              <div class="bubble-id">Aku berasal dari Bandung.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: girl introducing herself -->
+      <div class="scene-right">
+        <div class="intro-char" style="flex-direction: column; align-items: flex-end; gap:10px">
+          <div style="font-family:'Chewy',cursive;font-size:13px;color:var(--muted);letter-spacing:.5px;text-align:right">GIRL 👧</div>
+          <div style="display:flex;align-items:flex-end;gap:10px;flex-direction:row-reverse">
+            <div style="font-size:56px">👧</div>
+            <div class="char-bubble right-tail">
+              <div class="bubble-en">Hello! I am Sari.</div>
+              <div class="bubble-id">Halo! Aku Sari.</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:10px;flex-direction:row-reverse">
+            <div style="font-size:56px">👧</div>
+            <div class="char-bubble right-tail">
+              <div class="bubble-en">I like drawing! 🎨</div>
+              <div class="bubble-id">Aku suka menggambar!</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:10px;flex-direction:row-reverse">
+            <div style="font-size:56px">👧</div>
+            <div class="char-bubble right-tail">
+              <div class="bubble-en">Nice to meet you!</div>
+              <div class="bubble-id">Senang bertemu denganmu!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-pills">
+        <div class="cover-pill pill-coral">Nama · Name</div>
+        <div class="cover-pill pill-lemon">Umur · Age</div>
+        <div class="cover-pill pill-lime">Asal · Hometown</div>
+        <div class="cover-pill pill-sky">Hobi · Hobby</div>
+      </div>
+      <div class="cover-grade">Grade 1 SD ⭐</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 — VOCABULARY + PHRASES + DIALOGUE
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="content-header">
+    <div class="ch-brand">BunRey <sub>English Course</sub></div>
+    <div class="ch-pill">Self Introduction · Grade 1</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION 1 – Apa itu Self Introduction? -->
+    <div class="tip-box tip-lemon">
+      <div class="tip-icon">📖</div>
+      <div>
+        <div class="tip-label">Apa itu Self Introduction?</div>
+        <div class="tip-text">
+          <strong>Self Introduction (perkenalan diri)</strong> adalah cara kita memperkenalkan diri kepada orang lain.
+          Kita menceritakan <strong>nama, umur, asal, dan hobi</strong> kita.
+          Dengan berkenalan, kita bisa <strong>mendapatkan teman baru</strong>! 🤝
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 – Kosakata Penting -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-lemon">📚</div>
+        <div>
+          <div class="sec-title">Kosakata <em>Penting</em></div>
+          <div class="sec-desc">Important vocabulary – hafal ya!</div>
+        </div>
+      </div>
+      <table class="vocab-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>English</th>
+            <th>Cara Baca</th>
+            <th>Artinya</th>
+            <th>Contoh Kalimat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>👤</td>
+            <td><span class="v-en">Name</span></td>
+            <td><span class="v-pron">neym</span></td>
+            <td><span class="v-id">Nama</span></td>
+            <td><span class="v-ex">My name is Budi.</span></td>
+          </tr>
+          <tr>
+            <td>🎂</td>
+            <td><span class="v-en">Age</span></td>
+            <td><span class="v-pron">eyj</span></td>
+            <td><span class="v-id">Umur</span></td>
+            <td><span class="v-ex">I am 6 years old.</span></td>
+          </tr>
+          <tr>
+            <td>🏠</td>
+            <td><span class="v-en">Live / From</span></td>
+            <td><span class="v-pron">liv / from</span></td>
+            <td><span class="v-id">Tinggal / Dari</span></td>
+            <td><span class="v-ex">I live in Jakarta.</span></td>
+          </tr>
+          <tr>
+            <td>🎨</td>
+            <td><span class="v-en">Hobby / Like</span></td>
+            <td><span class="v-pron">HOB-ee / layk</span></td>
+            <td><span class="v-id">Hobi / Suka</span></td>
+            <td><span class="v-ex">I like playing football.</span></td>
+          </tr>
+          <tr>
+            <td>🏫</td>
+            <td><span class="v-en">School</span></td>
+            <td><span class="v-pron">skuul</span></td>
+            <td><span class="v-id">Sekolah</span></td>
+            <td><span class="v-ex">I go to SD Harapan.</span></td>
+          </tr>
+          <tr>
+            <td>👨‍👩‍👧</td>
+            <td><span class="v-en">Family</span></td>
+            <td><span class="v-pron">FAM-i-lee</span></td>
+            <td><span class="v-id">Keluarga</span></td>
+            <td><span class="v-ex">I have 1 sister.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 3 – Kalimat Perkenalan -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-coral">💬</div>
+        <div>
+          <div class="sec-title">Kalimat <em>Perkenalan Diri</em></div>
+          <div class="sec-desc">Key sentences – kalimat-kalimat wajib tahu!</div>
+        </div>
+      </div>
+      <div class="phrase-grid">
+        <div class="phrase-card pc-coral">
+          <div class="pc-emoji">👤</div>
+          <div class="pc-body">
+            <div class="pc-en">My name is <span class="pc-blank">……………</span></div>
+            <div class="pc-pron">mai neym iz …</div>
+            <div class="pc-id">Namaku adalah …</div>
+            <div class="pc-example">✏️ My name is Budi.</div>
+          </div>
+        </div>
+        <div class="phrase-card pc-lemon">
+          <div class="pc-emoji">🎂</div>
+          <div class="pc-body">
+            <div class="pc-en">I am <span class="pc-blank" style="border-color:var(--peach);color:var(--peach)">…</span> years old.</div>
+            <div class="pc-pron">ai em … yirz old</div>
+            <div class="pc-id">Aku berumur … tahun.</div>
+            <div class="pc-example">✏️ I am 7 years old.</div>
+          </div>
+        </div>
+        <div class="phrase-card pc-lime">
+          <div class="pc-emoji">🏠</div>
+          <div class="pc-body">
+            <div class="pc-en">I am from <span class="pc-blank" style="border-color:var(--lime);color:var(--lime)">………</span></div>
+            <div class="pc-pron">ai em from …</div>
+            <div class="pc-id">Aku berasal dari …</div>
+            <div class="pc-example">✏️ I am from Surabaya.</div>
+          </div>
+        </div>
+        <div class="phrase-card pc-sky">
+          <div class="pc-emoji">🎮</div>
+          <div class="pc-body">
+            <div class="pc-en">I like <span class="pc-blank" style="border-color:var(--sky);color:var(--sky)">…………</span></div>
+            <div class="pc-pron">ai layk …</div>
+            <div class="pc-id">Aku suka …</div>
+            <div class="pc-example">✏️ I like playing games.</div>
+          </div>
+        </div>
+        <div class="phrase-card pc-lav">
+          <div class="pc-emoji">🏫</div>
+          <div class="pc-body">
+            <div class="pc-en">I go to <span class="pc-blank" style="border-color:var(--lavender);color:var(--lavender)">………</span></div>
+            <div class="pc-pron">ai goh tu …</div>
+            <div class="pc-id">Aku bersekolah di …</div>
+            <div class="pc-example">✏️ I go to SD Maju.</div>
+          </div>
+        </div>
+        <div class="phrase-card pc-peach">
+          <div class="pc-emoji">🤝</div>
+          <div class="pc-body">
+            <div class="pc-en">Nice to meet you!</div>
+            <div class="pc-pron">nais tu miit yuu!</div>
+            <div class="pc-id">Senang bertemu denganmu!</div>
+            <div class="pc-example">✏️ Diucapkan di akhir perkenalan.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tip -->
+    <div class="tip-box tip-sky">
+      <div class="tip-icon">💡</div>
+      <div>
+        <div class="tip-label">Tips Perkenalan yang Baik 🌟</div>
+        <div class="tip-text">
+          Mulailah dengan <strong>senyum</strong> 😊, ucapkan nama dengan jelas, dan akhiri dengan
+          <b>"Nice to meet you!"</b> agar terdengar sopan dan ramah!
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟</div>
+    <div class="pf-page">Page 2 of 4</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 3 — DIALOGUE + HOBBIES + TEMPLATE + QUIZ
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="content-header">
+    <div class="ch-brand">BunRey <sub>English Course</sub></div>
+    <div class="ch-pill">Self Introduction · Grade 1</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION 4 – Contoh Dialog -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-coral">🎭</div>
+        <div>
+          <div class="sec-title">Contoh <em>Dialog</em> Perkenalan</div>
+          <div class="sec-desc">Example dialogue – praktikkan bersama temanmu!</div>
+        </div>
+      </div>
+      <div class="dialogue-wrap">
+        <div class="dialogue-label">🏫 Di kelas, hari pertama sekolah</div>
+
+        <div class="bubble-row">
+          <div class="av av-a">👩‍🏫</div>
+          <div class="bbl bbl-l">
+            <div class="bbl-name">Teacher</div>
+            <div class="bbl-text">Good morning, everyone! Please introduce yourself.</div>
+            <div class="bbl-id">Selamat pagi semua! Tolong perkenalkan dirimu.</div>
+          </div>
+        </div>
+
+        <div class="bubble-row flip">
+          <div class="av av-b">👦</div>
+          <div class="bbl bbl-r">
+            <div class="bbl-name">Budi</div>
+            <div class="bbl-text">Hi! My name is Budi. I am 7 years old. I am from Jakarta. I like playing football. Nice to meet you!</div>
+            <div class="bbl-id">Hai! Namaku Budi. Aku 7 tahun. Dari Jakarta. Suka main bola. Senang bertemu kalian!</div>
+          </div>
+        </div>
+
+        <div class="bubble-row">
+          <div class="av av-a">👧</div>
+          <div class="bbl bbl-l">
+            <div class="bbl-name">Sari</div>
+            <div class="bbl-text">Hello! I am Sari. I am 6 years old. I like drawing. Nice to meet you, Budi!</div>
+            <div class="bbl-id">Halo! Aku Sari. Aku 6 tahun. Suka menggambar. Senang bertemu, Budi!</div>
+          </div>
+        </div>
+
+        <div class="bubble-row flip">
+          <div class="av av-b">👦</div>
+          <div class="bbl bbl-r">
+            <div class="bbl-name">Budi</div>
+            <div class="bbl-text">Nice to meet you too, Sari! 😊</div>
+            <div class="bbl-id">Senang bertemu juga, Sari!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5 – Kata Hobi -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-lime">🎨</div>
+        <div>
+          <div class="sec-title">Kata-kata <em>Hobi</em> (Hobby Words)</div>
+          <div class="sec-desc">Gunakan kata ini setelah "I like …"</div>
+        </div>
+      </div>
+      <div class="three-col">
+        <div class="info-card ic-c">
+          <div class="info-card-emoji">⚽</div>
+          <div class="info-card-answer">playing football</div>
+          <div class="info-card-id">main sepak bola</div>
+        </div>
+        <div class="info-card ic-l">
+          <div class="info-card-emoji">🎨</div>
+          <div class="info-card-answer">drawing</div>
+          <div class="info-card-id">menggambar</div>
+        </div>
+        <div class="info-card ic-g">
+          <div class="info-card-emoji">📚</div>
+          <div class="info-card-answer">reading books</div>
+          <div class="info-card-id">membaca buku</div>
+        </div>
+        <div class="info-card ic-b">
+          <div class="info-card-emoji">🎵</div>
+          <div class="info-card-answer">singing</div>
+          <div class="info-card-id">menyanyi</div>
+        </div>
+        <div class="info-card ic-p">
+          <div class="info-card-emoji">💃</div>
+          <div class="info-card-answer">dancing</div>
+          <div class="info-card-id">menari</div>
+        </div>
+        <div class="info-card ic-o">
+          <div class="info-card-emoji">🎮</div>
+          <div class="info-card-answer">playing games</div>
+          <div class="info-card-id">main game</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-body-p3 -->
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟</div>
+    <div class="pf-page">Page 3 of 4</div>
+  </div>
+</div><!-- /page 3 -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 4 — TEMPLATE + QUIZ + FUN FACT
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="content-header">
+    <div class="ch-brand">BunRey <sub>English Course</sub></div>
+    <div class="ch-pill">Self Introduction · Grade 1</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION 6 – Template Perkenalan Diri -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-peach">✏️</div>
+        <div>
+          <div class="sec-title"><em>Template</em> Perkenalan Diriku</div>
+          <div class="sec-desc">Isi titik-titik dengan informasi tentang dirimu!</div>
+        </div>
+      </div>
+      <div class="fill-template">
+        <div class="fill-template-title">🙋 Hi, let me introduce myself!</div>
+        <div class="fill-lines">
+          <div class="fill-line-item">
+            <div class="fill-lbl">My name is</div>
+            <div class="fill-blank"></div>
+            <div class="fill-hint">(namamu)</div>
+          </div>
+          <div class="fill-line-item">
+            <div class="fill-lbl">I am</div>
+            <div class="fill-blank" style="max-width:50px"></div>
+            <div class="fill-lbl">years old.</div>
+            <div class="fill-hint">(umurmu)</div>
+          </div>
+          <div class="fill-line-item">
+            <div class="fill-lbl">I am from</div>
+            <div class="fill-blank"></div>
+            <div class="fill-hint">(kotamu)</div>
+          </div>
+          <div class="fill-line-item">
+            <div class="fill-lbl">I go to</div>
+            <div class="fill-blank"></div>
+            <div class="fill-hint">(nama sekolahmu)</div>
+          </div>
+          <div class="fill-line-item">
+            <div class="fill-lbl">I like</div>
+            <div class="fill-blank"></div>
+            <div class="fill-hint">(hobimu)</div>
+          </div>
+          <div class="fill-line-item">
+            <div class="fill-lbl" style="color:var(--coral)">Nice to meet you! 🤝</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 7 – Mini Quiz -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-sky">🎯</div>
+        <div>
+          <div class="sec-title"><em>Mini Quiz</em> – Yuk dicoba!</div>
+          <div class="sec-desc">Lingkari jawaban yang benar!</div>
+        </div>
+      </div>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <div class="quiz-q"><div class="qn">1</div>Kalimat untuk menyebut namamu adalah:</div>
+          <div class="quiz-opts">
+            <div class="qopt"><div class="qcircle"></div>I am 7 years old.</div>
+            <div class="qopt ok"><div class="qcircle">✓</div>My name is Budi.</div>
+            <div class="qopt"><div class="qcircle"></div>I like football.</div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q"><div class="qn">2</div>"I am from Bandung" artinya:</div>
+          <div class="quiz-opts">
+            <div class="qopt"><div class="qcircle"></div>Namaku Bandung.</div>
+            <div class="qopt"><div class="qcircle"></div>Aku suka Bandung.</div>
+            <div class="qopt ok"><div class="qcircle">✓</div>Aku berasal dari Bandung.</div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q"><div class="qn">3</div>Akhir perkenalan yang sopan adalah:</div>
+          <div class="quiz-opts">
+            <div class="qopt"><div class="qcircle"></div>Good Night!</div>
+            <div class="qopt ok"><div class="qcircle">✓</div>Nice to meet you!</div>
+            <div class="qopt"><div class="qcircle"></div>Good Afternoon!</div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q"><div class="qn">4</div>"I like drawing" artinya:</div>
+          <div class="quiz-opts">
+            <div class="qopt ok"><div class="qcircle">✓</div>Aku suka menggambar.</div>
+            <div class="qopt"><div class="qcircle"></div>Aku suka menyanyi.</div>
+            <div class="qopt"><div class="qcircle"></div>Aku suka membaca.</div>
+          </div>
+        </div>
+      </div>
+      <div class="answer-key">
+        <div class="ak-lbl">🗝️ Answer Key:</div>
+        <div class="ak-items">
+          <div class="ak-item">1. My name is Budi.</div>
+          <div class="ak-item">2. Berasal dari Bandung</div>
+          <div class="ak-item">3. Nice to meet you!</div>
+          <div class="ak-item">4. Suka menggambar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fun Fact -->
+    <div class="fun-fact">
+      <div class="ff-title">🌟 Tahukah Kamu?</div>
+      <div class="ff-text">
+        Di seluruh dunia, bahasa Inggris digunakan oleh lebih dari <strong>1,5 miliar orang</strong>!
+        Dengan bisa berkenalan dalam bahasa Inggris, kamu sudah bisa berteman dengan anak-anak dari
+        <strong>Amerika, Inggris, Australia</strong>, dan banyak negara lainnya.
+        Kamu luar biasa sudah mulai belajar sejak kelas 1! 🌏🎉
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟</div>
+    <div class="pf-page">Page 4 of 4</div>
+  </div>
+</div>
+
+</div><!-- /pages-wrap -->
+</body>
+</html>

@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Nouns (Grade 3) Complete</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral: #FF6B6B;
+  --sun: #FFD93D;
+  --mint: #6BCB77;
+  --sky: #4D96FF;
+  --lavender: #C77DFF;
+  --peach: #FFB347;
+  --rose: #FF8FAB;
+  --teal: #2EC4B6;
+  --cream: #FFFBF2;
+  --dark: #2B2B2B;
+  --shadow: 0 6px 24px rgba(0,0,0,0.10);
+  --radius: 20px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(135deg, #C77DFF 0%, #4D96FF 55%, #2EC4B6 100%);
+  padding: 22px 20px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.floating-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.floating-icons span {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatIcon 6s ease-in-out infinite;
+  opacity: 0.2;
+}
+.floating-icons span:nth-child(1) { top: 8%; left: 4%; animation-delay: 0s; }
+.floating-icons span:nth-child(2) { top: 12%; right: 5%; animation-delay: 1.2s; }
+.floating-icons span:nth-child(3) { bottom: 15%; left: 6%; animation-delay: 2.4s; }
+.floating-icons span:nth-child(4) { bottom: 10%; right: 4%; animation-delay: 0.6s; }
+.floating-icons span:nth-child(5) { top: 45%; left: 2%; animation-delay: 1.8s; }
+.floating-icons span:nth-child(6) { top: 40%; right: 3%; animation-delay: 3s; }
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+.header-brand {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+  position: relative;
+}
+.header-brand span { color: var(--sun); }
+.header-tag {
+  display: inline-block;
+  background: var(--sun);
+  color: var(--dark);
+  font-size: 0.85rem;
+  font-weight: 900;
+  padding: 4px 18px;
+  border-radius: 999px;
+  margin-top: 6px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.header-title {
+  margin-top: 10px;
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.3rem, 3.8vw, 2rem);
+  color: #fff;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+.header-sub {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 18px 14px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+nav button {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.20);
+}
+nav button:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(0,0,0,0.20); }
+nav button.active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.20); }
+.tn1 { background: var(--lavender); color: #fff; }
+.tn2 { background: var(--sky); color: #fff; }
+.tn3 { background: var(--coral); color: #fff; }
+.tn4 { background: var(--mint); color: #fff; }
+.tn5 { background: var(--peach); color: #fff; }
+
+/* ── MAIN ── */
+main { max-width: 960px; margin: 0 auto; padding: 22px 14px 70px; }
+.sec { display: none; }
+.sec.active { display: block; animation: fadeUp 0.35s ease; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CARD ── */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.card-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.tip-box {
+  background: #fffbe6;
+  border-left: 5px solid var(--sun);
+  border-radius: 0 14px 14px 0;
+  padding: 12px 16px;
+  font-size: 0.94rem;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+.tip-box strong { color: var(--sky); }
+
+/* ── BUTTONS ── */
+.btn {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+  transition: transform 0.12s;
+  margin-top: 10px;
+  margin-right: 7px;
+  display: inline-block;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-check { background: var(--lavender); color: #fff; }
+.btn-next { background: var(--mint); color: #fff; }
+.btn-reset { background: var(--peach); color: #fff; }
+.btn-sky { background: var(--sky); color: #fff; }
+.btn-coral { background: var(--coral); color: #fff; }
+.btn-download { background: var(--sun); color: var(--dark); }
+.btn-teal { background: var(--teal); color: #fff; }
+.feedback {
+  font-weight: 800;
+  margin-top: 10px;
+  min-height: 24px;
+  font-size: 1rem;
+}
+.fb-ok { color: var(--mint); }
+.fb-no { color: var(--coral); }
+
+/* ═══════════════════════════════════════════════════
+   SECTION 1: LEARN
+   ═══════════════════════════════════════════════════ */
+
+.noun-intro {
+  background: linear-gradient(135deg, #f3e8ff, #e0f4ff);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  border: 3px dashed var(--lavender);
+  margin-bottom: 18px;
+}
+.noun-intro h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  color: var(--dark);
+}
+.noun-intro .big-emoji { font-size: 3.5rem; display: block; margin-bottom: 6px; }
+.noun-intro .examples {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.noun-intro .ex-tag {
+  background: #fff;
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* Category cards */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+.cat-card {
+  border-radius: 18px;
+  padding: 18px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 3px solid transparent;
+  box-shadow: var(--shadow);
+}
+.cat-card:hover { transform: translateY(-4px) scale(1.03); }
+.cat-card.active-cat { border-color: var(--coral); }
+.cat-emoji { font-size: 2.8rem; display: block; }
+.cat-name { font-family: 'Fredoka One', cursive; font-size: 1.1rem; margin-top: 6px; }
+.cat-desc { font-size: 0.8rem; color: #888; margin-top: 4px; }
+
+.cat-detail {
+  background: linear-gradient(135deg, #e8f4ff, #f5e8ff);
+  border-radius: 16px;
+  padding: 18px 20px;
+  border: 2px dashed var(--sky);
+  text-align: center;
+  display: none;
+  margin-bottom: 14px;
+}
+.cat-detail.show { display: block; animation: fadeUp 0.3s ease; }
+.cd-emoji { font-size: 3.5rem; display: block; margin-bottom: 4px; }
+.cd-name { font-family: 'Fredoka One', cursive; font-size: 1.6rem; }
+.cd-examples { font-size: 1rem; color: #555; margin-top: 6px; }
+.cd-examples strong { color: var(--coral); }
+
+/* ── FLIP CARDS (FIXED) ── */
+.flip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.flip-card {
+  perspective: 600px;
+  height: 160px;
+  cursor: pointer;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 1.2, 0.5, 1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  padding: 10px;
+  text-align: center;
+}
+.flip-front {
+  background: #fff;
+  border: 3px solid #ddd;
+}
+.flip-front .ff-emoji { font-size: 2.8rem; }
+.flip-front .ff-word {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  margin-top: 4px;
+}
+.flip-front .ff-hint {
+  font-size: 0.65rem;
+  color: #aaa;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.flip-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, var(--sky), var(--lavender));
+  color: #fff;
+}
+.flip-back .fb-category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.85;
+}
+.flip-back .fb-word {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.3rem;
+  margin-top: 4px;
+}
+.flip-back .fb-example {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ── COMMON VS PROPER ── */
+.cp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+.cp-box {
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+}
+.cp-box h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.cp-box ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.cp-box ul li { margin: 4px 0; }
+.cp-common { background: #fff0f6; border: 3px solid var(--rose); }
+.cp-common h4 { color: var(--rose); }
+.cp-proper { background: #f0f7ff; border: 3px solid var(--sky); }
+.cp-proper h4 { color: var(--sky); }
+
+/* ── SINGULAR VS PLURAL ── */
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.sp-card {
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  background: #f8f8f8;
+  border: 2px solid #eee;
+}
+.sp-card .s { font-size: 0.8rem; color: #888; }
+.sp-card .p {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  color: var(--mint);
+}
+.sp-card .arrow { color: #ccc; margin: 0 4px; }
+
+/* ── NOUN SUFFIXES ── */
+.suffix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.suffix-card {
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  background: #fffbe6;
+  border: 2px solid var(--sun);
+}
+.suffix-card .suf {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: var(--coral);
+}
+.suffix-card .ex {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 2: PRACTICE — MATCHING GAME
+   ═══════════════════════════════════════════════════ */
+.match-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.match-item {
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: transform 0.12s, border-color 0.12s;
+  border: 3px solid transparent;
+  user-select: none;
+  background: #fff;
+}
+.match-item:hover { transform: scale(1.04); }
+.match-item.selected { border-color: var(--coral); transform: scale(1.06); }
+.match-item.matched {
+  opacity: 0.55;
+  pointer-events: none;
+  border-color: var(--mint);
+  background: #d4f7dc;
+}
+.match-item.wrong-flash {
+  animation: wFlash 0.35s ease;
+}
+@keyframes wFlash {
+  0%, 100% { background: inherit; }
+  50% { background: #ffd6d6; }
+}
+.match-status {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 12px;
+  min-height: 28px;
+  color: var(--lavender);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 3: GAMES
+   ═══════════════════════════════════════════════════ */
+.game-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.gtab {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+  transition: transform 0.12s;
+}
+.gtab:hover { transform: translateY(-2px); }
+.gtab.active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+.gt1 { background: var(--teal); color: #fff; }
+.gt2 { background: var(--peach); color: #fff; }
+.gt3 { background: var(--rose); color: #fff; }
+.gt4 { background: var(--lavender); color: #fff; }
+
+.game-panel { display: none; }
+.game-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+/* ── GAME 1: SORT ── */
+.sort-zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sort-zone {
+  min-height: 100px;
+  border: 3px dashed;
+  border-radius: 14px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+}
+.sort-zone.zone-person { border-color: var(--coral); background: #fff0f0; }
+.sort-zone.zone-place { border-color: var(--sky); background: #f0f7ff; }
+.sort-zone.zone-thing { border-color: var(--mint); background: #f0fff4; }
+.sort-zone.zone-animal { border-color: var(--peach); background: #fff8f0; }
+.sort-zone .zone-label {
+  width: 100%;
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #888;
+}
+.sort-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px;
+  background: #f5f5f5;
+  border-radius: 14px;
+  min-height: 54px;
+  margin-bottom: 12px;
+}
+.sort-tile {
+  font-family: 'Fredoka One', cursive;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: var(--sun);
+  color: var(--dark);
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+  user-select: none;
+  font-size: 0.9rem;
+  transition: transform 0.12s;
+}
+.sort-tile:hover { transform: scale(1.06); }
+.sort-tile.placed { opacity: 0.3; pointer-events: none; }
+.sort-placed {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.85rem;
+  padding: 4px 12px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+.sort-placed:hover { opacity: 0.7; }
+
+/* ── GAME 2: SPIN WHEEL ── */
+.wheel-wrap { text-align: center; }
+canvas#nounWheel {
+  display: block;
+  margin: 0 auto;
+  max-width: 270px;
+  max-height: 270px;
+}
+.spin-btn {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  padding: 12px 34px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--coral), var(--peach));
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+  margin-top: 14px;
+  transition: transform 0.12s;
+}
+.spin-btn:hover { transform: translateY(-2px); }
+.spin-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+.spin-result {
+  margin-top: 14px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: var(--lavender);
+  min-height: 44px;
+  line-height: 1.5;
+}
+
+/* ── GAME 3: MEMORY MATCH ── */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+@media (max-width: 480px) {
+  .memory-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.mem-card {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--lavender), var(--sky));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka One', cursive;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+  transition: transform 0.15s;
+  user-select: none;
+}
+.mem-card.flipped {
+  background: #fff;
+  color: var(--dark);
+  border: 3px solid var(--sky);
+  box-shadow: 0 4px 0 #d8c9f0;
+}
+.mem-card.matched {
+  background: var(--mint);
+  color: #fff;
+  box-shadow: 0 4px 0 #1B7A4D;
+  cursor: default;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.mem-card:active { transform: scale(0.95); }
+.mem-status {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  text-align: center;
+  color: var(--lavender);
+  min-height: 28px;
+}
+
+/* ── GAME 4: BALLOON POP ── */
+.balloon-arena {
+  min-height: 280px;
+  background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 60%, #90EE90 100%);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.balloon-task {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255,255,255,0.85);
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+}
+.balloon {
+  position: absolute;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  animation: rise 4.5s linear forwards;
+}
+.balloon-body { font-size: 3.2rem; display: block; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2)); }
+.balloon-num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.9rem;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+.balloon-string { font-size: 1rem; display: block; margin-top: -4px; color: #888; }
+@keyframes rise {
+  from { bottom: -120px; opacity: 1; }
+  to { bottom: 110%; opacity: 0.8; }
+}
+.balloon.popped { animation: pop 0.3s ease forwards; }
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(0); opacity: 0; }
+}
+.balloon-score {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  text-align: center;
+  color: var(--sky);
+  margin-bottom: 8px;
+}
+
+/* ── QUIZ ── */
+.quiz-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.quiz-score {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  color: var(--lavender);
+}
+.progress-bar {
+  background: #ede0ff;
+  border-radius: 999px;
+  height: 11px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--lavender), var(--sky));
+  transition: width 0.4s ease;
+}
+.quiz-qcard {
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 14px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5;
+  background: linear-gradient(135deg, #e8f5e9, #e0f4ff);
+}
+.qcard-emoji { font-size: 2.8rem; display: block; margin-bottom: 4px; }
+.qopts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.qopt {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  padding: 14px 10px;
+  border: 3px solid transparent;
+  border-radius: 14px;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.14s, border-color 0.14s;
+  text-align: center;
+}
+.qopt:hover { transform: scale(1.04); border-color: var(--lavender); }
+.qopt.correct { background: #d4f7dc; border-color: var(--mint); }
+.qopt.wrong { background: #ffd6d6; border-color: var(--coral); }
+.qopt:disabled { cursor: default; transform: none; }
+.quiz-fb {
+  text-align: center;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  min-height: 28px;
+}
+.quiz-fb.ok { color: var(--mint); }
+.quiz-fb.no { color: var(--coral); }
+.quiz-result {
+  text-align: center;
+  padding: 26px 14px;
+  display: none;
+}
+.quiz-result.show { display: block; animation: fadeUp 0.4s ease; }
+.res-emoji { font-size: 4rem; display: block; margin-bottom: 8px; }
+.res-score {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.2rem;
+  color: var(--coral);
+}
+.res-msg { font-size: 1rem; color: #555; margin-top: 6px; }
+.stars-row { font-size: 2rem; margin: 10px 0; }
+
+/* ── DOWNLOAD ── */
+.download-wrap {
+  text-align: center;
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.download-wrap p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+.download-wrap .btn { font-size: 1.1rem; padding: 14px 36px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .match-wrap { grid-template-columns: 1fr; }
+  .qopts { grid-template-columns: 1fr; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .flip-grid { grid-template-columns: repeat(2, 1fr); }
+  .cp-grid { grid-template-columns: 1fr; }
+  .sort-zones { grid-template-columns: 1fr 1fr; }
+  .memory-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .sort-zones { grid-template-columns: 1fr; }
+  .memory-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #bbb;
+  font-size: 0.84rem;
+}
+footer span { color: var(--coral); }
+
+/* ── CONFETTI ── */
+.confetti-piece {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  z-index: 999;
+  pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="floating-icons">
+    <span>📚</span><span>🏫</span><span>🐱</span>
+    <span>✏️</span><span>🏠</span><span>🌈</span>
+  </div>
+  <div class="header-brand">Little<span>Lume</span> English ✨</div>
+  <div><span class="header-tag">⭐ GRADE 3 ⭐</span></div>
+  <div class="header-title">📚 Nouns: Everything Has a Name!</div>
+  <div class="header-sub">People · Places · Things · Animals 🏷️</div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="tn1 active" onclick="showSec('learn', this)">📖 Learn</button>
+  <button class="tn2" onclick="showSec('practice', this)">🔗 Practice</button>
+  <button class="tn3" onclick="showSec('games', this)">🎮 Games</button>
+  <button class="tn4" onclick="showSec('quiz', this)">❓ Quiz</button>
+</nav>
+
+<main>
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 1: LEARN
+     ════════════════════════════════════════════════════════ -->
+<div id="learn" class="sec active">
+
+  <!-- What is a noun? -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#f3e8ff;">🏷️</div>
+      What is a Noun?
+    </div>
+    <div class="noun-intro">
+      <span class="big-emoji">📦</span>
+      <h3>A noun is a word that names a <span style="color:var(--coral);">person</span>, <span style="color:var(--sky);">place</span>, <span style="color:var(--mint);">thing</span>, or <span style="color:var(--peach);">animal</span>!</h3>
+      <div class="examples">
+        <span class="ex-tag">👩 teacher</span>
+        <span class="ex-tag">🏫 school</span>
+        <span class="ex-tag">📚 book</span>
+        <span class="ex-tag">🐶 dog</span>
+        <span class="ex-tag">💡 idea</span>
+        <span class="ex-tag">❤️ love</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>Remember:</strong> If you can see it, touch it, feel it, or think about it — it's probably a <strong>noun</strong>! Everything around us has a name.
+    </div>
+  </div>
+
+  <!-- 4 Categories -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#d0e8ff;">📂</div>
+      Four Types of Nouns
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:12px;">👆 Tap each category to learn more!</p>
+    <div class="category-grid" id="catGrid"></div>
+    <div class="cat-detail" id="catDetail"></div>
+  </div>
+
+  <!-- Common vs Proper Nouns -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#fff0b3;">🔤</div>
+      Common vs Proper Nouns
+    </div>
+    <div class="cp-grid">
+      <div class="cp-box cp-common">
+        <h4>📌 Common Nouns</h4>
+        <p style="font-size:0.85rem; color:#888; margin-bottom:8px;">General names for things</p>
+        <ul>
+          <li>📖 book</li>
+          <li>🏙️ city</li>
+          <li>👨 teacher</li>
+          <li>🐱 cat</li>
+        </ul>
+      </div>
+      <div class="cp-box cp-proper">
+        <h4>📌 Proper Nouns</h4>
+        <p style="font-size:0.85rem; color:#888; margin-bottom:8px;">Specific names (always capitalize!)</p>
+        <ul>
+          <li>📖 <strong>Harry Potter</strong></li>
+          <li>🏙️ <strong>Jakarta</strong></li>
+          <li>👨 <strong>Mr. Rudi</strong></li>
+          <li>🐱 <strong>Milo</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>Rule:</strong> Common nouns are general (dog, city). Proper nouns are specific and <strong>always start with a capital letter</strong> (Rover, London, Mrs. Smith)!
+    </div>
+  </div>
+
+  <!-- Singular vs Plural -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#d4f7dc;">🔢</div>
+      Singular vs Plural Nouns
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">One = Singular | More than one = Plural</p>
+    <div class="sp-grid" id="spGrid"></div>
+    <div class="tip-box">
+      💡 <strong>Rule:</strong> Most nouns add <strong>-s</strong> or <strong>-es</strong> to become plural. But some are <strong>irregular</strong> (child → children, mouse → mice, foot → feet)!
+    </div>
+  </div>
+
+  <!-- Countable vs Uncountable -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#ffe8cc;">🧮</div>
+      Countable vs Uncountable Nouns
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div style="background:#e8f5e9; border-radius:14px; padding:16px; text-align:center;">
+        <h4 style="font-family:'Fredoka One',cursive; color:var(--mint);">✅ Countable</h4>
+        <p style="font-size:0.9rem;">Things you can count!</p>
+        <p style="font-weight:700;">🍎 1 apple, 2 apples<br>✏️ 1 pencil, 3 pencils</p>
+      </div>
+      <div style="background:#fff0f6; border-radius:14px; padding:16px; text-align:center;">
+        <h4 style="font-family:'Fredoka One',cursive; color:var(--rose);">❌ Uncountable</h4>
+        <p style="font-size:0.9rem;">Things you cannot count!</p>
+        <p style="font-weight:700;">💧 water, 🥛 milk, 🧂 salt<br>💡 information, ❤️ love</p>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>Tip:</strong> Uncountable nouns don't have a plural form. We say "some water" not "two waters"!
+    </div>
+  </div>
+
+  <!-- Noun Suffixes -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#f3e8ff;">➕</div>
+      Noun Suffixes — Word Builders!
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Add these to verbs or adjectives to make nouns!</p>
+    <div class="suffix-grid" id="suffixGrid"></div>
+  </div>
+
+  <!-- Noun Flip Cards -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#ffd6d6;">🃏</div>
+      Noun Examples — Tap to Flip!
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">👆 Tap each card to flip and learn more!</p>
+    <div class="flip-grid" id="nounFlipGrid"></div>
+  </div>
+
+</div><!-- /learn -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 2: PRACTICE — MATCHING GAME
+     ════════════════════════════════════════════════════════ -->
+<div id="practice" class="sec">
+
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#f3e8ff;">🔗</div>
+      Match the Noun to Its Category!
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:12px;">
+      Tap a noun on the left, then tap its correct category on the right! 🎯
+    </p>
+
+    <div class="match-wrap">
+      <div class="match-col" id="matchLeft"></div>
+      <div class="match-col" id="matchRight"></div>
+    </div>
+    <div class="match-status" id="matchStatus">Tap a noun on the left to start! 👈</div>
+    <button class="btn btn-reset" style="margin-top:10px;" onclick="initMatch()">🔄 New Game</button>
+  </div>
+
+</div><!-- /practice -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 3: GAMES
+     ════════════════════════════════════════════════════════ -->
+<div id="games" class="sec">
+
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#d0e8ff;">🎮</div>
+      Noun Games!
+    </div>
+
+    <div class="game-tabs">
+      <button class="gtab gt1 active" onclick="showGtab('g-sort', this)">📂 Sort It!</button>
+      <button class="gtab gt2" onclick="showGtab('g-spin', this)">🎡 Spin & Say!</button>
+      <button class="gtab gt3" onclick="showGtab('g-memory', this)">🃏 Memory Match</button>
+      <button class="gtab gt4" onclick="showGtab('g-balloon', this)">🎈 Balloon Pop</button>
+    </div>
+
+    <!-- GAME 1: SORT -->
+    <div id="g-sort" class="game-panel active">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Tap a word, then tap the correct category box! 📂</p>
+      <div class="sort-zones" id="sortZones"></div>
+      <div class="sort-pool" id="sortPool"></div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-check" onclick="checkSort()">✅ Check</button>
+        <button class="btn btn-reset" onclick="initSort()">🔄 Reset</button>
+      </div>
+      <div class="feedback" id="sortFb"></div>
+    </div>
+
+    <!-- GAME 2: SPIN WHEEL -->
+    <div id="g-spin" class="game-panel">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Spin the wheel and say a sentence using that noun! 🎡</p>
+      <div class="wheel-wrap">
+        <canvas id="nounWheel" width="270" height="270"></canvas>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 SPIN!</button>
+        <div class="spin-result" id="spinResult"></div>
+      </div>
+    </div>
+
+    <!-- GAME 3: MEMORY MATCH -->
+    <div id="g-memory" class="game-panel">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Match the noun with its correct category! 🧠</p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="mem-status" id="memStatus">Tap any card to start! 🃏</div>
+      <button class="btn btn-reset" onclick="initMemory()">🔄 New Game</button>
+    </div>
+
+    <!-- GAME 4: BALLOON POP -->
+    <div id="g-balloon" class="game-panel">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Pop the balloon that shows a NOUN! 🎈</p>
+      <div class="balloon-score" id="balloonScore">Score: 0 🎈</div>
+      <div class="balloon-arena" id="balloonArena">
+        <div class="balloon-task" id="balloonTask">Pop the balloons that are <strong>NOUNS</strong>!</div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-sky" onclick="startBalloons()">🎈 Start Game!</button>
+        <button class="btn btn-reset" onclick="resetBalloons()">🔄 Reset</button>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /games -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 4: QUIZ
+     ════════════════════════════════════════════════════════ -->
+<div id="quiz" class="sec">
+
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#ffd6d6;">❓</div>
+      Noun Quiz!
+    </div>
+
+    <div class="quiz-hdr">
+      <div class="quiz-score" id="qScore">Score: 0 / 15</div>
+      <div style="font-size:0.83rem; color:#bbb;" id="qNum">Question 1 / 15</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="qFill" style="width:0%;"></div></div>
+
+    <div id="quizBody">
+      <div class="quiz-qcard" id="quizQ">Loading...</div>
+      <div class="qopts" id="quizOpts"></div>
+      <div class="quiz-fb" id="quizFb"></div>
+    </div>
+
+    <div class="quiz-result" id="quizResult">
+      <span class="res-emoji" id="resEmoji">🏆</span>
+      <div class="stars-row" id="starsRow">⭐⭐⭐</div>
+      <div class="res-score" id="resScore">0/15</div>
+      <div class="res-msg" id="resMsg"></div>
+      <button class="btn btn-sky" style="margin-top:16px;" onclick="startQuiz()">🔄 Try Again!</button>
+    </div>
+  </div>
+
+</div><!-- /quiz -->
+
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════════════════════ */
+function showSec(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'quiz') startQuiz();
+  if (id === 'practice') initMatch();
+  if (id === 'games') { initSort(); initMemory(); startBalloons(); initWheel(); }
+}
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  u.pitch = 1.05;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function showGtab(id, btn) {
+  document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'g-sort') initSort();
+  if (id === 'g-memory') initMemory();
+  if (id === 'g-balloon') startBalloons();
+  if (id === 'g-spin') initWheel();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DOWNLOAD
+   ═══════════════════════════════════════════════════════════ */
+function downloadHTML() {
+  const htmlContent = document.documentElement.outerHTML;
+  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'LittleLume-Nouns-Complete-Grade3.html';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  setTimeout(() => URL.revokeObjectURL(link.href), 100);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════════════════════ */
+
+const CATEGORIES = [
+  { id: 'person',   name: 'Person',   emoji: '👩', color: '#FF6B6B', bg: '#ffd6d6', desc: 'A person is a human being.' },
+  { id: 'place',    name: 'Place',    emoji: '🏫', color: '#4D96FF', bg: '#d0e8ff', desc: 'A place is a location or space.' },
+  { id: 'thing',    name: 'Thing',    emoji: '📚', color: '#6BCB77', bg: '#d4f7dc', desc: 'A thing is an object or idea.' },
+  { id: 'animal',   name: 'Animal',   emoji: '🐶', color: '#FFB347', bg: '#ffe8cc', desc: 'An animal is a living creature.' },
+];
+
+const NOUNS = [
+  { word: 'teacher',   emoji: '👩‍🏫', category: 'person', example: 'My teacher is kind.' },
+  { word: 'doctor',    emoji: '👨‍⚕️', category: 'person', example: 'The doctor helps sick people.' },
+  { word: 'friend',    emoji: '🤝', category: 'person', example: 'My friend plays with me.' },
+  { word: 'nurse',     emoji: '👩‍⚕️', category: 'person', example: 'A nurse takes care of you.' },
+  { word: 'school',    emoji: '🏫', category: 'place', example: 'I go to school every day.' },
+  { word: 'park',      emoji: '🌳', category: 'place', example: 'We play at the park.' },
+  { word: 'library',   emoji: '📚', category: 'place', example: 'I read books at the library.' },
+  { word: 'city',      emoji: '🏙️', category: 'place', example: 'I live in a big city.' },
+  { word: 'garden',    emoji: '🌻', category: 'place', example: 'Flowers grow in the garden.' },
+  { word: 'book',      emoji: '📖', category: 'thing', example: 'I love reading a book.' },
+  { word: 'pencil',    emoji: '✏️', category: 'thing', example: 'I write with a pencil.' },
+  { word: 'computer',  emoji: '💻', category: 'thing', example: 'We use a computer at school.' },
+  { word: 'chair',     emoji: '🪑', category: 'thing', example: 'I sit on the chair.' },
+  { word: 'crayon',    emoji: '🖍️', category: 'thing', example: 'I colour with a crayon.' },
+  { word: 'dog',       emoji: '🐶', category: 'animal', example: 'My dog is fluffy.' },
+  { word: 'cat',       emoji: '🐱', category: 'animal', example: 'The cat sleeps all day.' },
+  { word: 'elephant',  emoji: '🐘', category: 'animal', example: 'An elephant is very big.' },
+  { word: 'bird',      emoji: '🐦', category: 'animal', example: 'A bird can fly high.' },
+  { word: 'fish',      emoji: '🐟', category: 'animal', example: 'Fish swim in the water.' },
+];
+
+const SUFFIX_DATA = [
+  { suffix: '-er', example: 'teach → teacher', desc: 'person who does' },
+  { suffix: '-or', example: 'act → actor', desc: 'person who does' },
+  { suffix: '-tion', example: 'educate → education', desc: 'action/state' },
+  { suffix: '-ness', example: 'happy → happiness', desc: 'quality/state' },
+  { suffix: '-ment', example: 'enjoy → enjoyment', desc: 'action/result' },
+  { suffix: '-ity', example: 'active → activity', desc: 'quality/state' },
+];
+
+const SINGULAR_PLURAL = [
+  { s: 'child', p: 'children', emoji: '🧒' },
+  { s: 'mouse', p: 'mice', emoji: '🐭' },
+  { s: 'foot', p: 'feet', emoji: '🦶' },
+  { s: 'tooth', p: 'teeth', emoji: '🦷' },
+  { s: 'man', p: 'men', emoji: '👨' },
+  { s: 'woman', p: 'women', emoji: '👩' },
+  { s: 'goose', p: 'geese', emoji: '🦢' },
+  { s: 'sheep', p: 'sheep', emoji: '🐑' },
+  { s: 'fish', p: 'fish', emoji: '🐟' },
+  { s: 'deer', p: 'deer', emoji: '🦌' },
+];
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 1: LEARN — Category Grid
+   ═══════════════════════════════════════════════════════════ */
+
+const catGrid = document.getElementById('catGrid');
+CATEGORIES.forEach(cat => {
+  const card = document.createElement('div');
+  card.className = 'cat-card';
+  card.style.background = cat.bg;
+  card.dataset.cat = cat.id;
+  card.innerHTML = `
+    <span class="cat-emoji">${cat.emoji}</span>
+    <div class="cat-name" style="color:${cat.color};">${cat.name}</div>
+    <div class="cat-desc">${cat.desc}</div>
+  `;
+  card.onclick = () => showCategoryDetail(cat, card);
+  catGrid.appendChild(card);
+});
+
+function showCategoryDetail(cat, el) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active-cat'));
+  el.classList.add('active-cat');
+
+  const panel = document.getElementById('catDetail');
+  const examples = NOUNS.filter(n => n.category === cat.id).slice(0, 6);
+  panel.innerHTML = `
+    <span class="cd-emoji">${cat.emoji}</span>
+    <div class="cd-name" style="color:${cat.color};">${cat.name}</div>
+    <div class="cd-examples">
+      <strong>Examples:</strong> ${examples.map(e => `${e.emoji} ${e.word}`).join(' • ')}
+      <br><span style="font-size:0.85rem; color:#888;">${cat.desc}</span>
+    </div>
+    <button class="btn btn-sky" style="margin-top:10px;" onclick="speak('${cat.name}. ${cat.desc}')">🔊 Listen</button>
+  `;
+  panel.classList.add('show');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 1: LEARN — Singular/Plural Grid
+   ═══════════════════════════════════════════════════════════ */
+
+const spGrid = document.getElementById('spGrid');
+SINGULAR_PLURAL.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'sp-card';
+  card.innerHTML = `
+    <div style="font-size:1.6rem;">${item.emoji}</div>
+    <div class="s">Singular: ${item.s}</div>
+    <div class="p">${item.s} <span class="arrow">→</span> ${item.p}</div>
+  `;
+  card.onclick = () => speak(`${item.s} → ${item.p}`);
+  spGrid.appendChild(card);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 1: LEARN — Suffix Grid
+   ═══════════════════════════════════════════════════════════ */
+
+const suffixGrid = document.getElementById('suffixGrid');
+SUFFIX_DATA.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'suffix-card';
+  card.innerHTML = `
+    <div class="suf">${item.suffix}</div>
+    <div class="ex">${item.example}</div>
+    <div style="font-size:0.75rem; color:#888;">${item.desc}</div>
+  `;
+  card.onclick = () => speak(`${item.suffix}. Example: ${item.example}`);
+  suffixGrid.appendChild(card);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 1: LEARN — Flip Cards (FIXED)
+   ═══════════════════════════════════════════════════════════ */
+
+const flipGrid = document.getElementById('nounFlipGrid');
+const CAT_COLORS = { person: '#FF6B6B', place: '#4D96FF', thing: '#6BCB77', animal: '#FFB347' };
+const CAT_NAMES = { person: 'Person', place: 'Place', thing: 'Thing', animal: 'Animal' };
+
+NOUNS.slice(0, 16).forEach(n => {
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  const color = CAT_COLORS[n.category];
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-front" style="background:#fff; border:3px solid ${color};">
+        <span class="ff-emoji">${n.emoji}</span>
+        <div class="ff-word" style="color:${color};">${n.word}</div>
+        <div class="ff-hint">👆 Tap to flip</div>
+      </div>
+      <div class="flip-back" style="background:linear-gradient(135deg, ${color}, ${color}dd);">
+        <div class="fb-category">📂 ${CAT_NAMES[n.category]}</div>
+        <div class="fb-word">${n.word}</div>
+        <div class="fb-example">"${n.example}"</div>
+      </div>
+    </div>
+  `;
+  // FIX: Proper flip handling
+  card.addEventListener('click', function(e) {
+    this.classList.toggle('flipped');
+    if (this.classList.contains('flipped')) {
+      speak(`${n.word}. ${n.example}`);
+    }
+  });
+  flipGrid.appendChild(card);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 2: PRACTICE — MATCHING GAME
+   ═══════════════════════════════════════════════════════════ */
+
+const MATCH_PAIRS = [
+  { noun: 'teacher',   emoji: '👩‍🏫', cat: 'person' },
+  { noun: 'school',    emoji: '🏫', cat: 'place' },
+  { noun: 'book',      emoji: '📖', cat: 'thing' },
+  { noun: 'dog',       emoji: '🐶', cat: 'animal' },
+  { noun: 'doctor',    emoji: '👨‍⚕️', cat: 'person' },
+  { noun: 'park',      emoji: '🌳', cat: 'place' },
+  { noun: 'pencil',    emoji: '✏️', cat: 'thing' },
+  { noun: 'cat',       emoji: '🐱', cat: 'animal' },
+  { noun: 'nurse',     emoji: '👩‍⚕️', cat: 'person' },
+  { noun: 'library',   emoji: '📚', cat: 'place' },
+];
+
+const CAT_LABELS = { person: '👤 Person', place: '📍 Place', thing: '📦 Thing', animal: '🐾 Animal' };
+const CAT_COLORS_MATCH = { person: '#FF6B6B', place: '#4D96FF', thing: '#6BCB77', animal: '#FFB347' };
+
+let matchSelectedLeft = null;
+let matchMatchedCount = 0;
+
+function initMatch() {
+  matchSelectedLeft = null;
+  matchMatchedCount = 0;
+  document.getElementById('matchStatus').textContent = 'Tap a noun on the left to start! 👈';
+
+  const shuffledLeft = [...MATCH_PAIRS].sort(() => Math.random() - 0.5);
+  const shuffledRight = [...MATCH_PAIRS].sort(() => Math.random() - 0.5);
+
+  const lCol = document.getElementById('matchLeft');
+  const rCol = document.getElementById('matchRight');
+  lCol.innerHTML = '';
+  rCol.innerHTML = '';
+
+  shuffledLeft.forEach((p, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'match-item';
+    btn.dataset.id = p.noun;
+    btn.dataset.cat = p.cat;
+    btn.style.background = CAT_COLORS_MATCH[p.cat] + '22';
+    btn.style.borderColor = CAT_COLORS_MATCH[p.cat] + '55';
+    btn.innerHTML = `<span style="font-size:1.6rem;">${p.emoji}</span> ${p.noun}`;
+    btn.onclick = () => selectMatchLeft(btn, p.noun);
+    lCol.appendChild(btn);
+  });
+
+  shuffledRight.forEach(p => {
+    const btn = document.createElement('div');
+    btn.className = 'match-item';
+    btn.dataset.cat = p.cat;
+    btn.textContent = CAT_LABELS[p.cat];
+    btn.style.background = '#f5f5f5';
+    btn.style.borderColor = CAT_COLORS_MATCH[p.cat] + '55';
+    btn.onclick = () => selectMatchRight(btn, p.cat);
+    rCol.appendChild(btn);
+  });
+}
+
+function selectMatchLeft(btn, id) {
+  if (btn.classList.contains('matched')) return;
+  document.querySelectorAll('#matchLeft .match-item').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  matchSelectedLeft = { btn, id };
+}
+
+function selectMatchRight(btn, cat) {
+  if (btn.classList.contains('matched')) return;
+  if (!matchSelectedLeft) {
+    document.getElementById('matchStatus').textContent = '👆 First, tap a noun on the left!';
+    return;
+  }
+
+  const leftId = matchSelectedLeft.id;
+  const leftCat = MATCH_PAIRS.find(p => p.noun === leftId)?.cat;
+
+  if (leftCat === cat) {
+    matchSelectedLeft.btn.classList.remove('selected');
+    matchSelectedLeft.btn.classList.add('matched');
+    btn.classList.add('matched');
+    matchMatchedCount++;
+    speak('Match!');
+    if (matchMatchedCount === MATCH_PAIRS.length) {
+      document.getElementById('matchStatus').textContent = '🎉 All matched! Amazing work! ⭐';
+    } else {
+      document.getElementById('matchStatus').textContent =
+        `✅ Match! ${MATCH_PAIRS.length - matchMatchedCount} left!`;
+    }
+    matchSelectedLeft = null;
+  } else {
+    const leftBtn = matchSelectedLeft.btn;
+    leftBtn.classList.add('wrong-flash');
+    btn.classList.add('wrong-flash');
+    document.getElementById('matchStatus').textContent = '❌ Not a match! Try again!';
+    setTimeout(() => {
+      leftBtn.classList.remove('wrong-flash', 'selected');
+      btn.classList.remove('wrong-flash');
+    }, 500);
+    matchSelectedLeft = null;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 1: SORT
+   ═══════════════════════════════════════════════════════════ */
+
+const SORT_WORDS = [
+  { word: 'teacher', emoji: '👩‍🏫', cat: 'person' },
+  { word: 'doctor', emoji: '👨‍⚕️', cat: 'person' },
+  { word: 'school', emoji: '🏫', cat: 'place' },
+  { word: 'park', emoji: '🌳', cat: 'place' },
+  { word: 'library', emoji: '📚', cat: 'place' },
+  { word: 'book', emoji: '📖', cat: 'thing' },
+  { word: 'pencil', emoji: '✏️', cat: 'thing' },
+  { word: 'computer', emoji: '💻', cat: 'thing' },
+  { word: 'dog', emoji: '🐶', cat: 'animal' },
+  { word: 'cat', emoji: '🐱', cat: 'animal' },
+  { word: 'elephant', emoji: '🐘', cat: 'animal' },
+  { word: 'bird', emoji: '🐦', cat: 'animal' },
+];
+
+let sortPlaced = { person: [], place: [], thing: [], animal: [] };
+let sortSelected = null;
+
+function initSort() {
+  sortPlaced = { person: [], place: [], thing: [], animal: [] };
+  sortSelected = null;
+  document.getElementById('sortFb').textContent = '';
+  document.getElementById('sortFb').className = 'feedback';
+
+  const zones = document.getElementById('sortZones');
+  zones.innerHTML = '';
+  const catIds = ['person', 'place', 'thing', 'animal'];
+  const catEmojis = { person: '👤', place: '📍', thing: '📦', animal: '🐾' };
+  const catColors = { person: 'var(--coral)', place: 'var(--sky)', thing: 'var(--mint)', animal: 'var(--peach)' };
+
+  catIds.forEach(id => {
+    const zone = document.createElement('div');
+    zone.className = `sort-zone zone-${id}`;
+    zone.dataset.cat = id;
+    zone.innerHTML = `<div class="zone-label">${catEmojis[id]} ${id.toUpperCase()}</div>`;
+    zone.addEventListener('click', () => sortDropInto(id));
+    zones.appendChild(zone);
+  });
+
+  const pool = document.getElementById('sortPool');
+  pool.innerHTML = '';
+  const shuffled = [...SORT_WORDS].sort(() => Math.random() - 0.5);
+  shuffled.forEach((item, i) => {
+    const tile = document.createElement('div');
+    tile.className = 'sort-tile';
+    tile.dataset.word = item.word;
+    tile.dataset.cat = item.cat;
+    tile.innerHTML = `${item.emoji} ${item.word}`;
+    tile.onclick = () => sortSelectTile(tile, item);
+    pool.appendChild(tile);
+  });
+}
+
+function sortSelectTile(tile, item) {
+  if (tile.classList.contains('placed')) return;
+  document.querySelectorAll('.sort-tile').forEach(t => t.style.outline = '');
+  tile.style.outline = '3px solid var(--coral)';
+  sortSelected = { tile, word: item.word, cat: item.cat };
+}
+
+function sortDropInto(catId) {
+  if (!sortSelected) return;
+  const { tile, word, cat } = sortSelected;
+  if (cat === catId) {
+    tile.classList.add('placed');
+    tile.style.outline = '';
+    sortPlaced[catId].push(word);
+    const zone = document.querySelector(`.sort-zone[data-cat="${catId}"]`);
+    const placed = document.createElement('span');
+    placed.className = 'sort-placed';
+    placed.textContent = word;
+    placed.style.border = `2px solid ${catId === 'person' ? 'var(--coral)' : catId === 'place' ? 'var(--sky)' : catId === 'thing' ? 'var(--mint)' : 'var(--peach)'}`;
+    placed.onclick = () => {
+      zone.removeChild(placed);
+      sortPlaced[catId] = sortPlaced[catId].filter(w => w !== word);
+      tile.classList.remove('placed');
+    };
+    zone.appendChild(placed);
+    sortSelected = null;
+    speak('Placed!');
+  } else {
+    tile.style.outline = '3px solid var(--coral)';
+    setTimeout(() => tile.style.outline = '', 400);
+    speak('Wrong category!');
+  }
+}
+
+function checkSort() {
+  const fb = document.getElementById('sortFb');
+  let total = 0;
+  let correct = 0;
+  SORT_WORDS.forEach(item => {
+    total++;
+    if (sortPlaced[item.cat] && sortPlaced[item.cat].includes(item.word)) {
+      correct++;
+    }
+  });
+  if (correct === total) {
+    fb.className = 'feedback fb-ok';
+    fb.textContent = `🎉 Perfect! All ${total} nouns sorted correctly! ⭐`;
+    launchConfetti(20);
+    speak('Perfect!');
+  } else {
+    fb.className = 'feedback fb-no';
+    fb.textContent = `You got ${correct} out of ${total} correct! Keep trying!`;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 2: SPIN WHEEL
+   ═══════════════════════════════════════════════════════════ */
+
+const WHEEL_WORDS = NOUNS.slice(0, 12);
+const WHEEL_COLORS = ['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#2EC4B6','#FF8FAB','#FF8C42','#2D6A4F','#795548','#9E9E9E'];
+let wAngle = 0;
+let wSpinning = false;
+
+function initWheel() { drawWheel(wAngle); }
+
+function drawWheel(rot) {
+  const cv = document.getElementById('nounWheel');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const cx = cv.width/2, cy = cv.height/2, r = cx - 8;
+  const arc = (2 * Math.PI) / WHEEL_WORDS.length;
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  WHEEL_WORDS.forEach((item, i) => {
+    const s = rot + i * arc;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, r, s, s + arc);
+    ctx.fillStyle = WHEEL_COLORS[i % WHEEL_COLORS.length];
+    ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(s + arc/2);
+    ctx.textAlign = 'right'; ctx.fillStyle = '#fff';
+    ctx.font = 'bold 11px Nunito, sans-serif';
+    ctx.fillText(item.emoji + ' ' + item.word, r - 10, 5);
+    ctx.restore();
+  });
+  ctx.beginPath(); ctx.moveTo(cx + 13, cy - r - 4); ctx.lineTo(cx - 13, cy - r - 4); ctx.lineTo(cx, cy - r + 18);
+  ctx.fillStyle = '#222'; ctx.fill();
+  ctx.beginPath(); ctx.arc(cx, cy, 13, 0, 2 * Math.PI);
+  ctx.fillStyle = '#fff'; ctx.fill(); ctx.strokeStyle = '#ddd'; ctx.lineWidth = 2; ctx.stroke();
+}
+
+function spinWheel() {
+  if (wSpinning) return;
+  wSpinning = true;
+  document.getElementById('spinBtn').disabled = true;
+  document.getElementById('spinResult').textContent = '';
+  const extra = (Math.floor(Math.random() * 5) + 5) * 2 * Math.PI;
+  const target = wAngle + extra + Math.random() * 2 * Math.PI;
+  const dur = 3200;
+  const t0 = performance.now();
+  function anim(now) {
+    const el = now - t0;
+    const t = Math.min(el / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 4);
+    drawWheel(wAngle + (target - wAngle) * ease);
+    if (t < 1) { requestAnimationFrame(anim); return; }
+    wAngle = target % (2 * Math.PI);
+    wSpinning = false;
+    document.getElementById('spinBtn').disabled = false;
+    const arc2 = (2 * Math.PI) / WHEEL_WORDS.length;
+    const rel = ((-Math.PI/2 - wAngle) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+    const idx = Math.floor(rel / arc2) % WHEEL_WORDS.length;
+    const obj = WHEEL_WORDS[idx];
+    const tasks = [
+      `Say a sentence with "${obj.word}"`,
+      `Spell "${obj.word}" out loud!`,
+      `Is "${obj.word}" a person, place, thing, or animal?`,
+      `Give a synonym for "${obj.word}"!`,
+    ];
+    const task = tasks[Math.floor(Math.random() * tasks.length)];
+    document.getElementById('spinResult').innerHTML =
+      `<strong style="font-size:1.8rem;">${obj.emoji} ${obj.word}</strong><br>
+       <span style="font-size:0.9rem; color:#666;">${task}</span>`;
+    speak(`${obj.word}! ${task.replace(/[""]/g, '')}`);
+  }
+  requestAnimationFrame(anim);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 3: MEMORY MATCH
+   ═══════════════════════════════════════════════════════════ */
+
+const MEM_PAIRS = [
+  { emoji: '👩‍🏫', text: 'Person', match: 'teacher' },
+  { emoji: '🏫', text: 'Place', match: 'school' },
+  { emoji: '📖', text: 'Thing', match: 'book' },
+  { emoji: '🐶', text: 'Animal', match: 'dog' },
+  { emoji: '👨‍⚕️', text: 'Person', match: 'doctor' },
+  { emoji: '🌳', text: 'Place', match: 'park' },
+  { emoji: '✏️', text: 'Thing', match: 'pencil' },
+  { emoji: '🐱', text: 'Animal', match: 'cat' },
+];
+
+let memCards = [];
+let memFlipped = [];
+let memMatched = 0;
+let memLocked = false;
+
+function initMemory() {
+  memFlipped = [];
+  memMatched = 0;
+  memLocked = false;
+  document.getElementById('memStatus').textContent = 'Tap any card to start! 🃏';
+  const all = [];
+  MEM_PAIRS.forEach((p, i) => {
+    all.push({ id: i, type: 'emoji', label: p.emoji, match: p.match, color: p.text });
+    all.push({ id: i, type: 'text', label: p.text, match: p.match, color: p.text });
+  });
+  all.sort(() => Math.random() - 0.5);
+  const g = document.getElementById('memoryGrid');
+  g.innerHTML = '';
+  all.forEach(item => {
+    const c = document.createElement('div');
+    c.className = 'mem-card';
+    c.dataset.id = item.id;
+    c.dataset.type = item.type;
+    c.dataset.match = item.match;
+    c.textContent = '❓';
+    c.onclick = () => handleMemory(c);
+    g.appendChild(c);
+  });
+}
+
+function handleMemory(card) {
+  if (memLocked || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  
+  // Ambil label berdasarkan tipe kartu, gunakan properti 'match' untuk mencari
+  const pair = MEM_PAIRS.find(p => p.match === card.dataset.match);
+  if (!pair) return;
+  
+  const label = card.dataset.type === 'emoji' ? pair.emoji : pair.text;
+  card.textContent = label;
+  card.classList.add('flipped');
+  memFlipped.push(card);
+  
+  if (memFlipped.length === 2) {
+    memLocked = true;
+    const [a, b] = memFlipped;
+    if (a.dataset.id === b.dataset.id && a.dataset.type !== b.dataset.type) {
+      a.classList.add('matched');
+      b.classList.add('matched');
+      memFlipped = [];
+      memLocked = false;
+      memMatched++;
+      speak('Match!');
+      if (memMatched === MEM_PAIRS.length) {
+        document.getElementById('memStatus').textContent = '🎉 All matched! Amazing memory! ⭐';
+        launchConfetti(20);
+      } else {
+        document.getElementById('memStatus').textContent =
+          `✅ Match! ${MEM_PAIRS.length - memMatched} pairs left!`;
+      }
+    } else {
+      setTimeout(() => {
+        a.classList.remove('flipped');
+        b.classList.remove('flipped');
+        a.textContent = '❓';
+        b.textContent = '❓';
+        memFlipped = [];
+        memLocked = false;
+      }, 900);
+      document.getElementById('memStatus').textContent = '❌ Not a match! Try again!';
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 4: BALLOON POP
+   ═══════════════════════════════════════════════════════════ */
+
+const BALLOON_EMOJIS = ['🔴','🟠','🟡','🟢','🔵','🟣','🩷','🤍'];
+let balloonScore = 0;
+let balloonRunning = false;
+let balloonInterval = null;
+
+function startBalloons() {
+  resetBalloons();
+  balloonRunning = true;
+  balloonScore = 0;
+  document.getElementById('balloonScore').textContent = 'Score: 0 🎈';
+  balloonInterval = setInterval(() => { if (balloonRunning) spawnBalloon(); }, 1300);
+  spawnBalloon();
+  spawnBalloon();
+}
+
+function resetBalloons() {
+  clearInterval(balloonInterval);
+  balloonRunning = false;
+  document.getElementById('balloonScore').textContent = 'Score: 0 🎈';
+  const arena = document.getElementById('balloonArena');
+  Array.from(arena.querySelectorAll('.balloon')).forEach(b => b.remove());
+}
+
+function spawnBalloon() {
+  if (!balloonRunning) return;
+  const arena = document.getElementById('balloonArena');
+  // 50% chance it's a noun, 50% chance it's not
+  const isNoun = Math.random() > 0.4;
+  let word, emoji, display;
+  if (isNoun) {
+    const n = NOUNS[Math.floor(Math.random() * NOUNS.length)];
+    word = n.word;
+    emoji = n.emoji;
+    display = `${emoji} ${word}`;
+  } else {
+    const nonNouns = ['run', 'jump', 'happy', 'quickly', 'beautiful', 'sleep', 'eat', 'slowly', 'big', 'small'];
+    const n = nonNouns[Math.floor(Math.random() * nonNouns.length)];
+    word = n;
+    emoji = BALLOON_EMOJIS[Math.floor(Math.random() * BALLOON_EMOJIS.length)];
+    display = `${emoji} ${word}`;
+  }
+  const b = document.createElement('div');
+  b.className = 'balloon';
+  const left = 10 + Math.random() * 75;
+  b.style.cssText = `left:${left}%;bottom:-120px;`;
+  b.dataset.isNoun = isNoun;
+  b.innerHTML = `
+    <span class="balloon-body">${emoji}</span>
+    <span class="balloon-num">${word}</span>
+    <span class="balloon-string">|</span>
+  `;
+  b.onclick = () => {
+    if (!balloonRunning) return;
+    if (isNoun) {
+      b.classList.add('popped');
+      balloonScore++;
+      document.getElementById('balloonScore').textContent = `Score: ${balloonScore} 🎈`;
+      speak('Noun!');
+      launchConfetti(5);
+      setTimeout(() => b.remove(), 300);
+    } else {
+      b.style.filter = 'brightness(0.5)';
+      speak('Not a noun!');
+      setTimeout(() => b.style.filter = '', 500);
+    }
+  };
+  arena.appendChild(b);
+  setTimeout(() => { if (b.parentNode) b.remove(); }, 5000);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   QUIZ (15 SOAL)
+   ═══════════════════════════════════════════════════════════ */
+
+const QUIZ_DATA = [
+  { q: 'Which word is a NOUN?', opts: ['run', 'book', 'quick', 'beautiful'], ans: 1, emoji: '📚', explain: '"book" names a thing — it is a noun!' },
+  { q: 'What type of noun is "teacher"?', opts: ['Place', 'Thing', 'Person', 'Animal'], ans: 2, emoji: '👩‍🏫', explain: '"teacher" names a person — a noun!' },
+  { q: 'Which of these is a PLACE?', opts: ['school', 'dog', 'pencil', 'friend'], ans: 0, emoji: '🏫', explain: '"school" names a place — it is a noun!' },
+  { q: 'Which word is a NOUN?', opts: ['jump', 'happy', 'elephant', 'slowly'], ans: 2, emoji: '🐘', explain: '"elephant" names an animal — it is a noun!' },
+  { q: 'What type of noun is "library"?', opts: ['Person', 'Place', 'Thing', 'Animal'], ans: 1, emoji: '📚', explain: '"library" names a place — it is a noun!' },
+  { q: 'Which of these is a THING?', opts: ['cat', 'park', 'crayon', 'nurse'], ans: 2, emoji: '🖍️', explain: '"crayon" names a thing — it is a noun!' },
+  { q: 'What type of noun is "bird"?', opts: ['Place', 'Thing', 'Person', 'Animal'], ans: 3, emoji: '🐦', explain: '"bird" names an animal — it is a noun!' },
+  { q: 'Which word is NOT a noun?', opts: ['table', 'doctor', 'garden', 'running'], ans: 3, emoji: '❓', explain: '"running" is a verb (action) — not a noun!' },
+  { q: 'What type of noun is "friend"?', opts: ['Person', 'Place', 'Thing', 'Animal'], ans: 0, emoji: '🤝', explain: '"friend" names a person — it is a noun!' },
+  { q: 'Which of these is an ANIMAL?', opts: ['pencil', 'garden', 'elephant', 'doctor'], ans: 2, emoji: '🐘', explain: '"elephant" names an animal — it is a noun!' },
+  { q: 'What is the plural of "child"?', opts: ['childs', 'children', 'childes', 'childrens'], ans: 1, emoji: '🧒', explain: '"children" is the irregular plural of child!' },
+  { q: 'Which is a PROPER noun?', opts: ['teacher', 'book', 'Jakarta', 'dog'], ans: 2, emoji: '🏙️', explain: '"Jakarta" is a specific place — a proper noun!' },
+  { q: 'What type of noun is "love"?', opts: ['Person', 'Place', 'Thing (idea)', 'Animal'], ans: 2, emoji: '❤️', explain: '"love" is an idea — a thing noun!' },
+  { q: 'Which suffix makes a noun from "teach"?', opts: ['-er', '-tion', '-ness', '-ment'], ans: 0, emoji: '👩‍🏫', explain: '"teach" + "-er" = "teacher" — a person who teaches!' },
+  { q: 'What is the plural of "mouse"?', opts: ['mouses', 'mice', 'mousees', 'micen'], ans: 1, emoji: '🐭', explain: '"mice" is the irregular plural of mouse!' },
+];
+
+let qIdx = 0;
+let qScore = 0;
+let qAnswered = false;
+
+function startQuiz() {
+  qIdx = 0;
+  qScore = 0;
+  qAnswered = false;
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizBody').style.display = 'block';
+  loadQuizQuestion();
+}
+
+function loadQuizQuestion() {
+  qAnswered = false;
+  const q = QUIZ_DATA[qIdx];
+  document.getElementById('qFill').style.width = ((qIdx / QUIZ_DATA.length) * 100) + '%';
+  document.getElementById('qScore').textContent = `Score: ${qScore} / ${QUIZ_DATA.length}`;
+  document.getElementById('qNum').textContent = `Question ${qIdx + 1} / ${QUIZ_DATA.length}`;
+  document.getElementById('quizFb').textContent = '';
+  document.getElementById('quizFb').className = 'quiz-fb';
+
+  document.getElementById('quizQ').innerHTML = `
+    <span class="qcard-emoji">${q.emoji}</span>
+    ${q.q}
+  `;
+
+  const opts = document.getElementById('quizOpts');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'qopt';
+    btn.textContent = o;
+    btn.onclick = () => answerQuizQ(i, btn, q.ans);
+    opts.appendChild(btn);
+  });
+}
+
+function answerQuizQ(i, btn, correct) {
+  if (qAnswered) return;
+  qAnswered = true;
+
+  const allBtns = document.querySelectorAll('.qopt');
+  allBtns.forEach(b => b.disabled = true);
+  allBtns[correct].classList.add('correct');
+
+  const fb = document.getElementById('quizFb');
+  const q = QUIZ_DATA[qIdx];
+
+  if (i === correct) {
+    qScore++;
+    fb.className = 'quiz-fb ok';
+    fb.textContent = `🎉 ${['Awesome!', 'Perfect!', 'Great job!', 'Well done!'][Math.floor(Math.random() * 4)]} ${q.explain}`;
+    speak('Correct!');
+    launchConfetti(8);
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'quiz-fb no';
+    fb.textContent = `❌ ${q.explain}`;
+    speak('Try again next time!');
+  }
+
+  document.getElementById('qScore').textContent = `Score: ${qScore} / ${QUIZ_DATA.length}`;
+
+  setTimeout(() => {
+    qIdx++;
+    if (qIdx < QUIZ_DATA.length) {
+      loadQuizQuestion();
+    } else {
+      showQuizResult();
+    }
+  }, 2000);
+}
+
+function showQuizResult() {
+  document.getElementById('quizBody').style.display = 'none';
+  document.getElementById('qFill').style.width = '100%';
+
+  const res = document.getElementById('quizResult');
+  res.classList.add('show');
+
+  const pct = (qScore / QUIZ_DATA.length) * 100;
+  let emoji, stars, msg;
+  if (pct === 100) {
+    emoji = '🏆';
+    stars = '⭐⭐⭐';
+    msg = 'PERFECT! You are a NOUN MASTER! 🎊';
+  } else if (pct >= 70) {
+    emoji = '🌟';
+    stars = '⭐⭐⭐';
+    msg = 'Amazing work! You really know your nouns! 📚';
+  } else if (pct >= 50) {
+    emoji = '😊';
+    stars = '⭐⭐';
+    msg = 'Good job! Keep learning and you\'ll be a pro! 💪';
+  } else {
+    emoji = '💪';
+    stars = '⭐';
+    msg = 'Don\'t give up! Review the nouns and try again! 📖';
+  }
+
+  document.getElementById('resEmoji').textContent = emoji;
+  document.getElementById('starsRow').textContent = stars;
+  document.getElementById('resScore').textContent = `${qScore} / ${QUIZ_DATA.length}`;
+  document.getElementById('resMsg').textContent = msg;
+
+  speak(`You scored ${qScore} out of ${QUIZ_DATA.length}. ${msg}`);
+  if (pct >= 70) launchConfetti(30);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONFETTI
+   ═══════════════════════════════════════════════════════════ */
+
+function launchConfetti(count) {
+  const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#C77DFF', '#FFB347', '#FF8FAB', '#2EC4B6'];
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      width: ${Math.random() * 10 + 6}px;
+      height: ${Math.random() * 10 + 6}px;
+      animation-duration: ${Math.random() * 1.5 + 1.5}s;
+      animation-delay: ${Math.random() * 0.5}s;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 3500);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+// Initialize everything
+initMatch();
+initSort();
+initMemory();
+initWheel();
+startBalloons();
+</script>
+</body>
+</html>

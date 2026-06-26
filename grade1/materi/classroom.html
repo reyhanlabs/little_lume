@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Grade 1: Classroom Objects</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --chalk:#FFFFFF;
+  --board:#2D6A4F;
+  --coral:#FF6B6B;
+  --sun:#FFD93D;
+  --mint:#6BCB77;
+  --sky:#4D96FF;
+  --lavender:#C77DFF;
+  --peach:#FFB347;
+  --rose:#FF8FAB;
+  --teal:#2EC4B6;
+  --cream:#FFFBF2;
+  --dark:#2B2B2B;
+  --shadow:0 6px 24px rgba(0,0,0,0.10);
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
+
+/* ── HEADER ── */
+header{
+  background:linear-gradient(135deg,#2D6A4F 0%,#1B4332 100%);
+  padding:22px 20px 28px;text-align:center;position:relative;overflow:hidden;
+}
+.chalk-lines{position:absolute;inset:0;pointer-events:none;}
+.chalk-line{position:absolute;height:2px;background:rgba(255,255,255,0.06);border-radius:2px;}
+.chalk-line:nth-child(1){top:25%;width:100%;}
+.chalk-line:nth-child(2){top:55%;width:100%;}
+.chalk-line:nth-child(3){top:80%;width:100%;}
+.floating-obj{position:absolute;font-size:1.6rem;animation:floatObj 5s ease-in-out infinite;opacity:.22;}
+.floating-obj:nth-child(1){top:8%;left:3%;animation-delay:0s;}
+.floating-obj:nth-child(2){top:10%;right:4%;animation-delay:1s;}
+.floating-obj:nth-child(3){bottom:12%;left:6%;animation-delay:2s;}
+.floating-obj:nth-child(4){bottom:8%;right:5%;animation-delay:.5s;}
+.floating-obj:nth-child(5){top:40%;left:1%;animation-delay:1.5s;}
+.floating-obj:nth-child(6){top:38%;right:2%;animation-delay:2.5s;}
+@keyframes floatObj{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-10px) rotate(5deg);}}
+.header-brand{font-family:'Fredoka One',cursive;font-size:clamp(1.9rem,5.5vw,3rem);color:#fff;letter-spacing:1px;text-shadow:2px 2px 0 rgba(0,0,0,0.25);position:relative;}
+.header-brand span{color:var(--sun);}
+.header-tag{display:inline-block;background:var(--sun);color:var(--dark);font-size:.85rem;font-weight:900;padding:4px 18px;border-radius:999px;margin-top:7px;letter-spacing:1.5px;text-transform:uppercase;}
+.header-title{margin-top:10px;font-family:'Fredoka One',cursive;font-size:clamp(1.3rem,3.8vw,2rem);color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,0.2);}
+.header-chalk{margin-top:8px;font-family:'Fredoka One',cursive;font-size:.95rem;color:rgba(255,255,255,0.75);letter-spacing:2px;}
+
+/* ── NAV ── */
+nav{display:flex;overflow-x:auto;gap:8px;padding:18px 14px 0;justify-content:center;flex-wrap:wrap;}
+nav button{font-family:'Fredoka One',cursive;font-size:.92rem;padding:10px 17px;border:none;border-radius:999px;cursor:pointer;transition:transform .15s,box-shadow .15s;white-space:nowrap;box-shadow:0 4px 0 rgba(0,0,0,0.20);}
+nav button:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,0.20);}
+nav button.active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,0.20);}
+.tn1{background:var(--board);color:#fff;}
+.tn2{background:var(--sky);color:#fff;}
+.tn3{background:var(--peach);color:#fff;}
+.tn4{background:var(--lavender);color:#fff;}
+.tn5{background:var(--coral);color:#fff;}
+.tn6{background:var(--mint);color:#fff;}
+
+/* ── MAIN ── */
+main{max-width:900px;margin:0 auto;padding:22px 13px 70px;}
+.sec{display:none;}
+.sec.active{display:block;animation:fadeUp .35s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── CARD ── */
+.card{background:#fff;border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);}
+.card-title{font-family:'Fredoka One',cursive;font-size:1.4rem;margin-bottom:13px;display:flex;align-items:center;gap:10px;}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;font-size:1.2rem;flex-shrink:0;}
+.tip-box{background:#fffbe6;border-left:5px solid var(--sun);border-radius:0 13px 13px 0;padding:12px 16px;font-size:.94rem;margin-top:10px;line-height:1.65;}
+
+/* ── SHARED BUTTONS ── */
+.btn{font-family:'Fredoka One',cursive;font-size:1rem;padding:10px 22px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,0.18);transition:transform .12s;margin-top:8px;margin-right:7px;display:inline-block;}
+.btn:hover{transform:translateY(-2px);}
+.btn-check{background:var(--lavender);color:#fff;}
+.btn-next{background:var(--mint);color:#fff;}
+.btn-reset{background:var(--peach);color:#fff;}
+.btn-sky{background:var(--sky);color:#fff;}
+.btn-coral{background:var(--coral);color:#fff;}
+.feedback{font-weight:800;margin-top:9px;min-height:24px;font-size:.98rem;}
+.fb-ok{color:var(--mint);}
+.fb-no{color:var(--coral);}
+
+/* ══════════════════ SECTION 1: LEARN ══════════════════ */
+/* Classroom scene */
+.classroom-scene{
+  background:linear-gradient(180deg,#b3d9ff 0%,#d4edff 40%,#e8f5e9 100%);
+  border-radius:18px;border:3px solid #a0c8e8;
+  padding:18px 14px 14px;margin-bottom:18px;position:relative;overflow:hidden;
+}
+.scene-title{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#1B4332;margin-bottom:10px;text-align:center;}
+.scene-board{
+  background:#2D6A4F;border-radius:10px;padding:14px 20px;margin-bottom:12px;
+  border:6px solid #795548;position:relative;min-height:80px;text-align:center;
+}
+.board-text{font-family:'Fredoka One',cursive;font-size:1rem;color:#fff;opacity:.9;letter-spacing:1px;}
+.scene-objects{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px;}
+.scene-obj{
+  background:#fff;border-radius:14px;padding:12px 10px;text-align:center;cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,0.10);transition:transform .15s;border:2px solid transparent;
+  min-width:80px;
+}
+.scene-obj:hover{transform:translateY(-4px) scale(1.05);border-color:var(--sky);}
+.scene-obj.active-obj{border-color:var(--coral);background:#fff5f5;}
+.so-emoji{font-size:2.2rem;display:block;}
+.so-name{font-family:'Fredoka One',cursive;font-size:.78rem;color:#555;margin-top:4px;}
+
+/* Object detail popup */
+.obj-detail{
+  background:linear-gradient(135deg,#e8f4ff,#f5e8ff);
+  border-radius:16px;padding:18px 20px;border:2px dashed var(--sky);
+  text-align:center;display:none;margin-bottom:14px;
+}
+.obj-detail.show{display:block;animation:fadeUp .3s ease;}
+.od-emoji{font-size:4rem;display:block;margin-bottom:6px;}
+.od-name{font-family:'Fredoka One',cursive;font-size:2rem;color:var(--board);}
+.od-article{font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--coral);margin-top:3px;}
+.od-sentence{font-size:.96rem;color:#555;margin-top:8px;line-height:1.7;}
+.od-plural{font-size:.88rem;color:#888;margin-top:4px;}
+
+/* Object grid */
+.obj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;}
+.obj-card{
+  border-radius:18px;padding:16px 10px;text-align:center;cursor:pointer;
+  box-shadow:var(--shadow);transition:transform .16s,box-shadow .16s;border:3px solid transparent;
+}
+.obj-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,0.13);}
+.obj-card.flipped{border-color:var(--mint);}
+.oc-emoji{font-size:2.8rem;display:block;margin-bottom:7px;}
+.oc-name{font-family:'Fredoka One',cursive;font-size:.95rem;}
+.oc-meaning{font-size:.76rem;color:#888;margin-top:4px;display:none;}
+.obj-card.flipped .oc-meaning{display:block;}
+.tap-hint{text-align:center;color:#bbb;font-size:.84rem;margin-bottom:10px;}
+
+/* a / an rule */
+.article-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.article-box{border-radius:16px;padding:16px;text-align:center;}
+.ab-title{font-family:'Fredoka One',cursive;font-size:1.5rem;}
+.ab-sub{font-size:.85rem;margin-top:4px;opacity:.8;}
+.ab-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px;}
+.ab-chip{background:rgba(255,255,255,.5);border-radius:999px;padding:5px 12px;font-weight:700;font-size:.88rem;}
+
+/* Where is it? */
+.where-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+.where-card{border-radius:14px;padding:14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:transform .14s;box-shadow:var(--shadow);}
+.where-card:hover{transform:scale(1.03);}
+.wc-emoji{font-size:1.8rem;flex-shrink:0;}
+.wc-text .wc-name{font-family:'Fredoka One',cursive;font-size:.98rem;}
+.wc-text .wc-loc{font-size:.78rem;color:#777;margin-top:3px;}
+
+/* ══════════════════ SECTION 2: VOCABULARY ══════════════════ */
+.vocab-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px;}
+.vtab{font-family:'Fredoka One',cursive;font-size:.88rem;padding:8px 16px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,0.15);transition:transform .12s;}
+.vtab:hover{transform:translateY(-2px);}
+.vtab.active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
+.vt1{background:var(--board);color:#fff;}
+.vt2{background:var(--sky);color:#fff;}
+.vt3{background:var(--coral);color:#fff;}
+.vocab-panel{display:none;}
+.vocab-panel.active{display:block;animation:fadeUp .3s ease;}
+
+/* Flip cards */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;}
+.flip-card{perspective:600px;height:130px;cursor:pointer;}
+.flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+.flip-back{transform:rotateY(180deg);}
+.ff-emoji{font-size:2.8rem;}
+.ff-q{font-family:'Fredoka One',cursive;font-size:.8rem;color:rgba(255,255,255,.7);margin-top:5px;}
+.fb-word{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#fff;text-align:center;padding:0 8px;}
+.fb-use{font-size:.76rem;color:rgba(255,255,255,.8);margin-top:5px;text-align:center;padding:0 6px;}
+
+/* Sentences */
+.sentence-list{display:grid;gap:10px;}
+.sent-card{border-radius:14px;padding:14px 16px;font-size:1rem;line-height:1.7;cursor:pointer;transition:transform .12s;box-shadow:0 3px 10px rgba(0,0,0,.07);}
+.sent-card:hover{transform:scale(1.015);}
+.sent-card strong{font-size:1.1rem;}
+
+/* Plural rules */
+.plural-list{display:grid;gap:10px;}
+.plural-card{border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 3px 10px rgba(0,0,0,.07);}
+.pl-rule{font-family:'Fredoka One',cursive;font-size:1rem;flex:1;}
+.pl-example{font-size:.88rem;color:#666;margin-top:3px;}
+.pl-badge{background:rgba(0,0,0,.08);border-radius:8px;padding:6px 10px;font-family:'Fredoka One',cursive;font-size:1rem;white-space:nowrap;}
+
+/* ══════════════════ SECTION 3: PRACTICE ══════════════════ */
+.practice-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.ptab{font-family:'Fredoka One',cursive;font-size:.88rem;padding:9px 16px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,0.15);transition:transform .12s;}
+.ptab:hover{transform:translateY(-2px);}
+.ptab.active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
+.pt1{background:var(--lavender);color:#fff;}
+.pt2{background:var(--teal,#2EC4B6);color:#fff;}
+.pt3{background:var(--rose,#FF8FAB);color:#fff;}
+.pt4{background:var(--peach);color:#fff;}
+.practice-panel{display:none;}
+.practice-panel.active{display:block;animation:fadeUp .3s ease;}
+
+/* Fill blank */
+.fill-q{background:#f5f0ff;border:2px solid var(--lavender);border-radius:14px;padding:17px 18px;margin-bottom:12px;font-size:1.05rem;line-height:2.2;}
+.fill-q input{border:none;border-bottom:3px solid var(--lavender);background:transparent;font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--lavender);width:140px;text-align:center;outline:none;padding:2px 4px;}
+.fill-q input:focus{border-bottom-color:var(--coral);}
+.qbadge{display:inline-block;background:var(--lavender);color:#fff;font-family:'Fredoka One',cursive;font-size:.78rem;padding:3px 10px;border-radius:999px;margin-right:8px;}
+
+/* Match it */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.match-col{display:flex;flex-direction:column;gap:8px;}
+.match-item{border-radius:12px;padding:12px 14px;cursor:pointer;font-family:'Fredoka One',cursive;font-size:1rem;text-align:center;box-shadow:0 3px 8px rgba(0,0,0,.10);transition:transform .12s,border-color .12s;border:3px solid transparent;user-select:none;}
+.match-item:hover{transform:scale(1.04);}
+.match-item.selected{border-color:var(--coral);transform:scale(1.06);}
+.match-item.matched{opacity:.55;pointer-events:none;border-color:var(--mint);}
+.match-item.wrong-flash{animation:wFlash .35s ease;}
+@keyframes wFlash{0%,100%{background:inherit;}50%{filter:brightness(.7);}}
+.match-status{font-family:'Fredoka One',cursive;font-size:1rem;text-align:center;margin-top:12px;min-height:28px;color:var(--lavender);}
+
+/* Categorize */
+.cat-zones{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.cat-zone{border-radius:14px;padding:14px;min-height:90px;}
+.cat-zone-title{font-family:'Fredoka One',cursive;font-size:.95rem;margin-bottom:8px;}
+.cat-zone-items{display:flex;flex-wrap:wrap;gap:7px;min-height:40px;}
+.cat-pool{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:#f5f5f5;border-radius:12px;margin-bottom:12px;}
+.cat-chip{font-family:'Fredoka One',cursive;font-size:.95rem;padding:8px 14px;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.13);transition:transform .12s;border:none;white-space:nowrap;}
+.cat-chip:hover{transform:translateY(-2px);}
+.cat-chip.used{opacity:.3;pointer-events:none;}
+.cat-placed{font-family:'Fredoka One',cursive;font-size:.9rem;padding:6px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;}
+.cat-placed:hover{opacity:.7;}
+
+/* Spell it */
+.spell-q{background:linear-gradient(135deg,#fff5e0,#fff0fa);border:2px solid var(--peach);border-radius:14px;padding:18px;margin-bottom:12px;text-align:center;}
+.spell-emoji{font-size:3.5rem;display:block;margin-bottom:8px;}
+.spell-hint{font-size:.88rem;color:#aaa;margin-bottom:8px;}
+.spell-input{font-family:'Fredoka One',cursive;font-size:1.3rem;text-align:center;padding:10px 16px;border:3px solid var(--peach);border-radius:12px;background:#fff;outline:none;color:var(--dark);width:100%;max-width:280px;}
+.spell-input:focus{border-color:var(--coral);}
+
+/* ══════════════════ SECTION 4: QUIZ ══════════════════ */
+.quiz-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.quiz-score{font-family:'Fredoka One',cursive;font-size:.98rem;color:var(--lavender);}
+.progress-bar{background:#ede0ff;border-radius:999px;height:11px;margin-bottom:16px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--board),var(--mint));transition:width .4s ease;}
+.quiz-qcard{border-radius:18px;padding:20px;text-align:center;margin-bottom:14px;font-family:'Fredoka One',cursive;font-size:1.25rem;min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.5;}
+.qcard-emoji{font-size:3rem;display:block;margin-bottom:6px;}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qopt{font-family:'Fredoka One',cursive;font-size:1rem;padding:13px 10px;border:3px solid transparent;border-radius:13px;background:#fff;cursor:pointer;box-shadow:var(--shadow);transition:transform .14s,border-color .14s;text-align:center;}
+.qopt:hover{transform:scale(1.04);border-color:var(--lavender);}
+.qopt.correct{background:#d4f7dc;border-color:var(--mint);}
+.qopt.wrong{background:#ffd6d6;border-color:var(--coral);}
+.quiz-fb{text-align:center;font-family:'Fredoka One',cursive;font-size:1.15rem;margin-top:10px;min-height:28px;}
+.quiz-fb.ok{color:var(--mint);}
+.quiz-fb.no{color:var(--coral);}
+.quiz-result{text-align:center;padding:26px 14px;display:none;}
+.quiz-result.show{display:block;animation:fadeUp .4s ease;}
+.res-emoji{font-size:4rem;display:block;margin-bottom:8px;}
+.res-score{font-family:'Fredoka One',cursive;font-size:2.3rem;color:var(--coral);}
+.res-msg{font-size:1rem;color:#555;margin-top:6px;}
+.stars-row{font-size:2rem;margin:10px 0;}
+
+/* ══════════════════ SECTION 5: GAMES ══════════════════ */
+.game-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.gtab{font-family:'Fredoka One',cursive;font-size:.9rem;padding:9px 16px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,0.15);transition:transform .12s;}
+.gtab:hover{transform:translateY(-2px);}
+.gtab.active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,0.15);}
+.gt1{background:var(--coral);color:#fff;}
+.gt2{background:var(--mint);color:#fff;}
+.gt3{background:var(--sky);color:#fff;}
+.gt4{background:var(--sun);color:var(--dark);}
+.game-panel{display:none;}
+.game-panel.active{display:block;animation:fadeUp .3s ease;}
+
+/* Classroom Hunt */
+.hunt-room{
+  background:linear-gradient(180deg,#dff2ff 0%,#e8f5e9 100%);
+  border-radius:18px;border:3px solid #a0d8cf;
+  padding:14px;position:relative;margin-bottom:12px;
+}
+.hunt-target{font-family:'Fredoka One',cursive;font-size:1.1rem;text-align:center;padding:10px;background:rgba(255,255,255,.85);border-radius:12px;margin-bottom:10px;color:var(--board);}
+.hunt-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+.hunt-obj{
+  background:#fff;border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);transition:transform .14s;border:2px solid transparent;
+}
+.hunt-obj:hover{transform:scale(1.08);}
+.hunt-obj.found{border-color:var(--mint);background:#f0fff4;}
+.hunt-obj.wrong-shake{animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.ho-emoji{font-size:2rem;display:block;}
+.hunt-score{font-family:'Fredoka One',cursive;font-size:.98rem;color:var(--mint);text-align:center;margin-top:10px;}
+
+/* What's in the bag */
+.bag-game{text-align:center;}
+.bag-display{font-size:5rem;margin:10px 0;cursor:pointer;display:inline-block;animation:bagWiggle 2s ease-in-out infinite;}
+@keyframes bagWiggle{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(3deg);}}
+.bag-hint{font-family:'Fredoka One',cursive;font-size:1rem;color:#888;margin-bottom:14px;}
+.bag-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:400px;margin:0 auto;}
+.bag-opt{font-family:'Fredoka One',cursive;font-size:.95rem;padding:14px 8px;border:3px solid transparent;border-radius:14px;background:#fff;cursor:pointer;box-shadow:var(--shadow);transition:transform .14s;text-align:center;}
+.bag-opt:hover{transform:scale(1.06);}
+.bag-opt.correct{background:#d4f7dc;border-color:var(--mint);}
+.bag-opt.wrong{background:#ffd6d6;border-color:var(--coral);}
+.bag-fb{font-family:'Fredoka One',cursive;font-size:1.1rem;min-height:28px;margin-top:10px;color:var(--lavender);}
+.bag-score{font-family:'Fredoka One',cursive;font-size:.95rem;color:var(--sky);margin-bottom:8px;}
+
+/* True or false */
+.tof-card{background:linear-gradient(135deg,#fff5e0,#fff0fa);border:2px solid var(--peach);border-radius:16px;padding:20px;text-align:center;margin-bottom:12px;}
+.tof-emoji{font-size:3rem;display:block;margin-bottom:6px;}
+.tof-statement{font-family:'Fredoka One',cursive;font-size:1.15rem;color:var(--dark);line-height:1.5;}
+.tof-btns{display:flex;gap:14px;justify-content:center;margin-top:14px;}
+.tof-btn{font-family:'Fredoka One',cursive;font-size:1.2rem;padding:12px 30px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .12s;}
+.tof-btn:hover{transform:translateY(-2px);}
+.tof-true{background:var(--mint);color:#fff;}
+.tof-false{background:var(--coral);color:#fff;}
+.tof-fb{font-family:'Fredoka One',cursive;font-size:1.1rem;min-height:28px;margin-top:10px;text-align:center;}
+.tof-score{font-family:'Fredoka One',cursive;font-size:.95rem;color:var(--board);text-align:center;margin-bottom:8px;}
+
+/* Spin Wheel */
+.wheel-wrap{text-align:center;}
+canvas#classWheel{display:block;margin:0 auto;max-width:270px;}
+.spin-btn{font-family:'Fredoka One',cursive;font-size:1.1rem;padding:12px 34px;border:none;border-radius:999px;background:linear-gradient(90deg,var(--board),var(--mint));color:#fff;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.18);margin-top:14px;transition:transform .12s;}
+.spin-btn:hover{transform:translateY(-2px);}
+.spin-result{margin-top:14px;font-family:'Fredoka One',cursive;font-size:1.25rem;color:var(--lavender);min-height:44px;line-height:1.5;}
+
+/* footer */
+footer{text-align:center;padding:20px;color:#bbb;font-size:.84rem;}
+footer span{color:var(--coral);}
+
+@media(max-width:540px){
+  .obj-grid{grid-template-columns:repeat(3,1fr);}
+  .qopts{grid-template-columns:1fr;}
+  .match-wrap{grid-template-columns:1fr;}
+  .cat-zones{grid-template-columns:1fr;}
+  .hunt-grid{grid-template-columns:repeat(4,1fr);}
+  .bag-choices{grid-template-columns:repeat(2,1fr);}
+  .article-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="chalk-lines"><div class="chalk-line"></div><div class="chalk-line"></div><div class="chalk-line"></div></div>
+  <div class="floating-obj">✏️</div><div class="floating-obj">📚</div>
+  <div class="floating-obj">📐</div><div class="floating-obj">🖍️</div>
+  <div class="floating-obj">📏</div><div class="floating-obj">🔭</div>
+  <div class="header-brand">Little<span>Lume</span> English ✨</div>
+  <div><span class="header-tag">⭐ Grade 1 ⭐</span></div>
+  <div class="header-title">🏫 Classroom Objects 🏫</div>
+  <div class="header-chalk">✏️ Look around your classroom! ✏️</div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="tn1 active" onclick="showSec('learn',this)">📚 Learn</button>
+  <button class="tn2"        onclick="showSec('vocab',this)">🔤 Vocabulary</button>
+  <button class="tn3"        onclick="showSec('practice',this)">✏️ Practice</button>
+  <button class="tn4"        onclick="showSec('quiz',this)">❓ Quiz</button>
+  <button class="tn5"        onclick="showSec('games',this)">🎮 Games</button>
+</nav>
+
+<main>
+
+<!-- ══ 1. LEARN ══ -->
+<div id="learn" class="sec active">
+
+  <!-- Classroom scene -->
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#c8f5d0">🏫</div> Welcome to the Classroom!</div>
+    <div class="classroom-scene">
+      <div class="scene-title">👆 Tap any object to learn about it!</div>
+      <div class="scene-board">
+        <div class="board-text">📖 Today we learn: CLASSROOM OBJECTS 📖</div>
+      </div>
+      <div class="scene-objects" id="sceneObjects"></div>
+    </div>
+    <div class="obj-detail" id="objDetail"></div>
+    <div class="tip-box">💡 <strong>Classroom objects</strong> are the things we use every day at school! We write with a <strong>pencil</strong>, read a <strong>book</strong>, and sit at a <strong>desk</strong>!</div>
+  </div>
+
+  <!-- All objects grid -->
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#ffd6d6">📦</div> All Classroom Objects</div>
+    <p class="tap-hint">👆 Tap a card to learn the meaning!</p>
+    <div class="obj-grid" id="allObjGrid"></div>
+  </div>
+
+  <!-- A vs An -->
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d0e8ff">📝</div> "A" or "AN"? — The Article Rule</div>
+    <div class="article-grid">
+      <div class="article-box" style="background:#fff0b3;">
+        <div class="ab-title" style="color:#b7950b;">📌 Use "A"</div>
+        <div class="ab-sub" style="color:#7d6608;">before consonant sounds</div>
+        <div class="ab-items" id="aItems"></div>
+      </div>
+      <div class="article-box" style="background:#d4f7dc;">
+        <div class="ab-title" style="color:#1e8449;">📌 Use "AN"</div>
+        <div class="ab-sub" style="color:#145a32;">before vowel sounds (a,e,i,o,u)</div>
+        <div class="ab-items" id="anItems"></div>
+      </div>
+    </div>
+    <div class="tip-box">💡 <strong>Rule:</strong> Say <strong>"A"</strong> before words that start with <strong>B, C, D, F, G, H...</strong> and most consonants. Say <strong>"AN"</strong> before words that start with <strong>A, E, I, O, U!</strong></div>
+  </div>
+
+  <!-- Where is it? -->
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#f3e8ff">📍</div> Where is it in the Classroom?</div>
+    <p style="color:#666;font-size:.92rem;margin-bottom:12px;">Learn where each object belongs! 👇</p>
+    <div class="where-list" id="whereList"></div>
+  </div>
+
+</div><!-- /learn -->
+
+<!-- ══ 2. VOCABULARY ══ -->
+<div id="vocab" class="sec">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d0e8ff">🔤</div> Vocabulary Deep Dive</div>
+    <div class="vocab-tabs">
+      <button class="vtab vt1 active" onclick="showVtab('vt-flip',this)">🃏 Flip Cards</button>
+      <button class="vtab vt2"        onclick="showVtab('vt-sent',this)">💬 Sentences</button>
+      <button class="vtab vt3"        onclick="showVtab('vt-plural',this)">🔢 Plural Forms</button>
+    </div>
+
+    <div id="vt-flip" class="vocab-panel active">
+      <p class="tap-hint">👆 Tap each card to flip it!</p>
+      <div class="flip-grid" id="flipGrid"></div>
+    </div>
+
+    <div id="vt-sent" class="vocab-panel">
+      <p style="color:#666;font-size:.92rem;margin-bottom:12px;">Tap a sentence to hear it! 🔊</p>
+      <div class="sentence-list" id="sentList"></div>
+    </div>
+
+    <div id="vt-plural" class="vocab-panel">
+      <p style="color:#666;font-size:.92rem;margin-bottom:12px;">Learn how to say MORE than one object! 📦📦</p>
+      <div class="plural-list" id="pluralList"></div>
+      <div class="tip-box" style="margin-top:12px;">💡 Most classroom objects just add <strong>-s</strong> to make them plural! (book → books, pencil → pencils) But some are different, like <strong>dictionary → dictionaries</strong>!</div>
+    </div>
+  </div>
+</div><!-- /vocab -->
+
+<!-- ══ 3. PRACTICE ══ -->
+<div id="practice" class="sec">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#f3e8ff">✏️</div> Practice Time!</div>
+    <div class="practice-tabs">
+      <button class="ptab pt1 active" onclick="showPtab('pt-fill',this)">📝 Fill the Blank</button>
+      <button class="ptab pt2"        onclick="showPtab('pt-match',this)">🔗 Match It!</button>
+      <button class="ptab pt3"        onclick="showPtab('pt-cat',this)">📂 Sort It!</button>
+      <button class="ptab pt4"        onclick="showPtab('pt-spell',this)">🔡 Spell It!</button>
+    </div>
+
+    <div id="pt-fill" class="practice-panel active">
+      <div id="fillContainer"></div>
+    </div>
+
+    <div id="pt-match" class="practice-panel">
+      <p style="color:#666;font-size:.9rem;margin-bottom:12px;">Tap an object on the left, then tap its name on the right! 🔗</p>
+      <div class="match-wrap">
+        <div class="match-col" id="matchLeft"></div>
+        <div class="match-col" id="matchRight"></div>
+      </div>
+      <div class="match-status" id="matchStatus">Tap an item on the left to start! 👈</div>
+      <button class="btn btn-reset" style="margin-top:10px;" onclick="initMatch()">🔄 New Game</button>
+    </div>
+
+    <div id="pt-cat" class="practice-panel">
+      <p style="color:#666;font-size:.9rem;margin-bottom:10px;">Sort the objects into the right groups! 📂</p>
+      <div class="cat-pool" id="catPool"></div>
+      <div class="cat-zones" id="catZones"></div>
+      <button class="btn btn-check" onclick="checkCat()">✅ Check</button>
+      <button class="btn btn-reset" onclick="initCat()">🔄 Reset</button>
+      <div class="feedback" id="catFb"></div>
+    </div>
+
+    <div id="pt-spell" class="practice-panel">
+      <div id="spellContainer"></div>
+    </div>
+  </div>
+</div><!-- /practice -->
+
+<!-- ══ 4. QUIZ ══ -->
+<div id="quiz" class="sec">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#ffd6d6">❓</div> Classroom Objects Quiz!</div>
+    <div class="quiz-hdr">
+      <div class="quiz-score" id="qScore">Score: 0 / 12</div>
+      <div style="font-size:.83rem;color:#bbb;" id="qNum">Question 1 / 12</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="qFill" style="width:0%"></div></div>
+    <div id="quizBody">
+      <div class="quiz-qcard" id="quizQ" style="background:linear-gradient(135deg,#e8f5e9,#e0f4ff);">Loading...</div>
+      <div class="qopts" id="quizOpts"></div>
+      <div class="quiz-fb" id="quizFb"></div>
+    </div>
+    <div class="quiz-result" id="quizResult">
+      <span class="res-emoji" id="resEmoji">🏆</span>
+      <div class="stars-row" id="starsRow">⭐⭐⭐</div>
+      <div class="res-score" id="resScore">0/12</div>
+      <div class="res-msg" id="resMsg"></div>
+      <button class="btn btn-sky" style="margin-top:16px;" onclick="startQuiz()">🔄 Try Again!</button>
+    </div>
+  </div>
+</div><!-- /quiz -->
+
+<!-- ══ 5. GAMES ══ -->
+<div id="games" class="sec">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d0e8ff">🎮</div> Fun Games!</div>
+    <div class="game-tabs">
+      <button class="gtab gt1 active" onclick="showGtab('g-hunt',this)">🔍 Object Hunt</button>
+      <button class="gtab gt2"        onclick="showGtab('g-bag',this)">🎒 What's in the Bag?</button>
+      <button class="gtab gt3"        onclick="showGtab('g-tof',this)">✅ True or False</button>
+      <button class="gtab gt4"        onclick="showGtab('g-wheel',this)">🎡 Spin &amp; Say!</button>
+    </div>
+
+    <!-- Object Hunt -->
+    <div id="g-hunt" class="game-panel active">
+      <p style="color:#666;font-size:.9rem;margin-bottom:10px;">Find the object shown below! Tap the correct one! 🔍</p>
+      <div class="hunt-score" id="huntScore">Score: 0 🏆</div>
+      <div class="hunt-room">
+        <div class="hunt-target" id="huntTarget">Loading...</div>
+        <div class="hunt-grid" id="huntGrid"></div>
+      </div>
+      <button class="btn btn-sky" onclick="startHunt()">🔍 Start Hunt!</button>
+      <button class="btn btn-reset" onclick="resetHunt()">🔄 Reset</button>
+    </div>
+
+    <!-- What's in the bag -->
+    <div id="g-bag" class="game-panel">
+      <p style="color:#666;font-size:.9rem;margin-bottom:8px;">Look at the clue and guess what's in the bag! 🎒</p>
+      <div class="bag-score" id="bagScore">Score: 0 🎒</div>
+      <div class="bag-game">
+        <span class="bag-display">🎒</span>
+        <div class="bag-hint" id="bagHint">Tap the bag to start!</div>
+        <div class="bag-choices" id="bagChoices"></div>
+        <div class="bag-fb" id="bagFb"></div>
+      </div>
+      <button class="btn btn-sky" style="margin-top:8px;" onclick="startBag()">🎒 Start Game!</button>
+    </div>
+
+    <!-- True or False -->
+    <div id="g-tof" class="game-panel">
+      <p style="color:#666;font-size:.9rem;margin-bottom:8px;">Is the statement TRUE or FALSE? 🤔</p>
+      <div class="tof-score" id="tofScore">Score: 0 ✅</div>
+      <div id="tofCard"></div>
+      <button class="btn btn-sky" onclick="startTof()">✅ Start Game!</button>
+      <button class="btn btn-reset" onclick="resetTof()">🔄 Reset</button>
+    </div>
+
+    <!-- Spin & Say -->
+    <div id="g-wheel" class="game-panel">
+      <p style="color:#666;font-size:.9rem;margin-bottom:10px;">Spin the wheel and say a sentence using that object! 🎡</p>
+      <div class="wheel-wrap">
+        <canvas id="classWheel" width="270" height="270"></canvas>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 SPIN!</button>
+        <div class="spin-result" id="spinResult"></div>
+      </div>
+    </div>
+  </div>
+</div><!-- /games -->
+
+</main>
+<footer>Made with ❤️ by <span>LittleLume English</span> • Grade 1 • Classroom Objects</footer>
+
+<script>
+/* ══ HELPERS ══ */
+function showSec(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='quiz') startQuiz();
+  if(id==='games'){startHunt();startBag();startTof();initWheel();}
+}
+function speak(t){if(!('speechSynthesis' in window))return;const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.82;u.pitch=1.05;speechSynthesis.cancel();speechSynthesis.speak(u);}
+function showVtab(id,btn){document.querySelectorAll('.vocab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.vtab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
+function showPtab(id,btn){document.querySelectorAll('.practice-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
+function showGtab(id,btn){document.querySelectorAll('.game-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.gtab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
+
+/* ══ DATA ══ */
+const OBJECTS=[
+  {id:'book',     name:'book',        plural:'books',         emoji:'📚', article:'a',  color:'#FF6B6B', colorLight:'#ffd6d6', use:'We read a book.', location:'on the desk or shelf', category:'reading', desc:'A book has many pages. We read books to learn!'},
+  {id:'pencil',   name:'pencil',      plural:'pencils',       emoji:'✏️', article:'a',  color:'#FFD93D', colorLight:'#fff9c4', use:'I write with a pencil.', location:'in the pencil case', category:'writing', desc:'A pencil is used for writing and drawing. It has an eraser at the end!'},
+  {id:'pen',      name:'pen',         plural:'pens',          emoji:'🖊️', article:'a',  color:'#4D96FF', colorLight:'#d0e8ff', use:'She writes with a pen.', location:'in the pencil case', category:'writing', desc:'A pen uses ink. We use it to write neatly.'},
+  {id:'eraser',   name:'eraser',      plural:'erasers',       emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.3em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 28" width="100%" height="100%"><rect x="2" y="4" width="44" height="20" rx="4" fill="#FFB6C1"/><rect x="26" y="4" width="18" height="20" rx="3" fill="#fff" opacity="0.5"/><line x1="26" y1="4" x2="26" y2="24" stroke="#d63060" stroke-width="1.5"/><rect x="2" y="19" width="44" height="5" rx="2" fill="#e75480" opacity="0.7"/><text x="6" y="17" font-size="7" fill="#d63060" font-family="Arial" font-weight="bold">ERASER</text></svg></span>', article:'an', color:'#FF8FAB', colorLight:'#ffd6e7', use:'I use an eraser.', location:'on the desk', category:'writing', desc:'An eraser removes pencil marks. Very useful!'},
+  {id:'ruler',    name:'ruler',       plural:'rulers',        emoji:'📏', article:'a',  color:'#6BCB77', colorLight:'#d4f7dc', use:'I measure with a ruler.', location:'in the pencil case', category:'tools', desc:'A ruler is used to draw straight lines and measure length.'},
+  {id:'scissors', name:'scissors',    plural:'scissors',      emoji:'✂️', article:'a',  color:'#C77DFF', colorLight:'#f3e8ff', use:'I cut with scissors.', location:'in the art box', category:'tools', desc:'Scissors are used to cut paper. Always be careful!'},
+  {id:'glue',     name:'glue',        plural:'glue sticks',   emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:1.6em;height:2em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 44" width="100%" height="100%"><rect x="4" y="1" width="20" height="10" rx="4" fill="#4D96FF"/><rect x="4" y="1" width="20" height="4" rx="4" fill="#81C0FF" opacity="0.7"/><rect x="5" y="11" width="18" height="22" rx="2" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="0.8"/><rect x="5" y="15" width="18" height="7" fill="#4D96FF" opacity="0.25"/><text x="14" y="21" font-size="4.5" fill="#4D96FF" font-family="Arial" font-weight="bold" text-anchor="middle">GLUE</text><rect x="5" y="33" width="18" height="8" rx="3" fill="#BDBDBD"/><rect x="7" y="35" width="14" height="2" rx="1" fill="#9E9E9E" opacity="0.6"/><rect x="7" y="38" width="14" height="1.5" rx="1" fill="#9E9E9E" opacity="0.4"/><ellipse cx="14" cy="11" rx="7" ry="2.5" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.6"/></svg></span>', article:'a',  color:'#FFB347', colorLight:'#ffe8cc', use:'I stick with glue.', location:'in the art box', category:'tools', desc:'Glue is used to stick things together in art class.'},
+  {id:'crayon',   name:'crayon',      plural:'crayons',       emoji:'🖍️', article:'a',  color:'#FF6B6B', colorLight:'#ffd6d6', use:'I colour with a crayon.', location:'in the crayon box', category:'art', desc:'Crayons come in many colours. We use them to colour pictures!'},
+  {id:'notebook', name:'notebook',    plural:'notebooks',     emoji:'📓', article:'a',  color:'#2EC4B6', colorLight:'#c8f5f1', use:'I write in my notebook.', location:'in the school bag', category:'reading', desc:'A notebook has blank pages. We write notes inside it.'},
+  {id:'bag',      name:'school bag',  plural:'school bags',   emoji:'🎒', article:'a',  color:'#FF8C42', colorLight:'#ffe0c4', use:'I carry my school bag.', location:'on the hook', category:'storage', desc:'We put all our books and stationery in our school bag.'},
+  {id:'desk',     name:'desk',        plural:'desks',         emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2.2em;height:1.6em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 36" width="100%" height="100%"><rect x="2" y="6" width="52" height="7" rx="2" fill="#A0522D"/><rect x="2" y="6" width="52" height="3" rx="2" fill="#C68642"/><rect x="5" y="13" width="5" height="20" rx="1.5" fill="#8B4513"/><rect x="46" y="13" width="5" height="20" rx="1.5" fill="#8B4513"/><rect x="5" y="25" width="46" height="4" rx="1.5" fill="#A0522D"/><rect x="4" y="12" width="50" height="2" rx="1" fill="#6B3410" opacity="0.3"/></svg></span>', article:'a',  color:'#795548', colorLight:'#d7ccc8', use:'I sit at my desk.', location:'in the classroom', category:'furniture', desc:'A desk is where students sit and do their work.'},
+  {id:'chair',    name:'chair',       plural:'chairs',        emoji:'🪑', article:'a',  color:'#9E9E9E', colorLight:'#e0e0e0', use:'I sit on a chair.', location:'at the desk', category:'furniture', desc:'A chair has four legs and a back. We sit on it.'},
+  {id:'board',    name:'blackboard',  plural:'blackboards',   emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.4em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 32" width="100%" height="100%"><rect x="1" y="1" width="50" height="30" rx="2" fill="#8B4513"/><rect x="3" y="3" width="46" height="26" rx="1" fill="#2D6A4F"/><line x1="8" y1="12" x2="28" y2="12" stroke="#fff" stroke-width="1.5" opacity="0.8"/><line x1="8" y1="18" x2="22" y2="18" stroke="#fff" stroke-width="1.5" opacity="0.6"/><rect x="3" y="27" width="46" height="2" rx="1" fill="#a0522d" opacity="0.5"/></svg></span>', article:'a',  color:'#2D6A4F', colorLight:'#c8e6c9', use:'The teacher writes on the blackboard.', location:'at the front', category:'furniture', desc:'The teacher writes on the blackboard with chalk. We copy the notes.'},
+  {id:'chalk',    name:'chalk',       plural:'chalk sticks',  emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.3em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 22" width="100%" height="100%"><rect x="6" y="5" width="38" height="12" rx="5" fill="#F5F5F5"/><rect x="6" y="5" width="38" height="4" rx="5" fill="#FFFFFF" opacity="0.8"/><rect x="6" y="13" width="38" height="4" rx="5" fill="#C8C8C8" opacity="0.6"/><polygon points="6,11 2,14 2,8" fill="#E0E0E0"/><rect x="44" y="5" width="3" height="12" rx="1" fill="#BDBDBD"/><line x1="2" y1="16" x2="12" y2="18" stroke="#E0E0E0" stroke-width="1.2" opacity="0.7"/><line x1="4" y1="18" x2="10" y2="20" stroke="#E0E0E0" stroke-width="0.8" opacity="0.5"/><rect x="6" y="5" width="38" height="12" rx="5" fill="none" stroke="#BDBDBD" stroke-width="0.8"/></svg></span>', article:'a',  color:'#E0E0E0', colorLight:'#f5f5f5', use:'The teacher uses chalk.', location:'at the blackboard', category:'writing', desc:'Chalk is used to write on the blackboard. It is white!'},
+  {id:'ruler2',   name:'set square',  plural:'set squares',   emoji:'📐', article:'a',  color:'#4D96FF', colorLight:'#d0e8ff', use:'I use a set square in maths.', location:'in the pencil case', category:'tools', desc:'A set square has right angles. It helps draw perfect corners!'},
+  {id:'book2',    name:'dictionary',  plural:'dictionaries',  emoji:'📖', article:'a',  color:'#C77DFF', colorLight:'#f3e8ff', use:'I look up words in the dictionary.', location:'on the shelf', category:'reading', desc:'A dictionary explains the meaning of words. Very helpful!'},
+  {id:'clock',    name:'clock',       plural:'clocks',        emoji:'🕐', article:'a',  color:'#FF6B6B', colorLight:'#ffd6d6', use:'I look at the clock.', location:'on the wall', category:'furniture', desc:'A clock shows us what time it is. There is usually one on the wall!'},
+  {id:'map',      name:'map',         plural:'maps',          emoji:'🗺️', article:'a',  color:'#6BCB77', colorLight:'#d4f7dc', use:'We look at the map.', location:'on the wall', category:'furniture', desc:'A map shows countries and places. We use it in Geography!'},
+  {id:'computer', name:'computer',    plural:'computers',     emoji:'💻', article:'a',  color:'#2EC4B6', colorLight:'#c8f5f1', use:'We use the computer.', location:'on the teacher\'s desk', category:'technology', desc:'A computer helps us learn and do research at school.'},
+  {id:'sharpener',name:'sharpener',   plural:'sharpeners',    emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:1.8em;height:1.6em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 34" width="100%" height="100%"><rect x="8" y="4" width="32" height="26" rx="4" fill="#FF6B6B"/><rect x="8" y="4" width="32" height="8" rx="4" fill="#FF8FAB" opacity="0.6"/><rect x="8" y="24" width="32" height="6" rx="3" fill="#D63060" opacity="0.4"/><ellipse cx="14" cy="17" rx="5" ry="5" fill="#2B2B2B"/><ellipse cx="14" cy="17" rx="3.5" ry="3.5" fill="#1a1a1a"/><rect x="1" y="14.5" width="12" height="5" rx="2.5" fill="#FFD93D"/><polygon points="1,14.5 1,19.5 5,17" fill="#FF8C42"/><circle cx="30" cy="12" r="3" fill="#C0C0C0" opacity="0.8"/><line x1="30" y1="9.5" x2="30" y2="14.5" stroke="#888" stroke-width="1"/><line x1="27.5" y1="12" x2="32.5" y2="12" stroke="#888" stroke-width="1"/><rect x="16" y="26" width="16" height="3" rx="1.5" fill="#2B2B2B" opacity="0.4"/></svg></span>', article:'a',  color:'#FFB347', colorLight:'#ffe8cc', use:'I use a sharpener for my pencil.', location:'in the pencil case', category:'tools', desc:'A sharpener makes pencils sharp so we can write neatly!'},
+];
+
+const A_WORDS  = OBJECTS.filter(o=>o.article==='a');
+const AN_WORDS = OBJECTS.filter(o=>o.article==='an');
+
+/* ══ LEARN: Scene ══ */
+const SCENE_ITEMS = OBJECTS.slice(0,12);
+const sceneEl = document.getElementById('sceneObjects');
+SCENE_ITEMS.forEach(o=>{
+  const d=document.createElement('div');
+  d.className='scene-obj';
+  d.innerHTML=`<span class="so-emoji">${o.emoji}</span><span class="so-name">${o.name}</span>`;
+  d.onclick=()=>showDetail(o,d);
+  sceneEl.appendChild(d);
+});
+function showDetail(o,el){
+  document.querySelectorAll('.scene-obj').forEach(s=>s.classList.remove('active-obj'));
+  el.classList.add('active-obj');
+  const p=document.getElementById('objDetail');
+  p.innerHTML=`
+    <span class="od-emoji">${o.emoji}</span>
+    <div class="od-name">${o.article.toUpperCase()} <strong style="color:var(--board)">${o.name.toUpperCase()}</strong></div>
+    <div class="od-article">Article: "${o.article} ${o.name}"</div>
+    <div class="od-sentence">💬 <em>"${o.use}"</em></div>
+    <div class="od-plural">📦 Plural: ${o.plural}</div>
+    <div style="font-size:.9rem;color:#777;margin-top:8px;">📍 Location: ${o.location}</div>
+    <button class="btn btn-sky" style="margin-top:10px;" onclick="speak('${o.article} ${o.name}. ${o.use}')">🔊 Hear It!</button>
+  `;
+  p.classList.add('show');
+  speak(`${o.article} ${o.name}. ${o.use}`);
+}
+
+/* All objects grid */
+const allGrid = document.getElementById('allObjGrid');
+OBJECTS.forEach(o=>{
+  const c=document.createElement('div');
+  c.className='obj-card';
+  c.style.background=o.colorLight;
+  c.innerHTML=`<span class="oc-emoji">${o.emoji}</span><div class="oc-name" style="color:${o.color}">${o.name}</div><div class="oc-meaning">${o.desc}</div>`;
+  c.onclick=()=>{c.classList.toggle('flipped');speak(`${o.article} ${o.name}. ${o.use}`);};
+  allGrid.appendChild(c);
+});
+
+/* A / AN */
+const aEl=document.getElementById('aItems');
+A_WORDS.slice(0,8).forEach(o=>{
+  const s=document.createElement('div');s.className='ab-chip';s.style.background=o.colorLight;
+  s.innerHTML=`${o.emoji} a ${o.name}`;s.onclick=()=>speak(`a ${o.name}`);aEl.appendChild(s);
+});
+const anEl=document.getElementById('anItems');
+AN_WORDS.forEach(o=>{
+  const s=document.createElement('div');s.className='ab-chip';s.style.background=o.colorLight;
+  s.innerHTML=`${o.emoji} an ${o.name}`;s.onclick=()=>speak(`an ${o.name}`);anEl.appendChild(s);
+});
+
+/* Where is it? */
+const whereList=document.getElementById('whereList');
+const WHERE_ITEMS=OBJECTS.slice(0,12);
+const WHERE_BG=['#fff9c4','#d0e8ff','#ffd6e7','#d4f7dc','#f3e8ff','#ffe8cc','#ffd6d6','#c8f5f1','#fff9c4','#d0e8ff','#ffd6e7','#d4f7dc'];
+WHERE_ITEMS.forEach((o,i)=>{
+  const c=document.createElement('div');
+  c.className='where-card';c.style.background=WHERE_BG[i%WHERE_BG.length];
+  c.innerHTML=`<span class="wc-emoji">${o.emoji}</span><div class="wc-text"><div class="wc-name">${o.name}</div><div class="wc-loc">📍 ${o.location}</div></div>`;
+  c.onclick=()=>speak(`${o.name}. It is ${o.location}.`);
+  whereList.appendChild(c);
+});
+
+/* ══ VOCAB: Flip Cards ══ */
+const FLIP_COLORS=['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#2EC4B6','#FF8FAB','#FF8C42','#2D6A4F','#795548','#9E9E9E'];
+const flipGrid=document.getElementById('flipGrid');
+OBJECTS.slice(0,16).forEach((o,i)=>{
+  const c=document.createElement('div');c.className='flip-card';
+  const col=FLIP_COLORS[i%FLIP_COLORS.length];
+  c.innerHTML=`<div class="flip-inner">
+    <div class="flip-front" style="background:linear-gradient(135deg,${col},${col}cc)">
+      <div class="ff-emoji">${o.emoji}</div>
+      <div class="ff-q" style="color:rgba(255,255,255,.7)">What is this?</div>
+    </div>
+    <div class="flip-back" style="background:linear-gradient(135deg,${col}aa,${col})">
+      <div class="fb-word">${o.article} ${o.name}</div>
+      <div class="fb-use">"${o.use}"</div>
+    </div>
+  </div>`;
+  c.onclick=()=>{c.classList.toggle('flipped');speak(`${o.article} ${o.name}. ${o.use}`);};
+  flipGrid.appendChild(c);
+});
+
+/* Sentences */
+const SENT_BG=['#fff9c4','#d0e8ff','#ffd6e7','#d4f7dc','#f3e8ff','#ffe8cc','#ffd6d6','#c8f5f1','#fff9c4','#d0e8ff','#ffd6e7','#d4f7dc','#f3e8ff','#ffe8cc'];
+const sentList=document.getElementById('sentList');
+const SENTENCES=[
+  {e:'✏️', s:'I write my name with <strong style="color:var(--coral)">a pencil</strong>.'},
+  {e:'📚', s:'We read <strong style="color:var(--sky)">a book</strong> every day.'},
+  {e:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.3em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 28" width="100%" height="100%"><rect x="2" y="4" width="44" height="20" rx="4" fill="#FFB6C1"/><rect x="26" y="4" width="18" height="20" rx="3" fill="#fff" opacity="0.5"/><line x1="26" y1="4" x2="26" y2="24" stroke="#d63060" stroke-width="1.5"/><rect x="2" y="19" width="44" height="5" rx="2" fill="#e75480" opacity="0.7"/><text x="6" y="17" font-size="7" fill="#d63060" font-family="Arial" font-weight="bold">ERASER</text></svg></span>', s:'I made a mistake, so I need <strong style="color:var(--rose,#FF8FAB)">an eraser</strong>.'},
+  {e:'✂️', s:'I cut the paper with <strong style="color:var(--lavender)">scissors</strong>.'},
+  {e:'📏', s:'I draw a straight line with <strong style="color:var(--mint)">a ruler</strong>.'},
+  {e:'📓', s:'She writes notes in <strong style="color:var(--teal,#2EC4B6)">a notebook</strong>.'},
+  {e:'🎒', s:'I put my books in <strong style="color:var(--peach)">my school bag</strong>.'},
+  {e:'💻', s:'We use <strong style="color:var(--board)">the computer</strong> to learn new things.'},
+  {e:'🕐', s:'I look at <strong style="color:var(--coral)">the clock</strong> to check the time.'},
+  {e:'📖', s:'I look up the word in <strong style="color:var(--lavender)">the dictionary</strong>.'},
+  {e:'🖍️', s:'He colours the picture with <strong style="color:var(--coral)">crayons</strong>.'},
+  {e:'🪑', s:'Please sit down on <strong style="color:var(--sky)">your chair</strong>.'},
+  {e:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.4em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 32" width="100%" height="100%"><rect x="1" y="1" width="50" height="30" rx="2" fill="#8B4513"/><rect x="3" y="3" width="46" height="26" rx="1" fill="#2D6A4F"/><line x1="8" y1="12" x2="28" y2="12" stroke="#fff" stroke-width="1.5" opacity="0.8"/><line x1="8" y1="18" x2="22" y2="18" stroke="#fff" stroke-width="1.5" opacity="0.6"/><rect x="3" y="27" width="46" height="2" rx="1" fill="#a0522d" opacity="0.5"/></svg></span>', s:'The teacher writes on <strong style="color:var(--board)">the blackboard</strong>.'},
+  {e:'🗺️', s:'We find countries on <strong style="color:var(--mint)">the map</strong>.'},
+];
+SENTENCES.forEach((s,i)=>{
+  const c=document.createElement('div');
+  c.className='sent-card';c.style.background=SENT_BG[i%SENT_BG.length];
+  c.innerHTML=`<span style="font-size:1.6rem;margin-right:8px">${s.e}</span>${s.s}`;
+  const plainText=c.textContent;
+  c.onclick=()=>speak(plainText);
+  sentList.appendChild(c);
+});
+
+/* Plural forms */
+const pluralList=document.getElementById('pluralList');
+const PLURAL_RULES=[
+  {rule:'Add -s',        example:'pencil → pencils, book → books, desk → desks',         items:['pencil','book','desk','ruler','crayon','pen'], bg:'#d4f7dc', badge:'+s'},
+  {rule:'Add -es',       example:'eraser → erasers (treat as regular)',                    items:['eraser'], bg:'#d0e8ff', badge:'+es'},
+  {rule:'Change y → ies',example:'dictionary → dictionaries',                              items:['dictionary'], bg:'#f3e8ff', badge:'y→ies'},
+  {rule:'Stays the same',example:'scissors → scissors (already plural!)',                  items:['scissors'], bg:'#fff9c4', badge:'same!'},
+  {rule:'Compound noun',  example:'school bag → school bags, set square → set squares',   items:['school bag','set square'], bg:'#ffd6e7', badge:'+s'},
+];
+PLURAL_RULES.forEach(r=>{
+  const c=document.createElement('div');
+  c.className='plural-card';c.style.background=r.bg;
+  c.innerHTML=`<div class="pl-badge">${r.badge}</div><div><div class="pl-rule">${r.rule}</div><div class="pl-example">${r.example}</div></div>`;
+  pluralList.appendChild(c);
+});
+
+/* ══ PRACTICE: Fill blank ══ */
+const FILL_QS=[
+  {q:'I write with <input> pencil.',                         ans:'a',          hint:'pencil starts with P (consonant)'},
+  {q:'She uses <input> eraser.',                             ans:'an',         hint:'eraser starts with E (vowel)'},
+  {q:'I read a <input>.',                                    ans:'book',       hint:'📚 We read this'},
+  {q:'The teacher writes on the <input>.',                   ans:'blackboard', hint:'📍 It is the big green board at the front of class'},
+  {q:'I carry my things in my school <input>.',              ans:'bag',        hint:'🎒 You wear it on your back'},
+  {q:'I cut the paper with <input>.',                        ans:'scissors',   hint:'✂️ Two blades'},
+  {q:'We sit at our <input>.',                               ans:'desk',       hint:'🏫 A table where students sit and work'},
+  {q:'I look up the meaning of a word in the <input>.',      ans:'dictionary', hint:'📖 A book of words'},
+  {q:'I draw a straight line using a <input>.',              ans:'ruler',      hint:'📏 A long flat tool'},
+  {q:'The plural of "pencil" is <input>.',                   ans:'pencils',    hint:'Just add -s!'},
+];
+let fillIdx=0;
+function renderFill(){
+  const c=document.getElementById('fillContainer');
+  const q=FILL_QS[fillIdx];
+  c.innerHTML=`
+    <div style="color:#bbb;font-size:.83rem;margin-bottom:5px"><span class="qbadge">Q${fillIdx+1}/${FILL_QS.length}</span></div>
+    <div class="fill-q">${q.q.replace('<input>','<input id="fi" type="text" placeholder="???" autocomplete="off">')}</div>
+    <div style="font-size:.84rem;color:#aaa;margin-bottom:3px">💡 Hint: ${q.hint}</div>
+    <button class="btn btn-check" onclick="checkFill()">✅ Check</button>
+    <button class="btn btn-next"  onclick="nextFill()">➡️ Next</button>
+    <div class="feedback" id="fillFb"></div>`;
+  const fi=document.getElementById('fi');fi.focus();
+  fi.onkeydown=e=>{if(e.key==='Enter')checkFill();};
+}
+function checkFill(){
+  const v=(document.getElementById('fi').value||'').trim().toLowerCase();
+  const fb=document.getElementById('fillFb');
+  if(v===FILL_QS[fillIdx].ans.toLowerCase()){fb.className='feedback fb-ok';fb.textContent='🎉 Correct! Well done! ⭐';speak('Correct! Well done!');}
+  else{fb.className='feedback fb-no';fb.textContent=`❌ The answer is: "${FILL_QS[fillIdx].ans}"`;speak('Try again!');}
+}
+function nextFill(){fillIdx=(fillIdx+1)%FILL_QS.length;renderFill();}
+renderFill();
+
+/* ══ PRACTICE: Match It ══ */
+const MATCH_PAIRS=[
+  {left:{emoji:'✏️', label:'✏️'},   right:{label:'pencil'}},
+  {left:{emoji:'📚', label:'📚'},   right:{label:'book'}},
+  {left:{emoji:'✂️', label:'✂️'},   right:{label:'scissors'}},
+  {left:{emoji:'📏', label:'📏'},   right:{label:'ruler'}},
+  {left:{emoji:'🎒', label:'🎒'},   right:{label:'school bag'}},
+  {left:{emoji:'💻', label:'💻'},   right:{label:'computer'}},
+];
+const MATCH_COLORS=['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347'];
+let matchSelectedLeft=null,matchMatchedCount=0;
+function initMatch(){
+  matchSelectedLeft=null;matchMatchedCount=0;
+  document.getElementById('matchStatus').textContent='Tap an item on the left to start! 👈';
+  const shuffledRight=[...MATCH_PAIRS].sort(()=>Math.random()-.5);
+  const lCol=document.getElementById('matchLeft'),rCol=document.getElementById('matchRight');
+  lCol.innerHTML='';rCol.innerHTML='';
+  MATCH_PAIRS.forEach((p,i)=>{
+    const lBtn=document.createElement('div');lBtn.className='match-item';
+    lBtn.style.background=MATCH_COLORS[i]+'33';lBtn.style.borderColor=MATCH_COLORS[i]+'55';
+    lBtn.dataset.id=i;lBtn.innerHTML=`<span style="font-size:1.8rem">${p.left.emoji}</span>`;
+    lBtn.onclick=()=>selectLeft(lBtn,i);lCol.appendChild(lBtn);
+  });
+  shuffledRight.forEach((p,i)=>{
+    const origIdx=MATCH_PAIRS.indexOf(p);
+    const rBtn=document.createElement('div');rBtn.className='match-item';
+    rBtn.style.background='#f5f5f5';
+    rBtn.dataset.id=origIdx;rBtn.textContent=p.right.label;
+    rBtn.onclick=()=>selectRight(rBtn,origIdx);rCol.appendChild(rBtn);
+  });
+}
+function selectLeft(btn,id){
+  document.querySelectorAll('#matchLeft .match-item').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  matchSelectedLeft=id;
+}
+function selectRight(btn,id){
+  if(matchSelectedLeft===null)return;
+  if(matchSelectedLeft===id){
+    const lBtn=document.querySelector(`#matchLeft .match-item[data-id="${id}"]`);
+    lBtn.classList.remove('selected');lBtn.classList.add('matched');
+    btn.classList.add('matched');
+    matchSelectedLeft=null;matchMatchedCount++;
+    speak('Match!');
+    if(matchMatchedCount===MATCH_PAIRS.length)document.getElementById('matchStatus').textContent='🎉 All matched! Amazing! ⭐';
+    else document.getElementById('matchStatus').textContent=`✅ Match! ${MATCH_PAIRS.length-matchMatchedCount} left!`;
+  }else{
+    const lBtn=document.querySelector(`#matchLeft .match-item[data-id="${matchSelectedLeft}"]`);
+    lBtn.classList.add('wrong-flash');btn.classList.add('wrong-flash');
+    setTimeout(()=>{lBtn.classList.remove('wrong-flash','selected');btn.classList.remove('wrong-flash');},400);
+    matchSelectedLeft=null;
+    document.getElementById('matchStatus').textContent='❌ Not a match! Try again!';
+  }
+}
+initMatch();
+
+/* ══ PRACTICE: Sort It ══ */
+const CAT_DATA={
+  'Writing Tools':   {items:['pencil','pen','chalk','crayon'],     bg:'#fff9c4', color:'#b7950b'},
+  'Reading Materials':{items:['book','notebook','dictionary'],     bg:'#d0e8ff', color:'#1a5276'},
+  'Classroom Tools': {items:['ruler','scissors','sharpener','glue'],bg:'#d4f7dc',color:'#1e8449'},
+  'Furniture':       {items:['desk','chair','blackboard'],          bg:'#f3e8ff', color:'#6c3483'},
+};
+const CAT_CHIP_COLORS=['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#2EC4B6','#FF8FAB','#FF8C42','#795548'];
+let catPlaced={};
+function initCat(){
+  catPlaced={};
+  const allItems=['pencil','pen','chalk','crayon','book','notebook','dictionary','ruler','scissors','sharpener','glue','desk','chair','blackboard'];
+  const shuffled=[...allItems].sort(()=>Math.random()-.5);
+  const pool=document.getElementById('catPool');pool.innerHTML='';
+  shuffled.forEach((item,i)=>{
+    const c=document.createElement('span');c.className='cat-chip';
+    c.style.background=CAT_CHIP_COLORS[i%CAT_CHIP_COLORS.length];c.style.color='#fff';
+    c.textContent=item;c.dataset.item=item;c.onclick=()=>catPickItem(c,item);
+    pool.appendChild(c);
+  });
+  const zones=document.getElementById('catZones');zones.innerHTML='';
+  Object.entries(CAT_DATA).forEach(([cat,data])=>{
+    catPlaced[cat]=[];
+    const z=document.createElement('div');z.className='cat-zone';z.style.background=data.bg;z.dataset.cat=cat;
+    z.innerHTML=`<div class="cat-zone-title" style="color:${data.color}">${cat}</div><div class="cat-zone-items" id="zone-${cat.replace(/\s/g,'-')}"></div>`;
+    z.onclick=()=>catDropInto(cat);
+    zones.appendChild(z);
+  });
+  document.getElementById('catFb').textContent='';
+}
+let catSelected=null;
+function catPickItem(chip,item){
+  document.querySelectorAll('.cat-chip').forEach(c=>c.style.outline='');
+  chip.style.outline='3px solid var(--coral)';catSelected={item,chip};
+}
+function catDropInto(cat){
+  if(!catSelected)return;
+  const {item,chip}=catSelected;
+  catSelected=null;chip.style.outline='';chip.classList.add('used');
+  catPlaced[cat].push(item);
+  const zoneId='zone-'+cat.replace(/\s/g,'-');
+  const zone=document.getElementById(zoneId);
+  const placed=document.createElement('span');placed.className='cat-placed';
+  placed.style.background=CAT_DATA[cat].color;placed.style.color='#fff';
+  placed.textContent=item;
+  placed.onclick=()=>{
+    catPlaced[cat]=catPlaced[cat].filter(x=>x!==item);placed.remove();
+    chip.classList.remove('used');chip.style.outline='';
+  };
+  zone.appendChild(placed);
+}
+function checkCat(){
+  const fb=document.getElementById('catFb');
+  let correct=0,total=0;
+  Object.entries(CAT_DATA).forEach(([cat,data])=>{
+    data.items.forEach(item=>{
+      total++;if(catPlaced[cat]&&catPlaced[cat].includes(item))correct++;
+    });
+  });
+  if(correct===total){fb.className='feedback fb-ok';fb.textContent=`🎉 Perfect! All ${total} items sorted correctly! ⭐`;speak('Perfect!');}
+  else{fb.className='feedback fb-no';fb.textContent=`You got ${correct} out of ${total} correct! Keep trying!`;}
+}
+initCat();
+
+/* ══ PRACTICE: Spell It ══ */
+const SPELL_QS=[
+  {emoji:'📏',hint:'r _ _ _ _ r',   ans:'ruler'},
+  {emoji:'📚',hint:'b _ _ k',       ans:'book'},
+  {emoji:'✏️',hint:'p _ n _ _ _',   ans:'pencil'},
+  {emoji:'🎒',hint:'_ _ g',         ans:'bag'},
+  {emoji:'✂️',hint:'s _ _ _ _ _ rs',ans:'scissors'},
+  {emoji:'💻',hint:'c _ _ _ u _ _ r',ans:'computer'},
+  {emoji:'📓',hint:'n _ _ _ b _ _ k',ans:'notebook'},
+  {emoji:'🖍️',hint:'c _ _ _ _ n',   ans:'crayon'},
+];
+let spellIdx=0;
+function renderSpell(){
+  const c=document.getElementById('spellContainer');
+  const q=SPELL_QS[spellIdx];
+  c.innerHTML=`
+    <div class="spell-q">
+      <span class="spell-emoji">${q.emoji}</span>
+      <div style="font-family:'Fredoka One',cursive;font-size:.95rem;color:#aaa;margin-bottom:6px">Spell the object name!</div>
+      <div class="spell-hint">${q.hint}</div>
+      <input class="spell-input" id="si" type="text" placeholder="type here..." autocomplete="off">
+    </div>
+    <div style="color:#bbb;font-size:.83rem;margin-bottom:5px"><span class="qbadge">Q${spellIdx+1}/${SPELL_QS.length}</span></div>
+    <button class="btn btn-check" onclick="checkSpell()">✅ Check</button>
+    <button class="btn btn-next"  onclick="nextSpell()">➡️ Next</button>
+    <div class="feedback" id="spellFb"></div>`;
+  const si=document.getElementById('si');si.focus();
+  si.onkeydown=e=>{if(e.key==='Enter')checkSpell();};
+}
+function checkSpell(){
+  const v=(document.getElementById('si').value||'').trim().toLowerCase();
+  const fb=document.getElementById('spellFb');
+  if(v===SPELL_QS[spellIdx].ans){fb.className='feedback fb-ok';fb.textContent=`🎉 Correct! "${SPELL_QS[spellIdx].ans}" ⭐`;speak('Correct! Well done!');}
+  else{fb.className='feedback fb-no';fb.textContent=`❌ The answer is: "${SPELL_QS[spellIdx].ans}"`;speak('Try again!');}
+}
+function nextSpell(){spellIdx=(spellIdx+1)%SPELL_QS.length;renderSpell();}
+renderSpell();
+
+/* ══ QUIZ ══ */
+const QUIZ_QS=[
+  {q:'What do you write with?',emoji:'✏️',opts:['ruler','pencil','scissors','clock'],ans:1},
+  {q:'Which sentence is correct?',emoji:'📚',opts:['I read a book.','I read an book.','I read the books.','Book I read a.'],ans:0},
+  {q:'What object removes pencil marks? 🩹',emoji:null,opts:['eraser','ruler','pen','sharpener'],ans:0},
+  {q:'We say "AN eraser" because eraser starts with...',emoji:null,opts:['a consonant','a vowel sound','the letter R','the letter S'],ans:1},
+  {q:'Where do you put your books and pencils?',emoji:'🎒',opts:['in the desk','on the board','in the school bag','on the clock'],ans:2},
+  {q:'What does the teacher write on?',emoji:'🟩',opts:['the map','the clock','the blackboard','the window'],ans:2},
+  {q:'What is the plural of "pencil"?',emoji:'✏️',opts:['penciles','pencils','pencilies','pencil'],ans:1},
+  {q:'Which object do you use to cut paper?',emoji:'✂️',opts:['ruler','pencil','scissors','eraser'],ans:2},
+  {q:'What is the plural of "dictionary"?',emoji:'📖',opts:['dictionarys','dictionary','dictionaries','dictionares'],ans:2},
+  {q:'Which is a FURNITURE item in the classroom?',emoji:'🏫',opts:['pencil','scissors','desk','crayon'],ans:2},
+  {q:'You want to draw a straight line. You use a...',emoji:'📏',opts:['crayon','ruler','pen','eraser'],ans:1},
+  {q:'"I look at the ___ to know the time."',emoji:'🕐',opts:['map','clock','board','computer'],ans:1},
+];
+let qIdx=0,qScore=0,qAnswered=false;
+function startQuiz(){
+  qIdx=0;qScore=0;qAnswered=false;
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizBody').style.display='block';
+  loadQ();
+}
+function loadQ(){
+  qAnswered=false;
+  const q=QUIZ_QS[qIdx];
+  document.getElementById('qFill').style.width=((qIdx/QUIZ_QS.length)*100)+'%';
+  document.getElementById('qScore').textContent=`Score: ${qScore} / ${QUIZ_QS.length}`;
+  document.getElementById('qNum').textContent=`Question ${qIdx+1} / ${QUIZ_QS.length}`;
+  document.getElementById('quizFb').textContent='';document.getElementById('quizFb').className='quiz-fb';
+  const emojiHtml=q.emoji?`<span class="qcard-emoji">${q.emoji}</span>`:'';
+  document.getElementById('quizQ').innerHTML=`${emojiHtml}${q.q}`;
+  const opts=document.getElementById('quizOpts');opts.innerHTML='';
+  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='qopt';b.textContent=o;b.onclick=()=>answerQ(i,b,q.ans);opts.appendChild(b);});
+}
+function answerQ(i,btn,correct){
+  if(qAnswered)return;qAnswered=true;
+  document.querySelectorAll('.qopt')[correct].classList.add('correct');
+  const fb=document.getElementById('quizFb');
+  if(i===correct){qScore++;fb.className='quiz-fb ok';fb.textContent=['🎉 Awesome!','⭐ Perfect!','🌟 Excellent!','🥳 Great job!','🎊 Well done!'][Math.floor(Math.random()*5)];speak('Correct!');}
+  else{btn.classList.add('wrong');fb.className='quiz-fb no';fb.textContent='❌ Oops! See the green answer!';speak('Try again next time!');}
+  document.getElementById('qScore').textContent=`Score: ${qScore} / ${QUIZ_QS.length}`;
+  setTimeout(()=>{qIdx++;if(qIdx<QUIZ_QS.length)loadQ();else showQResult();},1800);
+}
+function showQResult(){
+  document.getElementById('quizBody').style.display='none';
+  document.getElementById('qFill').style.width='100%';
+  const r=document.getElementById('quizResult');r.classList.add('show');
+  const pct=(qScore/QUIZ_QS.length)*100;
+  let emoji,stars,msg;
+  if(pct===100){emoji='🏆';stars='⭐⭐⭐';msg='PERFECT! You know ALL classroom objects! 🎊';}
+  else if(pct>=75){emoji='🌟';stars='⭐⭐⭐';msg='Amazing! You are a classroom expert! 📚';}
+  else if(pct>=50){emoji='😊';stars='⭐⭐';msg="Good job! Keep learning the objects! 💪";}
+  else{emoji='💪';stars='⭐';msg="Don't give up! Review and try again! 📖";}
+  document.getElementById('resEmoji').textContent=emoji;
+  document.getElementById('starsRow').textContent=stars;
+  document.getElementById('resScore').textContent=`${qScore} / ${QUIZ_QS.length}`;
+  document.getElementById('resMsg').textContent=msg;
+  speak(`You scored ${qScore} out of ${QUIZ_QS.length}. ${msg}`);
+}
+
+/* ══ GAME 1: Object Hunt ══ */
+let huntScore=0,huntTarget=null,huntRunning=false;
+const HUNT_POOL=OBJECTS.slice(0,16);
+function startHunt(){
+  huntRunning=true;
+  buildHuntGrid();
+  setHuntTarget();
+}
+function resetHunt(){huntScore=0;huntRunning=false;document.getElementById('huntScore').textContent='Score: 0 🏆';document.getElementById('huntTarget').innerHTML='Tap Start to begin!';document.getElementById('huntGrid').innerHTML='';}
+function buildHuntGrid(){
+  const grid=document.getElementById('huntGrid');grid.innerHTML='';
+  const shuffled=[...HUNT_POOL].sort(()=>Math.random()-.5).slice(0,12);
+  shuffled.forEach(o=>{
+    const c=document.createElement('div');c.className='hunt-obj';c.dataset.id=o.id;
+    c.innerHTML=`<span class="ho-emoji">${o.emoji}</span><div style="font-size:.68rem;color:#777;margin-top:3px">${o.name}</div>`;
+    c.onclick=()=>handleHunt(c,o);
+    grid.appendChild(c);
+  });
+  // make sure target is in grid
+}
+function setHuntTarget(){
+  const visibleIds=Array.from(document.querySelectorAll('.hunt-obj')).map(c=>c.dataset.id);
+  const candidates=HUNT_POOL.filter(o=>visibleIds.includes(o.id));
+  huntTarget=candidates[Math.floor(Math.random()*candidates.length)];
+  document.getElementById('huntTarget').innerHTML=`Find: <strong>${huntTarget.emoji} ${huntTarget.name}</strong>`;
+  speak(`Find the ${huntTarget.name}!`);
+}
+function handleHunt(card,obj){
+  if(!huntRunning||!huntTarget)return;
+  if(obj.id===huntTarget.id){
+    card.classList.add('found');huntScore++;
+    document.getElementById('huntScore').textContent=`Score: ${huntScore} 🏆`;
+    speak('Found it!');
+    setTimeout(()=>{buildHuntGrid();setHuntTarget();},1000);
+  }else{
+    card.classList.add('wrong-shake');speak('Wrong! Try again!');
+    setTimeout(()=>card.classList.remove('wrong-shake'),400);
+  }
+}
+
+/* ══ GAME 2: What's in the Bag ══ */
+const BAG_QS=[
+  {clue:'You use me to write on paper. I am yellow and thin.',obj:'pencil',      opts:['pencil','ruler','scissors']},
+  {clue:'I have two sharp blades. I can cut paper.',         obj:'scissors',    opts:['scissors','stapler','pen']},
+  {clue:'I am full of stories and knowledge. You can read me.',obj:'book',      opts:['notebook','book','dictionary']},
+  {clue:'I can remove pencil marks from paper.',             obj:'eraser',      opts:['eraser','chalk','glue']},
+  {clue:'I am long and flat. I help you draw straight lines.',obj:'ruler',      opts:['ruler','pencil','set square']},
+  {clue:'You put all your things inside me and wear me.',    obj:'school bag',  opts:['school bag','desk','chair']},
+  {clue:'I have many pages. The teacher writes on me.',      obj:'blackboard',  opts:['notebook','blackboard','map']},
+  {clue:'I am colourful! You use me to colour pictures.',    obj:'crayon',      opts:['crayon','pen','pencil']},
+];
+let bagIdx=0,bagScore=0,bagAnswered=false;
+function startBag(){bagIdx=0;bagScore=0;bagAnswered=false;document.getElementById('bagScore').textContent='Score: 0 🎒';loadBag();}
+function loadBag(){
+  bagAnswered=false;
+  const q=BAG_QS[bagIdx];
+  document.getElementById('bagHint').textContent=q.clue;
+  document.getElementById('bagFb').textContent='';
+  const choices=document.getElementById('bagChoices');choices.innerHTML='';
+  const shuffled=[...q.opts].sort(()=>Math.random()-.5);
+  shuffled.forEach(opt=>{
+    const b=document.createElement('div');b.className='bag-opt';b.textContent=opt;
+    b.onclick=()=>answerBag(b,opt,q.obj);choices.appendChild(b);
+  });
+  speak(q.clue);
+}
+function answerBag(btn,val,correct){
+  if(bagAnswered)return;bagAnswered=true;
+  const fb=document.getElementById('bagFb');
+  if(val===correct){
+    btn.classList.add('correct');bagScore++;
+    document.getElementById('bagScore').textContent=`Score: ${bagScore} 🎒`;
+    fb.textContent=`🎉 Correct! It's a ${correct}!`;speak(`Correct! It is a ${correct}!`);
+  }else{
+    btn.classList.add('wrong');fb.textContent=`❌ It was a ${correct}!`;speak(`It was a ${correct}.`);
+  }
+  setTimeout(()=>{bagIdx=(bagIdx+1)%BAG_QS.length;loadBag();},1800);
+}
+
+/* ══ GAME 3: True or False ══ */
+const TOF_QS=[
+  {emoji:'✏️', stmt:'You write with a pencil.',            ans:true},
+  {emoji:'✂️', stmt:'Scissors are used to eat food.',      ans:false},
+  {emoji:'📚', stmt:'A book has many pages.',               ans:true},
+  {emoji:'🎒', stmt:'We put our books in the school bag.', ans:true},
+  {emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.3em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 28" width="100%" height="100%"><rect x="2" y="4" width="44" height="20" rx="4" fill="#FFB6C1"/><rect x="26" y="4" width="18" height="20" rx="3" fill="#fff" opacity="0.5"/><line x1="26" y1="4" x2="26" y2="24" stroke="#d63060" stroke-width="1.5"/><rect x="2" y="19" width="44" height="5" rx="2" fill="#e75480" opacity="0.7"/><text x="6" y="17" font-size="7" fill="#d63060" font-family="Arial" font-weight="bold">ERASER</text></svg></span>', stmt:'An eraser is used to add more ink.',  ans:false},
+  {emoji:'📏', stmt:'A ruler helps us draw straight lines.',ans:true},
+  {emoji:'<span style="display:inline-flex;align-items:center;justify-content:center;width:2em;height:1.4em;vertical-align:middle;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 32" width="100%" height="100%"><rect x="1" y="1" width="50" height="30" rx="2" fill="#8B4513"/><rect x="3" y="3" width="46" height="26" rx="1" fill="#2D6A4F"/><line x1="8" y1="12" x2="28" y2="12" stroke="#fff" stroke-width="1.5" opacity="0.8"/><line x1="8" y1="18" x2="22" y2="18" stroke="#fff" stroke-width="1.5" opacity="0.6"/><rect x="3" y="27" width="46" height="2" rx="1" fill="#a0522d" opacity="0.5"/></svg></span>', stmt:'Students write on the blackboard.',   ans:false},
+  {emoji:'🖍️', stmt:'Crayons are used for colouring.',     ans:true},
+  {emoji:'💻', stmt:'A computer is a type of furniture.',  ans:false},
+  {emoji:'🕐', stmt:'We look at the clock to know the time.',ans:true},
+  {emoji:'📓', stmt:'We say "a eraser" in English.',       ans:false},
+  {emoji:'📖', stmt:'A dictionary explains word meanings.', ans:true},
+];
+let tofIdx=0,tofScore=0,tofAnswered=false;
+function startTof(){tofIdx=0;tofScore=0;tofAnswered=false;document.getElementById('tofScore').textContent='Score: 0 ✅';loadTof();}
+function resetTof(){tofScore=0;tofIdx=0;tofAnswered=false;document.getElementById('tofScore').textContent='Score: 0 ✅';document.getElementById('tofCard').innerHTML='';}
+function loadTof(){
+  tofAnswered=false;
+  const q=TOF_QS[tofIdx];
+  document.getElementById('tofCard').innerHTML=`
+    <div class="tof-card">
+      <span class="tof-emoji">${q.emoji}</span>
+      <div class="tof-statement">"${q.stmt}"</div>
+      <div class="tof-btns">
+        <button class="tof-btn tof-true"  onclick="answerTof(true)">✅ TRUE</button>
+        <button class="tof-btn tof-false" onclick="answerTof(false)">❌ FALSE</button>
+      </div>
+    </div>
+    <div class="tof-fb" id="tofFb"></div>`;
+  speak(q.stmt);
+}
+function answerTof(val){
+  if(tofAnswered)return;tofAnswered=true;
+  const q=TOF_QS[tofIdx];
+  const fb=document.getElementById('tofFb');
+  if(val===q.ans){tofScore++;document.getElementById('tofScore').textContent=`Score: ${tofScore} ✅`;fb.style.color='var(--mint)';fb.textContent='🎉 Correct!';speak('Correct!');}
+  else{fb.style.color='var(--coral)';fb.textContent=`❌ Actually it is ${q.ans?'TRUE':'FALSE'}!`;speak('Wrong!');}
+  setTimeout(()=>{tofIdx=(tofIdx+1)%TOF_QS.length;loadTof();},1700);
+}
+
+/* ══ GAME 4: Spin Wheel ══ */
+const WHEEL_ITEMS=OBJECTS.slice(0,12);
+const W_COLORS=['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#2EC4B6','#FF8FAB','#FF8C42','#2D6A4F','#795548','#9E9E9E'];
+let wAngle=0,wSpinning=false;
+function initWheel(){drawWheel(wAngle);}
+function drawWheel(rot){
+  const cv=document.getElementById('classWheel');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const cx=cv.width/2,cy=cv.height/2,r=cx-8;
+  const arc=(2*Math.PI)/WHEEL_ITEMS.length;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  WHEEL_ITEMS.forEach((item,i)=>{
+    const s=rot+i*arc;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,s,s+arc);
+    ctx.fillStyle=W_COLORS[i];ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(s+arc/2);
+    ctx.textAlign='right';ctx.fillStyle='#fff';ctx.font='bold 11px Nunito,sans-serif';
+    ctx.fillText(item.emoji+' '+item.name,r-10,5);ctx.restore();
+  });
+  ctx.beginPath();ctx.moveTo(cx+13,cy-r-4);ctx.lineTo(cx-13,cy-r-4);ctx.lineTo(cx,cy-r+18);
+  ctx.fillStyle='#222';ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,13,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#ddd';ctx.lineWidth=2;ctx.stroke();
+}
+function spinWheel(){
+  if(wSpinning)return;wSpinning=true;
+  document.getElementById('spinBtn').disabled=true;
+  document.getElementById('spinResult').textContent='';
+  const extra=(Math.floor(Math.random()*5)+5)*2*Math.PI;
+  const target=wAngle+extra+Math.random()*2*Math.PI;
+  const dur=3200;const t0=performance.now();
+  function anim(now){
+    const el=now-t0;const t=Math.min(el/dur,1);
+    const ease=1-Math.pow(1-t,4);
+    drawWheel(wAngle+(target-wAngle)*ease);
+    if(t<1){requestAnimationFrame(anim);return;}
+    wAngle=target%(2*Math.PI);wSpinning=false;
+    document.getElementById('spinBtn').disabled=false;
+    // pointer at top = angle -PI/2
+    const arc2=(2*Math.PI)/WHEEL_ITEMS.length;
+    const rel=((-Math.PI/2-wAngle)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+    const idx=Math.floor(rel/arc2)%WHEEL_ITEMS.length;
+    const obj=WHEEL_ITEMS[idx];
+    const tasks=[
+      `Say: "${obj.article} ${obj.name}"`,
+      `Make a sentence: "${obj.use}"`,
+      `Spell it: ${obj.name.toUpperCase()}`,
+      `Where is it? "${obj.location}"`,
+    ];
+    const task=tasks[Math.floor(Math.random()*tasks.length)];
+    document.getElementById('spinResult').innerHTML=`<strong style="font-size:1.5rem">${obj.emoji} ${obj.name}</strong><br><span style="font-size:1rem;color:#666">${task}</span>`;
+    speak(`${obj.name}! ${task.replace(/["""]/g,'')}`);
+  }
+  requestAnimationFrame(anim);
+}
+</script>
+</body>
+</html>

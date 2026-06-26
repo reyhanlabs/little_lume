@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English  – Greetings Material Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root {
+  --sun:     #FF9F1C;
+  --sky:     #2EC4B6;
+  --rose:    #FF6B6B;
+  --violet:  #6C63FF;
+  --mint:    #06D6A0;
+  --navy:    #1B2B5E;
+  --cream:   #FFFBF0;
+  --soft:    #F0F4FF;
+  --border:  #D8E0FF;
+  --text:    #2B2D42;
+  --muted:   #7A7F9A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #E8ECF8;
+  color: var(--text);
+}
+
+/* ============================================================
+   SCREEN BANNER
+   ============================================================ */
+.screen-only {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.screen-only strong { color: var(--sun); }
+
+.pages-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding: 36px 16px 60px;
+}
+
+/* ============================================================
+   PAGE (A4)
+   ============================================================ */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(27,43,94,.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ============================================================
+   COVER PAGE
+   ============================================================ */
+.cover {
+  background: linear-gradient(160deg, #1B2B5E 0%, #2E4A9E 55%, #6C63FF 100%);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 32px;
+  min-height: 297mm;
+}
+
+/* decorative blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .12;
+}
+.blob-1 { width: 320px; height: 320px; background: var(--sun);   top: -80px;  left: -100px; }
+.blob-2 { width: 260px; height: 260px; background: var(--sky);   bottom: -60px; right: -80px; }
+.blob-3 { width: 180px; height: 180px; background: var(--mint);  top: 40%;    right: -40px; opacity: .1; }
+.blob-4 { width: 140px; height: 140px; background: var(--rose);  bottom: 20%; left: -30px;  opacity: .1; }
+
+/* star dots */
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  color: #fff;
+  font-size: 10px;
+  opacity: .25;
+}
+
+.cover-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 17px;
+  color: var(--sun);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+.cover-logo span {
+  color: rgba(255,255,255,.6);
+  font-size: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  display: block;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.cover-emoji-row {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0 18px;
+  position: relative;
+  z-index: 1;
+}
+.cover-emoji-row span {
+  font-size: 38px;
+  animation: float 3s ease-in-out infinite;
+}
+.cover-emoji-row span:nth-child(2) { animation-delay: .4s; }
+.cover-emoji-row span:nth-child(3) { animation-delay: .8s; }
+.cover-emoji-row span:nth-child(4) { animation-delay: 1.2s; }
+.cover-emoji-row span:nth-child(5) { animation-delay: 1.6s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.cover-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 58px;
+  color: #fff;
+  text-align: center;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.cover-title span {
+  color: var(--sun);
+  display: block;
+  font-size: 68px;
+}
+
+.cover-sub {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: .5px;
+}
+
+.cover-badge-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cover-badge {
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(6px);
+  border: 1.5px solid rgba(255,255,255,.25);
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.cover-badge .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.dot-sun    { background: var(--sun); }
+.dot-sky    { background: var(--sky); }
+.dot-mint   { background: var(--mint); }
+.dot-rose   { background: var(--rose); }
+
+.cover-wave {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+}
+
+/* ============================================================
+   CONTENT HEADER (pages 2,3)
+   ============================================================ */
+.content-header {
+  background: linear-gradient(135deg, #1B2B5E 0%, #3D56B2 100%);
+  padding: 16px 28px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ch-brand {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  color: var(--sun);
+  letter-spacing: .5px;
+}
+.ch-brand sub {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,.6);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ch-pill {
+  background: var(--sun);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+/* ============================================================
+   PAGE BODY
+   ============================================================ */
+.page-body {
+  flex: 1;
+  padding: 20px 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.sec-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ic-sun    { background: #FFF3D6; }
+.ic-sky    { background: #D6F5F3; }
+.ic-violet { background: #EDEAFF; }
+.ic-rose   { background: #FFE8E8; }
+.ic-mint   { background: #D6F8F0; }
+.ic-navy   { background: #E2E8FF; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.sec-title em {
+  font-style: normal;
+  color: var(--violet);
+}
+.sec-desc {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 1px;
+}
+
+/* ============================================================
+   GREETING CARDS GRID
+   ============================================================ */
+.greeting-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.g-card {
+  border-radius: 14px;
+  padding: 14px 10px 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.g-card::before {
+  content: '';
+  position: absolute;
+  bottom: -10px; right: -10px;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  opacity: .15;
+}
+
+.g-morning   { background: linear-gradient(135deg, #FFF8E1, #FFE0A0); border: 2px solid #FFCC4D; }
+.g-morning::before { background: var(--sun); }
+.g-afternoon { background: linear-gradient(135deg, #E1F5FF, #B3E8FF); border: 2px solid #64D2FF; }
+.g-afternoon::before { background: var(--sky); }
+.g-evening   { background: linear-gradient(135deg, #EDE8FF, #D0C7FF); border: 2px solid #9E93FF; }
+.g-evening::before { background: var(--violet); }
+.g-night     { background: linear-gradient(135deg, #1B2B5E, #2E4080); border: 2px solid #4A5FA8; }
+.g-night::before { background: #fff; }
+.g-any       { background: linear-gradient(135deg, #E8FFF6, #B8F5DF); border: 2px solid #4ECCA3; }
+.g-any::before { background: var(--mint); }
+
+.g-emoji { font-size: 32px; line-height: 1; display: block; margin-bottom: 6px; }
+
+.g-word {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.g-night .g-word { color: #fff; }
+
+.g-meaning {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.g-night .g-meaning { color: rgba(255,255,255,.6); }
+
+.g-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 10px;
+  color: #fff;
+}
+.tag-morning   { background: #FF9F1C; }
+.tag-afternoon { background: #0096C7; }
+.tag-evening   { background: #6C63FF; }
+.tag-night     { background: rgba(255,255,255,.3); }
+.tag-any       { background: #06D6A0; color: #004D38; }
+
+/* ============================================================
+   EXAMPLE DIALOGUE
+   ============================================================ */
+.dialogue-box {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dialogue-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.dialogue-title::before {
+  content: '💬';
+  font-size: 16px;
+}
+
+.bubble-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+.bubble-row.right { flex-direction: row-reverse; }
+
+.avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  border: 2px solid rgba(0,0,0,.07);
+}
+.av-a { background: #FFE0A0; }
+.av-b { background: #B3E8FF; }
+
+.bubble {
+  max-width: 72%;
+  border-radius: 16px;
+  padding: 8px 14px;
+  position: relative;
+}
+.bubble-left {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+.bubble-right {
+  background: var(--violet);
+  border: 2px solid #5751E0;
+  border-bottom-right-radius: 4px;
+}
+.bubble-name {
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+.bubble-right .bubble-name { color: rgba(255,255,255,.7); }
+.bubble-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.bubble-right .bubble-text { color: #fff; }
+.bubble-indo {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 2px;
+  font-style: italic;
+}
+.bubble-right .bubble-indo { color: rgba(255,255,255,.65); }
+
+/* ============================================================
+   RESPONSE CARDS (I'm fine, etc.)
+   ============================================================ */
+.response-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.resp-card {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 10px;
+  text-align: center;
+}
+.resp-emoji { font-size: 26px; margin-bottom: 5px; }
+.resp-en {
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.resp-id {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.resp-use {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--violet);
+  margin-top: 5px;
+  letter-spacing: .3px;
+}
+
+/* ============================================================
+   TIME-OF-DAY BANNER
+   ============================================================ */
+.time-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+}
+.time-slot {
+  padding: 10px 8px;
+  text-align: center;
+}
+.ts-morning   { background: #FFF3CC; border-right: 2px solid #FFE066; }
+.ts-afternoon { background: #D6F0FF; border-right: 2px solid #99DAFF; }
+.ts-evening   { background: #EAE6FF; border-right: 2px solid #C5BCFF; }
+.ts-night     { background: #1B2B5E; }
+.ts-icon { font-size: 24px; display: block; margin-bottom: 4px; }
+.ts-time {
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.ts-night .ts-time { color: rgba(255,255,255,.5); }
+.ts-greeting {
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.ts-night .ts-greeting { color: #fff; }
+.ts-range {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.ts-night .ts-range { color: rgba(255,255,255,.45); }
+
+/* ============================================================
+   PRONUNCIATION GUIDE
+   ============================================================ */
+.pronunc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+.pronunc-card {
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pc-emoji { font-size: 24px; flex-shrink: 0; }
+.pc-en {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px;
+  color: var(--navy);
+}
+.pc-pron {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--violet);
+  margin: 1px 0;
+}
+.pc-pron::before { content: '🔊 '; }
+.pc-id {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   TIP BOX
+   ============================================================ */
+.tip-box {
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.tip-sun    { background: #FFF8E1; border: 2px solid #FFD166; }
+.tip-sky    { background: #E1F8F6; border: 2px solid #2EC4B6; }
+.tip-violet { background: #EEEAFF; border: 2px solid #9E93FF; }
+.tip-mint   { background: #E2FBF3; border: 2px solid #06D6A0; }
+
+.tip-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.tip-content {}
+.tip-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.tip-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.55;
+}
+.tip-text strong { color: var(--violet); }
+
+/* ============================================================
+   VOCAB TABLE
+   ============================================================ */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+}
+.vocab-table thead tr {
+  background: var(--navy);
+  color: #fff;
+}
+.vocab-table th {
+  padding: 9px 14px;
+  text-align: left;
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  letter-spacing: .3px;
+}
+.vocab-table th:first-child { width: 28px; text-align: center; }
+
+.vocab-table tbody tr:nth-child(odd)  { background: var(--soft); }
+.vocab-table tbody tr:nth-child(even) { background: #fff; }
+
+.vocab-table td {
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+}
+.vocab-table td:first-child { text-align: center; font-size: 18px; }
+.vocab-en { font-family: 'Fredoka One', cursive; font-size: 14px; color: var(--navy); }
+.vocab-pron { color: var(--violet); font-size: 11.5px; font-weight: 700; }
+.vocab-id { color: var(--muted); font-style: italic; font-size: 12px; }
+.vocab-use { font-size: 11px; }
+.use-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: .3px;
+}
+.chip-m { background: var(--sun); }
+.chip-a { background: #0096C7; }
+.chip-e { background: var(--violet); }
+.chip-n { background: var(--navy); }
+.chip-x { background: var(--mint); color: #004D38; }
+
+/* ============================================================
+   CULTURE NOTE
+   ============================================================ */
+.culture-box {
+  background: linear-gradient(135deg, #1B2B5E 0%, #2E4A9E 100%);
+  border-radius: 14px;
+  padding: 16px 18px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.culture-box::before {
+  content: '🌍';
+  position: absolute;
+  right: 16px; top: 10px;
+  font-size: 44px;
+  opacity: .15;
+}
+.culture-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  color: var(--sun);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.culture-text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.65;
+  color: rgba(255,255,255,.85);
+}
+.culture-text strong { color: var(--sun); }
+
+/* ============================================================
+   MINI QUIZ (fun check)
+   ============================================================ */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.quiz-card {
+  background: var(--soft);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.quiz-q {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+.quiz-q .qn {
+  background: var(--violet);
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  font-size: 12px;
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.qopt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+.qopt-circle {
+  width: 18px; height: 18px;
+  border: 2px solid #C8D0F0;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.qopt.correct .qopt-circle {
+  background: var(--mint);
+  border-color: var(--mint);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+}
+.qopt.correct { color: #004D38; }
+
+/* answer reveal */
+.answer-key {
+  background: #E2FBF3;
+  border: 2px solid #06D6A0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ak-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  color: #004D38;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ak-items {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ak-item {
+  background: #fff;
+  border: 1.5px solid #06D6A0;
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #004D38;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.page-footer {
+  background: var(--soft);
+  border-top: 2px dashed var(--border);
+  padding: 10px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pf-brand {
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  color: var(--violet);
+}
+.pf-stars { font-size: 14px; letter-spacing: 3px; }
+.pf-page {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  letter-spacing: .5px;
+}
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+.divider {
+  border: none;
+  border-top: 2px dashed var(--border);
+  margin: 0;
+}
+
+/* ============================================================
+   PRINT STYLES  ← the important part
+   ============================================================ */
+
+@media print {
+  @page { size: A4 portrait; margin: 0mm; }
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff !important; }
+  .screen-only { display: none !important; }
+  .pages-wrap { display: block; padding: 0; gap: 0; background: #fff; }
+
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .page:last-child { page-break-after: auto !important; break-after: auto !important; }
+
+  /* Cover */
+  .cover { min-height: 297mm !important; padding: 44px 36px !important; }
+  .cover-logo { font-size: 16px !important; }
+  .cover-title { font-size: 54px !important; }
+  .cover-title span { font-size: 64px !important; }
+  .cover-sub { font-size: 15px !important; margin-top: 12px !important; }
+  .cover-badge-row { margin-top: 28px !important; gap: 9px !important; }
+  .cover-badge { padding: 7px 17px !important; font-size: 12.5px !important; }
+  .cover-emoji-row { margin: 22px 0 18px !important; }
+  .cover-emoji-row span { font-size: 36px !important; }
+
+  /* Content header */
+  .content-header { padding: 13px 26px 12px !important; }
+  .ch-brand { font-size: 16px !important; }
+  .ch-pill { font-size: 10.5px !important; padding: 4px 12px !important; }
+
+  /* Page body — now content spread over 2 pages = more breathing room */
+  .page-body { padding: 18px 26px 20px !important; gap: 18px !important; flex: 1 !important; }
+
+  /* Section heads */
+  .sec-head { gap: 9px !important; margin-bottom: 4px !important; }
+  .sec-icon { width: 33px !important; height: 33px !important; font-size: 17px !important; }
+  .sec-title { font-size: 19px !important; }
+  .sec-desc { font-size: 11.5px !important; }
+
+  /* Tip box */
+  .tip-box { padding: 12px 15px !important; gap: 12px !important; border-radius: 12px !important; }
+  .tip-icon { font-size: 22px !important; }
+  .tip-text { font-size: 11.5px !important; line-height: 1.6 !important; }
+
+  /* Greeting cards grid */
+  .greeting-grid { gap: 9px !important; }
+  .g-card { padding: 13px 10px 12px !important; border-radius: 12px !important; }
+  .g-emoji { font-size: 28px !important; margin-bottom: 6px !important; }
+  .g-word { font-size: 14px !important; }
+  .g-meaning { font-size: 10px !important; }
+  .g-tag { font-size: 9px !important; padding: 2px 8px !important; }
+
+  /* Time strip */
+  .time-strip { gap: 8px !important; }
+  .time-slot { padding: 12px 10px !important; border-radius: 12px !important; }
+  .ts-icon { font-size: 28px !important; }
+  .ts-time { font-size: 10.5px !important; }
+  .ts-greeting { font-size: 16px !important; }
+  .ts-range { font-size: 9.5px !important; }
+
+  /* Pronunc grid — page 3, spread out nicely */
+  .pronunc-grid { gap: 9px !important; }
+  .pronunc-card { padding: 10px 12px !important; gap: 12px !important; border-radius: 10px !important; }
+  .pc-emoji { font-size: 26px !important; }
+  .pc-en { font-size: 14px !important; }
+  .pc-pron { font-size: 10.5px !important; }
+  .pc-id { font-size: 10.5px !important; }
+
+  /* Dialogue */
+  .dialogue-box { padding: 13px 15px !important; gap: 10px !important; border-radius: 12px !important; }
+  .dialogue-title { font-size: 13px !important; margin-bottom: 5px !important; }
+  .bubble-row { gap: 9px !important; }
+  .avatar { width: 36px !important; height: 36px !important; font-size: 22px !important; }
+  .bubble { padding: 8px 12px !important; font-size: 11.5px !important; border-radius: 10px !important; }
+  .bubble-name { font-size: 9.5px !important; margin-bottom: 3px !important; }
+  .bubble-text { font-size: 12px !important; }
+  .bubble-indo { font-size: 10px !important; margin-top: 3px !important; }
+
+  /* Response cards — page 4 */
+  .response-grid { gap: 9px !important; }
+  .resp-card { padding: 12px 13px !important; border-radius: 11px !important; }
+  .resp-emoji { font-size: 26px !important; margin-bottom: 5px !important; }
+  .resp-en { font-size: 13px !important; }
+  .resp-id { font-size: 10.5px !important; }
+  .resp-use { font-size: 9.5px !important; margin-top: 4px !important; }
+
+  /* Quiz */
+  .quiz-grid { gap: 10px !important; }
+  .quiz-card { padding: 12px 14px !important; border-radius: 11px !important; }
+  .quiz-q { font-size: 12px !important; margin-bottom: 8px !important; gap: 7px !important; }
+  .qn { width: 20px !important; height: 20px !important; font-size: 11px !important; }
+  .qopt { font-size: 11px !important; padding: 5px 10px !important; gap: 7px !important; margin-bottom: 5px !important; }
+  .qopt-circle { width: 16px !important; height: 16px !important; }
+
+  /* Answer key */
+  .answer-key { padding: 10px 14px !important; margin-top: 8px !important; border-radius: 10px !important; }
+  .ak-label { font-size: 11.5px !important; margin-bottom: 6px !important; }
+  .ak-items { gap: 8px !important; }
+  .ak-item { font-size: 11px !important; padding: 3px 9px !important; }
+
+  /* Culture box */
+  .culture-box { padding: 12px 15px !important; border-radius: 11px !important; margin-top: 4px !important; }
+  .culture-title { font-size: 13px !important; margin-bottom: 6px !important; }
+  .culture-text { font-size: 11px !important; line-height: 1.6 !important; }
+
+  /* Footer */
+  .page-footer { padding: 8px 26px !important; }
+  .pf-brand { font-size: 12px !important; }
+  .pf-stars { font-size: 13px !important; }
+  .pf-page { font-size: 10.5px !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="screen-only">
+  🖨️ Print tip: <strong>Ctrl+P</strong> (Win) / <strong>Cmd+P</strong> (Mac) → Paper: <strong>A4</strong> · Margins: <strong>None</strong> · Enable <strong>Background graphics</strong>
+</div>
+
+<div class="pages-wrap">
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <!-- blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+
+    <!-- star dots -->
+    <div class="stars">
+      <span class="star" style="top:12%;left:18%">✦</span>
+      <span class="star" style="top:22%;right:22%">✦</span>
+      <span class="star" style="top:65%;left:12%">✦</span>
+      <span class="star" style="top:75%;right:18%">✦</span>
+      <span class="star" style="top:40%;left:8%">·</span>
+      <span class="star" style="top:50%;right:10%">·</span>
+      <span class="star" style="top:85%;left:30%">✦</span>
+      <span class="star" style="top:30%;right:8%">·</span>
+    </div>
+
+    <div class="cover-logo">LittleLume<span>English </span></div>
+
+    <div class="cover-emoji-row">
+      <span>👋</span><span>☀️</span><span>😊</span><span>🌙</span><span>🤝</span>
+    </div>
+
+    <div class="cover-title">
+      Let's Learn
+      <span>Greetings!</span>
+    </div>
+
+    <div class="cover-sub">Materi Bahasa Inggris · Kelas 1 SD</div>
+
+    <div class="cover-badge-row">
+      <div class="cover-badge"><div class="dot dot-sun"></div>Sapa dengan benar</div>
+      <div class="cover-badge"><div class="dot dot-sky"></div>Mudah dipelajari</div>
+      <div class="cover-badge"><div class="dot dot-mint"></div>Penuh contoh</div>
+      <div class="cover-badge"><div class="dot dot-rose"></div>Fun &amp; Colourful</div>
+    </div>
+
+    <!-- wave bottom -->
+    <svg class="cover-wave" viewBox="0 0 794 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C200,80 594,0 794,40 L794,80 L0,80 Z" fill="white" opacity="0.08"/>
+      <path d="M0,55 C250,20 550,70 794,55 L794,80 L0,80 Z" fill="white" opacity="0.12"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 — WHAT ARE GREETINGS + TIME OF DAY + CARDS
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="content-header">
+    <div class="ch-brand">LittleLume <sub>English </sub></div>
+    <div class="ch-pill">Greetings · Grade 1</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION 1 – Apa itu Greetings? -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-sun">💡</div>
+        <div>
+          <div class="sec-title">Apa itu <em>Greetings</em>?</div>
+          <div class="sec-desc">What are greetings?</div>
+        </div>
+      </div>
+      <div class="tip-box tip-sun">
+        <div class="tip-icon">📖</div>
+        <div class="tip-content">
+          <div class="tip-text">
+            <strong>Greetings (sapaan)</strong> adalah kata-kata yang kita ucapkan saat <strong>bertemu</strong> atau <strong>berpisah</strong> dengan seseorang.
+            Dalam bahasa Inggris, kita menggunakan sapaan yang <strong>berbeda</strong> tergantung waktu hari dan situasinya.
+            Mengucapkan sapaan dengan sopan membuat orang lain merasa <strong>senang dan dihargai</strong>! 😊
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 – Greetings berdasarkan waktu -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-sky">🕐</div>
+        <div>
+          <div class="sec-title">Sapaan Berdasarkan <em>Waktu</em></div>
+          <div class="sec-desc">Greetings by time of day</div>
+        </div>
+      </div>
+      <div class="time-strip">
+        <div class="time-slot ts-morning">
+          <span class="ts-icon">🌅</span>
+          <div class="ts-time">Pagi</div>
+          <div class="ts-greeting">Good Morning</div>
+          <div class="ts-range">06.00 – 11.59</div>
+        </div>
+        <div class="time-slot ts-afternoon">
+          <span class="ts-icon">☀️</span>
+          <div class="ts-time">Siang</div>
+          <div class="ts-greeting">Good Afternoon</div>
+          <div class="ts-range">12.00 – 17.59</div>
+        </div>
+        <div class="time-slot ts-evening">
+          <span class="ts-icon">🌆</span>
+          <div class="ts-time">Malam</div>
+          <div class="ts-greeting">Good Evening</div>
+          <div class="ts-range">18.00 – 20.59</div>
+        </div>
+        <div class="time-slot ts-night">
+          <span class="ts-icon">😴</span>
+          <div class="ts-time">Selamat Tidur</div>
+          <div class="ts-greeting">Good Night</div>
+          <div class="ts-range">Sebelum tidur</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 – Kartu Sapaan -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-violet">👋</div>
+        <div>
+          <div class="sec-title">Kartu <em>Sapaan</em> Lengkap</div>
+          <div class="sec-desc">Complete greeting cards</div>
+        </div>
+      </div>
+      <div class="greeting-grid">
+        <div class="g-card g-morning">
+          <span class="g-emoji">☀️</span>
+          <div class="g-word">Good Morning</div>
+          <div class="g-meaning">Selamat Pagi</div>
+          <span class="g-tag tag-morning">Pagi</span>
+        </div>
+        <div class="g-card g-afternoon">
+          <span class="g-emoji">🌤️</span>
+          <div class="g-word">Good Afternoon</div>
+          <div class="g-meaning">Selamat Siang</div>
+          <span class="g-tag tag-afternoon">Siang</span>
+        </div>
+        <div class="g-card g-evening">
+          <span class="g-emoji">🌆</span>
+          <div class="g-word">Good Evening</div>
+          <div class="g-meaning">Selamat Malam</div>
+          <span class="g-tag tag-evening">Malam</span>
+        </div>
+        <div class="g-card g-night">
+          <span class="g-emoji">🌙</span>
+          <div class="g-word">Good Night</div>
+          <div class="g-meaning">Selamat Tidur</div>
+          <span class="g-tag tag-night">Tidur</span>
+        </div>
+        <div class="g-card g-any">
+          <span class="g-emoji">👋</span>
+          <div class="g-word">Hello / Hi</div>
+          <div class="g-meaning">Halo / Hai</div>
+          <span class="g-tag tag-any">Kapan saja</span>
+        </div>
+        <div class="g-card g-any">
+          <span class="g-emoji">👋</span>
+          <div class="g-word">Goodbye</div>
+          <div class="g-meaning">Selamat tinggal</div>
+          <span class="g-tag tag-any">Perpisahan</span>
+        </div>
+        <div class="g-card g-any">
+          <span class="g-emoji">😄</span>
+          <div class="g-word">See You!</div>
+          <div class="g-meaning">Sampai jumpa!</div>
+          <span class="g-tag tag-any">Perpisahan</span>
+        </div>
+        <div class="g-card g-any">
+          <span class="g-emoji">🤝</span>
+          <div class="g-word">Nice to meet you</div>
+          <div class="g-meaning">Senang bertemu</div>
+          <span class="g-tag tag-any">Perkenalan</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 – Tip -->
+    <div class="tip-box tip-sky">
+      <div class="tip-icon">💡</div>
+      <div class="tip-content">
+        <div class="tip-label">Ingat ya! 📌</div>
+        <div class="tip-text">
+          <strong>Good Night ≠ Good Evening!</strong>
+          "Good Evening" diucapkan saat <strong>bertemu</strong> orang di malam hari.
+          "Good Night" diucapkan saat <strong>berpisah atau sebelum tidur</strong>. Jadi berbeda, ya!
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ LittleLume English </div>
+    <div class="pf-stars">🌟🌟🌟</div>
+    <div class="pf-page">Page 2 of 4</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 3 — PRONUNCIATION + DIALOGUE + RESPONSE + QUIZ
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="content-header">
+    <div class="ch-brand">LittleLume <sub>English </sub></div>
+    <div class="ch-pill">Greetings · Grade 1</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION 5 – Cara Mengucapkan -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-rose">🔊</div>
+        <div>
+          <div class="sec-title">Cara <em>Mengucapkan</em></div>
+          <div class="sec-desc">How to pronounce – baca seperti ini!</div>
+        </div>
+      </div>
+      <div class="pronunc-grid">
+        <div class="pronunc-card">
+          <div class="pc-emoji">☀️</div>
+          <div>
+            <div class="pc-en">Good Morning</div>
+            <div class="pc-pron">gud MOR-ning</div>
+            <div class="pc-id">Selamat Pagi</div>
+          </div>
+        </div>
+        <div class="pronunc-card">
+          <div class="pc-emoji">🌤️</div>
+          <div>
+            <div class="pc-en">Good Afternoon</div>
+            <div class="pc-pron">gud AF-ter-noon</div>
+            <div class="pc-id">Selamat Siang</div>
+          </div>
+        </div>
+        <div class="pronunc-card">
+          <div class="pc-emoji">🌆</div>
+          <div>
+            <div class="pc-en">Good Evening</div>
+            <div class="pc-pron">gud EEV-ning</div>
+            <div class="pc-id">Selamat Malam</div>
+          </div>
+        </div>
+        <div class="pronunc-card">
+          <div class="pc-emoji">😴</div>
+          <div>
+            <div class="pc-en">Good Night</div>
+            <div class="pc-pron">gud NAYT</div>
+            <div class="pc-id">Selamat Tidur</div>
+          </div>
+        </div>
+        <div class="pronunc-card">
+          <div class="pc-emoji">👋</div>
+          <div>
+            <div class="pc-en">Hello / Hi</div>
+            <div class="pc-pron">heh-LOH / HAI</div>
+            <div class="pc-id">Halo / Hai</div>
+          </div>
+        </div>
+        <div class="pronunc-card">
+          <div class="pc-emoji">😊</div>
+          <div>
+            <div class="pc-en">How are you?</div>
+            <div class="pc-pron">HAU ar yuu?</div>
+            <div class="pc-id">Apa kabarmu?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6 – Contoh Dialog -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-mint">💬</div>
+        <div>
+          <div class="sec-title">Contoh <em>Percakapan</em></div>
+          <div class="sec-desc">Example dialogue – baca bersama temanmu!</div>
+        </div>
+      </div>
+      <div class="dialogue-box">
+        <div class="dialogue-title">Saat bertemu di pagi hari 🌅</div>
+
+        <div class="bubble-row">
+          <div class="avatar av-a">👦</div>
+          <div class="bubble bubble-left">
+            <div class="bubble-name">Budi</div>
+            <div class="bubble-text">Good morning, Sari!</div>
+            <div class="bubble-indo">Selamat pagi, Sari!</div>
+          </div>
+        </div>
+
+        <div class="bubble-row right">
+          <div class="avatar av-b">👧</div>
+          <div class="bubble bubble-right">
+            <div class="bubble-name">Sari</div>
+            <div class="bubble-text">Good morning, Budi! How are you?</div>
+            <div class="bubble-indo">Selamat pagi, Budi! Apa kabarmu?</div>
+          </div>
+        </div>
+
+        <div class="bubble-row">
+          <div class="avatar av-a">👦</div>
+          <div class="bubble bubble-left">
+            <div class="bubble-name">Budi</div>
+            <div class="bubble-text">I'm fine, thank you! And you?</div>
+            <div class="bubble-indo">Aku baik, terima kasih! Kamu?</div>
+          </div>
+        </div>
+
+        <div class="bubble-row right">
+          <div class="avatar av-b">👧</div>
+          <div class="bubble bubble-right">
+            <div class="bubble-name">Sari</div>
+            <div class="bubble-text">I'm fine too! See you at school!</div>
+            <div class="bubble-indo">Aku juga baik! Sampai jumpa di sekolah!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-body-p3 -->
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ LittleLume English </div>
+    <div class="pf-stars">🌟🌟🌟</div>
+    <div class="pf-page">Page 3 of 4</div>
+  </div>
+</div><!-- /page 3 -->
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 4 — RESPONSE + QUIZ + CULTURE NOTE
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="content-header">
+    <div class="ch-brand">LittleLume <sub>English </sub></div>
+    <div class="ch-pill">Greetings · Grade 1</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION 7 – Cara Menjawab -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-violet">💭</div>
+        <div>
+          <div class="sec-title">Cara <em>Menjawab</em> Sapaan</div>
+          <div class="sec-desc">How to respond to greetings</div>
+        </div>
+      </div>
+      <div class="response-grid">
+        <div class="resp-card">
+          <div class="resp-emoji">😁</div>
+          <div class="resp-en">I'm fine, thank you!</div>
+          <div class="resp-id">Aku baik, terima kasih!</div>
+          <div class="resp-use">Paling umum dipakai</div>
+        </div>
+        <div class="resp-card">
+          <div class="resp-emoji">😊</div>
+          <div class="resp-en">I'm great!</div>
+          <div class="resp-id">Aku sangat baik!</div>
+          <div class="resp-use">Saat sedang senang</div>
+        </div>
+        <div class="resp-card">
+          <div class="resp-emoji">😌</div>
+          <div class="resp-en">Not bad, thanks!</div>
+          <div class="resp-id">Lumayan, terima kasih!</div>
+          <div class="resp-use">Saat biasa-biasa saja</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 8 – Mini Quiz -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-icon ic-sun">🎯</div>
+        <div>
+          <div class="sec-title"><em>Mini Quiz</em> – Yuk dicoba!</div>
+          <div class="sec-desc">Lingkari jawaban yang benar, lalu cek di Answer Key</div>
+        </div>
+      </div>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <div class="quiz-q">
+            <div class="qn">1</div>
+            Kamu bertemu guru jam 7 pagi. Kamu berkata:
+          </div>
+          <div class="quiz-options">
+            <div class="qopt"><div class="qopt-circle"></div>Good Night</div>
+            <div class="qopt correct"><div class="qopt-circle">✓</div>Good Morning</div>
+            <div class="qopt"><div class="qopt-circle"></div>Good Evening</div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q">
+            <div class="qn">2</div>
+            Temanmu bertanya "How are you?" Jawabanmu:
+          </div>
+          <div class="quiz-options">
+            <div class="qopt"><div class="qopt-circle"></div>Good Morning!</div>
+            <div class="qopt correct"><div class="qopt-circle">✓</div>I'm fine, thank you!</div>
+            <div class="qopt"><div class="qopt-circle"></div>Goodbye!</div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q">
+            <div class="qn">3</div>
+            Sebelum tidur, kamu berkata kepada ibu:
+          </div>
+          <div class="quiz-options">
+            <div class="qopt"><div class="qopt-circle"></div>Good Morning</div>
+            <div class="qopt"><div class="qopt-circle"></div>Good Evening</div>
+            <div class="qopt correct"><div class="qopt-circle">✓</div>Good Night</div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-q">
+            <div class="qn">4</div>
+            Kamu bertemu teman baru. Kamu berkata:
+          </div>
+          <div class="quiz-options">
+            <div class="qopt correct"><div class="qopt-circle">✓</div>Nice to meet you!</div>
+            <div class="qopt"><div class="qopt-circle"></div>Good Night!</div>
+            <div class="qopt"><div class="qopt-circle"></div>See you later!</div>
+          </div>
+        </div>
+      </div>
+      <div class="answer-key" style="margin-top:8px">
+        <div class="ak-label">🗝️ Answer Key:</div>
+        <div class="ak-items">
+          <div class="ak-item">1. Good Morning</div>
+          <div class="ak-item">2. I'm fine, thank you!</div>
+          <div class="ak-item">3. Good Night</div>
+          <div class="ak-item">4. Nice to meet you!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture Note -->
+    <div class="culture-box">
+      <div class="culture-title">🌍 Tahukah Kamu?</div>
+      <div class="culture-text">
+        Di negara-negara berbahasa Inggris seperti <strong>Amerika Serikat</strong> dan <strong>Inggris</strong>,
+        orang-orang selalu menyapa saat bertemu, bahkan dengan orang yang tidak dikenal.
+        Senyum dan sapaan <strong>"Hi!"</strong> atau <strong>"Hello!"</strong> sudah menjadi kebiasaan sehari-hari.
+        Dengan belajar greetings, kamu bisa berteman dengan siapa saja di seluruh dunia! 🌏✨
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ LittleLume English </div>
+    <div class="pf-stars">🌟🌟🌟</div>
+    <div class="pf-page">Page 4 of 4</div>
+  </div>
+</div>
+
+</div><!-- /pages-wrap -->
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Grade 1: Self Introduction</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD93D;
+    --coral: #FF6B6B;
+    --mint: #6BCB77;
+    --sky: #4D96FF;
+    --lavender: #C77DFF;
+    --peach: #FFB347;
+    --white: #FFFFFF;
+    --dark: #2D2D2D;
+    --light-bg: #FFF9F0;
+    --card-shadow: 0 6px 20px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--light-bg); color: var(--dark); overflow-x: hidden; }
+
+  header {
+    background: linear-gradient(135deg, #4D96FF 0%, #C77DFF 50%, #FF6B6B 100%);
+    padding: 18px 24px 22px; text-align: center; position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='4' fill='rgba(255,255,255,0.12)'/%3E%3Ccircle cx='50' cy='50' r='6' fill='rgba(255,255,255,0.08)'/%3E%3Ccircle cx='50' cy='10' r='3' fill='rgba(255,255,255,0.10)'/%3E%3Ccircle cx='10' cy='50' r='5' fill='rgba(255,255,255,0.09)'/%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+  .header-brand { font-family: 'Fredoka One', cursive; font-size: clamp(2rem,6vw,3.2rem); color: #fff; letter-spacing: 1px; text-shadow: 3px 3px 0 rgba(0,0,0,0.15); position: relative; }
+  .header-brand span { color: var(--sun); }
+  .header-tag { display: inline-block; background: var(--sun); color: var(--dark); font-size: 0.9rem; font-weight: 800; padding: 4px 16px; border-radius: 999px; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+  .header-title { margin-top: 10px; font-family: 'Fredoka One', cursive; font-size: clamp(1.4rem,4vw,2rem); color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,0.15); }
+  .stars { font-size: 1.4rem; margin-top: 4px; }
+
+  nav { display: flex; overflow-x: auto; gap: 8px; padding: 16px 20px 0; justify-content: center; flex-wrap: wrap; }
+  nav button { font-family: 'Fredoka One', cursive; font-size: 1rem; padding: 10px 20px; border: none; border-radius: 999px; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; white-space: nowrap; box-shadow: 0 4px 0 rgba(0,0,0,0.18); }
+  nav button:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(0,0,0,0.18); }
+  nav button.active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.18); }
+  .tab-learn    { background: var(--sky);      color: #fff; }
+  .tab-vocab    { background: var(--mint);     color: #fff; }
+  .tab-practice { background: var(--peach);    color: #fff; }
+  .tab-quiz     { background: var(--coral);    color: #fff; }
+  .tab-game     { background: var(--lavender); color: #fff; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  .section { display: none; }
+  .section.active { display: block; animation: fadeUp 0.35s ease; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+  .card { background: var(--white); border-radius: 20px; padding: 24px; margin-bottom: 20px; box-shadow: var(--card-shadow); }
+  .card-title { font-family: 'Fredoka One', cursive; font-size: 1.5rem; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .badge { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; font-size: 1.2rem; flex-shrink: 0; }
+
+  .intro-hero { background: linear-gradient(135deg, #e0f0ff, #f3e8ff); border-radius: 20px; padding: 28px 24px; text-align: center; margin-bottom: 20px; border: 3px dashed var(--sky); }
+  .intro-hero .emoji-big { font-size: 5rem; display: block; margin-bottom: 10px; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+  .intro-hero h2 { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: var(--sky); }
+  .intro-hero p  { font-size: 1.1rem; margin-top: 8px; color: #555; }
+
+  .phrase-block { background: linear-gradient(135deg, var(--sky) 0%, var(--lavender) 100%); color: #fff; border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.15s; }
+  .phrase-block:hover { transform: scale(1.02); }
+  .phrase-icon { font-size: 2.2rem; flex-shrink: 0; }
+  .phrase-text { flex: 1; }
+  .phrase-en   { font-family: 'Fredoka One', cursive; font-size: 1.3rem; }
+  .phrase-note { font-size: 0.88rem; opacity: 0.88; margin-top: 3px; }
+  .speak-btn { background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.5); color: #fff; border-radius: 999px; padding: 6px 14px; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; font-size: 0.85rem; white-space: nowrap; transition: background 0.15s; }
+  .speak-btn:hover { background: rgba(255,255,255,0.4); }
+
+  .tip-box { background: #fffbe6; border-left: 5px solid var(--sun); border-radius: 0 14px 14px 0; padding: 14px 18px; font-size: 0.97rem; margin-top: 10px; }
+
+  .dialogue { display: flex; flex-direction: column; gap: 14px; }
+  .bubble { display: flex; gap: 12px; align-items: flex-start; }
+  .bubble.right { flex-direction: row-reverse; }
+  .avatar { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+  .av-blue { background: #d0e8ff; } .av-pink { background: #ffd6e7; }
+  .speech { background: #f0f4ff; border-radius: 0 16px 16px 16px; padding: 12px 16px; font-size: 1rem; max-width: 80%; line-height: 1.5; }
+  .bubble.right .speech { background: #fff0f5; border-radius: 16px 0 16px 16px; }
+  .speech strong { color: var(--sky); }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(150px,1fr)); gap: 14px; }
+  .vocab-card { background: var(--white); border-radius: 18px; padding: 18px 12px; text-align: center; box-shadow: var(--card-shadow); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 3px solid transparent; }
+  .vocab-card:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 0 10px 24px rgba(0,0,0,0.13); }
+  .vocab-card.flipped { border-color: var(--mint); }
+  .vocab-emoji  { font-size: 3rem; display: block; margin-bottom: 8px; }
+  .vocab-word   { font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: var(--dark); }
+  .vocab-meaning{ font-size: 0.82rem; color: #888; margin-top: 4px; display: none; }
+  .vocab-card.flipped .vocab-meaning { display: block; }
+  .vocab-card.flipped .vocab-word { color: var(--mint); }
+  .tap-hint { text-align:center; color:#aaa; font-size:0.9rem; margin-bottom:12px; }
+
+  .fill-blank { background: #f8f0ff; border: 2px solid var(--lavender); border-radius: 16px; padding: 20px; margin-bottom: 14px; font-size: 1.1rem; line-height: 2; }
+  .fill-blank input { border: none; border-bottom: 3px solid var(--lavender); background: transparent; font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--lavender); width: 120px; text-align: center; outline: none; padding: 2px 6px; }
+  .fill-blank input:focus { border-bottom-color: var(--coral); }
+  .check-btn, .next-btn, .try-again-btn { font-family: 'Fredoka One', cursive; font-size: 1.1rem; padding: 10px 28px; border: none; border-radius: 999px; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.18); transition: transform 0.12s; margin-top: 10px; margin-right: 8px; }
+  .check-btn { background: var(--lavender); color: #fff; }
+  .next-btn  { background: var(--mint); color: #fff; }
+  .try-again-btn { background: var(--peach); color: #fff; }
+  .check-btn:hover, .next-btn:hover, .try-again-btn:hover { transform: translateY(-2px); }
+  .feedback { font-size: 1rem; font-weight: 700; margin-top: 10px; min-height: 24px; }
+  .feedback.correct { color: var(--mint); } .feedback.wrong { color: var(--coral); }
+
+  .my-intro-card { background: linear-gradient(135deg,#fff9c4,#ffecd2); border: 3px dashed var(--peach); border-radius: 20px; padding: 24px; }
+  .my-intro-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.4rem; color: var(--peach); margin-bottom: 16px; }
+  .intro-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .intro-row label { font-weight: 700; min-width: 80px; }
+  .intro-row input, .intro-row select { border: 2px solid var(--peach); border-radius: 10px; padding: 7px 12px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: #fff; outline: none; }
+  .intro-row input:focus { border-color: var(--coral); }
+  #intro-output { background: #fff; border-radius: 14px; padding: 18px; margin-top: 18px; font-size: 1.08rem; line-height: 1.9; border: 2px solid var(--peach); display: none; }
+  #intro-output.show { display: block; animation: fadeUp 0.3s ease; }
+  .gen-btn { font-family: 'Fredoka One', cursive; font-size: 1.1rem; padding: 11px 30px; border: none; border-radius: 999px; background: linear-gradient(90deg,var(--coral),var(--peach)); color: #fff; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.15); margin-top: 10px; transition: transform 0.12s; }
+  .gen-btn:hover { transform: translateY(-2px); }
+
+  .quiz-progress-bar { background: #f0e8ff; border-radius: 999px; height: 12px; margin-bottom: 20px; overflow: hidden; }
+  .quiz-progress-fill { background: linear-gradient(90deg,var(--lavender),var(--coral)); height: 100%; border-radius: 999px; transition: width 0.4s ease; }
+  .quiz-score-display { text-align: right; font-weight: 800; color: var(--lavender); margin-bottom: 6px; font-size: 0.95rem; }
+  .quiz-question { background: linear-gradient(135deg,#ffd6e7,#fff0b3); border-radius: 18px; padding: 22px 20px; font-family: 'Fredoka One', cursive; font-size: 1.35rem; text-align: center; margin-bottom: 18px; color: var(--dark); min-height: 90px; display: flex; align-items: center; justify-content: center; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quiz-opt { font-family: 'Fredoka One', cursive; font-size: 1.05rem; padding: 14px 10px; border: 3px solid transparent; border-radius: 14px; background: var(--white); cursor: pointer; box-shadow: var(--card-shadow); transition: transform 0.15s, border-color 0.15s; text-align: center; }
+  .quiz-opt:hover { transform: scale(1.04); border-color: var(--lavender); }
+  .quiz-opt.correct { background: #d4f7dc; border-color: var(--mint); }
+  .quiz-opt.wrong   { background: #ffd6d6; border-color: var(--coral); }
+  .quiz-feedback { text-align: center; font-family: 'Fredoka One', cursive; font-size: 1.2rem; margin-top: 14px; min-height: 32px; }
+  .quiz-feedback.c { color: var(--mint); } .quiz-feedback.w { color: var(--coral); }
+  .quiz-result { text-align: center; padding: 30px 20px; display: none; }
+  .quiz-result.show { display: block; animation: fadeUp 0.4s ease; }
+  .result-emoji { font-size: 4.5rem; display: block; margin-bottom: 10px; }
+  .result-score { font-family: 'Fredoka One', cursive; font-size: 2.2rem; color: var(--coral); }
+  .result-msg   { font-size: 1.1rem; color: #555; margin-top: 8px; }
+  .restart-btn { font-family: 'Fredoka One', cursive; font-size: 1.1rem; padding: 12px 32px; border: none; border-radius: 999px; background: linear-gradient(90deg,var(--sky),var(--lavender)); color: #fff; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.15); margin-top: 18px; transition: transform 0.12s; }
+  .restart-btn:hover { transform: translateY(-2px); }
+
+  .game-tabs { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  .game-tab { font-family: 'Fredoka One', cursive; font-size: 1rem; padding: 9px 20px; border: none; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 rgba(0,0,0,0.15); transition: transform 0.12s; }
+  .game-tab:hover { transform: translateY(-2px); }
+  .game-tab.active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+  .gt-1 { background: var(--sky);   color: #fff; }
+  .gt-2 { background: var(--mint);  color: #fff; }
+  .gt-3 { background: var(--peach); color: #fff; }
+  .game-area { display: none; }
+  .game-area.active { display: block; animation: fadeUp 0.3s ease; }
+
+  .match-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+  .match-card { background: linear-gradient(135deg,var(--sky),var(--lavender)); color: #fff; font-family: 'Fredoka One', cursive; font-size: 0.95rem; padding: 16px 8px; border-radius: 14px; text-align: center; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.18); transition: transform 0.15s; min-height: 60px; display: flex; align-items: center; justify-content: center; user-select: none; position: relative; overflow: hidden; }
+  .match-card::before { content:'?'; position:absolute; font-size:1.8rem; opacity:0.3; }
+  .match-card.revealed::before { display:none; }
+  .match-card.revealed  { background: linear-gradient(135deg,var(--mint),#4dd67a); }
+  .match-card.selected  { outline: 4px solid var(--sun); transform: scale(1.06); }
+  .match-card.matched   { background: linear-gradient(135deg,#c8f7d0,#a8edb8); color:var(--dark); pointer-events:none; opacity:0.8; }
+  .match-card.wrong-flash { animation: wrongFlash 0.4s ease; }
+  @keyframes wrongFlash { 0%,100%{background:linear-gradient(135deg,var(--sky),var(--lavender));}50%{background:linear-gradient(135deg,var(--coral),#ff9999);} }
+  .match-card:hover { transform: translateY(-3px); }
+  .match-status { font-weight: 800; color: var(--lavender); text-align: center; margin-top: 14px; font-size: 1rem; }
+
+  .word-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 16px; background: #f0f4ff; border-radius: 14px; min-height: 60px; margin-bottom: 14px; }
+  .word-chip { background: var(--white); border: 2px solid var(--sky); color: var(--dark); font-family: 'Fredoka One', cursive; font-size: 1rem; padding: 8px 16px; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 rgba(77,150,255,0.3); transition: transform 0.12s; user-select: none; }
+  .word-chip:hover { transform: translateY(-2px); }
+  .word-chip.used { opacity: 0.35; pointer-events: none; }
+  .sentence-drop { min-height: 60px; background: #fff9f0; border: 3px dashed var(--peach); border-radius: 14px; padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+  .placed-chip { background: var(--peach); color: #fff; font-family: 'Fredoka One', cursive; font-size: 1rem; padding: 8px 16px; border-radius: 999px; cursor: pointer; box-shadow: 0 3px 0 rgba(255,179,71,0.35); transition: transform 0.12s; }
+  .placed-chip:hover { transform: scale(1.05); }
+  .drop-hint { color: #bbb; font-style: italic; font-size: 0.9rem; }
+  .sort-feedback { font-family: 'Fredoka One', cursive; font-size: 1.2rem; min-height: 30px; text-align: center; }
+  .sort-feedback.c { color: var(--mint); } .sort-feedback.w { color: var(--coral); }
+
+  .wheel-wrap { text-align: center; }
+  canvas#wheel { display: block; margin: 0 auto; max-width: 280px; max-height: 280px; }
+  .spin-btn { font-family: 'Fredoka One', cursive; font-size: 1.2rem; padding: 12px 36px; border: none; border-radius: 999px; background: linear-gradient(90deg,var(--coral),var(--peach)); color: #fff; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.18); margin-top: 16px; transition: transform 0.12s; }
+  .spin-btn:hover { transform: translateY(-2px); }
+  .spin-result { margin-top: 14px; font-family: 'Fredoka One', cursive; font-size: 1.3rem; color: var(--lavender); min-height: 40px; }
+
+  footer { text-align: center; padding: 20px; color: #aaa; font-size: 0.85rem; }
+  footer span { color: var(--coral); }
+
+  @media(max-width:540px){
+    .vocab-grid{grid-template-columns:repeat(3,1fr);}
+    .quiz-options{grid-template-columns:1fr;}
+    .match-grid{grid-template-columns:repeat(3,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">Little<span>Lume</span> English ✨</div>
+  <div><span class="header-tag">⭐ Grade 1 ⭐</span></div>
+  <div class="header-title">🎉 Self Introduction 🎉</div>
+  <div class="stars">🌟 🎈 🌈 🎊 🌟</div>
+</header>
+
+<nav>
+  <button class="tab-learn active"    onclick="showSection('learn',   this)">📚 Learn</button>
+  <button class="tab-vocab"           onclick="showSection('vocab',   this)">🔤 Vocabulary</button>
+  <button class="tab-practice"        onclick="showSection('practice',this)">✏️ Practice</button>
+  <button class="tab-quiz"            onclick="showSection('quiz',    this)">❓ Quiz</button>
+  <button class="tab-game"            onclick="showSection('game',    this)">🎮 Game</button>
+</nav>
+
+<main>
+
+<!-- LEARN -->
+<div id="learn" class="section active">
+  <div class="intro-hero">
+    <span class="emoji-big">👋</span>
+    <h2>Hello, World!</h2>
+    <p>Learn how to introduce yourself in English. It's easy and fun! 🌟</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d0e8ff">📖</div> What is Self Introduction?</div>
+    <p style="font-size:1.05rem;line-height:1.7;">A <strong>self introduction</strong> is when you tell other people <em>who you are</em>! You share your <strong>name</strong>, your <strong>age</strong>, where you are <strong>from</strong>, and what you <strong>like</strong>. It's the first thing we say when we meet someone new. 😊</p>
+    <div class="tip-box">💡 <strong>Remember:</strong> Always smile when you introduce yourself! It makes people happy! 😄</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#ffd6e7">🗣️</div> Key Phrases – What to Say!</div>
+    <div class="phrase-block" onclick="speak('Hello! Hi! Good morning!')">
+      <span class="phrase-icon">👋</span>
+      <div class="phrase-text"><div class="phrase-en">Hello! / Hi! / Good morning!</div><div class="phrase-note">Greeting people when you first meet them</div></div>
+      <button class="speak-btn" onclick="event.stopPropagation();speak('Hello! Hi! Good morning!')">🔊 Listen</button>
+    </div>
+    <div class="phrase-block" onclick="speak('My name is Sam.')">
+      <span class="phrase-icon">🏷️</span>
+      <div class="phrase-text"><div class="phrase-en">My name is ___.</div><div class="phrase-note">Tell people your name</div></div>
+      <button class="speak-btn" onclick="event.stopPropagation();speak('My name is Sam.')">🔊 Listen</button>
+    </div>
+    <div class="phrase-block" onclick="speak('I am six years old.')">
+      <span class="phrase-icon">🎂</span>
+      <div class="phrase-text"><div class="phrase-en">I am ___ years old.</div><div class="phrase-note">Tell people how old you are</div></div>
+      <button class="speak-btn" onclick="event.stopPropagation();speak('I am six years old.')">🔊 Listen</button>
+    </div>
+    <div class="phrase-block" onclick="speak('I am from Indonesia.')">
+      <span class="phrase-icon">🌍</span>
+      <div class="phrase-text"><div class="phrase-en">I am from ___.</div><div class="phrase-note">Tell people where you come from</div></div>
+      <button class="speak-btn" onclick="event.stopPropagation();speak('I am from Indonesia.')">🔊 Listen</button>
+    </div>
+    <div class="phrase-block" onclick="speak('I like playing and drawing.')">
+      <span class="phrase-icon">❤️</span>
+      <div class="phrase-text"><div class="phrase-en">I like ___.</div><div class="phrase-note">Tell people what you enjoy!</div></div>
+      <button class="speak-btn" onclick="event.stopPropagation();speak('I like playing and drawing.')">🔊 Listen</button>
+    </div>
+    <div class="phrase-block" onclick="speak('Nice to meet you!')">
+      <span class="phrase-icon">🤝</span>
+      <div class="phrase-text"><div class="phrase-en">Nice to meet you!</div><div class="phrase-note">Say this at the end of your introduction</div></div>
+      <button class="speak-btn" onclick="event.stopPropagation();speak('Nice to meet you!')">🔊 Listen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d4f7dc">📝</div> Example Introduction</div>
+    <div style="background:linear-gradient(135deg,#e8f8f0,#f0e8ff);border-radius:16px;padding:20px;font-size:1.08rem;line-height:2.1;border-left:5px solid var(--mint);">
+      👋 <strong>Hello!</strong> My name is <strong style="color:var(--sky)">Sam</strong>.<br>
+      🎂 I am <strong style="color:var(--coral)">seven</strong> years old.<br>
+      🌍 I am from <strong style="color:var(--lavender)">Indonesia</strong>.<br>
+      🏫 I am in <strong style="color:var(--peach)">Grade 1</strong>.<br>
+      ❤️ I like <strong style="color:var(--mint)">drawing</strong> and <strong style="color:var(--coral)">playing football</strong>.<br>
+      🤝 <strong>Nice to meet you!</strong>
+    </div>
+    <button class="speak-btn" style="background:var(--sky);border:none;margin-top:12px;padding:10px 20px;font-size:1rem;border-radius:999px;cursor:pointer;" onclick="speak('Hello! My name is Sam. I am seven years old. I am from Indonesia. I am in Grade 1. I like drawing and playing football. Nice to meet you!')">🔊 Hear the Example</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#fff0b3">💬</div> Mini Dialogue – Let's Talk!</div>
+    <div class="dialogue">
+      <div class="bubble"><div class="avatar av-blue">👦</div><div class="speech"><strong>Sam:</strong> Hello! My name is Sam. What is your name?</div></div>
+      <div class="bubble right"><div class="avatar av-pink">👧</div><div class="speech"><strong>Lily:</strong> Hi, Sam! My name is Lily. Nice to meet you!</div></div>
+      <div class="bubble"><div class="avatar av-blue">👦</div><div class="speech"><strong>Sam:</strong> Nice to meet you too, Lily! How old are you?</div></div>
+      <div class="bubble right"><div class="avatar av-pink">👧</div><div class="speech"><strong>Lily:</strong> I am six years old. How about you?</div></div>
+      <div class="bubble"><div class="avatar av-blue">👦</div><div class="speech"><strong>Sam:</strong> I am seven! I like playing football. What do you like?</div></div>
+      <div class="bubble right"><div class="avatar av-pink">👧</div><div class="speech"><strong>Lily:</strong> I like drawing and singing! 🎨🎵</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#ffd6d6">🌅</div> Greetings by Time of Day</div>
+    <div style="display:grid;gap:10px;">
+      <div style="background:#fff9c4;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;"><span style="font-size:1.8rem">🌅</span><div><strong style="font-size:1.1rem">Good morning!</strong><br><span style="color:#888;font-size:0.9rem">Use from sunrise until noon (12:00 PM)</span></div></div>
+      <div style="background:#d0e8ff;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;"><span style="font-size:1.8rem">☀️</span><div><strong style="font-size:1.1rem">Good afternoon!</strong><br><span style="color:#888;font-size:0.9rem">Use from noon until 6:00 PM</span></div></div>
+      <div style="background:#f3e8ff;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;"><span style="font-size:1.8rem">🌙</span><div><strong style="font-size:1.1rem">Good evening!</strong><br><span style="color:#888;font-size:0.9rem">Use after 6:00 PM</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- VOCAB -->
+<div id="vocab" class="section">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d4f7dc">🔤</div> Vocabulary Cards</div>
+    <p class="tap-hint">👆 Tap a card to see the meaning!</p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#fff0b3">🔢</div> Numbers (Age)</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;" id="numbersGrid"></div>
+  </div>
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#ffd6e7">❤️</div> Things I Like</div>
+    <div class="vocab-grid" id="likesGrid"></div>
+  </div>
+</div>
+
+<!-- PRACTICE -->
+<div id="practice" class="section">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#f3e8ff">✏️</div> Fill in the Blank</div>
+    <p style="margin-bottom:14px;color:#666;">Type the correct word in the blank! 📝</p>
+    <div id="fillContainer"></div>
+  </div>
+  <div class="my-intro-card">
+    <h3>⭐ Write YOUR Introduction!</h3>
+    <div class="intro-row"><label>My name:</label><input id="inp-name" type="text" placeholder="e.g. Alex" maxlength="20"></div>
+    <div class="intro-row"><label>I am:</label><input id="inp-age" type="number" placeholder="6" min="5" max="9" style="width:70px"><span style="font-weight:700">years old</span></div>
+    <div class="intro-row"><label>From:</label><input id="inp-from" type="text" placeholder="e.g. Jakarta" maxlength="30"></div>
+    <div class="intro-row"><label>I like:</label><input id="inp-like1" type="text" placeholder="e.g. drawing" maxlength="20"><span style="font-weight:700">and</span><input id="inp-like2" type="text" placeholder="e.g. singing" maxlength="20"></div>
+    <button class="gen-btn" onclick="generateIntro()">✨ Generate My Introduction!</button>
+    <div id="intro-output"></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#ffd6d6">❓</div> Self Introduction Quiz</div>
+    <div class="quiz-score-display" id="quizScoreDisplay">Score: 0 / 10</div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizFill" style="width:0%"></div></div>
+    <div id="quizBody">
+      <div class="quiz-question" id="quizQ">Loading...</div>
+      <div class="quiz-options" id="quizOpts"></div>
+      <div class="quiz-feedback" id="quizFb"></div>
+    </div>
+    <div class="quiz-result" id="quizResult">
+      <span class="result-emoji" id="resultEmoji">🌟</span>
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-msg"  id="resultMsg"></div>
+      <button class="restart-btn" onclick="startQuiz()">🔄 Play Again!</button>
+    </div>
+  </div>
+</div>
+
+<!-- GAME -->
+<div id="game" class="section">
+  <div class="card">
+    <div class="card-title"><div class="badge" style="background:#d0e8ff">🎮</div> Fun Games!</div>
+    <div class="game-tabs">
+      <button class="game-tab gt-1 active" onclick="showGame('match',this)">🃏 Word Match</button>
+      <button class="game-tab gt-2"         onclick="showGame('sort', this)">🧩 Sentence Sort</button>
+      <button class="game-tab gt-3"         onclick="showGame('wheel',this)">🎡 Spin &amp; Speak!</button>
+    </div>
+
+    <div id="game-match" class="game-area active">
+      <p style="color:#666;margin-bottom:12px;font-size:0.95rem;">Match the English word with its meaning! Find all 6 pairs! 🎯</p>
+      <div class="match-grid" id="matchGrid"></div>
+      <div class="match-status" id="matchStatus">Find the matching pairs! 🔍</div>
+      <button class="next-btn" style="margin-top:12px" onclick="initMatch()">🔄 New Game</button>
+    </div>
+
+    <div id="game-sort" class="game-area">
+      <p style="color:#666;margin-bottom:12px;font-size:0.95rem;">Tap the words in the correct order to make a sentence! 🧩</p>
+      <div class="word-bank" id="wordBank"></div>
+      <p style="font-size:0.9rem;color:#999;margin-bottom:6px;">👇 Your sentence:</p>
+      <div class="sentence-drop" id="sentDrop"><span class="drop-hint">Tap words above to place them here...</span></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="check-btn" onclick="checkSort()">✅ Check</button>
+        <button class="try-again-btn" onclick="resetSort()">🔄 Reset</button>
+        <button class="next-btn" onclick="nextSort()">➡️ Next Sentence</button>
+      </div>
+      <div class="sort-feedback" id="sortFb"></div>
+    </div>
+
+    <div id="game-wheel" class="game-area">
+      <p style="color:#666;margin-bottom:12px;font-size:0.95rem;">Spin the wheel and answer the question out loud! 🎡</p>
+      <div class="wheel-wrap">
+        <canvas id="wheel" width="280" height="280"></canvas>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 SPIN!</button>
+        <div class="spin-result" id="spinResult"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer>Made with ❤️ by <span>LittleLume English</span> • Grade 1 • Self Introduction</footer>
+
+<script>
+function showSection(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='quiz') startQuiz();
+  if(id==='game'){initMatch();initSort();initWheel();}
+}
+function speak(text){
+  if(!('speechSynthesis' in window))return;
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';u.rate=0.85;u.pitch=1.1;
+  speechSynthesis.cancel();speechSynthesis.speak(u);
+}
+
+// VOCAB
+const vocabWords=[
+  {emoji:'👤',word:'Name',meaning:'What people call you'},
+  {emoji:'🎂',word:'Age',meaning:'How many years old you are'},
+  {emoji:'🏠',word:'Home',meaning:'Where you live'},
+  {emoji:'🏫',word:'School',meaning:'Where you learn'},
+  {emoji:'👨‍👩‍👦',word:'Family',meaning:'Your parents and siblings'},
+  {emoji:'😊',word:'Friend',meaning:'Someone you like to play with'},
+  {emoji:'❤️',word:'Like',meaning:'Something you enjoy'},
+  {emoji:'🌍',word:'Country',meaning:'The land you come from'},
+  {emoji:'👋',word:'Hello',meaning:'How you greet someone'},
+  {emoji:'🤝',word:'Meet',meaning:'To see someone for the first time'},
+  {emoji:'📛',word:'Introduction',meaning:'Telling others who you are'},
+  {emoji:'🗣️',word:'Speak',meaning:'To say words out loud'},
+];
+const numbers=[{n:'one',e:'1️⃣'},{n:'two',e:'2️⃣'},{n:'three',e:'3️⃣'},{n:'four',e:'4️⃣'},{n:'five',e:'5️⃣'},{n:'six',e:'6️⃣'},{n:'seven',e:'7️⃣'},{n:'eight',e:'8️⃣'},{n:'nine',e:'9️⃣'},{n:'ten',e:'🔟'}];
+const likes=[
+  {emoji:'⚽',word:'Football',meaning:'Kicking a ball'},
+  {emoji:'🎨',word:'Drawing',meaning:'Making pictures'},
+  {emoji:'🎵',word:'Singing',meaning:'Making music with your voice'},
+  {emoji:'📚',word:'Reading',meaning:'Looking at books'},
+  {emoji:'🏊',word:'Swimming',meaning:'Moving in water'},
+  {emoji:'🎮',word:'Gaming',meaning:'Playing video games'},
+  {emoji:'🍕',word:'Pizza',meaning:'A yummy food!'},
+  {emoji:'🐶',word:'Dogs',meaning:'Fluffy pet animals'},
+];
+function buildVocab(){
+  const g=document.getElementById('vocabGrid');
+  vocabWords.forEach(v=>{const d=document.createElement('div');d.className='vocab-card';d.innerHTML=`<span class="vocab-emoji">${v.emoji}</span><div class="vocab-word">${v.word}</div><div class="vocab-meaning">${v.meaning}</div>`;d.onclick=()=>{d.classList.toggle('flipped');speak(v.word);};g.appendChild(d);});
+  const ng=document.getElementById('numbersGrid');
+  numbers.forEach(n=>{const d=document.createElement('div');d.style.cssText='background:#fff;border-radius:14px;padding:14px 8px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer;border:2px solid #e0e0e0;';d.innerHTML=`<div style="font-size:2rem">${n.e}</div><div style="font-family:Fredoka One,cursive;font-size:1.1rem;margin-top:6px">${n.n}</div>`;d.onclick=()=>speak(n.n);ng.appendChild(d);});
+  const lg=document.getElementById('likesGrid');
+  likes.forEach(v=>{const d=document.createElement('div');d.className='vocab-card';d.innerHTML=`<span class="vocab-emoji">${v.emoji}</span><div class="vocab-word">${v.word}</div><div class="vocab-meaning">${v.meaning}</div>`;d.onclick=()=>{d.classList.toggle('flipped');speak(v.word);};lg.appendChild(d);});
+}
+buildVocab();
+
+// FILL IN BLANK
+const fillQs=[
+  {sentence:'My ___ is Sam.',answer:'name',hint:'What people call you (starts with N)'},
+  {sentence:'I am seven years ___.',answer:'old',hint:'...years ___'},
+  {sentence:'___ to meet you!',answer:'Nice',hint:'Starts with N, means pleasant'},
+  {sentence:'I am ___ Indonesia.',answer:'from',hint:'Tell where you come from'},
+  {sentence:'I ___ drawing and singing.',answer:'like',hint:'You enjoy something'},
+  {sentence:'___ morning! My name is Lily.',answer:'Good',hint:'Greeting in the morning'},
+];
+let fillIdx=0;
+function renderFill(){
+  const c=document.getElementById('fillContainer');
+  const q=fillQs[fillIdx];
+  c.innerHTML=`<div style="color:#aaa;font-size:0.85rem;margin-bottom:6px">Question ${fillIdx+1} of ${fillQs.length}</div><div class="fill-blank">${q.sentence.replace('___','<input id="fillInput" type="text" placeholder="???" autocomplete="off">')}</div><div style="font-size:0.88rem;color:#aaa;margin-bottom:4px">💡 Hint: ${q.hint}</div><button class="check-btn" onclick="checkFill()">✅ Check Answer</button><button class="next-btn" onclick="nextFill()">➡️ Next</button><div class="feedback" id="fillFb"></div>`;
+  document.getElementById('fillInput').focus();
+  document.getElementById('fillInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkFill();});
+}
+function checkFill(){
+  const inp=document.getElementById('fillInput');
+  const fb=document.getElementById('fillFb');
+  const ans=fillQs[fillIdx].answer.toLowerCase();
+  if(inp.value.trim().toLowerCase()===ans){fb.className='feedback correct';fb.textContent='🎉 Correct! Well done! ⭐';inp.style.borderBottomColor='var(--mint)';speak('Correct! Well done!');}
+  else{fb.className='feedback wrong';fb.textContent=`❌ Try again! The answer is "${fillQs[fillIdx].answer}"`;speak('Try again!');}
+}
+function nextFill(){fillIdx=(fillIdx+1)%fillQs.length;renderFill();}
+renderFill();
+
+function generateIntro(){
+  const name=document.getElementById('inp-name').value.trim()||'Sam';
+  const age=document.getElementById('inp-age').value.trim()||'7';
+  const from=document.getElementById('inp-from').value.trim()||'Indonesia';
+  const like1=document.getElementById('inp-like1').value.trim()||'drawing';
+  const like2=document.getElementById('inp-like2').value.trim()||'singing';
+  const el=document.getElementById('intro-output');
+  el.innerHTML=`<div style="font-size:1.6rem;text-align:center;margin-bottom:10px">⭐ My Introduction ⭐</div>👋 <strong>Hello!</strong> My name is <strong style="color:var(--sky)">${name}</strong>.<br>🎂 I am <strong style="color:var(--coral)">${age}</strong> years old.<br>🌍 I am from <strong style="color:var(--lavender)">${from}</strong>.<br>🏫 I am in <strong style="color:var(--peach)">Grade 1</strong>.<br>❤️ I like <strong style="color:var(--mint)">${like1}</strong> and <strong style="color:var(--coral)">${like2}</strong>.<br>🤝 <strong>Nice to meet you!</strong><br><br><button class="speak-btn" style="background:var(--mint);border:none;padding:10px 20px;font-size:1rem;border-radius:999px;cursor:pointer;color:#fff" onclick="speak('Hello! My name is ${name}. I am ${age} years old. I am from ${from}. I am in Grade 1. I like ${like1} and ${like2}. Nice to meet you!')">🔊 Read Aloud!</button>`;
+  el.classList.add('show');
+}
+
+// QUIZ
+const quizData=[
+  {q:'👋 How do you say hello to your teacher in the morning?',opts:['Good morning!','Good night!','Goodbye!','See you later!'],ans:0},
+  {q:'🏷️ "My ___ is Lily." What word is missing?',opts:['age','name','like','from'],ans:1},
+  {q:'🎂 Which sentence tells your age?',opts:['I am from Jakarta.','My name is Sam.','I am seven years old.','I like football.'],ans:2},
+  {q:'🤝 What do you say at the END of your introduction?',opts:['My name is...','Hello!','Nice to meet you!','Good morning!'],ans:2},
+  {q:'🌍 "I am ___ Indonesia." What is the missing word?',opts:['in','on','from','at'],ans:2},
+  {q:'❓ You meet a new friend. What do you say FIRST?',opts:['Nice to meet you!','Goodbye!','Hello! My name is...','See you tomorrow!'],ans:2},
+  {q:'☀️ It is 3:00 PM. Which greeting is correct?',opts:['Good morning!','Good evening!','Good afternoon!','Good night!'],ans:2},
+  {q:'🎨 "I like drawing." What does "like" mean here?',opts:['I need it','I hate it','I enjoy it','I want it'],ans:2},
+  {q:'🔢 How do you say the number 7 in English?',opts:['Six','Eight','Nine','Seven'],ans:3},
+  {q:'🗣️ Which is a COMPLETE self introduction?',opts:['Hello!','Nice to meet you!','Hello! My name is Sam. I am 7. Nice to meet you!','I like football.'],ans:2},
+];
+let qIdx=0,qScore=0,answered=false;
+function startQuiz(){
+  qIdx=0;qScore=0;answered=false;
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizBody').style.display='block';
+  loadQ();
+}
+function loadQ(){
+  const q=quizData[qIdx];
+  document.getElementById('quizQ').textContent=q.q;
+  document.getElementById('quizFill').style.width=((qIdx/quizData.length)*100)+'%';
+  document.getElementById('quizScoreDisplay').textContent=`Score: ${qScore} / ${quizData.length}`;
+  document.getElementById('quizFb').textContent='';
+  document.getElementById('quizFb').className='quiz-feedback';
+  const opts=document.getElementById('quizOpts');opts.innerHTML='';
+  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='quiz-opt';b.textContent=o;b.onclick=()=>answerQ(i,b,q.ans);opts.appendChild(b);});
+  answered=false;
+}
+function answerQ(i,btn,correct){
+  if(answered)return;answered=true;
+  const allBtns=document.querySelectorAll('.quiz-opt');
+  allBtns[correct].classList.add('correct');
+  const fb=document.getElementById('quizFb');
+  if(i===correct){qScore++;fb.className='quiz-feedback c';const msgs=['🎉 Awesome!','⭐ Perfect!','🌟 Excellent!','🎊 Well done!','🥳 Amazing!'];fb.textContent=msgs[Math.floor(Math.random()*msgs.length)];speak('Correct!');}
+  else{btn.classList.add('wrong');fb.className='quiz-feedback w';fb.textContent='❌ Oops! Look at the green one!';speak('Try again next time!');}
+  document.getElementById('quizScoreDisplay').textContent=`Score: ${qScore} / ${quizData.length}`;
+  setTimeout(()=>{qIdx++;if(qIdx<quizData.length)loadQ();else showResult();},1800);
+}
+function showResult(){
+  document.getElementById('quizBody').style.display='none';
+  document.getElementById('quizFill').style.width='100%';
+  const res=document.getElementById('quizResult');res.classList.add('show');
+  const pct=(qScore/quizData.length)*100;
+  let emoji,msg;
+  if(pct===100){emoji='🏆';msg='PERFECT SCORE! You are a superstar! 🌟';}
+  else if(pct>=70){emoji='⭐';msg="Great job! Keep practicing!";}
+  else if(pct>=50){emoji='😊';msg="Good try! Let's practice more!";}
+  else{emoji='💪';msg="Don't give up! You can do it!";}
+  document.getElementById('resultEmoji').textContent=emoji;
+  document.getElementById('resultScore').textContent=`${qScore} / ${quizData.length}`;
+  document.getElementById('resultMsg').textContent=msg;
+  speak(`You scored ${qScore} out of ${quizData.length}. ${msg}`);
+}
+
+// MATCH GAME
+const matchPairs=[
+  {word:'👋 Hello',pair:'Greeting'},
+  {word:'🏷️ Name',pair:'Who are you?'},
+  {word:'🎂 Age',pair:'How old?'},
+  {word:'🌍 From',pair:'Your country'},
+  {word:'❤️ Like',pair:'What you enjoy'},
+  {word:'🤝 Meet',pair:'First time seeing'},
+];
+let matchSelected=null,matchMatched=0;
+function initMatch(){
+  matchSelected=null;matchMatched=0;
+  document.getElementById('matchStatus').textContent='Find the matching pairs! 🔍';
+  const cards=[];
+  matchPairs.forEach((p,i)=>{cards.push({id:i,type:'word',label:p.word});cards.push({id:i,type:'pair',label:p.pair});});
+  cards.sort(()=>Math.random()-0.5);
+  const g=document.getElementById('matchGrid');g.innerHTML='';
+  cards.forEach(c=>{const d=document.createElement('div');d.className='match-card';d.dataset.id=c.id;d.dataset.type=c.type;d.dataset.label=c.label;d.textContent='';d.onclick=()=>handleMatch(d);g.appendChild(d);});
+}
+function handleMatch(d){
+  if(d.classList.contains('matched')||d.classList.contains('selected'))return;
+  d.classList.add('revealed','selected');d.textContent=d.dataset.label;
+  if(!matchSelected){matchSelected=d;return;}
+  const prev=matchSelected;matchSelected=null;
+  if(prev.dataset.id===d.dataset.id&&prev.dataset.type!==d.dataset.type){
+    prev.classList.add('matched');d.classList.add('matched');prev.classList.remove('selected');d.classList.remove('selected');
+    matchMatched++;speak('Match!');
+    if(matchMatched===matchPairs.length)document.getElementById('matchStatus').textContent='🎉 You found all pairs! Amazing! ⭐';
+    else document.getElementById('matchStatus').textContent=`✅ Match! ${matchPairs.length-matchMatched} pairs left!`;
+  }else{
+    setTimeout(()=>{prev.classList.remove('revealed','selected');prev.textContent='';d.classList.remove('revealed','selected');d.textContent='';},900);
+    prev.classList.add('wrong-flash');d.classList.add('wrong-flash');
+    setTimeout(()=>{prev.classList.remove('wrong-flash');d.classList.remove('wrong-flash');},500);
+    document.getElementById('matchStatus').textContent='❌ Not a match! Try again!';
+  }
+}
+
+// SENTENCE SORT
+const sortSentences=[
+  {words:['My','name','is','Sam','.'],answer:'My name is Sam .'},
+  {words:['I','am','seven','years','old','.'],answer:'I am seven years old .'},
+  {words:['Nice','to','meet','you','!'],answer:'Nice to meet you !'},
+  {words:['I','like','drawing','and','singing','.'],answer:'I like drawing and singing .'},
+  {words:['I','am','from','Indonesia','.'],answer:'I am from Indonesia .'},
+  {words:['Hello','!','My','name','is','Lily','.'],answer:'Hello ! My name is Lily .'},
+];
+let sortIdx=0,sortPlaced=[],sortUsed=[];
+function initSort(){sortIdx=0;loadSort();}
+function loadSort(){
+  sortPlaced=[];sortUsed=[];
+  document.getElementById('sortFb').textContent='';document.getElementById('sortFb').className='sort-feedback';
+  const s=sortSentences[sortIdx];
+  const shuffled=[...s.words].sort(()=>Math.random()-0.5);
+  const wb=document.getElementById('wordBank');wb.innerHTML='';
+  shuffled.forEach((w,i)=>{const c=document.createElement('span');c.className='word-chip';c.textContent=w;c.dataset.idx=i;c.onclick=()=>placeWord(c,w,i);wb.appendChild(c);});
+  renderDrop();
+}
+function placeWord(chip,word,idx){
+  if(sortUsed.includes(idx))return;
+  sortUsed.push(idx);sortPlaced.push({word,idx});chip.classList.add('used');renderDrop();
+}
+function renderDrop(){
+  const d=document.getElementById('sentDrop');
+  if(sortPlaced.length===0){d.innerHTML='<span class="drop-hint">Tap words above to place them here...</span>';return;}
+  d.innerHTML='';
+  sortPlaced.forEach((p,i)=>{const s=document.createElement('span');s.className='placed-chip';s.textContent=p.word;s.onclick=()=>removeWord(i,p.idx);d.appendChild(s);});
+}
+function removeWord(i,idx){
+  sortPlaced.splice(i,1);sortUsed=sortUsed.filter(x=>x!==idx);
+  document.querySelectorAll('.word-chip').forEach(c=>{if(parseInt(c.dataset.idx)===idx)c.classList.remove('used');});
+  renderDrop();document.getElementById('sortFb').textContent='';
+}
+function checkSort(){
+  const ans=sortSentences[sortIdx].answer;
+  const typed=sortPlaced.map(p=>p.word).join(' ');
+  const fb=document.getElementById('sortFb');
+  if(typed===ans){fb.className='sort-feedback c';fb.textContent='🎉 Correct! Great sentence!';speak('Correct! Great sentence!');}
+  else{fb.className='sort-feedback w';fb.textContent=`❌ Not quite! The answer is: "${ans}"`;}
+}
+function resetSort(){sortPlaced=[];sortUsed=[];document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('used'));renderDrop();document.getElementById('sortFb').textContent='';}
+function nextSort(){sortIdx=(sortIdx+1)%sortSentences.length;loadSort();}
+
+// SPIN WHEEL
+const wheelItems=[
+  {label:'Your Name?',prompt:'Say: My name is ___!'},
+  {label:'Your Age?',prompt:'Say: I am ___ years old!'},
+  {label:'Where from?',prompt:'Say: I am from ___!'},
+  {label:'What you like?',prompt:'Say: I like ___!'},
+  {label:'Say Hello!',prompt:'Say: Hello! My name is ___!'},
+  {label:'Greet them!',prompt:'Say: Good morning, afternoon, or evening!'},
+  {label:'Bye bye!',prompt:'Say: Nice to meet you! Goodbye!'},
+  {label:'Your school?',prompt:'Say: I am in Grade 1!'},
+];
+const COLORS=['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#FF6B6B','#6BCB77'];
+let spinning=false,startAngle=0;
+function initWheel(){drawWheel(startAngle);}
+function drawWheel(rotation){
+  const canvas=document.getElementById('wheel');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const cx=canvas.width/2,cy=canvas.height/2,r=cx-10;
+  const arc=(2*Math.PI)/wheelItems.length;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  wheelItems.forEach((item,i)=>{
+    const start=rotation+i*arc;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,start+arc);
+    ctx.fillStyle=COLORS[i];ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.stroke();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(start+arc/2);
+    ctx.textAlign='right';ctx.fillStyle='#fff';ctx.font=`bold 12px Nunito,sans-serif`;
+    const words=item.label.split(' ');
+    if(words.length<=2){ctx.fillText(item.label,r-14,5);}
+    else{ctx.fillText(words.slice(0,2).join(' '),r-14,-4);ctx.fillText(words.slice(2).join(' '),r-14,12);}
+    ctx.restore();
+  });
+  ctx.beginPath();ctx.moveTo(cx+18,cy-r-4);ctx.lineTo(cx-18,cy-r-4);ctx.lineTo(cx,cy-r+22);ctx.fillStyle='#222';ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,18,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#ddd';ctx.lineWidth=2;ctx.stroke();
+}
+function spinWheel(){
+  if(spinning)return;spinning=true;document.getElementById('spinBtn').disabled=true;document.getElementById('spinResult').textContent='';
+  const extraSpins=(Math.floor(Math.random()*5)+5)*2*Math.PI;
+  const targetAngle=startAngle+extraSpins+Math.random()*2*Math.PI;
+  const duration=3000;const start=performance.now();
+  function animate(now){
+    const elapsed=now-start;const t=Math.min(elapsed/duration,1);
+    const ease=1-Math.pow(1-t,4);const angle=startAngle+(targetAngle-startAngle)*ease;
+    drawWheel(angle);
+    if(t<1){requestAnimationFrame(animate);return;}
+    startAngle=targetAngle%(2*Math.PI);spinning=false;document.getElementById('spinBtn').disabled=false;
+    // Pointer is at the TOP of the canvas, which is angle -PI/2 in canvas coords.
+    // Each segment i occupies [startAngle + i*arc, startAngle + (i+1)*arc).
+    // We need the segment whose angular range contains -PI/2 (top).
+    // Equivalent: find i where (pointerAngle - startAngle) mod 2PI falls in [i*arc, (i+1)*arc).
+    const arc2=(2*Math.PI)/wheelItems.length;
+    const pointerAngle = -Math.PI / 2; // top of canvas
+    const relative = ((pointerAngle - startAngle) % (2*Math.PI) + 2*Math.PI) % (2*Math.PI);
+    const idx = Math.floor(relative / arc2) % wheelItems.length;
+    const item=wheelItems[idx];
+    document.getElementById('spinResult').innerHTML=`<strong>🎯 ${item.label}</strong><br><span style="font-size:1rem;color:#888">${item.prompt}</span>`;
+    speak(item.prompt);
+  }
+  requestAnimationFrame(animate);
+}
+function showGame(id,btn){
+  document.querySelectorAll('.game-area').forEach(g=>g.classList.remove('active'));
+  document.querySelectorAll('.game-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('game-'+id).classList.add('active');btn.classList.add('active');
+}
+startQuiz();
+</script>
+</body>
+</html>

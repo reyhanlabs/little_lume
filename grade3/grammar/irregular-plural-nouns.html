@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Irregular Plural Nouns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD23F;
+    --pink:#FF6B9D;
+    --sky:#4ECDC4;
+    --grape:#8675FF;
+    --cream:#FFF9F0;
+    --ink:#2D2A4A;
+    --orange:#FF9F4A;
+    --green:#5FD068;
+    --red:#FF5C5C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Nunito', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fredoka', sans-serif;
+  }
+
+  /* background doodles */
+  .bg-shape{
+    position:absolute;
+    opacity:0.5;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:relative;
+    background:linear-gradient(135deg, var(--grape) 0%, var(--pink) 55%, var(--orange) 100%);
+    padding:18px 20px 70px;
+    text-align:center;
+    overflow:hidden;
+    border-radius:0 0 40px 40px;
+  }
+  .header-top{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    position:relative;
+    z-index:2;
+  }
+  .logo-badge{
+    width:46px;height:46px;
+    background:var(--yellow);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    box-shadow:0 4px 0 rgba(0,0,0,0.15);
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-6px) rotate(-6deg);}
+  }
+  .brand-name{
+    color:white;
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:0.5px;
+    text-shadow:0 3px 0 rgba(0,0,0,0.12);
+  }
+  .brand-name span{color:var(--yellow);}
+  .grade-pill{
+    display:inline-block;
+    margin-top:10px;
+    background:white;
+    color:var(--grape);
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:0.85rem;
+    padding:6px 18px;
+    border-radius:999px;
+    box-shadow:0 3px 0 rgba(0,0,0,0.1);
+    position:relative;
+    z-index:2;
+  }
+  .hero-title{
+    color:white;
+    font-size:2rem;
+    margin:18px auto 6px;
+    line-height:1.15;
+    text-shadow:0 3px 0 rgba(0,0,0,0.12);
+    position:relative;
+    z-index:2;
+    max-width:320px;
+  }
+  .hero-sub{
+    color:rgba(255,255,255,0.95);
+    font-size:0.98rem;
+    max-width:300px;
+    margin:0 auto;
+    font-weight:600;
+    position:relative;
+    z-index:2;
+  }
+  .hero-emojis{
+    font-size:2.1rem;
+    margin-top:14px;
+    position:relative;
+    z-index:2;
+    letter-spacing:6px;
+  }
+  .wave{
+    position:absolute;
+    bottom:-2px;left:0;right:0;
+    height:40px;
+    background:var(--cream);
+    border-radius:50% 50% 0 0 / 100% 100% 0 0;
+    transform:scaleX(1.4);
+  }
+
+  main{
+    max-width:480px;
+    margin:0 auto;
+    padding:0 16px 60px;
+    position:relative;
+    z-index:1;
+  }
+
+  .section{
+    margin-top:34px;
+  }
+  .section-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Fredoka',sans-serif;
+    font-size:0.75rem;
+    font-weight:600;
+    color:white;
+    background:var(--grape);
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:10px;
+  }
+  .section h2{
+    font-size:1.4rem;
+    margin:0 0 10px;
+    color:var(--ink);
+  }
+  .section p.lead{
+    font-size:1rem;
+    line-height:1.6;
+    margin:0 0 16px;
+    font-weight:600;
+    color:#5b5775;
+  }
+
+  /* card base */
+  .card{
+    background:white;
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 6px 0 rgba(45,42,74,0.08);
+    border:3px solid #f0ecff;
+  }
+
+  /* ===== INTRO / WHAT ARE THEY ===== */
+  .mascot-bubble{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:white;
+    border-radius:22px;
+    padding:16px;
+    box-shadow:0 6px 0 rgba(45,42,74,0.08);
+    border:3px solid var(--yellow);
+  }
+  .mascot{
+    font-size:2.4rem;
+    flex-shrink:0;
+    animation:wiggle 3s ease-in-out infinite;
+  }
+  @keyframes wiggle{
+    0%,100%{transform:rotate(0deg);}
+    25%{transform:rotate(-8deg);}
+    75%{transform:rotate(8deg);}
+  }
+  .speech{
+    font-weight:700;
+    font-size:0.98rem;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .speech .highlight{
+    color:var(--pink);
+    background:#FFE8F1;
+    padding:0 4px;
+    border-radius:6px;
+  }
+
+  /* compare regular vs irregular */
+  .compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:16px;
+  }
+  .compare-card{
+    border-radius:18px;
+    padding:14px 10px;
+    text-align:center;
+  }
+  .compare-card.regular{
+    background:#E8FBF3;
+    border:3px dashed var(--green);
+  }
+  .compare-card.irregular{
+    background:#FFF0E8;
+    border:3px dashed var(--orange);
+  }
+  .compare-card h3{
+    font-size:0.9rem;
+    margin:0 0 8px;
+  }
+  .compare-card.regular h3{color:#2f9e5e;}
+  .compare-card.irregular h3{color:#d9760f;}
+  .compare-row{
+    font-size:0.85rem;
+    font-weight:700;
+    margin:4px 0;
+  }
+  .arrow{color:#aaa; margin:0 3px;}
+
+  /* ===== WORD TRANSFORMER (signature element) ===== */
+  .transformer-zone{
+    margin-top:18px;
+  }
+  .transform-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:14px;
+  }
+  .flip-card{
+    perspective:1000px;
+    height:118px;
+    cursor:pointer;
+  }
+  .flip-inner{
+    position:relative;
+    width:100%;height:100%;
+    transition:transform 0.6s cubic-bezier(.4,1.6,.5,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{
+    transform:rotateY(180deg);
+  }
+  .flip-face{
+    position:absolute;
+    inset:0;
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    backface-visibility:hidden;
+    box-shadow:0 5px 0 rgba(45,42,74,0.1);
+    padding:8px;
+    text-align:center;
+  }
+  .flip-front{
+    background:white;
+    border:3px solid #e4dfff;
+  }
+  .flip-front .emoji{font-size:1.9rem;}
+  .flip-front .word{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    color:var(--ink);
+    margin-top:4px;
+  }
+  .flip-front .tap-hint{
+    font-size:0.65rem;
+    color:#a8a3c4;
+    margin-top:4px;
+    font-weight:700;
+  }
+  .flip-back{
+    background:linear-gradient(135deg, var(--grape), var(--pink));
+    transform:rotateY(180deg);
+    color:white;
+  }
+  .flip-back .emoji{font-size:2rem;}
+  .flip-back .word{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:1.1rem;
+    margin-top:4px;
+  }
+  .flip-back .sparkle{
+    font-size:0.7rem;
+    margin-top:2px;
+    opacity:0.9;
+  }
+  .reset-btn-wrap{
+    text-align:center;
+    margin-top:14px;
+  }
+  .pill-btn{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:0.85rem;
+    border:none;
+    border-radius:999px;
+    padding:9px 20px;
+    cursor:pointer;
+    box-shadow:0 4px 0 rgba(0,0,0,0.12);
+    transition:transform 0.15s ease;
+  }
+  .pill-btn:active{transform:translateY(3px); box-shadow:0 1px 0 rgba(0,0,0,0.12);}
+  .pill-btn.purple{background:var(--grape); color:white;}
+  .pill-btn.pink{background:var(--pink); color:white;}
+  .pill-btn.teal{background:var(--sky); color:white;}
+  .pill-btn.yellow{background:var(--yellow); color:var(--ink);}
+  .pill-btn.green{background:var(--green); color:white;}
+  .pill-btn:disabled{opacity:0.5; cursor:not-allowed;}
+
+  /* ===== PATTERN GROUPS (accordion) ===== */
+  .pattern-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:14px;
+  }
+  .pattern-item{
+    background:white;
+    border-radius:18px;
+    border:3px solid #f0ecff;
+    overflow:hidden;
+    box-shadow:0 5px 0 rgba(45,42,74,0.07);
+  }
+  .pattern-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 14px;
+    cursor:pointer;
+    background:white;
+  }
+  .pattern-head .tag{
+    width:34px;height:34px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;
+    flex-shrink:0;
+  }
+  .pattern-head .label{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    flex:1;
+  }
+  .pattern-head .chev{
+    font-size:0.8rem;
+    color:#bbb;
+    transition:transform 0.3s ease;
+  }
+  .pattern-item.open .chev{transform:rotate(180deg);}
+  .pattern-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.35s ease;
+    padding:0 14px;
+  }
+  .pattern-item.open .pattern-body{
+    max-height:300px;
+    padding:0 14px 16px;
+  }
+  .pattern-body .rule{
+    font-size:0.85rem;
+    font-weight:700;
+    color:#6b6688;
+    margin-bottom:10px;
+  }
+  .pattern-examples{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .ex-chip{
+    background:#F7F5FF;
+    border-radius:12px;
+    padding:7px 11px;
+    font-size:0.85rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+  .ex-chip .ar{color:var(--pink);}
+
+  /* color tags per group */
+  .tag.g1{background:#FFE3EC;}
+  .tag.g2{background:#E3F8FF;}
+  .tag.g3{background:#FFF3D6;}
+  .tag.g4{background:#E6FFE9;}
+  .tag.g5{background:#F0E6FF;}
+
+  /* ===== TRICKY / SAME WORD ===== */
+  .same-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+    margin-top:14px;
+  }
+  .same-card{
+    background:#FFFBEA;
+    border:3px solid var(--yellow);
+    border-radius:16px;
+    padding:10px 6px;
+    text-align:center;
+  }
+  .same-card .emoji{font-size:1.6rem;}
+  .same-card .w{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:0.85rem;
+    margin-top:4px;
+  }
+  .same-card .note{
+    font-size:0.65rem;
+    color:#a3893f;
+    font-weight:700;
+    margin-top:2px;
+  }
+
+  /* ===== QUIZ ===== */
+  .quiz-progress{
+    display:flex;
+    gap:6px;
+    margin-bottom:14px;
+  }
+  .quiz-dot{
+    flex:1;
+    height:8px;
+    border-radius:999px;
+    background:#ece8ff;
+    transition:background 0.3s ease;
+  }
+  .quiz-dot.done{background:var(--green);}
+  .quiz-dot.current{background:var(--grape);}
+  .quiz-card{
+    background:white;
+    border-radius:22px;
+    padding:20px 16px;
+    box-shadow:0 6px 0 rgba(45,42,74,0.08);
+    border:3px solid #f0ecff;
+  }
+  .quiz-q-label{
+    font-family:'Fredoka',sans-serif;
+    font-size:0.78rem;
+    color:var(--grape);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .quiz-question{
+    font-size:1.08rem;
+    font-weight:800;
+    line-height:1.4;
+    margin-bottom:16px;
+  }
+  .quiz-options{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .quiz-opt{
+    text-align:left;
+    background:#F7F5FF;
+    border:3px solid #F7F5FF;
+    border-radius:14px;
+    padding:12px 14px;
+    font-family:'Nunito',sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:all 0.15s ease;
+    color:var(--ink);
+  }
+  .quiz-opt:hover{border-color:var(--grape);}
+  .quiz-opt.correct{
+    background:#E6FAEE;
+    border-color:var(--green);
+    color:#1f8a45;
+  }
+  .quiz-opt.wrong{
+    background:#FFEBEB;
+    border-color:var(--red);
+    color:#c43e3e;
+  }
+  .quiz-opt:disabled{cursor:default;}
+  .quiz-feedback{
+    margin-top:14px;
+    font-weight:700;
+    font-size:0.9rem;
+    min-height:24px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .quiz-feedback.show-correct{color:#1f8a45;}
+  .quiz-feedback.show-wrong{color:#c43e3e;}
+  .quiz-nav{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:14px;
+  }
+  .quiz-result{
+    text-align:center;
+    padding:28px 16px;
+  }
+  .quiz-result .big-emoji{
+    font-size:3rem;
+    display:block;
+    margin-bottom:10px;
+  }
+  .quiz-result .score{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.6rem;
+    color:var(--grape);
+  }
+  .quiz-result .msg{
+    font-weight:700;
+    color:#6b6688;
+    margin-top:6px;
+    font-size:0.95rem;
+  }
+
+  /* ===== GAME: drag-ish tap matching / sort ===== */
+  .game-intro{
+    font-size:0.9rem;
+    font-weight:700;
+    color:#6b6688;
+    margin-bottom:12px;
+    background:#F7F5FF;
+    border-radius:14px;
+    padding:10px 12px;
+  }
+  .game-stage{
+    background:white;
+    border-radius:22px;
+    padding:18px 14px;
+    box-shadow:0 6px 0 rgba(45,42,74,0.08);
+    border:3px solid #f0ecff;
+  }
+  .game-stats{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+    font-family:'Fredoka',sans-serif;
+    font-size:0.85rem;
+  }
+  .game-stats .stat{
+    background:#F7F5FF;
+    border-radius:999px;
+    padding:5px 13px;
+  }
+  .game-stats .stat.score{color:var(--green);}
+  .game-stats .stat.lives{color:var(--pink);}
+  .basket-word{
+    text-align:center;
+    margin-bottom:16px;
+  }
+  .basket-word .emoji{font-size:2.6rem; display:block;}
+  .basket-word .singular{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.3rem;
+    font-weight:700;
+    margin-top:6px;
+  }
+  .basket-word .prompt{
+    font-size:0.85rem;
+    font-weight:700;
+    color:#a8a3c4;
+    margin-top:2px;
+  }
+  .basket-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .basket-opt{
+    background:#FFF9F0;
+    border:3px solid var(--yellow);
+    border-radius:16px;
+    padding:13px 8px;
+    text-align:center;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    cursor:pointer;
+    transition:transform 0.12s ease;
+  }
+  .basket-opt:active{transform:scale(0.96);}
+  .basket-opt.correct{background:#E6FAEE; border-color:var(--green); color:#1f8a45;}
+  .basket-opt.wrong{background:#FFEBEB; border-color:var(--red); color:#c43e3e;}
+  .game-over-screen{
+    text-align:center;
+    padding:20px 10px;
+  }
+  .game-over-screen .big-emoji{font-size:3rem;}
+  .game-over-screen .final-score{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.7rem;
+    color:var(--grape);
+    margin:8px 0 4px;
+  }
+
+  /* ===== SUMMARY / CHEAT SHEET ===== */
+  .cheat-sheet{
+    background:linear-gradient(135deg, #FFF3D6, #FFE3EC);
+    border-radius:22px;
+    padding:18px;
+    border:3px solid white;
+    box-shadow:0 6px 0 rgba(45,42,74,0.08);
+  }
+  .cheat-sheet ul{
+    margin:0;
+    padding-left:0;
+    list-style:none;
+  }
+  .cheat-sheet li{
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+    font-weight:700;
+    font-size:0.9rem;
+    margin-bottom:10px;
+    line-height:1.4;
+  }
+  .cheat-sheet li:last-child{margin-bottom:0;}
+  .cheat-sheet .num{
+    flex-shrink:0;
+    width:24px;height:24px;
+    background:white;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.75rem;
+    font-family:'Fredoka',sans-serif;
+    color:var(--pink);
+  }
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    padding:20px;
+    font-size:0.8rem;
+    color:#a8a3c4;
+    font-weight:700;
+  }
+  footer .logo-mini{color:var(--grape);}
+
+  /* confetti */
+  .confetti-piece{
+    position:fixed;
+    top:-10px;
+    width:8px;height:8px;
+    z-index:999;
+    pointer-events:none;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(360deg); opacity:0.3; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001s !important; transition-duration:0.001s !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logo-badge">💡</div>
+    <div class="brand-name">LittleLume <span>English</span></div>
+  </div>
+  <div class="grade-pill">⭐ GRADE 3 ⭐</div>
+  <h1 class="hero-title">Irregular Plural Nouns</h1>
+  <p class="hero-sub">Where words do magic tricks instead of just adding "-s"!</p>
+  <div class="hero-emojis">🐭✨🦷🪿🦶</div>
+  <div class="wave"></div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="section" id="intro">
+    <div class="mascot-bubble">
+      <div class="mascot">🦉</div>
+      <div class="speech">
+        Hoo-hoo! I'm <strong>Lumi the Owl</strong>, your guide today! Most nouns just add <span class="highlight">-s</span> to become plural... but some naughty nouns like to <span class="highlight">change their whole shape</span> instead! We call these <span class="highlight">irregular plural nouns</span>. Ready to learn their secrets? 🔮
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card regular">
+        <h3>✅ REGULAR<br>(just add -s)</h3>
+        <div class="compare-row">cat <span class="arrow">→</span> cats</div>
+        <div class="compare-row">book <span class="arrow">→</span> books</div>
+        <div class="compare-row">dog <span class="arrow">→</span> dogs</div>
+      </div>
+      <div class="compare-card irregular">
+        <h3>🌀 IRREGULAR<br>(shape changes!)</h3>
+        <div class="compare-row">mouse <span class="arrow">→</span> mice</div>
+        <div class="compare-row">foot <span class="arrow">→</span> feet</div>
+        <div class="compare-row">child <span class="arrow">→</span> children</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORD TRANSFORMER ===== -->
+  <section class="section" id="transformer">
+    <span class="section-eyebrow">🪄 TRY IT</span>
+    <h2>The Word Transformer</h2>
+    <p class="lead">Tap each card to cast the spell and watch ONE turn into MANY! ✨</p>
+
+    <div class="transformer-zone">
+      <div class="transform-grid" id="transformGrid"></div>
+      <div class="reset-btn-wrap">
+        <button class="pill-btn purple" id="flipAllBtn">✨ Flip All Cards</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PATTERN GROUPS ===== -->
+  <section class="section" id="patterns">
+    <span class="section-eyebrow">📚 LEARN</span>
+    <h2>5 Secret Patterns</h2>
+    <p class="lead">Irregular plurals aren't totally random — many follow their own special pattern. Tap each one to explore!</p>
+
+    <div class="pattern-list" id="patternList"></div>
+  </section>
+
+  <!-- ===== SAME WORD ===== -->
+  <section class="section" id="sameword">
+    <span class="section-eyebrow">🤯 BONUS TWIST</span>
+    <h2>No Change At All!</h2>
+    <p class="lead">These sneaky words look exactly the same whether it's ONE or A HUNDRED of them!</p>
+    <div class="same-grid" id="sameGrid"></div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="section" id="quiz">
+    <span class="section-eyebrow">📝 QUIZ TIME</span>
+    <h2>Test Your Brain!</h2>
+    <p class="lead">Answer all 8 questions. Pick the correct plural form!</p>
+
+    <div class="quiz-progress" id="quizProgress"></div>
+    <div id="quizArea"></div>
+  </section>
+
+  <!-- ===== GAME ===== -->
+  <section class="section" id="game">
+    <span class="section-eyebrow">🎮 PLAY</span>
+    <h2>Magic Basket Game</h2>
+    <p class="game-intro">🧺 Catch the CORRECT plural before your magic runs out! Tap the right word as fast as you can. You have 3 lives — good luck!</p>
+    <div class="game-stage" id="gameStage"></div>
+  </section>
+
+  <!-- ===== CHEAT SHEET ===== -->
+  <section class="section" id="summary">
+    <span class="section-eyebrow">🌟 REMEMBER</span>
+    <h2>Lumi's Cheat Sheet</h2>
+    <div class="cheat-sheet">
+      <ul>
+        <li><span class="num">1</span> Irregular plurals do NOT just add "-s" — they change shape, or stay exactly the same!</li>
+        <li><span class="num">2</span> Vowel-change words: man→men, woman→women, foot→feet, tooth→teeth, mouse→mice, goose→geese.</li>
+        <li><span class="num">3</span> "-ren" words: child→children.</li>
+        <li><span class="num">4</span> "-f/-fe" → "-ves": leaf→leaves, knife→knives, wolf→wolves, life→lives.</li>
+        <li><span class="num">5</span> "-is" → "-es": person→people is special too — just like that, no rule!</li>
+        <li><span class="num">6</span> No-change words: sheep, fish, deer, moose stay exactly the same!</li>
+        <li><span class="num">7</span> The best way to learn them is to read, practice, and play — just like you did today! 🎉</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Made with 💛 by <span class="logo-mini">LittleLume English</span> — Grade 3
+</footer>
+
+<script>
+/* ================= DATA ================= */
+const transformerWords = [
+  {sing:"mouse", plur:"mice", emoji:"🐭"},
+  {sing:"foot", plur:"feet", emoji:"🦶"},
+  {sing:"tooth", plur:"teeth", emoji:"🦷"},
+  {sing:"child", plur:"children", emoji:"🧒"},
+  {sing:"man", plur:"men", emoji:"🧑"},
+  {sing:"goose", plur:"geese", emoji:"🪿"},
+];
+
+const patternGroups = [
+  {
+    tagClass:"g1", icon:"🔤", label:"Vowel Magic (oo → ee)",
+    rule:"The middle vowel sound changes from \"oo\" to \"ee\".",
+    examples:[["foot","feet"],["tooth","teeth"],["goose","geese"]]
+  },
+  {
+    tagClass:"g2", icon:"🌀", label:"Total Shape-Shifters",
+    rule:"These words change completely — there's no shortcut, just memorize them!",
+    examples:[["man","men"],["woman","women"],["mouse","mice"],["person","people"]]
+  },
+  {
+    tagClass:"g3", icon:"👶", label:"The -REN Family",
+    rule:"A tiny, special group that adds \"-ren\" instead of \"-s\".",
+    examples:[["child","children"]]
+  },
+  {
+    tagClass:"g4", icon:"🍃", label:"F/FE → VES",
+    rule:"Words ending in \"f\" or \"fe\" often change to \"ves\".",
+    examples:[["leaf","leaves"],["knife","knives"],["wolf","wolves"],["life","lives"],["loaf","loaves"]]
+  },
+  {
+    tagClass:"g5", icon:"🦠", label:"Latin Leftovers",
+    rule:"Borrowed from Latin/Greek — they keep their ancient plural endings!",
+    examples:[["cactus","cacti"],["fungus","fungi"],["analysis","analyses"]]
+  },
+];
+
+const sameWords = [
+  {w:"sheep", emoji:"🐑"},
+  {w:"fish", emoji:"🐟"},
+  {w:"deer", emoji:"🦌"},
+  {w:"moose", emoji:"🫎"},
+];
+
+const quizData = [
+  {q:"One child, two ___.", opts:["childs","childes","children","childrens"], correct:2},
+  {q:"One foot, two ___.", opts:["foots","feet","footes","feets"], correct:1},
+  {q:"One mouse, three ___.", opts:["mouses","mices","mouse","mice"], correct:3},
+  {q:"One tooth, many ___.", opts:["tooths","teeth","toothes","teeths"], correct:1},
+  {q:"One man, two ___.", opts:["mans","mens","men","manes"], correct:2},
+  {q:"One sheep, ten ___.", opts:["sheeps","sheepes","sheep","sheepies"], correct:2},
+  {q:"One leaf, many ___.", opts:["leafs","leaves","leafes","leaveses"], correct:1},
+  {q:"One goose, two ___.", opts:["gooses","geese","gooses'","geeses"], correct:1},
+];
+
+const gameWords = [
+  {sing:"mouse", emoji:"🐭", correct:"mice", wrong:"mouses"},
+  {sing:"foot", emoji:"🦶", correct:"feet", wrong:"foots"},
+  {sing:"child", emoji:"🧒", correct:"children", wrong:"childs"},
+  {sing:"tooth", emoji:"🦷", correct:"teeth", wrong:"tooths"},
+  {sing:"man", emoji:"🧑", correct:"men", wrong:"mans"},
+  {sing:"woman", emoji:"👩", correct:"women", wrong:"womans"},
+  {sing:"goose", emoji:"🪿", correct:"geese", wrong:"gooses"},
+  {sing:"leaf", emoji:"🍃", correct:"leaves", wrong:"leafs"},
+  {sing:"knife", emoji:"🔪", correct:"knives", wrong:"knifes"},
+  {sing:"sheep", emoji:"🐑", correct:"sheep", wrong:"sheeps"},
+  {sing:"fish", emoji:"🐟", correct:"fish", wrong:"fishes"},
+  {sing:"person", emoji:"🧍", correct:"people", wrong:"persons"},
+];
+
+/* ================= TRANSFORMER ================= */
+const transformGrid = document.getElementById('transformGrid');
+transformerWords.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'flip-card';
+  card.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-face flip-front">
+        <div class="emoji">${item.emoji}</div>
+        <div class="word">${item.sing}</div>
+        <div class="tap-hint">TAP ME ✨</div>
+      </div>
+      <div class="flip-face flip-back">
+        <div class="emoji">${item.emoji}${item.emoji}</div>
+        <div class="word">${item.plur}</div>
+        <div class="sparkle">ta-da! 🎉</div>
+      </div>
+    </div>
+  `;
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+  transformGrid.appendChild(card);
+});
+document.getElementById('flipAllBtn').addEventListener('click', () => {
+  const cards = document.querySelectorAll('.flip-card');
+  const anyUnflipped = [...cards].some(c => !c.classList.contains('flipped'));
+  cards.forEach(c => c.classList.toggle('flipped', anyUnflipped));
+});
+
+/* ================= PATTERN ACCORDION ================= */
+const patternList = document.getElementById('patternList');
+patternGroups.forEach((group) => {
+  const item = document.createElement('div');
+  item.className = 'pattern-item';
+  item.innerHTML = `
+    <div class="pattern-head">
+      <div class="tag ${group.tagClass}">${group.icon}</div>
+      <div class="label">${group.label}</div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="pattern-body">
+      <div class="rule">${group.rule}</div>
+      <div class="pattern-examples">
+        ${group.examples.map(([s,p]) => `<div class="ex-chip">${s} <span class="ar">→</span> ${p}</div>`).join('')}
+      </div>
+    </div>
+  `;
+  item.querySelector('.pattern-head').addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+  patternList.appendChild(item);
+});
+
+/* ================= SAME WORD GRID ================= */
+const sameGrid = document.getElementById('sameGrid');
+sameWords.forEach(item => {
+  const card = document.createElement('div');
+  card.className = 'same-card';
+  card.innerHTML = `
+    <div class="emoji">${item.emoji}</div>
+    <div class="w">${item.w}</div>
+    <div class="note">1 or 100 — same word!</div>
+  `;
+  sameGrid.appendChild(card);
+});
+
+/* ================= QUIZ ================= */
+let currentQ = 0;
+let quizScore = 0;
+let answeredCurrent = false;
+const quizProgress = document.getElementById('quizProgress');
+const quizArea = document.getElementById('quizArea');
+
+function renderProgress(){
+  quizProgress.innerHTML = '';
+  quizData.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'quiz-dot';
+    if (i < currentQ) dot.classList.add('done');
+    else if (i === currentQ) dot.classList.add('current');
+    quizProgress.appendChild(dot);
+  });
+}
+
+function renderQuiz(){
+  if (currentQ >= quizData.length){
+    renderQuizResult();
+    return;
+  }
+  renderProgress();
+  answeredCurrent = false;
+  const data = quizData[currentQ];
+  const card = document.createElement('div');
+  card.className = 'quiz-card';
+  card.innerHTML = `
+    <div class="quiz-q-label">QUESTION ${currentQ + 1} OF ${quizData.length}</div>
+    <div class="quiz-question">${data.q}</div>
+    <div class="quiz-options">
+      ${data.opts.map((opt,i) => `<button class="quiz-opt" data-i="${i}">${opt}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <div class="quiz-nav">
+      <button class="pill-btn purple" id="nextQBtn" style="display:none;">Next ➜</button>
+    </div>
+  `;
+  quizArea.innerHTML = '';
+  quizArea.appendChild(card);
+
+  const optButtons = card.querySelectorAll('.quiz-opt');
+  const feedback = card.querySelector('#quizFeedback');
+  const nextBtn = card.querySelector('#nextQBtn');
+
+  optButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (answeredCurrent) return;
+      answeredCurrent = true;
+      const idx = parseInt(btn.dataset.i);
+      optButtons.forEach(b => b.disabled = true);
+      if (idx === data.correct){
+        btn.classList.add('correct');
+        feedback.className = 'quiz-feedback show-correct';
+        feedback.innerHTML = '🎉 Correct! Great job!';
+        quizScore++;
+        launchConfetti(12);
+      } else {
+        btn.classList.add('wrong');
+        optButtons[data.correct].classList.add('correct');
+        feedback.className = 'quiz-feedback show-wrong';
+        feedback.innerHTML = `Not quite! The answer is <strong>${data.opts[data.correct]}</strong>.`;
+      }
+      nextBtn.style.display = 'inline-block';
+    });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentQ++;
+    renderQuiz();
+  });
+}
+
+function renderQuizResult(){
+  renderProgress();
+  let emoji = '🌟';
+  let msg = "Nice try — replay to sharpen your magic!";
+  const pct = quizScore / quizData.length;
+  if (pct === 1){ emoji = '🏆'; msg = "PERFECT SCORE! You're an Irregular Plural Master!"; }
+  else if (pct >= 0.75){ emoji = '🎉'; msg = "Awesome work! You really know your plurals!"; }
+  else if (pct >= 0.5){ emoji = '👍'; msg = "Good job! A little more practice and you'll be a pro!"; }
+
+  quizArea.innerHTML = `
+    <div class="quiz-card quiz-result">
+      <span class="big-emoji">${emoji}</span>
+      <div class="score">${quizScore} / ${quizData.length}</div>
+      <div class="msg">${msg}</div>
+      <div class="reset-btn-wrap">
+        <button class="pill-btn pink" id="retryQuizBtn">🔁 Try Again</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('retryQuizBtn').addEventListener('click', () => {
+    currentQ = 0;
+    quizScore = 0;
+    renderQuiz();
+  });
+  if (pct === 1) launchConfetti(40);
+}
+
+renderQuiz();
+
+/* ================= GAME ================= */
+const gameStage = document.getElementById('gameStage');
+let gameScore = 0;
+let gameLives = 3;
+let gameRound = 0;
+let gameOrder = [];
+let gameLocked = false;
+
+function shuffle(arr){
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startGame(){
+  gameScore = 0;
+  gameLives = 3;
+  gameRound = 0;
+  gameOrder = shuffle(gameWords).slice(0, 8);
+  gameLocked = false;
+  renderGameRound();
+}
+
+function renderGameRound(){
+  if (gameLives <= 0 || gameRound >= gameOrder.length){
+    renderGameOver();
+    return;
+  }
+  gameLocked = false;
+  const item = gameOrder[gameRound];
+  const opts = shuffle([
+    {text:item.correct, ok:true},
+    {text:item.wrong, ok:false},
+  ]);
+
+  gameStage.innerHTML = `
+    <div class="game-stats">
+      <div class="stat score">⭐ Score: ${gameScore}</div>
+      <div class="stat lives">${"❤️".repeat(gameLives)}</div>
+    </div>
+    <div class="basket-word">
+      <span class="emoji">${item.emoji}</span>
+      <div class="singular">${item.sing}</div>
+      <div class="prompt">Tap the correct plural!</div>
+    </div>
+    <div class="basket-options">
+      ${opts.map((o,i) => `<button class="basket-opt" data-ok="${o.ok}" data-i="${i}">${o.text}</button>`).join('')}
+    </div>
+  `;
+
+  const buttons = gameStage.querySelectorAll('.basket-opt');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (gameLocked) return;
+      gameLocked = true;
+      const ok = btn.dataset.ok === 'true';
+      buttons.forEach(b => b.style.pointerEvents = 'none');
+      if (ok){
+        btn.classList.add('correct');
+        gameScore++;
+        launchConfetti(10);
+      } else {
+        btn.classList.add('wrong');
+        buttons.forEach(b => { if (b.dataset.ok === 'true') b.classList.add('correct'); });
+        gameLives--;
+      }
+      setTimeout(() => {
+        gameRound++;
+        renderGameRound();
+      }, 800);
+    });
+  });
+}
+
+function renderGameOver(){
+  const won = gameLives > 0;
+  gameStage.innerHTML = `
+    <div class="game-over-screen">
+      <div class="big-emoji">${won ? '🏆' : '💫'}</div>
+      <div class="final-score">${gameScore} / ${gameOrder.length} correct</div>
+      <div style="font-weight:700; color:#6b6688; font-size:0.9rem; margin-bottom:14px;">
+        ${won ? "You finished with magic to spare! Amazing work!" : "Out of lives — but every wizard practices! Try again!"}
+      </div>
+      <button class="pill-btn green" id="playAgainBtn">🔁 Play Again</button>
+    </div>
+  `;
+  document.getElementById('playAgainBtn').addEventListener('click', startGame);
+  if (won) launchConfetti(30);
+}
+
+startGame();
+
+/* ================= CONFETTI ================= */
+function launchConfetti(count){
+  const colors = ['#FFD23F','#FF6B9D','#4ECDC4','#8675FF','#FF9F4A','#5FD068'];
+  for (let i = 0; i < count; i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.animationDuration = (1.6 + Math.random() * 1.2) + 's';
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>

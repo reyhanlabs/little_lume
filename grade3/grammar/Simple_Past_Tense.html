@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Simple Past Tense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#FFF7E8;
+    --purple:#6C4AB6;
+    --purple-dark:#4B2E83;
+    --pink:#FF6FA5;
+    --orange:#FFA53D;
+    --yellow:#FFD23F;
+    --green:#3FCF8E;
+    --blue:#3DB5FF;
+    --red:#FF5A5F;
+    --paper:#FFFFFF;
+    --ink:#3A2E55;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Quicksand', sans-serif;
+    background:
+      radial-gradient(circle at 10% 10%, #FFE9C7 0%, transparent 40%),
+      radial-gradient(circle at 90% 20%, #D9E9FF 0%, transparent 45%),
+      radial-gradient(circle at 50% 90%, #FFE0EE 0%, transparent 50%),
+      var(--sky);
+    color:var(--ink);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Baloo 2', sans-serif; margin:0;}
+
+  /* ---------- decorative floating shapes ---------- */
+  .cloud{position:fixed; opacity:.6; pointer-events:none; z-index:0; animation:float 9s ease-in-out infinite;}
+  .cloud svg{display:block;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
+  .star{position:fixed; pointer-events:none; z-index:0; animation:twinkle 3s ease-in-out infinite;}
+  @keyframes twinkle{0%,100%{opacity:.3; transform:scale(.8) rotate(0deg);}50%{opacity:1; transform:scale(1.1) rotate(15deg);}}
+
+  /* ---------- header ---------- */
+  header{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:38px 20px 30px;
+    background:linear-gradient(180deg, var(--purple) 0%, #7E5BCB 100%);
+    border-radius:0 0 40px 40px;
+    box-shadow:0 10px 0 rgba(75,46,131,.25);
+    overflow:hidden;
+  }
+  header::before, header::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+  }
+  header::before{
+    width:180px; height:180px; background:rgba(255,255,255,.08);
+    top:-70px; left:-50px;
+  }
+  header::after{
+    width:140px; height:140px; background:rgba(255,255,255,.08);
+    bottom:-60px; right:-30px;
+  }
+  .logo-row{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    flex-wrap:wrap;
+  }
+  .logo-icon{
+    font-size:46px;
+    filter:drop-shadow(0 4px 0 rgba(0,0,0,.12));
+    animation:bounce 2.4s ease-in-out infinite;
+  }
+  @keyframes bounce{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-10px) rotate(4deg);}}
+  .brand{
+    font-size:clamp(28px,6vw,46px);
+    color:#fff;
+    letter-spacing:.5px;
+    text-shadow:0 4px 0 rgba(75,46,131,.4);
+  }
+  .brand span{color:var(--yellow);}
+  .grade-badge{
+    display:inline-block;
+    margin-top:14px;
+    background:var(--yellow);
+    color:var(--purple-dark);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:7px 22px;
+    border-radius:999px;
+    box-shadow:0 4px 0 #E0A800;
+    transform:rotate(-2deg);
+  }
+  .topic-title{
+    margin-top:16px;
+    color:#FFF1D6;
+    font-size:clamp(18px,3.6vw,24px);
+    font-weight:600;
+    font-family:'Quicksand', sans-serif;
+  }
+  .topic-title strong{
+    display:block;
+    font-family:'Baloo 2', sans-serif;
+    color:#fff;
+    font-size:clamp(26px,5.4vw,40px);
+    margin-top:4px;
+  }
+
+  /* ---------- nav dots ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,247,232,.92);
+    backdrop-filter:blur(6px);
+    display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+    padding:10px 14px;
+    border-bottom:3px dashed #E8D4A0;
+  }
+  nav a{
+    text-decoration:none;
+    font-family:'Baloo 2', sans-serif;
+    font-size:13px;
+    color:var(--purple-dark);
+    background:#fff;
+    border:2px solid var(--purple);
+    padding:6px 14px;
+    border-radius:999px;
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+    white-space:nowrap;
+  }
+  nav a:hover{ background:var(--purple); color:#fff; transform:translateY(-2px); }
+
+  main{ max-width:920px; margin:0 auto; padding:30px 16px 80px; position:relative; z-index:1;}
+
+  section{ margin-bottom:46px; scroll-margin-top:70px; }
+
+  .section-head{
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:18px;
+  }
+  .section-head .num{
+    font-family:'Baloo 2', sans-serif;
+    background:var(--purple);
+    color:#fff;
+    width:42px; height:42px;
+    border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+    box-shadow:0 4px 0 var(--purple-dark);
+    flex-shrink:0;
+  }
+  .section-head h2{
+    font-size:clamp(20px,4vw,28px);
+    color:var(--purple-dark);
+  }
+  .section-head p{
+    margin:2px 0 0;
+    font-size:14px;
+    color:#7A6A9A;
+  }
+
+  .card{
+    background:var(--paper);
+    border-radius:26px;
+    padding:24px;
+    box-shadow:0 8px 0 #E8D4A0, 0 10px 24px rgba(108,74,182,.08);
+    border:3px solid #FFF1D6;
+  }
+
+  /* ---------- intro / hook ---------- */
+  .hook-card{
+    background:linear-gradient(135deg,#FFD23F 0%, #FFA53D 100%);
+    border:none;
+    box-shadow:0 8px 0 #C9831A;
+    color:#4B2E83;
+    text-align:center;
+    padding:28px 22px;
+  }
+  .hook-card .machine{ font-size:60px; display:block; margin-bottom:6px;}
+  .hook-card h3{ font-size:22px; margin-bottom:8px;}
+  .hook-card p{ font-size:16px; line-height:1.5; margin:0;}
+  .timeline{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    margin-top:18px; flex-wrap:wrap;
+  }
+  .timeline .tbox{
+    background:#fff; border-radius:14px; padding:10px 16px;
+    font-family:'Baloo 2',sans-serif; font-size:14px;
+    box-shadow:0 3px 0 rgba(0,0,0,.1);
+  }
+  .timeline .tbox.now{ background:var(--green); color:#fff;}
+  .timeline .tbox.past{ background:var(--pink); color:#fff;}
+  .timeline .arrow{ font-size:20px;}
+
+  /* ---------- rule boxes ---------- */
+  .rule-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+  @media(min-width:640px){ .rule-grid{ grid-template-columns:1fr 1fr; } }
+  .rule-box{
+    border-radius:20px;
+    padding:18px;
+    border:3px solid;
+  }
+  .rule-box h4{
+    font-size:17px;
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:8px;
+  }
+  .rule-box.green{ background:#E9FBF2; border-color:var(--green); }
+  .rule-box.pink{ background:#FFEDF4; border-color:var(--pink); }
+  .rule-box .formula{
+    font-family:'Baloo 2',sans-serif;
+    background:#fff;
+    border-radius:12px;
+    padding:8px 12px;
+    display:inline-block;
+    margin:6px 0;
+    font-size:15px;
+    box-shadow:0 2px 0 rgba(0,0,0,.08);
+  }
+  .rule-box ul{ margin:8px 0 0; padding-left:20px; font-size:14px; line-height:1.7;}
+  .rule-box .tag{
+    display:inline-block;
+    font-size:11px; font-weight:700;
+    background:var(--purple); color:#fff;
+    padding:2px 9px; border-radius:999px;
+    margin-right:4px;
+  }
+
+  /* ---------- verb table ---------- */
+  .verb-table-wrap{ overflow-x:auto; border-radius:18px; }
+  table.verbs{
+    width:100%; border-collapse:collapse;
+    font-size:14px; min-width:480px;
+  }
+  table.verbs th{
+    background:var(--purple); color:#fff;
+    font-family:'Baloo 2',sans-serif;
+    padding:10px; text-align:left;
+    font-size:14px;
+  }
+  table.verbs th:first-child{ border-radius:12px 0 0 0;}
+  table.verbs th:last-child{ border-radius:0 12px 0 0;}
+  table.verbs td{
+    padding:9px 10px;
+    border-bottom:2px solid #F4ECDA;
+  }
+  table.verbs tr:nth-child(even) td{ background:#FFFBF0; }
+  table.verbs .reg td:first-child{ color:var(--green); font-weight:700;}
+  table.verbs .irr td:first-child{ color:var(--pink); font-weight:700;}
+  .legend{ display:flex; gap:16px; margin-top:10px; flex-wrap:wrap; font-size:13px;}
+  .legend span{ display:inline-flex; align-items:center; gap:6px;}
+  .dot{ width:12px; height:12px; border-radius:50%; display:inline-block;}
+
+  /* ---------- example sentences ---------- */
+  .example-row{
+    display:flex; align-items:flex-start; gap:12px;
+    background:#FFFBF0;
+    border-radius:16px;
+    padding:12px 16px;
+    margin-bottom:10px;
+    border-left:5px solid var(--orange);
+  }
+  .example-row .emoji{ font-size:26px; flex-shrink:0;}
+  .example-row .past-word{ color:var(--pink); font-weight:700;}
+
+  /* ---------- signal words ---------- */
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
+  .chip{
+    background:#fff;
+    border:2px solid var(--blue);
+    color:var(--blue);
+    font-family:'Baloo 2',sans-serif;
+    font-size:14px;
+    padding:7px 16px;
+    border-radius:999px;
+  }
+
+  /* ---------- quiz ---------- */
+  .quiz-card{ background:#fff; }
+  .quiz-progress{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:16px;
+  }
+  .quiz-progress .bar{
+    flex:1; height:14px; background:#F4ECDA; border-radius:999px;
+    margin:0 12px; overflow:hidden;
+  }
+  .quiz-progress .bar-fill{
+    height:100%; background:linear-gradient(90deg,var(--green),var(--blue));
+    width:0%; transition:width .4s ease; border-radius:999px;
+  }
+  .quiz-score{
+    font-family:'Baloo 2',sans-serif; color:var(--purple-dark); font-size:15px;
+    white-space:nowrap;
+  }
+  .quiz-q{
+    font-family:'Baloo 2',sans-serif;
+    font-size:19px;
+    color:var(--purple-dark);
+    margin-bottom:14px;
+    line-height:1.4;
+  }
+  .quiz-options{ display:grid; gap:10px; }
+  .opt-btn{
+    text-align:left;
+    font-family:'Quicksand',sans-serif;
+    font-size:16px;
+    font-weight:600;
+    background:#FFFBF0;
+    border:3px solid #F0E2C0;
+    border-radius:14px;
+    padding:13px 16px;
+    cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease, background .12s ease;
+    color:var(--ink);
+  }
+  .opt-btn:hover{ transform:translateY(-2px); border-color:var(--blue); }
+  .opt-btn.correct{ background:#E2FBEF; border-color:var(--green); color:#1B7A4D; }
+  .opt-btn.wrong{ background:#FFEAEA; border-color:var(--red); color:#B83232; }
+  .opt-btn[disabled]{ cursor:default; transform:none; }
+  .feedback{
+    margin-top:14px;
+    font-family:'Baloo 2',sans-serif;
+    font-size:15px;
+    padding:12px 16px;
+    border-radius:14px;
+    display:none;
+  }
+  .feedback.show{ display:block; }
+  .feedback.good{ background:#E2FBEF; color:#1B7A4D; }
+  .feedback.bad{ background:#FFEAEA; color:#B83232; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px;}
+  .next-btn{
+    font-family:'Baloo 2',sans-serif;
+    background:var(--purple);
+    color:#fff;
+    border:none;
+    padding:11px 26px;
+    border-radius:999px;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 4px 0 var(--purple-dark);
+    transition:transform .12s ease;
+    display:none;
+  }
+  .next-btn.show{ display:inline-block; }
+  .next-btn:active{ transform:translateY(3px); box-shadow:0 1px 0 var(--purple-dark); }
+  .quiz-result{ display:none; text-align:center; padding:10px;}
+  .quiz-result.show{ display:block; }
+  .quiz-result .big-emoji{ font-size:64px; display:block; margin-bottom:8px;}
+  .quiz-result h3{ font-size:24px; color:var(--purple-dark); margin-bottom:6px;}
+  .quiz-result p{ font-size:15px; color:#7A6A9A; margin-bottom:16px;}
+  .retry-btn{
+    font-family:'Baloo 2',sans-serif;
+    background:var(--orange); color:#fff; border:none;
+    padding:11px 26px; border-radius:999px; font-size:15px; cursor:pointer;
+    box-shadow:0 4px 0 #C9831A;
+  }
+
+  /* ---------- game: verb sort ---------- */
+  .game-card{ background:#fff; }
+  .game-instructions{
+    background:#EAF6FF; border-radius:16px; padding:14px 18px;
+    font-size:14px; margin-bottom:16px; border-left:5px solid var(--blue);
+  }
+  .sort-zones{ display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:16px;}
+  @media(min-width:560px){ .sort-zones{ grid-template-columns:1fr 1fr; } }
+  .zone{
+    min-height:120px;
+    border:3px dashed;
+    border-radius:18px;
+    padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start;
+  }
+  .zone.zone-now{ border-color:var(--green); background:#F0FBF5;}
+  .zone.zone-past{ border-color:var(--pink); background:#FFF0F6;}
+  .zone-label{
+    width:100%;
+    font-family:'Baloo 2',sans-serif;
+    font-size:15px;
+    margin-bottom:4px;
+  }
+  .zone-now .zone-label{ color:#1B7A4D;}
+  .zone-past .zone-label{ color:#C2306B;}
+  .word-bank{
+    display:flex; flex-wrap:wrap; gap:10px;
+    padding:14px;
+    background:#FFFBF0;
+    border-radius:16px;
+    min-height:54px;
+  }
+  .word-tile{
+    font-family:'Baloo 2',sans-serif;
+    background:var(--yellow);
+    color:var(--purple-dark);
+    padding:9px 16px;
+    border-radius:12px;
+    cursor:grab;
+    box-shadow:0 3px 0 #C9831A;
+    font-size:15px;
+    user-select:none;
+    touch-action:none;
+  }
+  .word-tile.placed-correct{ background:var(--green); color:#fff; box-shadow:0 3px 0 #1B7A4D; cursor:default;}
+  .word-tile.placed-wrong{ background:var(--red); color:#fff; box-shadow:0 3px 0 #A33; cursor:default;}
+  .word-tile.dragging{ opacity:.5; }
+  .game-footer{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  .game-status{ font-family:'Baloo 2',sans-serif; color:var(--purple-dark); font-size:15px;}
+  .check-btn, .reset-btn{
+    font-family:'Baloo 2',sans-serif;
+    border:none; padding:10px 22px; border-radius:999px; font-size:14px; cursor:pointer;
+  }
+  .check-btn{ background:var(--green); color:#fff; box-shadow:0 4px 0 #1B7A4D;}
+  .reset-btn{ background:#fff; color:var(--purple); border:2px solid var(--purple);}
+
+  /* ---------- game 2: fill in the blank ---------- */
+  .blank-game{ margin-top:30px; }
+  .blank-q{
+    background:#FFFBF0;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:14px;
+    border-left:5px solid var(--purple);
+  }
+  .blank-q .sentence{ font-size:16px; line-height:1.6; margin-bottom:10px;}
+  .blank-input{
+    font-family:'Baloo 2',sans-serif;
+    font-size:15px;
+    padding:7px 12px;
+    border:2px solid var(--purple);
+    border-radius:10px;
+    width:130px;
+    text-align:center;
+  }
+  .blank-q .check-one{
+    font-family:'Baloo 2',sans-serif;
+    background:var(--blue); color:#fff; border:none;
+    padding:7px 16px; border-radius:999px; font-size:13px; cursor:pointer;
+    margin-left:8px;
+  }
+  .blank-feedback{ font-size:14px; margin-top:8px; font-family:'Baloo 2',sans-serif; min-height:18px;}
+  .blank-feedback.good{ color:#1B7A4D;}
+  .blank-feedback.bad{ color:#B83232;}
+
+  /* ---------- memory match ---------- */
+  .memory-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:14px;
+  }
+  @media(max-width:480px){ .memory-grid{ grid-template-columns:repeat(3,1fr);} }
+  .mem-card{
+    aspect-ratio:1;
+    background:var(--purple);
+    border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Baloo 2',sans-serif;
+    color:#fff;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow:0 4px 0 var(--purple-dark);
+    text-align:center;
+    padding:6px;
+    transition:transform .15s ease;
+    user-select:none;
+  }
+  .mem-card.flipped{ background:#fff; color:var(--purple-dark); border:2px solid var(--purple); box-shadow:0 4px 0 #D8C9F0;}
+  .mem-card.matched{ background:var(--green); color:#fff; box-shadow:0 4px 0 #1B7A4D; cursor:default; opacity:.85;}
+  .mem-card:active{ transform:scale(.96); }
+
+  /* ---------- footer ---------- */
+  footer{
+    text-align:center;
+    padding:30px 20px 50px;
+    color:#9A89BB;
+    font-size:13px;
+  }
+  footer strong{ color:var(--purple-dark); }
+
+  .scroll-top{
+    position:fixed; bottom:20px; right:20px; z-index:60;
+    background:var(--purple); color:#fff;
+    border:none; width:48px; height:48px; border-radius:50%;
+    font-size:20px; cursor:pointer;
+    box-shadow:0 4px 0 var(--purple-dark);
+    display:none;
+  }
+  .scroll-top.show{ display:block; }
+</style>
+</head>
+<body>
+
+<!-- decorative floating elements -->
+<div class="cloud" style="top:8%; left:4%; animation-delay:0s;">☁️</div>
+<div class="cloud" style="top:14%; right:6%; animation-delay:1.2s; font-size:28px;">☁️</div>
+<div class="star" style="top:30%; left:3%; font-size:22px;">⭐</div>
+<div class="star" style="top:55%; right:4%; font-size:20px; animation-delay:.8s;">✨</div>
+<div class="star" style="top:75%; left:6%; font-size:18px; animation-delay:1.6s;">🌟</div>
+
+<header>
+  <div class="logo-row">
+    <span class="logo-icon">⏰</span>
+    <h1 class="brand">LittleLume <span>English</span></h1>
+  </div>
+  <div class="grade-badge">⭐ GRADE 3 ⭐</div>
+  <div class="topic-title">
+    Today's Big Adventure
+    <strong>The Simple Past Tense Time Machine 🚀</strong>
+  </div>
+</header>
+
+<nav>
+  <a href="#intro">🚀 Start</a>
+  <a href="#rules">📖 Rules</a>
+  <a href="#irregular">🌟 Special Verbs</a>
+  <a href="#examples">💬 Examples</a>
+  <a href="#signals">⏳ Time Words</a>
+  <a href="#quiz">📝 Quiz</a>
+  <a href="#game1">🎮 Sort Game</a>
+  <a href="#game2">✏️ Fill-In Game</a>
+  <a href="#game3">🃏 Memory Game</a>
+</nav>
+
+<main>
+
+  <!-- ================= INTRO ================= -->
+  <section id="intro">
+    <div class="hook-card card">
+      <span class="machine">🕰️🦖</span>
+      <h3>Hop in the Time Machine!</h3>
+      <p>The <strong>Simple Past Tense</strong> is a magic word-tool we use to talk about things that <strong>already happened</strong> — yesterday, last week, or even a long, long time ago, like when dinosaurs walked the earth!</p>
+      <div class="timeline">
+        <div class="tbox past">🦖 Yesterday: I play<u>ed</u></div>
+        <div class="arrow">➡️</div>
+        <div class="tbox now">🧒 Today (NOW)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RULES ================= -->
+  <section id="rules">
+    <div class="section-head">
+      <div class="num">1</div>
+      <div>
+        <h2>The Magic Rules</h2>
+        <p>How do we make a verb travel to the past?</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="rule-grid">
+        <div class="rule-box green">
+          <h4>🟢 Regular Verbs <span class="tag">EASY</span></h4>
+          <p>Just add <strong>-ed</strong> to the end of the verb!</p>
+          <div class="formula">walk ➜ walk<strong style="color:#1B7A4D">ed</strong></div>
+          <ul>
+            <li><strong>play</strong> ➜ play<strong>ed</strong></li>
+            <li><strong>jump</strong> ➜ jump<strong>ed</strong></li>
+            <li><strong>cook</strong> ➜ cook<strong>ed</strong></li>
+            <li>If the verb ends with <strong>e</strong>, just add <strong>-d</strong>: like ➜ liked</li>
+            <li>If it ends with a consonant + <strong>y</strong>, change <strong>y ➜ i</strong> + ed: cry ➜ cried</li>
+          </ul>
+        </div>
+        <div class="rule-box pink">
+          <h4>🩷 Irregular Verbs <span class="tag" style="background:var(--pink)">TRICKY</span></h4>
+          <p>These verbs do NOT follow the -ed rule. They change into a whole new word!</p>
+          <div class="formula">go ➜ <strong style="color:#C2306B">went</strong></div>
+          <ul>
+            <li><strong>go</strong> ➜ went</li>
+            <li><strong>eat</strong> ➜ ate</li>
+            <li><strong>see</strong> ➜ saw</li>
+            <li>You just have to remember them — like magic spells! 🪄</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= IRREGULAR VERB TABLE ================= -->
+  <section id="irregular">
+    <div class="section-head">
+      <div class="num">2</div>
+      <div>
+        <h2>Verb Time-Travel Chart</h2>
+        <p>Today (Present) ➜ Yesterday (Past)</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="verb-table-wrap">
+        <table class="verbs">
+          <thead>
+            <tr><th>Today (Present)</th><th>Yesterday (Past)</th><th>Example Sentence</th></tr>
+          </thead>
+          <tbody>
+            <tr class="reg"><td>walk</td><td>walked</td><td>I walked to school. 🚶</td></tr>
+            <tr class="reg"><td>play</td><td>played</td><td>She played soccer. ⚽</td></tr>
+            <tr class="reg"><td>watch</td><td>watched</td><td>We watched a movie. 🎬</td></tr>
+            <tr class="irr"><td>go</td><td>went</td><td>He went to the park. 🌳</td></tr>
+            <tr class="irr"><td>eat</td><td>ate</td><td>I ate an apple. 🍎</td></tr>
+            <tr class="irr"><td>see</td><td>saw</td><td>They saw a rainbow. 🌈</td></tr>
+            <tr class="irr"><td>have</td><td>had</td><td>We had pizza. 🍕</td></tr>
+            <tr class="irr"><td>run</td><td>ran</td><td>The dog ran fast. 🐕</td></tr>
+            <tr class="irr"><td>is / am / are</td><td>was / were</td><td>I was happy. 😊</td></tr>
+            <tr class="irr"><td>do</td><td>did</td><td>She did her homework. 📓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="legend">
+        <span><span class="dot" style="background:var(--green)"></span> Regular verb</span>
+        <span><span class="dot" style="background:var(--pink)"></span> Irregular verb</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXAMPLES ================= -->
+  <section id="examples">
+    <div class="section-head">
+      <div class="num">3</div>
+      <div>
+        <h2>Past Tense in Action</h2>
+        <p>See it in real sentences!</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="example-row"><span class="emoji">🐶</span><div>My dog <span class="past-word">barked</span> at the mailman this morning.</div></div>
+      <div class="example-row"><span class="emoji">🏖️</span><div>We <span class="past-word">visited</span> the beach last summer.</div></div>
+      <div class="example-row"><span class="emoji">📚</span><div>I <span class="past-word">read</span> two books last night.</div></div>
+      <div class="example-row"><span class="emoji">🎂</span><div>She <span class="past-word">baked</span> a chocolate cake yesterday.</div></div>
+      <div class="example-row"><span class="emoji">😢</span><div>It <span class="past-word">did not rain</span> last week. <em>(negative form!)</em></div></div>
+      <div class="example-row"><span class="emoji">❓</span><div><span class="past-word">Did</span> you brush your teeth this morning? <em>(question form!)</em></div></div>
+
+      <div class="rule-grid" style="margin-top:18px;">
+        <div class="rule-box green">
+          <h4>➕ Negative Sentences</h4>
+          <div class="formula">did not (didn't) + verb</div>
+          <p style="font-size:14px;">I <strong>didn't play</strong> outside. (verb goes back to its base form!)</p>
+        </div>
+        <div class="rule-box pink">
+          <h4>❓ Question Sentences</h4>
+          <div class="formula">Did + subject + verb?</div>
+          <p style="font-size:14px;"><strong>Did</strong> you <strong>eat</strong> breakfast?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SIGNAL WORDS ================= -->
+  <section id="signals">
+    <div class="section-head">
+      <div class="num">4</div>
+      <div>
+        <h2>Time Clue Words</h2>
+        <p>These words are clues that tell you to use the past tense!</p>
+      </div>
+    </div>
+    <div class="card">
+      <p style="margin:0 0 6px; font-size:14px; color:#7A6A9A;">Whenever you see these words, your verb should travel to the past:</p>
+      <div class="chips">
+        <span class="chip">yesterday</span>
+        <span class="chip">last night</span>
+        <span class="chip">last week</span>
+        <span class="chip">last year</span>
+        <span class="chip">ago</span>
+        <span class="chip">this morning</span>
+        <span class="chip">in 2020</span>
+        <span class="chip">when I was little</span>
+        <span class="chip">a long time ago</span>
+        <span class="chip">once upon a time</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section id="quiz">
+    <div class="section-head">
+      <div class="num">5</div>
+      <div>
+        <h2>Quiz Time! 📝</h2>
+        <p>Test your time-travel skills — 8 questions!</p>
+      </div>
+    </div>
+    <div class="card quiz-card">
+      <div class="quiz-progress">
+        <span>🚀</span>
+        <div class="bar"><div class="bar-fill" id="quizBar"></div></div>
+        <span class="quiz-score" id="quizScoreLabel">Score: 0 / 8</span>
+      </div>
+      <div id="quizBody">
+        <div class="quiz-q" id="quizQ"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="feedback" id="quizFeedback"></div>
+        <div class="quiz-nav"><button class="next-btn" id="quizNextBtn">Next ➜</button></div>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <span class="big-emoji" id="resultEmoji">🏆</span>
+        <h3 id="resultTitle">Great Job!</h3>
+        <p id="resultText">You scored 0 out of 8.</p>
+        <button class="retry-btn" id="quizRetryBtn">🔄 Try Again</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GAME 1: SORTING ================= -->
+  <section id="game1">
+    <div class="section-head">
+      <div class="num">6</div>
+      <div>
+        <h2>Game: Now or Past?</h2>
+        <p>Drag each word into the correct time zone!</p>
+      </div>
+    </div>
+    <div class="card game-card">
+      <div class="game-instructions">🖱️ <strong>How to play:</strong> Drag (or tap, then tap a zone) each word tile below into "Today (Now)" or "Yesterday (Past)". On mobile, tap a word first, then tap the zone!</div>
+      <div class="sort-zones">
+        <div class="zone zone-now" id="zoneNow" data-zone="now">
+          <div class="zone-label">🧒 Today (Now)</div>
+        </div>
+        <div class="zone zone-past" id="zonePast" data-zone="past">
+          <div class="zone-label">🦖 Yesterday (Past)</div>
+        </div>
+      </div>
+      <div class="word-bank" id="wordBank"></div>
+      <div class="game-footer" style="margin-top:16px;">
+        <div class="game-status" id="game1Status">Sort all 8 words!</div>
+        <div>
+          <button class="reset-btn" id="game1Reset">↻ Reset</button>
+          <button class="check-btn" id="game1Check">✓ Check My Work</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GAME 2: FILL IN THE BLANK ================= -->
+  <section id="game2" class="blank-game">
+    <div class="section-head">
+      <div class="num">7</div>
+      <div>
+        <h2>Game: Finish the Story</h2>
+        <p>Type the correct past tense verb in each blank!</p>
+      </div>
+    </div>
+    <div class="card">
+      <div id="blankList"></div>
+      <div class="game-footer" style="margin-top:6px;">
+        <div class="game-status" id="game2Status">0 / 5 correct</div>
+        <button class="check-btn" id="game2CheckAll">✓ Check All Answers</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GAME 3: MEMORY MATCH ================= -->
+  <section id="game3">
+    <div class="section-head">
+      <div class="num">8</div>
+      <div>
+        <h2>Game: Verb Memory Match</h2>
+        <p>Flip two cards to match a verb with its past form!</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="game-instructions">🃏 Tap a card to flip it. Find the matching pair, like <strong>"go"</strong> and <strong>"went"</strong>!</div>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="game-footer">
+        <div class="game-status" id="memoryStatus">Pairs found: 0 / 6</div>
+        <button class="reset-btn" id="memoryReset">↻ Shuffle & Restart</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Made with 💜 by <strong>LittleLume English</strong> — Grade 3 Learning Adventures<br>
+  Keep practicing and you'll be a Past Tense superstar! 🌟
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn">↑</button>
+
+<script>
+/* ============ scroll to top button ============ */
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  scrollBtn.classList.toggle('show', window.scrollY > 500);
+});
+scrollBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+const quizData = [
+  { q: "Yesterday, I ___ to the park with my friends.", options:["go","went","goes","going"], answer:1, explain:"\"go\" is irregular — its past form is \"went\"!" },
+  { q: "She ___ a beautiful picture last week.", options:["paint","painted","paints","painting"], answer:1, explain:"\"paint\" is regular — just add -ed!" },
+  { q: "We ___ pizza for dinner last night.", options:["have","haves","had","having"], answer:2, explain:"\"have\" is irregular — its past form is \"had\"." },
+  { q: "Which sentence is in the SIMPLE PAST tense?", options:["I am happy.","I will be happy.","I was happy.","I am being happy."], answer:2, explain:"\"was\" is the past form of \"is/am\"." },
+  { q: "They ___ not finish their homework yesterday.", options:["did","does","do","doing"], answer:0, explain:"Negative past tense uses \"did not\" (didn't) + base verb." },
+  { q: "Choose the correct past form of \"cry\".", options:["cryed","cried","crys","crying"], answer:1, explain:"Consonant + y ➜ change y to i, then add -ed: cry ➜ cried." },
+  { q: "___ you watch the movie last Friday?", options:["Do","Does","Did","Doing"], answer:2, explain:"Questions in the past tense start with \"Did\"." },
+  { q: "My cat ___ up the tree this morning.", options:["run","runned","ran","runs"], answer:2, explain:"\"run\" is irregular — its past form is \"ran\"." }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+const quizQEl = document.getElementById('quizQ');
+const quizOptionsEl = document.getElementById('quizOptions');
+const quizFeedbackEl = document.getElementById('quizFeedback');
+const quizNextBtn = document.getElementById('quizNextBtn');
+const quizBar = document.getElementById('quizBar');
+const quizScoreLabel = document.getElementById('quizScoreLabel');
+const quizBody = document.getElementById('quizBody');
+const quizResult = document.getElementById('quizResult');
+const quizRetryBtn = document.getElementById('quizRetryBtn');
+
+function renderQuiz(){
+  quizAnswered = false;
+  const item = quizData[quizIndex];
+  quizQEl.textContent = `Q${quizIndex+1}. ${item.q}`;
+  quizOptionsEl.innerHTML = '';
+  item.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => selectAnswer(i, btn));
+    quizOptionsEl.appendChild(btn);
+  });
+  quizFeedbackEl.className = 'feedback';
+  quizFeedbackEl.textContent = '';
+  quizNextBtn.classList.remove('show');
+  quizBar.style.width = `${(quizIndex/quizData.length)*100}%`;
+  quizScoreLabel.textContent = `Score: ${quizScore} / ${quizData.length}`;
+}
+
+function selectAnswer(i, btn){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const item = quizData[quizIndex];
+  const allBtns = quizOptionsEl.querySelectorAll('.opt-btn');
+  allBtns.forEach(b => b.disabled = true);
+  if(i === item.answer){
+    btn.classList.add('correct');
+    quizScore++;
+    quizFeedbackEl.className = 'feedback show good';
+    quizFeedbackEl.textContent = `🎉 Correct! ${item.explain}`;
+  } else {
+    btn.classList.add('wrong');
+    allBtns[item.answer].classList.add('correct');
+    quizFeedbackEl.className = 'feedback show bad';
+    quizFeedbackEl.textContent = `❌ Not quite. ${item.explain}`;
+  }
+  quizScoreLabel.textContent = `Score: ${quizScore} / ${quizData.length}`;
+  quizNextBtn.classList.add('show');
+  quizNextBtn.textContent = (quizIndex === quizData.length - 1) ? 'See My Results 🏆' : 'Next ➜';
+}
+
+quizNextBtn.addEventListener('click', () => {
+  quizIndex++;
+  if(quizIndex >= quizData.length){
+    showQuizResult();
+  } else {
+    renderQuiz();
+  }
+});
+
+function showQuizResult(){
+  quizBody.style.display = 'none';
+  quizResult.classList.add('show');
+  quizBar.style.width = '100%';
+  const pct = quizScore / quizData.length;
+  let emoji, title;
+  if(pct === 1){ emoji='🏆'; title='Perfect Score! Time Travel Master!'; }
+  else if(pct >= 0.75){ emoji='🌟'; title='Awesome Work!'; }
+  else if(pct >= 0.5){ emoji='👍'; title='Good Try!'; }
+  else{ emoji='💪'; title='Keep Practicing!'; }
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultText').textContent = `You scored ${quizScore} out of ${quizData.length}.`;
+}
+
+quizRetryBtn.addEventListener('click', () => {
+  quizIndex = 0; quizScore = 0;
+  quizBody.style.display = '';
+  quizResult.classList.remove('show');
+  renderQuiz();
+});
+
+renderQuiz();
+
+/* ============================================================
+   GAME 1: DRAG & DROP SORT
+   ============================================================ */
+const sortWords = [
+  {text:"walked", zone:"past"},
+  {text:"play", zone:"now"},
+  {text:"ate", zone:"past"},
+  {text:"eats", zone:"now"},
+  {text:"went", zone:"past"},
+  {text:"watches", zone:"now"},
+  {text:"had", zone:"past"},
+  {text:"runs", zone:"now"}
+];
+
+const wordBank = document.getElementById('wordBank');
+const zoneNow = document.getElementById('zoneNow');
+const zonePast = document.getElementById('zonePast');
+const game1Status = document.getElementById('game1Status');
+let selectedTile = null;
+
+function buildGame1(){
+  wordBank.innerHTML = '';
+  // clear placed tiles in zones (keep labels)
+  zoneNow.querySelectorAll('.word-tile').forEach(t => t.remove());
+  zonePast.querySelectorAll('.word-tile').forEach(t => t.remove());
+
+  const shuffled = [...sortWords].sort(() => Math.random() - 0.5);
+  shuffled.forEach(w => {
+    const tile = document.createElement('div');
+    tile.className = 'word-tile';
+    tile.textContent = w.text;
+    tile.draggable = true;
+    tile.dataset.zone = w.zone;
+    tile.addEventListener('dragstart', e => {
+      tile.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', '');
+    });
+    tile.addEventListener('dragend', () => tile.classList.remove('dragging'));
+    tile.addEventListener('click', () => {
+      if(tile.classList.contains('placed-correct') || tile.classList.contains('placed-wrong')) return;
+      if(selectedTile){ selectedTile.style.outline = ''; }
+      selectedTile = tile;
+      tile.style.outline = '3px solid var(--blue)';
+    });
+    wordBank.appendChild(tile);
+  });
+  game1Status.textContent = 'Sort all 8 words!';
+}
+
+[zoneNow, zonePast].forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    const dragging = document.querySelector('.dragging');
+    if(dragging) zone.appendChild(dragging);
+  });
+  zone.addEventListener('click', () => {
+    if(selectedTile){
+      zone.appendChild(selectedTile);
+      selectedTile.style.outline = '';
+      selectedTile = null;
+    }
+  });
+});
+
+document.getElementById('game1Check').addEventListener('click', () => {
+  let correct = 0;
+  const allTiles = document.querySelectorAll('.word-tile');
+  allTiles.forEach(tile => {
+    const parentZone = tile.parentElement.dataset.zone;
+    tile.classList.remove('placed-correct','placed-wrong');
+    if(parentZone === tile.dataset.zone){
+      tile.classList.add('placed-correct');
+      correct++;
+    } else if(parentZone){
+      tile.classList.add('placed-wrong');
+    }
+  });
+  game1Status.textContent = `Result: ${correct} / ${sortWords.length} correct! ${correct === sortWords.length ? '🎉 Perfect!' : 'Try fixing the red ones!'}`;
+});
+
+document.getElementById('game1Reset').addEventListener('click', buildGame1);
+buildGame1();
+
+/* ============================================================
+   GAME 2: FILL IN THE BLANKS (story)
+   ============================================================ */
+const blanks = [
+  { before:"Yesterday, Mia", after:"to the zoo with her family.", answer:["went"], hint:"go" },
+  { before:"She", after:"a baby elephant there.", answer:["saw"], hint:"see" },
+  { before:"They", after:"ice cream after lunch.", answer:["ate","had"], hint:"eat / have" },
+  { before:"Mia", after:"so many photos with her camera.", answer:["took"], hint:"take" },
+  { before:"At night, she", after:"happy and tired.", answer:["was"], hint:"be (I/she/he/it)" }
+];
+
+const blankList = document.getElementById('blankList');
+function buildGame2(){
+  blankList.innerHTML = '';
+  blanks.forEach((b, i) => {
+    const div = document.createElement('div');
+    div.className = 'blank-q';
+    div.innerHTML = `
+      <div class="sentence">${i+1}. ${b.before} <input type="text" class="blank-input" data-idx="${i}" placeholder="${b.hint}"> ${b.after}</div>
+      <div class="blank-feedback" id="bf-${i}"></div>
+    `;
+    blankList.appendChild(div);
+  });
+  document.getElementById('game2Status').textContent = `0 / ${blanks.length} correct`;
+}
+
+document.getElementById('game2CheckAll').addEventListener('click', () => {
+  let correct = 0;
+  blanks.forEach((b, i) => {
+    const input = document.querySelector(`.blank-input[data-idx="${i}"]`);
+    const fb = document.getElementById(`bf-${i}`);
+    const val = input.value.trim().toLowerCase();
+    if(b.answer.includes(val)){
+      correct++;
+      fb.className = 'blank-feedback good';
+      fb.textContent = '✅ Correct!';
+    } else {
+      fb.className = 'blank-feedback bad';
+      fb.textContent = `❌ Try again! Hint: past form of "${b.hint}"`;
+    }
+  });
+  document.getElementById('game2Status').textContent = `${correct} / ${blanks.length} correct`;
+});
+
+buildGame2();
+
+/* ============================================================
+   GAME 3: MEMORY MATCH
+   ============================================================ */
+const pairData = [
+  {present:"go", past:"went"},
+  {present:"eat", past:"ate"},
+  {present:"see", past:"saw"},
+  {present:"run", past:"ran"},
+  {present:"have", past:"had"},
+  {present:"do", past:"did"}
+];
+
+const memoryGrid = document.getElementById('memoryGrid');
+const memoryStatus = document.getElementById('memoryStatus');
+let memCards = [];
+let flippedCards = [];
+let matchedCount = 0;
+let lockBoard = false;
+
+function buildMemory(){
+  memoryGrid.innerHTML = '';
+  flippedCards = [];
+  matchedCount = 0;
+  lockBoard = false;
+  memoryStatus.textContent = `Pairs found: 0 / ${pairData.length}`;
+
+  let cards = [];
+  pairData.forEach((p, idx) => {
+    cards.push({ text:p.present, pairId:idx });
+    cards.push({ text:p.past, pairId:idx });
+  });
+  cards = cards.sort(() => Math.random() - 0.5);
+
+  memCards = cards.map((c, i) => {
+    const el = document.createElement('div');
+    el.className = 'mem-card';
+    el.textContent = '?';
+    el.dataset.pairId = c.pairId;
+    el.dataset.text = c.text;
+    el.dataset.index = i;
+    el.addEventListener('click', () => flipCard(el));
+    memoryGrid.appendChild(el);
+    return el;
+  });
+}
+
+function flipCard(el){
+  if(lockBoard) return;
+  if(el.classList.contains('flipped') || el.classList.contains('matched')) return;
+  el.classList.add('flipped');
+  el.textContent = el.dataset.text;
+  flippedCards.push(el);
+
+  if(flippedCards.length === 2){
+    lockBoard = true;
+    const [a, b] = flippedCards;
+    if(a.dataset.pairId === b.dataset.pairId){
+      setTimeout(() => {
+        a.classList.add('matched');
+        b.classList.add('matched');
+        matchedCount++;
+        memoryStatus.textContent = `Pairs found: ${matchedCount} / ${pairData.length}`;
+        if(matchedCount === pairData.length){
+          memoryStatus.textContent = `🎉 All matched! Great memory!`;
+        }
+        flippedCards = [];
+        lockBoard = false;
+      }, 500);
+    } else {
+      setTimeout(() => {
+        a.classList.remove('flipped'); a.textContent='?';
+        b.classList.remove('flipped'); b.textContent='?';
+        flippedCards = [];
+        lockBoard = false;
+      }, 900);
+    }
+  }
+}
+
+document.getElementById('memoryReset').addEventListener('click', buildMemory);
+buildMemory();
+</script>
+</body>
+</html>
