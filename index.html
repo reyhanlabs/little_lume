@@ -179,6 +179,25 @@
       width: 100%;
     }
 
+    .nav-link-grammar {
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(254, 202, 87, 0.2));
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 217, 61, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .nav-link-grammar:hover {
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.3), rgba(254, 202, 87, 0.3));
+      border-color: rgba(255, 217, 61, 0.6);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.2);
+    }
+
+    .nav-link-grammar:hover::after {
+      display: none;
+    }
+
     .nav-cta {
       background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
       color: #0F1B4C;
@@ -1053,6 +1072,131 @@
       letter-spacing: 0.5px;
     }
 
+
+    /* ============= RESOURCES SECTION ============= */
+    .resources-section {
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, rgba(44, 62, 122, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
+      border-radius: 20px;
+    }
+
+    .resources-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .resource-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--accent);
+    }
+
+    .resource-card.coming-soon {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .resource-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .resource-icon {
+      font-size: 2.5rem;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .resource-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .resource-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .resource-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
+    .resource-features li {
+      padding: 0.5rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .resource-features li::before {
+      content: "";
+      margin-right: 0.5rem;
+    }
+
+    .resource-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+      color: var(--primary);
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
+    }
+
+    .resource-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+    }
+
+    .coming-soon-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #54A0FF 0%, #48DBFB 100%);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     /* ============= FOOTER ============= */
     footer {
       background: var(--bg-dark);
@@ -1231,6 +1375,24 @@
         grid-template-columns: 1fr;
       }
 
+      .resources-section {
+        padding: 3rem 1.5rem;
+        margin: 3rem auto 0;
+      }
+
+      .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .resource-card {
+        padding: 1.5rem;
+      }
+
+      .resource-title {
+        font-size: 1.1rem;
+      }
+
       .footer-content {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
@@ -1289,8 +1451,9 @@
       <div class="logo">✨ LittleLume</div>
       <ul class="nav-links">
         <li><a href="#courses">Courses</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#resources">Learning Resources</a></li>
+        <li><a href="grammar-complete.html">📖 Grammar</a></li>
+        <li><a href="#quotes">About</a></li>
       </ul>
       <a href="#courses" class="nav-cta">Start Learning</a>
     </nav>
@@ -1565,6 +1728,81 @@
       </div>
     </div>
   </section>
+
+  <!-- ============= RESOURCES SECTION ============= -->
+  <section class="resources-section" id="resources">
+    <div class="resources-container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">🎓 Learning Resources</h2>
+      
+      <div class="resources-grid">
+        <!-- Grammar Complete Guide -->
+        <div class="resource-card">
+          <div class="resource-header">
+            <div class="resource-icon">📖</div>
+            <h3 class="resource-title">Grammar Complete Guide</h3>
+          </div>
+          
+          <p class="resource-description">
+            Master English grammar from basic to advanced level with detailed explanations, formulas, and real-world examples for every topic.
+          </p>
+
+          <ul class="resource-features">
+            <li>✓ 15+ Grammar Topics</li>
+            <li>✓ Grade 1 to Grade 6</li>
+            <li>✓ Interactive Navigation</li>
+            <li>✓ Full Examples & Notes</li>
+          </ul>
+
+          <a href="grammar-complete.html" class="resource-link">
+            Open Grammar Guide →
+          </a>
+        </div>
+
+        <!-- Future: Vocabulary Guide -->
+        <div class="resource-card coming-soon">
+          <div class="resource-header">
+            <div class="resource-icon">📚</div>
+            <h3 class="resource-title">Vocabulary Builder</h3>
+          </div>
+          
+          <p class="resource-description">
+            Expand your vocabulary with categorized word lists, pronunciation guides, and usage examples.
+          </p>
+
+          <ul class="resource-features">
+            <li>✓ 1000+ Words</li>
+            <li>✓ Audio Pronunciation</li>
+            <li>✓ Usage Examples</li>
+            <li>✓ Flashcards</li>
+          </ul>
+
+          <div class="coming-soon-badge">Coming Soon</div>
+        </div>
+
+        <!-- Future: Phrasal Verbs -->
+        <div class="resource-card coming-soon">
+          <div class="resource-header">
+            <div class="resource-icon">⚡</div>
+            <h3 class="resource-title">Phrasal Verbs Reference</h3>
+          </div>
+          
+          <p class="resource-description">
+            Learn essential phrasal verbs with meanings, examples, and practice exercises.
+          </p>
+
+          <ul class="resource-features">
+            <li>✓ 100+ Phrasal Verbs</li>
+            <li>✓ Meanings & Examples</li>
+            <li>✓ Exercises</li>
+            <li>✓ Interactive Quizzes</li>
+          </ul>
+
+          <div class="coming-soon-badge">Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============= QUOTES SECTION ============= -->
   <section class="quotes" id="quotes">
     <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">💡 Words of Wisdom</h2>
