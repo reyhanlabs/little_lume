@@ -393,17 +393,18 @@
       padding: 3rem 2rem;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
     }
 
     .stat-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: var(--shadow-md);
-      transition: var(--transition);
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .stat-card::before {
@@ -412,57 +413,125 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
+      height: 5px;
       background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
     }
 
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+
+    .stat-card:nth-child(1)::after {
+      background: #FF6B9D;
+      right: -30px;
+      bottom: -30px;
+    }
+
+    .stat-card:nth-child(2)::after {
+      background: #FECA57;
+      right: -30px;
+      bottom: -30px;
+    }
+
+    .stat-card:nth-child(3)::after {
+      background: #00D2D3;
+      right: -30px;
+      bottom: -30px;
+    }
+
+    .stat-card:nth-child(4)::after {
+      background: #54A0FF;
+      right: -30px;
+      bottom: -30px;
+    }
+
     .stat-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-card:hover .stat-card-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .stat-card:hover h3 {
+      transform: scale(1.05);
     }
 
     .stat-card-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 14px;
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.4s ease;
+      position: relative;
+      z-index: 2;
     }
 
     .stat-card:nth-child(1) .stat-card-icon {
-      background: linear-gradient(135deg, rgba(60, 134, 255, 0.2) 0%, rgba(100, 150, 255, 0.1) 100%);
+      background: linear-gradient(135deg, #FF6B9D 0%, #FF9FD4 100%);
+      box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
     }
 
     .stat-card:nth-child(2) .stat-card-icon {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(100, 200, 150, 0.1) 100%);
+      background: linear-gradient(135deg, #FECA57 0%, #FFD93D 100%);
+      box-shadow: 0 8px 16px rgba(254, 202, 87, 0.3);
     }
 
     .stat-card:nth-child(3) .stat-card-icon {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(255, 180, 100, 0.1) 100%);
+      background: linear-gradient(135deg, #00D2D3 0%, #20E3B2 100%);
+      box-shadow: 0 8px 16px rgba(0, 210, 211, 0.3);
     }
 
     .stat-card:nth-child(4) .stat-card-icon {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(255, 100, 100, 0.1) 100%);
+      background: linear-gradient(135deg, #54A0FF 0%, #48DBFB 100%);
+      box-shadow: 0 8px 16px rgba(84, 160, 255, 0.3);
     }
 
     .stat-card h3 {
       font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+      transition: transform 0.4s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-card:nth-child(1) h3 {
+      color: #FF6B9D;
+    }
+
+    .stat-card:nth-child(2) h3 {
+      color: #FECA57;
+    }
+
+    .stat-card:nth-child(3) h3 {
+      color: #00D2D3;
+    }
+
+    .stat-card:nth-child(4) h3 {
+      color: #54A0FF;
     }
 
     .stat-card p {
       color: var(--text-secondary);
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 500;
+      position: relative;
+      z-index: 2;
     }
 
     /* ============= COURSE CATEGORIES ============= */
@@ -1140,7 +1209,19 @@
       }
 
       .dashboard-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 2rem 1rem;
+      }
+
+      .stat-card h3 {
+        font-size: 2.5rem;
+      }
+
+      .stat-card-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
       }
 
       .course-grid {
@@ -1158,6 +1239,27 @@
     }
 
     @media (max-width: 480px) {
+      .dashboard-stats {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 1.5rem 1rem;
+      }
+
+      .stat-card {
+        padding: 1.75rem;
+      }
+
+      .stat-card h3 {
+        font-size: 2.2rem;
+      }
+
+      .stat-card-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
       .footer-content {
         grid-template-columns: 1fr;
       }
