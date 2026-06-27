@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English Course – Interactive Worksheet Grade 5</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   SCREEN STYLES
+═══════════════════════════════════════ */
+:root {
+  --ink:     #1A237E; --sky:     #1976D2; --leaf:    #2E7D32;
+  --coral:   #BF360C; --violet:  #6A1B9A; --sun:     #E65100;
+  --light-sky:    #E3F2FD; --light-leaf:   #E8F5E9; --light-coral:  #FBE9E7;
+  --light-violet: #F3E5F5; --light-sun:    #FFF8E1; --grey:    #F5F5F5;
+  --border:  #BDBDBD; --white:   #FFFFFF;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: #E8EAF6; color: #212121; font-size: 12pt; line-height: 1.5; }
+.page { background: white; width: 210mm; min-height: 297mm; margin: 20px auto; padding: 15mm 18mm 15mm; box-shadow: 0 4px 24px rgba(0,0,0,0.15); position: relative; }
+.page-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--sky); padding-bottom: 8px; margin-bottom: 14px; }
+.header-left { display: flex; align-items: center; gap: 10px; }
+.brand { background: var(--sky); color: white; font-family: 'Fredoka One', cursive; font-size: 13pt; padding: 4px 12px; border-radius: 8px; }
+.page-title { font-family: 'Fredoka One', cursive; font-size: 15pt; color: var(--ink); line-height: 1.1; }
+.page-sub { font-size: 8pt; color: #757575; font-weight: 700; margin-top: 1px; }
+.header-right { text-align: right; font-size: 8pt; color: #757575; font-weight: 700; line-height: 1.6; }
+.page-num { background: var(--light-sky); color: var(--sky); font-size: 8pt; font-weight: 800; padding: 2px 8px; border-radius: 4px; }
+
+/* ── INTERACTIVE INPUT STYLES ── */
+.info-bar { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.info-field { font-size: 9.5pt; font-weight: 700; color: #757575; display: flex; align-items: center; gap: 6px; }
+
+.int-text {
+  border: none;
+  border-bottom: 1.5px dashed var(--sky);
+  background: #F8FBFF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 4px 8px;
+  outline: none;
+  transition: all 0.2s;
+}
+.int-text:focus { background: #E3F2FD; border-bottom: 2px solid var(--ink); }
+.int-text::placeholder { color: #B0BEC5; font-weight: 600; font-style: italic; font-size: 9.5pt; }
+.int-text.inline { width: 130px; text-align: center; margin: 0 4px; }
+.int-text.full { width: 100%; margin-top: 4px; }
+
+.int-area {
+  width: 100%;
+  border: 1.5px dashed var(--sky);
+  background: #F8FBFF;
+  border-radius: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 10px;
+  outline: none;
+  line-height: 1.8;
+  resize: none;
+  margin-top: 6px;
+}
+.int-area:focus { background: #E3F2FD; border-color: var(--ink); }
+
+.int-radio { accent-color: var(--sky); transform: scale(1.2); cursor: pointer; margin-right: 4px; vertical-align: middle; }
+.int-check { accent-color: var(--leaf); transform: scale(1.4); cursor: pointer; margin-top: 3px; }
+.radio-label { display: inline-flex; align-items: center; cursor: pointer; color: var(--ink); font-weight: 700; transition: all 0.2s;}
+
+/* ── LAYOUT ── */
+.section-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; margin-top: 14px; }
+.section-badge { font-size: 8pt; font-weight: 900; letter-spacing: 0.8px; padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+.sb-sky    { background: var(--light-sky);    color: var(--sky);    border: 1px solid #90CAF9; }
+.sb-leaf   { background: var(--light-leaf);   color: var(--leaf);   border: 1px solid #A5D6A7; }
+.sb-coral  { background: var(--light-coral);  color: var(--coral);  border: 1px solid #FFAB91; }
+.sb-violet { background: var(--light-violet); color: var(--violet); border: 1px solid #CE93D8; }
+.sb-sun    { background: var(--light-sun);    color: var(--sun);    border: 1px solid #FFCC80; }
+.section-head h2 { font-family: 'Fredoka One', cursive; font-size: 12pt; color: var(--ink); }
+.section-head .instr { font-size: 8.5pt; color: #546E7A; font-weight: 700; margin-left: auto; font-style: italic; }
+.divider { border: none; border-top: 1px dashed var(--border); margin: 12px 0; }
+.ex-list { list-style: none; padding: 0; }
+.ex-list li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; font-size: 10pt; font-weight: 600; }
+.ex-num-circle { background: var(--ink); color: white; border-radius: 50%; width: 18px; height: 18px; min-width: 18px; font-size: 8pt; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.word-bank { display: flex; flex-wrap: wrap; gap: 6px; background: var(--light-violet); border: 1px dashed #CE93D8; border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
+.wb-chip { background: white; border: 1px solid #CE93D8; color: var(--violet); padding: 2px 9px; border-radius: 100px; font-size: 9pt; font-weight: 800; }
+.passage { background: var(--light-sky); border-left: 4px solid var(--sky); border-radius: 0 8px 8px 0; padding: 10px 13px; margin: 8px 0; font-size: 10pt; line-height: 1.7; }
+.passage-title { font-family: 'Fredoka One', cursive; font-size: 11pt; color: var(--sky); margin-bottom: 5px; }
+.hint { display: flex; gap: 6px; align-items: flex-start; background: var(--light-sun); border-radius: 6px; padding: 7px 10px; font-size: 8.5pt; font-weight: 700; color: var(--sun); margin: 8px 0; }
+.score-box { border: 2px solid var(--border); border-radius: 8px; padding: 6px 14px; text-align: center; font-size: 8pt; font-weight: 800; color: #9E9E9E; line-height: 1.6; }
+.score-circle { width: 36px; height: 36px; border: 2px solid var(--border); border-radius: 50%; display: inline-block; margin-top: 3px; font-size:12pt; color:var(--ink); line-height:36px;}
+.ws-table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 8px 0; }
+.ws-table th { background: var(--ink); color: white; padding: 6px 10px; text-align: left; font-size: 8.5pt; font-weight: 800; }
+.ws-table td { padding: 7px 10px; border-bottom: 1px solid #E0E0E0; vertical-align: middle; line-height: 1.5; }
+.ws-table tr:nth-child(even) td { background: #F9F9FF; }
+.page-footer { position: absolute; bottom: 10mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; align-items: center; font-size: 7.5pt; color: #9E9E9E; border-top: 1px solid #E0E0E0; padding-top: 5px; }
+.checklist { margin: 6px 0; }
+.cl-item { display: flex; gap: 8px; align-items: flex-start; font-size: 9.5pt; font-weight: 600; margin-bottom: 5px; }
+.stars { font-size: 11pt; letter-spacing: 2px; color: #FFD54F; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* ── VALIDATION STYLES (Added for Check Answers) ── */
+.correct-input { background-color: #E8F5E9 !important; border-bottom-color: #4CAF50 !important; color: #2E7D32 !important; }
+.incorrect-input { background-color: #FFEBEE !important; border-bottom-color: #F44336 !important; color: #C62828 !important; }
+.correct-radio { color: #2E7D32 !important; font-weight: 900; background: #E8F5E9; padding: 0 4px; border-radius: 4px;}
+.incorrect-radio { color: #C62828 !important; text-decoration: line-through; }
+
+.check-btn {
+  display: block; width: 100%; margin: 20px 0; padding: 15px;
+  background: var(--sun); color: white; border: none; border-radius: 10px;
+  font-family: 'Nunito', sans-serif; font-size: 13pt; font-weight: 900;
+  cursor: pointer; text-align: center; box-shadow: 0 4px 12px rgba(230,81,0,0.3);
+  transition: all 0.2s;
+}
+.check-btn:hover { background: #BF360C; transform: translateY(-2px); }
+
+#result-box {
+  display: none; background: #E8F5E9; border: 2px solid #4CAF50; border-radius: 10px;
+  padding: 15px; margin-bottom: 20px; text-align: center;
+}
+#result-title { font-family: 'Fredoka One', cursive; font-size: 16pt; color: #2E7D32; margin-bottom: 5px; }
+#result-text { font-size: 11pt; font-weight: 700; color: #1B5E20; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PAGE 1 — VOCABULARY & DAILY ROUTINES
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="header-left">
+      <div class="brand">✨ LittleLume</div>
+      <div>
+        <div class="page-title">Interactive Worksheet</div>
+        <div class="page-sub">Grade 5 &nbsp;•&nbsp; Unit: Daily Activities & Past Events</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span class="page-num">Page 1 of 4</span></div>
+      <div style="margin-top:4px;">Vocabulary & Routines</div>
+    </div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-field">Name: <input type="text" class="int-text" style="width: 100%;"></div>
+    <div class="info-field">Class: <input type="text" class="int-text" style="width: 100%;"></div>
+    <div class="info-field">Date: <input type="text" class="int-text" style="width: 100%;"></div>
+  </div>
+
+  <!-- EXERCISE A -->
+  <div class="section-head">
+    <div class="section-badge sb-sky">Exercise A</div>
+    <h2>Fill in the Blanks (Daily Routine)</h2>
+    <div class="instr">Type the correct word from the bank. (10 points)</div>
+  </div>
+  <div class="word-bank">
+    <span class="wb-chip">wake up</span> <span class="wb-chip">breakfast</span> <span class="wb-chip">uniform</span> 
+    <span class="wb-chip">homework</span> <span class="wb-chip">brush</span> <span class="wb-chip">school</span>
+    <span class="wb-chip">dinner</span> <span class="wb-chip">shower</span> <span class="wb-chip">sleep</span> <span class="wb-chip">friends</span>
+  </div>
+  <ul class="ex-list">
+    <li><div class="ex-num-circle">1</div><div style="flex:1;">I usually <input type="text" class="int-text inline" data-answer="wake up"> at 5:30 AM every morning.</div></li>
+    <li><div class="ex-num-circle">2</div><div style="flex:1;">After that, I take a <input type="text" class="int-text inline" data-answer="shower"> in the bathroom.</div></li>
+    <li><div class="ex-num-circle">3</div><div style="flex:1;">Don't forget to <input type="text" class="int-text inline" data-answer="brush"> your teeth so they stay clean!</div></li>
+    <li><div class="ex-num-circle">4</div><div style="flex:1;">I wear my red and white <input type="text" class="int-text inline" data-answer="uniform"> before going out.</div></li>
+    <li><div class="ex-num-circle">5</div><div style="flex:1;">My mother prepares delicious <input type="text" class="int-text inline" data-answer="breakfast"> for us in the morning.</div></li>
+    <li><div class="ex-num-circle">6</div><div style="flex:1;">My father drives me to <input type="text" class="int-text inline" data-answer="school"> at 6:15 AM.</div></li>
+    <li><div class="ex-num-circle">7</div><div style="flex:1;">During break time, I play with my <input type="text" class="int-text inline" data-answer="friends"> in the schoolyard.</div></li>
+    <li><div class="ex-num-circle">8</div><div style="flex:1;">At 7:00 PM, my family and I eat <input type="text" class="int-text inline" data-answer="dinner"> together.</div></li>
+    <li><div class="ex-num-circle">9</div><div style="flex:1;">After eating, I always do my <input type="text" class="int-text inline" data-answer="homework"> before relaxing.</div></li>
+    <li><div class="ex-num-circle">10</div><div style="flex:1;">Finally, I go to <input type="text" class="int-text inline" data-answer="sleep"> at 9:00 PM.</div></li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- EXERCISE B -->
+  <div class="section-head">
+    <div class="section-badge sb-leaf">Exercise B</div>
+    <h2>Select the Correct Verb</h2>
+    <div class="instr">Click the correct word based on the subject. (10 points)</div>
+  </div>
+  <div class="hint">💡 <span>Remember: He, She, It uses <b>Verb + s/es</b> in Simple Present Tense!</span></div>
+  <ul class="ex-list" style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;">
+    <li>1. She ( <label class="radio-label"><input type="radio" class="int-radio" name="b1" value="watch"> watch</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b1" value="watches" data-correct="true"> watches</label> ) TV every night.</li>
+    <li>2. They ( <label class="radio-label"><input type="radio" class="int-radio" name="b2" value="play" data-correct="true"> play</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b2" value="plays"> plays</label> ) football on Sunday.</li>
+    <li>3. My cat ( <label class="radio-label"><input type="radio" class="int-radio" name="b3" value="sleep"> sleep</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b3" value="sleeps" data-correct="true"> sleeps</label> ) on the sofa.</li>
+    <li>4. We ( <label class="radio-label"><input type="radio" class="int-radio" name="b4" value="study" data-correct="true"> study</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b4" value="studies"> studies</label> ) English together.</li>
+    <li>5. He ( <label class="radio-label"><input type="radio" class="int-radio" name="b5" value="go"> go</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b5" value="goes" data-correct="true"> goes</label> ) to the library.</li>
+    <li>6. I ( <label class="radio-label"><input type="radio" class="int-radio" name="b6" value="like" data-correct="true"> like</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b6" value="likes"> likes</label> ) reading comic books.</li>
+    <li>7. The bird ( <label class="radio-label"><input type="radio" class="int-radio" name="b7" value="sing"> sing</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b7" value="sings" data-correct="true"> sings</label> ) beautifully.</li>
+    <li>8. You ( <label class="radio-label"><input type="radio" class="int-radio" name="b8" value="clean" data-correct="true"> clean</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b8" value="cleans"> cleans</label> ) your room.</li>
+    <li>9. Budi and Ali ( <label class="radio-label"><input type="radio" class="int-radio" name="b9" value="run" data-correct="true"> run</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b9" value="runs"> runs</label> ) fast.</li>
+    <li>10. My mother ( <label class="radio-label"><input type="radio" class="int-radio" name="b10" value="cook"> cook</label> &nbsp;/&nbsp; <label class="radio-label"><input type="radio" class="int-radio" name="b10" value="cooks" data-correct="true"> cooks</label> ) soup.</li>
+  </ul>
+
+  <div class="page-footer">
+    <div>✨ LittleLume English Course &nbsp;|&nbsp; Grade 5 Worksheet</div>
+    <div>Page 1 of 4</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 2 — GRAMMAR: PAST TENSE
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="header-left">
+      <div class="brand">✨ LittleLume</div>
+      <div>
+        <div class="page-title">Interactive Worksheet</div>
+        <div class="page-sub">Grade 5 &nbsp;•&nbsp; Unit: Daily Activities & Past Events</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span class="page-num">Page 2 of 4</span></div>
+      <div style="margin-top:4px;">Grammar: Simple Past Tense</div>
+    </div>
+  </div>
+
+  <!-- EXERCISE C -->
+  <div class="section-head">
+    <div class="section-badge sb-coral">Exercise C</div>
+    <h2>Regular vs Irregular Verbs</h2>
+    <div class="instr">Type the Past Tense (V2) of the verbs below. (10 points)</div>
+  </div>
+  <div class="two-col">
+    <div>
+      <table class="ws-table">
+        <thead><tr><th>Verb 1 (Present)</th><th>Verb 2 (Past)</th></tr></thead>
+        <tbody>
+          <tr><td>1. Go</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="went"></td></tr>
+          <tr><td>2. Visit</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="visited"></td></tr>
+          <tr><td>3. Eat</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="ate"></td></tr>
+          <tr><td>4. Buy</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="bought"></td></tr>
+          <tr><td>5. Play</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="played"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table class="ws-table">
+        <thead><tr><th>Verb 1 (Present)</th><th>Verb 2 (Past)</th></tr></thead>
+        <tbody>
+          <tr><td>6. See</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="saw"></td></tr>
+          <tr><td>7. Drink</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="drank"></td></tr>
+          <tr><td>8. Watch</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="watched"></td></tr>
+          <tr><td>9. Make</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="made"></td></tr>
+          <tr><td>10. Sleep</td><td><input type="text" class="int-text full" style="margin:0;" data-answer="slept"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- EXERCISE D -->
+  <div class="section-head">
+    <div class="section-badge sb-violet">Exercise D</div>
+    <h2>Sentence Transformation</h2>
+    <div class="instr">Change the sentences into Negative (-) and Interrogative (?). (15 points)</div>
+  </div>
+  <div class="hint">💡 <span>Hint: Use <b>did not (didn't)</b> for Negative, and <b>Did ... ?</b> for Questions. The verb returns to V1!</span></div>
+  <ul class="ex-list">
+    <li style="margin-bottom:15px;">
+      <div class="ex-num-circle">1</div>
+      <div style="flex:1">
+        <div style="font-size:10pt;font-weight:800;margin-bottom:4px;color:#1A237E;">(+) Rina visited the museum last Sunday.</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;"><strong>(-)</strong> <input type="text" class="int-text full" placeholder="Write negative sentence here..." data-answer="rina did not visit the museum last sunday|rina didn't visit the museum last sunday"></div>
+        <div style="display:flex;gap:8px;align-items:center;"><strong>(?)</strong> <input type="text" class="int-text full" placeholder="Write question here..." data-answer="did rina visit the museum last sunday"></div>
+      </div>
+    </li>
+    <li style="margin-bottom:15px;">
+      <div class="ex-num-circle">2</div>
+      <div style="flex:1">
+        <div style="font-size:10pt;font-weight:800;margin-bottom:4px;color:#1A237E;">(+) They bought a new bicycle yesterday.</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;"><strong>(-)</strong> <input type="text" class="int-text full" placeholder="Write negative sentence here..." data-answer="they did not buy a new bicycle yesterday|they didn't buy a new bicycle yesterday"></div>
+        <div style="display:flex;gap:8px;align-items:center;"><strong>(?)</strong> <input type="text" class="int-text full" placeholder="Write question here..." data-answer="did they buy a new bicycle yesterday"></div>
+      </div>
+    </li>
+    <li style="margin-bottom:15px;">
+      <div class="ex-num-circle">3</div>
+      <div style="flex:1">
+        <div style="font-size:10pt;font-weight:800;margin-bottom:4px;color:#1A237E;">(+) I drank a glass of orange juice this morning.</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;"><strong>(-)</strong> <input type="text" class="int-text full" placeholder="Write negative sentence here..." data-answer="i did not drink a glass of orange juice this morning|i didn't drink a glass of orange juice this morning"></div>
+        <div style="display:flex;gap:8px;align-items:center;"><strong>(?)</strong> <input type="text" class="int-text full" placeholder="Write question here..." data-answer="did you drink a glass of orange juice this morning|did i drink a glass of orange juice this morning"></div>
+      </div>
+    </li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- EXERCISE E -->
+  <div class="section-head">
+    <div class="section-badge sb-sun">Exercise E</div>
+    <h2>Arrange the Jumbled Words</h2>
+    <div class="instr">Rearrange to make correct past tense sentences. (10 points)</div>
+  </div>
+  <ul class="ex-list">
+    <li>
+      <div class="ex-num-circle">1</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;color:#546E7A;font-style:italic;margin-bottom:4px;">went / to / the / beach / we / yesterday</div>
+        <input type="text" class="int-text full" placeholder="Your answer..." data-answer="we went to the beach yesterday|yesterday we went to the beach">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">2</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;color:#546E7A;font-style:italic;margin-bottom:4px;">did / you / where / go / last / holiday / ?</div>
+        <input type="text" class="int-text full" placeholder="Your answer..." data-answer="where did you go last holiday">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">3</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;color:#546E7A;font-style:italic;margin-bottom:4px;">movie / a / watched / they / scary / night / last</div>
+        <input type="text" class="int-text full" placeholder="Your answer..." data-answer="they watched a scary movie last night|last night they watched a scary movie">
+      </div>
+    </li>
+  </ul>
+
+  <div class="page-footer">
+    <div>✨ LittleLume English Course &nbsp;|&nbsp; Grade 5 Worksheet</div>
+    <div>Page 2 of 4</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 3 — READING COMPREHENSION
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="header-left">
+      <div class="brand">✨ LittleLume</div>
+      <div>
+        <div class="page-title">Interactive Worksheet</div>
+        <div class="page-sub">Grade 5 &nbsp;•&nbsp; Unit: Daily Activities & Past Events</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span class="page-num">Page 3 of 4</span></div>
+      <div style="margin-top:4px;">Reading Comprehension</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="section-badge sb-sky">Exercise F & G</div>
+    <h2>Read the Text Carefully</h2>
+    <div class="instr">Read the story below to answer the questions. (25 points)</div>
+  </div>
+
+  <div class="passage">
+    <div class="passage-title">🏕️ A Trip to Mount Bromo</div>
+    <p>Last school holiday, my family and I went to East Java to visit Mount Bromo. We left our house in the evening and travelled by train to Malang. We arrived at midnight and quickly rented a jeep to take us to the mountain.</p>
+    <p>It was freezing cold when we reached the viewpoint at 4:00 AM. I wore a thick jacket, gloves, and a beanie. We waited patiently for the sun to rise. When the sun finally came up, the view was absolutely breathtaking! The sky turned orange and pink, and we could see the beautiful crater of the mountain.</p>
+    <p>After enjoying the sunrise, we went down to the "Sea of Sand." We decided to ride horses to reach the stairs of the crater. It was my first time riding a horse, and I was a bit scared but very excited. We climbed 250 stairs to see the crater closely. It was tiring, but the experience was unforgettable. We took many pictures before returning to the hotel.</p>
+  </div>
+
+  <!-- EXERCISE F -->
+  <div style="margin-top:14px; font-weight:800; color:var(--ink); font-size:11pt;">F. True (T) or False (F)? <span style="font-weight:600; font-size:9pt; color:#757575;">Select T or F based on the text. (10 pts)</span></div>
+  <table class="ws-table" style="margin-top:8px;">
+    <tbody>
+      <tr>
+        <td>1. The writer's family travelled to East Java by bus.</td>
+        <td style="text-align:center; width:90px;">
+          <label class="radio-label"><input type="radio" class="int-radio" name="f1" value="T"> T</label> &nbsp;
+          <label class="radio-label"><input type="radio" class="int-radio" name="f1" value="F" data-correct="true"> F</label>
+        </td>
+      </tr>
+      <tr>
+        <td>2. They reached the viewpoint early in the morning before sunrise.</td>
+        <td style="text-align:center;">
+          <label class="radio-label"><input type="radio" class="int-radio" name="f2" value="T" data-correct="true"> T</label> &nbsp;
+          <label class="radio-label"><input type="radio" class="int-radio" name="f2" value="F"> F</label>
+        </td>
+      </tr>
+      <tr>
+        <td>3. The weather at the mountain was very hot.</td>
+        <td style="text-align:center;">
+          <label class="radio-label"><input type="radio" class="int-radio" name="f3" value="T"> T</label> &nbsp;
+          <label class="radio-label"><input type="radio" class="int-radio" name="f3" value="F" data-correct="true"> F</label>
+        </td>
+      </tr>
+      <tr>
+        <td>4. They rode horses at the "Sea of Sand".</td>
+        <td style="text-align:center;">
+          <label class="radio-label"><input type="radio" class="int-radio" name="f4" value="T" data-correct="true"> T</label> &nbsp;
+          <label class="radio-label"><input type="radio" class="int-radio" name="f4" value="F"> F</label>
+        </td>
+      </tr>
+      <tr>
+        <td>5. They climbed 250 stairs to reach the hotel.</td>
+        <td style="text-align:center;">
+          <label class="radio-label"><input type="radio" class="int-radio" name="f5" value="T"> T</label> &nbsp;
+          <label class="radio-label"><input type="radio" class="int-radio" name="f5" value="F" data-correct="true"> F</label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- EXERCISE G -->
+  <div style="margin-top:16px; font-weight:800; color:var(--ink); font-size:11pt;">G. Answer the Questions <span style="font-weight:600; font-size:9pt; color:#757575;">Type complete sentences. (15 pts)</span></div>
+  <div style="font-size:8pt; font-style:italic; color:#E65100; margin-bottom:6px;">*Note: Bagian ini akan diperiksa secara manual oleh gurumu.</div>
+  <ul class="ex-list">
+    <li>
+      <div class="ex-num-circle">1</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">When did the writer and their family go to Mount Bromo?</div>
+        <input type="text" class="int-text full">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">2</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">What did the writer wear because it was freezing cold?</div>
+        <input type="text" class="int-text full">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">3</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">How did the sky look when the sun rose?</div>
+        <input type="text" class="int-text full">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">4</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">How did the writer feel about riding the horse?</div>
+        <input type="text" class="int-text full">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">5</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">What did they do before returning to the hotel?</div>
+        <input type="text" class="int-text full">
+      </div>
+    </li>
+  </ul>
+
+  <div class="page-footer">
+    <div>✨ LittleLume English Course &nbsp;|&nbsp; Grade 5 Worksheet</div>
+    <div>Page 3 of 4</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAGE 4 — WRITING & TRANSLATION
+══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <div class="header-left">
+      <div class="brand">✨ LittleLume</div>
+      <div>
+        <div class="page-title">Interactive Worksheet</div>
+        <div class="page-sub">Grade 5 &nbsp;•&nbsp; Unit: Daily Activities & Past Events</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div><span class="page-num">Page 4 of 4</span></div>
+      <div style="margin-top:4px;">Writing & Review</div>
+    </div>
+  </div>
+
+  <!-- EXERCISE H -->
+  <div class="section-head">
+    <div class="section-badge sb-leaf">Exercise H</div>
+    <h2>Translation</h2>
+    <div class="instr">Translate these sentences into English. (10 points)</div>
+  </div>
+  <ul class="ex-list">
+    <li>
+      <div class="ex-num-circle">1</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">Ayah saya membaca koran setiap pagi.</div>
+        <input type="text" class="int-text full" data-answer="my father reads a newspaper every morning|my father reads the newspaper every morning">
+      </div>
+    </li>
+    <li>
+      <div class="ex-num-circle">2</div>
+      <div style="flex:1">
+        <div style="font-size:9.5pt;font-weight:700;margin-bottom:2px;">Kami tidak bermain sepak bola kemarin.</div>
+        <input type="text" class="int-text full" data-answer="we did not play football yesterday|we didn't play football yesterday">
+      </div>
+    </li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- EXERCISE I -->
+  <div class="section-head">
+    <div class="section-badge sb-violet">Exercise I</div>
+    <h2>Guided Writing: My Weekend</h2>
+    <div class="instr">Write a short paragraph (5-7 sentences) about what you did last weekend. (10 points)</div>
+  </div>
+  <div class="hint">💡 <span>Use Simple Past Tense! You can use words like: <i>went, played, ate, helped, visited.</i> Don't forget transition words: <i>First, Then, After that.</i></span></div>
+  <div style="font-size:8pt; font-style:italic; color:#E65100; margin-bottom:6px;">*Note: Bagian ini akan diperiksa secara manual oleh gurumu.</div>
+  <div style="font-family:'Fredoka One',cursive;font-size:10.5pt;color:#546E7A;margin-top:10px;">Title: My Last Weekend</div>
+  <textarea class="int-area" rows="7" placeholder="Type your story here..."></textarea>
+
+  <hr class="divider">
+
+  <!-- BUTTON CEK JAWABAN -->
+  <button class="check-btn" onclick="checkAnswers()">🔍 Check My Answers!</button>
+  
+  <!-- KOTAK HASIL -->
+  <div id="result-box">
+    <div id="result-title">Good Job! 🌟</div>
+    <div id="result-text">You got X out of Y auto-checked questions correct.</div>
+    <div style="font-size:9pt; color:#388E3C; margin-top:8px;">(Remember: Essay & Paragraph questions will be reviewed by your teacher).</div>
+  </div>
+
+  <div class="page-footer">
+    <div>✨ LittleLume English Course &nbsp;|&nbsp; Grade 5 Worksheet</div>
+    <div>Page 4 of 4</div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT UNTUK CEK JAWABAN -->
+<script>
+  // Fungsi untuk menyamakan format string (huruf kecil, hilangkan tanda baca & spasi berlebih)
+  function normalizeText(text) {
+    return text.toLowerCase().replace(/[.,?!]/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  function checkAnswers() {
+    let score = 0;
+    let total = 0;
+
+    // 1. Cek Text Inputs (Isian)
+    const textInputs = document.querySelectorAll('input[data-answer]');
+    textInputs.forEach(input => {
+      total++;
+      const userVal = normalizeText(input.value);
+      // Pisahkan variasi jawaban yang dipisah dengan tanda "|"
+      const validAnswers = input.dataset.answer.split('|').map(normalizeText);
+
+      // Reset styling
+      input.classList.remove('correct-input', 'incorrect-input');
+      
+      if(userVal === '') {
+        input.classList.add('incorrect-input'); // Dianggap salah jika kosong
+      } else if (validAnswers.includes(userVal)) {
+        input.classList.add('correct-input');
+        score++;
+      } else {
+        input.classList.add('incorrect-input');
+      }
+    });
+
+    // 2. Cek Radio Buttons (Pilihan Ganda)
+    const radioGroups = {};
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+       if(!radioGroups[radio.name]) {
+          radioGroups[radio.name] = [];
+       }
+       radioGroups[radio.name].push(radio);
+    });
+
+    for (let name in radioGroups) {
+       total++;
+       const radios = radioGroups[name];
+       let isCorrectGroup = false;
+       let isAnswered = false;
+
+       // Cek apakah user menjawab benar
+       radios.forEach(r => {
+          if(r.checked) {
+             isAnswered = true;
+             if(r.dataset.correct === "true") {
+                isCorrectGroup = true;
+             }
+          }
+       });
+
+       // Warnai label
+       radios.forEach(r => {
+          const label = r.closest('label');
+          label.classList.remove('correct-radio', 'incorrect-radio');
+          
+          if (isAnswered) {
+              if (r.checked && r.dataset.correct === "true") {
+                  label.classList.add('correct-radio'); // Benar ditebalkan hijau
+              } else if (r.checked && r.dataset.correct !== "true") {
+                  label.classList.add('incorrect-radio'); // Salah dicoret merah
+              } else if (!r.checked && r.dataset.correct === "true") {
+                  label.classList.add('correct-radio'); // Tunjukkan yang benar
+              }
+          }
+       });
+       
+       if(isCorrectGroup) {
+         score++;
+       }
+    }
+
+    // 3. Tampilkan Hasil
+    const resultBox = document.getElementById('result-box');
+    const resultText = document.getElementById('result-text');
+    const resultTitle = document.getElementById('result-title');
+    
+    resultBox.style.display = 'block';
+    resultText.innerHTML = `You got <strong>${score}</strong> out of <strong>${total}</strong> auto-checked questions correct.`;
+
+    // Beri pesan semangat berdasarkan persentase
+    let percentage = (score / total) * 100;
+    if(percentage === 100) {
+      resultTitle.innerHTML = "Perfect Score! 🏆";
+      resultBox.style.borderColor = "#4CAF50";
+      resultBox.style.backgroundColor = "#E8F5E9";
+    } else if (percentage >= 70) {
+      resultTitle.innerHTML = "Great Job! 🌟";
+      resultBox.style.borderColor = "#4CAF50";
+      resultBox.style.backgroundColor = "#E8F5E9";
+    } else {
+      resultTitle.innerHTML = "Keep Practicing! 💪";
+      resultBox.style.borderColor = "#FF9800";
+      resultBox.style.backgroundColor = "#FFF3E0";
+    }
+
+    // Scroll otomatis ke hasil
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambridge Primary English - Page 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Fredoka', sans-serif; background: white; color: #2C3E50; line-height: 1.6; }
+    .page { width: 210mm; height: 297mm; padding: 18mm; background: white; display: flex; flex-direction: column; page-break-after: always; }
+    
+    .header { background: linear-gradient(135deg, #003D82 0%, #0066CC 100%); color: white; padding: 12mm; border-radius: 8px; margin-bottom: 10mm; }
+    .header-title { font-size: 24pt; font-weight: 800; font-family: 'Poppins', sans-serif; margin-bottom: 2mm; }
+    .header-subtitle { font-size: 10pt; opacity: 0.9; }
+    
+    .section-title { font-size: 12pt; font-weight: 700; color: #003D82; margin-top: 8mm; margin-bottom: 4mm; font-family: 'Poppins', sans-serif; border-bottom: 2px solid #0066CC; padding-bottom: 2mm; }
+    
+    .overview { background: #F0F4F8; padding: 6mm; border-left: 4px solid #0066CC; border-radius: 4px; margin-bottom: 8mm; font-size: 9pt; line-height: 1.8; }
+    .overview-title { font-weight: 700; color: #003D82; margin-bottom: 3mm; }
+    
+    .strands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; margin-bottom: 8mm; }
+    .strand { background: white; border: 2px solid #E8EEF5; border-radius: 6px; padding: 6mm; }
+    .strand-icon { font-size: 20pt; margin-bottom: 3mm; }
+    .strand-title { font-size: 10pt; font-weight: 700; color: #003D82; margin-bottom: 3mm; }
+    .strand-desc { font-size: 8.5pt; color: #555; line-height: 1.6; }
+    
+    .stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3mm; margin-bottom: 8mm; }
+    .stage-box { background: linear-gradient(135deg, #0066CC 0%, #004C99 100%); color: white; padding: 4mm; border-radius: 5px; text-align: center; font-size: 8pt; }
+    .stage-num { font-size: 14pt; font-weight: 800; font-family: 'Poppins', sans-serif; margin-bottom: 2mm; }
+    .stage-age { font-size: 7pt; opacity: 0.9; margin-bottom: 2mm; }
+    .stage-name { font-size: 8pt; font-weight: 600; }
+    
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+    
+    .box { background: #FFF9F0; border-left: 3px solid #FF9800; padding: 5mm; border-radius: 4px; font-size: 8.5pt; line-height: 1.7; }
+    .box-title { font-weight: 700; color: #D97706; margin-bottom: 2mm; font-size: 9pt; }
+    
+    .progression-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+    .progression-table th, .progression-table td { padding: 4mm; text-align: left; border: 1px solid #E0E0E0; }
+    .progression-table th { background: #003D82; color: white; font-weight: 700; }
+    .progression-table tr:nth-child(even) { background: #F8FAFC; }
+    
+    .footer { font-size: 7pt; color: #95A5A6; margin-top: auto; padding-top: 6mm; border-top: 1px solid #E0E0E0; }
+    .page-num { float: right; font-weight: 700; }
+    
+    @media print { body { margin: 0; padding: 0; } .page { margin: 0; padding: 18mm; page-break-after: always; } }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="header">
+    <div class="header-title">📚 Cambridge Primary English</div>
+    <div class="header-subtitle">Curriculum Framework (0058) - Comprehensive Guide</div>
+  </div>
+  
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <div class="overview-title">About Cambridge Primary English (0058)</div>
+    <p><strong>Cambridge Primary English Curriculum Framework</strong> is an internationally recognized, competency-based curriculum designed for primary learners aged 5-11 years (Stages 1-6). Developed by Cambridge International, it promotes an enquiry-based approach emphasizing confidence, creativity, and intellectual engagement. The curriculum develops learners who communicate effectively, see themselves as readers and writers, and develop speaking/listening skills for diverse contexts.</p>
+  </div>
+  
+  <!-- THREE STRANDS -->
+  <div class="section-title">The Three Core Learning Strands</div>
+  <div class="strands">
+    <div class="strand">
+      <div class="strand-icon">📖</div>
+      <div class="strand-title">READING</div>
+      <div class="strand-desc">
+        <strong>Sub-strands:</strong><br>
+        • Recognition (phonics, fluency)<br>
+        • Interpretation (comprehension)<br>
+        • Vocabulary (word meanings)<br>
+        <br>Focus: Decoding text, understanding meaning, analyzing texts
+      </div>
+    </div>
+    <div class="strand">
+      <div class="strand-icon">✏️</div>
+      <div class="strand-title">WRITING</div>
+      <div class="strand-desc">
+        <strong>Sub-strands:</strong><br>
+        • Composition (ideas, structure)<br>
+        • Transcription (spelling, grammar)<br>
+        • Handwriting (letter formation)<br>
+        <br>Focus: Writing for purpose, correct mechanics, creative expression
+      </div>
+    </div>
+    <div class="strand">
+      <div class="strand-icon">🗣️</div>
+      <div class="strand-title">SPEAKING & LISTENING</div>
+      <div class="strand-desc">
+        <strong>Sub-strands:</strong><br>
+        • Speaking (expression, fluency)<br>
+        • Listening (comprehension, response)<br>
+        • Interaction (collaboration, turn-taking)<br>
+        <br>Focus: Oral fluency, active listening, discussion skills
+      </div>
+    </div>
+  </div>
+  
+  <!-- SIX STAGES -->
+  <div class="section-title">Six Progressive Stages (Age 5-11 Years)</div>
+  <div class="stages">
+    <div class="stage-box">
+      <div class="stage-num">1</div>
+      <div class="stage-age">Age 5-6</div>
+      <div class="stage-name">Foundation</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">2</div>
+      <div class="stage-age">Age 6-7</div>
+      <div class="stage-name">Emergent</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">3</div>
+      <div class="stage-age">Age 7-8</div>
+      <div class="stage-name">Developing</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">4</div>
+      <div class="stage-age">Age 8-9</div>
+      <div class="stage-name">Intermediate</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">5</div>
+      <div class="stage-age">Age 9-10</div>
+      <div class="stage-name">Advanced</div>
+    </div>
+    <div class="stage-box">
+      <div class="stage-num">6</div>
+      <div class="stage-age">Age 10-11</div>
+      <div class="stage-name">Mastery</div>
+    </div>
+  </div>
+  
+  <!-- KEY PRINCIPLES -->
+  <div class="section-title">Curriculum Principles & Approach</div>
+  <div class="grid-2">
+    <div class="box">
+      <div class="box-title">✓ Integrated Learning</div>
+      All lessons combine Reading, Writing, and Speaking/Listening skills. Ideally, each lesson has one focus objective from each strand.
+    </div>
+    <div class="box">
+      <div class="box-title">✓ Enquiry-Based Learning</div>
+      Promotes critical thinking, creativity, and intellectual engagement. Learners investigate, analyze, and reason through activities.
+    </div>
+    <div class="box">
+      <div class="box-title">✓ Progressive Skillbuilding</div>
+      Systematic progression from Stage 1 to 6, with clear learning objectives and building on prior knowledge at each stage.
+    </div>
+    <div class="box">
+      <div class="box-title">✓ Diverse Texts & Genres</div>
+      Exposure to fiction, poetry, playscripts, and non-fiction. Recommended genres vary by stage for age-appropriate content.
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span class="page-num">Page 1 of 3</span>
+    Cambridge Primary English Framework | International Best Practices | 120-150 hours per stage
+  </div>
+</div>
+
+</body>
+</html>

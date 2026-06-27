@@ -1489,12 +1489,31 @@
 <p>Listening, Reading, Speaking, Writing</p>
 </div>
 </div>
-<div class="stat-item">
+<div class="stat-item" style="cursor: pointer; position: relative; group;">
 <div class="stat-icon">🏆</div>
 <div class="stat-content">
-<h3>Cambridge</h3>
+<h3 style="cursor: pointer;">Cambridge</h3>
 <p>Curriculum aligned</p>
+<div class="cambridge-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #E2E8F0; border-radius: 8px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); z-index: 100; min-width: 200px; margin-top: 8px;">
+  <a href="cambridge-curriculum-page1.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; transition: background 0.3s;">📖 Overview & Framework</a>
+  <a href="cambridge-curriculum-page2.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; transition: background 0.3s;">📚 Learning Objectives</a>
+  <a href="cambridge-curriculum-page3.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; font-size: 0.9rem; transition: background 0.3s;">📊 Assessment & Teaching</a>
 </div>
+</div>
+<script>
+const statItem = document.currentScript.parentElement.parentElement;
+const dropdown = statItem.querySelector('.cambridge-dropdown');
+statItem.addEventListener('click', (e) => {
+  e.stopPropagation();
+  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+});
+document.addEventListener('click', () => {
+  dropdown.style.display = 'none';
+});
+dropdown.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+</script>
 </div>
 </div>
 <div class="hero-buttons">
