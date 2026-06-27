@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Stories - LittleLume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2C3E7A;
+      --secondary: #7C5CBF;
+      --accent: #FFD93D;
+      --bg-dark: #0F1B4C;
+      --bg-light: #F8F9FD;
+      --text-primary: #1A1A2E;
+      --text-secondary: #666;
+      --border: #E0E0E0;
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* ============= HEADER ============= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+      padding: 1rem 2rem;
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .back-button {
+      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+      color: #0F1B4C;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+    }
+
+    /* ============= MAIN LAYOUT ============= */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
+      height: calc(100vh - 90px);
+      margin-top: 0;
+    }
+
+    /* ============= SIDEBAR ============= */
+    .sidebar {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8F9FD 100%);
+      border-right: 1px solid #E8EAF6;
+      overflow-y: auto;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      background: linear-gradient(135deg, #2C3E7A 0%, #3D5BA8 100%);
+      color: white;
+      padding: 1.25rem 1.5rem 1rem;
+      border-bottom: none;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .sidebar-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .sidebar-subtitle {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      font-weight: 500;
+    }
+
+    .stories-list {
+      padding: 1rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* ============= GRADE SECTION ============= */
+    .grade-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .grade-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0.75rem 0.5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .grade-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+    }
+
+    .grade-icon {
+      font-size: 1rem;
+    }
+
+    /* ============= STORY ITEM ============= */
+    .story-item {
+      background: white;
+      border: 1px solid #E8EAF6;
+      border-left: 4px solid transparent;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #FFE66D);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .story-item:hover {
+      border-color: var(--accent);
+      border-left-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(44, 62, 122, 0.12);
+      transform: translateX(4px);
+    }
+
+    .story-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .story-item.active {
+      background: linear-gradient(135deg, #2C3E7A 0%, #3D5BA8 100%);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(44, 62, 122, 0.25);
+    }
+
+    .story-item.active .story-item-title {
+      color: white;
+    }
+
+    .story-item.active .story-item-meta {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .story-item.active .story-item-grade {
+      color: #FFD93D;
+      font-weight: 700;
+    }
+
+    .story-item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .story-item-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .story-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .story-item-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+      transition: color 0.3s ease;
+    }
+
+    .story-item-grade {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: color 0.3s ease;
+    }
+
+    .story-item-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #F0F0F5;
+      transition: color 0.3s ease;
+    }
+
+    .story-words {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ============= CONTENT AREA ============= */
+    .content-area {
+      background: white;
+      overflow-y: auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    .content-empty-icon {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .content-empty-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+    }
+
+    .content-empty-desc {
+      font-size: 0.95rem;
+    }
+
+    /* ============= STORY READER ============= */
+    .reader-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .reader-grade {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #E8EAF6;
+    }
+
+    .story-text {
+      background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--accent);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+    }
+
+    /* ============= VOCABULARY ============= */
+    .vocab-section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .vocab-item {
+      background: white;
+      border: 1px solid #E8EAF6;
+      border-radius: 8px;
+      padding: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .vocab-item:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.2);
+    }
+
+    .vocab-word {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .vocab-meaning {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    /* ============= COMPREHENSION ============= */
+    .comprehension-section {
+      margin-top: 2rem;
+    }
+
+    .question-item {
+      background: #F8F9FD;
+      border: 1px solid #E8EAF6;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .question-text {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .option {
+      padding: 0.75rem 1rem;
+      border: 1px solid #E8EAF6;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .option:hover {
+      background: #F8F9FD;
+      border-color: var(--accent);
+    }
+
+    .option input {
+      margin-right: 0.75rem;
+      cursor: pointer;
+    }
+
+    .submit-button {
+      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+      color: var(--bg-dark);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+      align-self: flex-start;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+    }
+
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      display: none;
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-box.correct {
+      background: #DCFCE7;
+      color: #16A34A;
+      border: 2px solid #16A34A;
+    }
+
+    .result-box.incorrect {
+      background: #FEE2E2;
+      color: #DC2626;
+      border: 2px solid #DC2626;
+    }
+
+    /* ============= SCROLLBAR ============= */
+    .sidebar::-webkit-scrollbar,
+    .content-area::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .sidebar::-webkit-scrollbar-track,
+    .content-area::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb,
+    .content-area::-webkit-scrollbar-thumb {
+      background: #D0D0E0;
+      border-radius: 4px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover,
+    .content-area::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary);
+    }
+
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 320px 1fr;
+      }
+
+      .vocab-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .sidebar {
+        height: auto;
+        max-height: 200px;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 1px solid #E8EAF6;
+        flex-direction: row;
+      }
+
+      .sidebar-header {
+        flex-shrink: 0;
+      }
+
+      .stories-list {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        padding-right: 2rem;
+      }
+
+      .story-item {
+        flex-shrink: 0;
+        min-width: 200px;
+      }
+
+      .content-area {
+        padding: 1.5rem;
+      }
+
+      .reader-title {
+        font-size: 1.3rem;
+      }
+
+      .vocab-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============= HEADER ============= -->
+  <header>
+    <div class="header-content">
+      <div>
+        <div class="header-title">📖 Interactive Stories</div>
+        <div class="header-subtitle">Learn English through engaging narratives</div>
+      </div>
+      <a href="index.html" class="back-button">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- ============= MAIN LAYOUT ============= -->
+  <div class="main-container">
+    <!-- ============= SIDEBAR ============= -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">
+          <span>📚</span>
+          <span>Stories</span>
+        </div>
+        <div class="sidebar-subtitle">10 engaging stories to read</div>
+      </div>
+      <div class="stories-list" id="storiesList"></div>
+    </div>
+
+    <!-- ============= CONTENT AREA ============= -->
+    <div class="content-area" id="contentArea">
+      <div class="content-empty">
+        <div>
+          <div class="content-empty-icon">📖</div>
+          <div class="content-empty-text">Select a Story</div>
+          <div class="content-empty-desc">Click on a story from the left to start reading</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const stories = [
+      {id: 'story1', title: 'The Little Cat', grade: 'Grade 1', icon: '🐱', gradeClass: 'grade1', words: 145, text: `Once upon a time, there was a little cat named Mimi. Mimi was a very cute and playful cat. She had soft white fur and big green eyes.\n\nEvery morning, Mimi would wake up and look out of the window. She liked to watch the birds flying in the sky. Sometimes, she dreamed about catching them, but she was too small and slow.\n\nOne sunny day, Mimi saw a bright red ball in the garden. She jumped down from the window and ran to catch it. The ball rolled here and there, and Mimi chased it everywhere. She had so much fun playing with the ball.\n\nWhen the sun started to set, Mimi was very tired. She curled up on a soft cushion and fell asleep. She dreamed about her adventures with the red ball. What a wonderful day it was!`, vocabulary: [{word: 'Once upon a time', meaning: 'At the beginning of a story'}, {word: 'Cute', meaning: 'Pretty and attractive'}, {word: 'Fur', meaning: 'Hair covering an animal\'s body'}, {word: 'Window', meaning: 'Glass opening in a wall'}, {word: 'Birds', meaning: 'Flying animals with feathers'}, {word: 'Ball', meaning: 'Round toy for playing'}, {word: 'Chase', meaning: 'Run after something'}, {word: 'Tired', meaning: 'Feeling sleepy or exhausted'}, {word: 'Cushion', meaning: 'Soft pillow for sitting'}, {word: 'Adventures', meaning: 'Exciting experiences'}], questions: [{question: 'What was the little cat\'s name?', options: ['Mina', 'Mimi', 'Mara', 'Mila'], correct: 1}, {question: 'What color was Mimi\'s fur?', options: ['Brown', 'Black', 'White', 'Gray'], correct: 2}, {question: 'What did Mimi see in the garden?', options: ['A bird', 'A mouse', 'A red ball', 'A butterfly'], correct: 2}, {question: 'What did Mimi do when she was tired?', options: ['Played more', 'Ate food', 'Fell asleep', 'Watched TV'], correct: 2}, {question: 'What did Mimi like to watch?', options: ['Cars', 'People', 'Birds', 'Clouds'], correct: 2}]},
+      {id: 'story2', title: 'The Lost Apple', grade: 'Grade 2', icon: '🍎', gradeClass: 'grade2', words: 180, text: `Sarah was walking in the forest near her house. She loved exploring and looking for interesting things. One day, she found something very special under a big tree.\n\nIt was a beautiful red apple. It was the biggest and most beautiful apple Sarah had ever seen. The apple was so shiny that it looked like it was glowing in the sunlight.\n\nSarah picked up the apple carefully. She noticed that the apple had a strange smell - it smelled like honey and flowers mixed together. She wanted to eat it, but something told her to wait.\n\nSuddenly, Sarah heard a small voice. "That\'s my apple!" said a tiny creature. Sarah looked around and saw a small fairy sitting on a branch. The fairy was no bigger than Sarah\'s hand!\n\n"I dropped it," said the fairy sadly. "I was saving it for a special birthday party."\n\nSarah smiled and gave the apple back to the fairy. "I\'m happy to help," she said. The fairy was so grateful that she gave Sarah a magic charm that would bring her good luck forever.`, vocabulary: [{word: 'Forest', meaning: 'Large area with many trees'}, {word: 'Exploring', meaning: 'Traveling to discover new places'}, {word: 'Special', meaning: 'Unique or important'}, {word: 'Shiny', meaning: 'Bright and reflecting light'}, {word: 'Glowing', meaning: 'Giving off light'}, {word: 'Picked up', meaning: 'Lifted something from the ground'}, {word: 'Honey', meaning: 'Sweet golden liquid made by bees'}, {word: 'Fairy', meaning: 'A magical creature with wings'}, {word: 'Grateful', meaning: 'Feeling thankful'}, {word: 'Charm', meaning: 'A magic object'}], questions: [{question: 'Where did Sarah find the apple?', options: ['In her house', 'Under a big tree', 'In the store', 'On the road'], correct: 1}, {question: 'What did the apple smell like?', options: ['Lemon and water', 'Honey and flowers', 'Sugar and milk', 'Vanilla and butter'], correct: 1}, {question: 'Who was the apple\'s real owner?', options: ['Sarah\'s mother', 'A farmer', 'A tiny fairy', 'Sarah'], correct: 2}, {question: 'Why was the fairy saving the apple?', options: ['To eat later', 'For a birthday party', 'To sell it', 'To plant it'], correct: 1}, {question: 'What did the fairy give Sarah?', options: ['Money', 'A necklace', 'A magic charm', 'A book'], correct: 2}]},
+      {id: 'story3', title: 'The Brave Little Boy', grade: 'Grade 3', icon: '💪', gradeClass: 'grade3', words: 220, text: `In a small village surrounded by mountains, there lived a boy named Tom. Tom was only ten years old, but he had a big heart and was very brave.\n\nOne day, while Tom was playing near the river, he heard a strange sound. It sounded like someone crying for help. Tom immediately ran towards the sound without thinking about danger.\n\nWhen he reached the river, he saw an old man in trouble. The man had fallen into the water and was struggling to swim. The water was cold and fast, and the man was getting more and more tired.\n\nWithout hesitation, Tom jumped into the water. He swam as fast as he could towards the old man. It was difficult because the water was very strong, but Tom didn't give up. He reached the man and helped him swim towards the shore.\n\nMany villagers came to help pull the man out of the water. They all cheered for Tom's bravery. The old man was very grateful and hugged Tom with tears of joy in his eyes.\n\n"You saved my life," said the old man. "I will never forget what you did for me."\n\nFrom that day on, everyone in the village knew about Tom's courage. He became famous for his kindness and bravery. Tom learned an important lesson: being brave means doing the right thing, even when it's difficult.`, vocabulary: [{word: 'Brave', meaning: 'Having courage, not being afraid'}, {word: 'Mountains', meaning: 'Very high land with peaks'}, {word: 'Struggled', meaning: 'Tried hard with difficulty'}, {word: 'Without hesitation', meaning: 'Without any doubt or delay'}, {word: 'Swam', meaning: 'Moved through water with arms and legs'}, {word: 'Shore', meaning: 'The edge of water where land begins'}, {word: 'Cheered', meaning: 'Shouted happily in support'}, {word: 'Grateful', meaning: 'Thankful'}, {word: 'Tears', meaning: 'Water from eyes'}, {word: 'Kindness', meaning: 'Being gentle and helpful to others'}], questions: [{question: 'How old was Tom?', options: ['Eight years old', 'Nine years old', 'Ten years old', 'Eleven years old'], correct: 2}, {question: 'What was the old man doing?', options: ['Swimming for fun', 'Falling into the water', 'Fishing', 'Playing'], correct: 1}, {question: 'Why did Tom jump into the water?', options: ['He wanted to swim', 'He wanted to help the man', 'He slipped', 'He was playing'], correct: 1}, {question: 'What made it difficult?', options: ['He couldn\'t swim', 'The water was cold and fast', 'He was tired', 'His clothes were heavy'], correct: 1}, {question: 'What did Tom learn?', options: ['How to swim', 'Being brave means doing the right thing', 'Never help others', 'Avoiding danger'], correct: 1}]},
+      {id: 'story4', title: 'The Friendly Rabbit', grade: 'Grade 1', icon: '🐰', gradeClass: 'grade1', words: 160, text: `My name is Fluffy, and I am a friendly rabbit. I have soft white fur and long ears. I love hopping and making new friends.\n\nEvery morning, I wake up in my cozy burrow. I eat fresh carrots and lettuce for breakfast. Then I go out to play in the meadow.\n\nI like to hop around and play with the other animals. I play with butterflies, birds, and squirrels. We have so much fun together in the sunshine.\n\nOne day, I saw a little boy sitting alone under a tree. He looked lonely. I hopped over to him and sat next to him. The boy smiled when he saw my long ears.\n\n"Hello, little rabbit!" he said happily. He gave me a carrot to eat. I munched it slowly and made funny faces. The boy laughed and laughed.\n\nSoon, we became best friends. The boy came to the meadow every day to play with me. I learned that showing kindness makes friends happy. And that makes me happy too!`, vocabulary: [{word: 'Fluffy', meaning: 'Soft and light'}, {word: 'Burrow', meaning: 'A hole where an animal lives'}, {word: 'Meadow', meaning: 'A field with grass and flowers'}, {word: 'Hopping', meaning: 'Jumping with both legs'}, {word: 'Carrots', meaning: 'Orange vegetables rabbits eat'}, {word: 'Lettuce', meaning: 'Green vegetable for food'}, {word: 'Lonely', meaning: 'Sad and alone'}, {word: 'Munched', meaning: 'Chewed food'}, {word: 'Kindness', meaning: 'Being nice and helpful'}, {word: 'Friends', meaning: 'People or animals we like'}], questions: [{question: 'What is the rabbit\'s name?', options: ['Fuzzy', 'Fluffy', 'Floppy', 'Funny'], correct: 1}, {question: 'What does Fluffy eat for breakfast?', options: ['Apples', 'Grass', 'Carrots and lettuce', 'Seeds'], correct: 2}, {question: 'Where does Fluffy live?', options: ['A house', 'A burrow', 'A tree', 'A cave'], correct: 1}, {question: 'How did the boy feel at first?', options: ['Happy', 'Excited', 'Lonely', 'Tired'], correct: 2}, {question: 'What made the boy laugh?', options: ['A joke', 'Fluffy\'s funny faces', 'A game', 'A song'], correct: 1}]},
+      {id: 'story5', title: 'The Beautiful Rainbow', grade: 'Grade 1', icon: '🌈', gradeClass: 'grade1', words: 150, text: `One rainy day, I was looking out of my window. The rain was falling down very fast. It was loud and wet outside.\n\nSuddenly, the rain stopped. The sun came out from the clouds. The sky became bright and beautiful.\n\nThen something magical happened! A rainbow appeared in the sky. It had seven beautiful colors: red, orange, yellow, green, blue, indigo, and violet.\n\nThe rainbow was so pretty that I ran outside to see it better. I saw other children and people looking at it too. Everyone was smiling and pointing at the colors.\n\n"Look, Mom!" said a little boy. "Is it real?"\n\n"Yes, it is real," said his mother. "A rainbow appears when the sun and rain come together."\n\nI stayed outside and watched the rainbow until it slowly disappeared. But I will never forget how beautiful it was. Every time it rains now, I hope to see another rainbow in the sky.`, vocabulary: [{word: 'Rainy', meaning: 'When rain is falling'}, {word: 'Window', meaning: 'Glass opening in a wall'}, {word: 'Falling', meaning: 'Coming down'}, {word: 'Stopped', meaning: 'Ended, no longer happening'}, {word: 'Clouds', meaning: 'White or gray masses in the sky'}, {word: 'Magical', meaning: 'Special and wonderful'}, {word: 'Rainbow', meaning: 'Colorful arc in the sky after rain'}, {word: 'Appeared', meaning: 'Came into view'}, {word: 'Disappeared', meaning: 'Went away from sight'}, {word: 'Together', meaning: 'With each other'}], questions: [{question: 'What was the weather?', options: ['Sunny', 'Rainy', 'Cloudy', 'Windy'], correct: 1}, {question: 'How many colors?', options: ['Five', 'Six', 'Seven', 'Eight'], correct: 2}, {question: 'When does a rainbow appear?', options: ['When it rains', 'When the sun and rain come together', 'At night', 'In winter'], correct: 1}, {question: 'What did the boy ask?', options: ['Is it pretty?', 'Is it real?', 'What is it?', 'How did it happen?'], correct: 1}, {question: 'What does the writer hope for?', options: ['No rain', 'Another rainbow', 'Sunshine', 'A flower'], correct: 1}]},
+      {id: 'story6', title: 'My Best Friend', grade: 'Grade 2', icon: '👯', gradeClass: 'grade2', words: 190, text: `My name is Lisa, and my best friend is Emma. We have been friends since we were five years old. We do everything together.\n\nEmma is very different from me. She is tall and I am short. She likes sports and I like reading. She is quiet and I am very talkative. But we love each other very much.\n\nOne day, I was very sad. I had a big problem at school. Some children were being mean to me. I didn't want to talk to anyone.\n\nBut Emma knew something was wrong. She came to my house without telling me. She brought some cookies that her mother made.\n\n"What's wrong?" she asked gently. At first, I didn't want to talk. But Emma sat next to me and said, "I'm here for you. You can tell me anything."\n\nThen I told her everything. She listened carefully and didn't laugh at me. Instead, she gave me a big hug.\n\n"Don't worry," she said. "I will help you. We are best friends, and friends help each other."\n\nWith Emma's help, everything became better. The children stopped being mean. And I learned something important: a true friend is someone who is always there for you, no matter what.`, vocabulary: [{word: 'Different', meaning: 'Not the same'}, {word: 'Talkative', meaning: 'Likes to talk a lot'}, {word: 'Problem', meaning: 'Something difficult'}, {word: 'Mean', meaning: 'Unkind and hurtful'}, {word: 'Cookies', meaning: 'Small sweet cakes'}, {word: 'Gently', meaning: 'In a soft and careful way'}, {word: 'Listened', meaning: 'Paid attention to sounds'}, {word: 'Hug', meaning: 'Put arms around someone'}, {word: 'Grateful', meaning: 'Feeling thankful'}, {word: 'Matter', meaning: 'Be important'}], questions: [{question: 'How long friends?', options: ['Since they were 5', 'Since they were 10', 'For 2 years', 'For 1 year'], correct: 0}, {question: 'Why was Lisa sad?', options: ['She lost something', 'Children were being mean', 'She had no friends', 'She was sick'], correct: 1}, {question: 'What did Emma bring?', options: ['Flowers', 'Cookies', 'A book', 'A toy'], correct: 1}, {question: 'What did Emma do?', options: ['Told jokes', 'Listened and hugged her', 'Fought kids', 'Gave money'], correct: 1}, {question: 'What is a true friend?', options: ['Always rich', 'Always there for you', 'Always happy', 'Always quiet'], correct: 1}]},
+      {id: 'story7', title: 'The Magic Garden', grade: 'Grade 2', icon: '🌸', gradeClass: 'grade2', words: 210, text: `Behind my school, there is an old gate. No one goes through it because everyone thinks it's dangerous. But one day, I was curious and opened the gate.\n\nBehind the gate was the most beautiful garden I had ever seen. There were flowers of every color - pink, purple, blue, and gold. The trees were tall and the grass was soft like a carpet.\n\nIn the middle of the garden, there was a small fountain. The water was clear and sparkled in the sunlight. As I walked closer, I saw something amazing - the water was glowing!\n\nSuddenly, I heard a gentle voice. "Welcome," it said. I looked around and saw a small creature with wings sitting on a flower. It was a fairy!\n\n"This is a magic garden," said the fairy. "Every flower here has special powers. This one makes people happy. That one gives courage. This one helps people sleep peacefully."\n\n"Is this garden real?" I asked.\n\n"It is real," said the fairy. "But only kind people can see it. The garden is hidden because only kind hearts can appreciate its magic."\n\nI spent the whole afternoon in the garden. The fairy showed me all the different flowers and their powers. When the sun started to set, I had to leave.`, vocabulary: [{word: 'Gate', meaning: 'A door that opens and closes'}, {word: 'Curious', meaning: 'Wanting to know about something'}, {word: 'Dangerous', meaning: 'Not safe, risky'}, {word: 'Fountain', meaning: 'Water flowing from a structure'}, {word: 'Sparkled', meaning: 'Shined brightly'}, {word: 'Glowing', meaning: 'Giving off light'}, {word: 'Fairy', meaning: 'A magical creature with wings'}, {word: 'Powers', meaning: 'Special abilities'}, {word: 'Appreciate', meaning: 'Feel grateful for'}, {word: 'Peaceful', meaning: 'Calm and quiet'}], questions: [{question: 'Where is the magic garden?', options: ['In a city', 'Behind the school', 'In a forest', 'In a park'], correct: 1}, {question: 'What in the middle?', options: ['A tree', 'A house', 'A fountain', 'A bench'], correct: 2}, {question: 'Who did narrator meet?', options: ['A prince', 'A fairy', 'An old man', 'A girl'], correct: 1}, {question: 'Why is garden hidden?', options: ['It\'s old', 'Only kind people can see it', 'It\'s far away', 'It\'s small'], correct: 1}, {question: 'What do the flowers do?', options: ['Make noise', 'Have special powers', 'Glow at night', 'Talk'], correct: 1}]},
+      {id: 'story8', title: 'The Lost Treasure', grade: 'Grade 3', icon: '🗺️', gradeClass: 'grade3', words: 240, text: `Danny found an old map in his grandmother's attic. The map showed an island with an X marked on it. Above the X, it said "Treasure lies here."\n\nDanny was so excited! He immediately called his best friend Sarah. "Look at this!" he said, showing her the map.\n\nSarah's eyes became wide. "This is amazing! Should we go find it?"\n\n"But how?" asked Danny. "We don't even know where this island is."\n\nThey looked at the map more carefully. There were clues written around the edges. One clue said: "Look for the tallest tree near the river." Another said: "Count ten steps north from the big rock."\n\nDanny and Sarah spent days searching through old books in the library. Finally, they found a reference to an island that matched the description in the map.\n\nThe next Saturday, Danny and Sarah went to the island with Danny's uncle. They followed the clues carefully. They found the tallest tree near the river, and they counted ten steps north from a big rock.\n\nThen Danny started digging with a shovel. After digging for what felt like hours, his shovel hit something hard. "I found something!" he shouted.\n\nThey dug around it carefully and pulled out a wooden box. Inside the box was not gold or jewels, but something even more precious - old letters and photographs from Danny's great-grandfather.`, vocabulary: [{word: 'Attic', meaning: 'The space under the roof'}, {word: 'Treasure', meaning: 'Valuable things, wealth'}, {word: 'Clues', meaning: 'Information that helps solve mystery'}, {word: 'Reference', meaning: 'A mention or connection'}, {word: 'Shovel', meaning: 'A tool for digging'}, {word: 'Precious', meaning: 'Very valuable'}, {word: 'Jewels', meaning: 'Beautiful valuable stones'}, {word: 'Photographs', meaning: 'Pictures taken with camera'}, {word: 'Adventure', meaning: 'Exciting and risky journey'}, {word: 'Memories', meaning: 'Recollections of past events'}], questions: [{question: 'Where did Danny find the map?', options: ['In the park', 'In his school', 'In his grandmother\'s attic', 'On the beach'], correct: 2}, {question: 'Who helped Danny?', options: ['His teacher', 'His friend Sarah', 'His parent', 'A stranger'], correct: 1}, {question: 'What was inside the box?', options: ['Gold coins', 'Jewels', 'Letters and photographs', 'Money'], correct: 2}, {question: 'What were the photographs of?', options: ['A king', 'Danny\'s great-grandfather', 'A famous person', 'A pirate'], correct: 1}, {question: 'What is more valuable?', options: ['Silver', 'Jewels', 'Memories', 'Money'], correct: 2}]},
+      {id: 'story9', title: 'A Day at the Beach', grade: 'Grade 3', icon: '🏖️', gradeClass: 'grade3', words: 200, text: `Last summer, my family went to the beach for a whole week. The beach was the most wonderful place I had ever seen.\n\nThe first day, I was so excited that I couldn't sleep. The sun rose early in the morning, and I woke up immediately. I put on my swimsuit and ran to the beach.\n\nThe ocean was beautiful. The waves were rolling in continuously, creating a rhythmic sound. The sand was golden and warm under my feet. I saw many sea creatures - crabs, shells, and even a small fish.\n\nMy sister and I built a sandcastle. We made towers and a moat around it. We decorated it with shells and colorful stones. Other children came to watch and help us. Soon, we were all friends.\n\nAfter playing in the sand, we swam in the ocean. The water was cool and refreshing. My father taught me how to float on my back. It felt like I was flying!\n\nWhen the sun started to set, the sky turned orange and pink. It was the most beautiful sunset I had ever seen. We sat on the beach and watched it together as a family.\n\nThat night, I was tired but happy. As I lay in bed listening to the waves, I thought about the day. I realized that the best treasure is not something you find - it's the time you spend with people you love.`, vocabulary: [{word: 'Beach', meaning: 'Sandy area by the sea'}, {word: 'Ocean', meaning: 'Large body of salt water'}, {word: 'Waves', meaning: 'Moving ridges of water'}, {word: 'Creatures', meaning: 'Animals'}, {word: 'Sandcastle', meaning: 'Structure made of sand'}, {word: 'Moat', meaning: 'A ditch filled with water'}, {word: 'Decorated', meaning: 'Made beautiful with ornaments'}, {word: 'Refreshing', meaning: 'Cooling and pleasant'}, {word: 'Float', meaning: 'Stay on water\'s surface'}, {word: 'Sunset', meaning: 'When sun goes down at evening'}], questions: [{question: 'How long did family stay?', options: ['A day', 'Three days', 'A week', 'A month'], correct: 2}, {question: 'What did they build?', options: ['A boat', 'A hut', 'A sandcastle', 'A fence'], correct: 2}, {question: 'Who taught floating?', options: ['Sister', 'Mother', 'Father', 'A friend'], correct: 2}, {question: 'What colors sunset?', options: ['Red and yellow', 'Orange and pink', 'Blue and purple', 'Green and blue'], correct: 1}, {question: 'What is best treasure?', options: ['Gold', 'Time with loved ones', 'Shells', 'Sand'], correct: 1}]},
+      {id: 'story10', title: 'The Great Adventure', grade: 'Grade 4', icon: '🧗', gradeClass: 'grade5', words: 280, text: `Marcus was a fifteen-year-old boy who dreamed of becoming an explorer. He spent most of his time reading books about famous explorers and studying maps of distant lands.\n\nOne day, his grandfather gave him an ancient compass and a journal. "This compass belonged to a great explorer," said his grandfather. "It has guided people through the most difficult journeys. Now I am giving it to you."\n\nMarcus felt a tremendous responsibility. He decided to plan his first adventure - a two-week expedition through the nearby mountains.\n\nHe prepared carefully. He studied the terrain, learned about survival skills, and gathered all the necessary equipment. His friends thought he was crazy, but Marcus was determined.\n\nThe expedition began on a cold morning in September. The first few days were difficult. Marcus had to climb steep mountains, cross rivers, and sleep in a tent. His muscles ached, and sometimes he wanted to give up.\n\nBut whenever he felt discouraged, he looked at his grandfather's compass. He remembered his grandfather's words: "A true explorer doesn't give up when things become difficult. A true explorer persists."\n\nOn the eighth day, Marcus reached a hidden valley that was not on any map. It was breathtakingly beautiful, with exotic plants and crystal-clear streams. He sat down and wrote in his journal: "I have discovered something that no one else has seen before. This is what it means to be an explorer."\n\nWhen Marcus returned home after two weeks, he was transformed. He was stronger, more confident, and more determined. But more importantly, he had learned that true exploration is not just about discovering new places - it's about discovering yourself.`, vocabulary: [{word: 'Explorer', meaning: 'Person who travels to discover new places'}, {word: 'Ancient', meaning: 'Very old'}, {word: 'Compass', meaning: 'Tool that shows direction'}, {word: 'Responsibility', meaning: 'Duty or obligation'}, {word: 'Expedition', meaning: 'Organized journey for exploration'}, {word: 'Terrain', meaning: 'The landscape or ground'}, {word: 'Equipment', meaning: 'Necessary tools and supplies'}, {word: 'Determined', meaning: 'Firmly resolved'}, {word: 'Discouraged', meaning: 'Losing hope or confidence'}, {word: 'Persists', meaning: 'Continues despite difficulty'}], questions: [{question: 'What was Marcus\'s dream?', options: ['To be a teacher', 'To be an explorer', 'To be a scientist', 'To be an artist'], correct: 1}, {question: 'What did grandfather give?', options: ['A map', 'A compass and journal', 'Money', 'Books'], correct: 1}, {question: 'How long was expedition?', options: ['One week', 'Two weeks', 'Three weeks', 'One month'], correct: 1}, {question: 'What did Marcus discover?', options: ['Gold', 'A hidden valley', 'A village', 'A city'], correct: 1}, {question: 'What did Marcus learn?', options: ['How to climb', 'True exploration includes self-discovery', 'How to make maps', 'How to survive'], correct: 1}]}
+    ];
+
+    const gradeGroups = {
+      'Grade 1': ['story1', 'story4', 'story5'],
+      'Grade 2': ['story2', 'story6', 'story7'],
+      'Grade 3': ['story3', 'story8', 'story9'],
+      'Grade 4': ['story10']
+    };
+
+    const gradeEmojis = {
+      'Grade 1': '🌟',
+      'Grade 2': '⭐',
+      'Grade 3': '✨',
+      'Grade 4': '💫'
+    };
+
+    let currentStory = null;
+
+    function renderStories() {
+      const list = document.getElementById('storiesList');
+      let html = '';
+
+      Object.entries(gradeGroups).forEach(([grade, storyIds]) => {
+        html += `<div class="grade-section">`;
+        html += `<div class="grade-header">
+          <span class="grade-icon">${gradeEmojis[grade]}</span>
+          <span>${grade}</span>
+          <div class="grade-line"></div>
+        </div>`;
+
+        storyIds.forEach(id => {
+          const story = stories.find(s => s.id === id);
+          html += `
+            <div class="story-item" onclick="openStory('${story.id}')">
+              <div class="story-item-header">
+                <div class="story-item-icon">${story.icon}</div>
+                <div class="story-item-info">
+                  <div class="story-item-title">${story.title}</div>
+                  <div class="story-item-grade">${story.grade}</div>
+                </div>
+              </div>
+              <div class="story-item-meta">
+                <div class="story-words">
+                  <span>📖</span>
+                  <span>${story.words} words</span>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+      });
+
+      list.innerHTML = html;
+    }
+
+    function openStory(storyId) {
+      currentStory = stories.find(s => s.id === storyId);
+      if (!currentStory) return;
+
+      document.querySelectorAll('.story-item').forEach((item) => {
+        item.classList.remove('active');
+      });
+
+      event.currentTarget?.classList.add('active');
+
+      const contentArea = document.getElementById('contentArea');
+      let html = `<div class="reader-title">${currentStory.title}</div><div class="reader-grade">${currentStory.grade}</div><div class="story-text">${currentStory.text}</div><div class="vocab-section"><div class="section-title">📚 Vocabulary</div><div class="vocab-grid">`;
+
+      currentStory.vocabulary.forEach(item => {
+        html += `<div class="vocab-item"><div class="vocab-word">${item.word}</div><div class="vocab-meaning">${item.meaning}</div></div>`;
+      });
+
+      html += `</div></div><div class="comprehension-section"><div class="section-title">🎯 Comprehension Questions</div>`;
+
+      currentStory.questions.forEach((q, idx) => {
+        html += `<div class="question-item"><div class="question-text">${idx + 1}. ${q.question}</div><div class="options-grid">`;
+        q.options.forEach((option, optIdx) => {
+          html += `<label class="option"><input type="radio" name="question-${idx}" value="${optIdx}" required> ${option}</label>`;
+        });
+        html += `</div></div>`;
+      });
+
+      html += `<button class="submit-button" onclick="submitAnswers()">✓ Check Answers</button><div class="result-box" id="resultBox"></div></div>`;
+
+      contentArea.innerHTML = html;
+      contentArea.scrollTop = 0;
+    }
+
+    function submitAnswers() {
+      if (!currentStory) return;
+      let score = 0;
+      const totalQuestions = currentStory.questions.length;
+      currentStory.questions.forEach((q, idx) => {
+        const selected = document.querySelector(`input[name="question-${idx}"]:checked`);
+        if (selected && parseInt(selected.value) === q.correct) score++;
+      });
+      const percentage = Math.round((score / totalQuestions) * 100);
+      const isGood = score >= totalQuestions * 0.6;
+      const resultBox = document.getElementById('resultBox');
+      resultBox.innerHTML = `<strong>Your Score: ${score}/${totalQuestions} (${percentage}%)</strong><br>${isGood ? '🎉 Great job! You understood the story well!' : '📚 Good effort! Try reading again to improve.'}`;
+      resultBox.classList.add('show', isGood ? 'correct' : 'incorrect');
+    }
+
+    window.addEventListener('DOMContentLoaded', renderStories);
+  </script>
+</body>
+</html>

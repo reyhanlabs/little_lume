@@ -1089,24 +1089,26 @@
 
     .resources-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
     }
 
     .resource-card {
       background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
       border: 1px solid rgba(0, 0, 0, 0.05);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .resource-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
       border-color: var(--accent);
     }
 
@@ -1117,47 +1119,49 @@
 
     .resource-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .resource-icon {
-      font-size: 2.5rem;
-      width: 60px;
-      height: 60px;
+      font-size: 2.2rem;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .resource-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: var(--primary);
       margin: 0;
+      line-height: 1.3;
     }
 
     .resource-description {
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
     }
 
     .resource-features {
       list-style: none;
       padding: 0;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .resource-features li {
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .resource-features li::before {
@@ -1169,13 +1173,14 @@
       display: inline-block;
       background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
       color: var(--primary);
-      padding: 0.9rem 1.8rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.25);
+      margin-top: auto;
     }
 
     .resource-link:hover {
@@ -1752,6 +1757,25 @@
 </ul>
 <a class="resource-link" href="phrasal-verbs-complete.html">
             Open Phrasal Verbs Guide →
+          </a>
+</div>
+<!-- Interactive Stories -->
+<div class="resource-card">
+<div class="resource-header">
+<div class="resource-icon">📕</div>
+<h3 class="resource-title">Interactive Stories</h3>
+</div>
+<p class="resource-description">
+            Learn English through engaging stories with vocabulary, comprehension questions, and interactive reading exercises for all grades.
+          </p>
+<ul class="resource-features">
+<li>✓ 10 Engaging Stories</li>
+<li>✓ Vocabulary Learning</li>
+<li>✓ Grade 1 to Grade 4</li>
+<li>✓ Comprehension Quiz</li>
+</ul>
+<a class="resource-link" href="interactive-stories.html">
+            Open Stories →
           </a>
 </div>
 </div>
