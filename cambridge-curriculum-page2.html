@@ -4,202 +4,252 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cambridge Primary English - Page 2</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #2C3E7A;
+      --secondary: #7C5CBF;
+      --accent-cyan: #00D9FF;
+      --success: #10B981;
+      --bg-light: #F8F9FD;
+      --bg-card: #FFFFFF;
+      --text-primary: #1A202C;
+      --text-secondary: #64748B;
+      --border: #E2E8F0;
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    @page { size: A4; margin: 0; }
-    body { font-family: 'Fredoka', sans-serif; background: white; color: #2C3E50; line-height: 1.6; }
-    .page { width: 210mm; height: 297mm; padding: 18mm; background: white; display: flex; flex-direction: column; page-break-after: always; }
     
-    .header { background: linear-gradient(135deg, #003D82 0%, #0066CC 100%); color: white; padding: 10mm; border-radius: 8px; margin-bottom: 8mm; }
-    .header-title { font-size: 18pt; font-weight: 800; font-family: 'Poppins', sans-serif; margin-bottom: 1mm; }
-    .header-subtitle { font-size: 9pt; opacity: 0.9; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-light) 0%, #F0F3FF 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
     
-    .section-title { font-size: 11pt; font-weight: 700; color: #003D82; margin-top: 7mm; margin-bottom: 3mm; font-family: 'Poppins', sans-serif; border-bottom: 2px solid #0066CC; padding-bottom: 2mm; }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      height: 100vh;
+      max-height: 100vh;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
     
-    .stage-section { background: #F8FAFC; padding: 6mm; border-radius: 6px; margin-bottom: 6mm; border-left: 4px solid #0066CC; }
-    .stage-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4mm; }
-    .stage-num-big { font-size: 20pt; font-weight: 800; color: #0066CC; font-family: 'Poppins', sans-serif; }
-    .stage-title { font-size: 10pt; font-weight: 700; color: #003D82; }
-    .stage-age-label { font-size: 8pt; color: #666; }
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
     
-    .objectives { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; font-size: 8pt; line-height: 1.6; }
-    .obj-column { background: white; padding: 4mm; border-radius: 4px; border-left: 2px solid #0066CC; }
-    .obj-title { font-weight: 700; color: #003D82; margin-bottom: 2mm; font-size: 8.5pt; }
-    .obj-list { margin: 0; padding-left: 3mm; }
-    .obj-list li { margin: 1.5mm 0; }
+    .header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .header p { font-size: 0.9rem; opacity: 0.95; }
     
-    .progression-bar { display: flex; gap: 2mm; margin-bottom: 6mm; font-size: 8pt; }
-    .bar-item { flex: 1; padding: 3mm; text-align: center; border-radius: 3px; font-weight: 600; }
-    .bar-1 { background: #E3F2FD; color: #0066CC; }
-    .bar-2 { background: #BBDEFB; color: #0066CC; }
-    .bar-3 { background: #90CAF9; color: white; }
-    .bar-4 { background: #64B5F6; color: white; }
-    .bar-5 { background: #42A5F5; color: white; }
-    .bar-6 { background: #2196F3; color: white; }
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 2rem;
+    }
     
-    .footer { font-size: 7pt; color: #95A5A6; margin-top: auto; padding-top: 6mm; border-top: 1px solid #E0E0E0; }
-    .page-num { float: right; font-weight: 700; }
+    .content::-webkit-scrollbar { width: 6px; }
+    .content::-webkit-scrollbar-track { background: var(--bg-light); }
+    .content::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
     
-    @media print { body { margin: 0; padding: 0; } .page { margin: 0; padding: 18mm; page-break-after: always; } }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 1rem 0 0.75rem 0;
+      border-bottom: 2px solid var(--accent-cyan);
+      padding-bottom: 0.4rem;
+    }
+    
+    .stages-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .stage-card {
+      background: var(--bg-light);
+      border-left: 4px solid var(--accent-cyan);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    
+    .stage-num { font-size: 1.75rem; font-weight: 800; color: var(--primary); margin-bottom: 0.25rem; }
+    .stage-name { font-size: 1rem; font-weight: 700; color: var(--primary); }
+    .stage-label { font-size: 0.8rem; color: var(--text-secondary); }
+    
+    .objectives {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+    
+    .obj-col { background: white; border: 1px solid var(--border); padding: 0.75rem; border-radius: 6px; }
+    .obj-title { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .obj-list { list-style: none; padding: 0; }
+    .obj-list li { margin: 0.35rem 0; padding-left: 1.2rem; position: relative; }
+    .obj-list li::before { content: "•"; color: var(--accent-cyan); font-weight: bold; position: absolute; left: 0; }
+    
+    .footer {
+      background: var(--bg-light);
+      padding: 0.75rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    
+    @media (max-width: 1024px) {
+      .stages-container { grid-template-columns: 1fr; }
+      .objectives { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-<div class="page">
+<div class="container">
   <div class="header">
-    <div class="header-title">Learning Objectives by Stage</div>
-    <div class="header-subtitle">Detailed Competencies & Skills Development (Stages 1-6)</div>
+    <h1>📚 Learning Objectives by Stage</h1>
+    <p>Stages 1-4: Foundational to Intermediate Skills</p>
   </div>
   
-  <!-- PROGRESSION BAR -->
-  <div style="margin-bottom: 6mm;">
-    <div style="font-size: 9pt; font-weight: 700; color: #003D82; margin-bottom: 3mm;">Learning Progression: From Foundation to Mastery</div>
-    <div class="progression-bar">
-      <div class="bar-item bar-1">Stage 1<br>Learning to Read & Write</div>
-      <div class="bar-item bar-2">Stage 2<br>Emergent Skills</div>
-      <div class="bar-item bar-3">Stage 3<br>Reading to Learn</div>
-      <div class="bar-item bar-4">Stage 4<br>Text Analysis</div>
-      <div class="bar-item bar-5">Stage 5<br>Advanced Skills</div>
-      <div class="bar-item bar-6">Stage 6<br>Critical Thinking</div>
-    </div>
-  </div>
-  
-  <!-- STAGE 1 -->
-  <div class="stage-section">
-    <div class="stage-header">
-      <div class="stage-num-big">1</div>
-      <div>
-        <div class="stage-title">Foundation (Age 5-6)</div>
-        <div class="stage-age-label">Fundamental Skills Building</div>
+  <div class="content">
+    <div class="stages-container">
+      <div class="stage-card">
+        <div class="stage-num">1</div>
+        <div class="stage-name">Foundation (Age 5-6)</div>
+        <div class="stage-label">Learning to Read & Write</div>
+        <div class="objectives">
+          <div class="obj-col">
+            <div class="obj-title">📖 Reading</div>
+            <ul class="obj-list">
+              <li>Phonics & initial sounds</li>
+              <li>Simple word recognition</li>
+              <li>Read simple sentences</li>
+              <li>Understand main idea</li>
+              <li>Enjoy stories with adult</li>
+            </ul>
+          </div>
+          <div class="obj-col">
+            <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
+            <ul class="obj-list">
+              <li>Form letters correctly</li>
+              <li>Write labels & captions</li>
+              <li>Speak in simple sentences</li>
+              <li>Listen & follow instructions</li>
+              <li>Answer simple questions</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="objectives">
-      <div class="obj-column">
-        <div class="obj-title">📖 Reading Focus</div>
-        <ul class="obj-list">
-          <li>Phonics (initial sounds)</li>
-          <li>Simple word recognition</li>
-          <li>Read simple sentences</li>
-          <li>Understand main idea</li>
-          <li>Enjoy stories with adult</li>
-        </ul>
+
+      <div class="stage-card">
+        <div class="stage-num">2</div>
+        <div class="stage-name">Emergent (Age 6-7)</div>
+        <div class="stage-label">Early Competency Development</div>
+        <div class="objectives">
+          <div class="obj-col">
+            <div class="obj-title">📖 Reading</div>
+            <ul class="obj-list">
+              <li>Blend phonemes into words</li>
+              <li>Read labels & lists</li>
+              <li>Understand sequence</li>
+              <li>Recognize story patterns</li>
+              <li>Know parts of book</li>
+            </ul>
+          </div>
+          <div class="obj-col">
+            <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
+            <ul class="obj-list">
+              <li>Write simple sentences</li>
+              <li>Use basic punctuation</li>
+              <li>Spell common words</li>
+              <li>Share experiences verbally</li>
+              <li>Take turns in conversation</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="obj-column">
-        <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
-        <ul class="obj-list">
-          <li>Form letters correctly</li>
-          <li>Write labels & captions</li>
-          <li>Speak in simple sentences</li>
-          <li>Listen to & follow instructions</li>
-          <li>Answer simple questions</li>
-        </ul>
+
+      <div class="stage-card">
+        <div class="stage-num">3</div>
+        <div class="stage-name">Developing (Age 7-8)</div>
+        <div class="stage-label">Comprehension & Composition Growth</div>
+        <div class="objectives">
+          <div class="obj-col">
+            <div class="obj-title">📖 Reading</div>
+            <ul class="obj-list">
+              <li>Read fluently with expression</li>
+              <li>Extract information</li>
+              <li>Understand cause & effect</li>
+              <li>Make simple predictions</li>
+              <li>Discuss character feelings</li>
+            </ul>
+          </div>
+          <div class="obj-col">
+            <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
+            <ul class="obj-list">
+              <li>Write narratives with sequence</li>
+              <li>Use expanded noun phrases</li>
+              <li>Use correct tenses</li>
+              <li>Speak confidently to groups</li>
+              <li>Ask & answer questions</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  <!-- STAGE 2 -->
-  <div class="stage-section">
-    <div class="stage-header">
-      <div class="stage-num-big">2</div>
-      <div>
-        <div class="stage-title">Emergent (Age 6-7)</div>
-        <div class="stage-age-label">Early Competency Development</div>
-      </div>
-    </div>
-    <div class="objectives">
-      <div class="obj-column">
-        <div class="obj-title">📖 Reading Focus</div>
-        <ul class="obj-list">
-          <li>Blend phonemes into words</li>
-          <li>Read labels, lists, captions</li>
-          <li>Understand sequence of events</li>
-          <li>Recognize story patterns</li>
-          <li>Know parts of a book</li>
-        </ul>
-      </div>
-      <div class="obj-column">
-        <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
-        <ul class="obj-list">
-          <li>Write simple sentences</li>
-          <li>Use basic punctuation</li>
-          <li>Spell common words</li>
-          <li>Share experience verbally</li>
-          <li>Take turns in conversation</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-  <!-- STAGE 3 -->
-  <div class="stage-section">
-    <div class="stage-header">
-      <div class="stage-num-big">3</div>
-      <div>
-        <div class="stage-title">Developing (Age 7-8)</div>
-        <div class="stage-age-label">Comprehension & Composition Growth</div>
-      </div>
-    </div>
-    <div class="objectives">
-      <div class="obj-column">
-        <div class="obj-title">📖 Reading Focus</div>
-        <ul class="obj-list">
-          <li>Read fluently with expression</li>
-          <li>Extract information from text</li>
-          <li>Understand cause & effect</li>
-          <li>Make simple predictions</li>
-          <li>Discuss character feelings</li>
-        </ul>
-      </div>
-      <div class="obj-column">
-        <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
-        <ul class="obj-list">
-          <li>Write narratives with sequencing</li>
-          <li>Use expanded noun phrases</li>
-          <li>Use correct tenses</li>
-          <li>Speak confidently to group</li>
-          <li>Ask & answer questions</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-  <!-- STAGE 4 -->
-  <div class="stage-section">
-    <div class="stage-header">
-      <div class="stage-num-big">4</div>
-      <div>
-        <div class="stage-title">Intermediate (Age 8-9)</div>
-        <div class="stage-age-label">Text Analysis & Extended Writing</div>
-      </div>
-    </div>
-    <div class="objectives">
-      <div class="obj-column">
-        <div class="obj-title">📖 Reading Focus</div>
-        <ul class="obj-list">
-          <li>Make inferences & predictions</li>
-          <li>Understand author's purpose</li>
-          <li>Analyze character development</li>
-          <li>Identify text features</li>
-          <li>Compare different texts</li>
-        </ul>
-      </div>
-      <div class="obj-column">
-        <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
-        <ul class="obj-list">
-          <li>Write structured paragraphs</li>
-          <li>Use variety of connectives</li>
-          <li>Write for different purposes</li>
-          <li>Use presentation techniques</li>
-          <li>Participate in discussions</li>
-        </ul>
+
+      <div class="stage-card">
+        <div class="stage-num">4</div>
+        <div class="stage-name">Intermediate (Age 8-9)</div>
+        <div class="stage-label">Text Analysis & Extended Writing</div>
+        <div class="objectives">
+          <div class="obj-col">
+            <div class="obj-title">📖 Reading</div>
+            <ul class="obj-list">
+              <li>Make inferences & predictions</li>
+              <li>Understand author's purpose</li>
+              <li>Analyze character development</li>
+              <li>Identify text features</li>
+              <li>Compare different texts</li>
+            </ul>
+          </div>
+          <div class="obj-col">
+            <div class="obj-title">✏️ Writing & 🗣️ Speaking</div>
+            <ul class="obj-list">
+              <li>Write structured paragraphs</li>
+              <li>Use variety of connectives</li>
+              <li>Write for different purposes</li>
+              <li>Use presentation techniques</li>
+              <li>Participate in discussions</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   
   <div class="footer">
-    <span class="page-num">Page 2 of 3</span>
-    Learning Objectives Detail | Stages 1-4 | Progressive Skill Development
+    📄 Page 2 of 3 | Learning Objectives | Stages 1-4
   </div>
 </div>
 
