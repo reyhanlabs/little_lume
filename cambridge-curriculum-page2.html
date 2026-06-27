@@ -49,18 +49,18 @@
     .header {
       background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
-      padding: 2rem;
+      padding: 2.5rem;
       text-align: center;
       flex-shrink: 0;
     }
     
-    .header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .header p { font-size: 0.9rem; opacity: 0.95; }
+    .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .header p { font-size: 0.95rem; opacity: 0.95; }
     
     .content {
       flex: 1;
       overflow-y: auto;
-      padding: 1.5rem 2rem;
+      padding: 2rem 2.5rem;
     }
     
     .content::-webkit-scrollbar { width: 6px; }
@@ -68,15 +68,15 @@
     .content::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
     
     .section-title {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--primary);
-      margin: 1rem 0 0.75rem 0;
+      margin: 1.5rem 0 1rem 0;
       border-bottom: 2px solid var(--accent-cyan);
-      padding-bottom: 0.4rem;
+      padding-bottom: 0.5rem;
     }
     
-    .stages-container {
+    .stages-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
@@ -92,7 +92,7 @@
     
     .stage-num { font-size: 1.75rem; font-weight: 800; color: var(--primary); margin-bottom: 0.25rem; }
     .stage-name { font-size: 1rem; font-weight: 700; color: var(--primary); }
-    .stage-label { font-size: 0.8rem; color: var(--text-secondary); }
+    .stage-label { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
     
     .objectives {
       display: grid;
@@ -110,16 +110,58 @@
     
     .footer {
       background: var(--bg-light);
-      padding: 0.75rem 2rem;
-      text-align: center;
+      padding: 1rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-size: 0.8rem;
       color: var(--text-secondary);
       border-top: 1px solid var(--border);
       flex-shrink: 0;
     }
     
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .btn {
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-light);
+      color: var(--primary);
+      border: 2px solid var(--accent-cyan);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--accent-cyan);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
     @media (max-width: 1024px) {
-      .stages-container { grid-template-columns: 1fr; }
+      .stages-grid { grid-template-columns: 1fr; }
       .objectives { grid-template-columns: 1fr; }
     }
   </style>
@@ -133,7 +175,7 @@
   </div>
   
   <div class="content">
-    <div class="stages-container">
+    <div class="stages-grid">
       <div class="stage-card">
         <div class="stage-num">1</div>
         <div class="stage-name">Foundation (Age 5-6)</div>
@@ -249,7 +291,13 @@
   </div>
   
   <div class="footer">
-    📄 Page 2 of 3 | Learning Objectives | Stages 1-4
+    <div class="nav-buttons">
+      <a href="cambridge-curriculum-page1.html" class="btn btn-secondary">← Back to Overview</a>
+    </div>
+    <span>📄 Page 2 of 3 | Learning Objectives</span>
+    <div class="nav-buttons">
+      <a href="cambridge-curriculum-page3.html" class="btn btn-primary">Next: Assessment →</a>
+    </div>
   </div>
 </div>
 
