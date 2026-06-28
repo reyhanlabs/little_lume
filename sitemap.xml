@@ -35,7 +35,7 @@
 
   <!-- Halaman Kontak -->
   <url>
-    <loc>https://little-lume.vercel.app/index.html</loc>
+    <loc>https://little-lume.vercel.app</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
