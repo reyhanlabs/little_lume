@@ -1879,7 +1879,7 @@ dropdown.addEventListener('click', (e) => {
 <span class="bank-value bank-account">701706889900</span>
 </div>
 </div>
-<button class="copy-btn" onclick="copyToClipboard('701706889900')">📋 Copy</button>
+<button class="copy-btn" onclick="copyToClipboard('701706889900', this)">📋 Copy</button>
 </div>
 </div>
 <div class="footer-bottom">
@@ -1887,21 +1887,67 @@ dropdown.addEventListener('click', (e) => {
 </div>
 </footer>
 <script>
-    // Copy to Clipboard Function
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = '✅ Copied!';
-        btn.style.background = 'linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%)';
-        
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = '';
-        }, 2000);
-      }).catch(err => {
-        alert('Failed to copy. Please try again.');
-      });
+    // Copy to Clipboard Function with Fallback
+    function copyToClipboard(text, btn) {
+      // Method 1: Modern Clipboard API
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showCopySuccess(btn);
+        }).catch(err => {
+          console.error('Clipboard error:', err);
+          // Fallback to Method 2
+          fallbackCopy(text, btn);
+        });
+      } else {
+        // Fallback to older method
+        fallbackCopy(text, btn);
+      }
+    }
+
+    // Fallback copy method for older browsers
+    function fallbackCopy(text, btn) {
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showCopySuccess(btn);
+      } catch (err) {
+        console.error('Fallback copy error:', err);
+        showCopyError(btn);
+      }
+    }
+
+    // Show success message
+    function showCopySuccess(btn) {
+      const originalText = btn.textContent;
+      const originalBg = btn.style.background;
+      
+      btn.textContent = '✅ Copied!';
+      btn.style.background = 'linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%)';
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = originalBg || '';
+      }, 2000);
+    }
+
+    // Show error message
+    function showCopyError(btn) {
+      const originalText = btn.textContent;
+      const originalBg = btn.style.background;
+      
+      btn.textContent = '❌ Failed!';
+      btn.style.background = 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)';
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = originalBg || '';
+      }, 2000);
     }
 
     // Smooth scroll untuk navigation links
