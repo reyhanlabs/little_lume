@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>LittleLume - Worksheet Generator</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #2C3E7A;
+            --secondary: #7C5CBF;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #9C27B0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --bg-dark: #0F1419;
+            --bg-light: #F8F9FD;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ============= HEADER / NAVBAR ============= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(1px 1px at 10% 90%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 40% 20%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(2px 2px at 15% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 85% 30%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1px 1px at 25% 10%, rgba(255, 255, 255, 0.9), transparent);
+            background-size: 200% 200%;
+            background-position: 0 0;
+            animation: twinkleBg 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes twinkleBg {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #FF6B9D 0%, #FFD93D 25%, #00D2D3 50%, #FF9FF3 75%, #FF6B9D 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(255, 107, 157, 0.3));
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+            color: #0F1B4C;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        /* ============= CONTENT ============= */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        /* Grade Grid */
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grade-btn {
+            padding: 2rem 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grade-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .grade-btn:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 217, 255, 0.2);
+        }
+
+        .grade-btn:hover::before {
+            opacity: 1;
+        }
+
+        .grade-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-color: var(--secondary);
+            box-shadow: 0 12px 32px rgba(124, 92, 191, 0.3);
+        }
+
+        /* Skill Grid */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .skill-btn {
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-btn:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 217, 255, 0.2);
+        }
+
+        .skill-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+        }
+
+        /* Chapter Grid */
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .chapter-btn {
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-card);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chapter-btn:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .chapter-btn.active {
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+            color: white;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .option-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.1);
+        }
+
+        .option-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .option-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input[type="range"]:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .range-value {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(44, 62, 122, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        /* Info */
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 100%);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .grade-grid, .skill-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============= HEADER ============= -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">✨ LittleLume</a>
+            <ul class="nav-links">
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="worksheet-portal.html">📋 Worksheets</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+            </ul>
+            <a class="nav-cta" href="index.html#courses">Back to Dashboard</a>
+        </nav>
+    </header>
+
+    <!-- ============= CONTENT ============= -->
+    <section class="section">
+        <h1 class="section-title">📋 Worksheet Generator</h1>
+        <p class="section-subtitle">Create customized English worksheets tailored to your students' learning level and needs</p>
+
+        <div class="info-box">
+            <p>💡 <strong>How to use:</strong> Select a grade, choose a skill, pick a chapter, and customize your worksheet. Then generate, preview, and print!</p>
+        </div>
+
+        <!-- Grade Selection -->
+        <div style="margin-bottom: 4rem;">
+            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); padding-bottom: 1rem; border-bottom: 2px solid var(--accent-cyan);">
+                Step 1: Select Grade
+            </h2>
+            <div class="grade-grid">
+                <button class="grade-btn" onclick="selectGrade(1)">📘 Grade 1</button>
+                <button class="grade-btn" onclick="selectGrade(2)">📗 Grade 2</button>
+                <button class="grade-btn" onclick="selectGrade(3)">📕 Grade 3</button>
+                <button class="grade-btn" onclick="selectGrade(4)">📔 Grade 4</button>
+                <button class="grade-btn" onclick="selectGrade(5)">📓 Grade 5</button>
+                <button class="grade-btn" onclick="selectGrade(6)">📙 Grade 6</button>
+            </div>
+        </div>
+
+        <!-- Skill Selection -->
+        <div style="margin-bottom: 4rem;">
+            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); padding-bottom: 1rem; border-bottom: 2px solid var(--accent-cyan);">
+                Step 2: Select Skill
+            </h2>
+            <div class="skill-grid" id="skillGrid">
+                <button class="skill-btn listening disabled" onclick="selectSkill('listening')">
+                    <span class="skill-icon">🎧</span>
+                    <span>Listening</span>
+                </button>
+                <button class="skill-btn reading disabled" onclick="selectSkill('reading')">
+                    <span class="skill-icon">📖</span>
+                    <span>Reading</span>
+                </button>
+                <button class="skill-btn writing disabled" onclick="selectSkill('writing')">
+                    <span class="skill-icon">✍️</span>
+                    <span>Writing</span>
+                </button>
+                <button class="skill-btn speaking disabled" onclick="selectSkill('speaking')">
+                    <span class="skill-icon">🗣️</span>
+                    <span>Speaking</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chapter Selection -->
+        <div style="margin-bottom: 4rem; display: none;" id="chapterSection">
+            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); padding-bottom: 1rem; border-bottom: 2px solid var(--accent-cyan);">
+                Step 3: Select Chapter
+            </h2>
+            <div class="chapter-grid" id="chapterGrid"></div>
+        </div>
+
+        <!-- Customize Options -->
+        <div style="margin-bottom: 4rem; display: none;" id="optionsSection">
+            <h2 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary); padding-bottom: 1rem; border-bottom: 2px solid var(--accent-cyan);">
+                Step 4: Customize Worksheet
+            </h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <div class="option-title">📊 Number of Questions</div>
+                    <div class="option-subtitle">Choose how many questions</div>
+                    <input type="range" id="questionCount" min="5" max="20" value="10" step="1" 
+                           oninput="updateQuestionCount(this.value)">
+                    <div class="range-value"><span id="questionValue">10</span> questions</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">⭐ Difficulty Level</div>
+                    <div class="option-subtitle">Select the difficulty</div>
+                    <select id="difficulty">
+                        <option value="mixed">Mixed (All Levels)</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">📝 Question Types</div>
+                    <div class="option-subtitle">Include question types</div>
+                    <select id="questionType">
+                        <option value="mixed">Mixed (All Types)</option>
+                        <option value="mc">Multiple Choice Only</option>
+                        <option value="fitb">Fill in the Blank Only</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: none;" id="actionSection">
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="generateWorksheet()">
+                    ✨ Generate & Preview
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============= FOOTER ============= -->
+    <footer>
+        <p>© 2026 LittleLume - Worksheet Generator. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let selectedGrade = null;
+        let selectedSkill = null;
+        let selectedChapter = null;
+        let gradeData = null;
+
+        async function selectGrade(grade) {
+            selectedGrade = grade;
+            selectedSkill = null;
+            selectedChapter = null;
+
+            document.querySelectorAll('.grade-btn').forEach((btn, idx) => {
+                if (idx + 1 === grade) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            document.querySelectorAll('.skill-btn').forEach(btn => {
+                btn.classList.remove('disabled');
+                btn.classList.remove('active');
+            });
+
+            try {
+                const response = await fetch(`bank/grade${grade}.json`);
+                if (!response.ok) throw new Error(`Grade ${grade} data not found`);
+                gradeData = await response.json();
+            } catch (error) {
+                alert(`❌ Error loading Grade ${grade}: ${error.message}`);
+            }
+        }
+
+        function selectSkill(skill) {
+            if (!selectedGrade) {
+                alert('Please select a grade first!');
+                return;
+            }
+
+            selectedSkill = skill;
+            selectedChapter = null;
+
+            document.querySelectorAll('.skill-btn').forEach(btn => {
+                if (btn.classList.contains(skill)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            if (gradeData) {
+                showChapters();
+            }
+        }
+
+        function showChapters() {
+            const chapterSection = document.getElementById('chapterSection');
+            const chapterGrid = document.getElementById('chapterGrid');
+            
+            chapterGrid.innerHTML = '';
+            
+            if (gradeData && gradeData.chapters) {
+                gradeData.chapters.forEach(chapter => {
+                    const btn = document.createElement('button');
+                    btn.className = 'chapter-btn';
+                    btn.textContent = `Chapter ${chapter.chapter}`;
+                    btn.onclick = () => selectChapter(chapter.chapter, btn);
+                    chapterGrid.appendChild(btn);
+                });
+            }
+
+            chapterSection.style.display = 'block';
+        }
+
+        function selectChapter(chapter, btn) {
+            selectedChapter = chapter;
+
+            document.querySelectorAll('.chapter-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            document.getElementById('optionsSection').style.display = 'block';
+            document.getElementById('actionSection').style.display = 'block';
+        }
+
+        function updateQuestionCount(value) {
+            document.getElementById('questionValue').textContent = value;
+        }
+
+        function generateWorksheet() {
+            if (!selectedGrade || !selectedSkill || !selectedChapter) {
+                alert('Please complete all selections!');
+                return;
+            }
+
+            const params = new URLSearchParams({
+                grade: selectedGrade,
+                skill: selectedSkill,
+                chapter: selectedChapter,
+                count: document.getElementById('questionCount').value,
+                difficulty: document.getElementById('difficulty').value,
+                type: document.getElementById('questionType').value
+            });
+
+            window.location.href = `worksheet-viewer.html?${params}`;
+        }
+    </script>
+</body>
+</html>
