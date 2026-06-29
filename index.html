@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>LittleLume - Premium English Learning Dashboard</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittleLume - Worksheet Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
     <style>
         :root {
             --primary: #2C3E7A;
             --secondary: #7C5CBF;
+<<<<<<< HEAD
             --accent-cyan: #00D9FF;
             --accent-purple: #9C27B0;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             --bg-dark: #0F1419;
+=======
+            --accent: #00D9FF;
+            --success: #10B981;
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
             --bg-light: #F8F9FD;
             --bg-card: #FFFFFF;
             --text-primary: #1A202C;
             --text-secondary: #64748B;
             --border: #E2E8F0;
+<<<<<<< HEAD
             --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
             --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
@@ -36,6 +48,10 @@
             --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
             --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
             --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
+=======
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
         }
 
         * {
@@ -44,14 +60,18 @@
             box-sizing: border-box;
         }
 
+<<<<<<< HEAD
         html {
             scroll-behavior: smooth;
         }
 
+=======
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
             color: var(--text-primary);
+<<<<<<< HEAD
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -112,10 +132,32 @@
             align-items: center;
             position: relative;
             z-index: 10;
+=======
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 100%);
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
         }
 
         .logo {
             font-family: 'Poppins', sans-serif;
+<<<<<<< HEAD
             font-size: 1.75rem;
             font-weight: 800;
             background: linear-gradient(90deg,
@@ -318,10 +360,225 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+=======
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-back {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* Grade Selection */
+        .grade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .grade-btn {
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .grade-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .grade-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Skill Selection */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-btn {
+            padding: 1.5rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-btn.active {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FEC8D8 100%);
+            color: white;
+            border-color: #FF6B9D;
+        }
+
+        .skill-btn.listening.active {
+            background: linear-gradient(135deg, #4F46E5 0%, #818CF8 100%);
+            border-color: #4F46E5;
+        }
+
+        .skill-btn.reading.active {
+            background: linear-gradient(135deg, #0EA5E9 0%, #38BDF8 100%);
+            border-color: #0EA5E9;
+        }
+
+        .skill-btn.writing.active {
+            background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+            border-color: #10B981;
+        }
+
+        .skill-btn.speaking.active {
+            background: linear-gradient(135deg, #14B8A6 0%, #2DD4BF 100%);
+            border-color: #14B8A6;
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .option-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .option-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        select:focus, input[type="range"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .range-value {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 0.5rem;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
         }
 
         .btn {
             padding: 1rem 2rem;
+<<<<<<< HEAD
             border-radius: 10px;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
@@ -330,6 +587,16 @@
             border: none;
             cursor: pointer;
             transition: var(--transition);
+=======
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -342,12 +609,27 @@
         }
 
         .btn-primary:hover {
+<<<<<<< HEAD
             transform: translateY(-4px);
             box-shadow: var(--shadow-xl);
         }
 
         .btn-secondary {
             background: white;
+=======
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(44, 62, 122, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
             color: var(--primary);
             border: 2px solid var(--primary);
         }
@@ -355,6 +637,7 @@
         .btn-secondary:hover {
             background: var(--primary);
             color: white;
+<<<<<<< HEAD
             transform: translateY(-4px);
         }
 
@@ -1476,10 +1759,80 @@
             ::-webkit-scrollbar-thumb:hover {
                 background: var(--primary);
             }
+=======
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Chapter selection */
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .chapter-btn {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-card);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .chapter-btn:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .chapter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* Disabled state */
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .grade-grid, .skill-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
         }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <!-- ============= NAVBAR ============= -->
     <header>
         <nav class="navbar">
@@ -2038,6 +2391,240 @@
                 navbar.style.boxShadow = '0 8px 32px rgba(15, 27, 76, 0.3)';
             }
         });
+=======
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">📋 Worksheets</a>
+            <a href="../index.html" class="nav-back">← Back to Dashboard</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>📋 Worksheet Generator</h1>
+        <p class="subtitle">Create customized worksheets for your students with just a few clicks</p>
+
+        <div class="info-box">
+            <p>💡 <strong>Tip:</strong> Select a grade and skill to get started. You can then customize the worksheet by choosing the chapter, number of questions, and difficulty level.</p>
+        </div>
+
+        <!-- Grade Selection -->
+        <div class="section">
+            <h2 class="section-title">Step 1: Select Grade</h2>
+            <div class="grade-grid">
+                <button class="grade-btn" onclick="selectGrade(1)">📘 Grade 1</button>
+                <button class="grade-btn" onclick="selectGrade(2)">📗 Grade 2</button>
+                <button class="grade-btn" onclick="selectGrade(3)">📕 Grade 3</button>
+                <button class="grade-btn" onclick="selectGrade(4)">📔 Grade 4</button>
+                <button class="grade-btn" onclick="selectGrade(5)">📓 Grade 5</button>
+                <button class="grade-btn" onclick="selectGrade(6)">📙 Grade 6</button>
+            </div>
+        </div>
+
+        <!-- Skill Selection -->
+        <div class="section">
+            <h2 class="section-title">Step 2: Select Skill</h2>
+            <div class="skill-grid" id="skillGrid">
+                <button class="skill-btn listening disabled" onclick="selectSkill('listening')">
+                    <span class="skill-icon">🎧</span>
+                    Listening
+                </button>
+                <button class="skill-btn reading disabled" onclick="selectSkill('reading')">
+                    <span class="skill-icon">📖</span>
+                    Reading
+                </button>
+                <button class="skill-btn writing disabled" onclick="selectSkill('writing')">
+                    <span class="skill-icon">✍️</span>
+                    Writing
+                </button>
+                <button class="skill-btn speaking disabled" onclick="selectSkill('speaking')">
+                    <span class="skill-icon">🗣️</span>
+                    Speaking
+                </button>
+            </div>
+        </div>
+
+        <!-- Chapter Selection -->
+        <div class="section" id="chapterSection" style="display: none;">
+            <h2 class="section-title">Step 3: Select Chapter</h2>
+            <div class="chapter-grid" id="chapterGrid"></div>
+        </div>
+
+        <!-- Customize Options -->
+        <div class="section" id="optionsSection" style="display: none;">
+            <h2 class="section-title">Step 4: Customize Worksheet</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <div class="option-title">📊 Number of Questions</div>
+                    <div class="option-subtitle">Choose how many questions you want</div>
+                    <input type="range" id="questionCount" min="5" max="20" value="10" step="1" 
+                           oninput="updateQuestionCount(this.value)">
+                    <div class="range-value"><span id="questionValue">10</span> questions</div>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">⭐ Difficulty Level</div>
+                    <div class="option-subtitle">Select the difficulty</div>
+                    <select id="difficulty">
+                        <option value="mixed">Mixed (All Levels)</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">📝 Question Types</div>
+                    <div class="option-subtitle">Include question types</div>
+                    <select id="questionType">
+                        <option value="mixed">Mixed (All Types)</option>
+                        <option value="mc">Multiple Choice Only</option>
+                        <option value="fitb">Fill in the Blank Only</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="section" id="actionSection" style="display: none;">
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="generateWorksheet()">
+                    ✨ Generate & Preview
+                </button>
+                <button class="btn btn-secondary" onclick="downloadPDF()">
+                    💾 Download as PDF
+                </button>
+                <button class="btn btn-secondary" onclick="printWorksheet()">
+                    🖨️ Print
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedGrade = null;
+        let selectedSkill = null;
+        let selectedChapter = null;
+        let gradeData = null;
+
+        async function selectGrade(grade) {
+            selectedGrade = grade;
+            selectedSkill = null;
+            selectedChapter = null;
+
+            // Update button states
+            document.querySelectorAll('.grade-btn').forEach((btn, idx) => {
+                if (idx + 1 === grade) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Enable skill buttons
+            document.querySelectorAll('.skill-btn').forEach(btn => {
+                btn.classList.remove('disabled');
+                btn.classList.remove('active');
+            });
+
+            // Load grade data
+            try {
+                const response = await fetch(`bank/grade${grade}.json`);
+                if (!response.ok) throw new Error(`Grade ${grade} data not found`);
+                gradeData = await response.json();
+            } catch (error) {
+                alert(`❌ Error loading Grade ${grade} data: ${error.message}`);
+                console.error(error);
+            }
+        }
+
+        function selectSkill(skill) {
+            if (!selectedGrade) {
+                alert('Please select a grade first!');
+                return;
+            }
+
+            selectedSkill = skill;
+            selectedChapter = null;
+
+            // Update button states
+            document.querySelectorAll('.skill-btn').forEach(btn => {
+                if (btn.classList.contains(skill)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Show chapter selection
+            if (gradeData) {
+                showChapters();
+            }
+        }
+
+        function showChapters() {
+            const chapterSection = document.getElementById('chapterSection');
+            const chapterGrid = document.getElementById('chapterGrid');
+            
+            chapterGrid.innerHTML = '';
+            
+            if (gradeData && gradeData.chapters) {
+                gradeData.chapters.forEach(chapter => {
+                    const btn = document.createElement('button');
+                    btn.className = 'chapter-btn';
+                    btn.textContent = `Chapter ${chapter.chapter}`;
+                    btn.onclick = () => selectChapter(chapter.chapter, btn);
+                    chapterGrid.appendChild(btn);
+                });
+            }
+
+            chapterSection.style.display = 'block';
+        }
+
+        function selectChapter(chapter, btn) {
+            selectedChapter = chapter;
+
+            // Update button states
+            document.querySelectorAll('.chapter-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            // Show options
+            document.getElementById('optionsSection').style.display = 'block';
+            document.getElementById('actionSection').style.display = 'block';
+        }
+
+        function updateQuestionCount(value) {
+            document.getElementById('questionValue').textContent = value;
+        }
+
+        function generateWorksheet() {
+            if (!selectedGrade || !selectedSkill || !selectedChapter) {
+                alert('Please complete all selections!');
+                return;
+            }
+
+            // Open viewer with parameters
+            const params = new URLSearchParams({
+                grade: selectedGrade,
+                skill: selectedSkill,
+                chapter: selectedChapter,
+                count: document.getElementById('questionCount').value,
+                difficulty: document.getElementById('difficulty').value,
+                type: document.getElementById('questionType').value
+            });
+
+            window.location.href = `viewer.html?${params}`;
+        }
+
+        function downloadPDF() {
+            alert('📥 PDF download feature coming soon!');
+        }
+
+        function printWorksheet() {
+            generateWorksheet(); // For now, go to viewer which has print option
+        }
+>>>>>>> d07a011943dd2cea2f9f1ef9db9308cca19c94e6
     </script>
 </body>
 </html>

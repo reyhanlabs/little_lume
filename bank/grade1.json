@@ -1,0 +1,682 @@
+{
+  "grade": 1,
+  "title": "Grade 1 - Numbers & Counting",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "Numbers & Counting",
+      "listening": {
+        "partA": [
+          {
+            "id": "L1-001",
+            "question": "How many apples are there?",
+            "options": ["One", "Two", "Three", "Four"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L1-002",
+            "question": "What number is this? (show 5)",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L1-003",
+            "question": "How many fingers do you have on one hand?",
+            "options": ["Three", "Four", "Five", "Six"],
+            "answer": "C",
+            "difficulty": "medium"
+          },
+          {
+            "id": "L1-004",
+            "question": "Count the balls. How many?",
+            "options": ["Six", "Seven", "Eight", "Nine"],
+            "answer": "C",
+            "difficulty": "medium"
+          },
+          {
+            "id": "L1-005",
+            "question": "What comes after five?",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "answer": "C",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L1-006",
+            "question": "What number is bigger, 7 or 4?",
+            "options": ["4", "7", "Same", "Don't know"],
+            "answer": "B",
+            "difficulty": "medium"
+          }
+        ],
+        "partB": [
+          {
+            "id": "L1-B01",
+            "question": "There are [BLANK] apples.",
+            "answer": "two",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L1-B02",
+            "question": "I can count up to [BLANK].",
+            "answer": "ten",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L1-B03",
+            "question": "The number [BLANK] comes before six.",
+            "answer": "five",
+            "difficulty": "medium"
+          },
+          {
+            "id": "L1-B04",
+            "question": "There are [BLANK] days in a week.",
+            "answer": "seven",
+            "difficulty": "medium"
+          },
+          {
+            "id": "L1-B05",
+            "question": "A [BLANK] has four legs.",
+            "answer": "dog",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L1-B06",
+            "question": "One plus one equals [BLANK].",
+            "answer": "two",
+            "difficulty": "medium"
+          }
+        ]
+      },
+      "reading": {
+        "partA": [
+          {
+            "id": "R1-001",
+            "question": "Which number is this: 3",
+            "options": ["One", "Two", "Three", "Four"],
+            "answer": "C",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R1-002",
+            "question": "How do you write five?",
+            "options": ["4", "5", "6", "7"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R1-003",
+            "question": "What is 2 + 2?",
+            "options": ["Two", "Three", "Four", "Five"],
+            "answer": "C",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R1-004",
+            "question": "How many are here: ●●●●●",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R1-005",
+            "question": "The number between 2 and 4 is?",
+            "options": ["One", "Two", "Three", "Four"],
+            "answer": "C",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R1-006",
+            "question": "Which is the biggest number? 3, 5, 2",
+            "options": ["2", "3", "5", "6"],
+            "answer": "C",
+            "difficulty": "medium"
+          }
+        ],
+        "partB": [
+          {
+            "id": "R1-B01",
+            "question": "The number ten is written as [BLANK].",
+            "answer": "10",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R1-B02",
+            "question": "Twelve comes after [BLANK].",
+            "answer": "eleven",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R1-B03",
+            "question": "A dozen means [BLANK] items.",
+            "answer": "twelve",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R1-B04",
+            "question": "I have [BLANK] books in my bag.",
+            "answer": "three",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R1-B05",
+            "question": "She can count to [BLANK].",
+            "answer": "twenty",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R1-B06",
+            "question": "Two times two is [BLANK].",
+            "answer": "four",
+            "difficulty": "medium"
+          }
+        ]
+      },
+      "writing": {
+        "partA": [
+          "Write about numbers you see every day. (What numbers do you see? Where do you see them?)",
+          "Write about counting to ten. (How do you count? Is it easy or hard?)"
+        ],
+        "partB": [
+          {
+            "id": "W1-001",
+            "question": "How many is two plus three?",
+            "options": ["Three", "Four", "Five", "Six"],
+            "answer": "C",
+            "difficulty": "medium"
+          },
+          {
+            "id": "W1-002",
+            "question": "What number comes after nine?",
+            "options": ["Eight", "Nine", "Ten", "Eleven"],
+            "answer": "C",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W1-003",
+            "question": "How many wheels does a car have?",
+            "options": ["Three", "Four", "Five", "Six"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W1-004",
+            "question": "Count the stars: ⭐⭐⭐⭐⭐⭐",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "answer": "C",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W1-005",
+            "question": "Seven minus two equals?",
+            "options": ["Four", "Five", "Six", "Seven"],
+            "answer": "B",
+            "difficulty": "medium"
+          },
+          {
+            "id": "W1-006",
+            "question": "The number before 5 is?",
+            "options": ["Two", "Three", "Four", "Five"],
+            "answer": "C",
+            "difficulty": "easy"
+          }
+        ],
+        "partC": [
+          {
+            "id": "W1-C01",
+            "question": "I have [BLANK] cats at home.",
+            "answer": "two",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W1-C02",
+            "question": "My teacher has [BLANK] pencils.",
+            "answer": "many",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W1-C03",
+            "question": "There are [BLANK] students in my class.",
+            "answer": "thirty",
+            "difficulty": "medium"
+          },
+          {
+            "id": "W1-C04",
+            "question": "One plus four equals [BLANK].",
+            "answer": "five",
+            "difficulty": "medium"
+          },
+          {
+            "id": "W1-C05",
+            "question": "I like [BLANK] different sports.",
+            "answer": "three",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W1-C06",
+            "question": "My favorite number is [BLANK].",
+            "answer": "seven",
+            "difficulty": "easy"
+          }
+        ]
+      },
+      "speaking": {
+        "partA": [
+          {
+            "id": "S1-001",
+            "question": "Say the numbers 1 to 5 out loud",
+            "difficulty": "easy",
+            "answer": "one, two, three, four, five"
+          },
+          {
+            "id": "S1-002",
+            "question": "How old are you? Respond with a number",
+            "difficulty": "easy",
+            "answer": "I am [age] years old"
+          },
+          {
+            "id": "S1-003",
+            "question": "Count from 1 to 10",
+            "difficulty": "easy",
+            "answer": "one through ten"
+          },
+          {
+            "id": "S1-004",
+            "question": "Say the number after 6",
+            "difficulty": "easy",
+            "answer": "seven"
+          },
+          {
+            "id": "S1-005",
+            "question": "How many fingers do you have?",
+            "difficulty": "medium",
+            "answer": "ten"
+          },
+          {
+            "id": "S1-006",
+            "question": "What comes between 3 and 5?",
+            "difficulty": "easy",
+            "answer": "four"
+          }
+        ],
+        "partB": [
+          {
+            "id": "S1-B01",
+            "question": "I can count up to [BLANK]",
+            "answer": "ten",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S1-B02",
+            "question": "The number [BLANK] comes after three",
+            "answer": "four",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S1-B03",
+            "question": "I see [BLANK] apples",
+            "answer": "five",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S1-B04",
+            "question": "Two plus two is [BLANK]",
+            "answer": "four",
+            "difficulty": "medium"
+          },
+          {
+            "id": "S1-B05",
+            "question": "I have [BLANK] pencils",
+            "answer": "three",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S1-B06",
+            "question": "The biggest number is [BLANK]",
+            "answer": "ten",
+            "difficulty": "medium"
+          }
+        ]
+      }
+    },
+    {
+      "chapter": 2,
+      "title": "Colors",
+      "listening": {
+        "partA": [
+          {
+            "id": "L2-001",
+            "question": "What color is the sky?",
+            "options": ["Red", "Blue", "Green", "Yellow"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-002",
+            "question": "What color is grass?",
+            "options": ["Blue", "Green", "Yellow", "Red"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-003",
+            "question": "What color is snow?",
+            "options": ["Black", "White", "Gray", "Brown"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-004",
+            "question": "What color is an apple?",
+            "options": ["Yellow", "Red", "Green", "Orange"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-005",
+            "question": "What color is the sun?",
+            "options": ["White", "Yellow", "Orange", "Red"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-006",
+            "question": "What color is a banana?",
+            "options": ["Green", "Yellow", "Brown", "Orange"],
+            "answer": "B",
+            "difficulty": "easy"
+          }
+        ],
+        "partB": [
+          {
+            "id": "L2-B01",
+            "question": "The flower is [BLANK].",
+            "answer": "red",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-B02",
+            "question": "My favorite color is [BLANK].",
+            "answer": "blue",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-B03",
+            "question": "The car is [BLANK].",
+            "answer": "black",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-B04",
+            "question": "Her dress is [BLANK].",
+            "answer": "pink",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-B05",
+            "question": "The ball is [BLANK].",
+            "answer": "orange",
+            "difficulty": "easy"
+          },
+          {
+            "id": "L2-B06",
+            "question": "His eyes are [BLANK].",
+            "answer": "brown",
+            "difficulty": "easy"
+          }
+        ]
+      },
+      "reading": {
+        "partA": [
+          {
+            "id": "R2-001",
+            "question": "Which is a primary color?",
+            "options": ["Pink", "Purple", "Red", "Orange"],
+            "answer": "C",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-002",
+            "question": "What color do you get when you mix blue and red?",
+            "options": ["Green", "Purple", "Orange", "Yellow"],
+            "answer": "B",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R2-003",
+            "question": "Which is NOT a color?",
+            "options": ["Yellow", "Happy", "Blue", "Green"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-004",
+            "question": "What is the color of chocolate?",
+            "options": ["White", "Black", "Brown", "Gray"],
+            "answer": "C",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-005",
+            "question": "Orange is made from red and [BLANK]",
+            "options": ["Blue", "Yellow", "Green", "Purple"],
+            "answer": "B",
+            "difficulty": "medium"
+          },
+          {
+            "id": "R2-006",
+            "question": "Which animal is white?",
+            "options": ["Raven", "Penguin", "Bear", "Crow"],
+            "answer": "C",
+            "difficulty": "medium"
+          }
+        ],
+        "partB": [
+          {
+            "id": "R2-B01",
+            "question": "The ocean is [BLANK].",
+            "answer": "blue",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-B02",
+            "question": "Tomatoes are [BLANK].",
+            "answer": "red",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-B03",
+            "question": "The night sky is [BLANK].",
+            "answer": "black",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-B04",
+            "question": "My favorite [BLANK] is blue.",
+            "answer": "color",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-B05",
+            "question": "The leaves are [BLANK] in summer.",
+            "answer": "green",
+            "difficulty": "easy"
+          },
+          {
+            "id": "R2-B06",
+            "question": "A lion is [BLANK].",
+            "answer": "yellow",
+            "difficulty": "medium"
+          }
+        ]
+      },
+      "writing": {
+        "partA": [
+          "Write about your favorite color. Why do you like it?",
+          "Describe something that is your favorite color."
+        ],
+        "partB": [
+          {
+            "id": "W2-001",
+            "question": "What color is the sky?",
+            "options": ["Green", "Blue", "Red", "Yellow"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-002",
+            "question": "What color is snow?",
+            "options": ["Black", "White", "Yellow", "Green"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-003",
+            "question": "What color are carrots?",
+            "options": ["Green", "Orange", "Purple", "White"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-004",
+            "question": "Purple is made from red and [BLANK]",
+            "options": ["Green", "Yellow", "Blue", "Orange"],
+            "answer": "C",
+            "difficulty": "medium"
+          },
+          {
+            "id": "W2-005",
+            "question": "What color is the night?",
+            "options": ["Gray", "Black", "Blue", "Purple"],
+            "answer": "B",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-006",
+            "question": "What color is a frog?",
+            "options": ["Brown", "Gray", "Green", "Yellow"],
+            "answer": "C",
+            "difficulty": "easy"
+          }
+        ],
+        "partC": [
+          {
+            "id": "W2-C01",
+            "question": "I like the color [BLANK].",
+            "answer": "red",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-C02",
+            "question": "The sky is [BLANK].",
+            "answer": "blue",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-C03",
+            "question": "My shirt is [BLANK].",
+            "answer": "white",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-C04",
+            "question": "The flower is [BLANK] and [BLANK].",
+            "answer": "red and yellow",
+            "difficulty": "medium"
+          },
+          {
+            "id": "W2-C05",
+            "question": "Grass is [BLANK].",
+            "answer": "green",
+            "difficulty": "easy"
+          },
+          {
+            "id": "W2-C06",
+            "question": "A [BLANK] is yellow.",
+            "answer": "banana",
+            "difficulty": "easy"
+          }
+        ]
+      },
+      "speaking": {
+        "partA": [
+          {
+            "id": "S2-001",
+            "question": "What is your favorite color?",
+            "difficulty": "easy",
+            "answer": "My favorite color is..."
+          },
+          {
+            "id": "S2-002",
+            "question": "Say the color red",
+            "difficulty": "easy",
+            "answer": "Red"
+          },
+          {
+            "id": "S2-003",
+            "question": "Name three colors",
+            "difficulty": "easy",
+            "answer": "Red, blue, green"
+          },
+          {
+            "id": "S2-004",
+            "question": "What color is this? (point to sky)",
+            "difficulty": "easy",
+            "answer": "Blue"
+          },
+          {
+            "id": "S2-005",
+            "question": "What color is grass?",
+            "difficulty": "easy",
+            "answer": "Green"
+          },
+          {
+            "id": "S2-006",
+            "question": "What color do you wear?",
+            "difficulty": "medium",
+            "answer": "I wear [color]"
+          }
+        ],
+        "partB": [
+          {
+            "id": "S2-B01",
+            "question": "The color of an orange is [BLANK].",
+            "answer": "orange",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S2-B02",
+            "question": "My favorite color is [BLANK].",
+            "answer": "blue",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S2-B03",
+            "question": "Snow is [BLANK].",
+            "answer": "white",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S2-B04",
+            "question": "Tomatoes are [BLANK].",
+            "answer": "red",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S2-B05",
+            "question": "The sun is [BLANK].",
+            "answer": "yellow",
+            "difficulty": "easy"
+          },
+          {
+            "id": "S2-B06",
+            "question": "My [BLANK] is blue.",
+            "answer": "shirt",
+            "difficulty": "easy"
+          }
+        ]
+      }
+    }
+  ]
+}
