@@ -2,1956 +2,2042 @@
 
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>LittleLume - Premium English Learning Dashboard</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
-<style>
-    :root {
-      --primary: #2C3E7A;
-      --secondary: #7C5CBF;
-      --accent-cyan: #00D9FF;
-      --accent-purple: #9C27B0;
-      --success: #10B981;
-      --warning: #F59E0B;
-      --danger: #EF4444;
-      --bg-dark: #0F1419;
-      --bg-light: #F8F9FD;
-      --bg-card: #FFFFFF;
-      --text-primary: #1A202C;
-      --text-secondary: #64748B;
-      --border: #E2E8F0;
-      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
-      --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
-      /* Grade Colors */
-      --grade1: linear-gradient(135deg, #FF6B9D 0%, #FEC8D8 100%);
-      --grade2: linear-gradient(135deg, #FECA57 0%, #FFE66D 100%);
-      --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
-      --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
-      --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
-      --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* ============= HEADER / NAVBAR ============= */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
-      transition: var(--transition);
-      overflow: hidden;
-    }
-
-    /* Starry background effect */
-    header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: 
-        radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.9), transparent),
-        radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.8), transparent),
-        radial-gradient(2px 2px at 50% 50%, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.85), transparent),
-        radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 40% 20%, rgba(255,255,255,0.75), transparent),
-        radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.9), transparent),
-        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.85), transparent),
-        radial-gradient(2px 2px at 15% 50%, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1px 1px at 85% 30%, rgba(255,255,255,0.75), transparent),
-        radial-gradient(1px 1px at 25% 10%, rgba(255,255,255,0.9), transparent);
-      background-size: 200% 200%;
-      background-position: 0 0;
-      animation: twinkleBg 20s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes twinkleBg {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    .navbar {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 10;
-    }
-
-    .logo {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 800;
-      background: linear-gradient(
-        90deg,
-        #FF6B9D 0%,
-        #FFD93D 25%,
-        #00D2D3 50%,
-        #FF9FF3 75%,
-        #FF6B9D 100%
-      );
-      background-size: 200% 200%;
-      animation: gradientShift 4s ease infinite;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      filter: drop-shadow(0 2px 4px rgba(255, 107, 157, 0.3));
-    }
-
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .nav-link-grammar {
-      background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(254, 202, 87, 0.2));
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 217, 61, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .nav-link-grammar:hover {
-      background: linear-gradient(135deg, rgba(255, 217, 61, 0.3), rgba(254, 202, 87, 0.3));
-      border-color: rgba(255, 217, 61, 0.6);
-      color: white;
-      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.2);
-    }
-
-    .nav-link-grammar:hover::after {
-      display: none;
-    }
-
-    .nav-cta {
-      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
-      color: #0F1B4C;
-      padding: 0.75rem 1.75rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-    }
-
-    /* ============= HERO SECTION ============= */
-    .hero {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      letter-spacing: -1px;
-    }
-
-    .hero h1 .highlight {
-      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent-cyan) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      line-height: 1.8;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .stat-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .stat-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
-      flex-shrink: 0;
-    }
-
-    .stat-content h3 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-content p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-xl);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-4px);
-    }
-
-    .hero-image {
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
-      border-radius: 20px;
-      padding: 2rem;
-      min-height: 450px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-image::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(0, 217, 255, 0.05) 100%);
-      border-radius: 20px;
-      pointer-events: none;
-    }
-
-    .hero-img {
-      width: 100%;
-      height: 100%;
-      max-width: 350px;
-      max-height: 450px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(44, 62, 122, 0.15));
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 3rem 2rem;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-image {
-        min-height: 350px;
-      }
-    }
-
-    /* ============= DASHBOARD STATS ============= */
-    .dashboard-stats {
-      max-width: 1400px;
-      margin: 5rem auto 0;
-      padding: 3rem 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .stat-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-    }
-
-    .stat-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      opacity: 0.1;
-    }
-
-    .stat-card:nth-child(1)::after {
-      background: #FF6B9D;
-      right: -30px;
-      bottom: -30px;
-    }
-
-    .stat-card:nth-child(2)::after {
-      background: #FECA57;
-      right: -30px;
-      bottom: -30px;
-    }
-
-    .stat-card:nth-child(3)::after {
-      background: #00D2D3;
-      right: -30px;
-      bottom: -30px;
-    }
-
-    .stat-card:nth-child(4)::after {
-      background: #54A0FF;
-      right: -30px;
-      bottom: -30px;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .stat-card:hover .stat-card-icon {
-      transform: scale(1.15) rotate(5deg);
-    }
-
-    .stat-card:hover h3 {
-      transform: scale(1.05);
-    }
-
-    .stat-card-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      transition: transform 0.4s ease;
-      position: relative;
-      z-index: 2;
-    }
-
-    .stat-card:nth-child(1) .stat-card-icon {
-      background: linear-gradient(135deg, #FF6B9D 0%, #FF9FD4 100%);
-      box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
-    }
-
-    .stat-card:nth-child(2) .stat-card-icon {
-      background: linear-gradient(135deg, #FECA57 0%, #FFD93D 100%);
-      box-shadow: 0 8px 16px rgba(254, 202, 87, 0.3);
-    }
-
-    .stat-card:nth-child(3) .stat-card-icon {
-      background: linear-gradient(135deg, #00D2D3 0%, #20E3B2 100%);
-      box-shadow: 0 8px 16px rgba(0, 210, 211, 0.3);
-    }
-
-    .stat-card:nth-child(4) .stat-card-icon {
-      background: linear-gradient(135deg, #54A0FF 0%, #48DBFB 100%);
-      box-shadow: 0 8px 16px rgba(84, 160, 255, 0.3);
-    }
-
-    .stat-card h3 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-      color: var(--primary);
-      transition: transform 0.4s ease;
-      position: relative;
-      z-index: 2;
-    }
-
-    .stat-card:nth-child(1) h3 {
-      color: #FF6B9D;
-    }
-
-    .stat-card:nth-child(2) h3 {
-      color: #FECA57;
-    }
-
-    .stat-card:nth-child(3) h3 {
-      color: #00D2D3;
-    }
-
-    .stat-card:nth-child(4) h3 {
-      color: #54A0FF;
-    }
-
-    .stat-card p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      font-weight: 500;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* ============= COURSE CATEGORIES ============= */
-    .section {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .section-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin-bottom: 3rem;
-    }
-
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-      animation: fadeInUp 0.6s ease;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .course-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      transition: var(--transition);
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-    }
-
-    .course-card:hover {
-      transform: translateY(-12px);
-      box-shadow: var(--shadow-xl);
-    }
-
-    .grade-card-1:hover {
-      box-shadow: 0 20px 40px rgba(255, 107, 157, 0.25);
-    }
-
-    .grade-card-2:hover {
-      box-shadow: 0 20px 40px rgba(255, 202, 87, 0.25);
-    }
-
-    .grade-card-3:hover {
-      box-shadow: var(--shadow-xl);
-    }
-
-    .grade-card-4:hover {
-      box-shadow: var(--shadow-xl);
-    }
-
-    .grade-card-5:hover {
-      box-shadow: var(--shadow-xl);
-    }
-
-    .grade-card-6:hover {
-      box-shadow: var(--shadow-xl);
-    }
-
-    .grade-games:hover {
-      box-shadow: var(--shadow-xl);
-    }
-
-    .grade-ws:hover {
-      box-shadow: var(--shadow-xl);
-    }
-
-    /* Course Card Top Border - All use same gradient */
-    .course-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-    }
-
-    .course-header {
-      padding: 1.25rem 1.5rem;
-      background: linear-gradient(135deg, rgba(44, 62, 122, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .course-header::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
-    }
-
-    .course-card h3 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-      color: var(--primary);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Grade Card Specific Colors */
-    .grade-card-1 .course-header {
-      background: linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(254, 200, 216, 0.15) 100%);
-    }
-
-    .grade-card-1 .course-header h3 {
-      background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .grade-card-1 .course-header::after {
-      background: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
-    }
-
-    .grade-card-2 .course-header {
-      background: linear-gradient(135deg, rgba(254, 202, 87, 0.15) 0%, rgba(255, 230, 109, 0.15) 100%);
-    }
-
-    .grade-card-2 .course-header h3 {
-      color: #FECA57;
-    }
-
-    .grade-card-2 .course-header::after {
-      background: linear-gradient(135deg, rgba(254, 202, 87, 0.2) 0%, transparent 70%);
-    }
-
-    .grade-card-3 .course-header {
-      background: linear-gradient(135deg, rgba(72, 219, 251, 0.15) 0%, rgba(0, 210, 211, 0.15) 100%);
-    }
-
-    .grade-card-3 .course-header h3 {
-      color: #00D2D3;
-    }
-
-    .grade-card-3 .course-header::after {
-      background: linear-gradient(135deg, rgba(72, 219, 251, 0.2) 0%, transparent 70%);
-    }
-
-    .grade-card-4 .course-header {
-      background: linear-gradient(135deg, rgba(255, 159, 243, 0.15) 0%, rgba(255, 204, 254, 0.15) 100%);
-    }
-
-    .grade-card-4 .course-header h3 {
-      color: #FF9FF3;
-    }
-
-    .grade-card-4 .course-header::after {
-      background: linear-gradient(135deg, rgba(255, 159, 243, 0.2) 0%, transparent 70%);
-    }
-
-    .grade-card-5 .course-header {
-      background: linear-gradient(135deg, rgba(84, 160, 255, 0.15) 0%, rgba(146, 182, 255, 0.15) 100%);
-    }
-
-    .grade-card-5 .course-header h3 {
-      color: #54A0FF;
-    }
-
-    .grade-card-5 .course-header::after {
-      background: linear-gradient(135deg, rgba(84, 160, 255, 0.2) 0%, transparent 70%);
-    }
-
-    .grade-card-6 .course-header {
-      background: linear-gradient(135deg, rgba(29, 209, 161, 0.15) 0%, rgba(16, 172, 132, 0.15) 100%);
-    }
-
-    .grade-card-6 .course-header h3 {
-      color: #1DD1A1;
-    }
-
-    .grade-card-6 .course-header::after {
-      background: linear-gradient(135deg, rgba(29, 209, 161, 0.2) 0%, transparent 70%);
-    }
-
-    /* Games Card */
-    .grade-games .course-header {
-      background: linear-gradient(135deg, rgba(255, 159, 243, 0.15) 0%, rgba(255, 204, 254, 0.15) 100%);
-    }
-
-    .grade-games .course-header h3 {
-      color: #FF9FF3;
-    }
-
-    .grade-games .course-header::after {
-      background: linear-gradient(135deg, rgba(255, 159, 243, 0.2) 0%, transparent 70%);
-    }
-
-    .course-link-games {
-      background: var(--bg-light) !important;
-      color: var(--primary) !important;
-      font-weight: 500 !important;
-      box-shadow: none !important;
-      border-radius: 8px !important;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 0 !important;
-    }
-
-    .course-link-games:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
-      color: white !important;
-      transform: translateX(4px) !important;
-      box-shadow: none !important;
-    }
-
-    /* Worksheets Card */
-    .grade-ws .course-header {
-      background: linear-gradient(135deg, rgba(84, 160, 255, 0.15) 0%, rgba(146, 182, 255, 0.15) 100%);
-    }
-
-    .grade-ws .course-header h3 {
-      color: #54A0FF;
-    }
-
-    .grade-ws .course-header::after {
-      background: linear-gradient(135deg, rgba(84, 160, 255, 0.2) 0%, transparent 70%);
-    }
-
-    .course-link-ws {
-      background: var(--bg-light) !important;
-      color: var(--primary) !important;
-      font-weight: 500 !important;
-      box-shadow: none !important;
-      border-radius: 8px !important;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 0 !important;
-    }
-
-    .course-link-ws:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
-      color: white !important;
-      transform: translateX(4px) !important;
-      box-shadow: none !important;
-    }
-
-    .course-link-materi {
-      background: var(--bg-light) !important;
-      color: var(--primary) !important;
-      font-weight: 500 !important;
-      box-shadow: none !important;
-      border-radius: 8px !important;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 0 !important;
-    }
-
-    .course-link-materi:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
-      color: white !important;
-      transform: translateX(4px) !important;
-      box-shadow: none !important;
-    }
-
-    .course-meta {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      position: relative;
-      z-index: 2;
-    }
-
-    .course-links {
-      padding: 1rem 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .course-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 0.85rem;
-      border-radius: 8px;
-      background: var(--bg-light);
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
-    .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-      transform: translateX(4px);
-    }
-
-    /* Grade-specific link colors */
-    .grade-card-1 .course-link:not(.course-link-materi) {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-card-1 .course-link:not(.course-link-materi):hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-card-2 .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-card-2 .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-card-3 .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-card-3 .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-card-4 .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-card-4 .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-card-5 .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-card-5 .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-card-6 .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-card-6 .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-games .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-games .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .grade-ws .course-link {
-      background: var(--bg-light);
-      color: var(--primary);
-    }
-
-    .grade-ws .course-link:hover {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-    }
-
-    .course-footer {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--bg-light);
-    }
-
-    .progress-bar {
-      flex-grow: 1;
-      height: 6px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-      border-radius: 3px;
-      animation: slideIn 0.8s ease;
-    }
-
-    @keyframes slideIn {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
-    }
-
-    /* ============= QUOTES SECTION ============= */
-    .quotes {
-      padding: 5rem 2rem;
-      margin-top: 5rem;
-      background: linear-gradient(180deg, rgba(15, 27, 76, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
-    }
-
-    .quotes-grid {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .quote-card {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      border-left: 4px solid transparent;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
-      backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .quote-card::before {
-      content: '"';
-      position: absolute;
-      top: -20px;
-      right: 15px;
-      font-size: 6rem;
-      color: rgba(44, 62, 122, 0.1);
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-    }
-
-    .quote-card:nth-child(1) {
-      border-left-color: #FF6B9D;
-    }
-
-    .quote-card:nth-child(2) {
-      border-left-color: #FECA57;
-    }
-
-    .quote-card:nth-child(3) {
-      border-left-color: #00D2D3;
-    }
-
-    .quote-card:nth-child(4) {
-      border-left-color: #FF9FF3;
-    }
-
-    .quote-card:nth-child(5) {
-      border-left-color: #54A0FF;
-    }
-
-    .quote-card:nth-child(6) {
-      border-left-color: #1DD1A1;
-    }
-
-    .quote-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
-    }
-
-    .quote-text {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-      font-style: italic;
-      position: relative;
-      z-index: 2;
-    }
-
-    .quote-author {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-
-
-    /* ============= RESOURCES SECTION ============= */
-    .resources-section {
-      max-width: 1400px;
-      margin: 4rem auto;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, rgba(44, 62, 122, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
-      border-radius: 20px;
-    }
-
-    .resources-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-    }
-
-    .resource-card {
-      background: white;
-      border-radius: 12px;
-      padding: 1.75rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .resource-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-      border-color: var(--accent);
-    }
-
-    .resource-card.coming-soon {
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .resource-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .resource-icon {
-      font-size: 2.2rem;
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .resource-title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    .resource-description {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .resource-features {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 1.5rem;
-    }
-
-    .resource-features li {
-      padding: 0.4rem 0;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-
-    .resource-features li::before {
-      content: "";
-      margin-right: 0.5rem;
-    }
-
-    .resource-link {
-      display: inline-block;
-      background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
-      color: var(--primary);
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(255, 217, 61, 0.25);
-      margin-top: auto;
-    }
-
-    .resource-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
-    }
-
-    .coming-soon-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: linear-gradient(135deg, #54A0FF 0%, #48DBFB 100%);
-      color: white;
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* ============= FOOTER ============= */
-    footer {
-      background: var(--bg-dark);
-      color: white;
-      padding: 4rem 2rem 2rem;
-      margin-top: 5rem;
-    }
-
-    .footer-content {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-section h4 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-section a {
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-section a:hover {
-      color: white;
-    }
-
-    /* Donation Section Styling */
-    .donation-section {
-      background: transparent;
-      padding: 0;
-      border-radius: 0;
-      border-left: none;
-    }
-
-    .donation-section h4 {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .donation-section > p {
-      display: none;
-    }
-
-    .bank-info {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 0.75rem;
-      border-radius: 6px;
-      margin: 0.75rem 0;
-      font-size: 0.85rem;
-    }
-
-    .bank-detail {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .bank-detail:last-child {
-      border-bottom: none;
-    }
-
-    .bank-label {
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.8rem;
-    }
-
-    .bank-value {
-      color: white;
-      font-family: 'Courier New', monospace;
-      font-weight: 500;
-      font-size: 0.85rem;
-    }
-
-    .bank-account {
-      letter-spacing: 0.5px;
-    }
-
-    .copy-btn {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: var(--transition);
-      width: 100%;
-      margin-top: 0.75rem;
-    }
-
-    .copy-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(44, 62, 122, 0.3);
-    }
-
-    .copy-btn:active {
-      transform: translateY(0);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 2rem;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* ============= RESPONSIVE ============= */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .section-title {
-        font-size: 1.75rem;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .navbar {
-        padding: 1rem;
-      }
-
-      .logo {
-        font-size: 1.25rem;
-      }
-
-      .nav-cta {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-      }
-
-      .dashboard-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-        padding: 2rem 1rem;
-      }
-
-      .stat-card h3 {
-        font-size: 2.5rem;
-      }
-
-      .stat-card-icon {
-        width: 70px;
-        height: 70px;
-        font-size: 2rem;
-      }
-
-      .course-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .quotes-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .resources-section {
-        padding: 3rem 1.5rem;
-        margin: 3rem auto 0;
-      }
-
-      .resources-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .resource-card {
-        padding: 1.5rem;
-      }
-
-      .resource-title {
-        font-size: 1.1rem;
-      }
-
-      .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .dashboard-stats {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-        padding: 1.5rem 1rem;
-      }
-
-      .stat-card {
-        padding: 1.75rem;
-      }
-
-      .stat-card h3 {
-        font-size: 2.2rem;
-      }
-
-      .stat-card-icon {
-        width: 65px;
-        height: 65px;
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-      }
-
-    /* ============= SCROLLBAR ============= */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-light);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--primary);
-    }
-  </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>LittleLume - Premium English Learning Dashboard</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary: #2C3E7A;
+            --secondary: #7C5CBF;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #9C27B0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --bg-dark: #0F1419;
+            --bg-light: #F8F9FD;
+            --bg-card: #FFFFFF;
+            --text-primary: #1A202C;
+            --text-secondary: #64748B;
+            --border: #E2E8F0;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Grade Colors */
+            --grade1: linear-gradient(135deg, #FF6B9D 0%, #FEC8D8 100%);
+            --grade2: linear-gradient(135deg, #FECA57 0%, #FFE66D 100%);
+            --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
+            --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
+            --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
+            --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F8F9FD 0%, #F5F7FC 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ============= HEADER / NAVBAR ============= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        /* Starry background effect */
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(1px 1px at 10% 90%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 40% 20%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(2px 2px at 15% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 85% 30%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1px 1px at 25% 10%, rgba(255, 255, 255, 0.9), transparent);
+            background-size: 200% 200%;
+            background-position: 0 0;
+            animation: twinkleBg 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes twinkleBg {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(90deg,
+                    #FF6B9D 0%,
+                    #FFD93D 25%,
+                    #00D2D3 50%,
+                    #FF9FF3 75%,
+                    #FF6B9D 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(255, 107, 157, 0.3));
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-link-grammar {
+            background: linear-gradient(135deg, rgba(255, 217, 61, 0.2), rgba(254, 202, 87, 0.2));
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 217, 61, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link-grammar:hover {
+            background: linear-gradient(135deg, rgba(255, 217, 61, 0.3), rgba(254, 202, 87, 0.3));
+            border-color: rgba(255, 217, 61, 0.6);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 217, 61, 0.2);
+        }
+
+        .nav-link-grammar:hover::after {
+            display: none;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+            color: #0F1B4C;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ============= HERO SECTION ============= */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
+            flex-shrink: 0;
+        }
+
+        .stat-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-4px);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 217, 255, 0.05) 100%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            max-width: 350px;
+            max-height: 450px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(44, 62, 122, 0.15));
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                min-height: 350px;
+            }
+        }
+
+        /* ============= DASHBOARD STATS ============= */
+        .dashboard-stats {
+            max-width: 1400px;
+            margin: 5rem auto 0;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .stat-card:nth-child(1)::after {
+            background: #FF6B9D;
+            right: -30px;
+            bottom: -30px;
+        }
+
+        .stat-card:nth-child(2)::after {
+            background: #FECA57;
+            right: -30px;
+            bottom: -30px;
+        }
+
+        .stat-card:nth-child(3)::after {
+            background: #00D2D3;
+            right: -30px;
+            bottom: -30px;
+        }
+
+        .stat-card:nth-child(4)::after {
+            background: #54A0FF;
+            right: -30px;
+            bottom: -30px;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card:hover .stat-card-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .stat-card:hover h3 {
+            transform: scale(1.05);
+        }
+
+        .stat-card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card:nth-child(1) .stat-card-icon {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FF9FD4 100%);
+            box-shadow: 0 8px 16px rgba(255, 107, 157, 0.3);
+        }
+
+        .stat-card:nth-child(2) .stat-card-icon {
+            background: linear-gradient(135deg, #FECA57 0%, #FFD93D 100%);
+            box-shadow: 0 8px 16px rgba(254, 202, 87, 0.3);
+        }
+
+        .stat-card:nth-child(3) .stat-card-icon {
+            background: linear-gradient(135deg, #00D2D3 0%, #20E3B2 100%);
+            box-shadow: 0 8px 16px rgba(0, 210, 211, 0.3);
+        }
+
+        .stat-card:nth-child(4) .stat-card-icon {
+            background: linear-gradient(135deg, #54A0FF 0%, #48DBFB 100%);
+            box-shadow: 0 8px 16px rgba(84, 160, 255, 0.3);
+        }
+
+        .stat-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+            transition: transform 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card:nth-child(1) h3 {
+            color: #FF6B9D;
+        }
+
+        .stat-card:nth-child(2) h3 {
+            color: #FECA57;
+        }
+
+        .stat-card:nth-child(3) h3 {
+            color: #00D2D3;
+        }
+
+        .stat-card:nth-child(4) h3 {
+            color: #54A0FF;
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ============= COURSE CATEGORIES ============= */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .course-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .grade-card-1:hover {
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.25);
+        }
+
+        .grade-card-2:hover {
+            box-shadow: 0 20px 40px rgba(255, 202, 87, 0.25);
+        }
+
+        .grade-card-3:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .grade-card-4:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .grade-card-5:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .grade-card-6:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .grade-games:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .grade-ws:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Course Card Top Border - All use same gradient */
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .course-header {
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, rgba(44, 62, 122, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
+        }
+
+        .course-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Grade Card Specific Colors */
+        .grade-card-1 .course-header {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(254, 200, 216, 0.15) 100%);
+        }
+
+        .grade-card-1 .course-header h3 {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grade-card-1 .course-header::after {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, transparent 70%);
+        }
+
+        .grade-card-2 .course-header {
+            background: linear-gradient(135deg, rgba(254, 202, 87, 0.15) 0%, rgba(255, 230, 109, 0.15) 100%);
+        }
+
+        .grade-card-2 .course-header h3 {
+            color: #FECA57;
+        }
+
+        .grade-card-2 .course-header::after {
+            background: linear-gradient(135deg, rgba(254, 202, 87, 0.2) 0%, transparent 70%);
+        }
+
+        .grade-card-3 .course-header {
+            background: linear-gradient(135deg, rgba(72, 219, 251, 0.15) 0%, rgba(0, 210, 211, 0.15) 100%);
+        }
+
+        .grade-card-3 .course-header h3 {
+            color: #00D2D3;
+        }
+
+        .grade-card-3 .course-header::after {
+            background: linear-gradient(135deg, rgba(72, 219, 251, 0.2) 0%, transparent 70%);
+        }
+
+        .grade-card-4 .course-header {
+            background: linear-gradient(135deg, rgba(255, 159, 243, 0.15) 0%, rgba(255, 204, 254, 0.15) 100%);
+        }
+
+        .grade-card-4 .course-header h3 {
+            color: #FF9FF3;
+        }
+
+        .grade-card-4 .course-header::after {
+            background: linear-gradient(135deg, rgba(255, 159, 243, 0.2) 0%, transparent 70%);
+        }
+
+        .grade-card-5 .course-header {
+            background: linear-gradient(135deg, rgba(84, 160, 255, 0.15) 0%, rgba(146, 182, 255, 0.15) 100%);
+        }
+
+        .grade-card-5 .course-header h3 {
+            color: #54A0FF;
+        }
+
+        .grade-card-5 .course-header::after {
+            background: linear-gradient(135deg, rgba(84, 160, 255, 0.2) 0%, transparent 70%);
+        }
+
+        .grade-card-6 .course-header {
+            background: linear-gradient(135deg, rgba(29, 209, 161, 0.15) 0%, rgba(16, 172, 132, 0.15) 100%);
+        }
+
+        .grade-card-6 .course-header h3 {
+            color: #1DD1A1;
+        }
+
+        .grade-card-6 .course-header::after {
+            background: linear-gradient(135deg, rgba(29, 209, 161, 0.2) 0%, transparent 70%);
+        }
+
+        /* Games Card */
+        .grade-games .course-header {
+            background: linear-gradient(135deg, rgba(255, 159, 243, 0.15) 0%, rgba(255, 204, 254, 0.15) 100%);
+        }
+
+        .grade-games .course-header h3 {
+            color: #FF9FF3;
+        }
+
+        .grade-games .course-header::after {
+            background: linear-gradient(135deg, rgba(255, 159, 243, 0.2) 0%, transparent 70%);
+        }
+
+        .course-link-games {
+            background: var(--bg-light) !important;
+            color: var(--primary) !important;
+            font-weight: 500 !important;
+            box-shadow: none !important;
+            border-radius: 8px !important;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0 !important;
+        }
+
+        .course-link-games:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+            color: white !important;
+            transform: translateX(4px) !important;
+            box-shadow: none !important;
+        }
+
+        /* Worksheets Card */
+        .grade-ws .course-header {
+            background: linear-gradient(135deg, rgba(84, 160, 255, 0.15) 0%, rgba(146, 182, 255, 0.15) 100%);
+        }
+
+        .grade-ws .course-header h3 {
+            color: #54A0FF;
+        }
+
+        .grade-ws .course-header::after {
+            background: linear-gradient(135deg, rgba(84, 160, 255, 0.2) 0%, transparent 70%);
+        }
+
+        .course-link-ws {
+            background: var(--bg-light) !important;
+            color: var(--primary) !important;
+            font-weight: 500 !important;
+            box-shadow: none !important;
+            border-radius: 8px !important;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0 !important;
+        }
+
+        .course-link-ws:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+            color: white !important;
+            transform: translateX(4px) !important;
+            box-shadow: none !important;
+        }
+
+        .course-link-materi {
+            background: var(--bg-light) !important;
+            color: var(--primary) !important;
+            font-weight: 500 !important;
+            box-shadow: none !important;
+            border-radius: 8px !important;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0 !important;
+        }
+
+        .course-link-materi:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+            color: white !important;
+            transform: translateX(4px) !important;
+            box-shadow: none !important;
+        }
+
+        .course-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-links {
+            padding: 1rem 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .course-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.85rem;
+            border-radius: 8px;
+            background: var(--bg-light);
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        /* Grade-specific link colors */
+        .grade-card-1 .course-link:not(.course-link-materi) {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-card-1 .course-link:not(.course-link-materi):hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-card-2 .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-card-2 .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-card-3 .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-card-3 .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-card-4 .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-card-4 .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-card-5 .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-card-5 .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-card-6 .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-card-6 .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-games .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-games .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .grade-ws .course-link {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+
+        .grade-ws .course-link:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .course-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-light);
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 3px;
+            animation: slideIn 0.8s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* ============= QUOTES SECTION ============= */
+        .quotes {
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            background: linear-gradient(180deg, rgba(15, 27, 76, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
+        }
+
+        .quotes-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quote-card {
+            background: white;
+            padding: 1.5rem 1.75rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -12px;
+            right: 12px;
+            font-size: 3.5rem;
+            color: rgba(44, 62, 122, 0.08);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .quote-card:nth-child(1) {
+            border-left-color: #FF6B9D;
+        }
+
+        .quote-card:nth-child(2) {
+            border-left-color: #FECA57;
+        }
+
+        .quote-card:nth-child(3) {
+            border-left-color: #00D2D3;
+        }
+
+        .quote-card:nth-child(4) {
+            border-left-color: #FF9FF3;
+        }
+
+        .quote-card:nth-child(5) {
+            border-left-color: #54A0FF;
+        }
+
+        .quote-card:nth-child(6) {
+            border-left-color: #1DD1A1;
+        }
+
+        /* Additional colors for new cards (7 & 8) are applied via inline style */
+        .quote-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .quote-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-author {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* ============= RESOURCES SECTION ============= */
+        .resources-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(44, 62, 122, 0.05) 0%, rgba(124, 92, 191, 0.05) 100%);
+            border-radius: 20px;
+        }
+
+        .resources-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            border-color: var(--accent);
+        }
+
+        .resource-card.coming-soon {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .resource-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-icon {
+            font-size: 2.2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(44, 62, 122, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .resource-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .resource-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-features li {
+            padding: 0.4rem 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .resource-features li::before {
+            content: "";
+            margin-right: 0.5rem;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 217, 61, 0.25);
+            margin-top: auto;
+        }
+
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #54A0FF 0%, #48DBFB 100%);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============= FOOTER ============= */
+        footer {
+            background: var(--bg-dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        /* Donation Section Styling */
+        .donation-section {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            border-left: none;
+        }
+
+        .donation-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .donation-section>p {
+            display: none;
+        }
+
+        .bank-info {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+        }
+
+        .bank-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bank-detail:last-child {
+            border-bottom: none;
+        }
+
+        .bank-label {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .bank-value {
+            color: white;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .bank-account {
+            letter-spacing: 0.5px;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 0.75rem;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 62, 122, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ============= RESPONSIVE ============= */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .nav-cta {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 2rem 1rem;
+            }
+
+            .stat-card h3 {
+                font-size: 2.5rem;
+            }
+
+            .stat-card-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quotes-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .quote-card {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .quote-text {
+                font-size: 0.9rem;
+            }
+
+            .resources-section {
+                padding: 3rem 1.5rem;
+                margin: 3rem auto 0;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .resource-card {
+                padding: 1.5rem;
+            }
+
+            .resource-title {
+                font-size: 1.1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-card {
+                padding: 1.75rem;
+            }
+
+            .stat-card h3 {
+                font-size: 2.2rem;
+            }
+
+            .stat-card-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .quotes-grid {
+                grid-template-columns: 1fr;
+                gap: 0.875rem;
+            }
+
+            .quote-card {
+                padding: 1rem 1.25rem;
+            }
+
+            .quote-text {
+                font-size: 0.85rem;
+            }
+
+            .quote-author {
+                font-size: 0.8rem;
+            }
+
+            /* ============= SCROLLBAR ============= */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: var(--bg-light);
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+                border-radius: 4px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--primary);
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- ============= NAVBAR ============= -->
-<header>
-<nav class="navbar">
-<div class="logo">✨ LittleLume</div>
-<ul class="nav-links">
-<li><a href="#courses">Courses</a></li>
-<li><a href="#resources">Learning Resources</a></li>
-<li><a href="#quotes">About</a></li>
-</ul>
-<a class="nav-cta" href="#courses">Start Learning</a>
-</nav>
-</header>
-<!-- ============= HERO SECTION ============= -->
-<section class="hero">
-<div class="hero-content">
-<h1>Unlock Your English <span class="highlight">Learning Journey</span></h1>
-<p class="hero-subtitle">Master English with confidence through structured lessons designed for every level. From beginner to advanced, unlock your English potential and achieve your goals today!</p>
-<div class="hero-stats">
-<div class="stat-item">
-<div class="stat-icon">📚</div>
-<div class="stat-content">
-<h3>6 Grades</h3>
-<p>Complete curriculum</p>
-</div>
-</div>
-<div class="stat-item">
-<div class="stat-icon">⚡</div>
-<div class="stat-content">
-<h3>500+ Hours</h3>
-<p>Learning content</p>
-</div>
-</div>
-<div class="stat-item">
-<div class="stat-icon">🎯</div>
-<div class="stat-content">
-<h3>4 Skills</h3>
-<p>Listening, Reading, Speaking, Writing</p>
-</div>
-</div>
-<div class="stat-item" style="cursor: pointer; position: relative; group;">
-<div class="stat-icon">🏆</div>
-<div class="stat-content">
-<h3 style="cursor: pointer;">Cambridge</h3>
-<p>Curriculum aligned</p>
-<div class="cambridge-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #E2E8F0; border-radius: 8px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); z-index: 100; min-width: 200px; margin-top: 8px;">
-  <a href="cambridge-curriculum-page1.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; transition: background 0.3s;">📖 Overview & Framework</a>
-  <a href="cambridge-curriculum-page2.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; transition: background 0.3s;">📚 Learning Objectives</a>
-  <a href="cambridge-curriculum-page3.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; font-size: 0.9rem; transition: background 0.3s;">📊 Assessment & Teaching</a>
-</div>
-</div>
-<script>
-const statItem = document.currentScript.parentElement.parentElement;
-const dropdown = statItem.querySelector('.cambridge-dropdown');
-statItem.addEventListener('click', (e) => {
-  e.stopPropagation();
-  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-});
-document.addEventListener('click', () => {
-  dropdown.style.display = 'none';
-});
-dropdown.addEventListener('click', (e) => {
-  e.stopPropagation();
-});
-</script>
-</div>
-</div>
-<div class="hero-buttons">
-<a class="btn btn-primary" href="#courses">Explore Courses →</a>
-<a class="btn btn-secondary" href="#features">Learn More</a>
-</div>
-</div>
-<div class="hero-image">
-<img alt="Child reading book" class="hero-img" src="https://raw.githubusercontent.com/reyhanlabs/little_lume/main/image_kids.png"/>
-</div>
-</section>
-<!-- ============= DASHBOARD STATS ============= -->
+    <!-- ============= NAVBAR ============= -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">✨ LittleLume</div>
+            <ul class="nav-links">
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#resources">Learning Resources</a></li>
+                <li><a href="#quotes">About</a></li>
+            </ul>
+            <a class="nav-cta" href="#courses">Start Learning</a>
+        </nav>
+    </header>
+    <!-- ============= HERO SECTION ============= -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unlock Your English <span class="highlight">Learning Journey</span></h1>
+            <p class="hero-subtitle">Master English with confidence through structured lessons designed for every level. From beginner to advanced, unlock your English potential and achieve your goals today!</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-content">
+                        <h3>6 Grades</h3>
+                        <p>Complete curriculum</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-content">
+                        <h3>500+ Hours</h3>
+                        <p>Learning content</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h3>4 Skills</h3>
+                        <p>Listening, Reading, Speaking, Writing</p>
+                    </div>
+                </div>
+                <div class="stat-item" style="cursor: pointer; position: relative; group;">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <h3 style="cursor: pointer;">Cambridge</h3>
+                        <p>Curriculum aligned</p>
+                        <div class="cambridge-dropdown" style="display: none; position: absolute; top: 100%; left: 0; background: white; border: 1px solid #E2E8F0; border-radius: 8px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); z-index: 100; min-width: 200px; margin-top: 8px;">
+                            <a href="cambridge-curriculum-page1.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; transition: background 0.3s;">📖 Overview &amp; Framework</a>
+                            <a href="cambridge-curriculum-page2.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; border-bottom: 1px solid #E2E8F0; font-size: 0.9rem; transition: background 0.3s;">📚 Learning Objectives</a>
+                            <a href="cambridge-curriculum-page3.html" style="display: block; padding: 12px 16px; color: #2C3E7A; text-decoration: none; font-size: 0.9rem; transition: background 0.3s;">📊 Assessment &amp; Teaching</a>
+                        </div>
+                    </div>
+                    <script>
+                        const statItem = document.currentScript.parentElement.parentElement;
+                        const dropdown = statItem.querySelector('.cambridge-dropdown');
+                        statItem.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+                        });
+                        document.addEventListener('click', () => {
+                            dropdown.style.display = 'none';
+                        });
+                        dropdown.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a class="btn btn-primary" href="#courses">Explore Courses →</a>
+                <a class="btn btn-secondary" href="#features">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img alt="Child reading book" class="hero-img" src="https://raw.githubusercontent.com/reyhanlabs/little_lume/main/image_kids.png" />
+        </div>
+    </section>
+    <!-- ============= DASHBOARD STATS ============= -->
 
-<!-- ============= COURSES SECTION ============= -->
-<section class="section" id="courses">
-<h2 class="section-title">📚 Learning Courses</h2>
-<p class="section-subtitle">Select your grade level and begin your English learning journey with engaging lessons and interactive activities tailored just for you</p>
-<div class="course-grid">
-<!-- Grade 1 -->
-<div class="course-card grade-card-1">
-<div class="course-header">
-<h3>📘 Grade 1</h3>
-<p class="course-meta">Beginner Level • 32 Lessons</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-materi" href="grade1/materi/">📚 Materi</a>
-<a class="course-link" href="grade1/listening/">🎧 Listening</a>
-<a class="course-link" href="grade1/reading/">📖 Reading</a>
-<a class="course-link" href="grade1/speaking/">🗣 Speaking</a>
-<a class="course-link" href="grade1/writing/">✍ Writing</a>
-<a class="course-link" href="grade1/grammar/">📝 Grammar</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="width: 100%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">100%</span>
-</div>
-</div>
-<!-- Grade 2 -->
-<div class="course-card grade-card-2">
-<div class="course-header">
-<h3>📗 Grade 2</h3>
-<p class="course-meta">Elementary Level • 32 Lessons</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-materi" href="grade2/materi/">📚 Materi</a>
-<a class="course-link" href="grade2/listening/">🎧 Listening</a>
-<a class="course-link" href="grade2/reading/">📖 Reading</a>
-<a class="course-link" href="grade2/speaking/">🗣 Speaking</a>
-<a class="course-link" href="grade2/writing/">✍ Writing</a>
-<a class="course-link" href="grade2/grammar/">📝 Grammar</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="width: 95%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">95%</span>
-</div>
-</div>
-<!-- Grade 3 -->
-<div class="course-card grade-card-3">
-<div class="course-header">
-<h3>📙 Grade 3</h3>
-<p class="course-meta">Intermediate Level • 32 Lessons</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-materi" href="grade3/materi/">📚 Materi</a>
-<a class="course-link" href="grade3/listening/">🎧 Listening</a>
-<a class="course-link" href="grade3/reading/">📖 Reading</a>
-<a class="course-link" href="grade3/speaking/">🗣 Speaking</a>
-<a class="course-link" href="grade3/writing/">✍ Writing</a>
-<a class="course-link" href="grade3/grammar/">📝 Grammar</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="width: 75%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">75%</span>
-</div>
-</div>
-<!-- Grade 4 -->
-<div class="course-card grade-card-4">
-<div class="course-header">
-<h3>📕 Grade 4</h3>
-<p class="course-meta">Advanced Level • 32 Lessons</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-materi" href="grade4/materi/">📚 Materi</a>
-<a class="course-link" href="grade4/listening/">🎧 Listening</a>
-<a class="course-link" href="grade4/reading/">📖 Reading</a>
-<a class="course-link" href="grade4/speaking/">🗣 Speaking</a>
-<a class="course-link" href="grade4/writing/">✍ Writing</a>
-<a class="course-link" href="grade4/grammar/">📝 Grammar</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="width: 60%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">60%</span>
-</div>
-</div>
-<!-- Grade 5 -->
-<div class="course-card grade-card-5">
-<div class="course-header">
-<h3>📓 Grade 5</h3>
-<p class="course-meta">Advanced Level • 32 Lessons</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-materi" href="grade5/materi/">📚 Materi</a>
-<a class="course-link" href="grade5/listening/">🎧 Listening</a>
-<a class="course-link" href="grade5/reading/">📖 Reading</a>
-<a class="course-link" href="grade5/speaking/">🗣 Speaking</a>
-<a class="course-link" href="grade5/writing/">✍ Writing</a>
-<a class="course-link" href="grade5/grammar/">📝 Grammar</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="width: 45%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">45%</span>
-</div>
-</div>
-<!-- Grade 6 -->
-<div class="course-card grade-card-6">
-<div class="course-header">
-<h3>📔 Grade 6</h3>
-<p class="course-meta">Master Level • 32 Lessons</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-materi" href="grade6/materi/">📚 Materi</a>
-<a class="course-link" href="grade6/listening/">🎧 Listening</a>
-<a class="course-link" href="grade6/reading/">📖 Reading</a>
-<a class="course-link" href="grade6/speaking/">🗣 Speaking</a>
-<a class="course-link" href="grade6/writing/">✍ Writing</a>
-<a class="course-link" href="grade6/grammar/">📝 Grammar</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="width: 30%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">30%</span>
-</div>
-</div>
-<!-- Games -->
-<div class="course-card grade-games">
-<div class="course-header">
-<h3>🎮 Interactive Games</h3>
-<p class="course-meta">Fun Learning • 50+ Games</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-games" href="games/english_game.html">🔤 Word Games</a>
-<a class="course-link" href="games/grammar/">📝 Grammar</a>
-<a class="course-link" href="games/listening/">🎧 Listening</a>
-<a class="course-link" href="games/reading/">📖 Reading</a>
-<a class="course-link" href="games/phonics/">🔊 Phonics</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="background: linear-gradient(90deg, #FF9FF3 0%, #FF84E8 100%); width: 85%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">85%</span>
-</div>
-</div>
-<!-- Worksheets -->
-<div class="course-card grade-ws">
-<div class="course-header">
-<h3>📄 Printable Worksheets</h3>
-<p class="course-meta">Practice Materials • 100+ Sheets</p>
-</div>
-<div class="course-links">
-<a class="course-link course-link-ws" href="worksheet/grade1/">📘 Grade 1</a>
-<a class="course-link" href="worksheet/grade2/">📗 Grade 2</a>
-<a class="course-link" href="worksheet/grade3/">📙 Grade 3</a>
-<a class="course-link" href="worksheet/grade4/">📕 Grade 4</a>
-<a class="course-link" href="worksheet/grade5/">📓 Grade 5</a>
-</div>
-<div class="course-footer">
-<div style="flex-grow: 1;">
-<div class="progress-bar">
-<div class="progress-fill" style="background: linear-gradient(90deg, #54A0FF 0%, #5F9FFF 100%); width: 90%;"></div>
-</div>
-</div>
-<span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">90%</span>
-</div>
-</div>
-</div>
-</section>
-<!-- ============= RESOURCES SECTION ============= -->
-<section class="resources-section" id="resources">
-<div class="resources-container">
-<h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">🎓 Learning Resources</h2>
-<div class="resources-grid">
-<!-- Grammar Complete Guide -->
-<div class="resource-card">
-<div class="resource-header">
-<div class="resource-icon">📖</div>
-<h3 class="resource-title">Grammar Complete Guide</h3>
-</div>
-<p class="resource-description">
-            Master English grammar from basic to advanced level with detailed explanations, formulas, and real-world examples for every topic.
-          </p>
-<ul class="resource-features">
-<li>✓ 15+ Grammar Topics</li>
-<li>✓ Grade 1 to Grade 6</li>
-<li>✓ Interactive Navigation</li>
-<li>✓ Full Examples &amp; Notes</li>
-</ul>
-<a class="resource-link" href="grammar-complete.html">
-            Open Grammar Guide →
-          </a>
-</div>
-<!-- Vocabulary Builder -->
-<div class="resource-card">
-<div class="resource-header">
-<div class="resource-icon">📚</div>
-<h3 class="resource-title">Vocabulary Builder</h3>
-</div>
-<p class="resource-description">
-            Expand your vocabulary with 250+ words across 15 categories, audio pronunciation, and interactive flashcards.
-          </p>
-<ul class="resource-features">
-<li>✓ 250+ Words</li>
-<li>✓ Audio Pronunciation</li>
-<li>✓ 15 Categories</li>
-<li>✓ Flip Flashcards</li>
-</ul>
-<a class="resource-link" href="vocabulary-complete.html">
-            Open Vocabulary Guide →
-          </a>
-</div>
-<!-- Phrasal Verbs Reference -->
-<div class="resource-card">
-<div class="resource-header">
-<div class="resource-icon">⚡</div>
-<h3 class="resource-title">Phrasal Verbs Reference</h3>
-</div>
-<p class="resource-description">
-            Master 200+ essential phrasal verbs with meanings, examples, and interactive quizzes across 10 categories.
-          </p>
-<ul class="resource-features">
-<li>✓ 200+ Phrasal Verbs</li>
-<li>✓ Meanings &amp; Examples</li>
-<li>✓ 10 Categories</li>
-<li>✓ Interactive Quizzes</li>
-</ul>
-<a class="resource-link" href="phrasal-verbs-complete.html">
-            Open Phrasal Verbs Guide →
-          </a>
-</div>
-<!-- Interactive Stories -->
-<div class="resource-card">
-<div class="resource-header">
-<div class="resource-icon">📕</div>
-<h3 class="resource-title">Interactive Stories</h3>
-</div>
-<p class="resource-description">
-            Learn English through engaging stories with vocabulary, comprehension questions, and interactive reading exercises for all grades.
-          </p>
-<ul class="resource-features">
-<li>✓ 10 Engaging Stories</li>
-<li>✓ Vocabulary Learning</li>
-<li>✓ Grade 1 to Grade 4</li>
-<li>✓ Comprehension Quiz</li>
-</ul>
-<a class="resource-link" href="interactive-stories.html">
-            Open Stories →
-          </a>
-</div>
-</div>
-</div>
-</section>
-<!-- ============= QUOTES SECTION ============= -->
-<section class="quotes" id="quotes">
-<h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">💡 Words of Wisdom</h2>
-<div class="quotes-grid">
-<div class="quote-card">
-<p class="quote-text">"Education is the most powerful weapon which you can use to change the world."</p>
-<p class="quote-author">— Nelson Mandela</p>
-</div>
-<div class="quote-card">
-<p class="quote-text">"The beautiful thing about learning is that no one can take it away from you."</p>
-<p class="quote-author">— B.B. King</p>
-</div>
-<div class="quote-card">
-<p class="quote-text">"Education is not the filling of a pail, but the lighting of a fire."</p>
-<p class="quote-author">— William Butler Yeats</p>
-</div>
-<div class="quote-card">
-<p class="quote-text">"The capacity to learn is a gift, the ability to learn is a skill, the willingness to learn is a choice."</p>
-<p class="quote-author">— Brian Herbert</p>
-</div>
-<div class="quote-card">
-<p class="quote-text">"In learning you will teach, and in teaching you will learn."</p>
-<p class="quote-author">— Phil Collins</p>
-</div>
-<div class="quote-card">
-<p class="quote-text">"Learning is not attained by chance, it must be sought for with ardor and attended to with diligence."</p>
-<p class="quote-author">— Abigail Adams</p>
-</div>
-</div>
-</section>
-<!-- ============= FOOTER ============= -->
-<footer id="about">
-<div class="footer-content">
-<div class="footer-section">
-<h4>✨ LittleLume</h4>
-<p style="color: rgba(255, 255, 255, 0.6); margin-bottom: 1.5rem;">Premium English learning platform for Indonesian students. Unlock your language potential.</p>
-</div>
-<div class="footer-section">
-<h4>Quick Links</h4>
-<ul>
-<li><a href="#courses">Courses</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#">Blog</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Learning</h4>
-<ul>
-<li><a href="#">Lessons</a></li>
-<li><a href="#">Games</a></li>
-<li><a href="#">Worksheets</a></li>
-<li><a href="#">Grammar</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Contact</h4>
-<ul>
-<li><a href="mailto:support@littlelume.com">Email</a></li>
-<li><a href="#">Facebook</a></li>
-<li><a href="#">Instagram</a></li>
-<li><a href="#">Twitter</a></li>
-</ul>
-</div>
-<div class="footer-section donation-section">
-<h4>💝 Support Us</h4><p style="display:block;color: rgba(255,255,255,0.75); font-size:0.9rem; margin-bottom:0.75rem; line-height:1.5;">Every donation helps us provide free English education for children.</p>
-<div class="bank-info">
-<div class="bank-detail">
-<span class="bank-label">Bank:</span>
-<span class="bank-value">CIMB Niaga</span>
-</div>
-<div class="bank-detail">
-<span class="bank-label">Name:</span>
-<span class="bank-value">Syaiful Amri</span>
-</div>
-<div class="bank-detail">
-<span class="bank-label">Acc:</span>
-<span class="bank-value bank-account">701706889900</span>
-</div>
-</div>
-<button class="copy-btn" onclick="copyToClipboard('701706889900')">📋 Copy</button>
-</div>
-</div>
-<div class="footer-bottom">
-<p>© 2026 LittleLume. All rights reserved. | Crafted with ✨ for English learners</p>
-</div>
-</footer>
-<script>
-    // Copy to Clipboard Function
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = '✅ Copied!';
-        btn.style.background = 'linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%)';
-        
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = '';
-        }, 2000);
-      }).catch(err => {
-        alert('Failed to copy. Please try again.');
-      });
-    }
-
-    // Smooth scroll untuk navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+    <!-- ============= COURSES SECTION ============= -->
+    <section class="section" id="courses">
+        <h2 class="section-title">📚 Learning Courses</h2>
+        <p class="section-subtitle">Select your grade level and begin your English learning journey with engaging lessons and interactive activities tailored just for you</p>
+        <div class="course-grid">
+            <!-- Grade 1 -->
+            <div class="course-card grade-card-1">
+                <div class="course-header">
+                    <h3>📘 Grade 1</h3>
+                    <p class="course-meta">Beginner Level • 32 Lessons</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-materi" href="grade1/materi/">📚 Materi</a>
+                    <a class="course-link" href="grade1/listening/">🎧 Listening</a>
+                    <a class="course-link" href="grade1/reading/">📖 Reading</a>
+                    <a class="course-link" href="grade1/speaking/">🗣 Speaking</a>
+                    <a class="course-link" href="grade1/writing/">✍ Writing</a>
+                    <a class="course-link" href="grade1/grammar/">📝 Grammar</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">100%</span>
+                </div>
+            </div>
+            <!-- Grade 2 -->
+            <div class="course-card grade-card-2">
+                <div class="course-header">
+                    <h3>📗 Grade 2</h3>
+                    <p class="course-meta">Elementary Level • 32 Lessons</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-materi" href="grade2/materi/">📚 Materi</a>
+                    <a class="course-link" href="grade2/listening/">🎧 Listening</a>
+                    <a class="course-link" href="grade2/reading/">📖 Reading</a>
+                    <a class="course-link" href="grade2/speaking/">🗣 Speaking</a>
+                    <a class="course-link" href="grade2/writing/">✍ Writing</a>
+                    <a class="course-link" href="grade2/grammar/">📝 Grammar</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">95%</span>
+                </div>
+            </div>
+            <!-- Grade 3 -->
+            <div class="course-card grade-card-3">
+                <div class="course-header">
+                    <h3>📙 Grade 3</h3>
+                    <p class="course-meta">Intermediate Level • 32 Lessons</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-materi" href="grade3/materi/">📚 Materi</a>
+                    <a class="course-link" href="grade3/listening/">🎧 Listening</a>
+                    <a class="course-link" href="grade3/reading/">📖 Reading</a>
+                    <a class="course-link" href="grade3/speaking/">🗣 Speaking</a>
+                    <a class="course-link" href="grade3/writing/">✍ Writing</a>
+                    <a class="course-link" href="grade3/grammar/">📝 Grammar</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">75%</span>
+                </div>
+            </div>
+            <!-- Grade 4 -->
+            <div class="course-card grade-card-4">
+                <div class="course-header">
+                    <h3>📕 Grade 4</h3>
+                    <p class="course-meta">Advanced Level • 32 Lessons</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-materi" href="grade4/materi/">📚 Materi</a>
+                    <a class="course-link" href="grade4/listening/">🎧 Listening</a>
+                    <a class="course-link" href="grade4/reading/">📖 Reading</a>
+                    <a class="course-link" href="grade4/speaking/">🗣 Speaking</a>
+                    <a class="course-link" href="grade4/writing/">✍ Writing</a>
+                    <a class="course-link" href="grade4/grammar/">📝 Grammar</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">60%</span>
+                </div>
+            </div>
+            <!-- Grade 5 -->
+            <div class="course-card grade-card-5">
+                <div class="course-header">
+                    <h3>📓 Grade 5</h3>
+                    <p class="course-meta">Advanced Level • 32 Lessons</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-materi" href="grade5/materi/">📚 Materi</a>
+                    <a class="course-link" href="grade5/listening/">🎧 Listening</a>
+                    <a class="course-link" href="grade5/reading/">📖 Reading</a>
+                    <a class="course-link" href="grade5/speaking/">🗣 Speaking</a>
+                    <a class="course-link" href="grade5/writing/">✍ Writing</a>
+                    <a class="course-link" href="grade5/grammar/">📝 Grammar</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">45%</span>
+                </div>
+            </div>
+            <!-- Grade 6 -->
+            <div class="course-card grade-card-6">
+                <div class="course-header">
+                    <h3>📔 Grade 6</h3>
+                    <p class="course-meta">Master Level • 32 Lessons</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-materi" href="grade6/materi/">📚 Materi</a>
+                    <a class="course-link" href="grade6/listening/">🎧 Listening</a>
+                    <a class="course-link" href="grade6/reading/">📖 Reading</a>
+                    <a class="course-link" href="grade6/speaking/">🗣 Speaking</a>
+                    <a class="course-link" href="grade6/writing/">✍ Writing</a>
+                    <a class="course-link" href="grade6/grammar/">📝 Grammar</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">30%</span>
+                </div>
+            </div>
+            <!-- Games -->
+            <div class="course-card grade-games">
+                <div class="course-header">
+                    <h3>🎮 Interactive Games</h3>
+                    <p class="course-meta">Fun Learning • 50+ Games</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-games" href="games/english_game.html">🔤 Word Games</a>
+                    <a class="course-link" href="games/grammar/">📝 Grammar</a>
+                    <a class="course-link" href="games/listening/">🎧 Listening</a>
+                    <a class="course-link" href="games/reading/">📖 Reading</a>
+                    <a class="course-link" href="games/phonics/">🔊 Phonics</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="background: linear-gradient(90deg, #FF9FF3 0%, #FF84E8 100%); width: 85%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">85%</span>
+                </div>
+            </div>
+            <!-- Worksheets -->
+            <div class="course-card grade-ws">
+                <div class="course-header">
+                    <h3>📄 Printable Worksheets</h3>
+                    <p class="course-meta">Practice Materials • 100+ Sheets</p>
+                </div>
+                <div class="course-links">
+                    <a class="course-link course-link-ws" href="worksheet/grade1/">📘 Grade 1</a>
+                    <a class="course-link" href="worksheet/grade2/">📗 Grade 2</a>
+                    <a class="course-link" href="worksheet/grade3/">📙 Grade 3</a>
+                    <a class="course-link" href="worksheet/grade4/">📕 Grade 4</a>
+                    <a class="course-link" href="worksheet/grade5/">📓 Grade 5</a>
+                </div>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="background: linear-gradient(90deg, #54A0FF 0%, #5F9FFF 100%); width: 90%;"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">90%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============= RESOURCES SECTION ============= -->
+    <section class="resources-section" id="resources">
+        <div class="resources-container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">🎓 Learning Resources</h2>
+            <div class="resources-grid">
+                <!-- Grammar Complete Guide -->
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">📖</div>
+                        <h3 class="resource-title">Grammar Complete Guide</h3>
+                    </div>
+                    <p class="resource-description">
+                        Master English grammar from basic to advanced level with detailed explanations, formulas, and real-world examples for every topic.
+                    </p>
+                    <ul class="resource-features">
+                        <li>✓ 15+ Grammar Topics</li>
+                        <li>✓ Grade 1 to Grade 6</li>
+                        <li>✓ Interactive Navigation</li>
+                        <li>✓ Full Examples &amp; Notes</li>
+                    </ul>
+                    <a class="resource-link" href="grammar-complete.html">
+                        Open Grammar Guide →
+                    </a>
+                </div>
+                <!-- Vocabulary Builder -->
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">📚</div>
+                        <h3 class="resource-title">Vocabulary Builder</h3>
+                    </div>
+                    <p class="resource-description">
+                        Expand your vocabulary with 250+ words across 15 categories, audio pronunciation, and interactive flashcards.
+                    </p>
+                    <ul class="resource-features">
+                        <li>✓ 250+ Words</li>
+                        <li>✓ Audio Pronunciation</li>
+                        <li>✓ 15 Categories</li>
+                        <li>✓ Flip Flashcards</li>
+                    </ul>
+                    <a class="resource-link" href="vocabulary-complete.html">
+                        Open Vocabulary Guide →
+                    </a>
+                </div>
+                <!-- Phrasal Verbs Reference -->
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">⚡</div>
+                        <h3 class="resource-title">Phrasal Verbs Reference</h3>
+                    </div>
+                    <p class="resource-description">
+                        Master 200+ essential phrasal verbs with meanings, examples, and interactive quizzes across 10 categories.
+                    </p>
+                    <ul class="resource-features">
+                        <li>✓ 200+ Phrasal Verbs</li>
+                        <li>✓ Meanings &amp; Examples</li>
+                        <li>✓ 10 Categories</li>
+                        <li>✓ Interactive Quizzes</li>
+                    </ul>
+                    <a class="resource-link" href="phrasal-verbs-complete.html">
+                        Open Phrasal Verbs Guide →
+                    </a>
+                </div>
+                <!-- Interactive Stories -->
+                <div class="resource-card">
+                    <div class="resource-header">
+                        <div class="resource-icon">📕</div>
+                        <h3 class="resource-title">Interactive Stories</h3>
+                    </div>
+                    <p class="resource-description">
+                        Learn English through engaging stories with vocabulary, comprehension questions, and interactive reading exercises for all grades.
+                    </p>
+                    <ul class="resource-features">
+                        <li>✓ 10 Engaging Stories</li>
+                        <li>✓ Vocabulary Learning</li>
+                        <li>✓ Grade 1 to Grade 4</li>
+                        <li>✓ Comprehension Quiz</li>
+                    </ul>
+                    <a class="resource-link" href="interactive-stories.html">
+                        Open Stories →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============= QUOTES SECTION ============= -->
+    <section class="quotes" id="quotes">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">💡 Words of Wisdom</h2>
+        <div class="quotes-grid">
+            <div class="quote-card">
+                <p class="quote-text">"Education is the most powerful weapon which you can use to change the world."</p>
+                <p class="quote-author">— Nelson Mandela</p>
+            </div>
+            <div class="quote-card">
+                <p class="quote-text">"The beautiful thing about learning is that no one can take it away from you."</p>
+                <p class="quote-author">— B.B. King</p>
+            </div>
+            <div class="quote-card">
+                <p class="quote-text">"Education is not the filling of a pail, but the lighting of a fire."</p>
+                <p class="quote-author">— William Butler Yeats</p>
+            </div>
+            <div class="quote-card">
+                <p class="quote-text">"The capacity to learn is a gift, the ability to learn is a skill, the willingness to learn is a choice."</p>
+                <p class="quote-author">— Brian Herbert</p>
+            </div>
+            <div class="quote-card">
+                <p class="quote-text">"In learning you will teach, and in teaching you will learn."</p>
+                <p class="quote-author">— Phil Collins</p>
+            </div>
+            <div class="quote-card">
+                <p class="quote-text">"Learning is not attained by chance, it must be sought for with ardor and attended to with diligence."</p>
+                <p class="quote-author">— Abigail Adams</p>
+            </div>
+            <!-- Two new quotes added below -->
+            <div class="quote-card" style="border-left-color: #FF9F43;">
+                <p class="quote-text">"Live as if you were to die tomorrow. Learn as if you were to live forever."</p>
+                <p class="quote-author">— Mahatma Gandhi</p>
+            </div>
+            <div class="quote-card" style="border-left-color: #A29BFE;">
+                <p class="quote-text">"Education is the passport to the future, for tomorrow belongs to those who prepare for it today."</p>
+                <p class="quote-author">— Malcolm X</p>
+            </div>
+        </div>
+    </section>
+    <!-- ============= FOOTER ============= -->
+    <footer id="about">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>✨ LittleLume</h4>
+                <p style="color: rgba(255, 255, 255, 0.6); margin-bottom: 1.5rem;">Premium English learning platform for Indonesian students. Unlock your language potential.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Learning</h4>
+                <ul>
+                    <li><a href="#">Lessons</a></li>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Worksheets</a></li>
+                    <li><a href="#">Grammar</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:support@littlelume.com">Email</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section donation-section">
+                <h4>💝 Support Us</h4>
+                <p style="display:block;color: rgba(255,255,255,0.75); font-size:0.9rem; margin-bottom:0.75rem; line-height:1.5;">Every donation helps us provide free English education for children.</p>
+                <div class="bank-info">
+                    <div class="bank-detail">
+                        <span class="bank-label">Bank:</span>
+                        <span class="bank-value">CIMB Niaga</span>
+                    </div>
+                    <div class="bank-detail">
+                        <span class="bank-label">Name:</span>
+                        <span class="bank-value">Syaiful Amri</span>
+                    </div>
+                    <div class="bank-detail">
+                        <span class="bank-label">Acc:</span>
+                        <span class="bank-value bank-account">701706889900</span>
+                    </div>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('701706889900', this)">📋 Copy</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 LittleLume. All rights reserved. | Crafted with ✨ for English learners</p>
+        </div>
+    </footer>
+    <script>
+        // Copy to Clipboard Function with Fallback
+        function copyToClipboard(text, btn) {
+            // Method 1: Modern Clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopySuccess(btn);
+                }).catch(err => {
+                    console.error('Clipboard error:', err);
+                    // Fallback to Method 2
+                    fallbackCopy(text, btn);
+                });
+            } else {
+                // Fallback to older method
+                fallbackCopy(text, btn);
+            }
         }
-      });
-    });
 
-    // Intersection Observer untuk card animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-          observer.unobserve(entry.target);
+        // Fallback copy method for older browsers
+        function fallbackCopy(text, btn) {
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showCopySuccess(btn);
+            } catch (err) {
+                console.error('Fallback copy error:', err);
+                showCopyError(btn);
+            }
         }
-      });
-    }, observerOptions);
 
-    document.querySelectorAll('.course-card, .feature, .stat-card').forEach(card => {
-      card.style.opacity = '0';
-      observer.observe(card);
-    });
+        // Show success message
+        function showCopySuccess(btn) {
+            const originalText = btn.textContent;
+            const originalBg = btn.style.background;
 
-    // Navbar background on scroll
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('header');
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollTop > 50) {
-        navbar.style.background = 'linear-gradient(180deg, rgba(15, 27, 76, 0.98) 0%, rgba(26, 43, 110, 0.95) 100%)';
-        navbar.style.boxShadow = '0 8px 24px rgba(15, 27, 76, 0.4)';
-      } else {
-        navbar.style.background = 'linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%)';
-        navbar.style.boxShadow = '0 8px 32px rgba(15, 27, 76, 0.3)';
-      }
-    });
-  </script>
+            btn.textContent = '✅ Copied!';
+            btn.style.background = 'linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%)';
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = originalBg || '';
+            }, 2000);
+        }
+
+        // Show error message
+        function showCopyError(btn) {
+            const originalText = btn.textContent;
+            const originalBg = btn.style.background;
+
+            btn.textContent = '❌ Failed!';
+            btn.style.background = 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)';
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = originalBg || '';
+            }, 2000);
+        }
+
+        // Smooth scroll untuk navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer untuk card animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.course-card, .feature, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // Navbar background on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('header');
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 50) {
+                navbar.style.background = 'linear-gradient(180deg, rgba(15, 27, 76, 0.98) 0%, rgba(26, 43, 110, 0.95) 100%)';
+                navbar.style.boxShadow = '0 8px 24px rgba(15, 27, 76, 0.4)';
+            } else {
+                navbar.style.background = 'linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%)';
+                navbar.style.boxShadow = '0 8px 32px rgba(15, 27, 76, 0.3)';
+            }
+        });
+    </script>
 </body>
 </html>
