@@ -5,12 +5,12 @@
        MAIN PAGES
        ========================================== -->
   <url>
-    <loc>https://little-lume.vercel.app/</loc>
+    <loc>https://littlelumeenglish.vercel.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://little-lume.vercel.app/dashboard.html</loc>
+    <loc>https://littlelumeenglish.vercel.app/dashboard.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -19,17 +19,17 @@
        LEGAL PAGES
        ========================================== -->
   <url>
-    <loc>https://little-lume.vercel.app/terms.html</loc>
+    <loc>https://littlelumeenglish.vercel.app/terms.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://little-lume.vercel.app/privacy.html</loc>
+    <loc>https://littlelumeenglish.vercel.app/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://little-lume.vercel.app/refund.html</loc>
+    <loc>https://littlelumeenglish.vercel.app/refund.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -39,85 +39,85 @@
        ========================================== -->
 
   <!-- Chapter 1: Hello, World! -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter1/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter1/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter1/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter1/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter1/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter1/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter1/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter1/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 2: My Body -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter2/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter2/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter2/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter2/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter2/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter2/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter2/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter2/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 3: My Family -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter3/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter3/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter3/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter3/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter3/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter3/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter3/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter3/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 4: Colors & Shapes -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter4/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter4/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter4/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter4/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter4/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter4/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter4/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter4/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 5: My School -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter5/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter5/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter5/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter5/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter5/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter5/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter5/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter5/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 6: Animals I Know -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter6/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter6/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter6/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter6/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter6/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter6/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter6/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter6/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 7: Food & Drinks -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter7/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter7/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter7/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter7/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter7/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter7/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter7/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter7/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 8: My Day -->
-  <url><loc>https://little-lume.vercel.app/grade1/chapter8/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter8/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter8/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade1/chapter8/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter8/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter8/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter8/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade1/chapter8/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- ==========================================
        GRADE 2 — Word Builder (5 Chapters done)
        ========================================== -->
 
   <!-- Chapter 1: Numbers & Counting -->
-  <url><loc>https://little-lume.vercel.app/grade2/chapter1/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter1/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter1/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter1/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter1/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter1/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter1/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter1/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 2: Family & Pets -->
-  <url><loc>https://little-lume.vercel.app/grade2/chapter2/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter2/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter2/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter2/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter2/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter2/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter2/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter2/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 3: Clothes & Appearance -->
-  <url><loc>https://little-lume.vercel.app/grade2/chapter3/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter3/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter3/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter3/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter3/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter3/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter3/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter3/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 4: House & Rooms -->
-  <url><loc>https://little-lume.vercel.app/grade2/chapter4/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter4/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter4/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter4/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter4/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter4/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter4/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter4/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Chapter 5: Sports & Games -->
-  <url><loc>https://little-lume.vercel.app/grade2/chapter5/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter5/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter5/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://little-lume.vercel.app/grade2/chapter5/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter5/listening.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter5/reading.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter5/speaking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://littlelumeenglish.vercel.app/grade2/chapter5/writing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
 </urlset>
