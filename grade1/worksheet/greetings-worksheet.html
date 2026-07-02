@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Greetings Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== SCREEN PREVIEW ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #f0f4ff;
+    font-family: 'Nunito', sans-serif;
+    color: #2d2d5e;
+  }
+
+  .screen-hint {
+    text-align: center;
+    padding: 14px;
+    background: #2d2d5e;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    letter-spacing: .5px;
+  }
+  .screen-hint span { color: #ffd166; font-weight: 700; }
+
+  .pages-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 40px 20px 60px;
+  }
+
+  /* ===== PAGE (A4) ===== */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(45,45,94,.15);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, #4361ee 0%, #7b2ff7 100%);
+    padding: 22px 28px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: 60px; bottom: -50px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .brand {
+    font-family: 'Baloo 2', cursive;
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffd166;
+    letter-spacing: .5px;
+  }
+  .brand sub {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,.75);
+    display: block;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: -2px;
+  }
+  .badge {
+    background: #ffd166;
+    color: #2d2d5e;
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-title {
+    margin-top: 12px;
+    color: #fff;
+    font-family: 'Baloo 2', cursive;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title span { color: #ffd166; }
+
+  /* student info row */
+  .info-row {
+    display: flex;
+    gap: 20px;
+    padding: 12px 28px;
+    background: #f8f9ff;
+    border-bottom: 2px dashed #d0d8ff;
+  }
+  .info-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+  .info-field label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #6c74b3;
+    white-space: nowrap;
+  }
+  .info-field .line {
+    flex: 1;
+    border-bottom: 2px solid #c8d0f0;
+    min-width: 60px;
+  }
+  .score-box {
+    width: 52px; height: 52px;
+    border: 3px solid #4361ee;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    flex-shrink: 0;
+  }
+  .score-box span { font-size: 9px; font-weight: 700; color: #6c74b3; letter-spacing: .5px; text-transform: uppercase; }
+
+  /* ===== BODY ===== */
+  .page-body {
+    padding: 18px 28px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  /* section */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .section-num {
+    width: 28px; height: 28px;
+    background: #4361ee;
+    color: #fff;
+    border-radius: 8px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 15px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-label {
+    font-family: 'Baloo 2', cursive;
+    font-size: 15px;
+    font-weight: 700;
+    color: #2d2d5e;
+  }
+  .section-label em {
+    font-style: normal;
+    color: #7b2ff7;
+  }
+
+  /* ===== SECTION A – Word Bank ===== */
+  .word-bank {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+    border: 2px solid #ffd166;
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .word-bank-title {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #b38a00;
+    margin-bottom: 10px;
+  }
+  .word-bank-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .word-chip {
+    background: #fff;
+    border: 2px solid #ffd166;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2d2d5e;
+    box-shadow: 2px 2px 0 #ffc000;
+  }
+
+  /* ===== SECTION A – Match ===== */
+  .match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .match-card {
+    background: #f8f9ff;
+    border: 2px solid #d0d8ff;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .match-emoji { font-size: 28px; line-height: 1; }
+  .match-text {
+    flex: 1;
+  }
+  .match-phrase {
+    font-family: 'Baloo 2', cursive;
+    font-size: 14px;
+    font-weight: 700;
+    color: #2d2d5e;
+  }
+  .match-blank {
+    border-bottom: 2px solid #4361ee;
+    min-width: 80px;
+    height: 18px;
+    display: inline-block;
+  }
+
+  /* ===== SECTION B – Fill in ===== */
+  .fill-list { display: flex; flex-direction: column; gap: 10px; }
+  .fill-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9ff;
+    border-radius: 10px;
+    padding: 10px 14px;
+    border-left: 4px solid #4361ee;
+  }
+  .fill-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 15px;
+    font-weight: 800;
+    color: #4361ee;
+    width: 22px;
+    flex-shrink: 0;
+  }
+  .fill-sentence {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #2d2d5e;
+    flex: 1;
+    line-height: 1.5;
+  }
+  .blank {
+    display: inline-block;
+    border-bottom: 2px solid #7b2ff7;
+    min-width: 90px;
+    margin: 0 4px;
+    vertical-align: bottom;
+  }
+  .fill-emoji { font-size: 20px; flex-shrink: 0; }
+
+  /* ===== SECTION C – True/False ===== */
+  .tf-list { display: flex; flex-direction: column; gap: 9px; }
+  .tf-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 2px solid #e8ecff;
+    background: #fff;
+  }
+  .tf-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 14px;
+    font-weight: 800;
+    color: #4361ee;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .tf-text {
+    font-size: 13px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .tf-boxes {
+    display: flex;
+    gap: 6px;
+  }
+  .tf-box {
+    border: 2px solid #c8d0f0;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #6c74b3;
+    letter-spacing: .5px;
+  }
+
+  /* ===== SECTION D – Unscramble ===== */
+  .unscramble-list { display: flex; flex-direction: column; gap: 12px; }
+  .unscramble-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .unscramble-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 14px;
+    font-weight: 800;
+    color: #4361ee;
+    width: 22px;
+    flex-shrink: 0;
+  }
+  .scrambled-letters {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .letter-box {
+    width: 26px; height: 26px;
+    border: 2px solid #7b2ff7;
+    border-radius: 6px;
+    background: #f3edff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Baloo 2', cursive;
+    font-size: 14px;
+    font-weight: 800;
+    color: #7b2ff7;
+  }
+  .arrow-right { color: #b0b8e0; font-size: 18px; }
+  .answer-boxes {
+    display: flex;
+    gap: 5px;
+  }
+  .ans-box {
+    width: 26px; height: 26px;
+    border-bottom: 2px solid #2d2d5e;
+    border-radius: 0;
+  }
+
+  /* ===== PAGE 2 ===== */
+  /* Section E – Draw & Write */
+  .draw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .draw-card {
+    border: 2px solid #d0d8ff;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f8f9ff;
+  }
+  .draw-area {
+    height: 80px;
+    border-bottom: 2px dashed #d0d8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    background: #fff;
+  }
+  .draw-prompt {
+    padding: 8px 10px;
+  }
+  .draw-phrase {
+    font-family: 'Baloo 2', cursive;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2d2d5e;
+    margin-bottom: 6px;
+  }
+  .write-lines { display: flex; flex-direction: column; gap: 5px; }
+  .write-line {
+    border-bottom: 1.5px solid #c8d0f0;
+    height: 16px;
+    width: 100%;
+  }
+
+  /* Section F – Circle correct */
+  .circle-list { display: flex; flex-direction: column; gap: 10px; }
+  .circle-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: #f8f9ff;
+    border: 2px solid #e8ecff;
+  }
+  .circle-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 14px;
+    font-weight: 800;
+    color: #4361ee;
+    width: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .circle-content { flex: 1; }
+  .circle-q {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2d2d5e;
+    margin-bottom: 6px;
+  }
+  .circle-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .opt {
+    border: 2px solid #c8d0f0;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #2d2d5e;
+    cursor: pointer;
+  }
+
+  /* Section G – Colour & Match */
+  .colour-instruction {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #6c74b3;
+    margin-bottom: 12px;
+    padding: 8px 14px;
+    background: #f0f4ff;
+    border-radius: 8px;
+    border-left: 4px solid #4361ee;
+  }
+  .colour-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .colour-card {
+    text-align: center;
+    border: 2px dashed #d0d8ff;
+    border-radius: 14px;
+    padding: 12px 8px 10px;
+    background: #fafbff;
+  }
+  .colour-emoji { font-size: 32px; line-height: 1; }
+  .colour-phrase {
+    font-family: 'Baloo 2', cursive;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2d2d5e;
+    margin: 6px 0 4px;
+  }
+  .colour-time {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .time-morning { background: #ff9f1c; }
+  .time-afternoon { background: #ef476f; }
+  .time-evening { background: #7b2ff7; }
+  .time-anytime { background: #06d6a0; }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    padding: 10px 28px;
+    background: #f8f9ff;
+    border-top: 2px dashed #d0d8ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Baloo 2', cursive;
+    font-size: 12px;
+    font-weight: 700;
+    color: #4361ee;
+  }
+  .footer-pg {
+    font-size: 11px;
+    font-weight: 700;
+    color: #b0b8e0;
+    letter-spacing: .5px;
+  }
+  .footer-stars { font-size: 14px; letter-spacing: 2px; }
+
+  /* ===== PRINT STYLES ===== */
+  
+@media print {
+  @page { size: A4 portrait; margin: 0mm; }
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff !important; }
+  .screen-hint { display: none !important; }
+  .pages-wrapper { display: block; padding: 0; gap: 0; }
+
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .page:last-child { page-break-after: auto !important; break-after: auto !important; }
+
+  /* Header */
+  .header { padding: 16px 26px 13px !important; }
+  .brand { font-size: 20px !important; }
+  .brand sub { font-size: 10px !important; }
+  .badge { font-size: 10.5px !important; padding: 4px 11px !important; }
+  .header-title { font-size: 25px !important; margin-top: 10px !important; }
+
+  /* Info row */
+  .info-row { padding: 10px 26px !important; gap: 16px !important; }
+  .info-field label { font-size: 10.5px !important; }
+  .score-box { width: 46px !important; height: 46px !important; }
+  .score-box span { font-size: 8.5px !important; }
+
+  /* Page body — 3 sections per page, comfortable */
+  .page-body { padding: 16px 26px 20px !important; gap: 18px !important; flex: 1 !important; }
+
+  /* Section title */
+  .section-title { gap: 9px !important; margin-bottom: 10px !important; }
+  .section-num { width: 27px !important; height: 27px !important; font-size: 14px !important; }
+  .section-label { font-size: 14px !important; }
+
+  /* Word bank — page 1 only */
+  .word-bank { padding: 13px 17px !important; border-radius: 11px !important; }
+  .word-bank-title { font-size: 10.5px !important; margin-bottom: 8px !important; }
+  .word-chip { font-size: 11.5px !important; padding: 3px 11px !important; }
+  .wb-chips { gap: 6px !important; }
+
+  /* Match */
+  .match-grid { gap: 10px !important; }
+  .match-left-item { padding: 8px 12px !important; font-size: 12px !important; border-radius: 9px !important; }
+  .match-num { font-size: 12.5px !important; width: 21px !important; }
+  .match-right-item { padding: 8px 12px !important; border-radius: 9px !important; }
+  .mr-text { font-size: 12px !important; }
+  .mr-line { font-size: 10px !important; }
+
+  /* Fill items */
+  .fill-items { gap: 7px !important; }
+  .fill-item { padding: 8px 12px !important; border-radius: 9px !important; }
+  .fill-q { padding: 8px 12px !important; border-radius: 9px !important; }
+  .fq-num, .fill-num { font-size: 12.5px !important; }
+  .fq-text, .fill-sentence { font-size: 12px !important; line-height: 1.5 !important; }
+  .fill-emoji { font-size: 16px !important; }
+  .blank { min-width: 78px !important; }
+
+  /* True/False */
+  .tf-items, .tf-list { gap: 6px !important; }
+  .tf-item { padding: 7px 12px !important; border-radius: 9px !important; font-size: 12px !important; }
+  .tf-boxes { gap: 5px !important; }
+  .tf-box { padding: 2px 9px !important; font-size: 10px !important; }
+
+  /* Unscramble */
+  .unscramble-list { gap: 10px !important; display: flex; flex-direction: column; }
+  .unscramble-item { gap: 8px !important; padding: 7px 11px !important; border-radius: 9px !important; }
+  .unscramble-num { font-size: 12.5px !important; }
+  .letter-box { width: 26px !important; height: 26px !important; font-size: 13px !important; border-radius: 6px !important; }
+  .scrambled-letters { gap: 4px !important; }
+  .ans-box { width: 26px !important; height: 26px !important; }
+  .answer-boxes { gap: 4px !important; }
+  .arrow-right { font-size: 16px !important; }
+
+  /* Draw grid */
+  .draw-grid { gap: 10px !important; }
+  .draw-card { border-radius: 11px !important; }
+  .draw-area { height: 90px !important; font-size: 36px !important; }
+  .draw-prompt { padding: 8px 10px !important; }
+  .draw-phrase { font-size: 11px !important; margin-bottom: 5px !important; }
+  .write-lines { gap: 8px !important; }
+  .write-line { height: 18px !important; }
+
+  /* Circle correct */
+  .circle-list { gap: 8px !important; }
+  .circle-item { padding: 9px 12px !important; border-radius: 9px !important; }
+  .circle-num { font-size: 13px !important; }
+  .circle-q { font-size: 12px !important; margin-bottom: 6px !important; }
+  .circle-options { gap: 6px !important; flex-wrap: wrap; }
+  .opt { padding: 3px 11px !important; font-size: 11px !important; border-radius: 20px !important; }
+
+  /* Colour cards */
+  .colour-instruction { font-size: 10.5px !important; margin-bottom: 9px !important; padding: 6px 10px !important; }
+  .colour-grid { gap: 9px !important; }
+  .colour-card { padding: 10px 8px !important; border-radius: 10px !important; }
+  .colour-emoji { font-size: 26px !important; margin-bottom: 5px !important; }
+  .colour-phrase { font-size: 13px !important; }
+  .colour-time { font-size: 9px !important; padding: 2px 8px !important; margin-top: 5px !important; }
+
+  /* Footer */
+  .page-footer { padding: 8px 26px !important; }
+  .footer-brand { font-size: 12px !important; }
+  .footer-stars { font-size: 13px !important; }
+  .footer-pg { font-size: 10.5px !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="screen-hint">🖨️ To print: Press <span>Ctrl+P</span> (Windows) or <span>Cmd+P</span> (Mac) — set paper size to <span>A4</span> and disable margins for best results.</div>
+
+<div class="pages-wrapper">
+
+  <!-- ========== PAGE 1 ========== -->
+  <div class="page">
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">
+          BunRey
+          <sub>English Course</sub>
+        </div>
+        <div class="badge">Grade 1 · Worksheet</div>
+      </div>
+      <div class="header-title">🌟 Let's Learn <span>Greetings!</span></div>
+    </div>
+
+    <!-- Student Info -->
+    <div class="info-row">
+      <div class="info-field">
+        <label>Name</label>
+        <div class="line"></div>
+      </div>
+      <div class="info-field">
+        <label>Class</label>
+        <div class="line" style="max-width:70px"></div>
+      </div>
+      <div class="info-field">
+        <label>Date</label>
+        <div class="line" style="max-width:90px"></div>
+      </div>
+      <div class="score-box"><span>Score</span></div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- Word Bank -->
+      <div class="word-bank">
+        <div class="word-bank-title">📚 Word Bank – Use these words!</div>
+        <div class="word-bank-items">
+          <div class="word-chip">Hello</div>
+          <div class="word-chip">Hi</div>
+          <div class="word-chip">Good Morning</div>
+          <div class="word-chip">Good Afternoon</div>
+          <div class="word-chip">Good Evening</div>
+          <div class="word-chip">Good Night</div>
+          <div class="word-chip">Goodbye</div>
+          <div class="word-chip">See you later</div>
+          <div class="word-chip">How are you?</div>
+          <div class="word-chip">I'm fine</div>
+          <div class="word-chip">Thank you</div>
+        </div>
+      </div>
+
+      <!-- Section A – Match the Greeting -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">A</div>
+          <div class="section-label">Match the greeting with the <em>right time</em> 🕐</div>
+        </div>
+        <div class="match-grid">
+          <div class="match-card">
+            <div class="match-emoji">☀️</div>
+            <div class="match-text">
+              <div class="match-phrase">6:00 AM – 11:00 AM</div>
+              <div style="margin-top:6px"><div class="match-blank"></div></div>
+            </div>
+          </div>
+          <div class="match-card">
+            <div class="match-emoji">🌤️</div>
+            <div class="match-text">
+              <div class="match-phrase">12:00 PM – 5:00 PM</div>
+              <div style="margin-top:6px"><div class="match-blank"></div></div>
+            </div>
+          </div>
+          <div class="match-card">
+            <div class="match-emoji">🌙</div>
+            <div class="match-text">
+              <div class="match-phrase">6:00 PM – 9:00 PM</div>
+              <div style="margin-top:6px"><div class="match-blank"></div></div>
+            </div>
+          </div>
+          <div class="match-card">
+            <div class="match-emoji">😴</div>
+            <div class="match-text">
+              <div class="match-phrase">Before sleeping</div>
+              <div style="margin-top:6px"><div class="match-blank"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section B – Fill in the Blanks -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">B</div>
+          <div class="section-label">Fill in the <em>blanks</em>! Use the Word Bank ✏️</div>
+        </div>
+        <div class="fill-list">
+          <div class="fill-item">
+            <div class="fill-num">1.</div>
+            <div class="fill-sentence">You meet your teacher at 7 AM. You say: "<span class="blank"></span>"</div>
+            <div class="fill-emoji">👩‍🏫</div>
+          </div>
+          <div class="fill-item">
+            <div class="fill-num">2.</div>
+            <div class="fill-sentence">Your friend asks "How are you?" You answer: "<span class="blank"></span>, thank you!"</div>
+            <div class="fill-emoji">😊</div>
+          </div>
+          <div class="fill-item">
+            <div class="fill-num">3.</div>
+            <div class="fill-sentence">School is over. You say to your friends: "<span class="blank"></span>!"</div>
+            <div class="fill-emoji">🎒</div>
+          </div>
+          <div class="fill-item">
+            <div class="fill-num">4.</div>
+            <div class="fill-sentence">You see your friend at 2 PM. You say: "<span class="blank"></span>"</div>
+            <div class="fill-emoji">🌞</div>
+          </div>
+          <div class="fill-item">
+            <div class="fill-num">5.</div>
+            <div class="fill-sentence">Before going to bed, Mum says: "<span class="blank"></span>, dear!"</div>
+            <div class="fill-emoji">🌛</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section C – True or False -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">C</div>
+          <div class="section-label"><em>True</em> or <em>False</em>? Circle your answer! ⭕</div>
+        </div>
+        <div class="tf-list">
+          <div class="tf-item">
+            <div class="tf-num">1.</div>
+            <div class="tf-text">We say "Good Morning" when the sun goes down.</div>
+            <div class="tf-boxes">
+              <div class="tf-box">TRUE</div>
+              <div class="tf-box">FALSE</div>
+            </div>
+          </div>
+          <div class="tf-item">
+            <div class="tf-num">2.</div>
+            <div class="tf-text">"Hello" and "Hi" are both greetings.</div>
+            <div class="tf-boxes">
+              <div class="tf-box">TRUE</div>
+              <div class="tf-box">FALSE</div>
+            </div>
+          </div>
+          <div class="tf-item">
+            <div class="tf-num">3.</div>
+            <div class="tf-text">"Good Night" is used when you meet someone in the morning.</div>
+            <div class="tf-boxes">
+              <div class="tf-box">TRUE</div>
+              <div class="tf-box">FALSE</div>
+            </div>
+          </div>
+          <div class="tf-item">
+            <div class="tf-num">4.</div>
+            <div class="tf-text">"Goodbye" means you are leaving or saying farewell.</div>
+            <div class="tf-boxes">
+              <div class="tf-box">TRUE</div>
+              <div class="tf-box">FALSE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-brand">⭐ BunRey English Course</div>
+      <div class="footer-stars">🌟🌟🌟🌟🌟</div>
+      <div class="footer-pg">Page 1 of 3</div>
+    </div>
+  </div>
+
+  <!-- ========== PAGE 2 ========== -->
+  <div class="page">
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">
+          BunRey
+          <sub>English Course</sub>
+        </div>
+        <div class="badge">Grade 1 · Worksheet</div>
+      </div>
+      <div class="header-title">🌟 Greetings – <span>Keep Going!</span></div>
+    </div>
+
+    <!-- Student Info -->
+    <div class="info-row">
+      <div class="info-field">
+        <label>Name</label>
+        <div class="line"></div>
+      </div>
+      <div class="info-field">
+        <label>Class</label>
+        <div class="line" style="max-width:70px"></div>
+      </div>
+      <div class="info-field">
+        <label>Date</label>
+        <div class="line" style="max-width:90px"></div>
+      </div>
+      <div class="score-box"><span>Score</span></div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- Section D – Unscramble -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">D</div>
+          <div class="section-label">Unscramble the <em>letters</em>! 🔤</div>
+        </div>
+        <div class="unscramble-list">
+          <div class="unscramble-item">
+            <div class="unscramble-num">1.</div>
+            <div class="scrambled-letters">
+              <div class="letter-box">L</div><div class="letter-box">E</div><div class="letter-box">H</div><div class="letter-box">L</div><div class="letter-box">O</div>
+            </div>
+            <div class="arrow-right">→</div>
+            <div class="answer-boxes">
+              <div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div>
+            </div>
+          </div>
+          <div class="unscramble-item">
+            <div class="unscramble-num">2.</div>
+            <div class="scrambled-letters">
+              <div class="letter-box">B</div><div class="letter-box">O</div><div class="letter-box">D</div><div class="letter-box">G</div><div class="letter-box">O</div><div class="letter-box">Y</div><div class="letter-box">E</div>
+            </div>
+            <div class="arrow-right">→</div>
+            <div class="answer-boxes">
+              <div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div>
+            </div>
+          </div>
+          <div class="unscramble-item">
+            <div class="unscramble-num">3.</div>
+            <div class="scrambled-letters">
+              <div class="letter-box">N</div><div class="letter-box">G</div><div class="letter-box">I</div><div class="letter-box">H</div><div class="letter-box">T</div>
+            </div>
+            <div class="arrow-right">→</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:#6c74b3;margin-right:4px">Good</div>
+            <div class="answer-boxes">
+              <div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div>
+            </div>
+          </div>
+          <div class="unscramble-item">
+            <div class="unscramble-num">4.</div>
+            <div class="scrambled-letters">
+              <div class="letter-box">N</div><div class="letter-box">I</div><div class="letter-box">R</div><div class="letter-box">O</div><div class="letter-box">G</div><div class="letter-box">N</div><div class="letter-box">M</div>
+            </div>
+            <div class="arrow-right">→</div>
+            <div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;color:#6c74b3;margin-right:4px">Good</div>
+            <div class="answer-boxes">
+              <div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div><div class="ans-box"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section E – Draw & Write -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">E</div>
+          <div class="section-label">Draw a face 😊 and <em>write</em> the greeting below!</div>
+        </div>
+        <div class="draw-grid">
+          <div class="draw-card">
+            <div class="draw-area">🌅</div>
+            <div class="draw-prompt">
+              <div class="draw-phrase">Morning greeting:</div>
+              <div class="write-lines">
+                <div class="write-line"></div>
+                <div class="write-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="draw-card">
+            <div class="draw-area">🌞</div>
+            <div class="draw-prompt">
+              <div class="draw-phrase">Afternoon greeting:</div>
+              <div class="write-lines">
+                <div class="write-line"></div>
+                <div class="write-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="draw-card">
+            <div class="draw-area">🌃</div>
+            <div class="draw-prompt">
+              <div class="draw-phrase">Evening greeting:</div>
+              <div class="write-lines">
+                <div class="write-line"></div>
+                <div class="write-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /page-body-p2 -->
+
+    <div class="page-footer">
+      <div class="footer-brand">⭐ BunRey English Course</div>
+      <div class="footer-stars">🌟🌟🌟🌟🌟</div>
+      <div class="footer-pg">Page 2 of 3</div>
+    </div>
+  </div><!-- /page 2 -->
+
+  <!-- ========== PAGE 3 ========== -->
+  <div class="page">
+    <div class="header">
+      <div class="header-top">
+        <div class="brand">BunRey <sub>English Course</sub></div>
+        <div class="badge">Grade 1 · Worksheet</div>
+      </div>
+      <div class="header-title">🌟 Greetings – <span>Almost Done!</span></div>
+    </div>
+
+    <div class="info-row">
+      <div class="info-field"><label>Name</label><div class="line"></div></div>
+      <div class="info-field"><label>Class</label><div class="line" style="max-width:70px"></div></div>
+      <div class="info-field"><label>Date</label><div class="line" style="max-width:90px"></div></div>
+      <div class="score-box"><span>Score</span></div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- Section F – Circle the Correct Answer -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">F</div>
+          <div class="section-label">Circle the <em>correct</em> answer! ⭕</div>
+        </div>
+        <div class="circle-list">
+          <div class="circle-item">
+            <div class="circle-num">1.</div>
+            <div class="circle-content">
+              <div class="circle-q">Your friend says "How are you?" You reply:</div>
+              <div class="circle-options">
+                <div class="opt">Good Morning</div>
+                <div class="opt">I'm fine, thank you!</div>
+                <div class="opt">Goodbye</div>
+              </div>
+            </div>
+          </div>
+          <div class="circle-item">
+            <div class="circle-num">2.</div>
+            <div class="circle-content">
+              <div class="circle-q">You are leaving school. You say:</div>
+              <div class="circle-options">
+                <div class="opt">Good Morning</div>
+                <div class="opt">Hello</div>
+                <div class="opt">See you later!</div>
+              </div>
+            </div>
+          </div>
+          <div class="circle-item">
+            <div class="circle-num">3.</div>
+            <div class="circle-content">
+              <div class="circle-q">It is 8 PM and you meet your neighbour. You say:</div>
+              <div class="circle-options">
+                <div class="opt">Good Morning</div>
+                <div class="opt">Good Evening</div>
+                <div class="opt">Good Afternoon</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section G – Colour & Match -->
+      <div>
+        <div class="section-title">
+          <div class="section-num">G</div>
+          <div class="section-label">Colour the greetings by their <em>time of day</em> 🎨</div>
+        </div>
+        <div class="colour-instruction">
+          🟠 <strong>Orange</strong> = Morning &nbsp;|&nbsp; 🔴 <strong>Red</strong> = Afternoon &nbsp;|&nbsp; 🟣 <strong>Purple</strong> = Evening &nbsp;|&nbsp; 🟢 <strong>Green</strong> = Any time
+        </div>
+        <div class="colour-grid">
+          <div class="colour-card">
+            <div class="colour-emoji">☀️</div>
+            <div class="colour-phrase">Good Morning</div>
+            <div class="colour-time time-morning">Morning</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">👋</div>
+            <div class="colour-phrase">Hello!</div>
+            <div class="colour-time time-anytime">Any time</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">🌤️</div>
+            <div class="colour-phrase">Good Afternoon</div>
+            <div class="colour-time time-afternoon">Afternoon</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">🌙</div>
+            <div class="colour-phrase">Good Evening</div>
+            <div class="colour-time time-evening">Evening</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">😴</div>
+            <div class="colour-phrase">Good Night</div>
+            <div class="colour-time time-evening">Night</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">🤝</div>
+            <div class="colour-phrase">Hi!</div>
+            <div class="colour-time time-anytime">Any time</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">👋</div>
+            <div class="colour-phrase">Goodbye</div>
+            <div class="colour-time time-anytime">Any time</div>
+          </div>
+          <div class="colour-card">
+            <div class="colour-emoji">😊</div>
+            <div class="colour-phrase">See you later!</div>
+            <div class="colour-time time-anytime">Any time</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page-footer">
+      <div class="footer-brand">⭐ BunRey English Course</div>
+      <div class="footer-stars">🌟🌟🌟🌟🌟</div>
+      <div class="footer-pg">Page 3 of 3</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

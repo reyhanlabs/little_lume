@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Numbers Worksheet Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root {
+  --red:      #FF4757;
+  --orange:   #FF6B35;
+  --yellow:   #FFD32A;
+  --green:    #2ED573;
+  --teal:     #1E90FF;
+  --purple:   #A55EEA;
+  --pink:     #FF6EB4;
+  --navy:     #1C2B5E;
+  --ink:      #2B2D42;
+  --muted:    #7A7F9A;
+  --soft:     #F6F8FF;
+  --border:   #DDE2F5;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: #E2E8F8; color: var(--ink); }
+
+/* ============================================================
+   SCREEN BANNER
+   ============================================================ */
+.screen-only {
+  background: var(--navy); color: #fff; text-align: center;
+  padding: 11px 16px; font-size: 13px; font-weight: 700;
+}
+.screen-only strong { color: var(--yellow); }
+.pages-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 36px; padding: 36px 16px 64px;
+}
+
+/* ============================================================
+   PAGE (A4) – EKSAK 297mm
+   ============================================================ */
+.page {
+  width: 210mm; height: 297mm; background: #fff;
+  border-radius: 18px; box-shadow: 0 14px 52px rgba(28,43,94,.18);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+
+/* ============================================================
+   RAINBOW STRIPS
+   ============================================================ */
+.rainbow-strip {
+  height: 10px;
+  background: linear-gradient(90deg,
+    #FF4757 0%,#FF6B35 16%,#FFD32A 33%,
+    #2ED573 50%,#1E90FF 66%,#A55EEA 83%,#FF6EB4 100%);
+}
+.rainbow-sub {
+  height: 5px;
+  background: linear-gradient(90deg,
+    #FF4757 0%,#FF6B35 16%,#FFD32A 33%,
+    #2ED573 50%,#1E90FF 66%,#A55EEA 83%,#FF6EB4 100%);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.ws-header {
+  background: linear-gradient(135deg, #1C2B5E 0%, #2E4799 60%, #5B6FD4 100%);
+  padding: 14px 24px 12px; position: relative; overflow: hidden;
+}
+.ws-header::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 150px; height: 150px; border-radius: 50%; background: rgba(255,255,255,.07);
+}
+.ws-header::after {
+  content: ''; position: absolute; bottom: -30px; left: 50px;
+  width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,.05);
+}
+.wh-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; position: relative; z-index: 1;
+}
+.wh-brand {
+  font-family: 'Fredoka One', cursive; font-size: 16px;
+  color: var(--yellow); letter-spacing: .5px;
+}
+.wh-brand sub {
+  display: block; font-family: 'Nunito', sans-serif; font-size: 8.5px;
+  font-weight: 800; color: rgba(255,255,255,.6); letter-spacing: 2px;
+  text-transform: uppercase; margin-top: 1px;
+}
+.wh-badge {
+  background: var(--yellow); color: var(--navy); font-size: 10px;
+  font-weight: 900; letter-spacing: .5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+}
+.wh-title { margin-top: 8px; position: relative; z-index: 1; }
+.wh-title h1 {
+  font-family: 'Fredoka One', cursive; font-size: 26px; color: #fff;
+  text-shadow: 2px 3px 0 rgba(0,0,0,.12); line-height: 1;
+}
+.wh-title h1 span { color: var(--yellow); }
+
+/* ============================================================
+   STUDENT INFO BAR
+   ============================================================ */
+.info-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 7px 24px; background: #FFFCE6; border-bottom: 2px dashed #FFD32A;
+}
+.info-field { display: flex; align-items: center; gap: 6px; flex: 1; }
+.info-field label {
+  font-size: 9.5px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: .8px; color: var(--muted); white-space: nowrap;
+}
+.info-field .line { flex: 1; border-bottom: 2px solid #FFD32A; min-width: 50px; }
+.score-box {
+  width: 44px; height: 44px; border: 2.5px solid var(--teal);
+  border-radius: 10px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.score-box span {
+  font-size: 8px; font-weight: 900; color: var(--muted);
+  letter-spacing: .5px; text-transform: uppercase;
+}
+
+/* ============================================================
+   WORD BANK
+   ============================================================ */
+.word-bank {
+  background: linear-gradient(135deg, #FFFCE0, #FFF4A0);
+  border: 2.5px solid var(--yellow); border-radius: 12px; padding: 8px 12px;
+}
+.wb-title {
+  font-family: 'Fredoka One', cursive; font-size: 12px; color: #7A5800;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.wb-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  background: #fff; border: 2px solid var(--yellow); border-radius: 20px;
+  padding: 3px 10px; font-family: 'Fredoka One', cursive; font-size: 12px;
+  color: var(--navy); box-shadow: 2px 2px 0 rgba(255,211,42,.4);
+}
+
+/* ============================================================
+   PAGE BODY
+   ============================================================ */
+.page-body { flex: 1; padding: 10px 24px 14px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+.sec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.sec-num {
+  width: 26px; height: 26px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka One', cursive; font-size: 15px; color: #fff; flex-shrink: 0;
+}
+.sn-red    { background: var(--red); }
+.sn-orange { background: var(--orange); }
+.sn-yellow { background: #D4A800; }
+.sn-green  { background: var(--green); color: #004D1A; }
+.sn-teal   { background: var(--teal); }
+.sn-purple { background: var(--purple); }
+.sn-pink   { background: var(--pink); }
+
+.sec-title { font-family: 'Fredoka One', cursive; font-size: 16px; color: var(--navy); line-height: 1.1; }
+.sec-title em { font-style: normal; color: var(--red); }
+.sec-desc { font-size: 10px; font-weight: 700; color: var(--muted); margin-top: 1px; }
+
+/* ============================================================
+   EXERCISE A – MATCH NUMBER TO WORD
+   ============================================================ */
+.match-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.match-col { display: flex; flex-direction: column; gap: 6px; }
+
+.match-num-card {
+  border-radius: 10px; padding: 7px 11px;
+  display: flex; align-items: center; gap: 8px;
+  border: 2.5px solid transparent;
+}
+.mn-digit {
+  font-family: 'Fredoka One', cursive; font-size: 24px;
+  color: var(--navy); width: 32px; text-align: center; flex-shrink: 0;
+}
+.mn-dots { font-size: 11px; letter-spacing: 1px; flex: 1; }
+.mn-box {
+  border-bottom: 2.5px solid var(--teal); min-width: 80px; height: 18px;
+  margin-left: 5px;
+}
+
+.match-word-card {
+  border-radius: 10px; padding: 7px 11px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; background: #fff; border: 2px dashed var(--border);
+}
+.mw-word { font-family: 'Fredoka One', cursive; font-size: 14px; color: var(--navy); }
+.mw-num-blank {
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  display: flex; align-items: center; gap: 4px;
+}
+.mw-line {
+  border-bottom: 2px solid var(--red); min-width: 24px;
+  display: inline-block; vertical-align: bottom; height: 14px;
+}
+
+.c-red    { background: linear-gradient(135deg,#FFE5E5,#FFCACA); border-color: #FF8A8A; }
+.c-orange { background: linear-gradient(135deg,#FFF0E0,#FFD9B8); border-color: #FFA05E; }
+.c-yellow { background: linear-gradient(135deg,#FFFCE0,#FFEE99); border-color: #FFD32A; }
+.c-green  { background: linear-gradient(135deg,#E5FFF0,#AAFFD4); border-color: #2ED573; }
+.c-teal   { background: linear-gradient(135deg,#E0EEFF,#B3D0FF); border-color: #1E90FF; }
+.c-purple { background: linear-gradient(135deg,#F0E5FF,#D8AAFF); border-color: #A55EEA; }
+.c-pink   { background: linear-gradient(135deg,#FFE5F4,#FFB5DC); border-color: #FF6EB4; }
+
+/* ============================================================
+   EXERCISE B – WRITE THE WORD
+   ============================================================ */
+.write-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.write-card {
+  border-radius: 10px; padding: 8px 6px; text-align: center;
+  border: 2.5px solid transparent;
+}
+.wc-digit {
+  font-family: 'Fredoka One', cursive; font-size: 32px;
+  color: var(--navy); line-height: 1; margin-bottom: 3px;
+}
+.wc-dots { font-size: 11px; letter-spacing: 1px; min-height: 16px; margin-bottom: 4px; }
+.wc-blank { border-bottom: 2.5px solid var(--purple); height: 18px; margin: 0 4px; }
+.wc-hint { font-size: 9px; font-weight: 800; color: var(--muted); margin-top: 3px; font-style: italic; }
+
+/* ============================================================
+   EXERCISE C – COUNT AND CIRCLE
+   ============================================================ */
+.count-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.count-card {
+  background: var(--soft); border: 2px solid var(--border);
+  border-radius: 10px; padding: 8px 6px; text-align: center;
+}
+.cc-objects { font-size: 13px; letter-spacing: 2px; min-height: 26px; margin-bottom: 4px; line-height: 1.5; }
+.cc-q { font-size: 10.5px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
+.cc-options { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.cc-opt {
+  border: 2px solid var(--border); border-radius: 10px;
+  padding: 2px 8px; font-family: 'Fredoka One', cursive;
+  font-size: 12px; color: var(--navy);
+}
+
+/* ============================================================
+   EXERCISE D – TRUE / FALSE
+   ============================================================ */
+.tf-list { display: flex; flex-direction: column; gap: 6px; }
+.tf-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px; border-radius: 9px;
+  border: 2px solid var(--border); background: #fff;
+}
+.tf-num {
+  font-family: 'Fredoka One', cursive; font-size: 13px;
+  color: var(--teal); width: 18px; flex-shrink: 0;
+}
+.tf-text { font-size: 11.5px; font-weight: 700; flex: 1; color: var(--ink); }
+.tf-boxes { display: flex; gap: 5px; }
+.tf-box {
+  border: 2px solid var(--border); border-radius: 6px; padding: 2px 8px;
+  font-size: 9.5px; font-weight: 900; color: var(--muted); letter-spacing: .4px;
+}
+
+/* ============================================================
+   EXERCISE E – FILL IN THE BLANK
+   ============================================================ */
+.fill-list { display: flex; flex-direction: column; gap: 6px; }
+.fill-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: var(--soft); border-radius: 9px;
+  padding: 7px 10px; border-left: 4px solid var(--orange);
+}
+.fi-num {
+  font-family: 'Fredoka One', cursive; font-size: 14px;
+  color: var(--orange); width: 18px; flex-shrink: 0; margin-top: 1px;
+}
+.fi-text { font-size: 11.5px; font-weight: 700; color: var(--navy); flex: 1; line-height: 1.5; }
+.blank {
+  display: inline-block; border-bottom: 2px solid var(--purple);
+  min-width: 70px; margin: 0 3px; vertical-align: bottom;
+}
+.fi-emoji { font-size: 16px; flex-shrink: 0; }
+
+/* ============================================================
+   EXERCISE F – UNSCRAMBLE
+   ============================================================ */
+.us-list { display: flex; flex-direction: column; gap: 8px; }
+.us-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.us-num {
+  font-family: 'Fredoka One', cursive; font-size: 13px;
+  color: var(--purple); width: 20px; flex-shrink: 0;
+}
+.lt-wrap { display: flex; gap: 3px; flex-wrap: wrap; }
+.lt {
+  width: 22px; height: 22px; border: 2px solid var(--purple); border-radius: 5px;
+  background: #F4EEFF; display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka One', cursive; font-size: 13px; color: var(--purple);
+}
+.us-arrow { color: #C8D0F0; font-size: 14px; flex-shrink: 0; }
+.us-ctx { font-family: 'Fredoka One', cursive; font-size: 12px; color: var(--muted); }
+.us-ctx span { border-bottom: 2px solid var(--navy); min-width: 50px; display: inline-block; vertical-align: bottom; height: 16px; }
+
+/* ============================================================
+   EXERCISE G – MY FAVOURITE NUMBER
+   ============================================================ */
+.fav-card {
+  background: linear-gradient(135deg, #FFF8E1, #FFF0B8);
+  border: 2.5px solid var(--yellow); border-radius: 12px; padding: 10px 12px;
+}
+.fav-top {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.fav-icon {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: #fff; border: 2.5px solid var(--yellow);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.fav-label { font-family: 'Fredoka One', cursive; font-size: 14px; color: var(--navy); }
+.fav-sub { font-size: 10px; font-weight: 700; color: var(--muted); }
+
+.fav-lines { display: flex; flex-direction: column; gap: 8px; }
+.fav-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.fav-lbl { font-family: 'Fredoka One', cursive; font-size: 13px; color: var(--navy); white-space: nowrap; }
+.fav-blank { flex: 1; border-bottom: 2.5px solid var(--red); min-width: 70px; height: 18px; }
+.fav-hint { font-size: 9px; font-weight: 800; color: var(--muted); font-style: italic; white-space: nowrap; }
+.fav-draw-area {
+  border: 2px dashed var(--yellow); border-radius: 10px; height: 55px;
+  background: rgba(255,255,255,.6);
+  display: flex; align-items: center; justify-content: center;
+}
+.fav-draw-label { font-size: 10px; font-weight: 800; color: var(--muted); }
+
+/* ============================================================
+   EXERCISE H – CIRCLE CORRECT ANSWER
+   ============================================================ */
+.circle-list { display: flex; flex-direction: column; gap: 6px; }
+.circle-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 6px 10px; border-radius: 9px;
+  background: var(--soft); border: 2px solid var(--border);
+}
+.ci-num {
+  font-family: 'Fredoka One', cursive; font-size: 13px;
+  color: var(--green); width: 18px; flex-shrink: 0; margin-top: 1px;
+}
+.ci-body { flex: 1; }
+.ci-q { font-size: 11.5px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+.ci-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+.ci-opt {
+  border: 2px solid var(--border); border-radius: 18px;
+  padding: 2px 10px; font-size: 11px; font-weight: 700; color: var(--ink);
+}
+
+/* ============================================================
+   ANSWER KEY ROW
+   ============================================================ */
+.answer-key-row {
+  background: #E5FFF0; border: 2px solid #2ED573; border-radius: 10px;
+  padding: 7px 12px; display: flex; align-items: center;
+  gap: 8px; flex-wrap: wrap; margin-top: 5px;
+}
+.answer-key-row span:first-child {
+  font-family: 'Fredoka One', cursive; font-size: 12px; color: #0A6629; white-space: nowrap;
+}
+.ans-badge {
+  background: #fff; border: 1.5px solid #2ED573; border-radius: 20px;
+  padding: 2px 8px; font-size: 10px; font-weight: 800; color: #0A6629;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.page-footer {
+  background: var(--soft); border-top: 2px dashed var(--border);
+  padding: 6px 24px; display: flex; justify-content: space-between; align-items: center;
+}
+.pf-brand { font-family: 'Fredoka One', cursive; font-size: 12px; color: var(--teal); }
+.pf-stars { font-size: 12px; letter-spacing: 3px; }
+.pf-page  { font-size: 10px; font-weight: 800; color: var(--muted); letter-spacing: .5px; }
+
+/* ============================================================
+   EXTRA SPACING FOR SECTION A ON PAGE 1
+   ============================================================ */
+.section-a-wrapper {
+  margin-bottom: 18px;
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+  @page { size: A4 portrait; margin: 0mm; }
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  .screen-only { display: none !important; }
+  .pages-wrap { display: block; padding: 0; background: #fff; }
+  .page {
+    width: 210mm; height: 297mm; min-height: 297mm; max-height: 297mm;
+    border-radius: 0 !important; box-shadow: none !important; margin: 0 !important;
+    page-break-after: always; page-break-inside: avoid;
+    break-after: page; break-inside: avoid; overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .rainbow-strip, .ws-header, .info-bar, .word-bank,
+  .chip, .match-num-card, .write-card, .count-card, .fill-item,
+  .tf-item, .fav-card, .circle-item, .lt,
+  .sec-num, .page-footer, .wh-badge, .answer-key-row
+  { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="screen-only">
+  🖨️ Print: <strong>Ctrl+P</strong> (Win) / <strong>Cmd+P</strong> (Mac) → Kertas: <strong>A4</strong> · Margin: <strong>None</strong> · Aktifkan <strong>Background graphics</strong>
+</div>
+
+<div class="pages-wrap">
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 – Word Bank + A + B
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="rainbow-strip"></div>
+  <div class="ws-header">
+    <div class="wh-top">
+      <div class="wh-brand">BunRey <sub>English Course</sub></div>
+      <div class="wh-badge">Grade 1 · Worksheet</div>
+    </div>
+    <div class="wh-title">
+      <h1>🔢 Let's Practice <span>Numbers!</span></h1>
+    </div>
+  </div>
+  <div class="info-bar">
+    <div class="info-field"><label>Name</label><div class="line"></div></div>
+    <div class="info-field"><label>Class</label><div class="line" style="max-width:60px"></div></div>
+    <div class="info-field"><label>Date</label><div class="line" style="max-width:84px"></div></div>
+    <div class="score-box"><span>Score</span></div>
+  </div>
+  <div class="page-body">
+    <div class="word-bank">
+      <div class="wb-title">📚 Word Bank – Use these words!</div>
+      <div class="wb-chips">
+        <div class="chip">One</div><div class="chip">Two</div><div class="chip">Three</div>
+        <div class="chip">Four</div><div class="chip">Five</div><div class="chip">Six</div>
+        <div class="chip">Seven</div><div class="chip">Eight</div><div class="chip">Nine</div>
+        <div class="chip">Ten</div><div class="chip">Eleven</div><div class="chip">Twelve</div>
+        <div class="chip">Fifteen</div><div class="chip">Twenty</div>
+      </div>
+    </div>
+
+    <!-- SECTION A – dengan margin bottom ekstra -->
+    <div class="section-a-wrapper">
+      <div class="sec-head">
+        <div class="sec-num sn-red">A</div>
+        <div>
+          <div class="sec-title">Match the <em>number</em> with the word! 🔗</div>
+          <div class="sec-desc">Cocokkan angka di kiri dengan kata bahasa Inggrisnya di kanan — tulis nomornya!</div>
+        </div>
+      </div>
+      <div class="match-two-col">
+        <div class="match-col">
+          <div class="match-num-card c-red"><div class="mn-digit">1</div><div class="mn-dots">🍎</div><div class="mn-box"></div></div>
+          <div class="match-num-card c-orange"><div class="mn-digit">4</div><div class="mn-dots">🌸🌸🌸🌸</div><div class="mn-box"></div></div>
+          <div class="match-num-card c-yellow"><div class="mn-digit">7</div><div class="mn-dots">⭐⭐⭐⭐⭐⭐⭐</div><div class="mn-box"></div></div>
+          <div class="match-num-card c-green"><div class="mn-digit">10</div><div class="mn-dots">🔟</div><div class="mn-box"></div></div>
+          <div class="match-num-card c-teal"><div class="mn-digit">3</div><div class="mn-dots">🐠🐠🐠</div><div class="mn-box"></div></div>
+        </div>
+        <div class="match-col">
+          <div class="match-word-card" style="border-color:#FFD32A;"><div class="mw-word">🌟 Seven</div><div class="mw-num-blank">Angka: <span class="mw-line"></span></div></div>
+          <div class="match-word-card" style="border-color:#2ED573;"><div class="mw-word">🍎 One</div><div class="mw-num-blank">Angka: <span class="mw-line"></span></div></div>
+          <div class="match-word-card" style="border-color:#1E90FF;"><div class="mw-word">🔟 Ten</div><div class="mw-num-blank">Angka: <span class="mw-line"></span></div></div>
+          <div class="match-word-card" style="border-color:#FF8A8A;"><div class="mw-word">🌸 Four</div><div class="mw-num-blank">Angka: <span class="mw-line"></span></div></div>
+          <div class="match-word-card" style="border-color:#FFA05E;"><div class="mw-word">🐠 Three</div><div class="mw-num-blank">Angka: <span class="mw-line"></span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION B -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-orange">B</div>
+        <div>
+          <div class="sec-title">Write the <em>number word</em>! ✏️</div>
+          <div class="sec-desc">Tulis nama angkanya dalam bahasa Inggris di garis bawah!</div>
+        </div>
+      </div>
+      <div class="write-grid">
+        <div class="write-card c-red"><div class="wc-digit">2</div><div class="wc-dots">🍊🍊</div><div class="wc-blank"></div><div class="wc-hint">(Dua)</div></div>
+        <div class="write-card c-orange"><div class="wc-digit">5</div><div class="wc-dots">⭐⭐⭐⭐⭐</div><div class="wc-blank"></div><div class="wc-hint">(Lima)</div></div>
+        <div class="write-card c-yellow"><div class="wc-digit">8</div><div class="wc-dots">🎈</div><div class="wc-blank"></div><div class="wc-hint">(Delapan)</div></div>
+        <div class="write-card c-green"><div class="wc-digit">6</div><div class="wc-dots">🍓🍓🍓🍓🍓🍓</div><div class="wc-blank"></div><div class="wc-hint">(Enam)</div></div>
+        <div class="write-card c-teal"><div class="wc-digit">9</div><div class="wc-dots">🌟</div><div class="wc-blank"></div><div class="wc-hint">(Sembilan)</div></div>
+        <div class="write-card c-purple"><div class="wc-digit">12</div><div class="wc-dots">📅</div><div class="wc-blank"></div><div class="wc-hint">(Dua belas)</div></div>
+        <div class="write-card c-pink"><div class="wc-digit">15</div><div class="wc-dots">📚</div><div class="wc-blank"></div><div class="wc-hint">(Lima belas)</div></div>
+        <div class="write-card c-red" style="background:linear-gradient(135deg,#FFF8DC,#FFE97A);border-color:#FFD32A;"><div class="wc-digit">20</div><div class="wc-dots">🏆</div><div class="wc-blank"></div><div class="wc-hint">(Dua puluh)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟🌟🌟</div>
+    <div class="pf-page">Page 1 of 3</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 – C + D + E
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="rainbow-strip"></div>
+  <div class="ws-header">
+    <div class="wh-top">
+      <div class="wh-brand">BunRey <sub>English Course</sub></div>
+      <div class="wh-badge">Grade 1 · Worksheet</div>
+    </div>
+    <div class="wh-title">
+      <h1>🔢 Let's Practice <span>Numbers!</span></h1>
+    </div>
+  </div>
+  <div class="info-bar">
+    <div class="info-field"><label>Name</label><div class="line"></div></div>
+    <div class="info-field"><label>Class</label><div class="line" style="max-width:60px"></div></div>
+    <div class="info-field"><label>Date</label><div class="line" style="max-width:84px"></div></div>
+    <div class="score-box"><span>Score</span></div>
+  </div>
+  <div class="page-body">
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-yellow">C</div>
+        <div>
+          <div class="sec-title">Count and <em>circle</em> the right answer! ⭕</div>
+          <div class="sec-desc">Hitung benda-benda lalu lingkari jawaban yang benar!</div>
+        </div>
+      </div>
+      <div class="count-grid">
+        <div class="count-card"><div class="cc-objects">🐱🐱🐱🐱🐱🐱</div><div class="cc-q">How many cats?</div><div class="cc-options"><div class="cc-opt">5</div><div class="cc-opt">6</div><div class="cc-opt">7</div></div></div>
+        <div class="count-card"><div class="cc-objects">⭐⭐⭐⭐⭐⭐⭐⭐⭐</div><div class="cc-q">How many stars?</div><div class="cc-options"><div class="cc-opt">8</div><div class="cc-opt">9</div><div class="cc-opt">10</div></div></div>
+        <div class="count-card"><div class="cc-objects">🍕🍕🍕</div><div class="cc-q">How many pizzas?</div><div class="cc-options"><div class="cc-opt">2</div><div class="cc-opt">3</div><div class="cc-opt">4</div></div></div>
+        <div class="count-card"><div class="cc-objects">🦋🦋🦋🦋🦋🦋🦋🦋</div><div class="cc-q">How many butterflies?</div><div class="cc-options"><div class="cc-opt">7</div><div class="cc-opt">8</div><div class="cc-opt">9</div></div></div>
+        <div class="count-card"><div class="cc-objects">🎈🎈🎈🎈🎈🎈🎈🎈🎈🎈</div><div class="cc-q">How many balloons?</div><div class="cc-options"><div class="cc-opt">9</div><div class="cc-opt">10</div><div class="cc-opt">11</div></div></div>
+        <div class="count-card"><div class="cc-objects">🍎🍎🍎🍎🍎</div><div class="cc-q">How many apples?</div><div class="cc-options"><div class="cc-opt">4</div><div class="cc-opt">5</div><div class="cc-opt">6</div></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-teal">D</div>
+        <div>
+          <div class="sec-title"><em>True</em> or <em>False</em>? Circle your answer! ⭕</div>
+          <div class="sec-desc">Lingkari TRUE jika benar, FALSE jika salah!</div>
+        </div>
+      </div>
+      <div class="tf-list">
+        <div class="tf-item"><div class="tf-num">1.</div><div class="tf-text">The number "Seven" is written as 7.</div><div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div></div>
+        <div class="tf-item"><div class="tf-num">2.</div><div class="tf-text">"Twelve" means the number 20.</div><div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div></div>
+        <div class="tf-item"><div class="tf-num">3.</div><div class="tf-text">Numbers 13 to 19 all end with "-teen" in English.</div><div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div></div>
+        <div class="tf-item"><div class="tf-num">4.</div><div class="tf-text">"Fifteen" is the English word for number 50.</div><div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div></div>
+        <div class="tf-item"><div class="tf-num">5.</div><div class="tf-text">"Ten" comes before "Nine" when we count up.</div><div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-orange">E</div>
+        <div>
+          <div class="sec-title">Fill in the <em>blanks</em>! ✏️</div>
+          <div class="sec-desc">Lengkapi kalimat dengan kata angka yang tepat dari Word Bank!</div>
+        </div>
+      </div>
+      <div class="fill-list">
+        <div class="fill-item"><div class="fi-num">1.</div><div class="fi-text">I have <span class="blank"></span> pencils. (angka 8)</div><div class="fi-emoji">✏️</div></div>
+        <div class="fill-item"><div class="fi-num">2.</div><div class="fi-text">There are <span class="blank"></span> months in a year. (angka 12)</div><div class="fi-emoji">📅</div></div>
+        <div class="fill-item"><div class="fi-num">3.</div><div class="fi-text">I am <span class="blank"></span> years old. (angka 7)</div><div class="fi-emoji">🎂</div></div>
+        <div class="fill-item"><div class="fi-num">4.</div><div class="fi-text">Our class has <span class="blank"></span> students. (angka 20)</div><div class="fi-emoji">🏫</div></div>
+        <div class="fill-item"><div class="fi-num">5.</div><div class="fi-text">A spider has <span class="blank"></span> legs. (angka 8)</div><div class="fi-emoji">🕷️</div></div>
+        <div class="fill-item"><div class="fi-num">6.</div><div class="fi-text">I have <span class="blank"></span> fingers on both hands. (angka 10)</div><div class="fi-emoji">🖐️</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟🌟🌟</div>
+    <div class="pf-page">Page 2 of 3</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 3 – F + G + H + Answer Key
+     ══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="rainbow-strip"></div>
+  <div class="ws-header">
+    <div class="wh-top">
+      <div class="wh-brand">BunRey <sub>English Course</sub></div>
+      <div class="wh-badge">Grade 1 · Worksheet</div>
+    </div>
+    <div class="wh-title">
+      <h1>🔢 Let's Practice <span>Numbers!</span></h1>
+    </div>
+  </div>
+  <div class="info-bar">
+    <div class="info-field"><label>Name</label><div class="line"></div></div>
+    <div class="info-field"><label>Class</label><div class="line" style="max-width:60px"></div></div>
+    <div class="info-field"><label>Date</label><div class="line" style="max-width:84px"></div></div>
+    <div class="score-box"><span>Score</span></div>
+  </div>
+  <div class="page-body">
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-purple">F</div>
+        <div>
+          <div class="sec-title">Unscramble the <em>number words</em>! 🔤</div>
+          <div class="sec-desc">Susun huruf-huruf acak jadi kata angka yang benar!</div>
+        </div>
+      </div>
+      <div class="us-list">
+        <div class="us-row"><div class="us-num">1.</div><div class="lt-wrap"><div class="lt">E</div><div class="lt">N</div><div class="lt">O</div></div><div class="us-arrow">→</div><div class="us-ctx"><span></span> <span style="font-size:10px">(1 = satu)</span></div></div>
+        <div class="us-row"><div class="us-num">2.</div><div class="lt-wrap"><div class="lt">V</div><div class="lt">I</div><div class="lt">F</div><div class="lt">E</div></div><div class="us-arrow">→</div><div class="us-ctx"><span></span> <span style="font-size:10px">(5 = lima)</span></div></div>
+        <div class="us-row"><div class="us-num">3.</div><div class="lt-wrap"><div class="lt">N</div><div class="lt">E</div><div class="lt">T</div></div><div class="us-arrow">→</div><div class="us-ctx"><span></span> <span style="font-size:10px">(10 = sepuluh)</span></div></div>
+        <div class="us-row"><div class="us-num">4.</div><div class="lt-wrap"><div class="lt">E</div><div class="lt">L</div><div class="lt">W</div><div class="lt">V</div><div class="lt">E</div><div class="lt">T</div></div><div class="us-arrow">→</div><div class="us-ctx"><span></span> <span style="font-size:10px">(12 = dua belas)</span></div></div>
+        <div class="us-row"><div class="us-num">5.</div><div class="lt-wrap"><div class="lt">N</div><div class="lt">E</div><div class="lt">T</div><div class="lt">W</div><div class="lt">Y</div><div class="lt">N</div><div class="lt">E</div><div class="lt">T</div></div><div class="us-arrow">→</div><div class="us-ctx"><span></span> <span style="font-size:10px">(20 = dua puluh)</span></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-yellow">G</div>
+        <div>
+          <div class="sec-title">My <em>Favourite Number</em>! ❤️</div>
+          <div class="sec-desc">Tulis angka favoritmu dan gambar benda-benda sebanyak itu!</div>
+        </div>
+      </div>
+      <div class="fav-card">
+        <div class="fav-top"><div class="fav-icon">❤️</div><div><div class="fav-label">My favourite number is…</div><div class="fav-sub">Angka favoritku adalah…</div></div></div>
+        <div class="fav-lines">
+          <div class="fav-row"><div class="fav-lbl">My favourite number is</div><div class="fav-blank" style="max-width:44px"></div><div class="fav-lbl">in English:</div><div class="fav-blank"></div><div class="fav-hint">(tulis angka &amp; katanya)</div></div>
+          <div class="fav-row"><div class="fav-lbl">I like this number because</div><div class="fav-blank"></div></div>
+          <div class="fav-draw-area"><div class="fav-draw-label">🎨 Draw objects as many as your favourite number here!</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-green">H</div>
+        <div>
+          <div class="sec-title">Circle the <em>correct</em> answer! ⭕</div>
+          <div class="sec-desc">Lingkari jawaban yang paling tepat!</div>
+        </div>
+      </div>
+      <div class="circle-list">
+        <div class="circle-item"><div class="ci-num">1.</div><div class="ci-body"><div class="ci-q">How do we say "11" in English?</div><div class="ci-opts"><div class="ci-opt">Oneteen</div><div class="ci-opt">Eleven</div><div class="ci-opt">Twenty</div></div></div></div>
+        <div class="circle-item"><div class="ci-num">2.</div><div class="ci-body"><div class="ci-q">"I have three books." — angka 3 dalam kata adalah:</div><div class="ci-opts"><div class="ci-opt">Thirteen</div><div class="ci-opt">Thirty</div><div class="ci-opt">Three</div></div></div></div>
+        <div class="circle-item"><div class="ci-num">3.</div><div class="ci-body"><div class="ci-q">🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸 — How many flowers?</div><div class="ci-opts"><div class="ci-opt">Thirteen</div><div class="ci-opt">Fourteen</div><div class="ci-opt">Fifteen</div></div></div></div>
+        <div class="circle-item"><div class="ci-num">4.</div><div class="ci-body"><div class="ci-q">What comes after "Nineteen" when counting?</div><div class="ci-opts"><div class="ci-opt">Eighteen</div><div class="ci-opt">Twenty</div><div class="ci-opt">Eleven</div></div></div></div>
+      </div>
+    </div>
+
+    <div class="answer-key-row">
+      <span>🗝️ Answer Key (C,D,H):</span>
+      <span class="ans-badge">C: 6·9·3·8·10·5</span>
+      <span class="ans-badge">D: T·F·T·F·F</span>
+      <span class="ans-badge">H: Eleven·Three·Fifteen·Twenty</span>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟🌟🌟</div>
+    <div class="pf-page">Page 3 of 3</div>
+  </div>
+</div>
+
+</div><!-- /pages-wrap -->
+</body>
+</html>

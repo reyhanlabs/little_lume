@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Self Introduction Worksheet Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --coral:#FF6B6B;--peach:#FF9A6C;--lemon:#FFD93D;--lime:#6BCB77;
+  --sky:#4D96FF;--lavender:#9B72CF;--navy:#1A2456;--ink:#2B2D42;
+  --muted:#7A7F9A;--soft:#F5F7FF;--border:#DDE2F5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:#E4E9F7;color:var(--ink);}
+
+.screen-only{background:var(--navy);color:#fff;text-align:center;padding:11px 16px;font-size:13px;font-weight:700;}
+.screen-only strong{color:var(--lemon);}
+.pages-wrap{display:flex;flex-direction:column;align-items:center;gap:36px;padding:36px 16px 64px;}
+
+/* PAGE */
+.page{width:210mm;min-height:297mm;background:#fff;border-radius:18px;box-shadow:0 14px 52px rgba(26,36,86,.18);overflow:hidden;display:flex;flex-direction:column;}
+
+/* HEADER */
+.ws-header{background:linear-gradient(135deg,#FF6B6B 0%,#FF9A6C 50%,#FFD93D 100%);padding:18px 28px 15px;position:relative;overflow:hidden;}
+.ws-header::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.1);}
+.ws-header::after{content:'';position:absolute;bottom:-30px;left:60px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.07);}
+.wh-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;}
+.wh-brand{font-family:'Chewy',cursive;font-size:18px;color:#fff;text-shadow:1px 2px 0 rgba(0,0,0,.12);}
+.wh-brand sub{display:block;font-family:'Nunito',sans-serif;font-size:9.5px;font-weight:800;color:rgba(255,255,255,.7);letter-spacing:2px;text-transform:uppercase;margin-top:1px;}
+.wh-badge{background:var(--navy);color:var(--lemon);font-size:11px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:5px 14px;border-radius:20px;}
+.wh-title{margin-top:10px;position:relative;z-index:1;}
+.wh-title h1{font-family:'Chewy',cursive;font-size:32px;color:#fff;text-shadow:2px 3px 0 rgba(0,0,0,.1);line-height:1;}
+.wh-title h1 span{color:var(--navy);}
+
+/* INFO BAR */
+.info-bar{display:flex;align-items:center;gap:14px;padding:10px 28px;background:#FFFBE6;border-bottom:2px dashed #FFE066;}
+.info-field{display:flex;align-items:center;gap:7px;flex:1;}
+.info-field label{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);white-space:nowrap;}
+.info-field .line{flex:1;border-bottom:2px solid #FFD93D;min-width:50px;}
+.score-box{width:48px;height:48px;border:2.5px solid var(--coral);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.score-box span{font-size:8.5px;font-weight:900;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;}
+
+/* WORD BANK */
+.word-bank{background:linear-gradient(135deg,#FFF8E1 0%,#FFF0C0 100%);border:2.5px solid #FFD93D;border-radius:12px;padding:11px 16px;}
+.wb-title{font-family:'Chewy',cursive;font-size:13px;color:#8B6400;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.wb-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.chip{background:#fff;border:2px solid #FFD93D;border-radius:20px;padding:4px 13px;font-family:'Chewy',cursive;font-size:13.5px;color:var(--navy);box-shadow:2px 2px 0 rgba(255,217,61,.4);}
+
+/* BODY */
+.page-body{flex:1;padding:16px 28px 20px;display:flex;flex-direction:column;gap:14px;}
+
+/* SEC HEAD */
+.sec-head{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.sec-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Chewy',cursive;font-size:16px;color:#fff;flex-shrink:0;}
+.sn-coral{background:var(--coral);}.sn-peach{background:var(--peach);}.sn-lemon{background:#E8A800;}
+.sn-lime{background:var(--lime);}.sn-sky{background:var(--sky);}.sn-lav{background:var(--lavender);}
+.sec-title{font-family:'Chewy',cursive;font-size:17px;color:var(--navy);line-height:1.1;}
+.sec-title em{font-style:normal;color:var(--coral);}
+.sec-desc{font-size:11px;font-weight:700;color:var(--muted);margin-top:1px;}
+
+/* MATCH */
+.match-side{display:flex;flex-direction:column;gap:8px;}
+.match-en{border-radius:10px;padding:9px 13px;display:flex;align-items:center;gap:9px;}
+.mn{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Chewy',cursive;font-size:13px;color:#fff;flex-shrink:0;}
+.m-text{font-family:'Chewy',cursive;font-size:14px;color:var(--navy);}
+.match-id{background:#fff;border-radius:10px;padding:9px 13px;display:flex;align-items:center;gap:9px;border:2px dashed var(--border);}
+.mi-inner{}
+.mi-text{font-size:12px;font-weight:700;color:var(--ink);}
+.mi-num{font-size:10.5px;font-weight:700;color:var(--muted);}
+.mi-line{border-bottom:2px solid var(--coral);min-width:24px;display:inline-block;}
+
+/* FILL */
+.fill-list{display:flex;flex-direction:column;gap:8px;}
+.fill-item{display:flex;align-items:flex-start;gap:9px;background:var(--soft);border-radius:10px;padding:9px 13px;border-left:4px solid var(--peach);}
+.fi-num{font-family:'Chewy',cursive;font-size:15px;color:var(--peach);width:20px;flex-shrink:0;margin-top:1px;}
+.fi-text{font-size:12.5px;font-weight:700;color:var(--navy);flex:1;line-height:1.55;}
+.blank{display:inline-block;border-bottom:2px solid var(--lavender);min-width:88px;margin:0 3px;vertical-align:bottom;}
+.fi-emoji{font-size:18px;flex-shrink:0;}
+
+/* TRUE FALSE */
+.tf-list{display:flex;flex-direction:column;gap:7px;}
+.tf-item{display:flex;align-items:center;gap:9px;padding:8px 13px;border-radius:10px;border:2px solid var(--border);background:#fff;}
+.tf-num{font-family:'Chewy',cursive;font-size:14px;color:var(--sky);width:20px;flex-shrink:0;}
+.tf-text{font-size:12.5px;font-weight:700;flex:1;color:var(--ink);}
+.tf-boxes{display:flex;gap:6px;}
+.tf-box{border:2px solid var(--border);border-radius:7px;padding:3px 10px;font-size:10.5px;font-weight:900;color:var(--muted);letter-spacing:.4px;}
+
+/* UNSCRAMBLE */
+.us-list{display:flex;flex-direction:column;gap:12px;}
+.us-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.us-num{font-family:'Chewy',cursive;font-size:14px;color:var(--lavender);width:22px;flex-shrink:0;}
+.lt-wrap{display:flex;gap:4px;flex-wrap:wrap;}
+.lt{width:24px;height:24px;border:2px solid var(--lavender);border-radius:6px;background:#F4EEFF;display:flex;align-items:center;justify-content:center;font-family:'Chewy',cursive;font-size:13.5px;color:var(--lavender);}
+.us-arrow{color:#C8D0F0;font-size:16px;flex-shrink:0;}
+.us-ctx{font-family:'Chewy',cursive;font-size:13px;color:var(--muted);}
+.at-wrap{display:flex;gap:4px;}
+.at{width:24px;height:24px;border-bottom:2.5px solid var(--navy);}
+
+/* INTRO CARD */
+.intro-card{background:linear-gradient(135deg,#FFF8EC 0%,#FFEEDD 100%);border:2.5px solid #FFD093;border-radius:14px;padding:13px 16px;}
+.ic-top{display:flex;align-items:center;gap:10px;margin-bottom:11px;}
+.ic-avatar{width:44px;height:44px;border-radius:50%;background:#fff;border:2.5px solid #FFD93D;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.ic-label{font-family:'Chewy',cursive;font-size:16px;color:var(--navy);}
+.ic-sub{font-size:11px;font-weight:700;color:var(--muted);}
+.intro-lines{display:flex;flex-direction:column;gap:10px;}
+.il-row{display:flex;align-items:center;gap:8px;}
+.il-lbl{font-family:'Chewy',cursive;font-size:14px;color:var(--navy);white-space:nowrap;}
+.il-blank{flex:1;border-bottom:2.5px solid var(--coral);min-width:80px;height:20px;}
+.il-hint{font-size:10px;font-weight:800;color:var(--muted);font-style:italic;white-space:nowrap;}
+
+/* CIRCLE */
+.circle-list{display:flex;flex-direction:column;gap:8px;}
+.circle-item{display:flex;align-items:flex-start;gap:9px;padding:9px 13px;border-radius:10px;background:var(--soft);border:2px solid var(--border);}
+.ci-num{font-family:'Chewy',cursive;font-size:14px;color:var(--lime);width:20px;flex-shrink:0;margin-top:2px;}
+.ci-body{flex:1;}
+.ci-q{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.ci-opts{display:flex;gap:7px;flex-wrap:wrap;}
+.ci-opt{border:2px solid var(--border);border-radius:20px;padding:3px 11px;font-size:11.5px;font-weight:700;color:var(--ink);}
+
+/* DRAW */
+.draw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;}
+.draw-card{border:2.5px solid var(--border);border-radius:13px;overflow:hidden;background:var(--soft);}
+.draw-area{height:76px;background:#fff;border-bottom:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:28px;}
+.draw-inner{padding:8px 10px;}
+.draw-label{font-family:'Chewy',cursive;font-size:12.5px;color:var(--navy);margin-bottom:6px;}
+.draw-blank{border-bottom:1.5px solid var(--border);height:15px;margin-bottom:4px;}
+
+/* FOOTER */
+.page-footer{background:var(--soft);border-top:2px dashed var(--border);padding:9px 28px;display:flex;justify-content:space-between;align-items:center;}
+.pf-brand{font-family:'Chewy',cursive;font-size:13px;color:var(--coral);}
+.pf-stars{font-size:14px;letter-spacing:3px;}
+.pf-page{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.5px;}
+
+/* PRINT */
+
+/* ── PRINT OPTIMISATION – Self Intro Worksheet ── */
+@media print {
+  @page { size: A4 portrait; margin: 0mm; }
+
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
+  .screen-only { display: none !important; }
+
+  .pages-wrap { display: block; padding: 0; gap: 0; background: #fff; }
+
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .page:last-child { page-break-after: auto !important; break-after: auto !important; }
+
+  /* Header compact */
+  .ws-header { padding: 12px 24px 10px !important; }
+  .wh-brand { font-size: 15px !important; }
+  .wh-badge { font-size: 10px !important; padding: 4px 11px !important; }
+  .wh-title h1 { font-size: 26px !important; }
+  .wh-title { margin-top: 7px !important; }
+
+  /* Info bar compact */
+  .info-bar { padding: 7px 24px !important; }
+  .info-field label { font-size: 9.5px !important; }
+  .score-box { width: 42px !important; height: 42px !important; }
+  .score-box span { font-size: 7.5px !important; }
+
+  /* Page body compact */
+  .page-body { padding: 12px 24px 14px !important; gap: 10px !important; flex: 1 !important; }
+
+  /* Word bank compact */
+  .word-bank { padding: 8px 13px !important; }
+  .wb-title { font-size: 11px !important; margin-bottom: 6px !important; }
+  .wb-chips { gap: 5px !important; }
+  .chip { font-size: 11.5px !important; padding: 3px 10px !important; }
+
+  /* Section heads */
+  .sec-head { gap: 7px !important; margin-bottom: 5px !important; }
+  .sec-num { width: 24px !important; height: 24px !important; font-size: 13px !important; }
+  .sec-title { font-size: 14px !important; }
+  .sec-desc { font-size: 10px !important; margin-top: 0 !important; }
+
+  /* Match */
+  .match-en { padding: 6px 10px !important; }
+  .mn { width: 19px !important; height: 19px !important; font-size: 11px !important; }
+  .m-text { font-size: 12px !important; }
+  .match-id { padding: 6px 10px !important; }
+  .match-side { gap: 5px !important; }
+  .mi-text { font-size: 11px !important; }
+  .mi-num { font-size: 9.5px !important; }
+
+  /* Fill */
+  .fill-list { gap: 5px !important; }
+  .fill-item { padding: 7px 10px !important; }
+  .fi-num { font-size: 13px !important; }
+  .fi-text { font-size: 11.5px !important; line-height: 1.45 !important; }
+  .fi-emoji { font-size: 15px !important; }
+  .blank { min-width: 74px !important; }
+
+  /* True/False */
+  .tf-list { gap: 5px !important; }
+  .tf-item { padding: 6px 10px !important; }
+  .tf-num { font-size: 12px !important; }
+  .tf-text { font-size: 11.5px !important; }
+  .tf-box { font-size: 9.5px !important; padding: 2px 8px !important; }
+
+  /* Unscramble */
+  .us-list { gap: 9px !important; }
+  .us-row { gap: 7px !important; }
+  .lt { width: 21px !important; height: 21px !important; font-size: 12px !important; }
+  .us-ctx { font-size: 12px !important; }
+  .us-num { font-size: 12px !important; }
+
+  /* Intro card */
+  .intro-card { padding: 10px 13px !important; }
+  .ic-top { margin-bottom: 8px !important; gap: 8px !important; }
+  .ic-avatar { width: 38px !important; height: 38px !important; font-size: 22px !important; }
+  .ic-label { font-size: 13px !important; }
+  .ic-sub { font-size: 9.5px !important; }
+  .intro-lines { gap: 8px !important; }
+  .il-lbl { font-size: 12px !important; }
+  .il-blank { height: 17px !important; }
+  .il-hint { font-size: 9px !important; }
+
+  /* Circle correct */
+  .circle-list { gap: 5px !important; }
+  .circle-item { padding: 7px 10px !important; }
+  .ci-num { font-size: 12px !important; }
+  .ci-q { font-size: 11.5px !important; margin-bottom: 4px !important; }
+  .ci-opts { gap: 5px !important; }
+  .ci-opt { padding: 2px 9px !important; font-size: 10.5px !important; }
+
+  /* Draw section */
+  .draw-grid { gap: 8px !important; }
+  .draw-area { height: 65px !important; }
+  .draw-inner { padding: 6px 8px !important; }
+  .draw-label { font-size: 11px !important; margin-bottom: 4px !important; }
+  .draw-blank { height: 13px !important; margin-bottom: 3px !important; }
+
+  /* Footer */
+  .page-footer { padding: 7px 24px !important; }
+  .pf-brand { font-size: 11px !important; }
+  .pf-stars { font-size: 12px !important; }
+  .pf-page { font-size: 10px !important; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="screen-only">🖨️ Print: <strong>Ctrl+P</strong> (Win) / <strong>Cmd+P</strong> (Mac) → Kertas: <strong>A4</strong> · Margin: <strong>None</strong> · Aktifkan <strong>Background graphics</strong></div>
+
+<div class="pages-wrap">
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="ws-header">
+    <div class="wh-top">
+      <div class="wh-brand">BunRey <sub>English Course</sub></div>
+      <div class="wh-badge">Grade 1 · Worksheet</div>
+    </div>
+    <div class="wh-title"><h1>🙋 Let's Introduce <span>Ourselves!</span></h1></div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-field"><label>Name</label><div class="line"></div></div>
+    <div class="info-field"><label>Class</label><div class="line" style="max-width:60px"></div></div>
+    <div class="info-field"><label>Date</label><div class="line" style="max-width:84px"></div></div>
+    <div class="score-box"><span>Score</span></div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Word Bank -->
+    <div class="word-bank">
+      <div class="wb-title">📚 Word Bank – Use these words!</div>
+      <div class="wb-chips">
+        <div class="chip">My name is</div>
+        <div class="chip">I am … years old</div>
+        <div class="chip">I am from</div>
+        <div class="chip">I like</div>
+        <div class="chip">I go to</div>
+        <div class="chip">Nice to meet you</div>
+        <div class="chip">Hello</div>
+        <div class="chip">drawing</div>
+        <div class="chip">singing</div>
+        <div class="chip">playing football</div>
+        <div class="chip">reading books</div>
+      </div>
+    </div>
+
+    <!-- SECTION A – MATCH -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-coral">A</div>
+        <div>
+          <div class="sec-title">Match the <em>sentence</em> with its meaning! 🔗</div>
+          <div class="sec-desc">Cocokkan kalimat dengan artinya — tulis nomornya di kotak!</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <!-- English -->
+        <div class="match-side">
+          <div class="match-en" style="background:#FFF0F0;border:2px solid #FFB3B3;">
+            <div class="mn" style="background:var(--coral)">1</div>
+            <div class="m-text">My name is Budi.</div>
+          </div>
+          <div class="match-en" style="background:#FFF8E1;border:2px solid #FFE066;">
+            <div class="mn" style="background:#E8A800">2</div>
+            <div class="m-text">I am 7 years old.</div>
+          </div>
+          <div class="match-en" style="background:#EDFAEE;border:2px solid #8EE095;">
+            <div class="mn" style="background:var(--lime)">3</div>
+            <div class="m-text">I am from Bandung.</div>
+          </div>
+          <div class="match-en" style="background:#EAF3FF;border:2px solid #99C5FF;">
+            <div class="mn" style="background:var(--sky)">4</div>
+            <div class="m-text">I like drawing.</div>
+          </div>
+          <div class="match-en" style="background:#F4EEFF;border:2px solid #C9ADFF;">
+            <div class="mn" style="background:var(--lavender)">5</div>
+            <div class="m-text">Nice to meet you!</div>
+          </div>
+        </div>
+        <!-- Indonesian (shuffled) -->
+        <div class="match-side">
+          <div class="match-id" style="border-color:#FFB3B3">
+            <div style="font-size:18px">🤝</div>
+            <div class="mi-inner">
+              <div class="mi-text">Senang bertemu denganmu!</div>
+              <div class="mi-num">Nomor: <span class="mi-line">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            </div>
+          </div>
+          <div class="match-id" style="border-color:#8EE095">
+            <div style="font-size:18px">🏠</div>
+            <div class="mi-inner">
+              <div class="mi-text">Aku berasal dari Bandung.</div>
+              <div class="mi-num">Nomor: <span class="mi-line">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            </div>
+          </div>
+          <div class="match-id" style="border-color:#FFE066">
+            <div style="font-size:18px">🎂</div>
+            <div class="mi-inner">
+              <div class="mi-text">Aku berumur 7 tahun.</div>
+              <div class="mi-num">Nomor: <span class="mi-line">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            </div>
+          </div>
+          <div class="match-id" style="border-color:#C9ADFF">
+            <div style="font-size:18px">👤</div>
+            <div class="mi-inner">
+              <div class="mi-text">Namaku Budi.</div>
+              <div class="mi-num">Nomor: <span class="mi-line">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            </div>
+          </div>
+          <div class="match-id" style="border-color:#99C5FF">
+            <div style="font-size:18px">🎨</div>
+            <div class="mi-inner">
+              <div class="mi-text">Aku suka menggambar.</div>
+              <div class="mi-num">Nomor: <span class="mi-line">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION B – FILL IN -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-peach">B</div>
+        <div>
+          <div class="sec-title">Fill in the <em>blanks</em>! ✏️</div>
+          <div class="sec-desc">Lengkapi kalimat dengan kata yang tepat dari Word Bank!</div>
+        </div>
+      </div>
+      <div class="fill-list">
+        <div class="fill-item">
+          <div class="fi-num">1.</div>
+          <div class="fi-text"><span class="blank"></span> Sari. I am a student. <span style="font-size:11px;color:var(--muted);font-style:italic">(Namaku Sari.)</span></div>
+          <div class="fi-emoji">👧</div>
+        </div>
+        <div class="fill-item">
+          <div class="fi-num">2.</div>
+          <div class="fi-text">I am <span class="blank" style="min-width:40px"></span> years old. <span style="font-size:11px;color:var(--muted);font-style:italic">(Aku berumur … tahun.)</span></div>
+          <div class="fi-emoji">🎂</div>
+        </div>
+        <div class="fill-item">
+          <div class="fi-num">3.</div>
+          <div class="fi-text"><span class="blank"></span> Jakarta. It is a big city! <span style="font-size:11px;color:var(--muted);font-style:italic">(Aku berasal dari Jakarta.)</span></div>
+          <div class="fi-emoji">🏠</div>
+        </div>
+        <div class="fill-item">
+          <div class="fi-num">4.</div>
+          <div class="fi-text">I <span class="blank"></span> SD Harapan Bangsa. <span style="font-size:11px;color:var(--muted);font-style:italic">(Aku bersekolah di…)</span></div>
+          <div class="fi-emoji">🏫</div>
+        </div>
+        <div class="fill-item">
+          <div class="fi-num">5.</div>
+          <div class="fi-text">I like <span class="blank"></span>. It is so fun! <span style="font-size:11px;color:var(--muted);font-style:italic">(Aku suka bernyanyi.)</span></div>
+          <div class="fi-emoji">🎵</div>
+        </div>
+        <div class="fill-item">
+          <div class="fi-num">6.</div>
+          <div class="fi-text"><span class="blank"></span>! I hope we can be friends! 🤝 <span style="font-size:11px;color:var(--muted);font-style:italic">(Senang bertemu kamu!)</span></div>
+          <div class="fi-emoji">😊</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION C – TRUE/FALSE -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-lemon">C</div>
+        <div>
+          <div class="sec-title"><em>True</em> or <em>False</em>? Circle your answer! ⭕</div>
+          <div class="sec-desc">Lingkari TRUE jika benar, FALSE jika salah!</div>
+        </div>
+      </div>
+      <div class="tf-list">
+        <div class="tf-item">
+          <div class="tf-num">1.</div>
+          <div class="tf-text">"My name is …" is used to tell your name.</div>
+          <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+        </div>
+        <div class="tf-item">
+          <div class="tf-num">2.</div>
+          <div class="tf-text">"I am from …" tells where you are from.</div>
+          <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+        </div>
+        <div class="tf-item">
+          <div class="tf-num">3.</div>
+          <div class="tf-text">"Nice to meet you!" is said at the beginning before your name.</div>
+          <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+        </div>
+        <div class="tf-item">
+          <div class="tf-num">4.</div>
+          <div class="tf-text">"I like singing" means I enjoy singing.</div>
+          <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟🌟🌟</div>
+    <div class="pf-page">Page 1 of 2</div>
+  </div>
+</div>
+
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="ws-header">
+    <div class="wh-top">
+      <div class="wh-brand">BunRey <sub>English Course</sub></div>
+      <div class="wh-badge">Grade 1 · Worksheet</div>
+    </div>
+    <div class="wh-title"><h1>🙋 Let's Introduce <span>Ourselves!</span></h1></div>
+  </div>
+
+  <div class="info-bar">
+    <div class="info-field"><label>Name</label><div class="line"></div></div>
+    <div class="info-field"><label>Class</label><div class="line" style="max-width:60px"></div></div>
+    <div class="info-field"><label>Date</label><div class="line" style="max-width:84px"></div></div>
+    <div class="score-box"><span>Score</span></div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- SECTION D – UNSCRAMBLE -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-lav">D</div>
+        <div>
+          <div class="sec-title">Unscramble the <em>words</em>! 🔤</div>
+          <div class="sec-desc">Susun huruf-huruf acak ini menjadi kata yang benar!</div>
+        </div>
+      </div>
+      <div class="us-list">
+        <div class="us-row">
+          <div class="us-num">1.</div>
+          <div class="lt-wrap"><div class="lt">A</div><div class="lt">M</div><div class="lt">E</div><div class="lt">N</div></div>
+          <div class="us-arrow">→</div>
+          <div class="us-ctx">My <span style="border-bottom:2px solid var(--navy);min-width:55px;display:inline-block">&nbsp;</span> is Budi.</div>
+        </div>
+        <div class="us-row">
+          <div class="us-num">2.</div>
+          <div class="lt-wrap"><div class="lt">D</div><div class="lt">L</div><div class="lt">O</div></div>
+          <div class="us-arrow">→</div>
+          <div class="us-ctx">I am 7 years <span style="border-bottom:2px solid var(--navy);min-width:45px;display:inline-block">&nbsp;</span>.</div>
+        </div>
+        <div class="us-row">
+          <div class="us-num">3.</div>
+          <div class="lt-wrap"><div class="lt">K</div><div class="lt">E</div><div class="lt">L</div><div class="lt">I</div></div>
+          <div class="us-arrow">→</div>
+          <div class="us-ctx">I <span style="border-bottom:2px solid var(--navy);min-width:50px;display:inline-block">&nbsp;</span> drawing.</div>
+        </div>
+        <div class="us-row">
+          <div class="us-num">4.</div>
+          <div class="lt-wrap"><div class="lt">R</div><div class="lt">F</div><div class="lt">O</div><div class="lt">M</div></div>
+          <div class="us-arrow">→</div>
+          <div class="us-ctx">I am <span style="border-bottom:2px solid var(--navy);min-width:55px;display:inline-block">&nbsp;</span> Bali.</div>
+        </div>
+        <div class="us-row">
+          <div class="us-num">5.</div>
+          <div class="lt-wrap"><div class="lt">E</div><div class="lt">M</div><div class="lt">E</div><div class="lt">T</div></div>
+          <div class="us-arrow">→</div>
+          <div class="us-ctx">Nice to <span style="border-bottom:2px solid var(--navy);min-width:55px;display:inline-block">&nbsp;</span> you!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION E – WRITE ABOUT YOURSELF -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-lime">E</div>
+        <div>
+          <div class="sec-title">Write About <em>Yourself</em>! ✏️</div>
+          <div class="sec-desc">Isi titik-titik dengan informasi tentang dirimu sendiri!</div>
+        </div>
+      </div>
+      <div class="intro-card">
+        <div class="ic-top">
+          <div class="ic-avatar">🙋</div>
+          <div>
+            <div class="ic-label">Hi! Let me introduce myself…</div>
+            <div class="ic-sub">Tuliskan perkenalanmu di bawah ini!</div>
+          </div>
+        </div>
+        <div class="intro-lines">
+          <div class="il-row">
+            <div class="il-lbl">My name is</div>
+            <div class="il-blank"></div>
+            <div class="il-hint">(namamu)</div>
+          </div>
+          <div class="il-row">
+            <div class="il-lbl">I am</div>
+            <div class="il-blank" style="max-width:44px"></div>
+            <div class="il-lbl">years old.</div>
+            <div class="il-hint">(umurmu)</div>
+          </div>
+          <div class="il-row">
+            <div class="il-lbl">I am from</div>
+            <div class="il-blank"></div>
+            <div class="il-hint">(kotamu)</div>
+          </div>
+          <div class="il-row">
+            <div class="il-lbl">I go to</div>
+            <div class="il-blank"></div>
+            <div class="il-hint">(sekolahmu)</div>
+          </div>
+          <div class="il-row">
+            <div class="il-lbl">I like</div>
+            <div class="il-blank"></div>
+            <div class="il-hint">(hobimu)</div>
+          </div>
+          <div class="il-row">
+            <div class="il-lbl" style="color:var(--coral);font-size:15px">Nice to meet you! 🤝</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION F – CIRCLE CORRECT -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-sky">F</div>
+        <div>
+          <div class="sec-title">Circle the <em>correct</em> answer! ⭕</div>
+          <div class="sec-desc">Lingkari jawaban yang paling tepat!</div>
+        </div>
+      </div>
+      <div class="circle-list">
+        <div class="circle-item">
+          <div class="ci-num">1.</div>
+          <div class="ci-body">
+            <div class="ci-q">Rudi wants to tell his name. He says:</div>
+            <div class="ci-opts">
+              <div class="ci-opt">I am from Jakarta.</div>
+              <div class="ci-opt">My name is Rudi.</div>
+              <div class="ci-opt">I like football.</div>
+            </div>
+          </div>
+        </div>
+        <div class="circle-item">
+          <div class="ci-num">2.</div>
+          <div class="ci-body">
+            <div class="ci-q">Sari wants to say she is 6 years old. She says:</div>
+            <div class="ci-opts">
+              <div class="ci-opt">I like singing.</div>
+              <div class="ci-opt">I am from Surabaya.</div>
+              <div class="ci-opt">I am 6 years old.</div>
+            </div>
+          </div>
+        </div>
+        <div class="circle-item">
+          <div class="ci-num">3.</div>
+          <div class="ci-body">
+            <div class="ci-q">At the end of introducing himself, Adi says:</div>
+            <div class="ci-opts">
+              <div class="ci-opt">Good Morning!</div>
+              <div class="ci-opt">Nice to meet you!</div>
+              <div class="ci-opt">I am 8 years old.</div>
+            </div>
+          </div>
+        </div>
+        <div class="circle-item">
+          <div class="ci-num">4.</div>
+          <div class="ci-body">
+            <div class="ci-q">Dina's hobby is reading. She says:</div>
+            <div class="ci-opts">
+              <div class="ci-opt">I like dancing.</div>
+              <div class="ci-opt">I am from Bali.</div>
+              <div class="ci-opt">I like reading books.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION G – DRAW & WRITE -->
+    <div>
+      <div class="sec-head">
+        <div class="sec-num sn-coral">G</div>
+        <div>
+          <div class="sec-title">Draw 🎨 and <em>Write</em> your hobby!</div>
+          <div class="sec-desc">Gambar hobimu di kotak, lalu tulis dalam bahasa Inggris!</div>
+        </div>
+      </div>
+      <div class="draw-grid">
+        <div class="draw-card">
+          <div class="draw-area"><span style="font-size:12px;color:var(--muted);font-weight:700">✏️ Draw here!</span></div>
+          <div class="draw-inner">
+            <div class="draw-label">My hobby:</div>
+            <div class="draw-blank"></div>
+            <div class="draw-blank"></div>
+          </div>
+        </div>
+        <div class="draw-card" style="border-color:#FFE066;background:#FFFBE6">
+          <div class="draw-area" style="background:#FFFDF0"><span style="font-size:12px;color:var(--muted);font-weight:700">🌟 My favourite!</span></div>
+          <div class="draw-inner">
+            <div class="draw-label">I like …</div>
+            <div class="draw-blank"></div>
+            <div class="draw-blank"></div>
+          </div>
+        </div>
+        <div class="draw-card" style="border-color:#8EE095;background:#EDFAEE">
+          <div class="draw-area" style="background:#F5FFF6"><span style="font-size:12px;color:var(--muted);font-weight:700">💚 My friend's hobby!</span></div>
+          <div class="draw-inner">
+            <div class="draw-label">My friend likes …</div>
+            <div class="draw-blank"></div>
+            <div class="draw-blank"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <div class="pf-brand">⭐ BunRey English Course</div>
+    <div class="pf-stars">🌟🌟🌟🌟🌟</div>
+    <div class="pf-page">Page 2 of 2</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

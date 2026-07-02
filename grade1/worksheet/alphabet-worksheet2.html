@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Interactive Alphabet Worksheet (Grade 1)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF6B6B;
+    --sun: #FFD93D;
+    --mint: #6BCB77;
+    --sky: #4D96FF;
+    --lavender: #C77DFF;
+    --peach: #FFB347;
+    --rose: #FF8FAB;
+    --teal: #2EC4B6;
+    --cream: #FFFBF2;
+    --dark: #2B2B2B;
+    --shadow: 0 6px 24px rgba(0,0,0,0.10);
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    padding: 0 10px;
+  }
+
+  /* ── DECORATIVE BACKGROUND ── */
+  .bubble-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bubble-bg .bub {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.10;
+    animation: bFloat 14s ease-in-out infinite;
+  }
+  .bubble-bg .bub:nth-child(1) { width: 140px; height: 140px; background: var(--coral); top: 3%; left: 2%; animation-delay: 0s; }
+  .bubble-bg .bub:nth-child(2) { width: 100px; height: 100px; background: var(--sun); bottom: 8%; right: 4%; animation-delay: 2s; }
+  .bubble-bg .bub:nth-child(3) { width: 120px; height: 120px; background: var(--sky); top: 35%; right: 6%; animation-delay: 4s; }
+  .bubble-bg .bub:nth-child(4) { width: 80px; height: 80px; background: var(--mint); bottom: 25%; left: 3%; animation-delay: 1s; }
+  .bubble-bg .bub:nth-child(5) { width: 100px; height: 100px; background: var(--lavender); top: 15%; left: 45%; animation-delay: 3s; }
+  @keyframes bFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-35px) scale(1.06); }
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD93D 30%, #6BCB77 60%, #4D96FF 100%);
+    padding: 18px 20px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    z-index: 1;
+  }
+  .floating-deco {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .floating-deco span {
+    position: absolute;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: rgba(255,255,255,0.15);
+    animation: floatDeco 5s ease-in-out infinite;
+  }
+  .floating-deco span:nth-child(1) { top: 5%; left: 4%; animation-delay: 0s; }
+  .floating-deco span:nth-child(2) { top: 10%; right: 6%; animation-delay: 1.2s; }
+  .floating-deco span:nth-child(3) { bottom: 12%; left: 5%; animation-delay: 2.4s; }
+  .floating-deco span:nth-child(4) { bottom: 8%; right: 4%; animation-delay: 0.6s; }
+  .floating-deco span:nth-child(5) { top: 40%; left: 2%; animation-delay: 1.8s; }
+  .floating-deco span:nth-child(6) { top: 35%; right: 3%; animation-delay: 3s; }
+  @keyframes floatDeco {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
+  }
+  .header-brand {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 1;
+  }
+  .header-brand span { color: var(--dark); }
+  .header-tag {
+    display: inline-block;
+    background: var(--dark);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 900;
+    padding: 3px 16px;
+    border-radius: 999px;
+    margin-top: 4px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title {
+    margin-top: 8px;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.3rem, 3.8vw, 2rem);
+    color: #fff;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 1;
+  }
+  .header-sub {
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── MAIN ── */
+  main { max-width: 920px; margin: 0 auto; padding: 16px 0 40px; position: relative; z-index: 1; }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+    border: 2px solid #f0ecf5;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--coral), var(--sun), var(--mint), var(--sky), var(--lavender));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .tip-box {
+    background: #fffbe6;
+    border-left: 5px solid var(--sun);
+    border-radius: 0 12px 12px 0;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .tip-box strong { color: var(--sky); }
+
+  /* ── STUDENT INFO ── */
+  .worksheet-header {
+    background: linear-gradient(135deg, #f8f4ff, #f0f7ff);
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+    border: 2px solid var(--lavender);
+  }
+  .worksheet-header .field {
+    font-weight: 700;
+    color: #888;
+    font-size: 0.9rem;
+  }
+  .worksheet-header .field input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark);
+    padding: 0 4px;
+    min-width: 100px;
+    outline: none;
+  }
+  .worksheet-header .field input:focus { border-bottom-color: var(--lavender); }
+
+  /* ── PART STYLES ── */
+  .part-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    color: var(--lavender);
+    margin: 10px 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .part-label .pts {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 700;
+    background: #f0ecf5;
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+  .part-label .emoji-big { font-size: 1.3rem; }
+
+  .q-row {
+    padding: 4px 0;
+    border-bottom: 1px solid #f5f0fa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .q-row .num {
+    font-weight: 800;
+    color: var(--lavender);
+    min-width: 26px;
+    font-size: 0.85rem;
+  }
+
+  /* ── INTERAKTIF INPUT ── */
+  .iq-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 3px solid var(--lavender);
+    background: transparent;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    min-width: 45px;
+    width: 55px;
+    text-align: center;
+    color: var(--dark);
+    outline: none;
+    padding: 0 2px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .iq-input:focus {
+    border-bottom-color: var(--coral);
+    transform: scale(1.05);
+  }
+  .iq-input.correct {
+    border-bottom-color: var(--mint);
+    color: var(--mint);
+    background: #d4f7dc55;
+    border-radius: 4px;
+  }
+  .iq-input.wrong {
+    border-bottom-color: var(--coral);
+    color: var(--coral);
+    background: #ffd6d655;
+    border-radius: 4px;
+    animation: shake 0.4s ease;
+  }
+  .iq-input-lg { min-width: 70px; width: 90px; }
+  .iq-input-sm { min-width: 35px; width: 40px; }
+  .iq-input-xl { min-width: 100px; width: 130px; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  /* ── QUIZ OPTIONS ── */
+  .q-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+  }
+  .q-options label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    background: #f8f4ff;
+    padding: 3px 14px 3px 8px;
+    border-radius: 20px;
+    transition: background 0.2s, transform 0.15s;
+    border: 2px solid transparent;
+  }
+  .q-options label:hover {
+    background: #ede4ff;
+    transform: scale(1.04);
+  }
+  .q-options label.selected-correct {
+    border-color: var(--mint);
+    background: #d4f7dc;
+  }
+  .q-options label.selected-wrong {
+    border-color: var(--coral);
+    background: #ffd6d6;
+    animation: shake 0.4s ease;
+  }
+  .q-options input[type="radio"],
+  .q-options input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--lavender);
+    cursor: pointer;
+  }
+
+  /* ── WRITING BOX ── */
+  .writing-box {
+    border: 2.5px dashed #ddd;
+    border-radius: 14px;
+    padding: 12px 14px;
+    min-height: 50px;
+    margin-top: 6px;
+    background: #fafafa;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 1rem;
+  }
+  .writing-box:focus-within { border-color: var(--lavender); background: #f8f4ff; }
+  .writing-box textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    outline: none;
+    resize: vertical;
+    min-height: 40px;
+  }
+  .writing-box textarea::placeholder { color: #ccc; }
+
+  /* ── LETTER GRID (PART F) ── */
+  .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 6px;
+    margin: 8px 0;
+  }
+  .letter-grid .ltr {
+    text-align: center;
+    padding: 8px 4px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background: #f8f4ff;
+    border: 2.5px solid #e8e0f0;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .letter-grid .ltr:hover { transform: scale(1.08); }
+  .letter-grid .ltr.vowel-clicked {
+    background: var(--rose);
+    color: #fff;
+    border-color: var(--rose);
+    transform: scale(1.05);
+  }
+  .letter-grid .ltr.consonant-clicked {
+    background: var(--sky);
+    color: #fff;
+    border-color: var(--sky);
+    transform: scale(1.05);
+  }
+  .letter-grid .ltr.vowel-correct {
+    background: var(--mint);
+    color: #fff;
+    border-color: var(--mint);
+  }
+  .letter-grid .ltr.vowel-wrong {
+    background: var(--coral);
+    color: #fff;
+    border-color: var(--coral);
+    animation: shake 0.4s ease;
+  }
+  .letter-grid .ltr.consonant-correct {
+    background: var(--mint);
+    color: #fff;
+    border-color: var(--mint);
+  }
+  .letter-grid .ltr.consonant-wrong {
+    background: var(--coral);
+    color: #fff;
+    border-color: var(--coral);
+    animation: shake 0.4s ease;
+  }
+
+  /* ── WORD SEARCH ── */
+  .wordsearch-grid {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: center;
+    background: #f8f4ff;
+    border-radius: 14px;
+    padding: 12px;
+    letter-spacing: 3px;
+    border: 2.5px solid var(--lavender);
+    margin-top: 6px;
+  }
+  .wordsearch-grid .ws-row { letter-spacing: 4px; }
+  .wordsearch-grid .ws-found {
+    background: var(--mint);
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 2px;
+    transition: background 0.3s;
+  }
+
+  /* ── SCOREBOARD ── */
+  .scoreboard {
+    background: linear-gradient(135deg, var(--sun), var(--peach));
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    border: 2px solid var(--sun);
+    box-shadow: var(--shadow);
+  }
+  .scoreboard .sb-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .scoreboard .sb-emoji { font-size: 2rem; }
+  .scoreboard .sb-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    color: var(--dark);
+  }
+  .scoreboard .sb-text .num {
+    font-size: 1.6rem;
+    color: var(--coral);
+  }
+  .scoreboard .sb-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .sb-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.85rem;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+    color: #fff;
+  }
+  .sb-btn:hover { transform: translateY(-2px); }
+  .sb-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+  .sb-btn-check { background: var(--mint); box-shadow: 0 3px 0 #3d8b4a; }
+  .sb-btn-reset { background: var(--coral); box-shadow: 0 3px 0 #b84b4b; }
+  .sb-btn-show { background: var(--sky); box-shadow: 0 3px 0 #2e7ab5; }
+
+  /* ── FEEDBACK POPUP ── */
+  .feedback-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    color: #fff;
+    z-index: 999;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 90%;
+  }
+  .feedback-popup.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  .feedback-popup.success { background: var(--mint); }
+  .feedback-popup.error { background: var(--coral); }
+  .feedback-popup.info { background: var(--sky); }
+  .feedback-popup .sub { font-size: 0.8rem; font-family: 'Nunito', sans-serif; opacity: 0.85; margin-top: 4px; }
+
+  /* ── CONFETTI ── */
+  .confetti-piece {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    z-index: 999;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0.3; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .q-options { flex-direction: column; gap: 4px; }
+    .letter-grid { grid-template-columns: repeat(7, 1fr); }
+    .scoreboard { flex-direction: column; gap: 10px; align-items: stretch; text-align: center; }
+    .scoreboard .sb-buttons { justify-content: center; }
+    .worksheet-header { flex-direction: column; gap: 4px; }
+    .worksheet-header .field input { min-width: 60px; }
+    .q-row { font-size: 0.88rem; flex-wrap: wrap; }
+    .wordsearch-grid { font-size: 0.85rem; letter-spacing: 2px; }
+    .wordsearch-grid .ws-row { letter-spacing: 2px; }
+  }
+  @media (max-width: 480px) {
+    .letter-grid { grid-template-columns: repeat(4, 1fr); }
+    .iq-input { min-width: 30px; width: 40px; font-size: 0.85rem; }
+    .iq-input-lg { min-width: 50px; width: 65px; }
+  }
+
+  footer {
+    text-align: center;
+    padding: 14px;
+    color: #bbb;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  footer span { color: var(--coral); }
+
+  .no-print { display: block; }
+</style>
+</head>
+<body>
+
+<!-- DECORATIVE BACKGROUND -->
+<div class="bubble-bg">
+  <div class="bub"></div>
+  <div class="bub"></div>
+  <div class="bub"></div>
+  <div class="bub"></div>
+  <div class="bub"></div>
+</div>
+
+<!-- FEEDBACK POPUP -->
+<div class="feedback-popup" id="feedbackPopup">
+  <div id="fbMessage">🎉 Great Job!</div>
+  <div class="sub" id="fbSub"></div>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════════════════ -->
+<header>
+  <div class="floating-deco">
+    <span>A</span><span>B</span><span>C</span>
+    <span>D</span><span>E</span><span>F</span>
+    <span>G</span><span>H</span><span>I</span>
+  </div>
+  <div class="header-brand">Little<span>Lume</span> English ✨</div>
+  <div><span class="header-tag">⭐ GRADE 1 ⭐</span></div>
+  <div class="header-title">🔤 Interactive Alphabet Worksheet</div>
+  <div class="header-sub">A · B · C · Let's Learn the Alphabet! 🎉</div>
+</header>
+
+<!-- STUDENT INFO -->
+<div class="card">
+  <div class="worksheet-header">
+    <div class="field">👤 Name: <input type="text" id="studentName" placeholder="Your name"></div>
+    <div class="field">🏫 Class: <input type="text" id="studentClass" placeholder="Your class"></div>
+    <div class="field">📅 Date: <input type="date" id="studentDate"></div>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:10px; background:linear-gradient(135deg, #f3e8ff, #e0f4ff); border-radius:12px; padding:10px 14px; border:2px solid var(--lavender);">
+    <span style="font-size:2rem;">🔤</span>
+    <div>
+      <strong style="color:var(--lavender); font-family:'Fredoka One',cursive;">REMEMBER!</strong>
+      <span style="font-size:0.88rem;"> The alphabet has <strong>26 letters</strong>! <strong style="color:var(--rose);">5 are vowels</strong> (A, E, I, O, U) and <strong style="color:var(--sky);">21 are consonants</strong>!</span>
+      <div style="font-size:0.8rem; color:#888; margin-top:2px;">🔤 A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCOREBOARD
+     ============================================================ -->
+<div class="scoreboard">
+  <div class="sb-left">
+    <span class="sb-emoji">🏆</span>
+    <div class="sb-text">
+      Score: <span class="num" id="totalScore">0</span> / <span id="totalPossible">80</span>
+      <span style="font-size:0.8rem; color:#888; font-family:'Nunito',sans-serif; margin-left:8px;" id="scorePercent">(0%)</span>
+    </div>
+  </div>
+  <div class="sb-buttons">
+    <button class="sb-btn sb-btn-check" onclick="checkAllParts()">✅ Check All</button>
+    <button class="sb-btn sb-btn-show" onclick="showAllAnswers()">👀 Show Answers</button>
+    <button class="sb-btn sb-btn-reset" onclick="resetAll()">🔄 Reset</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART A: CIRCLE THE LETTER (PILIHAN GANDA)
+     ============================================================ -->
+<div class="card" id="partA">
+  <div class="part-label">
+    <span class="emoji-big">🔍</span> PART A – Circle the Letter
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:8px;">🎯 Choose the first letter of each word.</p>
+
+  <div class="q-row"><span class="num">1.</span> Apple → 
+    <span class="q-options" data-part="A" data-answer="A">
+      <label><input type="radio" name="a1" value="A"> A</label>
+      <label><input type="radio" name="a1" value="B"> B</label>
+      <label><input type="radio" name="a1" value="C"> C</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">2.</span> Ball → 
+    <span class="q-options" data-part="A" data-answer="B">
+      <label><input type="radio" name="a2" value="A"> A</label>
+      <label><input type="radio" name="a2" value="B"> B</label>
+      <label><input type="radio" name="a2" value="C"> C</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">3.</span> Cat → 
+    <span class="q-options" data-part="A" data-answer="C">
+      <label><input type="radio" name="a3" value="B"> B</label>
+      <label><input type="radio" name="a3" value="C"> C</label>
+      <label><input type="radio" name="a3" value="D"> D</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">4.</span> Dog → 
+    <span class="q-options" data-part="A" data-answer="D">
+      <label><input type="radio" name="a4" value="C"> C</label>
+      <label><input type="radio" name="a4" value="D"> D</label>
+      <label><input type="radio" name="a4" value="E"> E</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">5.</span> Elephant → 
+    <span class="q-options" data-part="A" data-answer="E">
+      <label><input type="radio" name="a5" value="D"> D</label>
+      <label><input type="radio" name="a5" value="E"> E</label>
+      <label><input type="radio" name="a5" value="F"> F</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">6.</span> Fish → 
+    <span class="q-options" data-part="A" data-answer="F">
+      <label><input type="radio" name="a6" value="E"> E</label>
+      <label><input type="radio" name="a6" value="F"> F</label>
+      <label><input type="radio" name="a6" value="G"> G</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">7.</span> Giraffe → 
+    <span class="q-options" data-part="A" data-answer="G">
+      <label><input type="radio" name="a7" value="F"> F</label>
+      <label><input type="radio" name="a7" value="G"> G</label>
+      <label><input type="radio" name="a7" value="H"> H</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">8.</span> House → 
+    <span class="q-options" data-part="A" data-answer="H">
+      <label><input type="radio" name="a8" value="G"> G</label>
+      <label><input type="radio" name="a8" value="H"> H</label>
+      <label><input type="radio" name="a8" value="I"> I</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">9.</span> Ice cream → 
+    <span class="q-options" data-part="A" data-answer="I">
+      <label><input type="radio" name="a9" value="H"> H</label>
+      <label><input type="radio" name="a9" value="I"> I</label>
+      <label><input type="radio" name="a9" value="J"> J</label>
+    </span>
+  </div>
+  <div class="q-row"><span class="num">10.</span> Juice → 
+    <span class="q-options" data-part="A" data-answer="J">
+      <label><input type="radio" name="a10" value="I"> I</label>
+      <label><input type="radio" name="a10" value="J"> J</label>
+      <label><input type="radio" name="a10" value="K"> K</label>
+    </span>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Apple starts with <strong>A</strong>, Ball starts with <strong>B</strong>, Cat starts with <strong>C</strong>!
+  </div>
+</div>
+
+<!-- ============================================================
+     PART B: WHAT LETTER COMES NEXT? (ISI KOSONG)
+     ============================================================ -->
+<div class="card" id="partB">
+  <div class="part-label">
+    <span class="emoji-big">➡️</span> PART B – What Letter Comes Next?
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:8px;">✏️ Type the letter that comes next.</p>
+
+  <div class="q-row"><span class="num">1.</span> A → <input class="iq-input iq-input-sm" data-part="B" data-answer="B" maxlength="1"></div>
+  <div class="q-row"><span class="num">2.</span> B → <input class="iq-input iq-input-sm" data-part="B" data-answer="C" maxlength="1"></div>
+  <div class="q-row"><span class="num">3.</span> D → <input class="iq-input iq-input-sm" data-part="B" data-answer="E" maxlength="1"></div>
+  <div class="q-row"><span class="num">4.</span> F → <input class="iq-input iq-input-sm" data-part="B" data-answer="G" maxlength="1"></div>
+  <div class="q-row"><span class="num">5.</span> H → <input class="iq-input iq-input-sm" data-part="B" data-answer="I" maxlength="1"></div>
+  <div class="q-row"><span class="num">6.</span> J → <input class="iq-input iq-input-sm" data-part="B" data-answer="K" maxlength="1"></div>
+  <div class="q-row"><span class="num">7.</span> L → <input class="iq-input iq-input-sm" data-part="B" data-answer="M" maxlength="1"></div>
+  <div class="q-row"><span class="num">8.</span> N → <input class="iq-input iq-input-sm" data-part="B" data-answer="O" maxlength="1"></div>
+  <div class="q-row"><span class="num">9.</span> P → <input class="iq-input iq-input-sm" data-part="B" data-answer="Q" maxlength="1"></div>
+  <div class="q-row"><span class="num">10.</span> R → <input class="iq-input iq-input-sm" data-part="B" data-answer="S" maxlength="1"></div>
+
+  <div class="tip-box">
+    💡 <strong>Remember:</strong> A → B → C → D! Each letter comes after the one before it!
+  </div>
+</div>
+
+<!-- ============================================================
+     PART C: VOWEL OR CONSONANT? (PILIHAN)
+     ============================================================ -->
+<div class="card" id="partC">
+  <div class="part-label">
+    <span class="emoji-big">🔊</span> PART C – Vowel or Consonant?
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:8px;">✏️ Choose <strong style="color:var(--rose);">V</strong> for Vowel or <strong style="color:var(--sky);">C</strong> for Consonant.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 16px;">
+    <div class="q-row"><span class="num">1.</span> A → 
+      <span class="q-options" data-part="C" data-answer="V">
+        <label><input type="radio" name="c1" value="V"> V</label>
+        <label><input type="radio" name="c1" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">2.</span> B → 
+      <span class="q-options" data-part="C" data-answer="C">
+        <label><input type="radio" name="c2" value="V"> V</label>
+        <label><input type="radio" name="c2" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">3.</span> E → 
+      <span class="q-options" data-part="C" data-answer="V">
+        <label><input type="radio" name="c3" value="V"> V</label>
+        <label><input type="radio" name="c3" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">4.</span> F → 
+      <span class="q-options" data-part="C" data-answer="C">
+        <label><input type="radio" name="c4" value="V"> V</label>
+        <label><input type="radio" name="c4" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">5.</span> I → 
+      <span class="q-options" data-part="C" data-answer="V">
+        <label><input type="radio" name="c5" value="V"> V</label>
+        <label><input type="radio" name="c5" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">6.</span> M → 
+      <span class="q-options" data-part="C" data-answer="C">
+        <label><input type="radio" name="c6" value="V"> V</label>
+        <label><input type="radio" name="c6" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">7.</span> O → 
+      <span class="q-options" data-part="C" data-answer="V">
+        <label><input type="radio" name="c7" value="V"> V</label>
+        <label><input type="radio" name="c7" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">8.</span> P → 
+      <span class="q-options" data-part="C" data-answer="C">
+        <label><input type="radio" name="c8" value="V"> V</label>
+        <label><input type="radio" name="c8" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">9.</span> U → 
+      <span class="q-options" data-part="C" data-answer="V">
+        <label><input type="radio" name="c9" value="V"> V</label>
+        <label><input type="radio" name="c9" value="C"> C</label>
+      </span>
+    </div>
+    <div class="q-row"><span class="num">10.</span> Z → 
+      <span class="q-options" data-part="C" data-answer="C">
+        <label><input type="radio" name="c10" value="V"> V</label>
+        <label><input type="radio" name="c10" value="C"> C</label>
+      </span>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; justify-content:center;">
+    <span style="background:#fff0f6; border-radius:20px; padding:3px 12px; font-weight:700; font-size:0.8rem; border:2px solid var(--rose);">🔴 VOWELS: A, E, I, O, U</span>
+    <span style="background:#f0f7ff; border-radius:20px; padding:3px 12px; font-weight:700; font-size:0.8rem; border:2px solid var(--sky);">🔵 CONSONANTS: All other letters</span>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Remember:</strong> Vowels are the "sound-makers"! Every word needs at least one vowel. Try saying "A-E-I-O-U" — it's like singing! 🎵
+  </div>
+</div>
+
+<!-- ============================================================
+     PART D: ALPHABET ORDER (ISI KOSONG)
+     ============================================================ -->
+<div class="card" id="partD">
+  <div class="part-label">
+    <span class="emoji-big">📋</span> PART D – Alphabet Order
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:8px;">✏️ Type the missing letter.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 16px;">
+    <div class="q-row"><span class="num">1.</span> A, B, <input class="iq-input iq-input-sm" data-part="D" data-answer="C" maxlength="1">, D</div>
+    <div class="q-row"><span class="num">2.</span> C, D, E, <input class="iq-input iq-input-sm" data-part="D" data-answer="F" maxlength="1"></div>
+    <div class="q-row"><span class="num">3.</span> G, <input class="iq-input iq-input-sm" data-part="D" data-answer="H" maxlength="1">, I, J</div>
+    <div class="q-row"><span class="num">4.</span> K, L, M, <input class="iq-input iq-input-sm" data-part="D" data-answer="N" maxlength="1"></div>
+    <div class="q-row"><span class="num">5.</span> N, <input class="iq-input iq-input-sm" data-part="D" data-answer="O" maxlength="1">, P, Q</div>
+    <div class="q-row"><span class="num">6.</span> Q, R, S, <input class="iq-input iq-input-sm" data-part="D" data-answer="T" maxlength="1"></div>
+    <div class="q-row"><span class="num">7.</span> U, <input class="iq-input iq-input-sm" data-part="D" data-answer="V" maxlength="1">, W, X</div>
+    <div class="q-row"><span class="num">8.</span> W, X, Y, <input class="iq-input iq-input-sm" data-part="D" data-answer="Z" maxlength="1"></div>
+    <div class="q-row"><span class="num">9.</span> D, E, <input class="iq-input iq-input-sm" data-part="D" data-answer="F" maxlength="1">, G</div>
+    <div class="q-row"><span class="num">10.</span> P, Q, R, <input class="iq-input iq-input-sm" data-part="D" data-answer="S" maxlength="1"></div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Sing the alphabet song to help you find the missing letters! 🎵 A-B-C-D-E-F-G...
+  </div>
+</div>
+
+<!-- ============================================================
+     PART E: MATCH LETTER TO PICTURE (ISI KOSONG)
+     ============================================================ -->
+<div class="card" id="partE">
+  <div class="part-label">
+    <span class="emoji-big">🔗</span> PART E – Match the Letter to the Picture
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:8px;">✏️ Type the first letter of each picture.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 16px;">
+    <div class="q-row"><span class="num">1.</span> 🍎 Apple → <input class="iq-input iq-input-sm" data-part="E" data-answer="A" maxlength="1"></div>
+    <div class="q-row"><span class="num">2.</span> ⚽ Ball → <input class="iq-input iq-input-sm" data-part="E" data-answer="B" maxlength="1"></div>
+    <div class="q-row"><span class="num">3.</span> 🐱 Cat → <input class="iq-input iq-input-sm" data-part="E" data-answer="C" maxlength="1"></div>
+    <div class="q-row"><span class="num">4.</span> 🐶 Dog → <input class="iq-input iq-input-sm" data-part="E" data-answer="D" maxlength="1"></div>
+    <div class="q-row"><span class="num">5.</span> 🐘 Elephant → <input class="iq-input iq-input-sm" data-part="E" data-answer="E" maxlength="1"></div>
+    <div class="q-row"><span class="num">6.</span> 🐟 Fish → <input class="iq-input iq-input-sm" data-part="E" data-answer="F" maxlength="1"></div>
+    <div class="q-row"><span class="num">7.</span> 🦒 Giraffe → <input class="iq-input iq-input-sm" data-part="E" data-answer="G" maxlength="1"></div>
+    <div class="q-row"><span class="num">8.</span> 🏠 House → <input class="iq-input iq-input-sm" data-part="E" data-answer="H" maxlength="1"></div>
+    <div class="q-row"><span class="num">9.</span> 🍦 Ice cream → <input class="iq-input iq-input-sm" data-part="E" data-answer="I" maxlength="1"></div>
+    <div class="q-row"><span class="num">10.</span> 🧃 Juice → <input class="iq-input iq-input-sm" data-part="E" data-answer="J" maxlength="1"></div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Think about the first sound! Apple starts with <strong>A</strong>, Ball starts with <strong>B</strong>!
+  </div>
+</div>
+
+<!-- ============================================================
+     PART F: COLOR THE VOWELS (INTERAKTIF KLIK)
+     ============================================================ -->
+<div class="card" id="partF">
+  <div class="part-label">
+    <span class="emoji-big">🎨</span> PART F – Color the Vowels!
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:8px;">🎨 <strong>Click</strong> on each vowel (A, E, I, O, U) to color it!</p>
+
+  <div class="letter-grid" id="vowelGrid">
+    <div class="ltr" data-letter="A" data-isvowel="true">A</div>
+    <div class="ltr" data-letter="B" data-isvowel="false">B</div>
+    <div class="ltr" data-letter="C" data-isvowel="false">C</div>
+    <div class="ltr" data-letter="D" data-isvowel="false">D</div>
+    <div class="ltr" data-letter="E" data-isvowel="true">E</div>
+    <div class="ltr" data-letter="F" data-isvowel="false">F</div>
+    <div class="ltr" data-letter="G" data-isvowel="false">G</div>
+    <div class="ltr" data-letter="H" data-isvowel="false">H</div>
+    <div class="ltr" data-letter="I" data-isvowel="true">I</div>
+    <div class="ltr" data-letter="J" data-isvowel="false">J</div>
+    <div class="ltr" data-letter="K" data-isvowel="false">K</div>
+    <div class="ltr" data-letter="L" data-isvowel="false">L</div>
+    <div class="ltr" data-letter="M" data-isvowel="false">M</div>
+    <div class="ltr" data-letter="N" data-isvowel="false">N</div>
+    <div class="ltr" data-letter="O" data-isvowel="true">O</div>
+    <div class="ltr" data-letter="P" data-isvowel="false">P</div>
+    <div class="ltr" data-letter="Q" data-isvowel="false">Q</div>
+    <div class="ltr" data-letter="R" data-isvowel="false">R</div>
+    <div class="ltr" data-letter="S" data-isvowel="false">S</div>
+    <div class="ltr" data-letter="T" data-isvowel="false">T</div>
+    <div class="ltr" data-letter="U" data-isvowel="true">U</div>
+    <div class="ltr" data-letter="V" data-isvowel="false">V</div>
+    <div class="ltr" data-letter="W" data-isvowel="false">W</div>
+    <div class="ltr" data-letter="X" data-isvowel="false">X</div>
+    <div class="ltr" data-letter="Y" data-isvowel="false">Y</div>
+    <div class="ltr" data-letter="Z" data-isvowel="false">Z</div>
+  </div>
+
+  <div style="display:flex; gap:12px; justify-content:center; margin-top:8px; flex-wrap:wrap; font-size:0.85rem;">
+    <span>🔴 <strong style="color:var(--rose);">VOWELS:</strong> A, E, I, O, U</span>
+    <span>🔵 <strong style="color:var(--sky);">CONSONANTS:</strong> All other letters</span>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Remember:</strong> Vowels are the "special" letters! Click on A, E, I, O, U to color them! 🎨
+  </div>
+</div>
+
+<!-- ============================================================
+     PART G: WRITE YOUR OWN NAME (TEXTAREA)
+     ============================================================ -->
+<div class="card" id="partG">
+  <div class="part-label">
+    <span class="emoji-big">✍️</span> PART G – Write Your Own Name!
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:6px;">🌟 Write your name using letters from the alphabet!</p>
+
+  <div style="margin-bottom:8px;">
+    <strong style="color:var(--coral);">My name is:</strong>
+    <div class="writing-box">
+      <textarea id="myName" placeholder="Type your name here..." rows="1"></textarea>
+    </div>
+  </div>
+  <div>
+    <strong style="color:var(--sky);">Now write the first letter of your name:</strong>
+    <div class="writing-box">
+      <textarea id="firstLetter" placeholder="Type the first letter here..." rows="1" maxlength="1"></textarea>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Fun!</strong> Every letter has a name and a sound. What is the first sound of your name?
+  </div>
+</div>
+
+<!-- ============================================================
+     PART H: BONUS — WORD SEARCH (INTERAKTIF KLIK)
+     ============================================================ -->
+<div class="card" id="partH">
+  <div class="part-label">
+    <span class="emoji-big">🔍</span> PART H – Bonus: Word Search
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.85rem; margin-bottom:6px;">🔎 <strong>Click</strong> on the words below to mark them as found!</p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; justify-content:center;" id="wordSearchList">
+    <span class="ws-word" data-word="APPLE" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🍎 APPLE</span>
+    <span class="ws-word" data-word="BALL" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">⚽ BALL</span>
+    <span class="ws-word" data-word="CAT" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🐱 CAT</span>
+    <span class="ws-word" data-word="DOG" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🐶 DOG</span>
+    <span class="ws-word" data-word="FISH" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🐟 FISH</span>
+    <span class="ws-word" data-word="SUN" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">☀️ SUN</span>
+    <span class="ws-word" data-word="LION" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🦁 LION</span>
+    <span class="ws-word" data-word="BIRD" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🐦 BIRD</span>
+    <span class="ws-word" data-word="STAR" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">⭐ STAR</span>
+    <span class="ws-word" data-word="TREE" style="background:#f0f7ff; border-radius:30px; padding:4px 14px; font-weight:700; border:2px solid var(--sky); cursor:pointer; transition:all 0.2s;">🌳 TREE</span>
+  </div>
+
+  <div class="wordsearch-grid" id="wordSearchGrid">
+    <div class="ws-row">A P P L E B A L L C</div>
+    <div class="ws-row">B I R D S T A R F I</div>
+    <div class="ws-row">C A T D O G F I S H</div>
+    <div class="ws-row">L I O N T R E E S U</div>
+    <div class="ws-row">S T A R F I S H C N</div>
+    <div class="ws-row">D O G B A L L A P P</div>
+    <div class="ws-row">F I S H C A T D O G</div>
+    <div class="ws-row">S U N L I O N B I R</div>
+    <div class="ws-row">T R E E S T A R D O</div>
+    <div class="ws-row">G F I S H C A T S U</div>
+  </div>
+
+  <div style="margin-top:8px; text-align:center; font-family:'Fredoka One',cursive; font-size:0.9rem; color:var(--lavender);" id="wordSearchStatus">Found: <span id="wsFoundCount">0</span> / 10 words</div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  Made with ❤️ by <span>LittleLume English</span> • Grade 1 • Interactive Alphabet Worksheet
+</footer>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   INTERAKTIF — ALL FUNCTIONS
+   ═══════════════════════════════════════════════════════════ */
+
+// ── CONFETTI ──
+function launchConfetti(count) {
+  const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#C77DFF', '#FFB347', '#FF8FAB', '#2EC4B6'];
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      width: ${Math.random() * 10 + 6}px;
+      height: ${Math.random() * 10 + 6}px;
+      animation-duration: ${Math.random() * 1.5 + 1.5}s;
+      animation-delay: ${Math.random() * 0.5}s;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 3500);
+  }
+}
+
+// ── FEEDBACK POPUP ──
+function showFeedback(message, sub, type) {
+  const popup = document.getElementById('feedbackPopup');
+  const msg = document.getElementById('fbMessage');
+  const subEl = document.getElementById('fbSub');
+  popup.className = 'feedback-popup ' + type;
+  msg.textContent = message;
+  subEl.textContent = sub || '';
+  popup.classList.add('show');
+  clearTimeout(popup._timeout);
+  popup._timeout = setTimeout(() => popup.classList.remove('show'), 3000);
+}
+
+// ── SCORE UPDATE ──
+function updateScore() {
+  let total = 0;
+  let possible = 0;
+
+  // Part A: Radio buttons (10 questions)
+  const partAOpts = document.querySelectorAll('#partA .q-options');
+  partAOpts.forEach((container, idx) => {
+    const answer = container.dataset.answer;
+    const selected = container.querySelector('input[type="radio"]:checked');
+    const labels = container.querySelectorAll('label');
+    possible += 1;
+    if (selected) {
+      const val = selected.value;
+      labels.forEach(l => {
+        l.classList.remove('selected-correct', 'selected-wrong');
+      });
+      if (val === answer) {
+        total += 1;
+        labels.forEach(l => {
+          if (l.querySelector('input').value === answer) l.classList.add('selected-correct');
+        });
+      } else {
+        labels.forEach(l => {
+          if (l.querySelector('input').value === answer) l.classList.add('selected-correct');
+          if (l.querySelector('input').value === val) l.classList.add('selected-wrong');
+        });
+      }
+    }
+  });
+
+  // Part B: Input fields (10 questions)
+  const partBInputs = document.querySelectorAll('#partB .iq-input');
+  partBInputs.forEach(input => {
+    const answer = input.dataset.answer;
+    const val = input.value.trim().toUpperCase();
+    possible += 1;
+    input.classList.remove('correct', 'wrong');
+    if (val) {
+      if (val === answer) {
+        total += 1;
+        input.classList.add('correct');
+      } else {
+        input.classList.add('wrong');
+      }
+    }
+  });
+
+  // Part C: Radio buttons (10 questions)
+  const partCOpts = document.querySelectorAll('#partC .q-options');
+  partCOpts.forEach((container, idx) => {
+    const answer = container.dataset.answer;
+    const selected = container.querySelector('input[type="radio"]:checked');
+    const labels = container.querySelectorAll('label');
+    possible += 1;
+    if (selected) {
+      const val = selected.value;
+      labels.forEach(l => {
+        l.classList.remove('selected-correct', 'selected-wrong');
+      });
+      if (val === answer) {
+        total += 1;
+        labels.forEach(l => {
+          if (l.querySelector('input').value === answer) l.classList.add('selected-correct');
+        });
+      } else {
+        labels.forEach(l => {
+          if (l.querySelector('input').value === answer) l.classList.add('selected-correct');
+          if (l.querySelector('input').value === val) l.classList.add('selected-wrong');
+        });
+      }
+    }
+  });
+
+  // Part D: Input fields (10 questions)
+  const partDInputs = document.querySelectorAll('#partD .iq-input');
+  partDInputs.forEach(input => {
+    const answer = input.dataset.answer;
+    const val = input.value.trim().toUpperCase();
+    possible += 1;
+    input.classList.remove('correct', 'wrong');
+    if (val) {
+      if (val === answer) {
+        total += 1;
+        input.classList.add('correct');
+      } else {
+        input.classList.add('wrong');
+      }
+    }
+  });
+
+  // Part E: Input fields (10 questions)
+  const partEInputs = document.querySelectorAll('#partE .iq-input');
+  partEInputs.forEach(input => {
+    const answer = input.dataset.answer;
+    const val = input.value.trim().toUpperCase();
+    possible += 1;
+    input.classList.remove('correct', 'wrong');
+    if (val) {
+      if (val === answer) {
+        total += 1;
+        input.classList.add('correct');
+      } else {
+        input.classList.add('wrong');
+      }
+    }
+  });
+
+  // Part F: Vowel grid (5 vowels, counted automatically)
+  const vowelLetters = document.querySelectorAll('#vowelGrid .ltr[data-isvowel="true"]');
+  const consonantLetters = document.querySelectorAll('#vowelGrid .ltr[data-isvowel="false"]');
+  let vowelCorrect = 0;
+  let vowelTotal = 5;
+  vowelLetters.forEach(el => {
+    if (el.classList.contains('vowel-clicked')) {
+      vowelCorrect++;
+    }
+  });
+  // Check if any consonants were wrongly clicked
+  let consonantWrong = 0;
+  consonantLetters.forEach(el => {
+    if (el.classList.contains('consonant-clicked')) {
+      consonantWrong++;
+    }
+  });
+  possible += vowelTotal;
+  if (vowelCorrect === vowelTotal && consonantWrong === 0) {
+    total += vowelTotal;
+  } else {
+    total += Math.max(0, vowelCorrect - consonantWrong);
+  }
+
+  // Part G: Writing (manual check — give full points if both fields filled)
+  const nameField = document.getElementById('myName');
+  const firstField = document.getElementById('firstLetter');
+  possible += 10;
+  if (nameField.value.trim().length > 0 && firstField.value.trim().length > 0) {
+    total += 10;
+  }
+
+  // Part H: Word Search (click to find)
+  const wsWords = document.querySelectorAll('.ws-word');
+  let wsFound = 0;
+  wsWords.forEach(el => {
+    if (el.classList.contains('ws-found')) wsFound++;
+  });
+  possible += 10;
+  total += wsFound;
+
+  // Update display
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('totalPossible').textContent = possible;
+  const pct = Math.round((total / possible) * 100);
+  document.getElementById('scorePercent').textContent = `(${pct}%)`;
+
+  // Save to localStorage for persistence
+  try {
+    localStorage.setItem('littlelume_alphabet_score', JSON.stringify({ total, possible, pct }));
+  } catch(e) {}
+
+  return { total, possible, pct };
+}
+
+// ── PART F: VOWEL CLICK HANDLER ──
+document.querySelectorAll('#vowelGrid .ltr').forEach(el => {
+  el.addEventListener('click', function() {
+    const isVowel = this.dataset.isvowel === 'true';
+    if (isVowel) {
+      this.classList.toggle('vowel-clicked');
+      this.classList.remove('consonant-clicked');
+    } else {
+      this.classList.toggle('consonant-clicked');
+      this.classList.remove('vowel-clicked');
+    }
+    updateScore();
+  });
+});
+
+// ── PART H: WORD SEARCH CLICK HANDLER ──
+document.querySelectorAll('.ws-word').forEach(el => {
+  el.addEventListener('click', function() {
+    this.classList.toggle('ws-found');
+    if (this.classList.contains('ws-found')) {
+      this.style.background = 'var(--mint)';
+      this.style.color = '#fff';
+      this.style.borderColor = 'var(--mint)';
+    } else {
+      this.style.background = '#f0f7ff';
+      this.style.color = '';
+      this.style.borderColor = 'var(--sky)';
+    }
+    const found = document.querySelectorAll('.ws-word.ws-found').length;
+    document.getElementById('wsFoundCount').textContent = found;
+    updateScore();
+  });
+});
+
+// ── PART G: AUTO-UPDATE SCORE ──
+document.getElementById('myName').addEventListener('input', updateScore);
+document.getElementById('firstLetter').addEventListener('input', updateScore);
+
+// ── AUTO-UPDATE ON INPUT ──
+document.querySelectorAll('.iq-input').forEach(el => {
+  el.addEventListener('input', function() {
+    // Auto uppercase
+    this.value = this.value.toUpperCase();
+    // Remove styling
+    this.classList.remove('correct', 'wrong');
+    updateScore();
+  });
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.blur();
+    }
+  });
+});
+
+document.querySelectorAll('input[type="radio"]').forEach(el => {
+  el.addEventListener('change', function() {
+    // Clear previous styling on parent labels
+    const container = this.closest('.q-options');
+    container.querySelectorAll('label').forEach(l => {
+      l.classList.remove('selected-correct', 'selected-wrong');
+    });
+    updateScore();
+  });
+});
+
+// ── CHECK ALL ANSWERS ──
+function checkAllParts() {
+  updateScore();
+  const { total, possible, pct } = updateScore();
+  const emoji = pct === 100 ? '🎉' : pct >= 80 ? '🌟' : pct >= 60 ? '😊' : '💪';
+  let msg = '';
+  if (pct === 100) {
+    msg = 'PERFECT! You are an Alphabet Master! 🏆';
+    launchConfetti(40);
+  } else if (pct >= 80) {
+    msg = 'Amazing work! You really know the alphabet! ⭐';
+    launchConfetti(20);
+  } else if (pct >= 60) {
+    msg = 'Good job! Keep practising! 💪';
+  } else {
+    msg = 'Keep trying — you can do it! 📖';
+  }
+  showFeedback(`${emoji} ${msg}`, `Score: ${total} / ${possible} (${pct}%)`, pct >= 80 ? 'success' : 'info');
+}
+
+// ── SHOW ALL ANSWERS ──
+function showAllAnswers() {
+  // Part B
+  document.querySelectorAll('#partB .iq-input').forEach(input => {
+    input.value = input.dataset.answer;
+    input.classList.add('correct');
+    input.classList.remove('wrong');
+  });
+  // Part D
+  document.querySelectorAll('#partD .iq-input').forEach(input => {
+    input.value = input.dataset.answer;
+    input.classList.add('correct');
+    input.classList.remove('wrong');
+  });
+  // Part E
+  document.querySelectorAll('#partE .iq-input').forEach(input => {
+    input.value = input.dataset.answer;
+    input.classList.add('correct');
+    input.classList.remove('wrong');
+  });
+  // Part A: Select correct answers
+  document.querySelectorAll('#partA .q-options').forEach(container => {
+    const answer = container.dataset.answer;
+    container.querySelectorAll('label').forEach(l => {
+      l.classList.remove('selected-correct', 'selected-wrong');
+    });
+    container.querySelectorAll('input[type="radio"]').forEach(radio => {
+      if (radio.value === answer) {
+        radio.checked = true;
+        radio.closest('label').classList.add('selected-correct');
+      }
+    });
+  });
+  // Part C: Select correct answers
+  document.querySelectorAll('#partC .q-options').forEach(container => {
+    const answer = container.dataset.answer;
+    container.querySelectorAll('label').forEach(l => {
+      l.classList.remove('selected-correct', 'selected-wrong');
+    });
+    container.querySelectorAll('input[type="radio"]').forEach(radio => {
+      if (radio.value === answer) {
+        radio.checked = true;
+        radio.closest('label').classList.add('selected-correct');
+      }
+    });
+  });
+  // Part F: Click all vowels  document.querySelectorAll('#vowelGrid .ltr[data-isvowel="true"]').forEach(el => {
+    el.classList.add('vowel-clicked');
+    el.classList.remove('consonant-clicked');
+  });
+  document.querySelectorAll('#vowelGrid .ltr[data-isvowel="false"]').forEach(el => {
+    el.classList.remove('consonant-clicked', 'vowel-clicked');
+  });
+  // Part H: Mark all words as found
+  document.querySelectorAll('.ws-word').forEach(el => {
+    el.classList.add('ws-found');
+    el.style.background = 'var(--mint)';
+    el.style.color = '#fff';
+    el.style.borderColor = 'var(--mint)';
+  });
+  document.getElementById('wsFoundCount').textContent = '10';
+  updateScore();
+  showFeedback('👀 Answers shown!', 'Now you can check your work.', 'info');
+}
+
+// ── RESET ALL ──
+function resetAll() {
+  // Reset Part A
+  document.querySelectorAll('#partA .q-options input[type="radio"]').forEach(el => {
+    el.checked = false;
+    el.closest('label').classList.remove('selected-correct', 'selected-wrong');
+  });
+  // Reset Part B, D, E
+  document.querySelectorAll('.iq-input').forEach(el => {
+    el.value = '';
+    el.classList.remove('correct', 'wrong');
+  });
+  // Reset Part C
+  document.querySelectorAll('#partC .q-options input[type="radio"]').forEach(el => {
+    el.checked = false;
+    el.closest('label').classList.remove('selected-correct', 'selected-wrong');
+  });
+  // Reset Part F
+  document.querySelectorAll('#vowelGrid .ltr').forEach(el => {
+    el.classList.remove('vowel-clicked', 'consonant-clicked', 'vowel-correct', 'vowel-wrong', 'consonant-correct', 'consonant-wrong');
+  });
+  // Reset Part G
+  document.getElementById('myName').value = '';
+  document.getElementById('firstLetter').value = '';
+  // Reset Part H
+  document.querySelectorAll('.ws-word').forEach(el => {
+    el.classList.remove('ws-found');
+    el.style.background = '#f0f7ff';
+    el.style.color = '';
+    el.style.borderColor = 'var(--sky)';
+  });
+  document.getElementById('wsFoundCount').textContent = '0';
+  updateScore();
+  showFeedback('🔄 All reset!', 'Start fresh and try again!', 'info');
+}
+
+// ── AUTO-SAVE TO LOCALSTORAGE ──
+function saveState() {
+  try {
+    const state = {
+      partA: {},
+      partB: {},
+      partC: {},
+      partD: {},
+      partE: {},
+      partF: {},
+      partG: { name: document.getElementById('myName').value, first: document.getElementById('firstLetter').value },
+      partH: {}
+    };
+    // Part A
+    document.querySelectorAll('#partA .q-options').forEach((container, i) => {
+      const selected = container.querySelector('input[type="radio"]:checked');
+      state.partA[i] = selected ? selected.value : null;
+    });
+    // Part B
+    document.querySelectorAll('#partB .iq-input').forEach((input, i) => {
+      state.partB[i] = input.value;
+    });
+    // Part C
+    document.querySelectorAll('#partC .q-options').forEach((container, i) => {
+      const selected = container.querySelector('input[type="radio"]:checked');
+      state.partC[i] = selected ? selected.value : null;
+    });
+    // Part D
+    document.querySelectorAll('#partD .iq-input').forEach((input, i) => {
+      state.partD[i] = input.value;
+    });
+    // Part E
+    document.querySelectorAll('#partE .iq-input').forEach((input, i) => {
+      state.partE[i] = input.value;
+    });
+    // Part F
+    state.partF = [];
+    document.querySelectorAll('#vowelGrid .ltr').forEach(el => {
+      state.partF.push({
+        letter: el.dataset.letter,
+        clicked: el.classList.contains('vowel-clicked') || el.classList.contains('consonant-clicked')
+      });
+    });
+    // Part H
+    state.partH = [];
+    document.querySelectorAll('.ws-word').forEach(el => {
+      state.partH.push(el.classList.contains('ws-found'));
+    });
+    localStorage.setItem('littlelume_alphabet_state', JSON.stringify(state));
+  } catch(e) {}
+}
+
+// ── LOAD STATE ──
+function loadState() {
+  try {
+    const data = localStorage.getItem('littlelume_alphabet_state');
+    if (!data) return;
+    const state = JSON.parse(data);
+    // Part A
+    if (state.partA) {
+      document.querySelectorAll('#partA .q-options').forEach((container, i) => {
+        const val = state.partA[i];
+        if (val) {
+          container.querySelectorAll('input[type="radio"]').forEach(radio => {
+            if (radio.value === val) radio.checked = true;
+          });
+        }
+      });
+    }
+    // Part B
+    if (state.partB) {
+      document.querySelectorAll('#partB .iq-input').forEach((input, i) => {
+        if (state.partB[i]) input.value = state.partB[i];
+      });
+    }
+    // Part C
+    if (state.partC) {
+      document.querySelectorAll('#partC .q-options').forEach((container, i) => {
+        const val = state.partC[i];
+        if (val) {
+          container.querySelectorAll('input[type="radio"]').forEach(radio => {
+            if (radio.value === val) radio.checked = true;
+          });
+        }
+      });
+    }
+    // Part D
+    if (state.partD) {
+      document.querySelectorAll('#partD .iq-input').forEach((input, i) => {
+        if (state.partD[i]) input.value = state.partD[i];
+      });
+    }
+    // Part E
+    if (state.partE) {
+      document.querySelectorAll('#partE .iq-input').forEach((input, i) => {
+        if (state.partE[i]) input.value = state.partE[i];
+      });
+    }
+    // Part F
+    if (state.partF) {
+      document.querySelectorAll('#vowelGrid .ltr').forEach((el, i) => {
+        if (state.partF[i] && state.partF[i].clicked) {
+          if (el.dataset.isvowel === 'true') {
+            el.classList.add('vowel-clicked');
+          } else {
+            el.classList.add('consonant-clicked');
+          }
+        }
+      });
+    }
+    // Part G
+    if (state.partG) {
+      if (state.partG.name) document.getElementById('myName').value = state.partG.name;
+      if (state.partG.first) document.getElementById('firstLetter').value = state.partG.first;
+    }
+    // Part H
+    if (state.partH) {
+      document.querySelectorAll('.ws-word').forEach((el, i) => {
+        if (state.partH[i]) {
+          el.classList.add('ws-found');
+          el.style.background = 'var(--mint)';
+          el.style.color = '#fff';
+          el.style.borderColor = 'var(--mint)';
+        }
+      });
+      const found = document.querySelectorAll('.ws-word.ws-found').length;
+      document.getElementById('wsFoundCount').textContent = found;
+    }
+    // Update score
+    updateScore();
+  } catch(e) {}
+}
+
+// ── AUTO-SAVE ON CHANGE ──
+document.addEventListener('input', saveState);
+document.addEventListener('change', saveState);
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  loadState();
+  // Set default date
+  const dateInput = document.getElementById('studentDate');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.value = today;
+  }
+  updateScore();
+  // Update word search count
+  const found = document.querySelectorAll('.ws-word.ws-found').length;
+  document.getElementById('wsFoundCount').textContent = found;
+});
+
+// ── KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown', function(e) {
+  // Ctrl+Enter = Check All
+  if (e.ctrlKey && e.key === 'Enter') {
+    e.preventDefault();
+    checkAllParts();
+  }
+  // Ctrl+R = Reset
+  if (e.ctrlKey && e.key === 'r' && !e.shiftKey) {
+    // Don't reload page, just reset
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      resetAll();
+    }
+  }
+});
+</script>
+</body>
+</html>
