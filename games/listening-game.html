@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Listening Games | LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #2C3E7A;
+        --secondary: #7C5CBF;
+        --accent-cyan: #00D9FF;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --danger: #EF4444;
+        --bg-light: #F8F9FD;
+        --bg-card: #FFFFFF;
+        --text-primary: #1A202C;
+        --text-secondary: #64748B;
+        --border: #E2E8F0;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+        --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --grade2: linear-gradient(135deg, #FECA57 0%, #FFE66D 100%);
+        --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
+        --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
+        --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
+        --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
+
+        --grade2-solid: #FECA57;
+        --grade3-solid: #00D2D3;
+        --grade4-solid: #FF9FF3;
+        --grade5-solid: #54A0FF;
+        --grade6-solid: #1DD1A1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        user-select: none;
+    }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .topbar {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: var(--shadow-sm);
+    }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
+    .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .topbar-stars { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--warning); font-size: 0.95rem; }
+
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+
+    .page-head { text-align: center; margin-bottom: 2rem; }
+    .page-eyebrow { display: inline-block; background: rgba(0, 217, 255, 0.1); color: #00AEC7; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+
+    .voice-warning {
+        display: none;
+        max-width: 560px;
+        margin: 0 auto 1.5rem;
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        color: #92610A;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.8rem 1.1rem;
+        border-radius: 12px;
+        text-align: center;
+    }
+    .voice-warning.show { display: block; }
+
+    /* ===== GRADE TABS ===== */
+    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .grade-tab { border: 2px solid var(--border); background: var(--bg-card); padding: 0.6rem 1.2rem; border-radius: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+    .grade-tab .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .grade-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .grade-tab.active { color: white; border-color: transparent; box-shadow: var(--shadow-md); }
+    .grade-tab.active .dot { background: white; }
+    .g2 .dot { background: var(--grade2-solid); }
+    .g3 .dot { background: var(--grade3-solid); }
+    .g4 .dot { background: var(--grade4-solid); }
+    .g5 .dot { background: var(--grade5-solid); }
+    .g6 .dot { background: var(--grade6-solid); }
+    .g2.active { background: var(--grade2); color: #7A5A00; }
+    .g3.active { background: var(--grade3); color: #003B3C; }
+    .g4.active { background: var(--grade4); color: #7A2E70; }
+    .g5.active { background: var(--grade5); color: #0B2E66; }
+    .g6.active { background: var(--grade6); color: #063D2F; }
+
+    /* ===== TOPIC GRID ===== */
+    .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.1rem; }
+    .topic-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 1.7rem; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; }
+    .topic-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--grade-color, var(--primary)); }
+    .topic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .topic-icon { font-size: 2.1rem; margin-bottom: 0.7rem; display: block; }
+    .topic-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .topic-count { font-size: 0.8rem; color: var(--text-secondary); }
+    .topic-stars { margin-top: 0.9rem; font-size: 1rem; }
+
+    /* ===== GAME VIEW ===== */
+    .game-view { display: none; }
+    .game-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .back-btn { background: var(--bg-card); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 12px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
+    .back-btn:hover { background: var(--bg-light); transform: translateX(-2px); }
+    .game-title-wrap { flex: 1; }
+    .game-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.1rem; }
+    .game-meta { font-size: 0.83rem; color: var(--text-secondary); }
+    .game-score { font-weight: 800; font-size: 1rem; color: var(--primary); white-space: nowrap; }
+
+    .level-dots { display: flex; gap: 0.35rem; justify-content: center; margin-bottom: 1.8rem; flex-wrap: wrap; }
+    .level-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); transition: var(--transition); }
+    .level-dot.done { background: var(--success); }
+    .level-dot.current { background: var(--grade-color, var(--primary)); transform: scale(1.3); }
+
+    .game-board { background: var(--bg-card); border-radius: 24px; padding: 2.5rem 2rem; box-shadow: var(--shadow-md); text-align: center; position: relative; min-height: 340px; }
+    .instruction { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 1.4rem; }
+
+    /* Play button */
+    .play-btn-audio {
+        width: 92px; height: 92px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        font-size: 2.2rem;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 1rem;
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition);
+        position: relative;
+    }
+    .play-btn-audio:hover { transform: scale(1.06); }
+    .play-btn-audio:active { transform: scale(0.96); }
+    .play-btn-audio.speaking { animation: pulse-ring 1s ease-in-out infinite; }
+    @keyframes pulse-ring {
+        0% { box-shadow: 0 0 0 0 rgba(124,92,191,0.4), var(--shadow-lg); }
+        70% { box-shadow: 0 0 0 16px rgba(124,92,191,0), var(--shadow-lg); }
+        100% { box-shadow: 0 0 0 0 rgba(124,92,191,0), var(--shadow-lg); }
+    }
+    .replay-hint { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.8rem; font-weight: 600; }
+
+    /* CHOOSE mode options */
+    .choose-options { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .choose-opt { text-align: left; border: 2px solid var(--border); background: var(--bg-light); padding: 0.9rem 1.1rem; border-radius: 14px; font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.6rem; }
+    .choose-opt .opt-emoji { font-size: 1.5rem; }
+    .choose-opt:hover:not(.correct):not(.wrong):not([disabled]) { border-color: var(--secondary); background: rgba(124,92,191,0.06); }
+    .choose-opt.correct { border-color: var(--success); background: rgba(16,185,129,0.1); color: #067A55; }
+    .choose-opt.wrong { border-color: var(--danger); background: rgba(239,68,68,0.08); color: #B91C1C; }
+
+    /* ARRANGE mode */
+    .arrange-slots { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-bottom: 1.8rem; min-height: 52px; }
+    .arrange-slot { min-width: 70px; height: 46px; border: 3px dashed var(--border); border-radius: 12px; background: var(--bg-light); display: flex; align-items: center; justify-content: center; font-weight: 700; padding: 0 0.7rem; transition: var(--transition); }
+    .arrange-slot.filled { border-style: solid; border-color: var(--secondary); background: rgba(124,92,191,0.08); }
+    .arrange-slot.correct-slot { border-color: var(--success); background: rgba(16,185,129,0.12); color: #067A55; }
+    .arrange-tray { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
+    .word-tile { background: var(--bg-card); border: 2px solid var(--border); border-radius: 14px; padding: 0.7rem 1.2rem; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, border-color 0.2s, opacity 0.2s; }
+    .word-tile:hover { border-color: var(--secondary); box-shadow: var(--shadow-md); }
+    .word-tile.used { opacity: 0.25; pointer-events: none; }
+    .arrange-check-btn { margin-top: 0.4rem; border: none; background: var(--secondary); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.7rem 1.5rem; border-radius: 14px; cursor: pointer; font-size: 0.9rem; transition: var(--transition); display: none; }
+    .arrange-check-btn.show { display: inline-flex; }
+    .arrange-check-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* TF mode */
+    .tf-context { font-size: 2.6rem; margin-bottom: 0.4rem; }
+    .tf-context-label { font-size: 0.9rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 1.2rem; }
+    .tf-buttons { display: flex; gap: 1rem; justify-content: center; }
+    .tf-btn { border: 2px solid var(--border); background: var(--bg-light); padding: 0.9rem 2.2rem; border-radius: 14px; font-weight: 800; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.05rem; cursor: pointer; transition: var(--transition); min-width: 130px; }
+    .tf-btn:hover:not([disabled]) { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .tf-btn.true-btn:hover:not([disabled]) { border-color: var(--success); color: #067A55; }
+    .tf-btn.false-btn:hover:not([disabled]) { border-color: var(--danger); color: #B91C1C; }
+    .tf-btn.correct { border-color: var(--success); background: rgba(16,185,129,0.12); color: #067A55; }
+    .tf-btn.wrong { border-color: var(--danger); background: rgba(239,68,68,0.1); color: #B91C1C; }
+
+    .feedback-banner { margin-top: 1.4rem; font-weight: 700; font-size: 0.95rem; min-height: 1.4rem; }
+    .feedback-banner.ok { color: var(--success); }
+    .feedback-banner.no { color: var(--danger); }
+
+    .next-btn { margin-top: 1.2rem; border: none; background: var(--primary); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.8rem 1.8rem; border-radius: 14px; cursor: pointer; font-size: 0.95rem; transition: var(--transition); display: none; }
+    .next-btn.show { display: inline-flex; }
+    .next-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-6px); } 80% { transform: translateX(6px); } }
+    .shake-anim { animation: shake 0.4s; }
+
+    /* ===== RESULT VIEW ===== */
+    .result-view { display: none; text-align: center; }
+    .result-card { background: var(--bg-card); border-radius: 24px; padding: 3rem 2rem; box-shadow: var(--shadow-xl); max-width: 460px; margin: 0 auto; }
+    .result-stars { font-size: 2.6rem; margin-bottom: 1rem; }
+    .result-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .result-sub { color: var(--text-secondary); margin-bottom: 1.8rem; font-weight: 500; }
+    .result-detail { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .result-stat-num { font-size: 1.4rem; font-weight: 800; }
+    .result-stat-label { font-size: 0.78rem; color: var(--text-secondary); }
+    .result-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+    .result-btn { border: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.8rem 1.6rem; border-radius: 14px; cursor: pointer; font-size: 0.9rem; transition: var(--transition); }
+    .result-btn.primary { background: var(--primary); color: white; }
+    .result-btn.primary:hover { background: var(--secondary); transform: translateY(-2px); }
+    .result-btn.ghost { background: var(--bg-light); color: var(--text-primary); border: 1px solid var(--border); }
+    .result-btn.ghost:hover { background: var(--border); }
+
+    .confetti-piece { position: fixed; top: -20px; font-size: 1.4rem; pointer-events: none; z-index: 998; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0.2; } }
+
+    @media (max-width: 600px) {
+        .topbar { padding: 0.85rem 1.1rem; }
+        .page-title { font-size: 1.5rem; }
+        .game-board { padding: 1.8rem 1.2rem; }
+        .word-tile { padding: 0.6rem 1rem; font-size: 0.9rem; }
+        .choose-options { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="brand"><span class="brand-badge">🎧</span> LittleLume Listening Games</div>
+    <div class="topbar-stars" id="totalStars">⭐ 0</div>
+</div>
+
+<div class="wrap">
+
+    <!-- ============ HOME VIEW ============ -->
+    <div id="homeView">
+        <div class="page-head">
+            <span class="page-eyebrow">Listen & Play</span>
+            <h1 class="page-title">Listening Games</h1>
+            <p class="page-desc">Tap the play button to listen, then choose, arrange, or judge true/false. Pick a grade and a mode to start!</p>
+        </div>
+        <div class="voice-warning" id="voiceWarning">⚠️ Your browser's English voice may not be available. Sound might not play — try Chrome for the best experience.</div>
+
+        <div class="grade-tabs" id="gradeTabs"></div>
+        <div class="topic-grid" id="topicGrid"></div>
+    </div>
+
+    <!-- ============ GAME VIEW ============ -->
+    <div class="game-view" id="gameView">
+        <div class="game-header">
+            <button class="back-btn" id="backBtn">←</button>
+            <div class="game-title-wrap">
+                <div class="game-title" id="gameTitle">Topic</div>
+                <div class="game-meta" id="gameMeta">Level 1 of 8</div>
+            </div>
+            <div class="game-score" id="gameScore">⭐ 0</div>
+        </div>
+        <div class="level-dots" id="levelDots"></div>
+
+        <div class="game-board" id="gameBoard">
+            <!-- dynamic content injected per mode -->
+        </div>
+    </div>
+
+    <!-- ============ RESULT VIEW ============ -->
+    <div class="result-view" id="resultView">
+        <div class="result-card">
+            <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+            <div class="result-title" id="resultTitle">Level Complete!</div>
+            <div class="result-sub" id="resultSub">You did great!</div>
+            <div class="result-detail">
+                <div><div class="result-stat-num" id="resultCorrect">0</div><div class="result-stat-label">First-try</div></div>
+                <div><div class="result-stat-num" id="resultRetry">0</div><div class="result-stat-label">Retries</div></div>
+                <div><div class="result-stat-num" id="resultTotal">0</div><div class="result-stat-label">Total</div></div>
+            </div>
+            <div class="result-actions">
+                <button class="result-btn primary" id="retryTopicBtn">🔁 Play Again</button>
+                <button class="result-btn ghost" id="homeBtnResult">🏠 Back to Topics</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const LISTENING_DATA = {"grade2": {"choose": {"title": "Listen & Choose", "icon": "🎧", "mode": "choose", "levels": [{"audio": "cat", "answer": "cat", "options": [{"label": "cat", "emoji": "🐱"}, {"label": "dog", "emoji": "🐶"}, {"label": "bird", "emoji": "🐦"}, {"label": "fish", "emoji": "🐟"}]}, {"audio": "dog", "answer": "dog", "options": [{"label": "dog", "emoji": "🐶"}, {"label": "cat", "emoji": "🐱"}, {"label": "cow", "emoji": "🐄"}, {"label": "duck", "emoji": "🦆"}]}, {"audio": "red", "answer": "red", "options": [{"label": "red", "emoji": "🔴"}, {"label": "blue", "emoji": "🔵"}, {"label": "green", "emoji": "🟢"}, {"label": "yellow", "emoji": "🟡"}]}, {"audio": "blue", "answer": "blue", "options": [{"label": "blue", "emoji": "🔵"}, {"label": "red", "emoji": "🔴"}, {"label": "black", "emoji": "⚫"}, {"label": "white", "emoji": "⚪"}]}, {"audio": "seven", "answer": "seven", "options": [{"label": "seven", "emoji": "7️⃣"}, {"label": "five", "emoji": "5️⃣"}, {"label": "eight", "emoji": "8️⃣"}, {"label": "three", "emoji": "3️⃣"}]}, {"audio": "ten", "answer": "ten", "options": [{"label": "ten", "emoji": "🔟"}, {"label": "nine", "emoji": "9️⃣"}, {"label": "six", "emoji": "6️⃣"}, {"label": "four", "emoji": "4️⃣"}]}, {"audio": "apple", "answer": "apple", "options": [{"label": "apple", "emoji": "🍎"}, {"label": "banana", "emoji": "🍌"}, {"label": "orange", "emoji": "🍊"}, {"label": "grape", "emoji": "🍇"}]}, {"audio": "milk", "answer": "milk", "options": [{"label": "milk", "emoji": "🥛"}, {"label": "juice", "emoji": "🧃"}, {"label": "water", "emoji": "💧"}, {"label": "tea", "emoji": "🍵"}]}]}, "arrange": {"title": "Listen & Arrange", "icon": "🔤", "mode": "arrange", "levels": [{"audio": "I like cats", "words": ["I", "like", "cats"]}, {"audio": "She has a dog", "words": ["She", "has", "a", "dog"]}, {"audio": "This is my book", "words": ["This", "is", "my", "book"]}, {"audio": "We eat rice", "words": ["We", "eat", "rice"]}, {"audio": "He can swim", "words": ["He", "can", "swim"]}, {"audio": "They are happy", "words": ["They", "are", "happy"]}, {"audio": "I see a bird", "words": ["I", "see", "a", "bird"]}, {"audio": "The sun is hot", "words": ["The", "sun", "is", "hot"]}]}, "tf": {"title": "True or False", "icon": "✅", "mode": "tf", "levels": [{"context_label": "Cat", "context_emoji": "🐱", "audio": "This is a cat.", "answer": true}, {"context_label": "Dog", "context_emoji": "🐶", "audio": "This is a cat.", "answer": false}, {"context_label": "Red apple", "context_emoji": "🍎", "audio": "The apple is red.", "answer": true}, {"context_label": "Banana", "context_emoji": "🍌", "audio": "The banana is blue.", "answer": false}, {"context_label": "Three balls", "context_emoji": "⚽⚽⚽", "audio": "There are three balls.", "answer": true}, {"context_label": "Fish", "context_emoji": "🐟", "audio": "A fish can fly.", "answer": false}, {"context_label": "Sun", "context_emoji": "☀️", "audio": "The sun is hot.", "answer": true}, {"context_label": "Snow", "context_emoji": "❄️", "audio": "Snow is hot.", "answer": false}]}}, "grade3": {"choose": {"title": "Listen & Choose", "icon": "🎧", "mode": "choose", "levels": [{"audio": "She goes to school every day.", "answer": "She goes to school every day.", "options": [{"label": "She goes to school every day."}, {"label": "She went to school every day."}, {"label": "She goes to school every night."}, {"label": "He goes to school every day."}]}, {"audio": "My mom cooks dinner at home.", "answer": "My mom cooks dinner at home.", "options": [{"label": "My mom cooks dinner at home."}, {"label": "My mom cooked dinner at home."}, {"label": "My dad cooks dinner at home."}, {"label": "My mom cooks lunch at home."}]}, {"audio": "The dog runs in the park.", "answer": "The dog runs in the park.", "options": [{"label": "The dog runs in the park."}, {"label": "The dog ran in the park."}, {"label": "The cat runs in the park."}, {"label": "The dog runs in the house."}]}, {"audio": "I read a book every night.", "answer": "I read a book every night.", "options": [{"label": "I read a book every night."}, {"label": "I read a book every morning."}, {"label": "I write a book every night."}, {"label": "You read a book every night."}]}, {"audio": "We play football on Sundays.", "answer": "We play football on Sundays.", "options": [{"label": "We play football on Sundays."}, {"label": "We play football on Mondays."}, {"label": "We play basketball on Sundays."}, {"label": "They play football on Sundays."}]}, {"audio": "She sings a song every day.", "answer": "She sings a song every day.", "options": [{"label": "She sings a song every day."}, {"label": "She sang a song every day."}, {"label": "She sings a story every day."}, {"label": "He sings a song every day."}]}, {"audio": "He drinks orange juice for breakfast.", "answer": "He drinks orange juice for breakfast.", "options": [{"label": "He drinks orange juice for breakfast."}, {"label": "He drinks orange juice for dinner."}, {"label": "He drinks apple juice for breakfast."}, {"label": "She drinks orange juice for breakfast."}]}, {"audio": "They walk to school together.", "answer": "They walk to school together.", "options": [{"label": "They walk to school together."}, {"label": "They walked to school together."}, {"label": "They walk to the park together."}, {"label": "They run to school together."}]}]}, "arrange": {"title": "Listen & Arrange", "icon": "🔤", "mode": "arrange", "levels": [{"audio": "My mom cooks dinner", "words": ["My", "mom", "cooks", "dinner"]}, {"audio": "The dog runs fast", "words": ["The", "dog", "runs", "fast"]}, {"audio": "I read a book", "words": ["I", "read", "a", "book"]}, {"audio": "We play football today", "words": ["We", "play", "football", "today"]}, {"audio": "She sings a song", "words": ["She", "sings", "a", "song"]}, {"audio": "He drinks orange juice", "words": ["He", "drinks", "orange", "juice"]}, {"audio": "They walk to school", "words": ["They", "walk", "to", "school"]}, {"audio": "The cat sleeps all day", "words": ["The", "cat", "sleeps", "all", "day"]}]}, "tf": {"title": "True or False", "icon": "✅", "mode": "tf", "levels": [{"context_label": null, "context_emoji": null, "audio": "Fish live in water.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Cows can fly.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "The sun rises in the west.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "Ice is cold.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Elephants are very small.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "Birds can sing.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Fire is cold.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "Plants need water to grow.", "answer": true}]}}, "grade4": {"choose": {"title": "Listen & Choose", "icon": "🎧", "mode": "choose", "levels": [{"audio": "You must wear a helmet.", "answer": "You must wear a helmet.", "options": [{"label": "You must wear a helmet."}, {"label": "You can wear a helmet."}, {"label": "You must wear a jacket."}, {"label": "You mustn't wear a helmet."}]}, {"audio": "Can you help me carry this bag?", "answer": "Can you help me carry this bag?", "options": [{"label": "Can you help me carry this bag?"}, {"label": "Can you help me carry this box?"}, {"label": "Will you help me carry this bag?"}, {"label": "Can you help her carry this bag?"}]}, {"audio": "Where do you live now?", "answer": "Where do you live now?", "options": [{"label": "Where do you live now?"}, {"label": "Where did you live now?"}, {"label": "Where do you live today?"}, {"label": "When do you live now?"}]}, {"audio": "She is reading a book.", "answer": "She is reading a book.", "options": [{"label": "She is reading a book."}, {"label": "She was reading a book."}, {"label": "She is reading a letter."}, {"label": "He is reading a book."}]}, {"audio": "We must finish our homework.", "answer": "We must finish our homework.", "options": [{"label": "We must finish our homework."}, {"label": "We should finish our homework."}, {"label": "We must finish our project."}, {"label": "They must finish our homework."}]}, {"audio": "What time does school start?", "answer": "What time does school start?", "options": [{"label": "What time does school start?"}, {"label": "What time does school end?"}, {"label": "What time did school start?"}, {"label": "What time does class start?"}]}, {"audio": "He can play the guitar well.", "answer": "He can play the guitar well.", "options": [{"label": "He can play the guitar well."}, {"label": "He can play the piano well."}, {"label": "He could play the guitar well."}, {"label": "She can play the guitar well."}]}, {"audio": "You should drink more water.", "answer": "You should drink more water.", "options": [{"label": "You should drink more water."}, {"label": "You must drink more water."}, {"label": "You should drink more juice."}, {"label": "You should eat more water."}]}]}, "arrange": {"title": "Listen & Arrange", "icon": "🔤", "mode": "arrange", "levels": [{"audio": "The birds are flying high", "words": ["The", "birds", "are", "flying", "high"]}, {"audio": "She is reading a book", "words": ["She", "is", "reading", "a", "book"]}, {"audio": "We must finish our homework", "words": ["We", "must", "finish", "our", "homework"]}, {"audio": "Where do you live now", "words": ["Where", "do", "you", "live", "now"]}, {"audio": "He can play the guitar", "words": ["He", "can", "play", "the", "guitar"]}, {"audio": "They are watching a movie", "words": ["They", "are", "watching", "a", "movie"]}, {"audio": "You should drink more water", "words": ["You", "should", "drink", "more", "water"]}, {"audio": "What time does school start", "words": ["What", "time", "does", "school", "start"]}]}, "tf": {"title": "True or False", "icon": "✅", "mode": "tf", "levels": [{"context_label": null, "context_emoji": null, "audio": "You must sleep for eight hours to stay healthy.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Birds must swim to fly.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "You should brush your teeth before bed.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Fish can walk on land easily.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "You must stop at a red traffic light.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Plants can talk to people.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "Students should study before a test.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "You can breathe underwater without any equipment.", "answer": false}]}}, "grade5": {"choose": {"title": "Listen & Choose", "icon": "🎧", "mode": "choose", "levels": [{"audio": "She has already finished her homework.", "answer": "She has already finished her homework.", "options": [{"label": "She has already finished her homework."}, {"label": "She has already started her homework."}, {"label": "She had already finished her homework."}, {"label": "She will already finish her homework."}]}, {"audio": "I will call you tomorrow.", "answer": "I will call you tomorrow.", "options": [{"label": "I will call you tomorrow."}, {"label": "I will call you today."}, {"label": "I called you tomorrow."}, {"label": "I will visit you tomorrow."}]}, {"audio": "They are going to travel to Bali.", "answer": "They are going to travel to Bali.", "options": [{"label": "They are going to travel to Bali."}, {"label": "They are going to travel to Java."}, {"label": "They went to travel to Bali."}, {"label": "They are going to visit Bali."}]}, {"audio": "The man who called you is my uncle.", "answer": "The man who called you is my uncle.", "options": [{"label": "The man who called you is my uncle."}, {"label": "The man who called you is my father."}, {"label": "The woman who called you is my uncle."}, {"label": "The man who visited you is my uncle."}]}, {"audio": "If it rains, we will stay home.", "answer": "If it rains, we will stay home.", "options": [{"label": "If it rains, we will stay home."}, {"label": "If it rains, we will go out."}, {"label": "If it snows, we will stay home."}, {"label": "If it rains, we stayed home."}]}, {"audio": "We have never seen a real lion.", "answer": "We have never seen a real lion.", "options": [{"label": "We have never seen a real lion."}, {"label": "We have never seen a real tiger."}, {"label": "We have never heard a real lion."}, {"label": "We have already seen a real lion."}]}, {"audio": "He has finished all his homework already.", "answer": "He has finished all his homework already.", "options": [{"label": "He has finished all his homework already."}, {"label": "He has finished some of his homework already."}, {"label": "He had finished all his homework already."}, {"label": "She has finished all her homework already."}]}, {"audio": "If you study hard, you will pass.", "answer": "If you study hard, you will pass.", "options": [{"label": "If you study hard, you will pass."}, {"label": "If you study hard, you will fail."}, {"label": "If you play hard, you will pass."}, {"label": "If you study hard, you passed."}]}]}, "arrange": {"title": "Listen & Arrange", "icon": "🔤", "mode": "arrange", "levels": [{"audio": "I have never seen a real lion", "words": ["I", "have", "never", "seen", "a", "real", "lion"]}, {"audio": "She will visit her grandmother next week", "words": ["She", "will", "visit", "her", "grandmother", "next", "week"]}, {"audio": "If it rains we will stay home", "words": ["If", "it", "rains", "we", "will", "stay", "home"]}, {"audio": "The man who called you is my uncle", "words": ["The", "man", "who", "called", "you", "is", "my", "uncle"]}, {"audio": "They have already eaten their breakfast today", "words": ["They", "have", "already", "eaten", "their", "breakfast", "today"]}, {"audio": "We are going to travel to Bali", "words": ["We", "are", "going", "to", "travel", "to", "Bali"]}, {"audio": "He has finished all his homework already", "words": ["He", "has", "finished", "all", "his", "homework", "already"]}, {"audio": "If you study hard you will pass", "words": ["If", "you", "study", "hard", "you", "will", "pass"]}]}, "tf": {"title": "True or False", "icon": "✅", "mode": "tf", "levels": [{"context_label": null, "context_emoji": null, "audio": "The Great Wall of China is very long.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Humans have visited the sun.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "If you freeze water, it becomes ice.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Fish have never lived in the ocean.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "The Earth has one moon.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Penguins will fly to warm countries every winter.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "If plants get no water, they will die.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "Humans can breathe on the moon without equipment.", "answer": false}]}}, "grade6": {"choose": {"title": "Listen & Choose", "icon": "🎧", "mode": "choose", "levels": [{"audio": "The letter was written by her yesterday.", "answer": "The letter was written by her yesterday.", "options": [{"label": "The letter was written by her yesterday."}, {"label": "The letter is written by her yesterday."}, {"label": "The letter was written by him yesterday."}, {"label": "The letter was read by her yesterday."}]}, {"audio": "He said that he was tired.", "answer": "He said that he was tired.", "options": [{"label": "He said that he was tired."}, {"label": "He said that he is tired."}, {"label": "He said that she was tired."}, {"label": "He said that he was hungry."}]}, {"audio": "The cake was baked by my grandmother.", "answer": "The cake was baked by my grandmother.", "options": [{"label": "The cake was baked by my grandmother."}, {"label": "The cake was baked by my mother."}, {"label": "The cake is baked by my grandmother."}, {"label": "The bread was baked by my grandmother."}]}, {"audio": "She asked where I lived.", "answer": "She asked where I lived.", "options": [{"label": "She asked where I lived."}, {"label": "She asked where I live."}, {"label": "She asked when I lived."}, {"label": "He asked where I lived."}]}, {"audio": "A new product will be launched next month.", "answer": "A new product will be launched next month.", "options": [{"label": "A new product will be launched next month."}, {"label": "A new product was launched next month."}, {"label": "A new product will be launched next week."}, {"label": "A new service will be launched next month."}]}, {"audio": "They told us the movie had started.", "answer": "They told us the movie had started.", "options": [{"label": "They told us the movie had started."}, {"label": "They told us the movie had ended."}, {"label": "They told us the show had started."}, {"label": "She told us the movie had started."}]}, {"audio": "The window was broken by the strong wind.", "answer": "The window was broken by the strong wind.", "options": [{"label": "The window was broken by the strong wind."}, {"label": "The window was broken by the heavy rain."}, {"label": "The door was broken by the strong wind."}, {"label": "The window is broken by the strong wind."}]}, {"audio": "If I had more time, I would travel.", "answer": "If I had more time, I would travel.", "options": [{"label": "If I had more time, I would travel."}, {"label": "If I had more money, I would travel."}, {"label": "If I have more time, I would travel."}, {"label": "If I had more time, I would rest."}]}]}, "arrange": {"title": "Listen & Arrange", "icon": "🔤", "mode": "arrange", "levels": [{"audio": "The cake was baked by my grandmother this morning", "words": ["The", "cake", "was", "baked", "by", "my", "grandmother", "this", "morning"]}, {"audio": "She said that she was feeling very tired", "words": ["She", "said", "that", "she", "was", "feeling", "very", "tired"]}, {"audio": "If I had more time I would travel", "words": ["If", "I", "had", "more", "time", "I", "would", "travel"]}, {"audio": "He asked me where I had been yesterday", "words": ["He", "asked", "me", "where", "I", "had", "been", "yesterday"]}, {"audio": "The window was broken by the strong wind", "words": ["The", "window", "was", "broken", "by", "the", "strong", "wind"]}, {"audio": "They told us that the movie had started", "words": ["They", "told", "us", "that", "the", "movie", "had", "started"]}, {"audio": "If we had studied harder we would have passed", "words": ["If", "we", "had", "studied", "harder", "we", "would", "have", "passed"]}, {"audio": "The house was built by my father years ago", "words": ["The", "house", "was", "built", "by", "my", "father", "years", "ago"]}]}, "tf": {"title": "True or False", "icon": "✅", "mode": "tf", "levels": [{"context_label": null, "context_emoji": null, "audio": "The Eiffel Tower was built in Paris.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "The telephone was invented by a cat.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "Rice is grown in many Asian countries.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "The moon was made by humans.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "Many books have been written about space travel.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "All fish have been taught to fly.", "answer": false}, {"context_label": null, "context_emoji": null, "audio": "The Great Wall was built to protect a country.", "answer": true}, {"context_label": null, "context_emoji": null, "audio": "The sun has been turned off before.", "answer": false}]}}};
+</script>
+<script>
+(function () {
+    var GRADE_META = {
+        grade2: { label: "Grade 2", cls: "g2", color: "var(--grade2)" },
+        grade3: { label: "Grade 3", cls: "g3", color: "var(--grade3)" },
+        grade4: { label: "Grade 4", cls: "g4", color: "var(--grade4)" },
+        grade5: { label: "Grade 5", cls: "g5", color: "var(--grade5)" },
+        grade6: { label: "Grade 6", cls: "g6", color: "var(--grade6)" }
+    };
+    var GRADE_ORDER = ["grade2", "grade3", "grade4", "grade5", "grade6"];
+    var STORAGE_KEY = "llg_listening_game_progress_v1";
+
+    var state = {
+        grade: "grade2",
+        topicKey: null,
+        mode: null,
+        levels: [],
+        index: 0,
+        attemptsThisLevel: 0,
+        levelStars: [],
+        firstTryCount: 0,
+        retryCount: 0,
+        arrangeSlots: [],   // words placed so far (in order)
+        arrangeUsed: []     // indices of tray words used
+    };
+
+    var homeView = document.getElementById("homeView");
+    var gameView = document.getElementById("gameView");
+    var resultView = document.getElementById("resultView");
+    var gradeTabs = document.getElementById("gradeTabs");
+    var topicGrid = document.getElementById("topicGrid");
+    var gameBoard = document.getElementById("gameBoard");
+
+    // ---------- Speech ----------
+    var englishVoice = null;
+    var speechSupported = !!window.speechSynthesis;
+
+    function pickVoice() {
+        if (!speechSupported) return;
+        var voices = window.speechSynthesis.getVoices();
+        englishVoice = voices.find(function (v) { return v.lang === "en-US"; }) ||
+                       voices.find(function (v) { return v.lang && v.lang.indexOf("en") === 0; }) ||
+                       null;
+        if (!englishVoice && voices.length === 0) {
+            // voices not loaded yet
+        } else if (!englishVoice) {
+            document.getElementById("voiceWarning").classList.add("show");
+        }
+    }
+    if (speechSupported) {
+        pickVoice();
+        window.speechSynthesis.onvoiceschanged = pickVoice;
+    } else {
+        document.getElementById("voiceWarning").classList.add("show");
+    }
+
+    function speakText(text, btnEl) {
+        if (!speechSupported) return;
+        window.speechSynthesis.cancel();
+        var utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "en-US";
+        utter.rate = 0.88;
+        utter.pitch = 1.05;
+        if (englishVoice) utter.voice = englishVoice;
+        if (btnEl) {
+            utter.onstart = function () { btnEl.classList.add("speaking"); };
+            utter.onend = function () { btnEl.classList.remove("speaking"); };
+            utter.onerror = function () { btnEl.classList.remove("speaking"); };
+        }
+        window.speechSynthesis.speak(utter);
+    }
+
+    // ---------- persistence ----------
+    function loadProgress() {
+        try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
+        catch (e) { return {}; }
+    }
+    function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {} }
+    function getTopicBest(grade, topicKey) {
+        var p = loadProgress();
+        return p[grade + ":" + topicKey] || 0;
+    }
+    function setTopicBest(grade, topicKey, stars) {
+        var p = loadProgress();
+        var key = grade + ":" + topicKey;
+        if (!p[key] || stars > p[key]) { p[key] = stars; saveProgress(p); }
+    }
+    function getGlobalStars() {
+        var p = loadProgress(), total = 0;
+        Object.keys(p).forEach(function (k) { total += p[k]; });
+        return total;
+    }
+    function refreshGlobalStars() { document.getElementById("totalStars").textContent = "⭐ " + getGlobalStars(); }
+
+    function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+    }
+
+    // ---------- home / topic grid ----------
+    function renderGradeTabs() {
+        gradeTabs.innerHTML = "";
+        GRADE_ORDER.forEach(function (g) {
+            var meta = GRADE_META[g];
+            var btn = document.createElement("button");
+            btn.className = "grade-tab " + meta.cls + (g === state.grade ? " active" : "");
+            btn.innerHTML = '<span class="dot"></span>' + meta.label;
+            btn.addEventListener("click", function () {
+                state.grade = g;
+                renderGradeTabs();
+                renderTopicGrid();
+            });
+            gradeTabs.appendChild(btn);
+        });
+    }
+
+    function starString(stars, max) {
+        var full = Math.round((stars / max) * 3);
+        full = Math.max(0, Math.min(3, full));
+        return "⭐".repeat(full) + "☆".repeat(3 - full);
+    }
+
+    function renderTopicGrid() {
+        topicGrid.innerHTML = "";
+        var gradeData = LISTENING_DATA[state.grade];
+        var meta = GRADE_META[state.grade];
+        Object.keys(gradeData).forEach(function (topicKey) {
+            var topic = gradeData[topicKey];
+            var maxStars = topic.levels.length * 2;
+            var best = getTopicBest(state.grade, topicKey);
+            var card = document.createElement("div");
+            card.className = "topic-card";
+            card.style.setProperty("--grade-color", meta.color);
+            card.innerHTML =
+                '<span class="topic-icon">' + topic.icon + '</span>' +
+                '<div class="topic-name">' + topic.title + '</div>' +
+                '<div class="topic-count">' + topic.levels.length + ' levels</div>' +
+                '<div class="topic-stars">' + starString(best, maxStars) + '</div>';
+            card.addEventListener("click", function () { startTopic(state.grade, topicKey); });
+            topicGrid.appendChild(card);
+        });
+    }
+
+    // ---------- game flow ----------
+    function startTopic(grade, topicKey) {
+        var topic = LISTENING_DATA[grade][topicKey];
+        state.grade = grade;
+        state.topicKey = topicKey;
+        state.mode = topic.mode;
+        state.levels = topic.levels;
+        state.index = 0;
+        state.levelStars = [];
+        state.firstTryCount = 0;
+        state.retryCount = 0;
+
+        document.getElementById("gameTitle").textContent = topic.icon + " " + topic.title;
+
+        renderLevelDots();
+        homeView.style.display = "none";
+        resultView.style.display = "none";
+        gameView.style.display = "block";
+        loadLevel();
+    }
+
+    function renderLevelDots() {
+        var wrap = document.getElementById("levelDots");
+        wrap.innerHTML = "";
+        var meta = GRADE_META[state.grade];
+        state.levels.forEach(function () {
+            var dot = document.createElement("span");
+            dot.className = "level-dot";
+            dot.style.setProperty("--grade-color", meta.color);
+            wrap.appendChild(dot);
+        });
+        updateLevelDots();
+    }
+    function updateLevelDots() {
+        var dots = document.querySelectorAll("#levelDots .level-dot");
+        dots.forEach(function (dot, i) {
+            dot.classList.remove("done", "current");
+            if (i < state.index) dot.classList.add("done");
+            else if (i === state.index) dot.classList.add("current");
+        });
+    }
+
+    function loadLevel() {
+        state.attemptsThisLevel = 0;
+        state.arrangeSlots = [];
+        state.arrangeUsed = [];
+        var total = state.levels.length;
+        var lv = state.levels[state.index];
+
+        document.getElementById("gameMeta").textContent = "Level " + (state.index + 1) + " of " + total;
+        document.getElementById("gameScore").textContent = "⭐ " + state.levelStars.reduce(function (a, b) { return a + (b || 0); }, 0);
+        updateLevelDots();
+
+        if (state.mode === "choose") renderChooseLevel(lv);
+        else if (state.mode === "arrange") renderArrangeLevel(lv);
+        else if (state.mode === "tf") renderTfLevel(lv);
+    }
+
+    function playButtonHtml() {
+        return '<button class="play-btn-audio" id="playBtn">🔊</button><div class="replay-hint">Tap to listen (you can replay anytime)</div>';
+    }
+    function wirePlayButton(audioText) {
+        var btn = document.getElementById("playBtn");
+        btn.addEventListener("click", function () { speakText(audioText, btn); });
+        setTimeout(function () { speakText(audioText, btn); }, 300);
+    }
+
+    // ---------- CHOOSE mode ----------
+    function renderChooseLevel(lv) {
+        gameBoard.innerHTML =
+            '<div class="instruction">🎧 Listen carefully, then choose what you heard</div>' +
+            playButtonHtml() +
+            '<div class="choose-options" id="chooseOptions"></div>' +
+            '<div class="feedback-banner" id="feedbackBanner"></div>' +
+            '<button class="next-btn" id="nextBtn">Next Level →</button>';
+
+        wirePlayButton(lv.audio);
+
+        var optWrap = document.getElementById("chooseOptions");
+        var shuffled = shuffle(lv.options);
+        shuffled.forEach(function (opt) {
+            var btn = document.createElement("button");
+            btn.className = "choose-opt";
+            btn.innerHTML = (opt.emoji ? '<span class="opt-emoji">' + opt.emoji + '</span>' : '') + '<span>' + opt.label + '</span>';
+            btn.addEventListener("click", function () { attemptChoose(opt.label, lv.answer, btn); });
+            optWrap.appendChild(btn);
+        });
+
+        document.getElementById("nextBtn").addEventListener("click", goNextOrResult);
+    }
+
+    function attemptChoose(picked, answer, btnEl) {
+        var opts = document.querySelectorAll("#chooseOptions .choose-opt");
+        if (opts[0] && opts[0].hasAttribute("disabled") && !isRetryAllowed()) return;
+        if (picked === answer) {
+            opts.forEach(function (b) { b.setAttribute("disabled", "true"); });
+            btnEl.classList.add("correct");
+            registerSuccess();
+        } else {
+            btnEl.classList.add("wrong");
+            btnEl.classList.add("shake-anim");
+            setTimeout(function () { btnEl.classList.remove("shake-anim"); }, 400);
+            registerFail();
+        }
+    }
+    function isRetryAllowed() { return true; }
+
+    // ---------- ARRANGE mode ----------
+    function renderArrangeLevel(lv) {
+        gameBoard.innerHTML =
+            '<div class="instruction">🎧 Listen, then tap the words in the correct order</div>' +
+            playButtonHtml() +
+            '<div class="arrange-slots" id="arrangeSlots"></div>' +
+            '<div class="arrange-tray" id="arrangeTray"></div>' +
+            '<button class="arrange-check-btn" id="checkBtn">Check ✓</button>' +
+            '<div class="feedback-banner" id="feedbackBanner"></div>' +
+            '<button class="next-btn" id="nextBtn">Next Level →</button>';
+
+        wirePlayButton(lv.audio);
+
+        var slotsWrap = document.getElementById("arrangeSlots");
+        lv.words.forEach(function (_, i) {
+            var slot = document.createElement("div");
+            slot.className = "arrange-slot";
+            slot.dataset.index = i;
+            slotsWrap.appendChild(slot);
+        });
+
+        var trayWrap = document.getElementById("arrangeTray");
+        var shuffledWords = shuffle(lv.words.map(function (w, i) { return { word: w, id: i }; }));
+        shuffledWords.forEach(function (item) {
+            var tile = document.createElement("div");
+            tile.className = "word-tile";
+            tile.textContent = item.word;
+            tile.dataset.trayId = item.id;
+            tile.addEventListener("click", function () { placeWord(item.word, item.id, tile, lv); });
+            trayWrap.appendChild(tile);
+        });
+
+        document.getElementById("checkBtn").addEventListener("click", function () { checkArrange(lv); });
+        document.getElementById("nextBtn").addEventListener("click", goNextOrResult);
+    }
+
+    function placeWord(word, trayId, tileEl, lv) {
+        if (state.arrangeUsed.indexOf(trayId) !== -1) return;
+        if (state.arrangeSlots.length >= lv.words.length) return;
+        state.arrangeSlots.push({ word: word, trayId: trayId });
+        state.arrangeUsed.push(trayId);
+        tileEl.classList.add("used");
+        renderSlots(lv);
+    }
+
+    function renderSlots(lv) {
+        var slots = document.querySelectorAll("#arrangeSlots .arrange-slot");
+        slots.forEach(function (slot, i) {
+            var filled = state.arrangeSlots[i];
+            if (filled) {
+                slot.textContent = filled.word;
+                slot.classList.add("filled");
+                slot.onclick = function () { removeSlot(i, lv); };
+            } else {
+                slot.textContent = "";
+                slot.classList.remove("filled", "correct-slot");
+                slot.onclick = null;
+            }
+        });
+        var checkBtn = document.getElementById("checkBtn");
+        if (state.arrangeSlots.length === lv.words.length) checkBtn.classList.add("show");
+        else checkBtn.classList.remove("show");
+    }
+
+    function removeSlot(i, lv) {
+        var removed = state.arrangeSlots.splice(i, 1)[0];
+        if (removed) {
+            var idx = state.arrangeUsed.indexOf(removed.trayId);
+            if (idx !== -1) state.arrangeUsed.splice(idx, 1);
+            var tile = document.querySelector('#arrangeTray .word-tile[data-tray-id="' + removed.trayId + '"]');
+            if (tile) tile.classList.remove("used");
+        }
+        renderSlots(lv);
+    }
+
+    function checkArrange(lv) {
+        var attempt = state.arrangeSlots.map(function (s) { return s.word; });
+        var correct = attempt.length === lv.words.length && attempt.every(function (w, i) { return w === lv.words[i]; });
+        var slots = document.querySelectorAll("#arrangeSlots .arrange-slot");
+        if (correct) {
+            slots.forEach(function (s) { s.classList.add("correct-slot"); });
+            document.getElementById("checkBtn").style.display = "none";
+            registerSuccess();
+        } else {
+            var slotsWrap = document.getElementById("arrangeSlots");
+            slotsWrap.classList.add("shake-anim");
+            setTimeout(function () { slotsWrap.classList.remove("shake-anim"); }, 400);
+            registerFail();
+            // clear slots so they can try again
+            setTimeout(function () {
+                state.arrangeSlots.forEach(function (s) {
+                    var idx = state.arrangeUsed.indexOf(s.trayId);
+                    if (idx !== -1) state.arrangeUsed.splice(idx, 1);
+                    var tile = document.querySelector('#arrangeTray .word-tile[data-tray-id="' + s.trayId + '"]');
+                    if (tile) tile.classList.remove("used");
+                });
+                state.arrangeSlots = [];
+                renderSlots(lv);
+            }, 500);
+        }
+    }
+
+    // ---------- TRUE/FALSE mode ----------
+    function renderTfLevel(lv) {
+        var ctxHtml = "";
+        if (lv.context_emoji) {
+            ctxHtml = '<div class="tf-context">' + lv.context_emoji + '</div><div class="tf-context-label">' + (lv.context_label || "") + '</div>';
+        }
+        gameBoard.innerHTML =
+            '<div class="instruction">🎧 Listen to the sentence, then decide: True or False?</div>' +
+            playButtonHtml() +
+            ctxHtml +
+            '<div class="tf-buttons" id="tfButtons">' +
+                '<button class="tf-btn true-btn" data-val="true">✅ True</button>' +
+                '<button class="tf-btn false-btn" data-val="false">❌ False</button>' +
+            '</div>' +
+            '<div class="feedback-banner" id="feedbackBanner"></div>' +
+            '<button class="next-btn" id="nextBtn">Next Level →</button>';
+
+        wirePlayButton(lv.audio);
+
+        document.querySelectorAll("#tfButtons .tf-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                var val = btn.dataset.val === "true";
+                attemptTf(val, lv.answer, btn);
+            });
+        });
+        document.getElementById("nextBtn").addEventListener("click", goNextOrResult);
+    }
+
+    function attemptTf(picked, answer, btnEl) {
+        var btns = document.querySelectorAll("#tfButtons .tf-btn");
+        if (picked === answer) {
+            btns.forEach(function (b) { b.setAttribute("disabled", "true"); });
+            btnEl.classList.add("correct");
+            registerSuccess();
+        } else {
+            btnEl.classList.add("wrong");
+            btnEl.classList.add("shake-anim");
+            setTimeout(function () { btnEl.classList.remove("shake-anim"); }, 400);
+            registerFail();
+        }
+    }
+
+    // ---------- shared scoring ----------
+    function registerSuccess() {
+        var stars = state.attemptsThisLevel === 0 ? 2 : 1;
+        state.levelStars[state.index] = stars;
+        if (state.attemptsThisLevel === 0) state.firstTryCount++; else state.retryCount++;
+
+        var feedback = document.getElementById("feedbackBanner");
+        feedback.textContent = stars === 2 ? "🎉 Correct! Great listening!" : "✅ Correct!";
+        feedback.className = "feedback-banner ok";
+        document.getElementById("gameScore").textContent = "⭐ " + state.levelStars.reduce(function (a, b) { return a + (b || 0); }, 0);
+        spawnConfetti();
+        document.getElementById("nextBtn").classList.add("show");
+    }
+
+    function registerFail() {
+        state.attemptsThisLevel++;
+        var feedback = document.getElementById("feedbackBanner");
+        feedback.textContent = "❌ Not quite, try again!";
+        feedback.className = "feedback-banner no";
+    }
+
+    function spawnConfetti() {
+        var emojis = ["🎉", "✨", "⭐", "🎊"];
+        for (var i = 0; i < 10; i++) {
+            var piece = document.createElement("div");
+            piece.className = "confetti-piece";
+            piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            piece.style.left = (40 + Math.random() * 20) + "%";
+            piece.style.animationDuration = (1 + Math.random() * 0.8) + "s";
+            document.body.appendChild(piece);
+            (function (p) { setTimeout(function () { if (p.parentNode) p.parentNode.removeChild(p); }, 2000); })(piece);
+        }
+    }
+
+    function goNextOrResult() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        if (state.index < state.levels.length - 1) {
+            state.index++;
+            loadLevel();
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        var total = state.levels.length;
+        var totalStars = state.levelStars.reduce(function (a, b) { return a + (b || 0); }, 0);
+        var maxStars = total * 2;
+        setTopicBest(state.grade, state.topicKey, totalStars);
+        refreshGlobalStars();
+
+        gameView.style.display = "none";
+        resultView.style.display = "block";
+
+        var pct = totalStars / maxStars;
+        var stars3, title;
+        if (pct >= 0.9) { stars3 = "⭐⭐⭐"; title = "Outstanding!"; }
+        else if (pct >= 0.6) { stars3 = "⭐⭐"; title = "Well Done!"; }
+        else if (pct >= 0.3) { stars3 = "⭐"; title = "Good Try!"; }
+        else { stars3 = "💪"; title = "Keep Practicing!"; }
+
+        document.getElementById("resultStars").textContent = stars3;
+        document.getElementById("resultTitle").textContent = title;
+        document.getElementById("resultSub").textContent = "You earned " + totalStars + " out of " + maxStars + " stars.";
+        document.getElementById("resultCorrect").textContent = state.firstTryCount;
+        document.getElementById("resultRetry").textContent = state.retryCount;
+        document.getElementById("resultTotal").textContent = total;
+    }
+
+    document.getElementById("retryTopicBtn").addEventListener("click", function () {
+        startTopic(state.grade, state.topicKey);
+    });
+    document.getElementById("homeBtnResult").addEventListener("click", goHome);
+    document.getElementById("backBtn").addEventListener("click", goHome);
+
+    function goHome() {
+        window.speechSynthesis && window.speechSynthesis.cancel();
+        gameView.style.display = "none";
+        resultView.style.display = "none";
+        homeView.style.display = "block";
+        renderGradeTabs();
+        renderTopicGrid();
+    }
+
+    renderGradeTabs();
+    renderTopicGrid();
+    refreshGlobalStars();
+})();
+
+</script>
+</body>
+</html>
