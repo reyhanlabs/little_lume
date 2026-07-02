@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Puzzle Words | LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #2C3E7A;
+        --secondary: #7C5CBF;
+        --accent-cyan: #00D9FF;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --danger: #EF4444;
+        --bg-light: #F8F9FD;
+        --bg-card: #FFFFFF;
+        --text-primary: #1A202C;
+        --text-secondary: #64748B;
+        --border: #E2E8F0;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+        --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
+        --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
+        --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
+        --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
+
+        --grade3-solid: #00D2D3;
+        --grade4-solid: #FF9FF3;
+        --grade5-solid: #54A0FF;
+        --grade6-solid: #1DD1A1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        user-select: none;
+    }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .topbar { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
+    .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .topbar-stars { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--warning); font-size: 0.95rem; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+
+    .page-head { text-align: center; margin-bottom: 2rem; }
+    .page-eyebrow { display: inline-block; background: rgba(156,39,176,0.12); color: #9C27B0; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+
+    /* ===== GRADE TABS ===== */
+    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .grade-tab { border: 2px solid var(--border); background: var(--bg-card); padding: 0.6rem 1.2rem; border-radius: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+    .grade-tab .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .grade-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .grade-tab.active { color: white; border-color: transparent; box-shadow: var(--shadow-md); }
+    .grade-tab.active .dot { background: white; }
+    .g3 .dot { background: var(--grade3-solid); }
+    .g4 .dot { background: var(--grade4-solid); }
+    .g5 .dot { background: var(--grade5-solid); }
+    .g6 .dot { background: var(--grade6-solid); }
+    .g3.active { background: var(--grade3); color: #003B3C; }
+    .g4.active { background: var(--grade4); color: #7A2E70; }
+    .g5.active { background: var(--grade5); color: #0B2E66; }
+    .g6.active { background: var(--grade6); color: #063D2F; }
+
+    /* ===== TOPIC GRID ===== */
+    .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.1rem; }
+    .topic-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 1.7rem; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; }
+    .topic-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--grade-color, var(--primary)); }
+    .topic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .topic-icon { font-size: 2.1rem; margin-bottom: 0.7rem; display: block; }
+    .topic-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .topic-count { font-size: 0.8rem; color: var(--text-secondary); }
+    .topic-stars { margin-top: 0.9rem; font-size: 1rem; }
+
+    /* ===== GAME VIEW ===== */
+    .game-view { display: none; }
+    .game-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .back-btn { background: var(--bg-card); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 12px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
+    .back-btn:hover { background: var(--bg-light); transform: translateX(-2px); }
+    .game-title-wrap { flex: 1; }
+    .game-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.1rem; }
+    .game-meta { font-size: 0.83rem; color: var(--text-secondary); }
+    .game-score { font-weight: 800; font-size: 1rem; color: var(--primary); white-space: nowrap; }
+
+    .level-dots { display: flex; gap: 0.35rem; justify-content: center; margin-bottom: 1.4rem; flex-wrap: wrap; }
+    .level-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); transition: var(--transition); }
+    .level-dot.done { background: var(--success); }
+    .level-dot.failed { background: var(--danger); }
+    .level-dot.current { background: var(--grade-color, var(--primary)); transform: scale(1.3); }
+
+    .timer-track { background: var(--border); height: 12px; border-radius: 999px; overflow: hidden; margin-bottom: 1.6rem; }
+    .timer-fill { height: 100%; border-radius: 999px; background: var(--success); transition: width 1s linear, background 0.3s; }
+    .timer-fill.warn { background: var(--warning); }
+    .timer-fill.danger { background: var(--danger); }
+
+    .game-board { background: var(--bg-card); border-radius: 24px; padding: 2.2rem 2rem; box-shadow: var(--shadow-md); text-align: center; min-height: 300px; }
+    .clue-box { background: var(--bg-light); border-radius: 14px; padding: 1rem 1.3rem; font-size: 1rem; color: var(--text-primary); margin-bottom: 1.8rem; font-weight: 600; border-left: 4px solid var(--secondary); text-align: left; }
+    .clue-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--secondary); display: block; margin-bottom: 0.3rem; }
+
+    .answer-slots { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 1.8rem; }
+    .letter-slot { width: 44px; height: 50px; border: 3px dashed var(--border); border-radius: 10px; background: var(--bg-light); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; transition: var(--transition); }
+    .letter-slot.filled { border-style: solid; border-color: var(--secondary); background: rgba(124,92,191,0.08); }
+    .letter-slot.correct-slot { border-color: var(--success); background: rgba(16,185,129,0.12); color: #067A55; }
+    .letter-slot.reveal-fail { border-color: var(--danger); background: rgba(239,68,68,0.08); color: #B91C1C; }
+
+    .letter-tray { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+    .letter-tile { width: 46px; height: 46px; border-radius: 10px; background: var(--bg-card); border: 2px solid var(--border); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; cursor: pointer; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, border-color 0.2s, opacity 0.2s; display: flex; align-items: center; justify-content: center; }
+    .letter-tile:hover { border-color: var(--secondary); box-shadow: var(--shadow-md); }
+    .letter-tile.used { opacity: 0.2; pointer-events: none; }
+
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-6px); } 80% { transform: translateX(6px); } }
+    .shake-anim { animation: shake 0.4s; }
+
+    .feedback-banner { margin-top: 1.2rem; font-weight: 700; font-size: 0.95rem; min-height: 1.4rem; }
+    .feedback-banner.ok { color: var(--success); }
+    .feedback-banner.no { color: var(--danger); }
+
+    .next-btn { margin-top: 1.2rem; border: none; background: var(--primary); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.8rem 1.8rem; border-radius: 14px; cursor: pointer; font-size: 0.95rem; transition: var(--transition); display: none; }
+    .next-btn.show { display: inline-flex; }
+    .next-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ===== RESULT VIEW ===== */
+    .result-view { display: none; text-align: center; }
+    .result-card { background: var(--bg-card); border-radius: 24px; padding: 3rem 2rem; box-shadow: var(--shadow-xl); max-width: 460px; margin: 0 auto; }
+    .result-stars { font-size: 2.6rem; margin-bottom: 1rem; }
+    .result-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .result-sub { color: var(--text-secondary); margin-bottom: 1.8rem; font-weight: 500; }
+    .result-detail { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .result-stat-num { font-size: 1.4rem; font-weight: 800; }
+    .result-stat-label { font-size: 0.78rem; color: var(--text-secondary); }
+    .result-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+    .result-btn { border: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.8rem 1.6rem; border-radius: 14px; cursor: pointer; font-size: 0.9rem; transition: var(--transition); }
+    .result-btn.primary { background: var(--primary); color: white; }
+    .result-btn.primary:hover { background: var(--secondary); transform: translateY(-2px); }
+    .result-btn.ghost { background: var(--bg-light); color: var(--text-primary); border: 1px solid var(--border); }
+    .result-btn.ghost:hover { background: var(--border); }
+
+    .confetti-piece { position: fixed; top: -20px; font-size: 1.4rem; pointer-events: none; z-index: 998; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0.2; } }
+
+    @media (max-width: 600px) {
+        .topbar { padding: 0.85rem 1.1rem; }
+        .page-title { font-size: 1.5rem; }
+        .game-board { padding: 1.6rem 1.2rem; }
+        .letter-slot { width: 36px; height: 44px; font-size: 1rem; }
+        .letter-tile { width: 38px; height: 38px; font-size: 1rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="brand"><span class="brand-badge">🧩</span> LittleLume Puzzle Words</div>
+    <div class="topbar-stars" id="totalStars">⭐ 0</div>
+</div>
+
+<div class="wrap">
+
+    <!-- ============ HOME VIEW ============ -->
+    <div id="homeView">
+        <div class="page-head">
+            <span class="page-eyebrow">Beat the Clock</span>
+            <h1 class="page-title">Puzzle Words</h1>
+            <p class="page-desc">Rearrange the scrambled letters into the correct word before time runs out. Pick a grade and a theme to start!</p>
+        </div>
+
+        <div class="grade-tabs" id="gradeTabs"></div>
+        <div class="topic-grid" id="topicGrid"></div>
+    </div>
+
+    <!-- ============ GAME VIEW ============ -->
+    <div class="game-view" id="gameView">
+        <div class="game-header">
+            <button class="back-btn" id="backBtn">←</button>
+            <div class="game-title-wrap">
+                <div class="game-title" id="gameTitle">Topic</div>
+                <div class="game-meta" id="gameMeta">Word 1 of 8</div>
+            </div>
+            <div class="game-score" id="gameScore">⭐ 0</div>
+        </div>
+        <div class="level-dots" id="levelDots"></div>
+        <div class="timer-track"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+
+        <div class="game-board">
+            <div class="clue-box"><span class="clue-label">Clue</span><span id="clueText"></span></div>
+            <div class="answer-slots" id="answerSlots"></div>
+            <div class="letter-tray" id="letterTray"></div>
+            <div class="feedback-banner" id="feedbackBanner"></div>
+            <button class="next-btn" id="nextBtn">Next Word →</button>
+        </div>
+    </div>
+
+    <!-- ============ RESULT VIEW ============ -->
+    <div class="result-view" id="resultView">
+        <div class="result-card">
+            <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+            <div class="result-title" id="resultTitle">Level Complete!</div>
+            <div class="result-sub" id="resultSub">You did great!</div>
+            <div class="result-detail">
+                <div><div class="result-stat-num" id="resultSolved">0</div><div class="result-stat-label">Solved</div></div>
+                <div><div class="result-stat-num" id="resultFast">0</div><div class="result-stat-label">Fast Solves</div></div>
+                <div><div class="result-stat-num" id="resultMissed">0</div><div class="result-stat-label">Missed</div></div>
+            </div>
+            <div class="result-actions">
+                <button class="result-btn primary" id="retryTopicBtn">🔁 Play Again</button>
+                <button class="result-btn ghost" id="homeBtnResult">🏠 Back to Themes</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const PUZZLE_DATA = {"grade3": {"animals": {"title": "Animals", "icon": "🦁", "words": [{"word": "LION", "clue": "King of the jungle"}, {"word": "BEAR", "clue": "A big furry animal that hibernates"}, {"word": "FROG", "clue": "A green animal that jumps and croaks"}, {"word": "SHARK", "clue": "A big fish with sharp teeth"}, {"word": "ZEBRA", "clue": "A striped animal from Africa"}, {"word": "EAGLE", "clue": "A large bird that hunts other animals"}, {"word": "MOUSE", "clue": "A small animal that likes cheese"}, {"word": "SNAKE", "clue": "A long animal with no legs"}]}, "food": {"title": "Food", "icon": "🍞", "words": [{"word": "BREAD", "clue": "You slice it to make a sandwich"}, {"word": "APPLE", "clue": "A round red or green fruit"}, {"word": "GRAPE", "clue": "A small round fruit that grows in bunches"}, {"word": "PIZZA", "clue": "A round dish with cheese and toppings"}, {"word": "HONEY", "clue": "A sweet golden food made by bees"}, {"word": "LEMON", "clue": "A sour yellow fruit"}, {"word": "MANGO", "clue": "A sweet orange tropical fruit"}, {"word": "ONION", "clue": "A vegetable that can make you cry"}]}, "school": {"title": "School Objects", "icon": "🎒", "words": [{"word": "PENCIL", "clue": "You use it to write and it needs sharpening"}, {"word": "ERASER", "clue": "Used to remove pencil marks"}, {"word": "CHALK", "clue": "Used to write on a blackboard"}, {"word": "DESK", "clue": "A table where you sit to study"}, {"word": "RULER", "clue": "Used to draw straight lines and measure"}, {"word": "PAPER", "clue": "You write on this thin, flat material"}, {"word": "CRAYON", "clue": "A colorful stick used for drawing"}, {"word": "CHAIR", "clue": "Furniture you sit on in the classroom"}]}}, "grade4": {"nature": {"title": "Nature", "icon": "🌲", "words": [{"word": "FOREST", "clue": "A large area full of trees"}, {"word": "RIVER", "clue": "A long flowing body of water"}, {"word": "OCEAN", "clue": "A huge body of salt water"}, {"word": "DESERT", "clue": "A dry place with little rain"}, {"word": "ISLAND", "clue": "Land surrounded by water"}, {"word": "JUNGLE", "clue": "A thick, wild forest with many animals"}, {"word": "VALLEY", "clue": "Low land between hills or mountains"}, {"word": "MEADOW", "clue": "A field full of grass and flowers"}]}, "actions": {"title": "Action Words", "icon": "🏃", "words": [{"word": "WHISPER", "clue": "To speak very softly"}, {"word": "SHOUT", "clue": "To speak very loudly"}, {"word": "GIGGLE", "clue": "To laugh softly"}, {"word": "STUMBLE", "clue": "To trip while walking"}, {"word": "SPRINT", "clue": "To run very fast"}, {"word": "TIPTOE", "clue": "To walk quietly on your toes"}, {"word": "CRAWL", "clue": "To move on your hands and knees"}, {"word": "STRETCH", "clue": "To extend your body or muscles"}]}, "feelings": {"title": "Feelings", "icon": "😊", "words": [{"word": "HAPPY", "clue": "Feeling joy"}, {"word": "NERVOUS", "clue": "Feeling worried or anxious"}, {"word": "EXCITED", "clue": "Feeling very eager and happy"}, {"word": "CONFUSED", "clue": "Not able to understand clearly"}, {"word": "GRATEFUL", "clue": "Feeling thankful"}, {"word": "CURIOUS", "clue": "Eager to learn or know something"}, {"word": "PROUD", "clue": "Feeling pleased about an achievement"}, {"word": "ANXIOUS", "clue": "Feeling nervous about something that may happen"}]}}, "grade5": {"science": {"title": "Science Words", "icon": "🔬", "words": [{"word": "HABITAT", "clue": "The natural home of an animal"}, {"word": "PREDATOR", "clue": "An animal that hunts other animals"}, {"word": "GRAVITY", "clue": "The force that pulls things down to Earth"}, {"word": "EXTINCT", "clue": "No longer existing"}, {"word": "MAMMAL", "clue": "A warm-blooded animal that feeds milk to its young"}, {"word": "ENERGY", "clue": "The power needed to do work or make things move"}, {"word": "SPECIES", "clue": "A group of similar living things"}, {"word": "CLIMATE", "clue": "The usual weather in a place over time"}]}, "adventure": {"title": "Adventure Words", "icon": "🧭", "words": [{"word": "EXPLORE", "clue": "To travel and discover new places"}, {"word": "JOURNEY", "clue": "A long trip from one place to another"}, {"word": "TREASURE", "clue": "Valuable things like gold or jewels"}, {"word": "COMPASS", "clue": "A tool that shows direction"}, {"word": "SURVIVAL", "clue": "Staying alive in a difficult situation"}, {"word": "DISCOVER", "clue": "To find something for the first time"}, {"word": "MOUNTAIN", "clue": "A very tall landform, higher than a hill"}, {"word": "VOYAGE", "clue": "A long journey, especially by sea"}]}, "character": {"title": "Character Traits", "icon": "🌟", "words": [{"word": "HONEST", "clue": "Always telling the truth"}, {"word": "GENEROUS", "clue": "Willing to give"}, {"word": "PATIENT", "clue": "Able to wait calmly"}, {"word": "STUBBORN", "clue": "Refusing to change one's mind"}, {"word": "CURIOUS", "clue": "Eager to learn"}, {"word": "BRAVE", "clue": "Not afraid of danger"}, {"word": "LOYAL", "clue": "Faithful and devoted to someone"}, {"word": "HUMBLE", "clue": "Not thinking too highly of yourself"}]}}, "grade6": {"academic": {"title": "Academic Words", "icon": "📗", "words": [{"word": "ANALYZE", "clue": "To examine something in detail"}, {"word": "EVALUATE", "clue": "To judge the value of something"}, {"word": "JUSTIFY", "clue": "To give a good reason for something"}, {"word": "PREDICT", "clue": "To say what will happen before it does"}, {"word": "CONCLUDE", "clue": "To decide after considering facts"}, {"word": "RESEARCH", "clue": "Careful study to find out new information"}, {"word": "SUMMARY", "clue": "A short statement of the main points"}, {"word": "EVIDENCE", "clue": "Facts that show something is true"}]}, "technology": {"title": "Technology Words", "icon": "💻", "words": [{"word": "INTERNET", "clue": "A global network connecting computers"}, {"word": "COMPUTER", "clue": "An electronic device that processes data"}, {"word": "SOFTWARE", "clue": "Programs that run on a computer"}, {"word": "NETWORK", "clue": "A group of connected computers or devices"}, {"word": "DATABASE", "clue": "An organized collection of stored data"}, {"word": "ROBOTICS", "clue": "The science of designing and building robots"}, {"word": "DIGITAL", "clue": "Using computer technology"}, {"word": "DEVICE", "clue": "A piece of equipment made for a purpose"}]}, "advanced_vocab": {"title": "Advanced Vocabulary", "icon": "🎓", "words": [{"word": "SIGNIFICANT", "clue": "Important and notable"}, {"word": "PERSISTENT", "clue": "Continuing firmly despite difficulty"}, {"word": "AMBIGUOUS", "clue": "Having more than one possible meaning"}, {"word": "INEVITABLE", "clue": "Certain to happen"}, {"word": "DIVERSE", "clue": "Showing a variety"}, {"word": "CRUCIAL", "clue": "Extremely important"}, {"word": "SKEPTICAL", "clue": "Having doubts"}, {"word": "REMARKABLE", "clue": "Worthy of attention; impressive"}]}}};
+</script>
+<script>
+(function () {
+    var GRADE_META = {
+        grade3: { label: "Grade 3", cls: "g3", color: "var(--grade3)" },
+        grade4: { label: "Grade 4", cls: "g4", color: "var(--grade4)" },
+        grade5: { label: "Grade 5", cls: "g5", color: "var(--grade5)" },
+        grade6: { label: "Grade 6", cls: "g6", color: "var(--grade6)" }
+    };
+    var GRADE_ORDER = ["grade3", "grade4", "grade5", "grade6"];
+    var STORAGE_KEY = "llg_puzzle_words_progress_v1";
+
+    var state = {
+        grade: "grade3",
+        topicKey: null,
+        words: [],
+        index: 0,
+        levelStars: [],
+        solvedCount: 0,
+        fastCount: 0,
+        missedCount: 0,
+        slots: [],
+        used: [],
+        timeLeft: 0,
+        timeLimit: 0,
+        timerId: null,
+        locked: false
+    };
+
+    var homeView = document.getElementById("homeView");
+    var gameView = document.getElementById("gameView");
+    var resultView = document.getElementById("resultView");
+    var gradeTabs = document.getElementById("gradeTabs");
+    var topicGrid = document.getElementById("topicGrid");
+
+    // ---------- persistence ----------
+    function loadProgress() {
+        try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
+        catch (e) { return {}; }
+    }
+    function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {} }
+    function getTopicBest(grade, topicKey) {
+        var p = loadProgress();
+        return p[grade + ":" + topicKey] || 0;
+    }
+    function setTopicBest(grade, topicKey, stars) {
+        var p = loadProgress();
+        var key = grade + ":" + topicKey;
+        if (!p[key] || stars > p[key]) { p[key] = stars; saveProgress(p); }
+    }
+    function getGlobalStars() {
+        var p = loadProgress(), total = 0;
+        Object.keys(p).forEach(function (k) { total += p[k]; });
+        return total;
+    }
+    function refreshGlobalStars() { document.getElementById("totalStars").textContent = "⭐ " + getGlobalStars(); }
+
+    function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+    }
+
+    // ---------- home / topic grid ----------
+    function renderGradeTabs() {
+        gradeTabs.innerHTML = "";
+        GRADE_ORDER.forEach(function (g) {
+            var meta = GRADE_META[g];
+            var btn = document.createElement("button");
+            btn.className = "grade-tab " + meta.cls + (g === state.grade ? " active" : "");
+            btn.innerHTML = '<span class="dot"></span>' + meta.label;
+            btn.addEventListener("click", function () {
+                state.grade = g;
+                renderGradeTabs();
+                renderTopicGrid();
+            });
+            gradeTabs.appendChild(btn);
+        });
+    }
+
+    function starString(stars, max) {
+        var full = Math.round((stars / max) * 3);
+        full = Math.max(0, Math.min(3, full));
+        return "⭐".repeat(full) + "☆".repeat(3 - full);
+    }
+
+    function renderTopicGrid() {
+        topicGrid.innerHTML = "";
+        var gradeData = PUZZLE_DATA[state.grade];
+        var meta = GRADE_META[state.grade];
+        Object.keys(gradeData).forEach(function (topicKey) {
+            var topic = gradeData[topicKey];
+            var maxStars = topic.words.length * 2;
+            var best = getTopicBest(state.grade, topicKey);
+            var card = document.createElement("div");
+            card.className = "topic-card";
+            card.style.setProperty("--grade-color", meta.color);
+            card.innerHTML =
+                '<span class="topic-icon">' + topic.icon + '</span>' +
+                '<div class="topic-name">' + topic.title + '</div>' +
+                '<div class="topic-count">' + topic.words.length + ' words</div>' +
+                '<div class="topic-stars">' + starString(best, maxStars) + '</div>';
+            card.addEventListener("click", function () { startTopic(state.grade, topicKey); });
+            topicGrid.appendChild(card);
+        });
+    }
+
+    // ---------- game flow ----------
+    function startTopic(grade, topicKey) {
+        var topic = PUZZLE_DATA[grade][topicKey];
+        state.grade = grade;
+        state.topicKey = topicKey;
+        state.words = topic.words;
+        state.index = 0;
+        state.levelStars = [];
+        state.solvedCount = 0;
+        state.fastCount = 0;
+        state.missedCount = 0;
+
+        document.getElementById("gameTitle").textContent = topic.icon + " " + topic.title;
+
+        renderLevelDots();
+        homeView.style.display = "none";
+        resultView.style.display = "none";
+        gameView.style.display = "block";
+        loadWord();
+    }
+
+    function renderLevelDots() {
+        var wrap = document.getElementById("levelDots");
+        wrap.innerHTML = "";
+        var meta = GRADE_META[state.grade];
+        state.words.forEach(function () {
+            var dot = document.createElement("span");
+            dot.className = "level-dot";
+            dot.style.setProperty("--grade-color", meta.color);
+            wrap.appendChild(dot);
+        });
+        updateLevelDots();
+    }
+    function updateLevelDots(failedIdx) {
+        var dots = document.querySelectorAll("#levelDots .level-dot");
+        dots.forEach(function (dot, i) {
+            dot.classList.remove("done", "current", "failed");
+            if (i < state.index) {
+                dot.classList.add(state.levelStars[i] === 0 ? "failed" : "done");
+            } else if (i === state.index) {
+                dot.classList.add("current");
+            }
+        });
+    }
+
+    function loadWord() {
+        clearInterval(state.timerId);
+        state.locked = false;
+        state.slots = [];
+        state.used = [];
+        var total = state.words.length;
+        var item = state.words[state.index];
+        var letters = item.word.split("");
+
+        state.timeLimit = Math.min(30, 8 + letters.length * 2);
+        state.timeLeft = state.timeLimit;
+
+        document.getElementById("gameMeta").textContent = "Word " + (state.index + 1) + " of " + total;
+        document.getElementById("gameScore").textContent = "⭐ " + state.levelStars.reduce(function (a, b) { return a + (b || 0); }, 0);
+        updateLevelDots();
+
+        document.getElementById("clueText").textContent = item.clue;
+
+        var feedback = document.getElementById("feedbackBanner");
+        feedback.textContent = "";
+        feedback.className = "feedback-banner";
+        document.getElementById("nextBtn").classList.remove("show");
+
+        var slotsWrap = document.getElementById("answerSlots");
+        slotsWrap.innerHTML = "";
+        letters.forEach(function (_, i) {
+            var slot = document.createElement("div");
+            slot.className = "letter-slot";
+            slot.dataset.index = i;
+            slotsWrap.appendChild(slot);
+        });
+
+        var trayWrap = document.getElementById("letterTray");
+        trayWrap.innerHTML = "";
+        var shuffled = shuffle(letters.map(function (ch, i) { return { ch: ch, id: i }; }));
+        shuffled.forEach(function (item2) {
+            var tile = document.createElement("div");
+            tile.className = "letter-tile";
+            tile.textContent = item2.ch;
+            tile.dataset.trayId = item2.id;
+            tile.addEventListener("click", function () { placeLetter(item2.ch, item2.id, tile, item.word); });
+            trayWrap.appendChild(tile);
+        });
+
+        updateTimerBar();
+        state.timerId = setInterval(tickTimer, 1000);
+    }
+
+    function tickTimer() {
+        state.timeLeft--;
+        updateTimerBar();
+        if (state.timeLeft <= 0) {
+            clearInterval(state.timerId);
+            failWord();
+        }
+    }
+
+    function updateTimerBar() {
+        var fill = document.getElementById("timerFill");
+        var pct = Math.max(0, (state.timeLeft / state.timeLimit) * 100);
+        fill.style.width = pct + "%";
+        fill.classList.remove("warn", "danger");
+        if (pct <= 25) fill.classList.add("danger");
+        else if (pct <= 55) fill.classList.add("warn");
+    }
+
+    function placeLetter(ch, trayId, tileEl, correctWord) {
+        if (state.locked) return;
+        if (state.used.indexOf(trayId) !== -1) return;
+        if (state.slots.length >= correctWord.length) return;
+
+        state.slots.push({ ch: ch, trayId: trayId });
+        state.used.push(trayId);
+        tileEl.classList.add("used");
+        renderSlots();
+
+        if (state.slots.length === correctWord.length) {
+            checkWord(correctWord);
+        }
+    }
+
+    function renderSlots() {
+        var slots = document.querySelectorAll("#answerSlots .letter-slot");
+        slots.forEach(function (slot, i) {
+            var filled = state.slots[i];
+            if (filled) {
+                slot.textContent = filled.ch;
+                slot.classList.add("filled");
+            } else {
+                slot.textContent = "";
+                slot.classList.remove("filled", "correct-slot");
+            }
+        });
+    }
+
+    function checkWord(correctWord) {
+        var attempt = state.slots.map(function (s) { return s.ch; }).join("");
+        if (attempt === correctWord) {
+            clearInterval(state.timerId);
+            state.locked = true;
+            var slots = document.querySelectorAll("#answerSlots .letter-slot");
+            slots.forEach(function (s) { s.classList.add("correct-slot"); });
+
+            var fast = state.timeLeft >= state.timeLimit * 0.5;
+            var stars = fast ? 2 : 1;
+            state.levelStars[state.index] = stars;
+            state.solvedCount++;
+            if (fast) state.fastCount++;
+
+            var feedback = document.getElementById("feedbackBanner");
+            feedback.textContent = fast ? "🎉 Correct! Super fast!" : "✅ Correct!";
+            feedback.className = "feedback-banner ok";
+            document.getElementById("gameScore").textContent = "⭐ " + state.levelStars.reduce(function (a, b) { return a + (b || 0); }, 0);
+            updateLevelDots();
+            spawnConfetti();
+            document.getElementById("nextBtn").classList.add("show");
+        } else {
+            var slotsWrap = document.getElementById("answerSlots");
+            slotsWrap.classList.add("shake-anim");
+            setTimeout(function () { slotsWrap.classList.remove("shake-anim"); }, 400);
+            var feedback = document.getElementById("feedbackBanner");
+            feedback.textContent = "❌ Not quite, try again!";
+            feedback.className = "feedback-banner no";
+            setTimeout(function () {
+                state.slots.forEach(function (s) {
+                    var idx = state.used.indexOf(s.trayId);
+                    if (idx !== -1) state.used.splice(idx, 1);
+                    var tile = document.querySelector('#letterTray .letter-tile[data-tray-id="' + s.trayId + '"]');
+                    if (tile) tile.classList.remove("used");
+                });
+                state.slots = [];
+                renderSlots();
+            }, 500);
+        }
+    }
+
+    function failWord() {
+        state.locked = true;
+        var item = state.words[state.index];
+        state.levelStars[state.index] = 0;
+        state.missedCount++;
+
+        var slots = document.querySelectorAll("#answerSlots .letter-slot");
+        var letters = item.word.split("");
+        slots.forEach(function (slot, i) {
+            slot.textContent = letters[i];
+            slot.classList.add("reveal-fail");
+        });
+
+        var feedback = document.getElementById("feedbackBanner");
+        feedback.textContent = "⏰ Time's up! The word was \"" + item.word + "\".";
+        feedback.className = "feedback-banner no";
+        updateLevelDots();
+        document.getElementById("nextBtn").classList.add("show");
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", function () {
+        if (state.index < state.words.length - 1) {
+            state.index++;
+            loadWord();
+        } else {
+            showResult();
+        }
+    });
+
+    function spawnConfetti() {
+        var emojis = ["🎉", "✨", "⭐", "🎊"];
+        for (var i = 0; i < 10; i++) {
+            var piece = document.createElement("div");
+            piece.className = "confetti-piece";
+            piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            piece.style.left = (40 + Math.random() * 20) + "%";
+            piece.style.animationDuration = (1 + Math.random() * 0.8) + "s";
+            document.body.appendChild(piece);
+            (function (p) { setTimeout(function () { if (p.parentNode) p.parentNode.removeChild(p); }, 2000); })(piece);
+        }
+    }
+
+    function showResult() {
+        var total = state.words.length;
+        var totalStars = state.levelStars.reduce(function (a, b) { return a + (b || 0); }, 0);
+        var maxStars = total * 2;
+        setTopicBest(state.grade, state.topicKey, totalStars);
+        refreshGlobalStars();
+
+        gameView.style.display = "none";
+        resultView.style.display = "block";
+
+        var pct = totalStars / maxStars;
+        var stars3, title;
+        if (pct >= 0.9) { stars3 = "⭐⭐⭐"; title = "Outstanding!"; }
+        else if (pct >= 0.6) { stars3 = "⭐⭐"; title = "Well Done!"; }
+        else if (pct >= 0.3) { stars3 = "⭐"; title = "Good Try!"; }
+        else { stars3 = "💪"; title = "Keep Practicing!"; }
+
+        document.getElementById("resultStars").textContent = stars3;
+        document.getElementById("resultTitle").textContent = title;
+        document.getElementById("resultSub").textContent = "You earned " + totalStars + " out of " + maxStars + " stars.";
+        document.getElementById("resultSolved").textContent = state.solvedCount;
+        document.getElementById("resultFast").textContent = state.fastCount;
+        document.getElementById("resultMissed").textContent = state.missedCount;
+    }
+
+    document.getElementById("retryTopicBtn").addEventListener("click", function () {
+        startTopic(state.grade, state.topicKey);
+    });
+    document.getElementById("homeBtnResult").addEventListener("click", goHome);
+    document.getElementById("backBtn").addEventListener("click", goHome);
+
+    function goHome() {
+        clearInterval(state.timerId);
+        gameView.style.display = "none";
+        resultView.style.display = "none";
+        homeView.style.display = "block";
+        renderGradeTabs();
+        renderTopicGrid();
+    }
+
+    renderGradeTabs();
+    renderTopicGrid();
+    refreshGlobalStars();
+})();
+
+</script>
+</body>
+</html>
