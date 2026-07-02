@@ -114,6 +114,12 @@
             z-index: 10;
         }
 
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
         .logo {
             font-family: 'Poppins', sans-serif;
             font-size: 1.75rem;
@@ -270,7 +276,7 @@
             .nav-links {
                 position: fixed;
                 top: 0;
-                right: 0;
+                left: 0;
                 height: 100vh;
                 width: min(78vw, 320px);
                 background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
@@ -278,8 +284,8 @@
                 align-items: flex-start;
                 gap: 0;
                 padding: 4.5rem 1.5rem 2rem;
-                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-                transform: translateX(100%);
+                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+                transform: translateX(-100%);
                 transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 1100;
                 overflow-y: auto;
@@ -346,10 +352,10 @@
                 max-height: 600px;
                 padding: 0.5rem 0 0.75rem 0.75rem;
             }
-            .nav-dropdown-item {
+            #navLinks .nav-dropdown-item {
                 color: rgba(255, 255, 255, 0.85) !important;
             }
-            .nav-dropdown-item:hover {
+            #navLinks .nav-dropdown-item:hover {
                 background: rgba(255, 255, 255, 0.08);
             }
             .nav-dropdown-bar { display: none !important; }
@@ -1760,10 +1766,12 @@
     <!-- ============= NAVBAR ============= -->
     <header>
         <nav class="navbar">
-            <div class="logo">✨ LittleLume</div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="navbar-left">
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="logo">✨ LittleLume</div>
+            </div>
             <div class="nav-overlay" id="navOverlay"></div>
             <ul class="nav-links" id="navLinks">
                 <li class="nav-close-item"><button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">✕</button></li>
