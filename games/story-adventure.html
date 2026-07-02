@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Story Adventure | LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #2C3E7A;
+        --secondary: #7C5CBF;
+        --accent-cyan: #00D9FF;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --danger: #EF4444;
+        --bg-light: #F8F9FD;
+        --bg-card: #FFFFFF;
+        --text-primary: #1A202C;
+        --text-secondary: #64748B;
+        --border: #E2E8F0;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+        --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --grade2: linear-gradient(135deg, #FECA57 0%, #FFE66D 100%);
+        --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
+        --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
+        --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
+        --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
+
+        --grade2-solid: #FECA57;
+        --grade3-solid: #00D2D3;
+        --grade4-solid: #FF9FF3;
+        --grade5-solid: #54A0FF;
+        --grade6-solid: #1DD1A1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .topbar { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
+    .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .topbar-stars { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--warning); font-size: 0.95rem; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+
+    .page-head { text-align: center; margin-bottom: 2rem; }
+    .page-eyebrow { display: inline-block; background: rgba(201,132,10,0.12); color: #C9840A; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+
+    /* ===== GRADE TABS ===== */
+    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .grade-tab { border: 2px solid var(--border); background: var(--bg-card); padding: 0.6rem 1.2rem; border-radius: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+    .grade-tab .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .grade-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .grade-tab.active { color: white; border-color: transparent; box-shadow: var(--shadow-md); }
+    .grade-tab.active .dot { background: white; }
+    .g2 .dot { background: var(--grade2-solid); }
+    .g3 .dot { background: var(--grade3-solid); }
+    .g4 .dot { background: var(--grade4-solid); }
+    .g5 .dot { background: var(--grade5-solid); }
+    .g6 .dot { background: var(--grade6-solid); }
+    .g2.active { background: var(--grade2); color: #7A5A00; }
+    .g3.active { background: var(--grade3); color: #003B3C; }
+    .g4.active { background: var(--grade4); color: #7A2E70; }
+    .g5.active { background: var(--grade5); color: #0B2E66; }
+    .g6.active { background: var(--grade6); color: #063D2F; }
+
+    /* ===== STORY COVER ===== */
+    .story-cover {
+        background: var(--bg-card);
+        border-radius: 24px;
+        padding: 2.6rem 2rem;
+        box-shadow: var(--shadow-lg);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 6px solid var(--grade-color-solid, var(--primary));
+    }
+    .story-cover-icon { font-size: 3.4rem; margin-bottom: 1rem; }
+    .story-cover-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.6rem; }
+    .story-cover-teaser { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.6rem; line-height: 1.6; }
+    .endings-progress { font-size: 0.85rem; font-weight: 700; color: var(--secondary); margin-bottom: 1.6rem; }
+    .start-btn { border: none; background: var(--primary); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; padding: 0.95rem 2.2rem; border-radius: 16px; cursor: pointer; font-size: 1.02rem; transition: var(--transition); }
+    .start-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ===== STORY PLAY VIEW ===== */
+    .story-view { display: none; }
+    .story-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+    .back-btn { background: var(--bg-card); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 12px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
+    .back-btn:hover { background: var(--bg-light); transform: translateX(-2px); }
+    .story-title { font-size: 1.15rem; font-weight: 800; }
+
+    .story-page {
+        background: var(--bg-card);
+        border-radius: 22px;
+        padding: 2.2rem 2rem;
+        box-shadow: var(--shadow-md);
+        margin-bottom: 1.4rem;
+        animation: fadeIn 0.4s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .story-text { font-size: 1.12rem; line-height: 1.8; color: var(--text-primary); }
+
+    .choice-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .choice-btn {
+        text-align: left;
+        border: 2px solid var(--border);
+        background: var(--bg-card);
+        padding: 1rem 1.3rem;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        box-shadow: var(--shadow-sm);
+    }
+    .choice-btn:hover { border-color: var(--secondary); background: rgba(124,92,191,0.06); transform: translateX(4px); }
+    .choice-arrow { color: var(--secondary); font-weight: 800; }
+
+    /* ===== ENDING VIEW ===== */
+    .ending-card {
+        background: var(--bg-card);
+        border-radius: 24px;
+        padding: 2.6rem 2rem;
+        box-shadow: var(--shadow-xl);
+        text-align: center;
+    }
+    .ending-badge {
+        display: inline-block;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+    }
+    .ending-badge.best { background: rgba(16,185,129,0.14); color: #067A55; }
+    .ending-badge.good { background: rgba(84,160,255,0.14); color: #1B5FBF; }
+    .ending-badge.neutral { background: rgba(148,163,184,0.18); color: #475569; }
+    .ending-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.9rem; }
+    .ending-text { font-size: 1.02rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 2rem; }
+    .ending-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+    .ending-btn { border: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.85rem 1.7rem; border-radius: 14px; cursor: pointer; font-size: 0.92rem; transition: var(--transition); }
+    .ending-btn.primary { background: var(--primary); color: white; }
+    .ending-btn.primary:hover { background: var(--secondary); transform: translateY(-2px); }
+    .ending-btn.ghost { background: var(--bg-light); color: var(--text-primary); border: 1px solid var(--border); }
+    .ending-btn.ghost:hover { background: var(--border); }
+
+    .confetti-piece { position: fixed; top: -20px; font-size: 1.4rem; pointer-events: none; z-index: 998; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0.2; } }
+
+    @media (max-width: 600px) {
+        .topbar { padding: 0.85rem 1.1rem; }
+        .page-title { font-size: 1.5rem; }
+        .story-cover, .story-page, .ending-card { padding: 1.6rem 1.3rem; }
+        .story-text { font-size: 1.02rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="brand"><span class="brand-badge">🗺️</span> LittleLume Story Adventure</div>
+    <div class="topbar-stars" id="totalStars">⭐ 0</div>
+</div>
+
+<div class="wrap">
+
+    <!-- ============ HOME VIEW ============ -->
+    <div id="homeView">
+        <div class="page-head">
+            <span class="page-eyebrow">Choose Your Path</span>
+            <h1 class="page-title">Story Adventure</h1>
+            <p class="page-desc">Read the story and make choices — your decisions shape how the adventure ends. Pick a grade to begin!</p>
+        </div>
+
+        <div class="grade-tabs" id="gradeTabs"></div>
+
+        <div class="story-cover" id="storyCover">
+            <div class="story-cover-icon" id="coverIcon">🗺️</div>
+            <div class="story-cover-title" id="coverTitle">Story Title</div>
+            <div class="story-cover-teaser" id="coverTeaser">Teaser text</div>
+            <div class="endings-progress" id="endingsProgress">0 of 3 endings found</div>
+            <button class="start-btn" id="startBtn">Start Adventure →</button>
+        </div>
+    </div>
+
+    <!-- ============ STORY PLAY VIEW ============ -->
+    <div class="story-view" id="storyView">
+        <div class="story-header">
+            <button class="back-btn" id="backBtn">←</button>
+            <div class="story-title" id="storyTitle">Story</div>
+        </div>
+        <div id="storyPageWrap"></div>
+    </div>
+
+</div>
+
+<script>
+const STORY_DATA = {"grade2": {"title": "The Lost Puppy", "icon": "🐶", "teaser": "You found a lost puppy on your way home. What will you do?", "startNode": "start", "nodes": {"start": {"text": "On your way home from school, you see a small puppy sitting alone by the road. It looks lost and scared. What do you do?", "choices": [{"label": "Go closer and pet it", "next": "approach"}, {"label": "Walk away and go home", "next": "walkaway"}]}, "approach": {"text": "You slowly walk closer. The puppy wags its tail! It has no collar. What do you do next?", "choices": [{"label": "Take the puppy home right away", "next": "end_takehome"}, {"label": "Look around for a collar or tag first", "next": "lookclue"}]}, "walkaway": {"text": "You walk home, but you can't stop thinking about the puppy. The next day, you decide to go back and check on it.", "choices": [{"label": "Go back and bring it some food", "next": "returnfeed"}, {"label": "Go back and look for its owner", "next": "lookclue"}]}, "returnfeed": {"text": "You bring the puppy food and water. It happily eats and follows you around. What do you do now?", "choices": [{"label": "Take it home and care for it", "next": "end_goodhome"}, {"label": "Ask people nearby if they know the owner", "next": "lookclue"}]}, "lookclue": {"text": "You look closely and find a small tag hidden in the puppy's fur with a phone number on it! What do you do?", "choices": [{"label": "Ask a nearby shop owner to help you call the number", "next": "end_bestending"}, {"label": "Keep the puppy and forget about the tag", "next": "end_goodhome"}]}}, "endings": {"end_takehome": {"title": "A New Friend", "text": "You take the puppy home and your family loves it! You never find out if it had another owner, but you promise to take great care of it.", "tier": "good"}, "end_goodhome": {"title": "A Happy Home", "text": "The puppy becomes part of your family. It grows up happy and loved, always by your side.", "tier": "good"}, "end_bestending": {"title": "Reunited!", "text": "The shop owner calls the number, and the puppy's owner arrives crying happy tears! She was searching for days. She thanks you and lets you visit the puppy anytime you want.", "tier": "best"}}}, "grade3": {"title": "The Treasure Map", "icon": "🗺️", "teaser": "You found an old treasure map. Where will it lead you?", "startNode": "start", "nodes": {"start": {"text": "While cleaning the attic, you find an old, torn map with a red X marked on it. It looks like a real treasure map! What do you do?", "choices": [{"label": "Follow the map into the forest right away", "next": "forest"}, {"label": "Show the map to your best friend first", "next": "friend"}]}, "friend": {"text": "Your friend is thrilled and grabs a flashlight. Together, you head into the forest to follow the map.", "choices": [{"label": "Continue into the forest", "next": "forest"}]}, "forest": {"text": "Deep in the forest, the path splits in two. One path is dark and narrow. The other is sunny but much longer.", "choices": [{"label": "Take the dark, narrow path", "next": "cave"}, {"label": "Take the longer, sunny path", "next": "tree"}]}, "cave": {"text": "The dark path leads to a small cave. Inside, you hear a strange dripping noise echoing in the dark.", "choices": [{"label": "Go inside bravely with your flashlight", "next": "end_cave"}, {"label": "Turn back and try the sunny path instead", "next": "tree"}]}, "tree": {"text": "The sunny path leads to a huge oak tree with an X carved into its trunk, just like on the map. You start digging beneath it.", "choices": [{"label": "Keep digging carefully", "next": "end_tree"}, {"label": "It's too hard — give up and go home", "next": "end_giveup"}]}}, "endings": {"end_cave": {"title": "Treasure in the Dark", "text": "Inside the cave, your flashlight shines on an old wooden chest full of gold coins and shiny gems! You and your friend can't believe your luck.", "tier": "best"}, "end_tree": {"title": "Coins Under the Oak", "text": "After digging for a while, you find a small metal box filled with old coins. It's not a fortune, but it's a real treasure — and a great story to tell!", "tier": "good"}, "end_giveup": {"title": "A Fun Day Out", "text": "You decide digging is too much work and head home empty-handed. But you had a great adventure exploring the forest with your friend.", "tier": "neutral"}}}, "grade4": {"title": "The Mystery of the Old House", "icon": "🏚️", "teaser": "An empty old house holds a secret. Do you dare explore it?", "startNode": "start", "nodes": {"start": {"text": "Your class is on a field trip near an old, empty house at the edge of town. Some kids dare you to peek inside. What do you do?", "choices": [{"label": "Go inside to explore", "next": "inside"}, {"label": "Stay outside with the rest of the class", "next": "end_safe"}]}, "inside": {"text": "Inside, the house is dusty and quiet. A staircase leads up, and a hallway leads to the kitchen.", "choices": [{"label": "Go upstairs", "next": "upstairs"}, {"label": "Go to the kitchen", "next": "kitchen"}]}, "upstairs": {"text": "Upstairs, you find an old journal on a dusty desk. It has notes about a hidden room somewhere in the house.", "choices": [{"label": "Search for the hidden room", "next": "end_hidden"}, {"label": "Leave the journal and check the kitchen instead", "next": "kitchen"}]}, "kitchen": {"text": "In the kitchen, you find an old photograph of a family who used to live in this house long ago.", "choices": [{"label": "Take the photo to show your class", "next": "end_photo"}, {"label": "Put it back and leave the house", "next": "end_leave"}]}}, "endings": {"end_safe": {"title": "Playing It Safe", "text": "You stay outside with your classmates. It feels like the safe choice, but you can't help wondering what secrets the old house was hiding.", "tier": "neutral"}, "end_hidden": {"title": "The Secret Room", "text": "Behind a bookshelf, you discover a hidden room full of old family photos and letters. You've uncovered the true history of the house — and your teacher is amazed by your discovery!", "tier": "best"}, "end_photo": {"title": "A Piece of History", "text": "You bring the photo back to class. Together, you and your classmates research the family in the photo and learn the fascinating story of the old house.", "tier": "good"}, "end_leave": {"title": "A Quiet Mystery", "text": "You put the photo back and leave the house exactly as you found it. The mystery of the old house stays unsolved — for now.", "tier": "neutral"}}}, "grade5": {"title": "Survive the Jungle Expedition", "icon": "🌴", "teaser": "Your plane crash-landed in a jungle. Can your team survive and get rescued?", "startNode": "start", "nodes": {"start": {"text": "Your small plane crash-lands in a dense jungle. You and your team are safe, but lost. Night is coming fast. What do you do first?", "choices": [{"label": "Build a shelter before dark", "next": "shelter"}, {"label": "Search for a water source", "next": "water"}]}, "shelter": {"text": "You build a simple shelter using branches and leaves just before it starts raining. The next morning, you must find water and food.", "choices": [{"label": "Follow the sound of running water", "next": "river"}, {"label": "Look for fruit trees nearby", "next": "fruit"}]}, "water": {"text": "You find a small stream and drink safely. As night falls, you realize your team has no shelter yet.", "choices": [{"label": "Quickly build a shelter using what you have", "next": "river"}, {"label": "Keep walking in the dark to find a village", "next": "end_risky"}]}, "river": {"text": "Following the river, you find fresh fish and clean water. Your team's spirits rise, and you spot a clearing nearby.", "choices": [{"label": "Set up camp here and signal for help with a fire", "next": "end_best"}, {"label": "Keep exploring further to find higher ground", "next": "end_lost"}]}, "fruit": {"text": "You find a tree full of ripe fruit, giving your team much-needed energy. But you still need a reliable water source.", "choices": [{"label": "Search for the river next", "next": "river"}, {"label": "Rest here and wait for rescue planes", "next": "end_wait"}]}}, "endings": {"end_risky": {"title": "A Risky Night", "text": "Walking in the dark was dangerous — your team gets separated and more lost. You're eventually found by a rescue team days later, tired but safe. It was a close call.", "tier": "neutral"}, "end_best": {"title": "Rescued at Last", "text": "Your smoke signal from the clearing is spotted by a rescue helicopter! Your whole team is airlifted to safety within hours. Smart thinking saved the day.", "tier": "best"}, "end_lost": {"title": "The Long Way Home", "text": "You find higher ground with a better view, but it takes longer for rescuers to spot your group. Everyone is found safe after a few more tense days.", "tier": "neutral"}, "end_wait": {"title": "Patience Pays Off", "text": "Resting and waiting turns out to be a good call. A search plane spots your group a couple of days later. Everyone makes it home safely, well-fed and rested.", "tier": "good"}}}, "grade6": {"title": "The Time Traveler's Dilemma", "icon": "⏳", "teaser": "An old pocket watch sends you back in time to your grandfather's childhood. What will you do?", "startNode": "start", "nodes": {"start": {"text": "You discover an old pocket watch in your grandfather's attic. When you wind it, a bright light surrounds you — you've traveled back in time to your grandfather's childhood! You see him about to make a decision that will shape his whole life. What do you do?", "choices": [{"label": "Approach and talk to him", "next": "talk"}, {"label": "Stay hidden and just observe", "next": "observe"}]}, "talk": {"text": "Your grandfather, now just a child, is confused but curious about this stranger. He asks who you are.", "choices": [{"label": "Tell him the truth about being from the future", "next": "truth"}, {"label": "Make up a story to avoid confusing him", "next": "cover_story"}]}, "observe": {"text": "You watch quietly as your grandfather considers his choice on his own, just as history intended.", "choices": [{"label": "Continue watching without interfering", "next": "end_unchanged"}, {"label": "Step in at the last moment to help him decide", "next": "truth"}]}, "truth": {"text": "Believing your incredible story, your grandfather asks you for advice about his difficult decision.", "choices": [{"label": "Give him honest advice, even if it changes the future", "next": "end_riskychange"}, {"label": "Encourage him to trust his own judgment", "next": "end_best"}]}, "cover_story": {"text": "He believes your made-up story and feels a little more confident after talking with you, even without knowing the truth.", "choices": [{"label": "Say goodbye and return to your time", "next": "end_gentle"}, {"label": "Stay a little longer to learn more about his life", "next": "end_unchanged"}]}}, "endings": {"end_unchanged": {"title": "History Unchanged", "text": "You return to your own time, and everything is exactly as you remember it. Your grandfather made his own choice, just as history always intended — and you got to witness it firsthand.", "tier": "neutral"}, "end_riskychange": {"title": "Ripples Through Time", "text": "Your advice changes your grandfather's path in unexpected ways. When you return home, small details of your family's history are different — a fascinating, if unsettling, reminder of how powerful one choice can be.", "tier": "neutral"}, "end_best": {"title": "A Wiser Path", "text": "Trusting his own judgment, your grandfather makes a thoughtful choice that quietly improves his life — and yours. When you return home, you notice small, wonderful changes for the better, all because you believed in him.", "tier": "best"}, "end_gentle": {"title": "A Small Kindness", "text": "Even without knowing the full truth, your grandfather always remembered the kind stranger who encouraged him that day. When you return home, you find one heartwarming detail has changed for the better.", "tier": "good"}}}};
+</script>
+<script>
+(function () {
+    var GRADE_META = {
+        grade2: { label: "Grade 2", cls: "g2", color: "var(--grade2)", solid: "var(--grade2-solid)" },
+        grade3: { label: "Grade 3", cls: "g3", color: "var(--grade3)", solid: "var(--grade3-solid)" },
+        grade4: { label: "Grade 4", cls: "g4", color: "var(--grade4)", solid: "var(--grade4-solid)" },
+        grade5: { label: "Grade 5", cls: "g5", color: "var(--grade5)", solid: "var(--grade5-solid)" },
+        grade6: { label: "Grade 6", cls: "g6", color: "var(--grade6)", solid: "var(--grade6-solid)" }
+    };
+    var GRADE_ORDER = ["grade2", "grade3", "grade4", "grade5", "grade6"];
+    var STORAGE_KEY = "llg_story_adventure_progress_v1";
+
+    var state = {
+        grade: "grade2",
+        currentNode: null
+    };
+
+    var homeView = document.getElementById("homeView");
+    var storyView = document.getElementById("storyView");
+    var gradeTabs = document.getElementById("gradeTabs");
+    var storyCover = document.getElementById("storyCover");
+    var storyPageWrap = document.getElementById("storyPageWrap");
+
+    // ---------- persistence ----------
+    function loadProgress() {
+        try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
+        catch (e) { return {}; }
+    }
+    function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {} }
+    function getFoundEndings(grade) {
+        var p = loadProgress();
+        return p[grade] || [];
+    }
+    function addFoundEnding(grade, endingId) {
+        var p = loadProgress();
+        if (!p[grade]) p[grade] = [];
+        if (p[grade].indexOf(endingId) === -1) p[grade].push(endingId);
+        saveProgress(p);
+    }
+    function getGlobalStars() {
+        var p = loadProgress(), total = 0;
+        GRADE_ORDER.forEach(function (g) {
+            var story = STORY_DATA[g];
+            var found = (p[g] || []).length;
+            var max = Object.keys(story.endings).length;
+            total += Math.round((found / max) * 3);
+        });
+        return total;
+    }
+    function refreshGlobalStars() { document.getElementById("totalStars").textContent = "⭐ " + getGlobalStars(); }
+
+    // ---------- home view ----------
+    function renderGradeTabs() {
+        gradeTabs.innerHTML = "";
+        GRADE_ORDER.forEach(function (g) {
+            var meta = GRADE_META[g];
+            var btn = document.createElement("button");
+            btn.className = "grade-tab " + meta.cls + (g === state.grade ? " active" : "");
+            btn.innerHTML = '<span class="dot"></span>' + meta.label;
+            btn.addEventListener("click", function () {
+                state.grade = g;
+                renderGradeTabs();
+                renderStoryCover();
+            });
+            gradeTabs.appendChild(btn);
+        });
+    }
+
+    function renderStoryCover() {
+        var story = STORY_DATA[state.grade];
+        var meta = GRADE_META[state.grade];
+        storyCover.style.setProperty("--grade-color-solid", meta.solid);
+        document.getElementById("coverIcon").textContent = story.icon;
+        document.getElementById("coverTitle").textContent = story.title;
+        document.getElementById("coverTeaser").textContent = story.teaser;
+        var found = getFoundEndings(state.grade).length;
+        var max = Object.keys(story.endings).length;
+        var progressEl = document.getElementById("endingsProgress");
+        progressEl.textContent = found + " of " + max + " endings found" + (found === max ? " 🏆" : "");
+    }
+
+    document.getElementById("startBtn").addEventListener("click", function () {
+        var story = STORY_DATA[state.grade];
+        homeView.style.display = "none";
+        storyView.style.display = "block";
+        document.getElementById("storyTitle").textContent = story.icon + " " + story.title;
+        goToNode(story.startNode);
+    });
+
+    // ---------- story navigation ----------
+    function goToNode(nodeId) {
+        state.currentNode = nodeId;
+        var story = STORY_DATA[state.grade];
+
+        if (story.nodes[nodeId]) {
+            renderStoryNode(story.nodes[nodeId]);
+        } else if (story.endings[nodeId]) {
+            addFoundEnding(state.grade, nodeId);
+            refreshGlobalStars();
+            renderEnding(story.endings[nodeId]);
+        }
+    }
+
+    function renderStoryNode(node) {
+        var choicesHtml = node.choices.map(function (c, i) {
+            return '<button class="choice-btn" data-next="' + c.next + '"><span class="choice-arrow">›</span><span>' + c.label + '</span></button>';
+        }).join("");
+
+        storyPageWrap.innerHTML =
+            '<div class="story-page">' +
+                '<div class="story-text">' + node.text + '</div>' +
+            '</div>' +
+            '<div class="choice-list">' + choicesHtml + '</div>';
+
+        document.querySelectorAll(".choice-btn").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                goToNode(btn.dataset.next);
+            });
+        });
+    }
+
+    function renderEnding(ending) {
+        var tierLabels = { best: "🏆 Best Ending", good: "✨ Good Ending", neutral: "🌙 Ending" };
+        storyPageWrap.innerHTML =
+            '<div class="ending-card">' +
+                '<div class="ending-badge ' + ending.tier + '">' + tierLabels[ending.tier] + '</div>' +
+                '<div class="ending-title">' + ending.title + '</div>' +
+                '<div class="ending-text">' + ending.text + '</div>' +
+                '<div class="ending-actions">' +
+                    '<button class="ending-btn primary" id="replayBtn">🔁 Try a Different Path</button>' +
+                    '<button class="ending-btn ghost" id="homeFromEndBtn">🏠 Back to Stories</button>' +
+                '</div>' +
+            '</div>';
+
+        document.getElementById("replayBtn").addEventListener("click", function () {
+            var story = STORY_DATA[state.grade];
+            goToNode(story.startNode);
+        });
+        document.getElementById("homeFromEndBtn").addEventListener("click", goHome);
+
+        if (ending.tier === "best") spawnConfetti();
+    }
+
+    function spawnConfetti() {
+        var emojis = ["🎉", "✨", "⭐", "🎊"];
+        for (var i = 0; i < 12; i++) {
+            var piece = document.createElement("div");
+            piece.className = "confetti-piece";
+            piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            piece.style.left = (35 + Math.random() * 30) + "%";
+            piece.style.animationDuration = (1 + Math.random() * 0.8) + "s";
+            document.body.appendChild(piece);
+            (function (p) { setTimeout(function () { if (p.parentNode) p.parentNode.removeChild(p); }, 2000); })(piece);
+        }
+    }
+
+    document.getElementById("backBtn").addEventListener("click", goHome);
+
+    function goHome() {
+        storyView.style.display = "none";
+        homeView.style.display = "block";
+        renderGradeTabs();
+        renderStoryCover();
+    }
+
+    renderGradeTabs();
+    renderStoryCover();
+    refreshGlobalStars();
+})();
+
+</script>
+</body>
+</html>
