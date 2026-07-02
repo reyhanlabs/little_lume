@@ -66,7 +66,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
             transition: var(--transition);
-            overflow: hidden;
         }
 
         /* Starry background effect */
@@ -223,6 +222,179 @@
                 display: none;
             }
         }
+
+        /* ============= NAV DROPDOWNS (Worksheets & Resources) ============= */
+        .nav-item-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-dropdown-trigger {
+            display: flex !important;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .nav-dropdown-arrow {
+            font-size: 0.65rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px) scale(0.97);
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.85rem;
+            min-width: 285px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 200;
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .nav-dropdown-bar {
+            height: 5px;
+            margin: -0.85rem -0.85rem 0.75rem;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .nav-dropdown-bar-ws {
+            background: linear-gradient(90deg, #FF6B9D 0%, #FECA57 20%, #00D2D3 40%, #FF9FF3 60%, #54A0FF 80%, #1DD1A1 100%);
+        }
+
+        .nav-dropdown-bar-res {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent-cyan) 100%);
+        }
+
+        .nav-dropdown-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-secondary);
+            padding: 0 0.2rem 0.6rem;
+        }
+
+        .nav-dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 0.4rem;
+        }
+
+        .nav-dropdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .nav-dropdown-item {
+            display: flex !important;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.5rem 0.55rem;
+            border-radius: 11px;
+            color: var(--text-primary) !important;
+            font-size: 0.83rem;
+            font-weight: 600 !important;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-item::after {
+            content: none !important;
+        }
+
+        .nav-dropdown-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-item:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Worksheet grade colors */
+        .nav-dropdown-item.ws-g1 .nav-dropdown-icon { background: rgba(255, 107, 157, 0.15); }
+        .nav-dropdown-item.ws-g1:hover { color: #FF6B9D !important; }
+        .nav-dropdown-item.ws-g1:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%); }
+
+        .nav-dropdown-item.ws-g2 .nav-dropdown-icon { background: rgba(254, 202, 87, 0.18); }
+        .nav-dropdown-item.ws-g2:hover { color: #E5A800 !important; }
+        .nav-dropdown-item.ws-g2:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FECA57 0%, #FDBA3D 100%); }
+
+        .nav-dropdown-item.ws-g3 .nav-dropdown-icon { background: rgba(0, 210, 211, 0.15); }
+        .nav-dropdown-item.ws-g3:hover { color: #00AEAF !important; }
+        .nav-dropdown-item.ws-g3:hover .nav-dropdown-icon { background: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%); }
+
+        .nav-dropdown-item.ws-g4 .nav-dropdown-icon { background: rgba(255, 159, 243, 0.18); }
+        .nav-dropdown-item.ws-g4:hover { color: #E070D6 !important; }
+        .nav-dropdown-item.ws-g4:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF9FF3 0%, #FF84E8 100%); }
+
+        .nav-dropdown-item.ws-g5 .nav-dropdown-icon { background: rgba(84, 160, 255, 0.15); }
+        .nav-dropdown-item.ws-g5:hover { color: #3B82F6 !important; }
+        .nav-dropdown-item.ws-g5:hover .nav-dropdown-icon { background: linear-gradient(135deg, #54A0FF 0%, #3B82F6 100%); }
+
+        .nav-dropdown-item.ws-g6 .nav-dropdown-icon { background: rgba(29, 209, 161, 0.15); }
+        .nav-dropdown-item.ws-g6:hover { color: #10AC84 !important; }
+        .nav-dropdown-item.ws-g6:hover .nav-dropdown-icon { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%); }
+
+        /* Learning Resources colors */
+        .nav-dropdown-item.res-grammar .nav-dropdown-icon { background: rgba(44, 62, 122, 0.12); }
+        .nav-dropdown-item.res-grammar:hover { color: var(--primary) !important; }
+        .nav-dropdown-item.res-grammar:hover .nav-dropdown-icon { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+
+        .nav-dropdown-item.res-vocab .nav-dropdown-icon { background: rgba(0, 217, 255, 0.15); }
+        .nav-dropdown-item.res-vocab:hover { color: #00AEC7 !important; }
+        .nav-dropdown-item.res-vocab:hover .nav-dropdown-icon { background: linear-gradient(135deg, #48DBFB 0%, #00D9FF 100%); }
+
+        .nav-dropdown-item.res-phrasal .nav-dropdown-icon { background: rgba(245, 158, 11, 0.15); }
+        .nav-dropdown-item.res-phrasal:hover { color: #C9840A !important; }
+        .nav-dropdown-item.res-phrasal:hover .nav-dropdown-icon { background: linear-gradient(135deg, #F59E0B 0%, #FFD93D 100%); }
+
+        .nav-dropdown-item.res-stories .nav-dropdown-icon { background: rgba(255, 107, 157, 0.15); }
+        .nav-dropdown-item.res-stories:hover { color: #FF5A8A !important; }
+        .nav-dropdown-item.res-stories:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF9FF3 0%, #FF6B9D 100%); }
 
         /* ============= HERO SECTION ============= */
         .hero {
@@ -778,13 +950,14 @@
             font-weight: 500 !important;
             box-shadow: none !important;
             border-radius: 8px !important;
+            border-left: 3px solid #FF9FF3 !important;
             position: relative;
             overflow: hidden;
             margin-bottom: 0 !important;
         }
 
         .course-link-games:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+            background: linear-gradient(135deg, #FF9FF3 0%, #FF84E8 100%) !important;
             color: white !important;
             transform: translateX(4px) !important;
             box-shadow: none !important;
@@ -803,23 +976,42 @@
             background: linear-gradient(135deg, rgba(84, 160, 255, 0.2) 0%, transparent 70%);
         }
 
-        .course-link-ws {
+        .ws-link {
             background: var(--bg-light) !important;
             color: var(--primary) !important;
             font-weight: 500 !important;
             box-shadow: none !important;
             border-radius: 8px !important;
+            border-left: 3px solid transparent !important;
             position: relative;
             overflow: hidden;
             margin-bottom: 0 !important;
         }
 
-        .course-link-ws:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+        .ws-link:hover {
             color: white !important;
             transform: translateX(4px) !important;
             box-shadow: none !important;
         }
+
+        /* Worksheet Grade Accent Colors */
+        .ws-link.ws-g1 { border-left-color: #FF6B9D !important; }
+        .ws-link.ws-g1:hover { background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%) !important; }
+
+        .ws-link.ws-g2 { border-left-color: #FECA57 !important; }
+        .ws-link.ws-g2:hover { background: linear-gradient(135deg, #FECA57 0%, #FDBA3D 100%) !important; color: #4A3200 !important; }
+
+        .ws-link.ws-g3 { border-left-color: #00D2D3 !important; }
+        .ws-link.ws-g3:hover { background: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%) !important; }
+
+        .ws-link.ws-g4 { border-left-color: #FF9FF3 !important; }
+        .ws-link.ws-g4:hover { background: linear-gradient(135deg, #FF9FF3 0%, #FF84E8 100%) !important; }
+
+        .ws-link.ws-g5 { border-left-color: #54A0FF !important; }
+        .ws-link.ws-g5:hover { background: linear-gradient(135deg, #54A0FF 0%, #3B82F6 100%) !important; }
+
+        .ws-link.ws-g6 { border-left-color: #1DD1A1 !important; }
+        .ws-link.ws-g6:hover { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%) !important; }
 
         .course-link-materi {
             background: var(--bg-light) !important;
@@ -827,6 +1019,7 @@
             font-weight: 500 !important;
             box-shadow: none !important;
             border-radius: 8px !important;
+            border-left: 3px solid var(--primary) !important;
             position: relative;
             overflow: hidden;
             margin-bottom: 0 !important;
@@ -865,6 +1058,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
+            border-left: 3px solid transparent;
             transition: var(--transition);
         }
 
@@ -874,86 +1068,24 @@
             transform: translateX(4px);
         }
 
-        /* Grade-specific link colors */
-        .grade-card-1 .course-link:not(.course-link-materi) {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
+        /* Skill-based link colors — konsisten di semua grade card */
+        .skill-listening { border-left-color: #00D2D3 !important; }
+        .skill-listening:hover { background: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%) !important; color: white !important; }
 
-        .grade-card-1 .course-link:not(.course-link-materi):hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
+        .skill-reading { border-left-color: #1DD1A1 !important; }
+        .skill-reading:hover { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%) !important; color: white !important; }
 
-        .grade-card-2 .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
+        .skill-speaking { border-left-color: #F59E0B !important; }
+        .skill-speaking:hover { background: linear-gradient(135deg, #F59E0B 0%, #FFD93D 100%) !important; color: #4A3200 !important; }
 
-        .grade-card-2 .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
+        .skill-writing { border-left-color: #9C27B0 !important; }
+        .skill-writing:hover { background: linear-gradient(135deg, #9C27B0 0%, #7C5CBF 100%) !important; color: white !important; }
 
-        .grade-card-3 .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
+        .skill-grammar { border-left-color: #FF6B9D !important; }
+        .skill-grammar:hover { background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%) !important; color: white !important; }
 
-        .grade-card-3 .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-
-        .grade-card-4 .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
-
-        .grade-card-4 .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-
-        .grade-card-5 .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
-
-        .grade-card-5 .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-
-        .grade-card-6 .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
-
-        .grade-card-6 .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-
-        .grade-games .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
-
-        .grade-games .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-
-        .grade-ws .course-link {
-            background: var(--bg-light);
-            color: var(--primary);
-        }
-
-        .grade-ws .course-link:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
+        .skill-phonics { border-left-color: #54A0FF !important; }
+        .skill-phonics:hover { background: linear-gradient(135deg, #54A0FF 0%, #3B82F6 100%) !important; color: white !important; }
 
         .course-footer {
             padding: 1rem 1.5rem;
@@ -1486,7 +1618,34 @@
             <div class="logo">✨ LittleLume</div>
             <ul class="nav-links">
                 <li><a href="#courses">Courses</a></li>
-                <li><a href="#resources">Learning Resources</a></li>
+                <li class="nav-item-dropdown">
+                    <a class="nav-dropdown-trigger" href="#resources">Learning Resources <span class="nav-dropdown-arrow">▾</span></a>
+                    <div class="nav-dropdown">
+                        <div class="nav-dropdown-bar nav-dropdown-bar-res"></div>
+                        <div class="nav-dropdown-label">🎓 Semua Resource</div>
+                        <div class="nav-dropdown-list">
+                            <a class="nav-dropdown-item res-grammar" href="grammar-complete.html"><span class="nav-dropdown-icon">📖</span>Grammar Guide</a>
+                            <a class="nav-dropdown-item res-vocab" href="vocabulary-complete.html"><span class="nav-dropdown-icon">📚</span>Vocabulary Builder</a>
+                            <a class="nav-dropdown-item res-phrasal" href="phrasal-verbs-complete.html"><span class="nav-dropdown-icon">⚡</span>Phrasal Verbs</a>
+                            <a class="nav-dropdown-item res-stories" href="interactive-stories.html"><span class="nav-dropdown-icon">📕</span>Interactive Stories</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item-dropdown">
+                    <a class="nav-dropdown-trigger" href="#courses">Worksheets <span class="nav-dropdown-arrow">▾</span></a>
+                    <div class="nav-dropdown">
+                        <div class="nav-dropdown-bar nav-dropdown-bar-ws"></div>
+                        <div class="nav-dropdown-label">📄 Pilih Grade</div>
+                        <div class="nav-dropdown-grid">
+                            <a class="nav-dropdown-item ws-g1" href="worksheet/grade1/"><span class="nav-dropdown-icon">📘</span>Grade 1</a>
+                            <a class="nav-dropdown-item ws-g2" href="worksheet/grade2/"><span class="nav-dropdown-icon">📗</span>Grade 2</a>
+                            <a class="nav-dropdown-item ws-g3" href="worksheet/grade3/"><span class="nav-dropdown-icon">📙</span>Grade 3</a>
+                            <a class="nav-dropdown-item ws-g4" href="worksheet/grade4/"><span class="nav-dropdown-icon">📕</span>Grade 4</a>
+                            <a class="nav-dropdown-item ws-g5" href="worksheet/grade5/"><span class="nav-dropdown-icon">📓</span>Grade 5</a>
+                            <a class="nav-dropdown-item ws-g6" href="worksheet/grade6/"><span class="nav-dropdown-icon">📔</span>Grade 6</a>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="#quotes">About</a></li>
             </ul>
             <a class="nav-cta" href="#courses">Start Learning</a>
@@ -1570,11 +1729,11 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-materi" href="grade1/materi/">📚 Materials</a>
-                    <a class="course-link" href="grade1/listening/">🎧 Listening</a>
-                    <a class="course-link" href="grade1/reading/">📖 Reading</a>
-                    <a class="course-link" href="grade1/speaking/">🗣 Speaking</a>
-                    <a class="course-link" href="grade1/writing/">✍ Writing</a>
-                    <a class="course-link" href="grade1/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="grade1/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="grade1/reading/">📖 Reading</a>
+                    <a class="course-link skill-speaking" href="grade1/speaking/">🗣 Speaking</a>
+                    <a class="course-link skill-writing" href="grade1/writing/">✍ Writing</a>
+                    <a class="course-link skill-grammar" href="grade1/grammar/">📝 Grammar</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1593,11 +1752,11 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-materi" href="grade2/materi/">📚 Materials</a>
-                    <a class="course-link" href="grade2/listening/">🎧 Listening</a>
-                    <a class="course-link" href="grade2/reading/">📖 Reading</a>
-                    <a class="course-link" href="grade2/speaking/">🗣 Speaking</a>
-                    <a class="course-link" href="grade2/writing/">✍ Writing</a>
-                    <a class="course-link" href="grade2/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="grade2/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="grade2/reading/">📖 Reading</a>
+                    <a class="course-link skill-speaking" href="grade2/speaking/">🗣 Speaking</a>
+                    <a class="course-link skill-writing" href="grade2/writing/">✍ Writing</a>
+                    <a class="course-link skill-grammar" href="grade2/grammar/">📝 Grammar</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1616,11 +1775,11 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-materi" href="grade3/materi/">📚 Materials</a>
-                    <a class="course-link" href="grade3/listening/">🎧 Listening</a>
-                    <a class="course-link" href="grade3/reading/">📖 Reading</a>
-                    <a class="course-link" href="grade3/speaking/">🗣 Speaking</a>
-                    <a class="course-link" href="grade3/writing/">✍ Writing</a>
-                    <a class="course-link" href="grade3/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="grade3/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="grade3/reading/">📖 Reading</a>
+                    <a class="course-link skill-speaking" href="grade3/speaking/">🗣 Speaking</a>
+                    <a class="course-link skill-writing" href="grade3/writing/">✍ Writing</a>
+                    <a class="course-link skill-grammar" href="grade3/grammar/">📝 Grammar</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1639,11 +1798,11 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-materi" href="grade4/materi/">📚 Materials</a>
-                    <a class="course-link" href="grade4/listening/">🎧 Listening</a>
-                    <a class="course-link" href="grade4/reading/">📖 Reading</a>
-                    <a class="course-link" href="grade4/speaking/">🗣 Speaking</a>
-                    <a class="course-link" href="grade4/writing/">✍ Writing</a>
-                    <a class="course-link" href="grade4/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="grade4/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="grade4/reading/">📖 Reading</a>
+                    <a class="course-link skill-speaking" href="grade4/speaking/">🗣 Speaking</a>
+                    <a class="course-link skill-writing" href="grade4/writing/">✍ Writing</a>
+                    <a class="course-link skill-grammar" href="grade4/grammar/">📝 Grammar</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1662,11 +1821,11 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-materi" href="grade5/materi/">📚 Materials</a>
-                    <a class="course-link" href="grade5/listening/">🎧 Listening</a>
-                    <a class="course-link" href="grade5/reading/">📖 Reading</a>
-                    <a class="course-link" href="grade5/speaking/">🗣 Speaking</a>
-                    <a class="course-link" href="grade5/writing/">✍ Writing</a>
-                    <a class="course-link" href="grade5/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="grade5/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="grade5/reading/">📖 Reading</a>
+                    <a class="course-link skill-speaking" href="grade5/speaking/">🗣 Speaking</a>
+                    <a class="course-link skill-writing" href="grade5/writing/">✍ Writing</a>
+                    <a class="course-link skill-grammar" href="grade5/grammar/">📝 Grammar</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1685,11 +1844,11 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-materi" href="grade6/materi/">📚 Materials</a>
-                    <a class="course-link" href="grade6/listening/">🎧 Listening</a>
-                    <a class="course-link" href="grade6/reading/">📖 Reading</a>
-                    <a class="course-link" href="grade6/speaking/">🗣 Speaking</a>
-                    <a class="course-link" href="grade6/writing/">✍ Writing</a>
-                    <a class="course-link" href="grade6/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="grade6/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="grade6/reading/">📖 Reading</a>
+                    <a class="course-link skill-speaking" href="grade6/speaking/">🗣 Speaking</a>
+                    <a class="course-link skill-writing" href="grade6/writing/">✍ Writing</a>
+                    <a class="course-link skill-grammar" href="grade6/grammar/">📝 Grammar</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1708,10 +1867,10 @@
                 </div>
                 <div class="course-links">
                     <a class="course-link course-link-games" href="games/english_game.html">🔤 Word Games</a>
-                    <a class="course-link" href="games/grammar/">📝 Grammar</a>
-                    <a class="course-link" href="games/listening/">🎧 Listening</a>
-                    <a class="course-link" href="games/reading/">📖 Reading</a>
-                    <a class="course-link" href="games/phonics/">🔊 Phonics</a>
+                    <a class="course-link skill-grammar" href="games/grammar/">📝 Grammar</a>
+                    <a class="course-link skill-listening" href="games/listening/">🎧 Listening</a>
+                    <a class="course-link skill-reading" href="games/reading/">📖 Reading</a>
+                    <a class="course-link skill-phonics" href="games/phonics/">🔊 Phonics</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
@@ -1726,14 +1885,15 @@
             <div class="course-card grade-ws">
                 <div class="course-header">
                     <h3>📄 Printable Worksheets</h3>
-                    <p class="course-meta">Practice Materials • 100+ Sheets</p>
+                    <p class="course-meta">Grade 1–6 • 100+ Sheets</p>
                 </div>
                 <div class="course-links">
-                    <a class="course-link course-link-ws" href="worksheet/grade1/">📘 Grade 1</a>
-                    <a class="course-link" href="worksheet/grade2/">📗 Grade 2</a>
-                    <a class="course-link" href="worksheet/grade3/">📙 Grade 3</a>
-                    <a class="course-link" href="worksheet/grade4/">📕 Grade 4</a>
-                    <a class="course-link" href="worksheet/grade5/">📓 Grade 5</a>
+                    <a class="course-link ws-link ws-g1" href="worksheet/grade1/">📘 Grade 1</a>
+                    <a class="course-link ws-link ws-g2" href="worksheet/grade2/">📗 Grade 2</a>
+                    <a class="course-link ws-link ws-g3" href="worksheet/grade3/">📙 Grade 3</a>
+                    <a class="course-link ws-link ws-g4" href="worksheet/grade4/">📕 Grade 4</a>
+                    <a class="course-link ws-link ws-g5" href="worksheet/grade5/">📓 Grade 5</a>
+                    <a class="course-link ws-link ws-g6" href="worksheet/grade6/">📔 Grade 6</a>
                 </div>
                 <div class="course-footer">
                     <div style="flex-grow: 1;">
