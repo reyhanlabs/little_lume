@@ -173,19 +173,19 @@
         <span class="brand-name">LittleLume</span>
     </div>
     <h1 class="title">Welcome back!</h1>
-    <p class="subtitle">Login untuk lanjut belajar bareng LittleLume</p>
+    <p class="subtitle">Login to continue learning with LittleLume</p>
 
     <div class="alert" id="alertBox"></div>
 
     <form id="loginForm">
         <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="nama@email.com" required autocomplete="email">
+            <input type="email" id="email" placeholder="you@email.com" required autocomplete="email">
         </div>
         <div class="field">
             <div class="field-row-between">
                 <label for="password">Password</label>
-                <button type="button" class="forgot-link" id="forgotBtn">Lupa password?</button>
+                <button type="button" class="forgot-link" id="forgotBtn">Forgot password?</button>
             </div>
             <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
         </div>
@@ -195,7 +195,7 @@
         </button>
     </form>
 
-    <div class="divider">atau</div>
+    <div class="divider">or</div>
 
     <button class="btn-google" id="googleBtn">
         <svg class="google-icon" viewBox="0 0 48 48">
@@ -207,8 +207,8 @@
         <span class="btn-label">Continue with Google</span>
     </button>
 
-    <p class="switch-link">Belum punya akun? <a href="signup.html">Daftar di sini</a></p>
-    <a class="back-home" href="index.html">← Kembali ke Home</a>
+    <p class="switch-link">Don't have an account? <a href="signup.html">Sign up here</a></p>
+    <a class="back-home" href="index.html">← Back to Home</a>
 </div>
 
 <!-- Firebase SDK -->
@@ -239,16 +239,16 @@
     }
     function friendlyError(error) {
         var map = {
-            'auth/invalid-email': 'Format email tidak valid.',
-            'auth/user-disabled': 'Akun ini telah dinonaktifkan.',
-            'auth/user-not-found': 'Email belum terdaftar. Silakan daftar dulu.',
-            'auth/wrong-password': 'Password salah. Coba lagi.',
-            'auth/invalid-credential': 'Email atau password salah.',
-            'auth/too-many-requests': 'Terlalu banyak percobaan. Coba lagi beberapa saat lagi.',
-            'auth/popup-closed-by-user': 'Login dibatalkan.',
-            'auth/network-request-failed': 'Koneksi bermasalah. Cek internet kamu.'
+            'auth/invalid-email': 'Invalid email format.',
+            'auth/user-disabled': 'This account has been disabled.',
+            'auth/user-not-found': 'Email not registered. Please sign up first.',
+            'auth/wrong-password': 'Incorrect password. Please try again.',
+            'auth/invalid-credential': 'Incorrect email or password.',
+            'auth/too-many-requests': 'Too many attempts. Please try again later.',
+            'auth/popup-closed-by-user': 'Login cancelled.',
+            'auth/network-request-failed': 'Connection problem. Please check your internet.'
         };
-        return map[error.code] || ('Terjadi kesalahan: ' + error.message);
+        return map[error.code] || ('An error occurred: ' + error.message);
     }
 
     loginForm.addEventListener('submit', function (e) {
@@ -288,12 +288,12 @@
         hideAlert();
         var email = document.getElementById('email').value.trim();
         if (!email) {
-            showAlert('Isi dulu email kamu di atas, baru klik "Lupa password?".');
+            showAlert('Please enter your email above first, then click "Forgot password?".');
             return;
         }
         firebase.auth().sendPasswordResetEmail(email)
             .then(function () {
-                showAlert('Link reset password sudah dikirim ke ' + email + '. Cek inbox kamu.', 'success');
+                showAlert('Password reset link sent to ' + email + '. Check your inbox.', 'success');
             })
             .catch(function (error) {
                 showAlert(friendlyError(error));

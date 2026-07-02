@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daftar | LittleLume</title>
+<title>Sign Up | LittleLume</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -162,35 +162,35 @@
         <span class="brand-badge">✨</span>
         <span class="brand-name">LittleLume</span>
     </div>
-    <h1 class="title">Buat akun baru</h1>
-    <p class="subtitle">Daftar gratis untuk mulai belajar bareng LittleLume</p>
+    <h1 class="title">Create your account</h1>
+    <p class="subtitle">Sign up for free to start learning with LittleLume</p>
 
     <div class="alert" id="alertBox"></div>
 
     <form id="signupForm">
         <div class="field">
-            <label for="name">Nama Lengkap</label>
-            <input type="text" id="name" placeholder="Nama kamu" required autocomplete="name">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your name" required autocomplete="name">
         </div>
         <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="nama@email.com" required autocomplete="email">
+            <input type="email" id="email" placeholder="you@email.com" required autocomplete="email">
         </div>
         <div class="field">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Minimal 6 karakter" required autocomplete="new-password" minlength="6">
+            <input type="password" id="password" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6">
         </div>
         <div class="field">
-            <label for="confirmPassword">Konfirmasi Password</label>
-            <input type="password" id="confirmPassword" placeholder="Ulangi password" required autocomplete="new-password" minlength="6">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Re-enter password" required autocomplete="new-password" minlength="6">
         </div>
         <button type="submit" class="btn-primary" id="signupBtn">
             <span class="spinner"></span>
-            <span class="btn-label">Daftar</span>
+            <span class="btn-label">Sign Up</span>
         </button>
     </form>
 
-    <div class="divider">atau</div>
+    <div class="divider">or</div>
 
     <button class="btn-google" id="googleBtn">
         <svg class="google-icon" viewBox="0 0 48 48">
@@ -202,8 +202,8 @@
         <span class="btn-label">Continue with Google</span>
     </button>
 
-    <p class="switch-link">Sudah punya akun? <a href="login.html">Login di sini</a></p>
-    <a class="back-home" href="index.html">← Kembali ke Home</a>
+    <p class="switch-link">Already have an account? <a href="login.html">Login here</a></p>
+    <a class="back-home" href="index.html">← Back to Home</a>
 </div>
 
 <!-- Firebase SDK -->
@@ -233,13 +233,13 @@
     }
     function friendlyError(error) {
         var map = {
-            'auth/email-already-in-use': 'Email ini sudah terdaftar. Coba login, atau pakai email lain.',
-            'auth/invalid-email': 'Format email tidak valid.',
-            'auth/weak-password': 'Password terlalu lemah, minimal 6 karakter.',
-            'auth/popup-closed-by-user': 'Pendaftaran dibatalkan.',
-            'auth/network-request-failed': 'Koneksi bermasalah. Cek internet kamu.'
+            'auth/email-already-in-use': 'This email is already registered. Try logging in, or use a different email.',
+            'auth/invalid-email': 'Invalid email format.',
+            'auth/weak-password': 'Password is too weak, minimum 6 characters.',
+            'auth/popup-closed-by-user': 'Sign up cancelled.',
+            'auth/network-request-failed': 'Connection problem. Please check your internet.'
         };
-        return map[error.code] || ('Terjadi kesalahan: ' + error.message);
+        return map[error.code] || ('An error occurred: ' + error.message);
     }
 
     signupForm.addEventListener('submit', function (e) {
@@ -252,11 +252,11 @@
         var confirmPassword = document.getElementById('confirmPassword').value;
 
         if (password !== confirmPassword) {
-            showAlert('Password dan konfirmasi password tidak sama.');
+            showAlert('Password and confirmation password do not match.');
             return;
         }
         if (password.length < 6) {
-            showAlert('Password minimal 6 karakter.');
+            showAlert('Password must be at least 6 characters.');
             return;
         }
 

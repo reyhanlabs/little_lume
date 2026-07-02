@@ -258,6 +258,66 @@
             box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
         }
 
+        .nav-auth-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-user-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.4rem 0.5rem 0.4rem 0.4rem;
+            border-radius: 999px;
+        }
+
+        .nav-user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD93D, #FECA57);
+            color: #0F1B4C;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .nav-user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+        .nav-user-name {
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-logout-btn {
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .nav-logout-btn:hover {
+            background: rgba(239, 68, 68, 0.75);
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -1628,6 +1688,14 @@
                 font-size: 0.85rem;
             }
 
+            .nav-user-name {
+                display: none;
+            }
+            .nav-user-chip {
+                padding: 0.35rem;
+                gap: 0.35rem;
+            }
+
             .dashboard-stats {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
@@ -1793,7 +1861,14 @@
                 <li><a class="nav-link-grammar" href="games/index.html">🎮 Games</a></li>
                 <li><a href="#quotes">About</a></li>
             </ul>
-            <a class="nav-cta" href="login.html">Login</a>
+            <div class="nav-auth-area" id="navAuthArea">
+                <a class="nav-cta" href="login.html" id="navLoginBtn">Login</a>
+                <div class="nav-user-chip" id="navUserChip" style="display:none;">
+                    <span class="nav-user-avatar" id="navUserAvatar">?</span>
+                    <span class="nav-user-name" id="navUserName">User</span>
+                    <button class="nav-logout-btn" id="navLogoutBtn" title="Logout" aria-label="Logout">⏻</button>
+                </div>
+            </div>
         </nav>
     </header>
     <!-- ============= HERO SECTION ============= -->
@@ -2374,6 +2449,49 @@
                 navbar.style.boxShadow = '0 8px 32px rgba(15, 27, 76, 0.3)';
             }
         });
+    </script>
+
+    <!-- ============= LOGIN STATE (navbar) =============
+         Homepage TETAP PUBLIK (tidak pakai auth-guard.js).
+         Script ini cuma mengecek status login untuk menampilkan
+         tombol "Login" atau chip nama user + tombol logout. -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        (function () {
+            var loginBtn = document.getElementById('navLoginBtn');
+            var userChip = document.getElementById('navUserChip');
+            var userAvatar = document.getElementById('navUserAvatar');
+            var userName = document.getElementById('navUserName');
+            var logoutBtn = document.getElementById('navLogoutBtn');
+
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    var displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
+                    userName.textContent = displayName;
+                    userName.title = user.email || '';
+
+                    if (user.photoURL) {
+                        userAvatar.innerHTML = '<img src="' + user.photoURL + '" alt="' + displayName + '">';
+                    } else {
+                        userAvatar.textContent = displayName.charAt(0).toUpperCase();
+                    }
+
+                    loginBtn.style.display = 'none';
+                    userChip.style.display = 'flex';
+                } else {
+                    loginBtn.style.display = 'inline-block';
+                    userChip.style.display = 'none';
+                }
+            });
+
+            logoutBtn.addEventListener('click', function () {
+                firebase.auth().signOut().then(function () {
+                    window.location.reload();
+                });
+            });
+        })();
     </script>
 </body>
 </html>
