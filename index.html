@@ -1292,6 +1292,46 @@
             flex-grow: 1;
         }
 
+        .course-card.is-soon {
+            cursor: default;
+            position: relative;
+            overflow: visible;
+        }
+        .course-card.is-soon:hover {
+            transform: none;
+            box-shadow: var(--shadow-md);
+        }
+        .course-card.is-soon .course-header,
+        .course-card.is-soon .course-preview-desc {
+            opacity: 0.55;
+        }
+        .soon-ribbon {
+            position: absolute;
+            top: 14px; right: -32px;
+            background: linear-gradient(135deg, var(--warning) 0%, #FFD93D 100%);
+            color: #4A3200;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.3rem 2.2rem;
+            transform: rotate(35deg);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            z-index: 2;
+        }
+        .course-soon-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
         .course-footer {
             padding: 1rem 1.5rem;
             border-top: 1px solid var(--border);
@@ -2061,6 +2101,16 @@
                     <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">90%</span>
                 </div>
             </a>
+            <!-- Interactive Worksheets (Coming Soon) -->
+            <div class="course-card grade-ws is-soon">
+                <div class="soon-ribbon">Soon</div>
+                <div class="course-header">
+                    <h3>🖱️ Interactive Worksheets</h3>
+                    <p class="course-meta">Grade 1–6 • Fill-in on screen</p>
+                </div>
+                <p class="course-preview-desc">Click, type, and check your answers right in the browser — no printing needed.</p>
+                <div class="course-soon-footer">🔒 Coming Soon</div>
+            </div>
         </div>
         <div style="text-align: center; margin-top: 2.5rem;">
             <a href="courses.html" class="btn btn-primary">Explore All Courses →</a>
