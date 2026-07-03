@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 🔒 AUTH GUARD — wajib login untuk akses halaman ini -->
+<style>body{visibility:hidden}</style>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="auth-guard.js"></script>
+<!-- akhir auth guard -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Learning Courses | LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --primary: #2C3E7A;
+        --secondary: #7C5CBF;
+        --bg-light: #F8F9FD;
+        --bg-card: #FFFFFF;
+        --text-primary: #1A202C;
+        --text-secondary: #64748B;
+        --border: #E2E8F0;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --g1: #FF6B9D; --g2: #FECA57; --g3: #00D2D3; --g4: #FF9FF3; --g5: #54A0FF; --g6: #1DD1A1; --gws: #7C5CBF;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* ============= TOPBAR ============= */
+    .topbar {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: var(--shadow-sm);
+    }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
+    .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .topbar-right { display: flex; align-items: center; gap: 0.8rem; }
+    .back-home { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.5rem 0.9rem; border-radius: 10px; transition: var(--transition); white-space: nowrap; }
+    .back-home:hover { background: var(--bg-light); color: var(--primary); }
+
+    .user-chip { display: flex; align-items: center; gap: 0.6rem; background: var(--bg-light); border: 1px solid var(--border); padding: 0.35rem 0.5rem 0.35rem 0.35rem; border-radius: 999px; }
+    .user-avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #FFD93D, #FECA57); color: #0F1B4C; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .user-name { font-weight: 600; font-size: 0.83rem; max-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .logout-btn { border: none; background: rgba(239,68,68,0.1); color: #B91C1C; width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .logout-btn:hover { background: rgba(239,68,68,0.85); color: white; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+
+    /* ============= HERO / GREETING ============= */
+    .greeting { text-align: center; margin-bottom: 2rem; }
+    .page-eyebrow { display: inline-block; background: rgba(44,62,122,0.1); color: var(--primary); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
+    .greeting-title { font-size: 1.9rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .greeting-title #greetName { color: var(--secondary); }
+    .greeting-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+
+    /* ============= STATS ROW ============= */
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin: 2rem 0 2.4rem;
+    }
+    .stat-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.3rem 1rem;
+        text-align: center;
+    }
+    .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--primary); font-family: 'Plus Jakarta Sans', sans-serif; }
+    .stat-label { font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; margin-top: 0.2rem; }
+
+    /* ============= COURSE CARDS ============= */
+    .section-label { font-size: 1.15rem; font-weight: 800; margin: 0 0 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+    .course-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.4rem; }
+
+    .course-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+    .course-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    .course-top { display: flex; flex-wrap: wrap; gap: 1.2rem; padding: 1.6rem 1.8rem; }
+    .course-badge {
+        width: 64px; height: 64px;
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.8rem;
+        flex-shrink: 0;
+        background: var(--grade-bg, rgba(44,62,122,0.1));
+    }
+    .course-info { flex: 1; min-width: 200px; }
+    .course-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.2rem; color: var(--grade-color, var(--primary)); }
+    .course-meta { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.6rem; }
+    .course-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; max-width: 560px; }
+
+    .course-progress-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; min-width: 140px; }
+    .progress-track { width: 140px; background: var(--border); height: 8px; border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 999px; background: var(--grade-color, var(--primary)); }
+    .progress-pct { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); }
+
+    .topic-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 1.8rem 1.4rem; }
+    .topic-pill { font-size: 0.76rem; font-weight: 600; color: var(--grade-color, var(--primary)); background: var(--grade-bg, rgba(44,62,122,0.08)); padding: 0.3rem 0.7rem; border-radius: 999px; }
+
+    .course-links { display: flex; flex-wrap: wrap; gap: 0.6rem; padding: 1.1rem 1.8rem; background: var(--bg-light); border-top: 1px solid var(--border); }
+    .course-link {
+        display: flex; align-items: center; gap: 0.4rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        padding: 0.55rem 0.95rem;
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-size: 0.84rem;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+    .course-link:hover { border-color: var(--grade-color, var(--secondary)); color: var(--grade-color, var(--secondary)); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+    @media (max-width: 640px) {
+        .topbar { padding: 0.85rem 1.1rem; }
+        .stats-row { grid-template-columns: repeat(2, 1fr); }
+        .greeting-title { font-size: 1.5rem; }
+        .course-top { padding: 1.3rem; }
+        .topic-pills { padding: 0 1.3rem 1.2rem; }
+        .course-links { padding: 1rem 1.3rem; }
+        .course-progress-wrap { align-items: flex-start; width: 100%; }
+        .progress-track { width: 100%; }
+        .user-name { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="brand"><span class="brand-badge">📚</span> Learning Courses</div>
+    <div class="topbar-right">
+        <a href="index.html" class="back-home">← Back to Home</a>
+        <div class="user-chip" id="userChip" style="display:none;">
+            <span class="user-avatar" id="userAvatar">?</span>
+            <span class="user-name" id="userName">User</span>
+            <button class="logout-btn" id="logoutBtn" title="Logout">⏻</button>
+        </div>
+    </div>
+</div>
+
+<div class="wrap">
+
+    <div class="greeting">
+        <span class="page-eyebrow">Grade 1 – 6</span>
+        <h1 class="greeting-title">Welcome back, <span id="greetName">there</span>! 👋</h1>
+        <p class="greeting-desc">Pick up where you left off, or explore a new grade. Every course covers Materials, Listening, Reading, Speaking, and Writing.</p>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Grade Levels</div></div>
+        <div class="stat-box"><div class="stat-num">192</div><div class="stat-label">Total Lessons</div></div>
+        <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Skills Covered</div></div>
+        <div class="stat-box"><div class="stat-num">100+</div><div class="stat-label">Worksheets</div></div>
+    </div>
+
+    <div class="section-label">🎓 Your Courses</div>
+    <div class="course-grid" id="courseGrid"></div>
+
+    <div class="section-label">📄 Printable Worksheets</div>
+    <div class="course-grid" id="worksheetGrid"></div>
+
+</div>
+
+<script>
+const COURSES = [
+    {
+        id: "grade1", icon: "📘", color: "var(--g1)", bg: "rgba(255,107,157,0.12)",
+        title: "Grade 1", level: "Beginner Level", lessons: "32 Lessons", progress: 100,
+        desc: "Foundations of English — introducing everyday words, simple greetings, and basic sentence patterns for absolute beginners.",
+        topics: ["Alphabet", "Colors & Numbers", "Family", "Greetings", "Simple Nouns"],
+    },
+    {
+        id: "grade2", icon: "📗", color: "var(--g2)", bg: "rgba(254,202,87,0.15)",
+        title: "Grade 2", level: "Elementary Level", lessons: "32 Lessons", progress: 95,
+        desc: "Building confidence with everyday conversations, simple grammar, and expanding vocabulary through fun, relatable topics.",
+        topics: ["Animals", "Food", "Pronouns", "Present Tense", "Prepositions"],
+    },
+    {
+        id: "grade3", icon: "📙", color: "var(--g3)", bg: "rgba(0,210,211,0.12)",
+        title: "Grade 3", level: "Intermediate Level", lessons: "32 Lessons", progress: 75,
+        desc: "Strengthening reading and writing skills with more complex sentences, past-tense storytelling, and expressive vocabulary.",
+        topics: ["Past Tense", "Adjectives", "School Life", "Weather", "Short Stories"],
+    },
+    {
+        id: "grade4", icon: "📕", color: "var(--g4)", bg: "rgba(255,159,243,0.15)",
+        title: "Grade 4", level: "Advanced Level", lessons: "32 Lessons", progress: 60,
+        desc: "Diving deeper into grammar structures, comparative language, and confident self-expression in speaking and writing.",
+        topics: ["Present Perfect", "Comparatives", "Modals", "Question Words", "Descriptive Writing"],
+    },
+    {
+        id: "grade5", icon: "📓", color: "var(--g5)", bg: "rgba(84,160,255,0.12)",
+        title: "Grade 5", level: "Advanced Level", lessons: "32 Lessons", progress: 45,
+        desc: "Exploring advanced tenses, conditional sentences, and persuasive language to prepare for more sophisticated communication.",
+        topics: ["Conditionals", "Modal Verbs", "Passive Voice", "Relative Clauses", "Debates"],
+    },
+    {
+        id: "grade6", icon: "📔", color: "var(--g6)", bg: "rgba(29,209,161,0.12)",
+        title: "Grade 6", level: "Master Level", lessons: "32 Lessons", progress: 30,
+        desc: "Mastering advanced grammar, nuanced vocabulary, and critical thinking through discussions, essays, and real-world topics.",
+        topics: ["Reported Speech", "Subjunctive Mood", "Inversion", "Academic Writing", "Global Issues"],
+    },
+];
+
+const SKILLS = [
+    { key: "materi", icon: "📚", label: "Materials" },
+    { key: "listening", icon: "🎧", label: "Listening" },
+    { key: "reading", icon: "📖", label: "Reading" },
+    { key: "speaking", icon: "🗣", label: "Speaking" },
+    { key: "writing", icon: "✍", label: "Writing" },
+];
+
+const WORKSHEETS = [
+    { id: "grade1", icon: "📘", color: "var(--g1)", bg: "rgba(255,107,157,0.12)", title: "Grade 1 Worksheets" },
+    { id: "grade2", icon: "📗", color: "var(--g2)", bg: "rgba(254,202,87,0.15)", title: "Grade 2 Worksheets" },
+    { id: "grade3", icon: "📙", color: "var(--g3)", bg: "rgba(0,210,211,0.12)", title: "Grade 3 Worksheets" },
+    { id: "grade4", icon: "📕", color: "var(--g4)", bg: "rgba(255,159,243,0.15)", title: "Grade 4 Worksheets" },
+    { id: "grade5", icon: "📓", color: "var(--g5)", bg: "rgba(84,160,255,0.12)", title: "Grade 5 Worksheets" },
+    { id: "grade6", icon: "📔", color: "var(--g6)", bg: "rgba(29,209,161,0.12)", title: "Grade 6 Worksheets" },
+];
+
+function renderCourses() {
+    var grid = document.getElementById("courseGrid");
+    grid.innerHTML = COURSES.map(function (c) {
+        var links = SKILLS.map(function (s) {
+            return '<a class="course-link" href="' + c.id + '/' + s.key + '/" style="--grade-color:' + c.color + '">' + s.icon + ' ' + s.label + '</a>';
+        }).join("");
+        var pills = c.topics.map(function (t) {
+            return '<span class="topic-pill" style="--grade-color:' + c.color + ';--grade-bg:' + c.bg + '">' + t + '</span>';
+        }).join("");
+        return (
+            '<div class="course-card">' +
+                '<div class="course-top">' +
+                    '<div class="course-badge" style="--grade-bg:' + c.bg + '">' + c.icon + '</div>' +
+                    '<div class="course-info">' +
+                        '<div class="course-title" style="--grade-color:' + c.color + '">' + c.title + '</div>' +
+                        '<div class="course-meta">' + c.level + ' • ' + c.lessons + '</div>' +
+                        '<div class="course-desc">' + c.desc + '</div>' +
+                    '</div>' +
+                    '<div class="course-progress-wrap">' +
+                        '<div class="progress-track"><div class="progress-fill" style="width:' + c.progress + '%; --grade-color:' + c.color + '"></div></div>' +
+                        '<div class="progress-pct">' + c.progress + '% complete</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="topic-pills">' + pills + '</div>' +
+                '<div class="course-links">' + links + '</div>' +
+            '</div>'
+        );
+    }).join("");
+}
+
+function renderWorksheets() {
+    var grid = document.getElementById("worksheetGrid");
+    var links = WORKSHEETS.map(function (w) {
+        return '<a class="course-link" href="worksheet/' + w.id + '/" style="--grade-color:' + w.color + '">' + w.icon + ' ' + w.title + '</a>';
+    }).join("");
+    grid.innerHTML =
+        '<div class="course-card">' +
+            '<div class="course-top">' +
+                '<div class="course-badge" style="--grade-bg:rgba(124,92,191,0.12)">📄</div>' +
+                '<div class="course-info">' +
+                    '<div class="course-title" style="--grade-color:var(--gws)">Printable Worksheets</div>' +
+                    '<div class="course-meta">Grade 1–6 • 100+ Sheets</div>' +
+                    '<div class="course-desc">Offline practice sheets for every grade and skill — perfect for homework or extra reinforcement away from the screen.</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="course-links">' + links + '</div>' +
+        '</div>';
+}
+
+renderCourses();
+renderWorksheets();
+</script>
+
+<!-- Firebase SDK already loaded by auth-guard above; reuse it for user chip + logout -->
+<script>
+    (function () {
+        var userChip = document.getElementById("userChip");
+        var userAvatar = document.getElementById("userAvatar");
+        var userName = document.getElementById("userName");
+        var greetName = document.getElementById("greetName");
+        var logoutBtn = document.getElementById("logoutBtn");
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                var displayName = user.displayName || (user.email ? user.email.split("@")[0] : "there");
+                userName.textContent = displayName;
+                userName.title = user.email || "";
+                greetName.textContent = displayName;
+
+                if (user.photoURL) {
+                    userAvatar.innerHTML = '<img src="' + user.photoURL + '" alt="' + displayName + '">';
+                } else {
+                    userAvatar.textContent = displayName.charAt(0).toUpperCase();
+                }
+                userChip.style.display = "flex";
+            }
+        });
+
+        logoutBtn.addEventListener("click", function () {
+            firebase.auth().signOut().then(function () {
+                window.location.href = "login.html";
+            });
+        });
+    })();
+</script>
+</body>
+</html>
