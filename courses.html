@@ -106,6 +106,15 @@
     }
     .course-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 
+    .course-card.highlight-target {
+        animation: highlightPulse 1.8s ease;
+    }
+    @keyframes highlightPulse {
+        0% { box-shadow: 0 0 0 0 rgba(124,92,191,0.5); }
+        30% { box-shadow: 0 0 0 8px rgba(124,92,191,0.15); }
+        100% { box-shadow: 0 0 0 0 rgba(124,92,191,0); }
+    }
+
     .course-top { display: flex; flex-wrap: wrap; gap: 1.2rem; padding: 1.6rem 1.8rem; }
     .course-badge {
         width: 64px; height: 64px;
@@ -260,7 +269,7 @@ function renderCourses() {
             return '<span class="topic-pill" style="--grade-color:' + c.color + ';--grade-bg:' + c.bg + '">' + t + '</span>';
         }).join("");
         return (
-            '<div class="course-card">' +
+            '<div class="course-card" id="' + c.id + '">' +
                 '<div class="course-top">' +
                     '<div class="course-badge" style="--grade-bg:' + c.bg + '">' + c.icon + '</div>' +
                     '<div class="course-info">' +
@@ -286,7 +295,7 @@ function renderWorksheets() {
         return '<a class="course-link" href="worksheet/' + w.id + '/" style="--grade-color:' + w.color + '">' + w.icon + ' ' + w.title + '</a>';
     }).join("");
     grid.innerHTML =
-        '<div class="course-card">' +
+        '<div class="course-card" id="worksheets">' +
             '<div class="course-top">' +
                 '<div class="course-badge" style="--grade-bg:rgba(124,92,191,0.12)">📄</div>' +
                 '<div class="course-info">' +
@@ -301,6 +310,20 @@ function renderWorksheets() {
 
 renderCourses();
 renderWorksheets();
+
+// Kalau datang dari homepage dengan anchor (misal courses.html#grade3),
+// scroll otomatis ke kartu itu dan kasih highlight sebentar.
+(function () {
+    var hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    var target = document.getElementById(hash);
+    if (!target) return;
+    setTimeout(function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlight-target');
+        setTimeout(function () { target.classList.remove('highlight-target'); }, 1900);
+    }, 150);
+})();
 </script>
 
 <!-- Firebase SDK already loaded by auth-guard above; reuse it for user chip + logout -->
