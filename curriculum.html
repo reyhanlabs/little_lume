@@ -13,6 +13,7 @@
         --primary: #2C3E7A;
         --secondary: #7C5CBF;
         --success: #10B981;
+        --warning: #F59E0B;
         --bg-light: #F8F9FD;
         --bg-card: #FFFFFF;
         --text-primary: #1A202C;
@@ -37,7 +38,7 @@
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
     .topbar {
         background: var(--bg-card);
@@ -61,14 +62,9 @@
     .page-head { text-align: center; margin-bottom: 1.8rem; }
     .page-eyebrow { display: inline-block; background: rgba(44,62,122,0.1); color: var(--primary); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
     .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .page-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 620px; margin: 0 auto; }
+    .page-desc { color: var(--text-secondary); font-size: 0.95rem; max-width: 620px; margin: 0 auto; }
 
-    .overview-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
-    .stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.2rem 1rem; text-align: center; }
-    .stat-num { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-    .stat-label { font-size: 0.72rem; color: var(--text-secondary); font-weight: 600; margin-top: 0.2rem; }
-
-    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin: 1.6rem 0 2rem; }
+    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin: 1.8rem 0 1.2rem; }
     .grade-tab {
         border: 2px solid var(--border);
         background: var(--bg-card);
@@ -95,101 +91,122 @@
     .t5 .dot { background: var(--g5); } .t5.active { background: linear-gradient(135deg,#54A0FF,#92B6FF); color:#0B2E66; }
     .t6 .dot { background: var(--g6); } .t6.active { background: linear-gradient(135deg,#1DD1A1,#10AC84); color:#063D2F; }
 
-    /* ===== GRADE OVERVIEW CARD ===== */
-    .grade-overview {
+    .semester-tabs { display: flex; gap: 0.6rem; justify-content: center; margin-bottom: 2rem; }
+    .semester-tab {
+        border: 2px solid var(--border);
+        background: var(--bg-card);
+        padding: 0.5rem 1.1rem;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    .semester-tab.active { background: var(--grade-color, var(--primary)); color: white; border-color: transparent; }
+    .semester-tab:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ===== PENDING STATE ===== */
+    .pending-card {
+        background: var(--bg-card);
+        border: 2px dashed var(--border);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        text-align: center;
+        color: var(--text-secondary);
+    }
+    .pending-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .pending-card h3 { color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1.15rem; }
+
+    /* ===== OVERVIEW CARD ===== */
+    .overview-card {
         background: var(--bg-card);
         border-radius: 20px;
         border-top: 6px solid var(--grade-color, var(--primary));
         padding: 1.8rem 1.9rem;
-        margin-bottom: 1.6rem;
+        margin-bottom: 1.4rem;
         box-shadow: var(--shadow-md);
     }
-    .grade-overview-top { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
-    .grade-overview-title { font-size: 1.5rem; font-weight: 800; color: var(--grade-color, var(--primary)); }
-    .grade-overview-badge { font-size: 0.78rem; font-weight: 700; color: var(--grade-color, var(--text-secondary)); background: var(--grade-bg, var(--bg-light)); padding: 0.3rem 0.75rem; border-radius: 999px; }
-    .grade-overview-tagline { font-size: 0.95rem; color: var(--grade-color, var(--secondary)); font-weight: 700; margin-bottom: 0.7rem; }
-    .grade-overview-summary { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem; }
-    .grade-overview-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-secondary); font-weight: 600; }
-    .grade-overview-meta b { color: var(--text-primary); }
+    .overview-title { font-size: 1.4rem; font-weight: 800; color: var(--grade-color, var(--primary)); margin-bottom: 1rem; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.9rem 1.5rem; margin-bottom: 1.3rem; }
+    .info-item-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--text-secondary); margin-bottom: 0.15rem; }
+    .info-item-value { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); }
 
-    /* ===== TERM CARDS ===== */
-    .term-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.6rem; }
-    .term-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        overflow: hidden;
-        scroll-margin-top: 90px;
-    }
-    .term-card-header {
-        display: flex;
-        align-items: center;
-        gap: 0.9rem;
-        padding: 1.2rem 1.5rem;
+    .cp-box { background: var(--grade-bg, var(--bg-light)); border-radius: 12px; padding: 1.1rem 1.3rem; margin-bottom: 1.2rem; }
+    .cp-label { font-size: 0.78rem; font-weight: 800; color: var(--grade-color, var(--secondary)); text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.4rem; }
+    .cp-text { font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; }
+
+    .obj-list { list-style: none; margin-bottom: 1.2rem; }
+    .obj-list li { display: flex; gap: 0.55rem; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.5rem; line-height: 1.55; }
+    .obj-list li::before { content: "✓"; color: var(--grade-color, var(--success)); font-weight: 800; flex-shrink: 0; }
+
+    .grammar-note-box { background: rgba(245,158,11,0.07); border-left: 4px solid var(--warning); border-radius: 8px; padding: 1rem 1.2rem; font-size: 0.86rem; color: var(--text-primary); line-height: 1.7; }
+    .grammar-note-box b { color: #92640A; }
+
+    /* ===== SESSION STRUCTURE TABLE ===== */
+    .session-table-wrap { overflow-x: auto; }
+    table.session-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.session-table th { text-align: left; background: var(--grade-bg, var(--bg-light)); color: var(--grade-color, var(--primary)); font-weight: 800; padding: 0.6rem 0.8rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.02em; }
+    table.session-table td { padding: 0.6rem 0.8rem; border-top: 1px solid var(--border); vertical-align: top; }
+    table.session-table td.time-cell { font-weight: 700; color: var(--grade-color, var(--primary)); white-space: nowrap; }
+
+    /* ===== PETA MATERI TABLE ===== */
+    .peta-table-wrap { overflow-x: auto; }
+    table.peta-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.peta-table th { text-align: left; background: var(--grade-bg, var(--bg-light)); color: var(--grade-color, var(--primary)); font-weight: 800; padding: 0.55rem 0.7rem; font-size: 0.72rem; text-transform: uppercase; }
+    table.peta-table td { padding: 0.55rem 0.7rem; border-top: 1px solid var(--border); }
+    table.peta-table tr:hover td { background: var(--bg-light); }
+    .peta-num { font-weight: 800; color: var(--grade-color, var(--primary)); }
+
+    .section-label { font-size: 1.02rem; font-weight: 800; margin: 1.6rem 0 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+
+    /* ===== MEETING CARDS ===== */
+    .meeting-grid { display: flex; flex-direction: column; gap: 1rem; }
+    .meeting-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; scroll-margin-top: 90px; }
+    .meeting-card-header {
+        display: flex; align-items: center; gap: 0.9rem;
+        padding: 1.1rem 1.4rem;
         background: var(--grade-bg, var(--bg-light));
-        cursor: pointer;
-        user-select: none;
+        cursor: pointer; user-select: none;
     }
-    .term-num-badge {
-        width: 38px; height: 38px;
-        border-radius: 10px;
-        color: white;
-        font-weight: 800;
+    .meeting-num-badge {
+        width: 40px; height: 40px; border-radius: 10px;
+        background: var(--grade-color, var(--primary));
+        color: white; font-weight: 800; font-size: 0.85rem;
         display: flex; align-items: center; justify-content: center;
-        flex-shrink: 0;
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        flex-shrink: 0; font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    .term-num-badge.term-1 { background: linear-gradient(135deg, #54A0FF 0%, #2E7BFF 100%); }
-    .term-num-badge.term-2 { background: linear-gradient(135deg, #7C5CBF 0%, #6247A3 100%); }
-    .term-num-badge.term-3 { background: linear-gradient(135deg, #FF9F43 0%, #F7862D 100%); }
-    .term-num-badge.term-4 { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%); }
-    .term-card-title { font-weight: 800; font-size: 1.02rem; color: var(--text-primary); }
-    .term-card-weeks { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
-    .term-toggle-icon { margin-left: auto; color: var(--text-secondary); transition: var(--transition); font-size: 0.9rem; }
-    .term-card.open .term-toggle-icon { transform: rotate(180deg); }
+    .meeting-card-title { font-weight: 800; font-size: 1rem; color: var(--text-primary); }
+    .meeting-card-sub { font-size: 0.76rem; color: var(--text-secondary); font-weight: 600; }
+    .meeting-toggle-icon { margin-left: auto; color: var(--text-secondary); transition: var(--transition); }
+    .meeting-card.open .meeting-toggle-icon { transform: rotate(180deg); }
+    .meeting-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .meeting-card.open .meeting-body { max-height: 3000px; }
+    .meeting-body-inner { padding: 1.4rem; }
 
-    .term-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .term-card.open .term-body { max-height: 2000px; }
-    .term-body-inner { padding: 1.5rem; }
+    .mini-title { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--grade-color, var(--secondary)); margin: 0 0 0.5rem; }
+    .meeting-section { margin-bottom: 1.2rem; }
 
-    .term-section { margin-bottom: 1.3rem; }
-    .term-section-label { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--grade-color, var(--secondary)); margin-bottom: 0.5rem; }
-    .term-section-text { font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; }
+    .grammar-pattern-box { background: var(--grade-bg, var(--bg-light)); border-radius: 10px; padding: 0.8rem 1rem; font-weight: 700; color: var(--grade-color, var(--primary)); font-size: 0.94rem; margin-bottom: 0.6rem; }
+    .grammar-example { font-style: italic; color: var(--text-primary); font-size: 0.87rem; margin-bottom: 0.4rem; }
+    .grammar-detail-note { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
 
-    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .skill-box { border-radius: 12px; padding: 0.9rem 1.1rem; border-left: 4px solid transparent; }
-    .skill-box.skill-listening { background: rgba(84,160,255,0.08); border-left-color: #54A0FF; }
-    .skill-box.skill-reading { background: rgba(124,92,191,0.08); border-left-color: #7C5CBF; }
-    .skill-box.skill-speaking { background: rgba(255,159,67,0.1); border-left-color: #FF9F43; }
-    .skill-box.skill-writing { background: rgba(29,209,161,0.08); border-left-color: #1DD1A1; }
-    .skill-box-label { font-size: 0.78rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
-    .skill-box ul { padding-left: 1.1rem; font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .vocab-chip { background: var(--grade-bg, var(--bg-light)); color: var(--grade-color, var(--primary)); font-size: 0.8rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 999px; }
 
-    .outcomes-list { list-style: none; }
-    .outcomes-list li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.55rem; line-height: 1.55; }
-    .outcomes-list li::before { content: "✓"; color: var(--grade-color, var(--success)); font-weight: 800; flex-shrink: 0; margin-top: 0.1rem; }
+    .media-list, .assessment-list { list-style: none; font-size: 0.85rem; color: var(--text-secondary); }
+    .media-list li, .assessment-list li { padding-left: 1.1rem; position: relative; margin-bottom: 0.35rem; line-height: 1.5; }
+    .media-list li::before { content: "•"; position: absolute; left: 0; color: var(--grade-color, var(--secondary)); }
+    .assessment-list li::before { content: "📝"; position: absolute; left: 0; font-size: 0.75rem; }
 
-    /* ===== CHECKLIST ===== */
-    .checklist-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 1.6rem 1.8rem;
-    }
-    .checklist-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
-    .checklist-sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.1rem; }
-    .checklist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem 1.5rem; }
-    .checklist-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.86rem; color: var(--text-primary); line-height: 1.5; }
-    .checklist-box { width: 18px; height: 18px; border: 2px solid var(--grade-color, var(--secondary)); border-radius: 5px; flex-shrink: 0; margin-top: 0.1rem; }
+    .two-col-meeting { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 
     @media (max-width: 640px) {
         .topbar { padding: 0.85rem 1.1rem; }
         .page-title { font-size: 1.5rem; }
-        .overview-stats { grid-template-columns: repeat(2, 1fr); }
-        .grade-overview { padding: 1.4rem; }
-        .skills-grid { grid-template-columns: 1fr; }
-        .checklist-grid { grid-template-columns: 1fr; }
-        .term-body-inner { padding: 1.1rem; }
+        .overview-card { padding: 1.4rem; }
+        .two-col-meeting { grid-template-columns: 1fr; }
+        .meeting-body-inner { padding: 1.1rem; }
     }
 </style>
 </head>
@@ -203,28 +220,20 @@
 <div class="wrap">
 
     <div class="page-head">
-        <span class="page-eyebrow">Grade 1 – 6 · Full Year</span>
+        <span class="page-eyebrow">Official Lesson Plan (RPP)</span>
         <h1 class="page-title">Our English Curriculum</h1>
-        <p class="page-desc">A clear, measurable year-by-year plan. Every grade is split into 4 terms of 8 lessons each, with specific grammar, vocabulary, and skill targets — plus a checklist you can use to track real progress.</p>
-    </div>
-
-    <div class="overview-stats">
-        <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Grade Levels</div></div>
-        <div class="stat-box"><div class="stat-num">24</div><div class="stat-label">Terms Total</div></div>
-        <div class="stat-box"><div class="stat-num">192</div><div class="stat-label">Lessons Total</div></div>
-        <div class="stat-box"><div class="stat-num">1,160</div><div class="stat-label">Vocabulary Words</div></div>
+        <p class="page-desc">Based on Littlelume English's official Lesson Plan (RPP) — the same document our teachers use in the classroom. Browse the grade and semester below.</p>
     </div>
 
     <div class="grade-tabs" id="gradeTabs"></div>
+    <div class="semester-tabs" id="semesterTabs"></div>
 
-    <div id="gradeOverview"></div>
-    <div class="term-grid" id="termGrid"></div>
-    <div class="checklist-card" id="checklistCard"></div>
+    <div id="contentArea"></div>
 
 </div>
 
 <script>
-const CURRICULUM = {"grade1": {"title": "Grade 1", "level": "Beginner Level", "ageRange": "Ages 6–7", "tagline": "Foundations of English", "summary": "Introduces the building blocks of English: the alphabet, numbers, greetings, and the first 120 core vocabulary words, through games, songs, and simple sentence patterns.", "totalLessons": 32, "totalVocab": 120, "terms": [{"number": 1, "title": "Greetings & Alphabet", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Simple statements with \"I am / You are\"; basic word order in short sentences.", "vocab": "26 alphabet letters, 10 greeting phrases (hello, goodbye, please, thank you, sorry, excuse me...), numbers 1–10", "skills": {"listening": ["Recognize the sound of all 26 letters when spoken aloud", "Identify greeting phrases in short audio clips"], "reading": ["Match uppercase and lowercase letters", "Recognize numbers 1–10 in written form"], "speaking": ["Say 8 greeting phrases clearly and appropriately", "Recite the alphabet from A to Z without help"], "writing": ["Trace and copy all 26 letters correctly", "Copy numbers 1–10 legibly"]}, "outcomes": ["Recite the full alphabet (A–Z) unaided", "Count from 1 to 10 in English", "Use at least 5 greeting phrases in the correct situation", "Write all 26 letters (upper and lowercase) legibly"]}, {"number": 2, "title": "My Family & Colors", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Possessive structure \"This is my...\"; simple description \"It is [color].\"", "vocab": "8 family member words, 8 basic colors, 10 common household objects", "skills": {"listening": ["Identify family member words from short audio descriptions", "Distinguish 8 color names when spoken"], "reading": ["Match family photos/icons to their written labels", "Match objects to their color names"], "speaking": ["Introduce 5+ family members using \"This is my...\"", "Name the color of 8 given objects"], "writing": ["Copy simple sentences: \"This is my mom.\"", "Label 8 colored objects in writing"]}, "outcomes": ["Name at least 6 family members correctly", "Identify and say all 8 basic colors", "Form the sentence pattern \"This is my [family member]\" independently", "Write 5 simple 4-word sentences about family without copying"]}, {"number": 3, "title": "Animals & Simple Nouns", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Singular nouns with articles \"a/an\"; introduction to plural -s.", "vocab": "15 common animals, 12 everyday objects (ball, book, cup, bag, pen...)", "skills": {"listening": ["Recognize 15 animal names from their sounds/descriptions", "Distinguish singular vs. plural nouns when heard"], "reading": ["Match 15 animal words to pictures", "Read simple noun flashcards aloud"], "speaking": ["Name 12 animals without prompting", "Use \"a\" and \"an\" correctly in 8 out of 10 attempts"], "writing": ["Write the names of 10 animals from memory", "Form plural nouns by adding -s (5 examples)"]}, "outcomes": ["Name at least 12 out of 15 taught animals", "Use \"a\" versus \"an\" correctly based on the following sound", "Form regular plural nouns by adding -s", "Spell 10 animal names correctly from memory"]}, {"number": 4, "title": "My Body & Simple Sentences", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Sentence patterns \"I have...\" and \"I can...\"; basic action verbs.", "vocab": "10 body parts, 10 action verbs (run, jump, eat, sleep, sing, swim, read, write, walk, clap)", "skills": {"listening": ["Follow simple spoken commands (Total Physical Response): \"Clap your hands\"", "Identify action verbs from short audio clips"], "reading": ["Read simple 3-word sentences aloud with correct pronunciation", "Match action verbs to matching pictures"], "speaking": ["Name 8 body parts unaided", "Describe 5 actions using \"I can [verb]\""], "writing": ["Write 5 original 3-word sentences (e.g., \"I can jump\")", "Label a body diagram with 8 correct parts"]}, "outcomes": ["Name at least 8 out of 10 body parts", "Use the pattern \"I can [verb]\" to describe 5 different actions", "Follow and physically respond to 10 simple spoken commands", "Independently write 5 correct 3-word sentences"]}], "checklist": ["Recites the alphabet A–Z without assistance", "Counts from 1 to 10 confidently", "Uses 5+ greeting phrases appropriately in context", "Names at least 6 family members in English", "Identifies all 8 basic colors", "Names at least 12 common animals", "Uses \"a\" and \"an\" correctly", "Forms plural nouns by adding -s", "Names at least 8 body parts", "Builds simple 3-word sentences using \"I can...\"", "Writes all 26 letters legibly, upper and lowercase", "Recognizes and reads back at least 100 of the 120 core vocabulary words taught this year"]}, "grade2": {"title": "Grade 2", "level": "Elementary Level", "ageRange": "Ages 7–8", "tagline": "Everyday English", "summary": "Builds everyday conversational confidence: telling time, describing routines, expressing likes and dislikes, and forming simple present-tense sentences about daily life.", "totalLessons": 32, "totalVocab": 160, "terms": [{"number": 1, "title": "Numbers, Time & Prepositions", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Prepositions of place (in / on / under / next to); telling time using \"o'clock\" and \"half past.\"", "vocab": "Numbers 1–100, 7 days of the week, 12 months, prepositions of place", "skills": {"listening": ["Identify times spoken aloud (e.g., \"three o'clock\")", "Recognize prepositions of place in short spoken sentences"], "reading": ["Read digital and analog clock times", "Match objects to prepositional phrases (e.g., \"the cat is under the table\")"], "speaking": ["Tell the time to the hour and half-hour", "Describe object locations using 4 prepositions"], "writing": ["Write times in words (e.g., \"3:00\" → \"three o'clock\")", "Write 5 sentences using prepositions of place correctly"]}, "outcomes": ["Count confidently from 1 to 100", "Tell time to the hour and half-hour", "Name all 7 days and 12 months in order", "Use in / on / under / next to correctly in original sentences"]}, {"number": 2, "title": "Daily Routines & Pronouns", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Subject pronouns (he / she / it / they); simple present tense with third-person -s.", "vocab": "12 daily routine verbs (wake up, brush teeth, eat breakfast, go to school...)", "skills": {"listening": ["Distinguish he/she/it/they in spoken descriptions", "Sequence a spoken daily routine correctly"], "reading": ["Read a simple daily-routine paragraph and answer 3 comprehension questions", "Identify correct pronoun usage in written sentences"], "speaking": ["Describe their own daily routine using 6+ routine verbs", "Use he/she/it/they correctly in spoken sentences"], "writing": ["Write a 5-sentence paragraph describing a daily routine", "Correctly add -s to third-person present-tense verbs in 8/10 sentences"]}, "outcomes": ["Use he / she / it / they accurately in context", "Add -s correctly to third-person singular verbs", "Describe a daily routine using at least 6 routine verbs", "Write a coherent 5-sentence paragraph about a daily routine"]}, {"number": 3, "title": "Food, Drinks & Adjectives", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Expressing preference: \"I like / I don't like\"; basic descriptive adjectives.", "vocab": "20 food and drink words, 10 basic adjectives (sweet, sour, hot, cold, delicious...)", "skills": {"listening": ["Identify food preferences stated in short dialogues", "Recognize adjectives describing taste and temperature"], "reading": ["Read a simple menu and identify 8 food items", "Match foods to their describing adjectives"], "speaking": ["State personal food likes/dislikes for 8 items", "Describe 5 foods using appropriate adjectives"], "writing": ["Write a short paragraph (4–5 sentences) about favorite foods", "List 10 food words with correct spelling"]}, "outcomes": ["Name at least 15 food and drink items", "Use \"I like / I don't like\" appropriately", "Describe food using at least 5 different adjectives", "Write a short, coherent paragraph about food preferences"]}, {"number": 4, "title": "Animals, Habitats & Articles", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Mastery of a/an with all consonant and vowel sounds; regular plural noun formation.", "vocab": "15 wild animal names, 8 habitat words (jungle, ocean, desert, forest...)", "skills": {"listening": ["Match animal sounds/descriptions to correct habitats", "Identify singular vs. plural animal nouns when heard"], "reading": ["Read a short nonfiction passage about an animal and answer questions", "Correctly identify a/an usage in a gap-fill exercise"], "speaking": ["Describe where 8 animals live using \"It lives in the...\"", "Use a/an with 90% accuracy in spoken practice"], "writing": ["Write 8 sentences pairing animals with their correct habitats", "Form plural nouns correctly for 10 given animal words"]}, "outcomes": ["Use \"a\" and \"an\" correctly at least 9 times out of 10", "Form regular plural nouns without error", "Describe the habitat of at least 8 animals", "Read a short animal passage and answer 4 out of 5 comprehension questions correctly"]}], "checklist": ["Counts confidently from 1 to 100", "Tells time to the hour and half-hour", "Names all 7 days of the week and 12 months in order", "Uses prepositions of place (in/on/under/next to) correctly", "Uses he/she/it/they accurately", "Applies third-person -s correctly in present-tense sentences", "Describes a personal daily routine in 5+ sentences", "States food preferences using \"I like / I don't like\"", "Describes food and objects using 5+ adjectives", "Uses \"a\" and \"an\" with over 90% accuracy", "Forms regular plural nouns without error", "Recognizes and reads back at least 130 of the 160 vocabulary words taught this year"]}, "grade3": {"title": "Grade 3", "level": "Intermediate Level", "ageRange": "Ages 8–9", "tagline": "Building Stories", "summary": "Shifts focus to storytelling: forming the past tense, using object pronouns, comparing things, and sequencing short narratives with clear beginnings, middles, and ends.", "totalLessons": 32, "totalVocab": 190, "terms": [{"number": 1, "title": "Simple Past Tense", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Simple past tense with regular verbs (-ed); common irregular past forms (went, saw, ate, had).", "vocab": "15 regular action verbs, 10 common irregular verbs and their past forms", "skills": {"listening": ["Distinguish present vs. past tense verb forms when spoken", "Identify irregular past-tense verbs in short stories read aloud"], "reading": ["Read a short past-tense narrative and identify 5 past-tense verbs", "Answer comprehension questions about sequence of past events"], "speaking": ["Recount a simple past event using 5+ past-tense verbs", "Correctly pronounce -ed endings (t/d/id sounds)"], "writing": ["Write a 5-sentence paragraph about \"What I did yesterday\"", "Correctly conjugate 10 regular and irregular verbs into the past tense"]}, "outcomes": ["Correctly form the past tense of 15 regular verbs by adding -ed", "Correctly use 10 common irregular past-tense verbs", "Recount a personal past event in 5+ grammatically correct sentences", "Identify past-tense verbs within a short written passage"]}, {"number": 2, "title": "School Life & Object Pronouns", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Object pronouns (me / him / her / us / them); question formation with do/does/did.", "vocab": "20 school-related words (subjects, classroom objects, school staff)", "skills": {"listening": ["Identify object pronouns in spoken sentences", "Recognize question intonation and structure"], "reading": ["Read a short school-day narrative and answer 5 questions", "Identify correct object pronoun usage in a written passage"], "speaking": ["Ask and answer 5 questions about school life using do/does/did", "Use object pronouns correctly in conversation"], "writing": ["Write 5 questions about a classmate's school day", "Use object pronouns correctly in a 5-sentence paragraph"]}, "outcomes": ["Use object pronouns (me/him/her/us/them) with at least 90% accuracy", "Correctly form yes/no and wh- questions using do/does/did", "Describe school life using at least 15 subject-specific vocabulary words", "Write and correctly punctuate 5 original questions"]}, {"number": 3, "title": "Weather & Comparatives", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Comparative adjectives (-er / more); weather-related sentence patterns.", "vocab": "10 weather terms, 12 comparative adjective pairs (big/bigger, good/better...)", "skills": {"listening": ["Identify weather conditions described in short audio clips", "Recognize comparative adjective forms when spoken"], "reading": ["Read a short weather report and extract key information", "Identify correctly and incorrectly formed comparatives in text"], "speaking": ["Describe current weather conditions using appropriate vocabulary", "Compare two objects or people using 5 comparative adjectives"], "writing": ["Write a 4-sentence weather report", "Form comparative adjectives correctly for 10 given words"]}, "outcomes": ["Correctly form comparative adjectives for both short (-er) and long (more) adjectives", "Describe weather conditions using at least 8 relevant vocabulary words", "Compare two items grammatically correctly in 5 original sentences", "Write a short, clear weather report of at least 4 sentences"]}, {"number": 4, "title": "Short Stories & Sequencing", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Sequencing connectors (first, then, next, after that, finally); consolidation of irregular past-tense verbs.", "vocab": "10 story-sequencing words, 15 additional irregular past-tense verbs", "skills": {"listening": ["Identify the correct order of events in a spoken story", "Recognize sequencing words in an audio narrative"], "reading": ["Read a short story and place 5 events in the correct order", "Answer 5-item comprehension questions about a short story"], "speaking": ["Retell a simple 4-part story using sequencing connectors", "Narrate a personal experience with a clear beginning, middle, and end"], "writing": ["Write a short story of at least 6 sentences using 3+ sequencing words", "Correctly use at least 20 irregular past-tense verbs across the writing sample"]}, "outcomes": ["Use at least 4 different sequencing connectors correctly", "Write an original short story of 6+ sentences with a clear structure", "Correctly apply 20+ irregular past-tense verbs learned this year", "Retell a story aloud in the correct sequence without prompting"]}], "checklist": ["Forms the past tense of regular verbs by adding -ed", "Correctly uses at least 20 irregular past-tense verbs", "Uses object pronouns (me/him/her/us/them) accurately", "Forms questions correctly using do/does/did", "Describes school life using 15+ relevant vocabulary words", "Forms comparative adjectives correctly (-er and more)", "Describes weather using 8+ relevant vocabulary words", "Uses at least 4 sequencing connectors (first, then, next, finally)", "Writes an original short story of 6+ sentences with clear structure", "Retells a story aloud in correct chronological order", "Reads short grade-level passages and answers comprehension questions with 80%+ accuracy", "Recognizes and reads back at least 160 of the 190 vocabulary words taught this year"]}, "grade4": {"title": "Grade 4", "level": "Advanced Level", "ageRange": "Ages 9–10", "tagline": "Expanding Expression", "summary": "Deepens grammatical range with present perfect, comparatives and superlatives, modal verbs, and question formation, while building confidence in descriptive writing.", "totalLessons": 32, "totalVocab": 210, "terms": [{"number": 1, "title": "Present Perfect Tense", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Present perfect with have/has + past participle; already/yet/just/ever/never.", "vocab": "20 irregular past participles, time markers (already, yet, just, ever, never)", "skills": {"listening": ["Distinguish simple past from present perfect in spoken sentences", "Identify time markers (already/yet/just) in audio dialogues"], "reading": ["Read a short passage and identify present perfect usage", "Answer comprehension questions distinguishing past events from present-relevant results"], "speaking": ["Ask and answer \"Have you ever...?\" questions with 5 classmates", "Use already/yet/just correctly in spoken sentences"], "writing": ["Write 5 sentences describing life experiences using present perfect", "Correctly form the past participle of 15 irregular verbs"]}, "outcomes": ["Correctly form present perfect with have/has for 15+ irregular verbs", "Use already, yet, just, ever, and never accurately in context", "Distinguish when to use simple past versus present perfect", "Ask and answer 5 \"Have you ever...?\" questions correctly"]}, {"number": 2, "title": "Comparatives & Superlatives", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Mastery of comparative and superlative forms, including irregular forms (good/better/best, bad/worse/worst).", "vocab": "20 descriptive adjectives across categories (size, speed, quality, age)", "skills": {"listening": ["Identify comparative vs. superlative forms when spoken", "Recognize irregular comparison forms in context"], "reading": ["Read a comparison passage (e.g., comparing animals) and extract facts", "Identify correctly and incorrectly formed superlatives in text"], "speaking": ["Compare 3+ items using both comparative and superlative forms", "Describe the \"most\" and \"best\" of a group of items"], "writing": ["Write a 5-sentence comparison paragraph about two or more subjects", "Correctly form comparatives and superlatives for 15 given adjectives"]}, "outcomes": ["Correctly form comparative adjectives for regular and irregular forms", "Correctly form superlative adjectives for regular and irregular forms", "Compare three or more items accurately in original sentences", "Write a coherent comparison paragraph of 5+ sentences"]}, {"number": 3, "title": "Modal Verbs & Question Words", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Modal verbs (can/must/should/may) for ability, obligation, and advice; full range of question words (who/what/when/where/why/how).", "vocab": "6 modal verbs and their functions, question word set", "skills": {"listening": ["Distinguish the function of each modal verb (ability vs. obligation vs. advice) when heard", "Identify the correct question word used in spoken questions"], "reading": ["Read a set of school rules and identify modal verb usage", "Match question words to the type of answer they require"], "speaking": ["Give advice using \"should\" for 5 different scenarios", "Ask questions using all 6 question words appropriately"], "writing": ["Write 5 school rules using must/mustn't/should", "Write 6 original questions, one for each question word"]}, "outcomes": ["Correctly use can, must, should, and may according to their distinct functions", "Correctly select and use all 6 question words (who/what/when/where/why/how)", "Give advice appropriately using \"should\" in 5 scenarios", "Write grammatically correct rules using modal verbs"]}, {"number": 4, "title": "Descriptive Writing & Present Continuous", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Present continuous for current and temporary actions; descriptive sentence expansion using adjectives and adverbs.", "vocab": "15 descriptive adverbs, expansion of descriptive adjective bank", "skills": {"listening": ["Distinguish simple present from present continuous when spoken", "Identify descriptive details in a spoken description"], "reading": ["Read a descriptive paragraph and identify 5 descriptive techniques used", "Answer inferential questions based on descriptive text"], "speaking": ["Describe an ongoing action using present continuous", "Describe a person, place, or object using 5+ descriptive words"], "writing": ["Write a descriptive paragraph of 6+ sentences about a chosen topic", "Correctly use present continuous in 8 out of 10 sentences"]}, "outcomes": ["Correctly form and use the present continuous tense", "Distinguish appropriate use of simple present versus present continuous", "Write a descriptive paragraph of 6+ sentences using varied adjectives and adverbs", "Use at least 10 newly learned descriptive words accurately in writing"]}], "checklist": ["Correctly forms present perfect with have/has for 15+ irregular verbs", "Uses already, yet, just, ever, and never accurately", "Distinguishes simple past from present perfect appropriately", "Forms comparative and superlative adjectives correctly, including irregular forms", "Compares three or more items accurately in original sentences", "Uses can, must, should, and may according to their correct functions", "Uses all 6 question words (who/what/when/where/why/how) correctly", "Gives advice appropriately using \"should\"", "Forms and uses the present continuous tense correctly", "Writes a coherent descriptive paragraph of 6+ sentences", "Reads grade-level passages and answers inferential questions with 75%+ accuracy", "Recognizes and reads back at least 175 of the 210 vocabulary words taught this year"]}, "grade5": {"title": "Grade 5", "level": "Advanced Level", "ageRange": "Ages 10–11", "tagline": "Complex Structures", "summary": "Introduces more sophisticated grammar — conditionals, advanced modals, the passive voice, and relative clauses — alongside persuasive speaking through structured debates.", "totalLessons": 32, "totalVocab": 230, "terms": [{"number": 1, "title": "Conditional Sentences (Type 1)", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "First conditional: If + present simple, will + base verb, for real future possibilities.", "vocab": "15 cause-and-effect vocabulary items, connector words (if, unless, when)", "skills": {"listening": ["Distinguish real (likely) conditions from general statements when spoken", "Identify if-clauses and result-clauses in spoken sentences"], "reading": ["Read a short passage with conditional sentences and identify cause-effect pairs", "Answer 5 comprehension questions based on conditional statements"], "speaking": ["Make 5 predictions about real future possibilities using first conditional", "Discuss consequences of choices using \"If... , I will...\""], "writing": ["Write 5 original first-conditional sentences about realistic future situations", "Correctly punctuate conditional sentences (comma after if-clause)"]}, "outcomes": ["Correctly form first conditional sentences (If + present, will + base verb)", "Distinguish real future possibility from general truths", "Use \"unless\" correctly as an alternative to \"if...not\"", "Write 5 grammatically correct original conditional sentences"]}, {"number": 2, "title": "Modal Verbs: Advanced", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Modals of deduction and necessity: might, must (deduction), have to, don't have to.", "vocab": "12 vocabulary items related to obligation, certainty, and possibility", "skills": {"listening": ["Distinguish levels of certainty (might vs. must) in spoken statements", "Identify obligation vs. lack of obligation (have to vs. don't have to) when heard"], "reading": ["Read short scenarios and identify the most logical modal verb to complete them", "Answer inference questions requiring modal verb understanding"], "speaking": ["Make logical deductions about scenarios using might/must", "Explain rules and their absence using have to / don't have to"], "writing": ["Write 5 sentences making deductions about a mystery scenario", "Write a short set of rules distinguishing obligation from choice"]}, "outcomes": ["Correctly use \"might\" to express possibility", "Correctly use \"must\" to express strong deduction", "Distinguish and correctly use have to versus don't have to", "Apply modal verbs of deduction accurately in a written scenario"]}, {"number": 3, "title": "Passive Voice (Introduction)", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Passive voice in present and past simple: is/are + past participle; was/were + past participle.", "vocab": "15 additional past participles, process-description vocabulary", "skills": {"listening": ["Distinguish active from passive sentences when spoken", "Identify the passive voice used in short descriptions of processes"], "reading": ["Read a short passage describing a process (e.g., how something is made) written in passive voice", "Identify the agent (by whom) in passive sentences where present"], "speaking": ["Describe a simple process using passive voice (e.g., \"The cake is baked...\")", "Transform 5 active sentences into passive voice aloud"], "writing": ["Transform 8 active sentences into correct passive voice in writing", "Write a short paragraph describing a process using passive voice"]}, "outcomes": ["Correctly transform active sentences into passive voice (present and past)", "Correctly use is/are and was/were with past participles", "Describe a process of at least 4 steps using passive voice", "Identify passive voice constructions within a written passage"]}, {"number": 4, "title": "Relative Clauses & Debates", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Relative clauses with who/which/that/where; persuasive language for structured debate.", "vocab": "10 opinion and persuasion phrases (I believe..., In my opinion..., On the other hand...)", "skills": {"listening": ["Identify relative clauses in spoken descriptions", "Distinguish opinion statements from factual statements in a debate recording"], "reading": ["Read an opinion article and identify the writer's main argument", "Identify relative clauses within a written passage"], "speaking": ["Combine two sentences using an appropriate relative pronoun", "Participate in a structured 3-minute debate, stating and defending an opinion"], "writing": ["Write 5 sentences using relative clauses to combine ideas", "Write a short persuasive paragraph defending a position with 2+ reasons"]}, "outcomes": ["Correctly use who, which, that, and where to form relative clauses", "Combine two simple sentences into one using a relative clause", "State and defend a personal opinion using persuasive language", "Write a persuasive paragraph with a clear position and 2+ supporting reasons"]}], "checklist": ["Correctly forms first conditional sentences", "Distinguishes real future possibility from general truths", "Uses \"might\" and \"must\" correctly to express possibility and deduction", "Distinguishes have to versus don't have to appropriately", "Correctly transforms active sentences into passive voice", "Describes a process of 4+ steps using passive voice", "Uses who, which, that, and where correctly to form relative clauses", "Combines two sentences into one using a relative clause", "States and defends a personal opinion using persuasive language", "Writes a persuasive paragraph with a clear position and supporting reasons", "Participates in a structured debate for at least 3 minutes", "Recognizes and reads back at least 190 of the 230 vocabulary words taught this year"]}, "grade6": {"title": "Grade 6", "level": "Master Level", "ageRange": "Ages 11–12", "tagline": "Academic & Critical Thinking", "summary": "Prepares students for higher-level English use through reported speech, advanced sentence structures, academic writing conventions, and discussion of real-world global issues.", "totalLessons": 32, "totalVocab": 250, "terms": [{"number": 1, "title": "Reported Speech", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Reported statements, questions, and commands; tense backshift rules.", "vocab": "10 reporting verbs (said, told, asked, explained, replied...)", "skills": {"listening": ["Distinguish direct speech from reported speech when heard", "Identify correct tense backshift in spoken reported sentences"], "reading": ["Read a dialogue and rewrite key lines as reported speech", "Answer comprehension questions requiring identification of who said what"], "speaking": ["Report a classmate's statement accurately using correct tense backshift", "Report questions and commands accurately in conversation"], "writing": ["Transform 8 direct-speech sentences into reported speech in writing", "Write a short summary of a conversation using reported speech"]}, "outcomes": ["Correctly apply tense backshift when converting direct speech to reported speech", "Correctly report statements, questions, and commands", "Use at least 5 different reporting verbs appropriately", "Write an accurate summary of a conversation using reported speech"]}, {"number": 2, "title": "Subjunctive Mood & Inversion", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Subjunctive mood for wishes and hypotheticals (I wish..., If only...); inversion for emphasis (Never have I..., Rarely does...).", "vocab": "10 formal/academic sentence-starter phrases", "skills": {"listening": ["Identify subjunctive and inverted structures in spoken formal English", "Distinguish standard word order from inverted word order when heard"], "reading": ["Read a formal or literary passage and identify subjunctive/inverted structures", "Answer questions requiring understanding of hypothetical meaning"], "speaking": ["Express wishes and hypothetical situations using \"I wish...\" and \"If only...\"", "Use one inverted structure correctly in a spoken sentence"], "writing": ["Write 5 sentences expressing wishes or hypotheticals using the subjunctive", "Write 2 sentences using inversion for emphasis"]}, "outcomes": ["Correctly use \"I wish\" and \"If only\" to express hypothetical situations", "Correctly form at least 2 inverted sentence structures", "Distinguish formal/academic sentence structures from everyday speech", "Apply subjunctive mood accurately in original writing"]}, {"number": 3, "title": "Academic Writing", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Paragraph structure (topic sentence, supporting details, conclusion); linking words for academic writing (furthermore, however, therefore, in conclusion).", "vocab": "12 academic linking words and transition phrases", "skills": {"listening": ["Identify the main idea versus supporting details in a spoken academic talk", "Recognize linking words that signal contrast, addition, or conclusion"], "reading": ["Read a model academic paragraph and identify its structural components", "Analyze how linking words connect ideas across paragraphs"], "speaking": ["Present a short structured talk with a clear introduction and conclusion", "Use academic linking words appropriately in discussion"], "writing": ["Write a well-structured 3-paragraph essay on a given topic", "Correctly use at least 4 different academic linking words in the essay"]}, "outcomes": ["Write a paragraph with a clear topic sentence, supporting details, and conclusion", "Correctly use at least 4 academic linking words in original writing", "Structure a complete 3-paragraph essay with introduction, body, and conclusion", "Present a short talk (2+ minutes) with a clear structure"]}, {"number": 4, "title": "Global Issues & Capstone Project", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Consolidation of all Grade 6 grammar in extended writing and speech; complex sentence construction combining multiple clause types.", "vocab": "20 global-issues vocabulary words (environment, technology, community, sustainability...)", "skills": {"listening": ["Understand extended spoken discussion on a global issue topic", "Identify key arguments and counterarguments in a recorded debate"], "reading": ["Read an article on a global issue and summarize its main points", "Critically evaluate an argument presented in a written text"], "speaking": ["Deliver a 3-minute presentation on a chosen global issue", "Answer follow-up questions about the presentation topic confidently"], "writing": ["Write a 5-paragraph research-style essay on a chosen global issue", "Combine at least 3 grammar structures learned this year within the essay"]}, "outcomes": ["Deliver a structured 3-minute presentation on a global issue", "Write a complete 5-paragraph essay with a clear argument and conclusion", "Correctly combine at least 3 different grammar structures learned during the year", "Use at least 15 global-issues vocabulary words accurately in speech and writing"]}], "checklist": ["Correctly applies tense backshift in reported speech", "Reports statements, questions, and commands accurately", "Uses \"I wish\" and \"If only\" to express hypothetical situations", "Forms at least 2 correctly inverted sentence structures", "Writes a paragraph with a clear topic sentence, details, and conclusion", "Uses 4+ academic linking words correctly in writing", "Structures a complete 3-paragraph essay independently", "Delivers a structured presentation of 2+ minutes", "Writes a complete 5-paragraph essay on a global issue", "Combines multiple grammar structures accurately within extended writing", "Critically evaluates an argument presented in a written text", "Recognizes and reads back at least 210 of the 250 vocabulary words taught this year"]}};
+const CURRICULUM_DATA = {"grade1": {"semester1": {"available": true, "data": {"overview": {"program": "Littlelume English Course", "jenjang": "Elementary School - Grade 1", "semester": "1 (Odd Semester)", "durasi": "90 minutes / session", "jumlahPertemuan": "16 Sessions (once a week)", "fokusKeterampilan": "Listening & Speaking (Young Learners)", "metode": "TPR, Games, Song & Chant, Storytelling", "mediaUtama": "Flashcards, Puppet, Audio, Illustrated Worksheets"}, "cp": "By the end of Semester 1, students will be able to recognize and use basic English vocabulary in everyday spoken contexts, respond to simple instructions, and show confidence and enthusiasm in speaking English through songs, games, and stories.", "generalObjectives": ["Recognize and pronounce core vocabulary (greetings, numbers, colors, family, animals, etc.) clearly.", "Respond to simple English instructions (Stand up, Sit down, Point to..., Touch...).", "Recognize and use basic sentence patterns orally (I am..., This is..., I have..., I like..., Do you have...?) without formal grammar explanations.", "Sing simple songs/chants and participate actively in language games.", "Build confidence, cooperation, and enjoyment in learning English."], "grammarApproach": "Because students are at the beginner stage (ages 6–7), grammar is not taught as formal rules or terminology (subject-verb agreement, tenses, etc.). Instead, it is instilled implicitly through repeated sentence patterns, songs, chants, and games. Every session has one \"Grammar Focus\" — a simple sentence pattern practiced orally and contextually.", "sessionStructure": [{"waktu": "10 minutes", "tahap": "Opening", "deskripsi": "Greeting, prayer, ice-breaking, warm-up song/chant to build a positive learning mood."}, {"waktu": "15 minutes", "tahap": "Warm-up & Review", "deskripsi": "Briefly review vocabulary from the previous session through light Q&A or flashcards."}, {"waktu": "25 minutes", "tahap": "Presentation", "deskripsi": "Introduce new vocabulary/material using flashcards, pictures, movement (TPR), or audio."}, {"waktu": "25 minutes", "tahap": "Practice (Games/Activity)", "deskripsi": "Interactive games, chants, or group activities to practice pronunciation and comprehension."}, {"waktu": "10 minutes", "tahap": "Production/Worksheet", "deskripsi": "Simple independent practice: coloring, picture matching, or repeating sentences."}, {"waktu": "5 minutes", "tahap": "Closing", "deskripsi": "Recap the material, praise/reward, closing greeting in English (Goodbye song)."}], "petaMateri": [{"num": "1", "tema": "Hello & Greetings", "kosakata": "Hello, Hi, Good morning, Bye, I'm fine", "grammar": "Subject pronoun \"I\" + am (I am fine)", "skill": "Listening & Speaking – greetings"}, {"num": "2", "tema": "My Name & Feelings", "kosakata": "My name is..., happy, sad, angry, sleepy", "grammar": "Possessive \"my\" + is; I am + adjective", "skill": "Speaking – self-introduction"}, {"num": "3", "tema": "Numbers 1–5", "kosakata": "one, two, three, four, five", "grammar": "There is / There are + singular-plural nouns", "skill": "Listening – counting objects"}, {"num": "4", "tema": "Numbers 6–10", "kosakata": "six, seven, eight, nine, ten", "grammar": "Plural nouns with -s ending (books, pencils)", "skill": "Speaking – continued counting"}, {"num": "5", "tema": "Colors", "kosakata": "red, blue, yellow, green, orange", "grammar": "It is + color; This is a + color + object", "skill": "Listening & Speaking – identifying colors"}, {"num": "6", "tema": "Shapes", "kosakata": "circle, square, triangle, star, heart", "grammar": "This is a / It is a + shape", "skill": "Speaking – describing shapes"}, {"num": "7", "tema": "My Family", "kosakata": "mother, father, sister, brother, baby", "grammar": "He is / She is + family member", "skill": "Speaking – introducing family"}, {"num": "8", "tema": "My Body", "kosakata": "head, hand, eye, nose, mouth, leg", "grammar": "Imperative sentences: Touch your...", "skill": "TPR – body movement instructions"}, {"num": "9", "tema": "Farm Animals", "kosakata": "cow, duck, chicken, goat, sheep", "grammar": "The + animal + says + sound (The cow says moo)", "skill": "Listening – animal sounds & names"}, {"num": "10", "tema": "Pets & Wild Animals", "kosakata": "cat, dog, lion, elephant, monkey", "grammar": "Subject + is + adjective (The lion is big)", "skill": "Speaking – simple animal description"}, {"num": "11", "tema": "Fruits", "kosakata": "apple, banana, mango, grape, orange", "grammar": "I like + plural noun (I like apples)", "skill": "Speaking – naming favorite fruit"}, {"num": "12", "tema": "Vegetables & Food", "kosakata": "carrot, tomato, rice, bread, milk", "grammar": "Positive-negative sentences: I like.../I don't like...", "skill": "Listening & Speaking – everyday food"}, {"num": "13", "tema": "Classroom Objects", "kosakata": "book, pencil, bag, chair, table", "grammar": "Question word \"Where\" (Where is my pencil?)", "skill": "TPR – classroom instructions"}, {"num": "14", "tema": "My Toys", "kosakata": "ball, doll, car, kite, robot", "grammar": "Yes/No Q&A: Do you have...? Yes, I do.", "skill": "Speaking – simple role-play"}, {"num": "15", "tema": "Weather & Days", "kosakata": "sunny, rainy, Monday–Sunday", "grammar": "It is + weather; Today is + day", "skill": "Listening – simple calendar"}, {"num": "16", "tema": "Semester Review & Fun Show", "kosakata": "Combination of all themes", "grammar": "Combination of all sentence patterns from Sessions 1–15", "skill": "Speaking – showcase / mini performance"}], "meetings": [{"num": "Session 1", "title": "Hello & Greetings", "duration": "90 minutes", "objectives": ["Students can greet others and respond to simple greetings in English.", "Students can say the words \"Hello, Hi, Good morning, Bye\" with clear pronunciation.", "Students confidently greet friends and teachers in English."], "grammarPattern": "I am / I'm + adjective", "grammarExample": "I am fine. / I'm happy.", "grammarNote": "Introduced orally through the Q&A \"How are you?\" — no need to explain it as a formal grammar rule, just through repeating the sentence pattern.", "vocab": ["Hello", "Hi", "Good morning", "Bye bye", "I'm fine"], "media": ["Hand puppet", "Greeting flashcards", "\"Hello Song\" audio"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Teacher greets with a puppet, invites students to sit in a circle, opening prayer."}, {"waktu": "15'", "kegiatan": "Warm-up: Hello Song", "deskripsi": "Singing \"Hello, Hello, How are you?\" while clapping along to the rhythm."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Teacher introduces greeting flashcards one by one; students repeat the pronunciation together."}, {"waktu": "25'", "kegiatan": "Practice: Greeting Circle", "deskripsi": "Students take turns in pairs greeting a friend using the words they've learned."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Coloring a picture of a child greeting someone while copying the word \"Hello\"."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap vocabulary, star praise, sing \"Good bye song\" to close."}], "assessment": ["Observation of confidence and pronunciation during the Greeting Circle session.", "Coloring worksheet and simple word-copying results."]}, {"num": "Session 2", "title": "My Name & Feelings", "duration": "90 minutes", "objectives": ["Students can introduce themselves using the sentence \"My name is...\".", "Students can name simple feelings: happy, sad, angry, sleepy.", "Students can show a facial expression matching the word said."], "grammarPattern": "My name is... / I am + adjective", "grammarExample": "My name is Dimas. / I am happy today.", "grammarNote": "Practicing the simple possessive pattern \"my\" and using \"am\" to describe feelings.", "vocab": ["My name is...", "happy", "sad", "angry", "sleepy"], "media": ["Small mirror / facial expression cards", "Emotion flashcards", "Small ball for the name-toss game"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Review last session's greetings, sing a short \"Hello Song\"."}, {"waktu": "15'", "kegiatan": "Warm-up", "deskripsi": "Teacher models \"My name is Miss...\" then asks each student in turn."}, {"waktu": "25'", "kegiatan": "Presentation: Feelings", "deskripsi": "Introducing emotion flashcards while acting out the matching facial expression."}, {"waktu": "25'", "kegiatan": "Practice: Name & Feeling Ball", "deskripsi": "Ball-toss game; whoever catches it says their name and how they feel today."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Sticking/drawing a face matching the requested emotion on the worksheet."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap feeling vocabulary, closing greeting."}], "assessment": ["Ability to state their own name in a complete sentence.", "Accuracy in matching facial expressions to emotion words."]}, {"num": "Session 3", "title": "Numbers 1–5", "duration": "90 minutes", "objectives": ["Students can say numbers 1–5 in English.", "Students can count simple objects to a requested amount."], "grammarPattern": "There is... / There are...", "grammarExample": "There is one apple. / There are three books.", "grammarNote": "Initial introduction of the singular (is) vs. plural (are) distinction through counting objects.", "vocab": ["one", "two", "three", "four", "five"], "media": ["Illustrated number cards", "Beads/lego blocks for counting", "\"Number Chant\" song"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Opening greeting, finger-guessing game (\"How many fingers?\")."}, {"waktu": "15'", "kegiatan": "Warm-up: Number Chant", "deskripsi": "Singing the 1–5 number chant while holding up fingers."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing number cards illustrated with the matching number of fruits/objects."}, {"waktu": "25'", "kegiatan": "Practice: Counting Game", "deskripsi": "Students count beads/lego blocks in small groups and say the result."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Matching numbers to the corresponding number of pictures."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap numbers 1–5 together, closing greeting."}], "assessment": ["Accuracy in saying numbers aloud.", "Worksheet results matching numbers to quantities."]}, {"num": "Session 4", "title": "Numbers 6–10", "duration": "90 minutes", "objectives": ["Students can say numbers 6–10 in English.", "Students can count in order from 1 to 10."], "grammarPattern": "Plural noun + -s", "grammarExample": "six pencils, seven balls, ten stars.", "grammarNote": "Continuing the introduction of the plural \"-s\" ending on nouns students already know.", "vocab": ["six", "seven", "eight", "nine", "ten"], "media": ["Number cards 1–10", "Balls/objects for group counting", "\"Ten Little Fingers\" song"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Review numbers 1–5 through quick Q&A."}, {"waktu": "15'", "kegiatan": "Warm-up", "deskripsi": "Singing \"Ten Little Fingers\" while counting fingers."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing numbers 6–10 with illustrated cards and hand gestures."}, {"waktu": "25'", "kegiatan": "Practice: Number Hunt", "deskripsi": "Students search for number cards hidden around the classroom, then say them aloud."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Completing the missing numbers in the 1–10 sequence."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Count together from 1–10, closing greeting."}], "assessment": ["Fluency counting in order from 1–10.", "Accuracy of worksheet results completing the number sequence."]}, {"num": "Session 5", "title": "Colors", "duration": "90 minutes", "objectives": ["Students can name basic colors in English.", "Students can match colors to objects around the classroom."], "grammarPattern": "It is + color / This is a + color + noun", "grammarExample": "It is red. / This is a blue pencil.", "grammarNote": "Practicing the \"It is\" structure to describe a single object.", "vocab": ["red", "blue", "yellow", "green", "orange"], "media": ["Color cards / crayons", "Colorful classroom objects", "\"Color Song\""], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, showing off the teacher's colorful clothes/objects."}, {"waktu": "15'", "kegiatan": "Warm-up: Color Song", "deskripsi": "Singing the color song while pointing to objects of the named color."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing color cards one by one with repeated pronunciation."}, {"waktu": "25'", "kegiatan": "Practice: Color Hunt", "deskripsi": "Students walk around the classroom to find objects matching the color the teacher names."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Coloring a picture according to the English color instructions."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap the colors learned, closing greeting."}], "assessment": ["Accuracy in pointing to objects matching the named color.", "Coloring worksheet completed according to instructions."]}, {"num": "Session 6", "title": "Shapes", "duration": "90 minutes", "objectives": ["Students can name basic shapes in English.", "Students can point out classroom objects matching a given shape."], "grammarPattern": "This is a... / It is a...", "grammarExample": "This is a circle. / It is a square.", "grammarNote": "Reinforcing the \"this/it is a\" pattern already introduced in the colors theme.", "vocab": ["circle", "square", "triangle", "star", "heart"], "media": ["Geometric shape cards", "Colorful paper shape cut-outs", "Glue & collage sheet"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, guess the shape of the object the teacher is holding."}, {"waktu": "15'", "kegiatan": "Warm-up: Shape Chant", "deskripsi": "Singing the shape chant while drawing the shape in the air with a finger."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing shape cards and finding similar objects in the classroom."}, {"waktu": "25'", "kegiatan": "Practice: Shape Collage", "deskripsi": "Students glue shape cut-outs into a free picture (e.g. a house, a face)."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Matching shape names to the corresponding picture."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Showing off the collage results, closing greeting."}], "assessment": ["Accuracy in naming shapes.", "Creativity and accuracy of the shape collage results."]}, {"num": "Session 7", "title": "My Family", "duration": "90 minutes", "objectives": ["Students can name family members in English.", "Students can introduce their family members in a simple way."], "grammarPattern": "This is my... / He is.../ She is...", "grammarExample": "This is my mother. / She is my sister.", "grammarNote": "Introducing the pronouns \"he/she\" in connection with family members.", "vocab": ["mother", "father", "sister", "brother", "baby"], "media": ["Family tree poster", "Family finger puppets", "\"Finger Family\" song"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, a short story about the teacher's family."}, {"waktu": "15'", "kegiatan": "Warm-up: Finger Family Song", "deskripsi": "Singing \"Finger Family\" while pointing to fingers matching family members."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing the family tree poster and family member vocabulary."}, {"waktu": "25'", "kegiatan": "Practice: Puppet Family", "deskripsi": "Students take turns role-playing, introducing their family finger puppets."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Drawing/pasting photos of family members onto a simple family tree."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "A few students share their work, closing greeting."}], "assessment": ["Ability to correctly name family members.", "Participation in the finger puppet game."]}, {"num": "Session 8", "title": "My Body", "duration": "90 minutes", "objectives": ["Students can name body parts in English.", "Students can respond to simple instructions related to body parts (TPR)."], "grammarPattern": "Imperative: Touch your... / I have + plural noun", "grammarExample": "Touch your nose. / I have two eyes.", "grammarNote": "Introducing simple command sentences and the possessive \"your\" for TPR instructions.", "vocab": ["head", "hand", "eye", "nose", "mouth", "leg"], "media": ["Human body poster", "\"Head, Shoulders, Knees and Toes\" song"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, light stretching while naming body parts."}, {"waktu": "15'", "kegiatan": "Warm-up: Body Song", "deskripsi": "Singing \"Head, Shoulders, Knees and Toes\" with actions."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing the body poster and body part vocabulary one by one."}, {"waktu": "25'", "kegiatan": "Practice: Simon Says", "deskripsi": "\"Touch your...\" game to practice responding to TPR instructions."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Labeling a body picture with the matching vocabulary."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Repeating the body song actions, closing greeting."}], "assessment": ["Accuracy of responses in the Simon Says game.", "Worksheet results labeling body parts."]}, {"num": "Session 9", "title": "Farm Animals", "duration": "90 minutes", "objectives": ["Students can name farm animals in English.", "Students can imitate the sound of each animal by name."], "grammarPattern": "The + animal + says + sound", "grammarExample": "The cow says moo. / The duck says quack.", "grammarNote": "Simple sentence pattern: subject + verb \"says\" + imitated sound.", "vocab": ["cow", "duck", "chicken", "goat", "sheep"], "media": ["Farm animal flashcards", "Animal sound audio", "Simple animal masks"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, guess the animal sound played."}, {"waktu": "15'", "kegiatan": "Warm-up: Old MacDonald", "deskripsi": "Singing \"Old MacDonald Had a Farm\" together."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing farm animal flashcards along with their sounds."}, {"waktu": "25'", "kegiatan": "Practice: Animal Mask Play", "deskripsi": "Students wear animal masks and imitate that animal's movement & sound."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Matching animal pictures to their names."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap farm animal names, closing greeting."}], "assessment": ["Accuracy in imitating animal names and sounds.", "Worksheet results matching animal pictures to names."]}, {"num": "Session 10", "title": "Pets & Wild Animals", "duration": "90 minutes", "objectives": ["Students can name simple pets and wild animals.", "Students can describe an animal simply (big, small)."], "grammarPattern": "Subject + is + adjective", "grammarExample": "The lion is big. / The cat is small.", "grammarNote": "Practicing placing an adjective after \"is\" to describe an animal's size.", "vocab": ["cat", "dog", "lion", "elephant", "monkey"], "media": ["Animal flashcards", "Illustrated animal storybook", "Mini animal toys (optional)"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, review farm animals from the previous session."}, {"waktu": "15'", "kegiatan": "Warm-up", "deskripsi": "Imitating wild animal movements & sounds (lion roar, monkey jump)."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "A short illustrated story about pets and wild animals."}, {"waktu": "25'", "kegiatan": "Practice: Animal Sorting", "deskripsi": "Students sort animal cards into \"pet\" and \"wild\" categories."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Circling the pets on a mixed picture sheet."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap vocabulary, closing greeting."}], "assessment": ["Accuracy sorting pets vs. wild animals.", "Active participation in the storytelling."]}, {"num": "Session 11", "title": "Fruits", "duration": "90 minutes", "objectives": ["Students can name fruits in English.", "Students can say their favorite fruit using the simple sentence \"I like...\"."], "grammarPattern": "I like + plural noun", "grammarExample": "I like apples. / I like bananas.", "grammarNote": "Introducing the verb \"like\" followed by a plural noun to express preference.", "vocab": ["apple", "banana", "mango", "grape", "orange"], "media": ["Real/toy fruit", "Fruit flashcards", "Toy fruit basket"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, showing real/toy fruit as a warm-up prompt."}, {"waktu": "15'", "kegiatan": "Warm-up: Fruit Chant", "deskripsi": "Chanting fruit names while pointing to fruit pictures."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing fruit flashcards and the sentence \"I like...\"."}, {"waktu": "25'", "kegiatan": "Practice: Shopping Basket Game", "deskripsi": "Students take turns \"shopping\" for fruit in a basket while naming it."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Coloring their favorite fruit and writing its name."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "A few students share their favorite fruit, closing greeting."}], "assessment": ["Accuracy naming fruits.", "Confidence saying \"I like...\"."]}, {"num": "Session 12", "title": "Vegetables & Food", "duration": "90 minutes", "objectives": ["Students can name vegetables and everyday food in English.", "Students can simply distinguish between healthy food and staple food."], "grammarPattern": "I like... / I don't like...", "grammarExample": "I like rice. / I don't like tomatoes.", "grammarNote": "Initial introduction of the simple negative form \"don't\" paired with its positive sentence.", "vocab": ["carrot", "tomato", "rice", "bread", "milk"], "media": ["Vegetable & food flashcards", "Play food toys"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, review fruit vocabulary from the previous session."}, {"waktu": "15'", "kegiatan": "Warm-up", "deskripsi": "Singing a simple food chant while pointing to pictures."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing vegetable and staple food flashcards one by one."}, {"waktu": "25'", "kegiatan": "Practice: Pretend Cooking", "deskripsi": "Students role-play \"cooking\" using play food while naming it."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Pasting food pictures into \"vegetable\" and \"staple food\" categories."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap vocabulary, closing greeting."}], "assessment": ["Accuracy sorting food categories.", "Participation in the pretend-cooking role-play."]}, {"num": "Session 13", "title": "Classroom Objects", "duration": "90 minutes", "objectives": ["Students can name classroom objects in English.", "Students can respond to simple instructions related to classroom objects."], "grammarPattern": "Where is...? / This is my...", "grammarExample": "Where is my pencil? / This is my book.", "grammarNote": "Introducing the question word \"where\" to simply ask an object's location.", "vocab": ["book", "pencil", "bag", "chair", "table"], "media": ["Real classroom objects", "Paper labels for object names"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, showing the teacher's bag and stationery."}, {"waktu": "15'", "kegiatan": "Warm-up", "deskripsi": "Chanting classroom object names while pointing to real objects nearby."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing classroom object vocabulary and sticking labels on real objects."}, {"waktu": "25'", "kegiatan": "Practice: \"Point to...\" Game", "deskripsi": "Teacher gives the instruction \"Point to the book/pencil/...\"; students point to the correct object."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Matching classroom object pictures to their names."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap classroom object vocabulary, closing greeting."}], "assessment": ["Accuracy responding to the \"Point to...\" instruction.", "Worksheet results matching pictures to object names."]}, {"num": "Session 14", "title": "My Toys", "duration": "90 minutes", "objectives": ["Students can name toys in English.", "Students can simply ask and answer \"Do you have a...?\"."], "grammarPattern": "Do you have a...? Yes, I do. / No, I don't.", "grammarExample": "Do you have a robot? Yes, I do.", "grammarNote": "Introducing the simple Yes/No question pattern with \"do\".", "vocab": ["ball", "doll", "car", "kite", "robot"], "media": ["Real toys from home (optional)", "Toy flashcards"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, students show a favorite toy brought from home."}, {"waktu": "15'", "kegiatan": "Warm-up", "deskripsi": "Chanting toy names while acting out how they're played with."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing toy vocabulary and the question pattern \"Do you have a...?\"."}, {"waktu": "25'", "kegiatan": "Practice: Toy Interview", "deskripsi": "Students pair up to ask and answer each other about the toys they own."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Drawing a favorite toy and writing its name."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "A few students share their drawings, closing greeting."}], "assessment": ["Fluency in simple Q&A about toys.", "Drawing and toy-name writing results."]}, {"num": "Session 15", "title": "Weather & Days", "duration": "90 minutes", "objectives": ["Students can name simple weather conditions in English.", "Students can name the days of the week."], "grammarPattern": "It is + weather / Today is + day", "grammarExample": "It is sunny. / Today is Monday.", "grammarNote": "Reinforcing the \"it is\" pattern for weather and \"today is\" for naming the day.", "vocab": ["sunny", "rainy", "cloudy", "Monday", "...Sunday"], "media": ["Simple classroom calendar", "Weather cards", "\"Days of the Week\" song"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Greeting, observing the day's weather together."}, {"waktu": "15'", "kegiatan": "Warm-up: Days Song", "deskripsi": "Singing \"Days of the Week\" while pointing to the classroom calendar."}, {"waktu": "25'", "kegiatan": "Presentation", "deskripsi": "Introducing weather cards and the days of the week in order."}, {"waktu": "25'", "kegiatan": "Practice: Weather Report", "deskripsi": "Students take turns being the \"weather presenter\" naming the weather and day."}, {"waktu": "10'", "kegiatan": "Worksheet", "deskripsi": "Pasting weather symbols onto the matching day on a self-made mini calendar."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Recap the days and weather, closing greeting."}], "assessment": ["Accuracy naming the days in order.", "Confidence while being the \"weather presenter\"."]}, {"num": "Session 16", "title": "Semester Review & Fun Show", "duration": "90 minutes", "objectives": ["Students can review all the vocabulary learned during the semester.", "Students can show confidence through a mini English performance."], "grammarPattern": "Combination of sentence patterns from Sessions 1–15", "grammarExample": "I am / My name is / This is / He is-She is / I have / I like / I don't like / Do you have...? / It is / Where is...?", "grammarNote": "Students repeat all the basic sentence patterns orally through games and a mini performance, without formal rule explanations.", "vocab": ["All themes from Sessions 1–15"], "media": ["All Semester 1 theme flashcards", "Simple certificates/rewards", "Mini performance props"], "activities": [{"waktu": "10'", "kegiatan": "Opening", "deskripsi": "Festive greeting, recalling all the songs learned."}, {"waktu": "15'", "kegiatan": "Review Game: Flashcard Relay", "deskripsi": "Students race to name vocabulary from mixed flashcards covering all themes."}, {"waktu": "25'", "kegiatan": "Group Preparation", "deskripsi": "Students split into small groups to prepare a mini performance (singing/self-introduction/acting out vocabulary)."}, {"waktu": "25'", "kegiatan": "Fun Show", "deskripsi": "Each group performs to showcase their English learning in front of the class."}, {"waktu": "10'", "kegiatan": "Reward & Reflection", "deskripsi": "Giving out mini rewards/certificates and reflecting together on the semester's learning."}, {"waktu": "5'", "kegiatan": "Closing", "deskripsi": "Group photo, closing greeting for the semester."}], "assessment": ["Light summative assessment based on observing participation throughout the semester.", "Mini performance assessment as an authentic end-of-semester evaluation."]}]}}, "semester2": {"available": false, "data": null}}, "grade2": {"semester1": {"available": false, "data": null}, "semester2": {"available": false, "data": null}}, "grade3": {"semester1": {"available": false, "data": null}, "semester2": {"available": false, "data": null}}, "grade4": {"semester1": {"available": false, "data": null}, "semester2": {"available": false, "data": null}}, "grade5": {"semester1": {"available": false, "data": null}, "semester2": {"available": false, "data": null}}, "grade6": {"semester1": {"available": false, "data": null}, "semester2": {"available": false, "data": null}}};
 </script>
 <script>
     const GRADE_META = {
@@ -237,7 +246,7 @@ const CURRICULUM = {"grade1": {"title": "Grade 1", "level": "Beginner Level", "a
     };
     const GRADE_ORDER = ["grade1", "grade2", "grade3", "grade4", "grade5", "grade6"];
 
-    var state = { grade: "grade1", openTerm: 1 };
+    var state = { grade: "grade1", semester: "semester1", openMeeting: 1 };
 
     function renderGradeTabs() {
         var wrap = document.getElementById("gradeTabs");
@@ -249,105 +258,169 @@ const CURRICULUM = {"grade1": {"title": "Grade 1", "level": "Beginner Level", "a
             btn.innerHTML = '<span class="dot"></span>' + meta.label;
             btn.addEventListener("click", function () {
                 state.grade = g;
-                state.openTerm = 1;
+                state.semester = "semester1";
+                state.openMeeting = 1;
                 renderAll();
             });
             wrap.appendChild(btn);
         });
     }
 
-    function renderOverview() {
-        var g = CURRICULUM[state.grade];
+    function renderSemesterTabs() {
+        var wrap = document.getElementById("semesterTabs");
         var meta = GRADE_META[state.grade];
-        var el = document.getElementById("gradeOverview");
-        el.innerHTML =
-            '<div class="grade-overview" style="--grade-color:' + meta.color + ';--grade-bg:' + meta.bg + '">' +
-                '<div class="grade-overview-top">' +
-                    '<span class="grade-overview-title">' + g.title + '</span>' +
-                    '<span class="grade-overview-badge">' + g.level + '</span>' +
-                    '<span class="grade-overview-badge">' + g.ageRange + '</span>' +
-                '</div>' +
-                '<div class="grade-overview-tagline">' + g.tagline + '</div>' +
-                '<p class="grade-overview-summary">' + g.summary + '</p>' +
-                '<div class="grade-overview-meta">' +
-                    '<span><b>' + g.totalLessons + '</b> lessons / year</span>' +
-                    '<span><b>4</b> terms</span>' +
-                    '<span><b>' + g.totalVocab + '</b> vocabulary words</span>' +
-                '</div>' +
-            '</div>';
+        var gradeData = CURRICULUM_DATA[state.grade];
+        wrap.innerHTML = "";
+        ["semester1", "semester2"].forEach(function (sem, idx) {
+            var btn = document.createElement("button");
+            btn.className = "semester-tab" + (sem === state.semester ? " active" : "");
+            btn.style.setProperty("--grade-color", meta.color);
+            btn.textContent = "Semester " + (idx + 1);
+            var available = gradeData && gradeData[sem] && gradeData[sem].available;
+            if (!available) {
+                btn.textContent += " (Soon)";
+            }
+            btn.addEventListener("click", function () {
+                state.semester = sem;
+                state.openMeeting = 1;
+                renderContent();
+            });
+            wrap.appendChild(btn);
+        });
     }
 
-    function renderTerms() {
-        var g = CURRICULUM[state.grade];
+    function renderContent() {
+        var area = document.getElementById("contentArea");
         var meta = GRADE_META[state.grade];
-        var grid = document.getElementById("termGrid");
+        var gradeData = CURRICULUM_DATA[state.grade];
+        var semData = gradeData ? gradeData[state.semester] : null;
+
+        if (!semData || !semData.available) {
+            area.innerHTML =
+                '<div class="pending-card">' +
+                    '<div class="icon">📝</div>' +
+                    '<h3>Lesson Plan Being Finalized</h3>' +
+                    '<p>The official Lesson Plan (RPP) for ' + meta.label + ' — ' +
+                    (state.semester === 'semester1' ? 'Semester 1' : 'Semester 2') +
+                    ' is still being prepared by our curriculum team. Check back soon!</p>' +
+                '</div>';
+            return;
+        }
+
+        var d = semData.data;
+        var ov = d.overview;
+
+        var infoHtml = [
+            ["Program", ov.program], ["Grade Level", ov.jenjang], ["Semester", ov.semester],
+            ["Duration per Session", ov.durasi], ["Number of Sessions", ov.jumlahPertemuan],
+            ["Skill Focus", ov.fokusKeterampilan], ["Method", ov.metode], ["Main Media", ov.mediaUtama]
+        ].map(function (pair) {
+            return '<div><div class="info-item-label">' + pair[0] + '</div><div class="info-item-value">' + pair[1] + '</div></div>';
+        }).join("");
+
+        var objectivesHtml = d.generalObjectives.map(function (o) { return "<li>" + o + "</li>"; }).join("");
+
+        var sessionRows = d.sessionStructure.map(function (s) {
+            return '<tr><td class="time-cell">' + s.waktu + '</td><td><b>' + s.tahap + '</b></td><td>' + s.deskripsi + '</td></tr>';
+        }).join("");
+
+        var petaRows = d.petaMateri.map(function (p) {
+            return '<tr><td class="peta-num">' + p.num + '</td><td>' + p.tema + '</td><td>' + p.kosakata + '</td><td>' + p.grammar + '</td><td>' + p.skill + '</td></tr>';
+        }).join("");
+
+        area.innerHTML =
+            '<div class="overview-card" style="--grade-color:' + meta.color + ';--grade-bg:' + meta.bg + '">' +
+                '<div class="overview-title">' + meta.label + ' — Semester ' + (state.semester === 'semester1' ? '1' : '2') + '</div>' +
+                '<div class="info-grid">' + infoHtml + '</div>' +
+                '<div class="cp-box">' +
+                    '<div class="cp-label">Semester Learning Outcomes</div>' +
+                    '<div class="cp-text">' + d.cp + '</div>' +
+                '</div>' +
+                '<div class="mini-title">General Learning Objectives</div>' +
+                '<ul class="obj-list">' + objectivesHtml + '</ul>' +
+                '<div class="grammar-note-box"><b>Grammar Approach:</b> ' + d.grammarApproach + '</div>' +
+            '</div>' +
+
+            '<div class="overview-card" style="--grade-color:' + meta.color + ';--grade-bg:' + meta.bg + '">' +
+                '<div class="mini-title" style="font-size:0.85rem;">General 90-Minute Session Structure</div>' +
+                '<div class="session-table-wrap"><table class="session-table"><tr><th>Time</th><th>Stage</th><th>Description</th></tr>' + sessionRows + '</table></div>' +
+            '</div>' +
+
+            '<div class="overview-card" style="--grade-color:' + meta.color + ';--grade-bg:' + meta.bg + '">' +
+                '<div class="mini-title" style="font-size:0.85rem;">Semester Material Map</div>' +
+                '<div class="peta-table-wrap"><table class="peta-table"><tr><th>#</th><th>Theme</th><th>Vocabulary Focus</th><th>Grammar Focus</th><th>Skill</th></tr>' + petaRows + '</table></div>' +
+            '</div>' +
+
+            '<div class="section-label">📅 Session-by-Session Plan (' + d.meetings.length + ' Sessions)</div>' +
+            '<div class="meeting-grid" id="meetingGrid"></div>';
+
+        renderMeetings(d.meetings, meta);
+    }
+
+    function renderMeetings(meetings, meta) {
+        var grid = document.getElementById("meetingGrid");
         grid.innerHTML = "";
-        g.terms.forEach(function (t) {
-            var isOpen = t.number === state.openTerm;
+        meetings.forEach(function (m, idx) {
+            var num = idx + 1;
+            var isOpen = num === state.openMeeting;
             var card = document.createElement("div");
-            card.className = "term-card" + (isOpen ? " open" : "");
+            card.className = "meeting-card" + (isOpen ? " open" : "");
             card.style.setProperty("--grade-color", meta.color);
             card.style.setProperty("--grade-bg", meta.bg);
 
-            var skillsHtml = ["listening", "reading", "speaking", "writing"].map(function (skillKey) {
-                var icons = { listening: "🎧", reading: "📖", speaking: "🗣", writing: "✍" };
-                var labels = { listening: "Listening", reading: "Reading", speaking: "Speaking", writing: "Writing" };
-                var items = t.skills[skillKey].map(function (i) { return "<li>" + i + "</li>"; }).join("");
-                return '<div class="skill-box skill-' + skillKey + '"><div class="skill-box-label">' + icons[skillKey] + " " + labels[skillKey] + '</div><ul>' + items + '</ul></div>';
+            var vocabHtml = m.vocab.map(function (v) { return '<span class="vocab-chip">' + v + '</span>'; }).join("");
+            var mediaHtml = m.media.map(function (v) { return "<li>" + v + "</li>"; }).join("");
+            var assessHtml = m.assessment.map(function (v) { return "<li>" + v + "</li>"; }).join("");
+            var objHtml = m.objectives.map(function (v) { return "<li>" + v + "</li>"; }).join("");
+            var activityRows = m.activities.map(function (a) {
+                return '<tr><td class="time-cell">' + a.waktu + '</td><td><b>' + a.kegiatan + '</b></td><td>' + a.deskripsi + '</td></tr>';
             }).join("");
 
-            var outcomesHtml = t.outcomes.map(function (o) { return "<li>" + o + "</li>"; }).join("");
-
             card.innerHTML =
-                '<div class="term-card-header">' +
-                    '<div class="term-num-badge term-' + t.number + '">T' + t.number + '</div>' +
+                '<div class="meeting-card-header">' +
+                    '<div class="meeting-num-badge">' + num + '</div>' +
                     '<div>' +
-                        '<div class="term-card-title">' + t.title + '</div>' +
-                        '<div class="term-card-weeks">' + t.weeks + '</div>' +
+                        '<div class="meeting-card-title">' + m.title + '</div>' +
+                        '<div class="meeting-card-sub">' + m.num + ' &middot; ' + m.duration + '</div>' +
                     '</div>' +
-                    '<span class="term-toggle-icon">▾</span>' +
+                    '<span class="meeting-toggle-icon">▾</span>' +
                 '</div>' +
-                '<div class="term-body"><div class="term-body-inner">' +
-                    '<div class="term-section"><div class="term-section-label">Grammar Focus</div><div class="term-section-text">' + t.grammar + '</div></div>' +
-                    '<div class="term-section"><div class="term-section-label">Vocabulary Focus</div><div class="term-section-text">' + t.vocab + '</div></div>' +
-                    '<div class="term-section"><div class="term-section-label">Skills Breakdown</div><div class="skills-grid">' + skillsHtml + '</div></div>' +
-                    '<div class="term-section"><div class="term-section-label">Measurable Learning Outcomes</div><ul class="outcomes-list">' + outcomesHtml + '</ul></div>' +
+                '<div class="meeting-body"><div class="meeting-body-inner">' +
+                    '<div class="meeting-section"><div class="mini-title">Learning Objectives</div><ul class="obj-list">' + objHtml + '</ul></div>' +
+                    '<div class="meeting-section">' +
+                        '<div class="mini-title">Grammar Focus</div>' +
+                        '<div class="grammar-pattern-box">' + m.grammarPattern + '</div>' +
+                        (m.grammarExample ? '<div class="grammar-example">Example: ' + m.grammarExample + '</div>' : '') +
+                        (m.grammarNote ? '<div class="grammar-detail-note">' + m.grammarNote + '</div>' : '') +
+                    '</div>' +
+                    '<div class="two-col-meeting">' +
+                        '<div class="meeting-section"><div class="mini-title">Key Vocabulary</div><div class="chip-row">' + vocabHtml + '</div></div>' +
+                        '<div class="meeting-section"><div class="mini-title">Media & Tools</div><ul class="media-list">' + mediaHtml + '</ul></div>' +
+                    '</div>' +
+                    '<div class="meeting-section">' +
+                        '<div class="mini-title">Activity Breakdown (90 Minutes)</div>' +
+                        '<div class="session-table-wrap"><table class="session-table"><tr><th>Time</th><th>Activity</th><th>Description</th></tr>' + activityRows + '</table></div>' +
+                    '</div>' +
+                    '<div class="meeting-section"><div class="mini-title">Assessment</div><ul class="assessment-list">' + assessHtml + '</ul></div>' +
                 '</div></div>';
 
-            card.querySelector(".term-card-header").addEventListener("click", function () {
+            card.querySelector(".meeting-card-header").addEventListener("click", function () {
                 var willOpen = !isOpen;
-                state.openTerm = isOpen ? 0 : t.number;
-                renderTerms();
+                state.openMeeting = isOpen ? 0 : num;
+                renderMeetings(meetings, meta);
                 if (willOpen) {
-                    var reopenedCard = document.querySelectorAll(".term-card")[t.number - 1];
-                    setTimeout(function () {
-                        reopenedCard.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }, 50);
+                    var reopened = document.querySelectorAll(".meeting-card")[num - 1];
+                    setTimeout(function () { reopened.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
                 }
             });
             grid.appendChild(card);
         });
     }
 
-    function renderChecklist() {
-        var g = CURRICULUM[state.grade];
-        var meta = GRADE_META[state.grade];
-        var el = document.getElementById("checklistCard");
-        el.style.setProperty("--grade-color", meta.color);
-        var items = g.checklist.map(function (c) {
-            return '<div class="checklist-item"><span class="checklist-box"></span>' + c + '</div>';
-        }).join("");
-        el.innerHTML =
-            '<div class="checklist-title">✅ End of ' + g.title + ' Checklist</div>' +
-            '<div class="checklist-sub">By the end of the year, a student should be able to demonstrate all of the following:</div>' +
-            '<div class="checklist-grid">' + items + '</div>';
-    }
-
     function renderAll() {
         renderGradeTabs();
-        renderOverview();
-        renderTerms();
-        renderChecklist();
+        renderSemesterTabs();
+        renderContent();
     }
 
     renderAll();
