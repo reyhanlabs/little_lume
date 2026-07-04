@@ -106,7 +106,7 @@
     }
     .grade-overview-top { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
     .grade-overview-title { font-size: 1.5rem; font-weight: 800; color: var(--grade-color, var(--primary)); }
-    .grade-overview-badge { font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); background: var(--grade-bg, var(--bg-light)); padding: 0.3rem 0.75rem; border-radius: 999px; }
+    .grade-overview-badge { font-size: 0.78rem; font-weight: 700; color: var(--grade-color, var(--text-secondary)); background: var(--grade-bg, var(--bg-light)); padding: 0.3rem 0.75rem; border-radius: 999px; }
     .grade-overview-tagline { font-size: 0.95rem; color: var(--grade-color, var(--secondary)); font-weight: 700; margin-bottom: 0.7rem; }
     .grade-overview-summary { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem; }
     .grade-overview-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-secondary); font-weight: 600; }
@@ -119,6 +119,7 @@
         border: 1px solid var(--border);
         border-radius: 18px;
         overflow: hidden;
+        scroll-margin-top: 90px;
     }
     .term-card-header {
         display: flex;
@@ -132,13 +133,16 @@
     .term-num-badge {
         width: 38px; height: 38px;
         border-radius: 10px;
-        background: var(--grade-color, var(--primary));
         color: white;
         font-weight: 800;
         display: flex; align-items: center; justify-content: center;
         flex-shrink: 0;
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
+    .term-num-badge.term-1 { background: linear-gradient(135deg, #54A0FF 0%, #2E7BFF 100%); }
+    .term-num-badge.term-2 { background: linear-gradient(135deg, #7C5CBF 0%, #6247A3 100%); }
+    .term-num-badge.term-3 { background: linear-gradient(135deg, #FF9F43 0%, #F7862D 100%); }
+    .term-num-badge.term-4 { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%); }
     .term-card-title { font-weight: 800; font-size: 1.02rem; color: var(--text-primary); }
     .term-card-weeks { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
     .term-toggle-icon { margin-left: auto; color: var(--text-secondary); transition: var(--transition); font-size: 0.9rem; }
@@ -153,13 +157,17 @@
     .term-section-text { font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; }
 
     .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .skill-box { background: var(--bg-light); border-radius: 12px; padding: 0.9rem 1.1rem; }
+    .skill-box { border-radius: 12px; padding: 0.9rem 1.1rem; border-left: 4px solid transparent; }
+    .skill-box.skill-listening { background: rgba(84,160,255,0.08); border-left-color: #54A0FF; }
+    .skill-box.skill-reading { background: rgba(124,92,191,0.08); border-left-color: #7C5CBF; }
+    .skill-box.skill-speaking { background: rgba(255,159,67,0.1); border-left-color: #FF9F43; }
+    .skill-box.skill-writing { background: rgba(29,209,161,0.08); border-left-color: #1DD1A1; }
     .skill-box-label { font-size: 0.78rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
     .skill-box ul { padding-left: 1.1rem; font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
 
     .outcomes-list { list-style: none; }
     .outcomes-list li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.55rem; line-height: 1.55; }
-    .outcomes-list li::before { content: "✓"; color: var(--success); font-weight: 800; flex-shrink: 0; margin-top: 0.1rem; }
+    .outcomes-list li::before { content: "✓"; color: var(--grade-color, var(--success)); font-weight: 800; flex-shrink: 0; margin-top: 0.1rem; }
 
     /* ===== CHECKLIST ===== */
     .checklist-card {
@@ -285,14 +293,14 @@ const CURRICULUM = {"grade1": {"title": "Grade 1", "level": "Beginner Level", "a
                 var icons = { listening: "🎧", reading: "📖", speaking: "🗣", writing: "✍" };
                 var labels = { listening: "Listening", reading: "Reading", speaking: "Speaking", writing: "Writing" };
                 var items = t.skills[skillKey].map(function (i) { return "<li>" + i + "</li>"; }).join("");
-                return '<div class="skill-box"><div class="skill-box-label">' + icons[skillKey] + " " + labels[skillKey] + '</div><ul>' + items + '</ul></div>';
+                return '<div class="skill-box skill-' + skillKey + '"><div class="skill-box-label">' + icons[skillKey] + " " + labels[skillKey] + '</div><ul>' + items + '</ul></div>';
             }).join("");
 
             var outcomesHtml = t.outcomes.map(function (o) { return "<li>" + o + "</li>"; }).join("");
 
             card.innerHTML =
                 '<div class="term-card-header">' +
-                    '<div class="term-num-badge">T' + t.number + '</div>' +
+                    '<div class="term-num-badge term-' + t.number + '">T' + t.number + '</div>' +
                     '<div>' +
                         '<div class="term-card-title">' + t.title + '</div>' +
                         '<div class="term-card-weeks">' + t.weeks + '</div>' +
@@ -307,8 +315,15 @@ const CURRICULUM = {"grade1": {"title": "Grade 1", "level": "Beginner Level", "a
                 '</div></div>';
 
             card.querySelector(".term-card-header").addEventListener("click", function () {
+                var willOpen = !isOpen;
                 state.openTerm = isOpen ? 0 : t.number;
                 renderTerms();
+                if (willOpen) {
+                    var reopenedCard = document.querySelectorAll(".term-card")[t.number - 1];
+                    setTimeout(function () {
+                        reopenedCard.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 50);
+                }
             });
             grid.appendChild(card);
         });
