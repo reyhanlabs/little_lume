@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Little Lume English — Numbers Worksheet (Grade 1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sun:#FFC93C;
+    --coral:#FF6F91;
+    --sky:#4FC1E9;
+    --grass:#6BCB77;
+    --grape:#8C6BFA;
+    --cream:#FFFFFF;
+    --ink:#3A2E5C;
+    --line:#D8CFEF;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:#FFFFFF;
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+  }
+
+  @page{ size:A4; margin:0; }
+
+  .page{
+    width:210mm;
+    min-height:297mm;
+    background:var(--cream);
+    margin:16px auto;
+    box-shadow:0 10px 30px rgba(60,40,100,0.25);
+    position:relative;
+    overflow:hidden;
+    padding:12mm 14mm 14mm 14mm;
+  }
+
+  .confetti{ position:absolute; inset:0; pointer-events:none; z-index:0; }
+  .confetti span{ position:absolute; border-radius:50%; opacity:.5; }
+
+  .topbar{
+    position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom:8px; margin-bottom:14px;
+    border-bottom:4px dashed var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .lume{ width:46px; height:46px; position:relative; flex:none; }
+  .lume .body{
+    width:100%; height:100%; border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, #FFE49A, var(--sun) 55%, #FFA93C 100%);
+    box-shadow:0 0 0 4px #fff, 0 4px 10px rgba(255,170,20,.5);
+  }
+  .lume .eye{ position:absolute; width:6px; height:6px; background:var(--ink); border-radius:50%; top:20px; }
+  .lume .eye.l{ left:13px; } .lume .eye.r{ left:26px; }
+  .lume .wing{ position:absolute; width:16px; height:10px; background:rgba(255,255,255,.75); border-radius:50% 50% 50% 50%/60% 60% 40% 40%; top:8px; }
+  .lume .wing.l{ left:-8px; transform:rotate(-20deg); }
+  .lume .wing.r{ right:-8px; transform:rotate(20deg) scaleX(-1); }
+
+  .brand-text .title{ font-family:'Fredoka', sans-serif; font-weight:700; font-size:18px; color:var(--grape); line-height:1.05; }
+  .brand-text .sub{ font-size:11px; font-weight:600; color:#8f84b5; letter-spacing:.5px; }
+
+  .pagepill{
+    font-family:'Fredoka'; font-weight:600; font-size:11px; color:#fff;
+    background:var(--coral); padding:6px 14px; border-radius:20px;
+  }
+
+  .headline{ position:relative; z-index:1; display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .badge{
+    font-family:'Fredoka'; font-weight:700; color:#fff; font-size:14px;
+    background:var(--grass); border-radius:50%; width:34px; height:34px;
+    display:flex; align-items:center; justify-content:center; flex:none;
+    box-shadow:0 3px 0 rgba(0,0,0,.08);
+  }
+  .headline h1{ font-family:'Fredoka'; font-weight:700; font-size:21px; margin:0; color:var(--ink); }
+  .instruction{ position:relative; z-index:1; font-size:12.5px; font-weight:600; color:#6a5f95; margin:0 0 12px 44px; }
+
+  .cover-info{ display:flex; gap:24px; margin-top:10px; font-family:'Fredoka'; font-size:13px; color:var(--ink); font-weight:600; }
+  .cover-info .field{ display:flex; align-items:center; gap:8px; }
+  .cover-info .line{ border-bottom:2.5px dotted #b6a9de; width:150px; height:16px; }
+
+  .footer{
+    position:absolute; left:14mm; right:14mm; bottom:8mm; z-index:1;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Fredoka'; font-size:11px; color:#9188b8;
+  }
+  .footer .stars{ color:var(--sun); font-size:15px; letter-spacing:2px; }
+
+  /* ============================================================ COVER ============================================================ */
+  .cover{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; height:100%; position:relative; z-index:1; padding-top:8mm;
+  }
+  .cover-lume{ width:150px; height:150px; position:relative; margin-bottom:10px; }
+  .cover-lume .body{
+    width:100%; height:100%; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, #FFEDB0, var(--sun) 55%, #FF9F1C 100%);
+    box-shadow:0 0 0 10px #fff, 0 10px 24px rgba(255,150,20,.45);
+  }
+  .cover-lume .eye{ position:absolute; width:16px; height:18px; background:var(--ink); border-radius:50%; top:62px; }
+  .cover-lume .eye.l{ left:44px; } .cover-lume .eye.r{ left:88px; }
+  .cover-lume .eye::after{ content:""; position:absolute; width:6px;height:6px;background:#fff;border-radius:50%; top:2px; left:2px; }
+  .cover-lume .cheek{ position:absolute; width:16px; height:10px; background:#FF9EB3; border-radius:50%; top:86px; opacity:.7; }
+  .cover-lume .cheek.l{ left:26px;} .cover-lume .cheek.r{ left:108px; }
+  .cover-lume .smile{ position:absolute; width:26px; height:13px; border:4px solid var(--ink); border-top:none; border-radius:0 0 26px 26px; top:92px; left:62px; }
+  .cover-lume .wing{ position:absolute; width:46px; height:30px; background:rgba(255,255,255,.8); border-radius:60% 60% 50% 50%/70% 70% 40% 40%; top:36px; }
+  .cover-lume .wing.l{ left:-22px; transform:rotate(-24deg); }
+  .cover-lume .wing.r{ right:-22px; transform:rotate(24deg) scaleX(-1); }
+  .cover-lume .spark{ position:absolute; font-size:20px; color:var(--sun); }
+
+  .eyebrow{ font-family:'Fredoka'; font-weight:600; font-size:14px; letter-spacing:3px; color:var(--coral); text-transform:uppercase; margin-bottom:6px; }
+  .cover h1{ font-family:'Fredoka'; font-weight:700; font-size:48px; color:var(--grape); margin:0; line-height:1; }
+  .cover h1 span{ color:var(--sky); }
+  .cover h2{ font-family:'Fredoka'; font-weight:600; font-size:22px; color:var(--ink); margin:10px 0 4px; }
+  .cover p.tag{ font-size:14px; font-weight:600; color:#7b7099; max-width:440px; margin:6px auto 20px; }
+
+  .wordbubbles{ display:flex; gap:10px; margin:8px 0 24px; flex-wrap:wrap; justify-content:center; }
+  .wordbubbles .chip{
+    font-family:'Fredoka'; font-weight:700; font-size:13px; color:#fff;
+    padding:8px 14px; border-radius:20px; transform:rotate(var(--r));
+    box-shadow:0 4px 0 rgba(0,0,0,.08);
+  }
+  .cover-footer-badge{ position:absolute; bottom:14mm; left:0; right:0; text-align:center; font-family:'Fredoka'; font-size:11px; color:#a79bd1; font-weight:600; }
+
+  /* ============================================================ WORD-NUMBER CARDS (trace + spell) ============================================================ */
+  .card-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .wcard{
+    background:#fff; border:2.5px solid var(--line); border-radius:16px; padding:10px 12px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .wcard .row1{ display:flex; align-items:center; gap:8px; }
+  .wcard .digit-out{
+    font-family:'Fredoka'; font-weight:700; font-size:30px; width:38px; height:44px;
+    display:flex; align-items:center; justify-content:center; color:transparent;
+    -webkit-text-stroke:2px var(--num-color);
+  }
+  .wcard .digit-write{
+    font-family:'Fredoka'; font-weight:700; font-size:30px; width:38px; height:44px;
+    display:flex; align-items:center; justify-content:center; border:2px dashed #cfc6ea; color:#cfc6ea; border-radius:8px;
+  }
+  .wcard .icons{ font-size:16px; letter-spacing:2px; flex:1; text-align:right; }
+  .wcard .row2{
+    display:flex; align-items:center; gap:8px; border-top:2px dashed var(--line); padding-top:6px;
+  }
+  .wcard .word-out{
+    font-family:'Fredoka'; font-weight:700; font-size:19px; color:transparent;
+    -webkit-text-stroke:1.4px var(--num-color); letter-spacing:1px; flex:none;
+  }
+  .wcard .word-write{
+    flex:1; border-bottom:2px dotted #b6a9de; height:22px;
+  }
+
+  /* ============================================================ SENTENCE STRIPS ============================================================ */
+  .sentence-strip{
+    position:relative; z-index:1; display:flex; align-items:center; gap:10px;
+    background:#fff; border:2.5px solid var(--line); border-radius:14px; padding:10px 14px; margin-bottom:9px;
+  }
+  .sentence-strip .icons{ font-size:20px; letter-spacing:3px; width:130px; flex:none; }
+  .sentence-strip .sent{ font-family:'Fredoka'; font-weight:600; font-size:14px; color:var(--ink); flex:1; }
+  .sentence-strip .blank-num{
+    display:inline-flex; align-items:center; justify-content:center; width:30px; height:26px;
+    border:2px solid var(--num-color); border-radius:6px; margin:0 3px; vertical-align:middle;
+  }
+  .sentence-strip .blank-word{
+    display:inline-block; border-bottom:2px dotted #b6a9de; width:80px; margin:0 3px; vertical-align:middle;
+  }
+
+  /* ============================================================ MATCH ============================================================ */
+  .match-wrap{ position:relative; z-index:1; display:flex; gap:26px; }
+  .match-col{ flex:1; display:flex; flex-direction:column; gap:9px; }
+  .match-item{
+    display:flex; align-items:center; gap:10px;
+    background:#fff; border:2.5px solid var(--line); border-radius:14px; padding:9px 14px;
+    font-family:'Fredoka'; font-weight:700;
+  }
+  .match-col.left .match-item{ justify-content:flex-end; flex-direction:row-reverse; }
+  .match-item .dot{ width:14px; height:14px; border-radius:50%; border:2.5px solid var(--num-color); flex:none; }
+  .match-item .num{ font-size:22px; color:var(--num-color); }
+  .match-item .word{ font-size:14px; color:var(--ink); text-transform:capitalize; }
+
+  /* ============================================================ CIRCLE THE WORD (spelling check) ============================================================ */
+  .spell-row{
+    display:flex; align-items:center; gap:14px; background:#fff; border:2.5px solid var(--line);
+    border-radius:14px; padding:10px 16px; margin-bottom:8px; position:relative; z-index:1;
+  }
+  .spell-row .digit{
+    font-family:'Fredoka'; font-weight:700; font-size:22px; color:var(--num-color);
+    width:34px; height:34px; border-radius:50%; background:#faf7ff; display:flex; align-items:center; justify-content:center; flex:none;
+  }
+  .spell-row .opts{ display:flex; gap:10px; }
+  .spell-row .opt{
+    font-family:'Fredoka'; font-weight:600; font-size:13px; color:var(--ink);
+    border:2.5px dashed #cbbef0; border-radius:20px; padding:6px 14px;
+  }
+
+  /* ============================================================ SEQUENCE (digit + word) ============================================================ */
+  .seq-block{ position:relative; z-index:1; margin-bottom:14px; }
+  .seq-row{ display:flex; gap:7px; margin-bottom:5px; }
+  .seq-cell{
+    flex:1; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka'; font-weight:700; font-size:17px;
+  }
+  .seq-cell.given{ background:var(--num-color); color:#fff; }
+  .seq-cell.blank{ background:#fff; border:3px dashed var(--num-color); color:#cfc6ea; }
+  .seq-row.words .seq-cell{ font-size:11px; height:32px; background:#faf7ff; color:var(--num-color); border:2px dashed var(--line); font-weight:600; }
+
+  /* ============================================================ COLOR BY NUMBER ============================================================ */
+  .read-steps{ position:relative; z-index:1; list-style:none; margin:0 0 14px; padding:0; font-family:'Fredoka'; font-size:12.5px; color:var(--ink); display:flex; flex-direction:column; gap:5px; }
+  .read-steps li{ display:flex; gap:8px; align-items:center; }
+  .read-steps li b{ color:#fff; background:var(--num-color); width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; flex:none; }
+  .cbn-wrap{ position:relative; z-index:1; display:flex; gap:22px; align-items:flex-start; }
+  .cbn-key{ display:flex; flex-direction:column; gap:9px; }
+  .cbn-key .k{ display:flex; align-items:center; gap:10px; font-family:'Fredoka'; font-weight:700; font-size:13px; }
+  .cbn-key .k .sw{ width:24px; height:24px; border-radius:8px; border:2px solid #fff; box-shadow:0 0 0 2px var(--sw); }
+
+  /* ============================================================ CERTIFICATE ============================================================ */
+  .cert{
+    position:relative; z-index:1; height:100%;
+    border:6px solid var(--sun); border-radius:26px; outline:3px dashed #fff; outline-offset:-14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;
+    background:
+      radial-gradient(circle at 10% 10%, #FFE6A8 0, transparent 20%),
+      radial-gradient(circle at 90% 15%, #B9E6FF 0, transparent 20%),
+      radial-gradient(circle at 15% 90%, #FFC9DB 0, transparent 20%),
+      radial-gradient(circle at 90% 90%, #CFF3D6 0, transparent 20%);
+  }
+  .cert .eyebrow2{ font-family:'Fredoka'; letter-spacing:4px; color:var(--coral); font-weight:700; font-size:13px; }
+  .cert h1{ font-family:'Fredoka'; font-size:36px; color:var(--grape); margin:6px 0; }
+  .cert p{ font-size:14px; font-weight:600; color:#6a5f95; max-width:440px; }
+  .cert .name-line{ font-family:'Fredoka'; font-size:24px; color:var(--ink); border-bottom:3px dotted #b6a9de; padding:8px 40px; margin:16px 0; }
+  .cert .stars-big{ font-size:26px; letter-spacing:8px; color:var(--sun); margin:10px 0; }
+  .cert .sign{ display:flex; gap:60px; margin-top:26px; font-family:'Fredoka'; font-size:12px; color:#8b81ab; font-weight:600; }
+  .cert .sign div{ border-top:2px solid #cbbef0; padding-top:6px; width:150px; }
+
+  @media print{
+    body{ background:#fff; }
+    .page{ margin:0; box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ PAGE 1 — COVER ============================================================ -->
+<div class="page">
+  <div class="confetti">
+    <span style="left:6%;top:8%;width:14px;height:14px;background:var(--sun)"></span>
+    <span style="left:88%;top:10%;width:10px;height:10px;background:var(--coral)"></span>
+    <span style="left:12%;top:80%;width:12px;height:12px;background:var(--sky)"></span>
+    <span style="left:80%;top:78%;width:16px;height:16px;background:var(--grass)"></span>
+    <span style="left:50%;top:5%;width:8px;height:8px;background:var(--grape)"></span>
+    <span style="left:20%;top:40%;width:8px;height:8px;background:var(--coral)"></span>
+    <span style="left:90%;top:45%;width:10px;height:10px;background:var(--sun)"></span>
+  </div>
+
+  <div class="cover">
+    <div class="eyebrow">Little Lume English</div>
+
+    <div class="cover-lume">
+      <div class="wing l"></div><div class="wing r"></div>
+      <div class="body"></div>
+      <div class="eye l"></div><div class="eye r"></div>
+      <div class="cheek l"></div><div class="cheek r"></div>
+      <div class="smile"></div>
+      <div class="spark" style="top:-8px;left:-6px;">✦</div>
+      <div class="spark" style="top:6px;right:-10px;font-size:14px;">✦</div>
+    </div>
+
+    <h1>Learn Numbers <span>in English</span></h1>
+    <h2>Reading, Writing &amp; Spelling — Grade 1</h2>
+    <p class="tag">Say it, read it, trace it, and write it! Fly along with Lume to learn the number words one to twenty. ✨</p>
+
+    <div class="wordbubbles">
+      <div class="chip" style="background:var(--coral); --r:-6deg;">one</div>
+      <div class="chip" style="background:var(--sun); --r:4deg;">two</div>
+      <div class="chip" style="background:var(--grass); --r:-3deg;">three</div>
+      <div class="chip" style="background:var(--sky); --r:6deg;">four</div>
+      <div class="chip" style="background:var(--grape); --r:-5deg;">five</div>
+    </div>
+
+    <div class="cover-info">
+      <div class="field">Name: <div class="line"></div></div>
+      <div class="field">Class: <div class="line" style="width:80px;"></div></div>
+      <div class="field">Date: <div class="line" style="width:80px;"></div></div>
+    </div>
+  </div>
+
+  <div class="cover-footer-badge">littlelumeenglish.worksheets · English Numbers Edition</div>
+</div>
+
+<!-- ============================================================ PAGE 2 — TRACE & SPELL 1–10 ============================================================ -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <div class="lume"><div class="wing l"></div><div class="wing r"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div></div>
+      <div class="brand-text"><div class="title">Little Lume English</div><div class="sub">NUMBERS WORKSHEET · GRADE 1</div></div>
+    </div>
+    <div class="pagepill">Page 1 of 7</div>
+  </div>
+
+  <div class="headline"><div class="badge" style="background:var(--coral);">A</div><h1>Read, Trace &amp; Spell — 1 to 10</h1></div>
+  <p class="instruction">Say the number word out loud. Trace the number and the word, then write them both yourself.</p>
+
+  <div class="card-grid">
+    <div class="wcard" style="--num-color:#FF6F91;">
+      <div class="row1"><div class="digit-out">1</div><div class="digit-write">1</div><div class="icons">🍎</div></div>
+      <div class="row2"><div class="word-out">one</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#FFC93C;">
+      <div class="row1"><div class="digit-out">2</div><div class="digit-write">2</div><div class="icons">🍎🍎</div></div>
+      <div class="row2"><div class="word-out">two</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#6BCB77;">
+      <div class="row1"><div class="digit-out">3</div><div class="digit-write">3</div><div class="icons">🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">three</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#4FC1E9;">
+      <div class="row1"><div class="digit-out">4</div><div class="digit-write">4</div><div class="icons">🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">four</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#8C6BFA;">
+      <div class="row1"><div class="digit-out">5</div><div class="digit-write">5</div><div class="icons" style="font-size:13px;">🍎🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">five</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#FF6F91;">
+      <div class="row1"><div class="digit-out">6</div><div class="digit-write">6</div><div class="icons" style="font-size:12px;">🍎🍎🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">six</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#FFC93C;">
+      <div class="row1"><div class="digit-out">7</div><div class="digit-write">7</div><div class="icons" style="font-size:11px;">🍎🍎🍎🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">seven</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#6BCB77;">
+      <div class="row1"><div class="digit-out">8</div><div class="digit-write">8</div><div class="icons" style="font-size:10px;">🍎🍎🍎🍎🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">eight</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#4FC1E9;">
+      <div class="row1"><div class="digit-out">9</div><div class="digit-write">9</div><div class="icons" style="font-size:9px;">🍎🍎🍎🍎🍎🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">nine</div><div class="word-write"></div></div>
+    </div>
+    <div class="wcard" style="--num-color:#8C6BFA;">
+      <div class="row1"><div class="digit-out">10</div><div class="digit-write">10</div><div class="icons" style="font-size:8px;">🍎🍎🍎🍎🍎🍎🍎🍎🍎🍎</div></div>
+      <div class="row2"><div class="word-out">ten</div><div class="word-write"></div></div>
+    </div>
+  </div>
+
+  <div class="footer"><span>Great reading! 🎉</span><span class="stars">★★★☆☆</span></div>
+</div>
+
+<!-- ============================================================ PAGE 3 — SENTENCES: HOW MANY? ============================================================ -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <div class="lume"><div class="wing l"></div><div class="wing r"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div></div>
+      <div class="brand-text"><div class="title">Little Lume English</div><div class="sub">NUMBERS WORKSHEET · GRADE 1</div></div>
+    </div>
+    <div class="pagepill">Page 2 of 7</div>
+  </div>
+
+  <div class="headline"><div class="badge" style="background:var(--sky);">B</div><h1>How Many? Read &amp; Complete the Sentence</h1></div>
+  <p class="instruction">Count the pictures. Fill in the number box, then write the number word to finish the sentence.</p>
+
+  <div class="sentence-strip" style="--num-color:#FF6F91;"><div class="icons">🐝 🐝 🐝</div><div class="sent">There are <span class="blank-num"></span> bees. Three bees are <span class="blank-word"></span>.</div></div>
+  <div class="sentence-strip" style="--num-color:#FFC93C;"><div class="icons">🌸 🌸 🌸 🌸 🌸</div><div class="sent">I can see <span class="blank-num"></span> flowers. That is <span class="blank-word"></span> flowers.</div></div>
+  <div class="sentence-strip" style="--num-color:#6BCB77;"><div class="icons">🐟 🐟</div><div class="sent">There are <span class="blank-num"></span> fish in the bowl. Two fish are <span class="blank-word"></span>.</div></div>
+  <div class="sentence-strip" style="--num-color:#4FC1E9;"><div class="icons">🎈 🎈 🎈 🎈</div><div class="sent">I have <span class="blank-num"></span> balloons. That is <span class="blank-word"></span> balloons.</div></div>
+  <div class="sentence-strip" style="--num-color:#8C6BFA;"><div class="icons">🍓 🍓 🍓 🍓 🍓 🍓</div><div class="sent">There are <span class="blank-num"></span> strawberries. Six strawberries are <span class="blank-word"></span>.</div></div>
+  <div class="sentence-strip" style="--num-color:#FF6F91;"><div class="icons">🐞 🐞 🐞 🐞 🐞 🐞 🐞</div><div class="sent">I can count <span class="blank-num"></span> ladybugs. That is <span class="blank-word"></span> ladybugs.</div></div>
+  <div class="sentence-strip" style="--num-color:#FFC93C;"><div class="icons" style="letter-spacing:5px;">✨ ✨ ✨ ✨ ✨ ✨ ✨ ✨</div><div class="sent">Lume has <span class="blank-num"></span> friends. That is <span class="blank-word"></span> friends.</div></div>
+  <div class="sentence-strip" style="--num-color:#6BCB77;"><div class="icons">⭐</div><div class="sent">I see <span class="blank-num"></span> star in the sky. One star is <span class="blank-word"></span>.</div></div>
+
+  <div class="footer"><span>Read it out loud! 🗣️</span><span class="stars">★★★☆☆</span></div>
+</div>
+
+<!-- ============================================================ PAGE 4 — TRACE & SPELL 11–20 ============================================================ -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <div class="lume"><div class="wing l"></div><div class="wing r"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div></div>
+      <div class="brand-text"><div class="title">Little Lume English</div><div class="sub">NUMBERS WORKSHEET · GRADE 1</div></div>
+    </div>
+    <div class="pagepill">Page 3 of 7</div>
+  </div>
+
+  <div class="headline"><div class="badge" style="background:var(--grass);">C</div><h1>Read, Trace &amp; Spell — 11 to 20</h1></div>
+  <p class="instruction">You know 1–10 already! Say each new word, trace it, then write it on your own.</p>
+
+  <div class="card-grid">
+    <div class="wcard" style="--num-color:#FF6F91;"><div class="row1"><div class="digit-out">11</div><div class="digit-write">11</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">eleven</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#FFC93C;"><div class="row1"><div class="digit-out">12</div><div class="digit-write">12</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">twelve</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#6BCB77;"><div class="row1"><div class="digit-out">13</div><div class="digit-write">13</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">thirteen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#4FC1E9;"><div class="row1"><div class="digit-out">14</div><div class="digit-write">14</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">fourteen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#8C6BFA;"><div class="row1"><div class="digit-out">15</div><div class="digit-write">15</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">fifteen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#FF6F91;"><div class="row1"><div class="digit-out">16</div><div class="digit-write">16</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">sixteen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#FFC93C;"><div class="row1"><div class="digit-out">17</div><div class="digit-write">17</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">seventeen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#6BCB77;"><div class="row1"><div class="digit-out">18</div><div class="digit-write">18</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">eighteen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#4FC1E9;"><div class="row1"><div class="digit-out">19</div><div class="digit-write">19</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">nineteen</div><div class="word-write"></div></div></div>
+    <div class="wcard" style="--num-color:#8C6BFA;"><div class="row1"><div class="digit-out">20</div><div class="digit-write">20</div><div class="icons">🍭🍭</div></div><div class="row2"><div class="word-out">twenty</div><div class="word-write"></div></div></div>
+  </div>
+
+  <div class="footer"><span>You can read to twenty! 🚀</span><span class="stars">★★★★☆</span></div>
+</div>
+
+<!-- ============================================================ PAGE 5 — MATCH & SPELLING CHECK ============================================================ -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <div class="lume"><div class="wing l"></div><div class="wing r"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div></div>
+      <div class="brand-text"><div class="title">Little Lume English</div><div class="sub">NUMBERS WORKSHEET · GRADE 1</div></div>
+    </div>
+    <div class="pagepill">Page 4 of 7</div>
+  </div>
+
+  <div class="headline"><div class="badge" style="background:var(--sun);">D</div><h1>Match the Number to the Word</h1></div>
+  <p class="instruction">Draw a line connecting each number to its matching English word.</p>
+
+  <div class="match-wrap">
+    <div class="match-col left">
+      <div class="match-item"><div class="dot" style="border-color:#FF6F91;"></div><div class="num" style="color:#FF6F91;">6</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#FFC93C;"></div><div class="num" style="color:#FFC93C;">3</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#6BCB77;"></div><div class="num" style="color:#6BCB77;">9</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#4FC1E9;"></div><div class="num" style="color:#4FC1E9;">1</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#8C6BFA;"></div><div class="num" style="color:#8C6BFA;">7</div></div>
+    </div>
+    <div class="match-col right">
+      <div class="match-item"><div class="dot" style="border-color:#FFC93C;"></div><div class="word">three</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#8C6BFA;"></div><div class="word">seven</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#FF6F91;"></div><div class="word">six</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#4FC1E9;"></div><div class="word">one</div></div>
+      <div class="match-item"><div class="dot" style="border-color:#6BCB77;"></div><div class="word">nine</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:22px;">
+    <div class="headline"><div class="badge" style="background:var(--coral);">E</div><h1 style="font-size:17px;">Circle the Correct Spelling</h1></div>
+    <p class="instruction" style="margin-left:44px;">Only one word is spelled correctly. Circle it!</p>
+    <div class="spell-row"><div class="digit">4</div><div class="opts"><div class="opt">for</div><div class="opt">four</div><div class="opt">fuor</div></div></div>
+    <div class="spell-row"><div class="digit">8</div><div class="opts"><div class="opt">eigth</div><div class="opt">eght</div><div class="opt">eight</div></div></div>
+    <div class="spell-row"><div class="digit">5</div><div class="opts"><div class="opt">five</div><div class="opt">fiev</div><div class="opt">fivve</div></div></div>
+    <div class="spell-row"><div class="digit">12</div><div class="opts"><div class="opt">twelv</div><div class="opt">twelve</div><div class="opt">twelfe</div></div></div>
+    <div class="spell-row"><div class="digit">9</div><div class="opts"><div class="opt">nine</div><div class="opt">nien</div><div class="opt">nighn</div></div></div>
+  </div>
+
+  <div class="footer"><span>Nice reading eyes! 👀</span><span class="stars">★★★★☆</span></div>
+</div>
+
+<!-- ============================================================ PAGE 6 — SEQUENCE WITH WORDS ============================================================ -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <div class="lume"><div class="wing l"></div><div class="wing r"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div></div>
+      <div class="brand-text"><div class="title">Little Lume English</div><div class="sub">NUMBERS WORKSHEET · GRADE 1</div></div>
+    </div>
+    <div class="pagepill">Page 5 of 7</div>
+  </div>
+
+  <div class="headline"><div class="badge" style="background:var(--coral);">F</div><h1>What Comes Next? Numbers &amp; Words</h1></div>
+  <p class="instruction">Fill in the missing number, then write its word underneath.</p>
+
+  <div class="seq-block">
+    <div class="seq-row">
+      <div class="seq-cell given" style="background:#FF6F91;">1</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#FF6F91;">3</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#FF6F91;">5</div>
+    </div>
+    <div class="seq-row words">
+      <div class="seq-cell">one</div><div class="seq-cell">___</div><div class="seq-cell">three</div><div class="seq-cell">___</div><div class="seq-cell">five</div>
+    </div>
+  </div>
+
+  <div class="seq-block">
+    <div class="seq-row">
+      <div class="seq-cell given" style="background:#FFC93C;">6</div>
+      <div class="seq-cell given" style="background:#FFC93C;">7</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#FFC93C;">10</div>
+    </div>
+    <div class="seq-row words">
+      <div class="seq-cell">six</div><div class="seq-cell">seven</div><div class="seq-cell">___</div><div class="seq-cell">___</div><div class="seq-cell">ten</div>
+    </div>
+  </div>
+
+  <div class="seq-block">
+    <div class="seq-row">
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#6BCB77;">12</div>
+      <div class="seq-cell given" style="background:#6BCB77;">13</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#6BCB77;">15</div>
+    </div>
+    <div class="seq-row words">
+      <div class="seq-cell">___</div><div class="seq-cell">twelve</div><div class="seq-cell">thirteen</div><div class="seq-cell">___</div><div class="seq-cell">fifteen</div>
+    </div>
+  </div>
+
+  <div class="seq-block">
+    <div class="seq-row">
+      <div class="seq-cell given" style="background:#4FC1E9;">16</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#4FC1E9;">18</div>
+      <div class="seq-cell blank">?</div>
+      <div class="seq-cell given" style="background:#4FC1E9;">20</div>
+    </div>
+    <div class="seq-row words">
+      <div class="seq-cell">sixteen</div><div class="seq-cell">___</div><div class="seq-cell">eighteen</div><div class="seq-cell">___</div><div class="seq-cell">twenty</div>
+    </div>
+  </div>
+
+  <div class="sentence-strip" style="--num-color:#8C6BFA; margin-top:6px;"><div class="icons" style="width:auto; font-size:16px;">🗣️</div><div class="sent">Now say the whole sequence out loud, from <b>one</b> to <b>twenty</b>, with a grown-up!</div></div>
+
+  <div class="footer"><span>You're a word star! 🌟</span><span class="stars">★★★★★</span></div>
+</div>
+
+<!-- ============================================================ PAGE 7 — COLOR BY NUMBER (READING INSTRUCTIONS) ============================================================ -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <div class="lume"><div class="wing l"></div><div class="wing r"></div><div class="body"></div><div class="eye l"></div><div class="eye r"></div></div>
+      <div class="brand-text"><div class="title">Little Lume English</div><div class="sub">NUMBERS WORKSHEET · GRADE 1</div></div>
+    </div>
+    <div class="pagepill">Page 6 of 7</div>
+  </div>
+
+  <div class="headline"><div class="badge" style="background:var(--sky);">G</div><h1>Read &amp; Color — Lume's Rocket</h1></div>
+  <p class="instruction">Read each sentence below, find the matching number on the rocket, and color it.</p>
+
+  <ol class="read-steps">
+    <li style="--num-color:#4FC1E9;"><b>1</b> Color the nose cone <u>blue</u>.</li>
+    <li style="--num-color:#FF6F91;"><b>2</b> Color the body <u>pink</u>.</li>
+    <li style="--num-color:#6BCB77;"><b>3</b> Color both fins <u>green</u>.</li>
+    <li style="--num-color:#FFC93C;"><b>4</b> Color the window <u>yellow</u>.</li>
+    <li style="--num-color:#8C6BFA;"><b>5</b> Color the flame <u>purple</u>.</li>
+  </ol>
+
+  <div class="cbn-wrap">
+    <svg width="300" height="340" viewBox="0 0 330 380" style="flex:none;">
+      <path d="M165 300 C150 330 150 355 165 375 C180 355 180 330 165 300 Z" fill="none" stroke="#3A2E5C" stroke-width="3"/>
+      <text x="165" y="345" font-family="Fredoka" font-weight="700" font-size="20" fill="#3A2E5C" text-anchor="middle">5</text>
+      <rect x="115" y="120" width="100" height="180" rx="50" fill="none" stroke="#3A2E5C" stroke-width="3"/>
+      <text x="165" y="220" font-family="Fredoka" font-weight="700" font-size="26" fill="#3A2E5C" text-anchor="middle">2</text>
+      <path d="M115 120 C115 60 215 60 215 120 Z" fill="none" stroke="#3A2E5C" stroke-width="3"/>
+      <text x="165" y="105" font-family="Fredoka" font-weight="700" font-size="22" fill="#3A2E5C" text-anchor="middle">1</text>
+      <circle cx="165" cy="180" r="26" fill="none" stroke="#3A2E5C" stroke-width="3"/>
+      <text x="165" y="188" font-family="Fredoka" font-weight="700" font-size="20" fill="#3A2E5C" text-anchor="middle">4</text>
+      <path d="M115 230 L60 300 L115 290 Z" fill="none" stroke="#3A2E5C" stroke-width="3"/>
+      <text x="90" y="278" font-family="Fredoka" font-weight="700" font-size="18" fill="#3A2E5C" text-anchor="middle">3</text>
+      <path d="M215 230 L270 300 L215 290 Z" fill="none" stroke="#3A2E5C" stroke-width="3"/>
+      <text x="240" y="278" font-family="Fredoka" font-weight="700" font-size="18" fill="#3A2E5C" text-anchor="middle">3</text>
+      <text x="30" y="80" font-size="20" fill="#FFC93C">✦</text>
+      <text x="290" y="140" font-size="16" fill="#FF6F91">✦</text>
+      <text x="20" y="220" font-size="14" fill="#4FC1E9">✦</text>
+    </svg>
+
+    <div class="cbn-key">
+      <div class="k"><div class="sw" style="--sw:#4FC1E9; background:#4FC1E9;"></div>1 = blue</div>
+      <div class="k"><div class="sw" style="--sw:#FF6F91; background:#FF6F91;"></div>2 = pink</div>
+      <div class="k"><div class="sw" style="--sw:#6BCB77; background:#6BCB77;"></div>3 = green</div>
+      <div class="k"><div class="sw" style="--sw:#FFC93C; background:#FFC93C;"></div>4 = yellow</div>
+      <div class="k"><div class="sw" style="--sw:#8C6BFA; background:#8C6BFA;"></div>5 = purple</div>
+    </div>
+  </div>
+
+  <div class="footer"><span>Well read and well colored! 🌈</span><span class="stars">★★★★★</span></div>
+</div>
+
+<!-- ============================================================ PAGE 8 — CERTIFICATE ============================================================ -->
+<div class="page">
+  <div class="cert">
+    <div class="eyebrow2">LITTLE LUME ENGLISH</div>
+    <h1>English Numbers Champion</h1>
+    <div class="cover-lume" style="width:100px; height:100px; margin:6px 0;">
+      <div class="wing l"></div><div class="wing r"></div>
+      <div class="body"></div>
+      <div class="eye l" style="top:42px; left:30px; width:11px; height:12px;"></div>
+      <div class="eye r" style="top:42px; left:58px; width:11px; height:12px;"></div>
+      <div class="cheek l" style="top:58px; left:18px; width:11px; height:7px;"></div>
+      <div class="cheek r" style="top:58px; left:70px; width:11px; height:7px;"></div>
+      <div class="smile" style="top:62px; left:41px; width:18px; height:9px;"></div>
+    </div>
+    <p>This certificate is proudly presented to</p>
+    <div class="name-line">&nbsp;</div>
+    <p>for reading, tracing, and spelling the numbers one to twenty in English with Lume! Keep shining, little star. ✨</p>
+    <div class="stars-big">★★★★★</div>
+    <div class="sign">
+      <div>Teacher</div>
+      <div>Date</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

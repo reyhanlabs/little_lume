@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>BunRey English Course - Writing Worksheets (Grade 1)</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Trebuchet MS', 'Verdana', sans-serif; color: #1F2937; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 12mm 14mm;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  /* ── Header ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--c, #7C3AED);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .header-logo {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--c, #7C3AED);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .header-brand {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--c, #7C3AED);
+    line-height: 1.1;
+  }
+  .header-brand small {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #9CA3AF;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 11px;
+    color: #4B5563;
+    font-weight: 700;
+  }
+  .header-right .lesson-tag {
+    display: inline-block;
+    background: var(--bg, #EDE9FE);
+    color: var(--c, #7C3AED);
+    border-radius: 14px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  /* ── Title block ── */
+  .title-block { text-align: center; margin-bottom: 14px; }
+  .title-emoji { font-size: 36px; }
+  .ws-title {
+    font-size: 25px;
+    font-weight: 800;
+    color: #1F2937;
+    margin: 4px 0 2px;
+  }
+  .ws-sub {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6B7280;
+  }
+
+  /* ── Name/Date row ── */
+  .info-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .info-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4B5563;
+  }
+  .info-line {
+    flex: 1;
+    border-bottom: 2px dotted #9CA3AF;
+    height: 18px;
+  }
+
+  /* ── Section ── */
+  .section { margin-bottom: 16px; }
+  .section-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--c, #7C3AED);
+    background: var(--bg, #EDE9FE);
+    border-radius: 10px;
+    padding: 6px 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .instructions {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4B5563;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  /* ── Trace rows ── */
+  .trace-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .trace-letters {
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--c, #7C3AED);
+    width: 64px;
+    text-align: left;
+    flex-shrink: 0;
+  }
+  .trace-line {
+    flex: 1;
+    border: 2px dashed #E5E7EB;
+    border-radius: 10px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    font-size: 18px;
+    letter-spacing: 6px;
+    color: #D1D5DB;
+    font-weight: 700;
+  }
+
+  /* ── Generic box with dashed practice area ── */
+  .box-row { display: flex; gap: 12px; }
+  .box-cell {
+    flex: 1;
+    border: 2px solid var(--c, #7C3AED);
+    border-radius: 12px;
+    padding: 8px;
+    text-align: center;
+  }
+  .box-cell .name {
+    font-weight: 800;
+    font-size: 12px;
+    color: #4B5563;
+    margin-bottom: 6px;
+  }
+  .box-cell .area {
+    border: 2px dashed #E5E7EB;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #D1D5DB;
+    letter-spacing: 5px;
+    font-weight: 700;
+  }
+
+  /* ── Lined writing area ── */
+  .write-lines {
+    border: 2px solid var(--c, #7C3AED);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+  .write-line {
+    border-bottom: 2px dashed #E5E7EB;
+    height: 32px;
+  }
+  .write-line:last-child { border-bottom: none; }
+
+  /* ── Sentence box with parts ── */
+  .sentence-parts { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .sentence-part {
+    border: 2px solid var(--spc, #10B981);
+    border-radius: 10px;
+    padding: 6px 14px;
+    text-align: center;
+  }
+  .sentence-part .pt { font-weight: 800; font-size: 14px; color: var(--spc, #10B981); }
+  .sentence-part .pr { font-size: 9px; color: #9CA3AF; font-weight: 700; text-transform: uppercase; margin-top: 2px; }
+
+  /* ── Punctuation grid ── */
+  .punct-grid { display: flex; gap: 12px; }
+  .punct-cell {
+    flex: 1;
+    border: 2px solid var(--c, #7C3AED);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+  }
+  .punct-cell .sym { font-size: 30px; font-weight: 900; color: var(--c, #7C3AED); }
+  .punct-cell .name { font-weight: 800; font-size: 12px; margin-top: 4px; color: #1F2937; }
+  .punct-cell .use { font-size: 10px; color: #9CA3AF; margin-top: 2px; }
+
+  /* ── Punctuation exercise list ── */
+  .pq-item {
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 8px 14px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pq-item .blank {
+    border: 2px dashed #D1D5DB;
+    border-radius: 6px;
+    width: 36px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  /* ── Word bank chips ── */
+  .word-bank { display: flex; flex-wrap: wrap; gap: 8px; }
+  .word-chip {
+    border: 2px solid var(--c, #7C3AED);
+    border-radius: 16px;
+    padding: 5px 16px;
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--c, #7C3AED);
+  }
+
+  /* ── Numbered writing rows (sentences) ── */
+  .num-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .num-circle {
+    min-width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--c, #7C3AED);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 12px;
+  }
+  .num-line {
+    flex: 1;
+    border-bottom: 2px dashed #E5E7EB;
+    height: 28px;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: #9CA3AF;
+    font-weight: 700;
+    border-top: 2px solid #F3F4F6;
+    padding-top: 6px;
+  }
+  .footer .star-row { font-size: 16px; letter-spacing: 6px; color: var(--c, #9CA3AF); font-weight: 900; }
+
+  /* ── Cover page ── */
+  .cover {
+    background: linear-gradient(160deg, #C4B5FD 0%, #93C5FD 60%, #67E8F9 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover-badge {
+    background: #fff;
+    border: 3px solid #7C3AED;
+    border-radius: 30px;
+    padding: 10px 30px;
+    color: #7C3AED;
+    font-weight: 800;
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .cover-emoji { font-size: 100px; margin-bottom: 16px; }
+  .cover-title {
+    font-size: 46px;
+    font-weight: 800;
+    color: #1F2937;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .cover-title .hl { color: #7C3AED; }
+  .cover-sub {
+    font-size: 17px;
+    font-weight: 700;
+    color: #4B5563;
+    margin-bottom: 36px;
+  }
+  .cover-info {
+    background: #fff;
+    border-radius: 20px;
+    padding: 22px 40px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.06);
+  }
+  .cover-info-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 800;
+    font-size: 15px;
+    color: #4B5563;
+    margin-bottom: 12px;
+  }
+  .cover-info-row:last-child { margin-bottom: 0; }
+  .cover-info-row .blank {
+    border-bottom: 3px dotted #9CA3AF;
+    width: 240px;
+    height: 22px;
+  }
+  .cover-lessons {
+    margin-top: 32px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 620px;
+  }
+  .cover-lesson-chip {
+    background: #fff;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #4B5563;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.05);
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER PAGE ════════════════ -->
+<div class="page cover">
+  <div class="cover-badge">BunRey English Course</div>
+  <div class="cover-emoji">✏️</div>
+  <div class="cover-title">Writing<br><span class="hl">Workbook</span></div>
+  <div class="cover-sub">Grade 1 Writing Practice — Letters, Words & Sentences</div>
+  <div class="cover-info">
+    <div class="cover-info-row">Name: <div class="blank"></div></div>
+    <div class="cover-info-row">Class: <div class="blank"></div></div>
+    <div class="cover-info-row">Date: <div class="blank"></div></div>
+  </div>
+  <div class="cover-lessons">
+    <div class="cover-lesson-chip">Lesson 1: Holding a Pencil</div>
+    <div class="cover-lesson-chip">Lesson 2: Capital Letters A-Z</div>
+    <div class="cover-lesson-chip">Lesson 3: Small Letters a-z</div>
+    <div class="cover-lesson-chip">Lesson 4: Writing Words</div>
+    <div class="cover-lesson-chip">Lesson 5: Writing Sentences</div>
+    <div class="cover-lesson-chip">Lesson 6: Punctuation Marks</div>
+  </div>
+</div>
+
+<!-- ════════════════ LESSON 1 ════════════════ -->
+<div class="page" style="--c:#FF6B6B; --bg:#FFF0F0;">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">✏️</div>
+      <div class="header-brand">BunRey English Course<small>Writing Worksheet</small></div>
+    </div>
+    <div class="header-right">
+      <div class="lesson-tag">Lesson 1 of 6</div><br/>
+      Grade 1 — Writing
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-emoji">✏️</div>
+    <div class="ws-title">Holding a Pencil</div>
+    <div class="ws-sub">Let's learn the right way!</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">Name: <div class="info-line"></div></div>
+    <div class="info-item">Date: <div class="info-line"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Tripod Grip</div>
+    <div class="instructions">Hold your pencil with your thumb, index finger, and middle finger. Rest it on your ring finger. Draw your hand showing the Tripod Grip below.</div>
+    <div class="box-cell" style="border-style:dashed;">
+      <div class="area" style="height: 80px;">draw your hand here</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Step-by-Step</div>
+    <div class="instructions">Number the steps in the correct order by writing 1-5 in each box.</div>
+    <div class="box-row">
+      <div class="box-cell"><div class="area" style="height:46px;">___</div><div class="name" style="margin-top:6px;">Pinch the pencil between your thumb and finger</div></div>
+      <div class="box-cell"><div class="area" style="height:46px;">___</div><div class="name" style="margin-top:6px;">Pick up your pencil</div></div>
+      <div class="box-cell"><div class="area" style="height:46px;">___</div><div class="name" style="margin-top:6px;">Rest pencil on middle finger</div></div>
+      <div class="box-cell"><div class="area" style="height:46px;">___</div><div class="name" style="margin-top:6px;">Start writing!</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Trace the Lines</div>
+    <div class="instructions">Trace each line slowly and carefully with your pencil. This helps your hand get strong for writing!</div>
+    <div class="trace-row"><div class="trace-letters">Straight</div><div class="trace-line">— — — — — — — — — — — —</div></div>
+    <div class="trace-row"><div class="trace-letters">Wavy</div><div class="trace-line">~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</div></div>
+    <div class="trace-row"><div class="trace-letters">Zigzag</div><div class="trace-line">^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^</div></div>
+    <div class="trace-row"><div class="trace-letters">Loops</div><div class="trace-line">l l l l l l l l l l l l</div></div>
+  </div>
+
+  <div class="footer">
+    <span>BunRey English Course - Grade 1 Writing Worksheet</span>
+    <span class="star-row">* * * * *</span>
+  </div>
+</div>
+
+<!-- ════════════════ LESSON 2 ════════════════ -->
+<div class="page" style="--c:#0D9488; --bg:#CCFBF1;">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">A</div>
+      <div class="header-brand">BunRey English Course<small>Writing Worksheet</small></div>
+    </div>
+    <div class="header-right">
+      <div class="lesson-tag">Lesson 2 of 6</div><br/>
+      Grade 1 — Writing
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-emoji">🔤</div>
+    <div class="ws-title">Capital Letters A-Z</div>
+    <div class="ws-sub">BIG letters are so important!</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">Name: <div class="info-line"></div></div>
+    <div class="info-item">Date: <div class="info-line"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">When Do We Use Capital Letters?</div>
+    <div class="instructions">We use capital letters: (1) at the START of a sentence, (2) for NAMES of people and places, and (3) for the word "I".</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Trace and Write A-M</div>
+    <div class="instructions">Trace the gray letters, then write your own capital letter on the line.</div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">A</div><div class="trace-line">A A A A A A A A A A A A</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">B</div><div class="trace-line">B B B B B B B B B B B B</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">C</div><div class="trace-line">C C C C C C C C C C C C</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">D</div><div class="trace-line">D D D D D D D D D D D D</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">E</div><div class="trace-line">E E E E E E E E E E E E</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Capitalize It!</div>
+    <div class="instructions">Each sentence below is missing a capital letter. Circle the letter that should be capital, then rewrite the word correctly on the line.</div>
+    <div class="num-row"><div class="num-circle">1</div><div style="flex:1; font-size:13px; font-weight:600;">anna has a red bag.</div><div class="num-line" style="flex:0 0 160px;"></div></div>
+    <div class="num-row"><div class="num-circle">2</div><div style="flex:1; font-size:13px; font-weight:600;">i like to read books.</div><div class="num-line" style="flex:0 0 160px;"></div></div>
+    <div class="num-row"><div class="num-circle">3</div><div style="flex:1; font-size:13px; font-weight:600;">my friend lives in jakarta.</div><div class="num-line" style="flex:0 0 160px;"></div></div>
+    <div class="num-row"><div class="num-circle">4</div><div style="flex:1; font-size:13px; font-weight:600;">today is monday.</div><div class="num-line" style="flex:0 0 160px;"></div></div>
+  </div>
+
+  <div class="footer">
+    <span>BunRey English Course - Grade 1 Writing Worksheet</span>
+    <span class="star-row">* * * * *</span>
+  </div>
+</div>
+
+<!-- ════════════════ LESSON 3 ════════════════ -->
+<div class="page" style="--c:#9333EA; --bg:#F3E8FF;">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">a</div>
+      <div class="header-brand">BunRey English Course<small>Writing Worksheet</small></div>
+    </div>
+    <div class="header-right">
+      <div class="lesson-tag">Lesson 3 of 6</div><br/>
+      Grade 1 — Writing
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-emoji">🔡</div>
+    <div class="ws-title">Small Letters a-z</div>
+    <div class="ws-sub">Little letters do big work!</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">Name: <div class="info-line"></div></div>
+    <div class="info-item">Date: <div class="info-line"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Small Letters Are Everywhere!</div>
+    <div class="instructions">Most letters in a sentence are SMALL (lowercase) letters. Only special letters are capital!</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Trace and Write a-j</div>
+    <div class="instructions">Trace each small letter carefully, then write it 2 more times.</div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">a</div><div class="trace-line">a a a a a a a a a a a a</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">b</div><div class="trace-line">b b b b b b b b b b b b</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">c</div><div class="trace-line">c c c c c c c c c c c c</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">d</div><div class="trace-line">d d d d d d d d d d d d</div></div>
+    <div class="trace-row"><div class="trace-letters" style="font-size:20px; text-align:center; width:36px;">e</div><div class="trace-line">e e e e e e e e e e e e</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Capital & Small Letter Pairs</div>
+    <div class="instructions">Draw a line to match each capital letter to its small letter partner.</div>
+    <div class="box-row">
+      <div class="box-cell" style="text-align:left;">
+        <div style="font-weight:800; font-size:18px; margin-bottom:10px;">A</div>
+        <div style="font-weight:800; font-size:18px; margin-bottom:10px;">B</div>
+        <div style="font-weight:800; font-size:18px; margin-bottom:10px;">C</div>
+        <div style="font-weight:800; font-size:18px;">D</div>
+      </div>
+      <div class="box-cell" style="text-align:right;">
+        <div style="font-weight:800; font-size:18px; margin-bottom:10px;">c</div>
+        <div style="font-weight:800; font-size:18px; margin-bottom:10px;">a</div>
+        <div style="font-weight:800; font-size:18px; margin-bottom:10px;">d</div>
+        <div style="font-weight:800; font-size:18px;">b</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Write These Words</div>
+    <div class="instructions">Write each word using small letters. Remember: start with a small letter unless it begins a sentence.</div>
+    <div class="num-row"><div class="num-circle">1</div><div style="font-weight:800; font-size:14px; width:60px;">cat</div><div class="num-line"></div></div>
+    <div class="num-row"><div class="num-circle">2</div><div style="font-weight:800; font-size:14px; width:60px;">dog</div><div class="num-line"></div></div>
+    <div class="num-row"><div class="num-circle">3</div><div style="font-weight:800; font-size:14px; width:60px;">sun</div><div class="num-line"></div></div>
+    <div class="num-row"><div class="num-circle">4</div><div style="font-weight:800; font-size:14px; width:60px;">hat</div><div class="num-line"></div></div>
+    <div class="num-row"><div class="num-circle">5</div><div style="font-weight:800; font-size:14px; width:60px;">big</div><div class="num-line"></div></div>
+  </div>
+
+  <div class="footer">
+    <span>BunRey English Course - Grade 1 Writing Worksheet</span>
+    <span class="star-row">* * * * *</span>
+  </div>
+</div>
+
+<!-- ════════════════ LESSON 4 ════════════════ -->
+<div class="page" style="--c:#D97706; --bg:#FFFBF0;">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">W</div>
+      <div class="header-brand">BunRey English Course<small>Writing Worksheet</small></div>
+    </div>
+    <div class="header-right">
+      <div class="lesson-tag">Lesson 4 of 6</div><br/>
+      Grade 1 — Writing
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-emoji">💬</div>
+    <div class="ws-title">Writing Words</div>
+    <div class="ws-sub">Words are groups of letters!</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">Name: <div class="info-line"></div></div>
+    <div class="info-item">Date: <div class="info-line"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">What Is a Word?</div>
+    <div class="instructions">A word is a group of letters that means something. We leave a space between each word.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Word Bank</div>
+    <div class="instructions">Here are some words to practice. Pick 5 words and write them in the lines below!</div>
+    <div class="word-bank">
+      <div class="word-chip">cat</div><div class="word-chip">dog</div><div class="word-chip">hen</div><div class="word-chip">pig</div>
+      <div class="word-chip">ant</div><div class="word-chip">bee</div><div class="word-chip">bag</div><div class="word-chip">cup</div>
+      <div class="word-chip">pen</div><div class="word-chip">hat</div><div class="word-chip">box</div><div class="word-chip">mat</div>
+      <div class="word-chip">run</div><div class="word-chip">sit</div><div class="word-chip">hop</div><div class="word-chip">dig</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Write Each Word Twice + Draw a Picture</div>
+    <div class="instructions">Write each word two times, then draw a small picture next to it.</div>
+    <div class="box-row">
+      <div class="box-cell">
+        <div class="name">cat</div>
+        <div class="area" style="height:34px; margin-bottom:6px;"></div>
+        <div class="area" style="height:34px; margin-bottom:6px;"></div>
+        <div class="area" style="height:50px;">draw here</div>
+      </div>
+      <div class="box-cell">
+        <div class="name">dog</div>
+        <div class="area" style="height:34px; margin-bottom:6px;"></div>
+        <div class="area" style="height:34px; margin-bottom:6px;"></div>
+        <div class="area" style="height:50px;">draw here</div>
+      </div>
+      <div class="box-cell">
+        <div class="name">sun</div>
+        <div class="area" style="height:34px; margin-bottom:6px;"></div>
+        <div class="area" style="height:34px; margin-bottom:6px;"></div>
+        <div class="area" style="height:50px;">draw here</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Spell It!</div>
+    <div class="instructions">Look at each picture clue and write the missing word.</div>
+    <div class="num-row"><div class="num-circle">1</div><div style="flex:1; font-size:13px; font-weight:600;">A small flying insect that makes honey: ___ e e</div><div class="num-line" style="flex:0 0 100px;"></div></div>
+    <div class="num-row"><div class="num-circle">2</div><div style="flex:1; font-size:13px; font-weight:600;">An animal that says "oink": p ___ g</div><div class="num-line" style="flex:0 0 100px;"></div></div>
+    <div class="num-row"><div class="num-circle">3</div><div style="flex:1; font-size:13px; font-weight:600;">You sit on this at the table: ___ a t</div><div class="num-line" style="flex:0 0 100px;"></div></div>
+  </div>
+
+  <div class="footer">
+    <span>BunRey English Course - Grade 1 Writing Worksheet</span>
+    <span class="star-row">* * * * *</span>
+  </div>
+</div>
+
+<!-- ════════════════ LESSON 5 ════════════════ -->
+<div class="page" style="--c:#059669; --bg:#D1FAE5;">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">S</div>
+      <div class="header-brand">BunRey English Course<small>Writing Worksheet</small></div>
+    </div>
+    <div class="header-right">
+      <div class="lesson-tag">Lesson 5 of 6</div><br/>
+      Grade 1 — Writing
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-emoji">📝</div>
+    <div class="ws-title">Writing Sentences</div>
+    <div class="ws-sub">A sentence is a complete thought!</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">Name: <div class="info-line"></div></div>
+    <div class="info-item">Date: <div class="info-line"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The 3 Rules of a Sentence</div>
+    <div class="instructions">(1) Start with a CAPITAL letter. (2) Have a subject and an action. (3) End with a PERIOD (.)</div>
+    <div class="sentence-parts">
+      <div class="sentence-part" style="--spc:#10B981;"><div class="pt">The cat</div><div class="pr">Who (subject)</div></div>
+      <div class="sentence-part" style="--spc:#F59E0B;"><div class="pt">sits</div><div class="pr">Does what (verb)</div></div>
+      <div class="sentence-part" style="--spc:#A855F7;"><div class="pt">on the mat.</div><div class="pr">Where / extra info</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Fix the Sentence!</div>
+    <div class="instructions">Each sentence below is missing a capital letter or a period. Rewrite it correctly on the line.</div>
+    <div class="num-row"><div class="num-circle">1</div><div style="flex:1; font-size:13px; font-weight:600;">the dog runs fast</div><div class="num-line" style="flex:0 0 220px;"></div></div>
+    <div class="num-row"><div class="num-circle">2</div><div style="flex:1; font-size:13px; font-weight:600;">she has a red bag</div><div class="num-line" style="flex:0 0 220px;"></div></div>
+    <div class="num-row"><div class="num-circle">3</div><div style="flex:1; font-size:13px; font-weight:600;">my cat is big</div><div class="num-line" style="flex:0 0 220px;"></div></div>
+    <div class="num-row"><div class="num-circle">4</div><div style="flex:1; font-size:13px; font-weight:600;">the sun is hot</div><div class="num-line" style="flex:0 0 220px;"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Write Your Own Sentences!</div>
+    <div class="instructions">Write 3 sentences about your favorite animal. Remember the 3 rules: Capital letter + Subject + Verb + Period!</div>
+    <div class="write-lines">
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+      <div class="write-line"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>BunRey English Course - Grade 1 Writing Worksheet</span>
+    <span class="star-row">* * * * *</span>
+  </div>
+</div>
+
+<!-- ════════════════ LESSON 6 ════════════════ -->
+<div class="page" style="--c:#DC2626; --bg:#FEE2E2;">
+  <div class="header">
+    <div class="header-left">
+      <div class="header-logo">!</div>
+      <div class="header-brand">BunRey English Course<small>Writing Worksheet</small></div>
+    </div>
+    <div class="header-right">
+      <div class="lesson-tag">Lesson 6 of 6</div><br/>
+      Grade 1 — Writing
+    </div>
+  </div>
+
+  <div class="title-block">
+    <div class="title-emoji">❓</div>
+    <div class="ws-title">Punctuation Marks</div>
+    <div class="ws-sub">Little signs with big meaning!</div>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">Name: <div class="info-line"></div></div>
+    <div class="info-item">Date: <div class="info-line"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Three Important Marks</div>
+    <div class="punct-grid">
+      <div class="punct-cell">
+        <div class="sym">.</div>
+        <div class="name">Period</div>
+        <div class="use">Ends a telling sentence</div>
+      </div>
+      <div class="punct-cell">
+        <div class="sym">?</div>
+        <div class="name">Question Mark</div>
+        <div class="use">Ends a question</div>
+      </div>
+      <div class="punct-cell">
+        <div class="sym">!</div>
+        <div class="name">Exclamation Point</div>
+        <div class="use">Shows strong feeling</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Add the Right Punctuation!</div>
+    <div class="instructions">Write the correct mark (. ? or !) in the box at the end of each sentence.</div>
+    <div class="pq-item" style="padding:6px 14px; margin-bottom:6px;"><span>The cat is sleeping</span><div class="blank" style="height:22px;"></div></div>
+    <div class="pq-item" style="padding:6px 14px; margin-bottom:6px;"><span>Is that your bag</span><div class="blank" style="height:22px;"></div></div>
+    <div class="pq-item" style="padding:6px 14px; margin-bottom:6px;"><span>I won the race</span><div class="blank" style="height:22px;"></div></div>
+    <div class="pq-item" style="padding:6px 14px; margin-bottom:6px;"><span>Where is my pencil</span><div class="blank" style="height:22px;"></div></div>
+    <div class="pq-item" style="padding:6px 14px; margin-bottom:6px;"><span>She has a new book</span><div class="blank" style="height:22px;"></div></div>
+    <div class="pq-item" style="padding:6px 14px; margin-bottom:0;"><span>What a great day</span><div class="blank" style="height:22px;"></div></div>
+  </div>
+
+  <div class="section" style="margin-bottom:10px;">
+    <div class="section-title">Write Your Own!</div>
+    <div class="instructions">Write one sentence for each: a telling sentence (.), a question (?), and an exciting sentence (!).</div>
+    <div class="num-row" style="margin-bottom:6px;"><div class="num-circle">.</div><div class="num-line" style="height:22px;"></div></div>
+    <div class="num-row" style="margin-bottom:6px;"><div class="num-circle">?</div><div class="num-line" style="height:22px;"></div></div>
+    <div class="num-row" style="margin-bottom:0;"><div class="num-circle">!</div><div class="num-line" style="height:22px;"></div></div>
+  </div>
+
+  <div class="section" style="margin-bottom:0;">
+    <div class="section-title">Great Job!</div>
+    <div class="instructions" style="margin-bottom:6px;">You finished all 6 lessons! Color the stars below to celebrate.</div>
+    <div class="box-cell" style="border-style:dashed; text-align:center; padding:4px;">
+      <div style="font-size:24px; letter-spacing:14px;">* * * * *</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>BunRey English Course - Grade 1 Writing Worksheet</span>
+    <span class="star-row">* * * * *</span>
+  </div>
+</div>
+
+</body>
+</html>

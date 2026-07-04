@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Little Lume English — My Animal Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,500;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#5EC4E8;
+    --sky-deep:#2FA6D6;
+    --sun:#FFD23F;
+    --grass:#7AC74F;
+    --coral:#FF8C61;
+    --cream:#FFFFFF;
+    --ink:#3A3042;
+    --line:#C9C2D6;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:#EDEDED;
+  }
+
+  /* ---------- PRINT SETUP ---------- */
+  @page{ size:A4; margin:9mm; }
+  @media print{
+    body{ background:#fff; }
+    .screen-note{ display:none !important; }
+    .sheet{ box-shadow:none !important; margin:0 !important; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+  @media screen{
+    .sheet{
+      width:210mm;
+      min-height:297mm;
+      margin:14px auto;
+      box-shadow:0 6px 24px rgba(0,0,0,.18);
+      background:var(--cream);
+    }
+  }
+  .sheet{
+    position:relative;
+    background:var(--cream);
+    padding:10mm 11mm 10mm 11mm;
+    page-break-after:always;
+    overflow:hidden;
+  }
+  .sheet:last-child{page-break-after:auto;}
+
+  /* scalloped border trim */
+  .trim{
+    position:absolute; left:0; right:0; height:9mm; pointer-events:none;
+  }
+  .trim.top{ top:0; background-repeat:repeat-x; background-size:14mm 9mm;
+    background-image:radial-gradient(circle at 7mm 0mm, transparent 6.2mm, var(--grass) 6.3mm);
+    transform:rotate(180deg);
+  }
+  .trim.bottom{ bottom:0; background-repeat:repeat-x; background-size:14mm 9mm;
+    background-image:radial-gradient(circle at 7mm 9mm, transparent 6.2mm, var(--sky) 6.3mm);
+  }
+
+  .content{ position:relative; z-index:2; padding-top:4mm; }
+
+  .screen-note{
+    max-width:210mm; margin:14px auto 0; font-family:'Nunito',sans-serif;
+    background:var(--ink); color:#fff; padding:10px 16px; border-radius:10px;
+    text-align:center; font-weight:800;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header{
+    display:flex; align-items:center; gap:10px;
+    background:linear-gradient(135deg,var(--sky),var(--sky-deep));
+    border-radius:18px; padding:10px 16px;
+    box-shadow:0 4px 0 #1E85AE;
+  }
+  .brand{ display:flex; align-items:center; gap:8px; flex:1; }
+  .brand-text .kicker{
+    font-family:'Baloo 2',sans-serif; font-weight:700; color:#FFF7D6;
+    font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  }
+  .brand-text h1{
+    font-family:'Baloo 2',sans-serif; margin:0; color:#fff; font-size:26px;
+    text-shadow:0 2px 0 rgba(0,0,0,.12);
+  }
+  .header .badge{
+    background:var(--sun); color:var(--ink); font-family:'Baloo 2',sans-serif;
+    font-weight:800; padding:8px 14px; border-radius:14px; font-size:13px;
+    box-shadow:0 3px 0 #E0AC1A; white-space:nowrap;
+  }
+
+  /* Lume mascot (firefly) */
+  .lume{ width:54px; height:54px; flex-shrink:0; }
+
+  .fields{
+    display:flex; gap:14px; margin-top:8px; padding:8px 4px 2px;
+    font-family:'Baloo 2',sans-serif; font-size:13px; flex-wrap:wrap;
+  }
+  .fields span{ border-bottom:2px dotted var(--ink); padding-bottom:2px; flex:1; min-width:120px; }
+
+  /* ---------- SECTION ---------- */
+  .section{ margin-top:12px; }
+  .section-title{
+    display:flex; align-items:center; gap:8px;
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:15px;
+    color:#fff; background:var(--coral); padding:6px 12px 6px 8px;
+    border-radius:10px 10px 0 0; box-shadow:inset 0 -3px 0 rgba(0,0,0,.12);
+  }
+  .section-title .num{
+    background:#fff; color:var(--coral); border-radius:50%; width:22px; height:22px;
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+  }
+  .section-body{
+    border:2.5px dashed var(--coral); border-top:none; border-radius:0 0 14px 14px;
+    padding:10px 12px 12px;
+  }
+  .instr{ font-style:italic; font-weight:700; font-size:12px; color:var(--sky-deep); margin:0 0 8px; }
+
+  /* speech bubble helper */
+  .bubble{
+    position:relative; background:#fff; border:2px solid var(--ink); border-radius:12px;
+    padding:5px 10px; font-family:'Baloo 2',sans-serif; font-size:11px; font-weight:700;
+    display:inline-block;
+  }
+
+  /* ---------- SECTION 1: MATCH ---------- */
+  .match-wrap{ display:flex; gap:16px; }
+  .match-col{ flex:1; }
+  .match-row{
+    display:flex; align-items:center; gap:10px; background:#fff;
+    border:2px solid var(--line); border-radius:12px; padding:6px 10px; margin-bottom:8px;
+  }
+  .match-row .emoji{ font-size:26px; width:34px; text-align:center; }
+  .match-row .word{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:14px; }
+  .letter-box{
+    width:26px; height:26px; border:2.5px solid var(--grass); border-radius:6px; margin-left:auto;
+    background:#F4FFEF;
+  }
+  .word-tag{
+    display:flex; align-items:center; gap:8px; background:var(--sun); border-radius:10px;
+    padding:6px 10px; margin-bottom:8px; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:14px;
+  }
+  .word-tag .letter{
+    background:var(--ink); color:#FFD23F; width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:12px;
+  }
+
+  /* ---------- SECTION 2: TRACE ---------- */
+  .trace-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .trace-card{ background:#fff; border:2px solid var(--line); border-radius:12px; padding:8px 10px; text-align:center; }
+  .trace-card .emoji{ font-size:30px; }
+  .trace-word{
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:22px; letter-spacing:3px;
+    color:transparent; -webkit-text-stroke:1.4px #9A93AC; margin:4px 0 2px;
+  }
+  .write-line{ border-bottom:2px dotted var(--ink); height:20px; margin-top:2px; }
+
+  /* ---------- SECTION 3: SOUNDS ---------- */
+  .sound-row{ background:#fff; border:2px solid var(--line); border-radius:12px; padding:8px 10px; margin-bottom:8px; }
+  .sound-sentence{ font-family:'Baloo 2',sans-serif; font-weight:700; font-size:13px; margin-bottom:6px; }
+  .sound-sentence .say{ color:var(--coral); }
+  .sound-options{ display:flex; gap:16px; justify-content:center; }
+  .sound-options .opt{ font-size:30px; padding:4px 10px; border:2.5px solid transparent; border-radius:50%; }
+
+  /* ---------- SECTION 4: COUNT ---------- */
+  .count-row{ display:flex; align-items:center; gap:10px; background:#fff; border:2px solid var(--line); border-radius:12px; padding:8px 10px; margin-bottom:8px; }
+  .count-emojis{ font-size:24px; letter-spacing:4px; flex:1; }
+  .count-box{ width:38px; height:38px; border:2.5px solid var(--sky-deep); border-radius:8px; background:#EAF8FF; }
+
+  /* ---------- SECTION 5: COLOR ---------- */
+  .color-grid{ display:flex; gap:14px; justify-content:center; }
+  .color-card{ text-align:center; }
+  .color-card svg{ width:150px; height:130px; }
+  .color-card p{ font-family:'Baloo 2',sans-serif; font-weight:800; margin:2px 0 0; }
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    margin-top:14px; background:linear-gradient(135deg,var(--grass),#5AA835);
+    border-radius:16px; padding:10px 16px; display:flex; align-items:center;
+    justify-content:space-between; box-shadow:0 4px 0 #468226;
+  }
+  .footer h3{ font-family:'Baloo 2',sans-serif; color:#fff; margin:0; font-size:16px; }
+  .stars{ font-size:26px; letter-spacing:4px; }
+  .stars span{ color:rgba(255,255,255,.35); }
+</style>
+</head>
+<body>
+
+<div class="screen-note">✨ Ready to print! Press <b>Ctrl/Cmd + P</b> → destination "Save as PDF" → paper size <b>A4</b> → enable "Background graphics" for full color.</div>
+
+<!-- ======================= PAGE 1 ======================= -->
+<div class="sheet">
+  <div class="trim top"></div>
+
+  <div class="content">
+    <div class="header">
+      <div class="brand">
+        <svg class="lume" viewBox="0 0 64 64">
+          <ellipse cx="32" cy="38" rx="15" ry="17" fill="#FFD23F" stroke="#3A3042" stroke-width="2.5"/>
+          <path d="M18 30 C6 20,6 44,18 40" fill="#FFF7D6" stroke="#3A3042" stroke-width="2"/>
+          <path d="M46 30 C58 20,58 44,46 40" fill="#FFF7D6" stroke="#3A3042" stroke-width="2"/>
+          <circle cx="26" cy="34" r="2.6" fill="#3A3042"/>
+          <circle cx="38" cy="34" r="2.6" fill="#3A3042"/>
+          <path d="M25 44 Q32 50 39 44" stroke="#3A3042" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M32 21 L28 12 M32 21 L36 12" stroke="#3A3042" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="28" cy="11" r="2" fill="#FF8C61"/>
+          <circle cx="36" cy="11" r="2" fill="#FF8C61"/>
+        </svg>
+        <div class="brand-text">
+          <div class="kicker">Little Lume English</div>
+          <h1>My Animal Adventure!</h1>
+        </div>
+      </div>
+      <div class="badge">Grade 1 🐾</div>
+    </div>
+
+    <div class="fields">
+      <span>Name: ___________________</span>
+      <span>Date: ______________</span>
+      <span>Class: ___________</span>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span> Look and Match!</div>
+      <div class="section-body">
+        <p class="instr">🔎 Write the correct letter in the box next to each animal.</p>
+        <div class="match-wrap">
+          <div class="match-col">
+            <div class="match-row"><span class="emoji">🐘</span><span class="letter-box"></span></div>
+            <div class="match-row"><span class="emoji">🐱</span><span class="letter-box"></span></div>
+            <div class="match-row"><span class="emoji">🐄</span><span class="letter-box"></span></div>
+            <div class="match-row"><span class="emoji">🐔</span><span class="letter-box"></span></div>
+          </div>
+          <div class="match-col">
+            <div class="word-tag"><span class="letter">A</span> Cat</div>
+            <div class="word-tag"><span class="letter">B</span> Hen</div>
+            <div class="word-tag"><span class="letter">C</span> Elephant</div>
+            <div class="word-tag"><span class="letter">D</span> Cow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span> Trace and Write!</div>
+      <div class="section-body">
+        <p class="instr">✏️ Trace the grey word, then write it yourself on the line.</p>
+        <div class="trace-grid">
+          <div class="trace-card">
+            <div class="emoji">🐑</div>
+            <div class="trace-word">sheep</div>
+            <div class="write-line"></div>
+          </div>
+          <div class="trace-card">
+            <div class="emoji">🦆</div>
+            <div class="trace-word">duck</div>
+            <div class="write-line"></div>
+          </div>
+          <div class="trace-card">
+            <div class="emoji">🐟</div>
+            <div class="trace-word">fish</div>
+            <div class="write-line"></div>
+          </div>
+          <div class="trace-card">
+            <div class="emoji">🐰</div>
+            <div class="trace-word">rabbit</div>
+            <div class="write-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" style="margin-top:16px;">
+      <h3>🌟 Keep going, explorer! Page 2 has more fun! 🌟</h3>
+      <div class="bubble">Great job so far!</div>
+    </div>
+  </div>
+
+  <div class="trim bottom"></div>
+</div>
+
+<!-- ======================= PAGE 2 ======================= -->
+<div class="sheet">
+  <div class="trim top"></div>
+
+  <div class="content">
+    <div class="header">
+      <div class="brand">
+        <svg class="lume" viewBox="0 0 64 64">
+          <ellipse cx="32" cy="38" rx="15" ry="17" fill="#FFD23F" stroke="#3A3042" stroke-width="2.5"/>
+          <path d="M18 30 C6 20,6 44,18 40" fill="#FFF7D6" stroke="#3A3042" stroke-width="2"/>
+          <path d="M46 30 C58 20,58 44,46 40" fill="#FFF7D6" stroke="#3A3042" stroke-width="2"/>
+          <circle cx="26" cy="34" r="2.6" fill="#3A3042"/>
+          <circle cx="38" cy="34" r="2.6" fill="#3A3042"/>
+          <path d="M25 44 Q32 50 39 44" stroke="#3A3042" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M32 21 L28 12 M32 21 L36 12" stroke="#3A3042" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="28" cy="11" r="2" fill="#FF8C61"/>
+          <circle cx="36" cy="11" r="2" fill="#FF8C61"/>
+        </svg>
+        <div class="brand-text">
+          <div class="kicker">Little Lume English</div>
+          <h1>Animal Sounds & Fun!</h1>
+        </div>
+      </div>
+      <div class="badge">Grade 1 🐾</div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section" style="margin-top:12px;">
+      <div class="section-title"><span class="num">3</span> Listen and Circle!</div>
+      <div class="section-body">
+        <p class="instr">🔊 Circle the animal that makes this sound.</p>
+
+        <div class="sound-row">
+          <div class="sound-sentence">I say <span class="say">"Moo!"</span> I am a...</div>
+          <div class="sound-options"><span class="opt">🐄</span><span class="opt">🐱</span><span class="opt">🐑</span></div>
+        </div>
+        <div class="sound-row">
+          <div class="sound-sentence">I say <span class="say">"Toot!"</span> I am a...</div>
+          <div class="sound-options"><span class="opt">🐄</span><span class="opt">🐘</span><span class="opt">🐔</span></div>
+        </div>
+        <div class="sound-row">
+          <div class="sound-sentence">I say <span class="say">"Quack!"</span> I am a...</div>
+          <div class="sound-options"><span class="opt">🐰</span><span class="opt">🐑</span><span class="opt">🦆</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span> Count the Animals!</div>
+      <div class="section-body">
+        <p class="instr">🔢 Count the animals and write the number in the box.</p>
+        <div class="count-row"><span class="count-emojis">🐔🐔🐔🐔🐔</span><span class="count-box"></span></div>
+        <div class="count-row"><span class="count-emojis">🐟🐟🐟</span><span class="count-box"></span></div>
+        <div class="count-row"><span class="count-emojis">🐘🐘🐘🐘🐘🐘</span><span class="count-box"></span></div>
+      </div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section">
+      <div class="section-title"><span class="num">5</span> Color Me!</div>
+      <div class="section-body">
+        <p class="instr">🎨 Use your favorite colors to make these animals colorful!</p>
+        <div class="color-grid">
+          <div class="color-card">
+            <svg viewBox="0 0 150 130">
+              <ellipse cx="75" cy="80" rx="45" ry="38" fill="#fff" stroke="#3A3042" stroke-width="3"/>
+              <path d="M40 50 L28 18 L58 42 Z" fill="#fff" stroke="#3A3042" stroke-width="3"/>
+              <path d="M110 50 L122 18 L92 42 Z" fill="#fff" stroke="#3A3042" stroke-width="3"/>
+              <circle cx="60" cy="75" r="4" fill="#3A3042"/>
+              <circle cx="90" cy="75" r="4" fill="#3A3042"/>
+              <path d="M70 90 Q75 96 80 90" stroke="#3A3042" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M75 84 L75 90" stroke="#3A3042" stroke-width="3" stroke-linecap="round"/>
+              <path d="M40 92 L15 88 M40 98 L15 98 M40 104 L15 108" stroke="#3A3042" stroke-width="2" stroke-linecap="round"/>
+              <path d="M110 92 L135 88 M110 98 L135 98 M110 104 L135 108" stroke="#3A3042" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p>Cat</p>
+          </div>
+          <div class="color-card">
+            <svg viewBox="0 0 150 130">
+              <circle cx="26" cy="58" r="26" fill="#fff" stroke="#3A3042" stroke-width="3"/>
+              <circle cx="124" cy="58" r="26" fill="#fff" stroke="#3A3042" stroke-width="3"/>
+              <ellipse cx="75" cy="60" rx="34" ry="32" fill="#fff" stroke="#3A3042" stroke-width="3"/>
+              <circle cx="62" cy="54" r="3.2" fill="#3A3042"/>
+              <circle cx="88" cy="54" r="3.2" fill="#3A3042"/>
+              <path d="M68 82 C62 100 62 112 70 122 C74 127 84 124 80 114" fill="#fff" stroke="#3A3042" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <p>Elephant</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <h3>🎉 Great job, little explorer! You finished the adventure! 🎉</h3>
+      <div class="stars">⭐⭐⭐<span>⭐⭐</span></div>
+    </div>
+  </div>
+
+  <div class="trim bottom"></div>
+</div>
+
+</body>
+</html>

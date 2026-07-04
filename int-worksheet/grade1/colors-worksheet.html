@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Colors Worksheet | Grade 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;700;800&display=swap');
+
+  /* ── SCREEN STYLES ── */
+  :root {
+    --red:#FF4D6D; --orange:#FF9500; --yellow:#FFD600; --green:#4CAF50;
+    --blue:#2196F3; --purple:#9C27B0; --pink:#FF69B4; --brown:#795548;
+    --black:#212121; --white:#F5F5F5;
+    --page-bg:#E8E8E8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--page-bg);
+    color: #111;
+  }
+
+  /* print button toolbar */
+  .toolbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: #2196F3;
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .toolbar-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem; font-weight: 800;
+    color: #fff; white-space: nowrap;
+  }
+  .toolbar-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .print-btn {
+    padding: 8px 22px;
+    background: #fff;
+    color: #2196F3;
+    border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .9rem; font-weight: 800;
+    cursor: pointer; transition: all .2s;
+    white-space: nowrap;
+  }
+  .print-btn:hover { background: #E3F2FD; transform: scale(1.04); }
+  .print-btn.orange { color: #FF9500; }
+  .print-note {
+    color: rgba(255,255,255,.85);
+    font-size: .8rem; font-weight: 600;
+  }
+
+  /* page container on screen */
+  .pages-wrapper {
+    padding: 70px 20px 40px;
+    display: flex; flex-direction: column; align-items: center; gap: 32px;
+  }
+
+  /* A4 page */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    padding: 14mm 14mm 12mm;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    position: relative;
+    page-break-after: always;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid #2196F3;
+    padding-bottom: 6px; margin-bottom: 10px;
+  }
+  .brand {
+    font-family: 'Baloo 2', cursive;
+    font-size: .85rem; font-weight: 800; color: #2196F3;
+    letter-spacing: 1px;
+  }
+  .page-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.05rem; font-weight: 800; color: #212121;
+    text-align: center;
+  }
+  .page-num { font-size: .75rem; font-weight: 700; color: #aaa; }
+
+  /* student info bar */
+  .info-bar {
+    display: flex; gap: 16px; margin-bottom: 12px;
+    font-size: .8rem; font-weight: 700; color: #555;
+  }
+  .info-field { display: flex; align-items: center; gap: 6px; flex: 1; }
+  .info-label { white-space: nowrap; }
+  .info-line {
+    flex: 1; border-bottom: 1.5px solid #555;
+    min-width: 40px; height: 16px;
+  }
+
+  /* section title */
+  .ws-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem; font-weight: 800;
+    color: #fff;
+    background: #2196F3;
+    display: inline-block;
+    padding: 3px 14px; border-radius: 50px;
+    margin-bottom: 8px;
+  }
+  .ws-instruction {
+    font-size: .78rem; font-weight: 700; color: #555;
+    margin-bottom: 10px; line-height: 1.4;
+  }
+
+  /* ══ EXERCISE 1 – Color the circles ══ */
+  .color-circles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px 6px;
+    margin-bottom: 14px;
+  }
+  .circle-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .circle-ring {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2.5px solid #888;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .6rem; font-weight: 800; color: #aaa;
+  }
+  .circle-name {
+    font-size: .72rem; font-weight: 800; color: #333; text-align: center;
+  }
+
+  /* ══ EXERCISE 2 – Trace the word ══ */
+  .trace-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 14px;
+    margin-bottom: 14px;
+  }
+  .trace-item {
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    padding: 7px 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .trace-emoji { font-size: 1.5rem; flex-shrink: 0; }
+  .trace-right { flex: 1; }
+  .trace-dotted {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem; font-weight: 900;
+    color: #ccc;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+    display: block;
+  }
+  .trace-line {
+    border-bottom: 1.5px dashed #ccc;
+    margin-top: 2px; height: 18px;
+  }
+  .color-label {
+    font-size: .65rem; font-weight: 700; color: #aaa;
+  }
+
+  /* ══ EXERCISE 3 – Match ══ */
+  .match-layout {
+    display: flex; gap: 10px; align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .match-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .match-center { width: 40px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; align-items: center; padding-top: 4px; }
+  .match-swatch-box {
+    height: 34px; border-radius: 8px;
+    border: 2px solid #888;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; font-weight: 700; color: #888;
+  }
+  .match-word-box {
+    height: 34px; border-radius: 8px;
+    border: 2px solid #888;
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: .8rem; font-weight: 800; color: #212121;
+  }
+  .match-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; margin: 13px 0; }
+  .match-line-area { flex-shrink: 0; width: 60px; }
+
+  /* ══ EXERCISE 4 – Fill in the blank ══ */
+  .fill-list { list-style: none; margin-bottom: 14px; }
+  .fill-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .82rem; font-weight: 700;
+    margin-bottom: 8px; color: #222;
+    line-height: 1.5;
+  }
+  .fill-num {
+    width: 18px; height: 18px;
+    background: #2196F3; color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; font-weight: 800; flex-shrink: 0;
+  }
+  .fill-emoji { font-size: 1.1rem; flex-shrink: 0; }
+  .fill-blank {
+    display: inline-block;
+    border-bottom: 2px solid #555;
+    min-width: 60px; margin: 0 4px;
+  }
+  .word-bank {
+    background: #F3F4F6;
+    border: 2px dashed #9E9E9E;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 14px;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  }
+  .word-bank-title { font-size: .72rem; font-weight: 800; color: #555; margin-right: 4px; }
+  .word-chip {
+    background: #fff; border: 1.5px solid #9E9E9E;
+    border-radius: 50px; padding: 2px 10px;
+    font-size: .78rem; font-weight: 800; color: #333;
+  }
+
+  /* ══ EXERCISE 5 – Color by number ══ */
+  .cbn-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 10px;
+  }
+  .cbn-cell {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    height: 48px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+  }
+  .cbn-num { font-size: .65rem; font-weight: 800; color: #888; }
+  .cbn-emoji { font-size: 1.2rem; }
+  .cbn-key {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+  }
+  .cbn-key-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: .75rem; font-weight: 700;
+  }
+  .cbn-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,.15);
+    flex-shrink: 0;
+  }
+
+  /* ══ EXERCISE 6 – True or False ══ */
+  .tf-list { list-style: none; margin-bottom: 14px; }
+  .tf-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .82rem; font-weight: 700; color: #222;
+    margin-bottom: 8px;
+  }
+  .tf-boxes { display: flex; gap: 5px; margin-left: auto; flex-shrink: 0; }
+  .tf-box {
+    width: 36px; height: 22px;
+    border: 2px solid #888; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; font-weight: 800; color: #888;
+  }
+
+  /* ══ EXERCISE 7 – My Favorite Color ══ */
+  .fav-color-box {
+    border: 2.5px dashed #2196F3;
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+  }
+  .fav-sentence { font-size: .9rem; font-weight: 700; color: #333; margin-bottom: 10px; }
+  .fav-blank {
+    display: inline-block; border-bottom: 2px solid #555;
+    min-width: 90px; margin: 0 4px;
+  }
+  .draw-box {
+    border: 2px solid #ccc; border-radius: 10px;
+    height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    color: #ccc; font-size: .75rem; font-weight: 700;
+    background: #FAFAFA;
+  }
+
+  /* ══ EXERCISE 8 – Unscramble ══ */
+  .unscramble-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 14px;
+    margin-bottom: 14px;
+  }
+  .unscramble-item {
+    border: 2px solid #E0E0E0; border-radius: 10px;
+    padding: 7px 10px;
+  }
+  .scramble-word { font-size: .95rem; font-weight: 900; color: #FF4D6D; letter-spacing: 3px; margin-bottom: 6px; }
+  .unscramble-line { border-bottom: 1.5px solid #555; height: 20px; width: 100%; }
+  .unscramble-hint { font-size: .65rem; font-weight: 700; color: #aaa; margin-top: 3px; }
+
+  /* ══ EXERCISE 9 – Write & Draw ══ */
+  .write-draw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .write-draw-cell {
+    border: 2px solid #E0E0E0; border-radius: 10px;
+    padding: 8px;
+    display: flex; flex-direction: column; gap: 5px;
+    align-items: center;
+  }
+  .wd-color-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid rgba(0,0,0,.1);
+  }
+  .wd-label { font-size: .72rem; font-weight: 800; color: #333; text-align: center; }
+  .wd-draw-box {
+    width: 100%; height: 52px;
+    border: 1.5px dashed #ccc; border-radius: 6px;
+    background: #FAFAFA;
+  }
+  .wd-write-line { border-bottom: 1.5px solid #ccc; width: 100%; height: 18px; }
+
+  /* ══ EXERCISE 10 – Rainbow ══ */
+  .rainbow-arc-wrap {
+    text-align: center; margin-bottom: 10px;
+  }
+  .rainbow-labels-row {
+    display: flex; justify-content: space-around;
+    margin-bottom: 10px;
+    font-size: .72rem; font-weight: 800; color: #555;
+  }
+  .rainbow-arcs {
+    width: 100%; max-width: 320px;
+    margin: 0 auto 6px;
+    display: block;
+  }
+  .rainbow-fill-row {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .rainbow-fill-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: .75rem; font-weight: 700;
+  }
+  .rb-color-num {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid #888; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; font-weight: 800; color: #555;
+    flex-shrink: 0;
+  }
+
+  /* page footer */
+  .page-footer {
+    position: absolute; bottom: 8mm; left: 14mm; right: 14mm;
+    border-top: 1.5px solid #E0E0E0;
+    padding-top: 4px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-size: .65rem; font-weight: 700; color: #aaa; }
+  .score-box {
+    border: 2px solid #2196F3; border-radius: 8px;
+    padding: 2px 14px;
+    font-size: .72rem; font-weight: 800; color: #2196F3;
+  }
+
+  /* ══ divider ══ */
+  .divider {
+    border: none; border-top: 1.5px dashed #E0E0E0;
+    margin: 10px 0;
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    @page { size: A4; margin: 0; }
+    body { background: #fff; }
+    .toolbar { display: none !important; }
+    .pages-wrapper { padding: 0; gap: 0; }
+    .page {
+      width: 210mm; min-height: 297mm;
+      padding: 14mm 14mm 20mm;
+      box-shadow: none;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page:last-child { page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR (screen only) -->
+<div class="toolbar">
+  <div class="toolbar-title">🌈 LittleLume – Colors Worksheet · Grade 1</div>
+  <div class="toolbar-btns">
+    <span class="print-note">Print as A4 · Scale: 100%</span>
+    <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+  </div>
+</div>
+
+<div class="pages-wrapper">
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page" id="page1">
+  <div class="page-header">
+    <div class="brand">✨ LittleLume English</div>
+    <div class="page-title">🌈 Colors Worksheet · Grade 1</div>
+    <div class="page-num">Page 1 / 4</div>
+  </div>
+
+  <!-- student info -->
+  <div class="info-bar">
+    <div class="info-field"><span class="info-label">Name:</span><div class="info-line"></div></div>
+    <div class="info-field"><span class="info-label">Class:</span><div class="info-line" style="max-width:60px"></div></div>
+    <div class="info-field"><span class="info-label">Date:</span><div class="info-line" style="max-width:80px"></div></div>
+  </div>
+
+  <!-- ── EX 1 ── -->
+  <div class="ws-title">🎨 Exercise 1 – Color the Circles!</div>
+  <div class="ws-instruction">Look at the color name. Color each circle with the correct color using your crayons or colored pencils! ✏️</div>
+  <div class="color-circles">
+    <div class="circle-item"><div class="circle-ring" style="border-color:#FF4D6D"></div><div class="circle-name">Red<br><span style="color:#aaa;font-size:.6rem">Merah</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#FF9500"></div><div class="circle-name">Orange<br><span style="color:#aaa;font-size:.6rem">Oranye</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#ccaa00"></div><div class="circle-name">Yellow<br><span style="color:#aaa;font-size:.6rem">Kuning</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#4CAF50"></div><div class="circle-name">Green<br><span style="color:#aaa;font-size:.6rem">Hijau</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#2196F3"></div><div class="circle-name">Blue<br><span style="color:#aaa;font-size:.6rem">Biru</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#9C27B0"></div><div class="circle-name">Purple<br><span style="color:#aaa;font-size:.6rem">Ungu</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#FF69B4"></div><div class="circle-name">Pink<br><span style="color:#aaa;font-size:.6rem">Merah Muda</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#795548"></div><div class="circle-name">Brown<br><span style="color:#aaa;font-size:.6rem">Coklat</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#555"></div><div class="circle-name">Black<br><span style="color:#aaa;font-size:.6rem">Hitam</span></div></div>
+    <div class="circle-item"><div class="circle-ring" style="border-color:#bbb"></div><div class="circle-name">White<br><span style="color:#aaa;font-size:.6rem">Putih</span></div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── EX 2 ── -->
+  <div class="ws-title">✏️ Exercise 2 – Trace the Words!</div>
+  <div class="ws-instruction">Trace the dotted words with your pencil. Then write the color word on the line below it! 📝</div>
+  <div class="trace-grid">
+    <div class="trace-item"><div class="trace-emoji">🔴</div><div class="trace-right"><span class="trace-dotted" style="color:#FFAAAA">R·e·d</span><div class="trace-line"></div><span class="color-label">Red = Merah</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">🟠</div><div class="trace-right"><span class="trace-dotted" style="color:#FFCC88">O·r·a·n·g·e</span><div class="trace-line"></div><span class="color-label">Orange = Oranye</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">🟡</div><div class="trace-right"><span class="trace-dotted" style="color:#EEEE88">Y·e·l·l·o·w</span><div class="trace-line"></div><span class="color-label">Yellow = Kuning</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">🟢</div><div class="trace-right"><span class="trace-dotted" style="color:#88DD88">G·r·e·e·n</span><div class="trace-line"></div><span class="color-label">Green = Hijau</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">🔵</div><div class="trace-right"><span class="trace-dotted" style="color:#88BBFF">B·l·u·e</span><div class="trace-line"></div><span class="color-label">Blue = Biru</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">🟣</div><div class="trace-right"><span class="trace-dotted" style="color:#CC99EE">P·u·r·p·l·e</span><div class="trace-line"></div><span class="color-label">Purple = Ungu</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">🩷</div><div class="trace-right"><span class="trace-dotted" style="color:#FFAACC">P·i·n·k</span><div class="trace-line"></div><span class="color-label">Pink = Merah Muda</span></div></div>
+    <div class="trace-item"><div class="trace-emoji">⚫</div><div class="trace-right"><span class="trace-dotted" style="color:#999">B·l·a·c·k</span><div class="trace-line"></div><span class="color-label">Black = Hitam</span></div></div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-brand">LittleLume English · Colors · Grade 1</span>
+    <div class="score-box">Score: ___ / 10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page" id="page2">
+  <div class="page-header">
+    <div class="brand">✨ LittleLume English</div>
+    <div class="page-title">🌈 Colors Worksheet · Grade 1</div>
+    <div class="page-num">Page 2 / 4</div>
+  </div>
+  <div class="info-bar">
+    <div class="info-field"><span class="info-label">Name:</span><div class="info-line"></div></div>
+    <div class="info-field"><span class="info-label">Class:</span><div class="info-line" style="max-width:60px"></div></div>
+    <div class="info-field"><span class="info-label">Date:</span><div class="info-line" style="max-width:80px"></div></div>
+  </div>
+
+  <!-- ── EX 3 ── MATCH -->
+  <div class="ws-title">🔗 Exercise 3 – Match the Color!</div>
+  <div class="ws-instruction">Draw a line to match the color swatch (left) with the correct color name (right)! 🖊️</div>
+  <div class="match-layout">
+    <div class="match-col">
+      <div class="match-swatch-box" style="background:#FF4D6D;color:#fff;border-color:#FF4D6D">color</div>
+      <div class="match-swatch-box" style="background:#FFD600;color:#888;border-color:#FFD600">color</div>
+      <div class="match-swatch-box" style="background:#4CAF50;color:#fff;border-color:#4CAF50">color</div>
+      <div class="match-swatch-box" style="background:#9C27B0;color:#fff;border-color:#9C27B0">color</div>
+      <div class="match-swatch-box" style="background:#FF9500;color:#fff;border-color:#FF9500">color</div>
+      <div class="match-swatch-box" style="background:#2196F3;color:#fff;border-color:#2196F3">color</div>
+      <div class="match-swatch-box" style="background:#795548;color:#fff;border-color:#795548">color</div>
+      <div class="match-swatch-box" style="background:#FF69B4;color:#fff;border-color:#FF69B4">color</div>
+    </div>
+    <!-- drawing area -->
+    <div style="flex:1;height:290px;border:none;position:relative;">
+      <!-- just blank space for students to draw lines -->
+    </div>
+    <div class="match-col">
+      <div class="match-word-box">Purple</div>
+      <div class="match-word-box">Green</div>
+      <div class="match-word-box">Blue</div>
+      <div class="match-word-box">Red</div>
+      <div class="match-word-box">Pink</div>
+      <div class="match-word-box">Yellow</div>
+      <div class="match-word-box">Orange</div>
+      <div class="match-word-box">Brown</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── EX 4 ── FILL IN THE BLANK -->
+  <div class="ws-title">📝 Exercise 4 – Fill in the Blank!</div>
+  <div class="ws-instruction">Look at the picture. Use the Word Bank to fill in the correct color word! 💡</div>
+  <div class="word-bank">
+    <span class="word-bank-title">Word Bank:</span>
+    <span class="word-chip">red</span><span class="word-chip">yellow</span><span class="word-chip">green</span>
+    <span class="word-chip">blue</span><span class="word-chip">orange</span><span class="word-chip">purple</span>
+    <span class="word-chip">pink</span><span class="word-chip">brown</span>
+  </div>
+  <ul class="fill-list">
+    <li class="fill-item"><div class="fill-num">1</div><span class="fill-emoji">🍎</span> The apple is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">2</div><span class="fill-emoji">🌻</span> The sunflower is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">3</div><span class="fill-emoji">🍊</span> The orange is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">4</div><span class="fill-emoji">🍇</span> The grapes are <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">5</div><span class="fill-emoji">🌊</span> The ocean is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">6</div><span class="fill-emoji">🌿</span> The leaf is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">7</div><span class="fill-emoji">🌷</span> The tulip is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+    <li class="fill-item"><div class="fill-num">8</div><span class="fill-emoji">🍫</span> The chocolate is <span class="fill-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</li>
+  </ul>
+
+  <div class="page-footer">
+    <span class="footer-brand">LittleLume English · Colors · Grade 1</span>
+    <div class="score-box">Score: ___ / 16</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page" id="page3">
+  <div class="page-header">
+    <div class="brand">✨ LittleLume English</div>
+    <div class="page-title">🌈 Colors Worksheet · Grade 1</div>
+    <div class="page-num">Page 3 / 4</div>
+  </div>
+  <div class="info-bar">
+    <div class="info-field"><span class="info-label">Name:</span><div class="info-line"></div></div>
+    <div class="info-field"><span class="info-label">Class:</span><div class="info-line" style="max-width:60px"></div></div>
+    <div class="info-field"><span class="info-label">Date:</span><div class="info-line" style="max-width:80px"></div></div>
+  </div>
+
+  <!-- ── EX 5 – TRUE OR FALSE ── -->
+  <div class="ws-title">✅ Exercise 5 – True or False?</div>
+  <div class="ws-instruction">Read each sentence. Circle <strong>TRUE</strong> if it is correct, or circle <strong>FALSE</strong> if it is wrong! 🤔</div>
+  <ul class="tf-list">
+    <li class="tf-item"><span class="fill-emoji">🍎</span>&nbsp; The apple is red.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">🍌</span>&nbsp; The banana is green.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">☁️</span>&nbsp; The cloud is white.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">🌊</span>&nbsp; The ocean is purple.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">🌻</span>&nbsp; The sunflower is yellow.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">🍊</span>&nbsp; The orange is blue.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">🐢</span>&nbsp; The turtle is green.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+    <li class="tf-item"><span class="fill-emoji">🍫</span>&nbsp; The chocolate is brown.
+      <div class="tf-boxes"><div class="tf-box">TRUE</div><div class="tf-box">FALSE</div></div>
+    </li>
+  </ul>
+
+  <hr class="divider">
+
+  <!-- ── EX 6 – UNSCRAMBLE ── -->
+  <div class="ws-title">🔤 Exercise 6 – Unscramble the Color!</div>
+  <div class="ws-instruction">The letters are mixed up! Put them in the right order to spell the color. The emoji is a hint! 💡</div>
+  <div class="unscramble-grid">
+    <div class="unscramble-item">
+      <div>🍎 &nbsp; <span class="scramble-word">D E R</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 3 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🍌 &nbsp; <span class="scramble-word">W L E L O Y</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 6 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🌿 &nbsp; <span class="scramble-word">E E N R G</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 5 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🌊 &nbsp; <span class="scramble-word">E U L B</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 4 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🍊 &nbsp; <span class="scramble-word">E A N R G O</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 6 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🍇 &nbsp; <span class="scramble-word">L P R U P E</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 6 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🌷 &nbsp; <span class="scramble-word">K N I P</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 4 letters</div>
+    </div>
+    <div class="unscramble-item">
+      <div>🐱 &nbsp; <span class="scramble-word">C A L K B</span></div>
+      <div class="unscramble-line"></div>
+      <div class="unscramble-hint">Hint: 5 letters</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── EX 7 – MY FAVORITE COLOR ── -->
+  <div class="ws-title">💜 Exercise 7 – My Favorite Color!</div>
+  <div class="ws-instruction">Write your favorite color and draw something that has that color! 🖍️</div>
+  <div class="fav-color-box">
+    <div class="fav-sentence">My favorite color is <span class="fav-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> .</div>
+    <div class="fav-sentence">I can see <span class="fav-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> color on a <span class="fav-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> .</div>
+    <div style="margin-top:8px;font-size:.75rem;font-weight:700;color:#888;margin-bottom:6px">✏️ Draw something in your favorite color here:</div>
+    <div class="draw-box">[ Draw here! 🎨 ]</div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-brand">LittleLume English · Colors · Grade 1</span>
+    <div class="score-box">Score: ___ / 10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4 ═══════════════════════ -->
+<div class="page" id="page4">
+  <div class="page-header">
+    <div class="brand">✨ LittleLume English</div>
+    <div class="page-title">🌈 Colors Worksheet · Grade 1</div>
+    <div class="page-num">Page 4 / 4</div>
+  </div>
+  <div class="info-bar">
+    <div class="info-field"><span class="info-label">Name:</span><div class="info-line"></div></div>
+    <div class="info-field"><span class="info-label">Class:</span><div class="info-line" style="max-width:60px"></div></div>
+    <div class="info-field"><span class="info-label">Date:</span><div class="info-line" style="max-width:80px"></div></div>
+  </div>
+
+  <!-- ── EX 8 – WRITE & DRAW ── -->
+  <div class="ws-title">🖍️ Exercise 8 – Write &amp; Draw!</div>
+  <div class="ws-instruction">Look at the color dot. Write the color name on the line, then draw an object with that color in the box! ✏️</div>
+  <div class="write-draw-grid">
+    <div class="write-draw-cell">
+      <div class="wd-color-dot" style="background:#FF4D6D"></div>
+      <div class="wd-label">This is:</div>
+      <div class="wd-write-line"></div>
+      <div style="font-size:.6rem;color:#bbb;font-weight:700">Draw something red:</div>
+      <div class="wd-draw-box"></div>
+    </div>
+    <div class="write-draw-cell">
+      <div class="wd-color-dot" style="background:#FFD600"></div>
+      <div class="wd-label">This is:</div>
+      <div class="wd-write-line"></div>
+      <div style="font-size:.6rem;color:#bbb;font-weight:700">Draw something yellow:</div>
+      <div class="wd-draw-box"></div>
+    </div>
+    <div class="write-draw-cell">
+      <div class="wd-color-dot" style="background:#4CAF50"></div>
+      <div class="wd-label">This is:</div>
+      <div class="wd-write-line"></div>
+      <div style="font-size:.6rem;color:#bbb;font-weight:700">Draw something green:</div>
+      <div class="wd-draw-box"></div>
+    </div>
+    <div class="write-draw-cell">
+      <div class="wd-color-dot" style="background:#2196F3"></div>
+      <div class="wd-label">This is:</div>
+      <div class="wd-write-line"></div>
+      <div style="font-size:.6rem;color:#bbb;font-weight:700">Draw something blue:</div>
+      <div class="wd-draw-box"></div>
+    </div>
+    <div class="write-draw-cell">
+      <div class="wd-color-dot" style="background:#9C27B0"></div>
+      <div class="wd-label">This is:</div>
+      <div class="wd-write-line"></div>
+      <div style="font-size:.6rem;color:#bbb;font-weight:700">Draw something purple:</div>
+      <div class="wd-draw-box"></div>
+    </div>
+    <div class="write-draw-cell">
+      <div class="wd-color-dot" style="background:#FF9500"></div>
+      <div class="wd-label">This is:</div>
+      <div class="wd-write-line"></div>
+      <div style="font-size:.6rem;color:#bbb;font-weight:700">Draw something orange:</div>
+      <div class="wd-draw-box"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── EX 9 – RAINBOW ── -->
+  <div class="ws-title">🌈 Exercise 9 – Color the Rainbow!</div>
+  <div class="ws-instruction">Use the color key to color each stripe of the rainbow! Then write the color name next to the number below. 🖍️</div>
+
+  <div style="text-align:center;margin-bottom:8px">
+    <svg class="rainbow-arcs" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+      <!-- Rainbow arcs - stripes to color, shown as outline paths -->
+      <!-- Arc 7 - outermost (Red) -->
+      <path d="M 10,150 A 150,150 0 0,1 310,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Arc 6 (Orange) -->
+      <path d="M 28,150 A 132,132 0 0,1 292,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Arc 5 (Yellow) -->
+      <path d="M 46,150 A 114,114 0 0,1 274,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Arc 4 (Green) -->
+      <path d="M 64,150 A 96,96 0 0,1 256,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Arc 3 (Blue) -->
+      <path d="M 82,150 A 78,78 0 0,1 238,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Arc 2 (Indigo) -->
+      <path d="M 100,150 A 60,60 0 0,1 220,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Arc 1 - innermost (Violet) -->
+      <path d="M 118,150 A 42,42 0 0,1 202,150" fill="none" stroke="#ccc" stroke-width="18"/>
+      <!-- Numbers on each arc -->
+      <text x="12" y="100" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">1</text>
+      <text x="30" y="108" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">2</text>
+      <text x="48" y="118" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">3</text>
+      <text x="67" y="126" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">4</text>
+      <text x="85" y="133" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">5</text>
+      <text x="105" y="138" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">6</text>
+      <text x="127" y="140" font-size="9" fill="#aaa" font-weight="bold" font-family="Nunito,sans-serif">7</text>
+      <!-- Grass/ground line -->
+      <line x1="0" y1="152" x2="320" y2="152" stroke="#ccc" stroke-width="2"/>
+      <!-- Sun -->
+      <circle cx="295" cy="20" r="12" fill="none" stroke="#ccc" stroke-width="2"/>
+      <line x1="295" y1="4" x2="295" y2="0" stroke="#ccc" stroke-width="1.5"/>
+      <line x1="308" y1="7" x2="311" y2="4" stroke="#ccc" stroke-width="1.5"/>
+      <line x1="308" y1="20" x2="312" y2="20" stroke="#ccc" stroke-width="1.5"/>
+      <!-- Cloud -->
+      <ellipse cx="40" cy="20" rx="18" ry="10" fill="none" stroke="#ccc" stroke-width="2"/>
+      <ellipse cx="55" cy="18" rx="14" ry="9" fill="none" stroke="#ccc" stroke-width="2"/>
+      <ellipse cx="26" cy="22" rx="12" ry="8" fill="none" stroke="#ccc" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="rainbow-fill-row">
+    <div class="rainbow-fill-item"><div class="rb-color-num">1</div> <span>Red</span></div>
+    <div class="rainbow-fill-item"><div class="rb-color-num">2</div> <span>Orange</span></div>
+    <div class="rainbow-fill-item"><div class="rb-color-num">3</div> <span>Yellow</span></div>
+    <div class="rainbow-fill-item"><div class="rb-color-num">4</div> <span>Green</span></div>
+    <div class="rainbow-fill-item"><div class="rb-color-num">5</div> <span>Blue</span></div>
+    <div class="rainbow-fill-item"><div class="rb-color-num">6</div> <span>Indigo</span></div>
+    <div class="rainbow-fill-item"><div class="rb-color-num">7</div> <span>Violet</span></div>
+  </div>
+
+  <div style="font-size:.78rem;font-weight:700;color:#555;margin-bottom:6px">✏️ Write the rainbow colors in order (1 to 7):</div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:14px">
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">1</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">2</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">3</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">4</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">5</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">6</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+    <div style="text-align:center"><div style="font-size:.7rem;font-weight:800;color:#aaa;margin-bottom:2px">7</div><div style="border-bottom:1.5px solid #555;height:18px"></div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FINAL SCORE BOX -->
+  <div style="border:3px solid #2196F3;border-radius:14px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#F3F9FF">
+    <div>
+      <div style="font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:#2196F3;margin-bottom:4px">🏆 Total Score</div>
+      <div style="font-size:.78rem;font-weight:700;color:#555">Add all your page scores here!</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:.7rem;font-weight:800;color:#888;margin-bottom:2px">TOTAL</div>
+      <div style="border:2.5px solid #2196F3;border-radius:10px;width:80px;height:36px;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:800;color:#2196F3">___ / 50</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:.7rem;font-weight:800;color:#888;margin-bottom:2px">TEACHER'S SIGN</div>
+      <div style="border-bottom:2px solid #555;width:90px;height:32px"></div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-brand">LittleLume English · Colors · Grade 1 · Keep learning! 🌈</span>
+    <span style="font-size:.65rem;font-weight:700;color:#aaa">Great work! ⭐</span>
+  </div>
+</div>
+
+</div><!-- end pages-wrapper -->
+</body>
+</html>

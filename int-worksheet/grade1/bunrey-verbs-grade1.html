@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Action Verbs Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f3f0ff;
+    padding: 24px 16px 40px;
+    min-height: 100vh;
+  }
+
+  .page {
+    background: #fff;
+    max-width: 720px;
+    margin: 0 auto;
+    border-radius: 24px;
+    padding: 28px 28px 32px;
+    box-shadow: 0 6px 32px rgba(100,60,200,0.10);
+  }
+
+  /* ── HEADER ── */
+  .header-band {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD93D 50%, #6BCB77 100%);
+    border-radius: 20px;
+    padding: 20px 28px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+  }
+  .header-logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    line-height: 1.25;
+  }
+  .header-title { text-align: center; flex: 1; padding: 0 12px; }
+  .header-title h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    line-height: 1.2;
+  }
+  .header-title .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.93);
+    font-weight: 700;
+    margin-top: 3px;
+  }
+  .stars-deco { font-size: 30px; line-height: 1; }
+
+  /* ── INFO ROW ── */
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .info-box {
+    background: #f8f6ff;
+    border: 2px dashed #c4b5fd;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #7c3aed;
+    font-weight: 700;
+  }
+  .info-box span {
+    display: block;
+    color: #1e1b4b;
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 3px;
+    min-height: 20px;
+    border-bottom: 2px solid #ddd6fe;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-family: 'Fredoka One', cursive;
+    font-size: 16px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .sec-hint {
+    font-size: 12px;
+    font-weight: 700;
+    color: #9ca3af;
+    margin-left: 2px;
+  }
+
+  /* ── SECTION A – Verb Cards ── */
+  .sec-a { margin-bottom: 24px; }
+  .verb-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .verb-card {
+    border-radius: 16px;
+    padding: 13px 8px 11px;
+    text-align: center;
+    border: 3px solid transparent;
+  }
+  .verb-card .emoji { font-size: 34px; display: block; line-height: 1.1; }
+  .verb-card .vword {
+    font-family: 'Fredoka One', cursive;
+    font-size: 17px;
+    margin-top: 6px;
+    display: block;
+  }
+  .verb-card .vex {
+    font-size: 10.5px;
+    color: #555;
+    display: block;
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .vc-red    { background: #fff0ef; border-color: #ffb3ae; } .vc-red .vword    { color: #c0392b; }
+  .vc-orange { background: #fff7ed; border-color: #ffc878; } .vc-orange .vword { color: #d97706; }
+  .vc-yellow { background: #fffcdb; border-color: #fde68a; } .vc-yellow .vword { color: #b45309; }
+  .vc-green  { background: #edfff3; border-color: #86efac; } .vc-green .vword  { color: #15803d; }
+  .vc-teal   { background: #e6fffa; border-color: #5eead4; } .vc-teal .vword   { color: #0f766e; }
+  .vc-blue   { background: #eff6ff; border-color: #93c5fd; } .vc-blue .vword   { color: #1d4ed8; }
+  .vc-purple { background: #f5f3ff; border-color: #c4b5fd; } .vc-purple .vword { color: #7c3aed; }
+  .vc-pink   { background: #fff0f9; border-color: #f9a8d4; } .vc-pink .vword   { color: #be185d; }
+
+  /* ── SECTION B – Match ── */
+  .sec-b { margin-bottom: 24px; }
+  .match-layout {
+    display: grid;
+    grid-template-columns: 1fr 36px 1fr;
+    gap: 6px;
+    align-items: start;
+  }
+  .match-col { display: flex; flex-direction: column; gap: 9px; }
+  .match-item-left {
+    background: #eff6ff;
+    border: 2px solid #93c5fd;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1d4ed8;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .match-item-right {
+    background: #f0fdf4;
+    border: 2px dashed #86efac;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #15803d;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .match-dot   { width: 10px; height: 10px; border-radius: 50%; background: #93c5fd; flex-shrink: 0; }
+  .match-dot-r { width: 10px; height: 10px; border-radius: 50%; background: #86efac; flex-shrink: 0; }
+  .line-col {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    align-items: center;
+    padding-top: 6px;
+  }
+  .line-hint {
+    width: 30px; height: 30px;
+    border: 2px dashed #d1d5db;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #9ca3af;
+  }
+
+  /* ── SECTION C – Fill Blank ── */
+  .sec-c { margin-bottom: 24px; }
+  .word-bank {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: #fffde7;
+    border: 2px solid #fde68a;
+    border-radius: 12px;
+    align-items: center;
+  }
+  .wb-label { font-size: 12px; font-weight: 800; color: #92400e; }
+  .wb-word {
+    background: #fff;
+    border: 2px solid #fbbf24;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #92400e;
+  }
+  .fill-items { display: flex; flex-direction: column; gap: 10px; }
+  .fill-item {
+    background: #f8f8f8;
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #e5e7eb;
+  }
+  .fill-num { font-family: 'Fredoka One', cursive; font-size: 21px; color: #059669; min-width: 22px; }
+  .fill-pic { font-size: 26px; }
+  .fill-sentence { font-size: 15px; font-weight: 700; color: #1f2937; }
+  .fill-blank {
+    display: inline-block;
+    border-bottom: 3px solid #059669;
+    width: 90px;
+    height: 22px;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+
+  /* ── SECTION D – Circle ── */
+  .sec-d { margin-bottom: 24px; }
+  .circle-items { display: flex; flex-direction: column; gap: 10px; }
+  .circle-item {
+    background: #faf5ff;
+    border: 2px solid #e9d5ff;
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .ci-num { font-family: 'Fredoka One', cursive; font-size: 21px; color: #7c3aed; min-width: 22px; }
+  .ci-pic { font-size: 24px; }
+  .ci-words { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+  .ci-word {
+    font-size: 14px;
+    font-weight: 800;
+    color: #374151;
+    background: #fff;
+    border: 2px solid #ddd6fe;
+    border-radius: 20px;
+    padding: 5px 14px;
+  }
+  .ci-verb {
+    border: 3px solid #7c3aed;
+    background: #ede9fe;
+    color: #5b21b6;
+  }
+
+  /* ── SECTION E – Write & Draw ── */
+  .sec-e { margin-bottom: 10px; }
+  .trace-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .trace-card {
+    border-radius: 16px;
+    padding: 16px 14px 14px;
+    text-align: center;
+    border: 2.5px dashed;
+  }
+  .trace-card.t1 { background: #fff0ef; border-color: #fca5a5; }
+  .trace-card.t2 { background: #fff7ed; border-color: #fdba74; }
+  .trace-card.t3 { background: #f0fdf4; border-color: #86efac; }
+  .trace-card.t4 { background: #eff6ff; border-color: #93c5fd; }
+  .trace-pic { font-size: 34px; margin-bottom: 6px; }
+  .trace-word {
+    display: block;
+    font-family: 'Fredoka One', cursive;
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+  .t1 .trace-word { color: #dc2626; }
+  .t2 .trace-word { color: #d97706; }
+  .t3 .trace-word { color: #16a34a; }
+  .t4 .trace-word { color: #2563eb; }
+  .draw-box {
+    border-radius: 10px;
+    height: 70px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .t1 .draw-box { background: #fff0ef; border: 2px dashed #fca5a5; color: #fca5a5; }
+  .t2 .draw-box { background: #fff7ed; border: 2px dashed #fdba74; color: #fdba74; }
+  .t3 .draw-box { background: #f0fdf4; border: 2px dashed #86efac; color: #86efac; }
+  .t4 .draw-box { background: #eff6ff; border: 2px dashed #93c5fd; color: #93c5fd; }
+  .trace-lines { display: flex; flex-direction: column; gap: 8px; }
+  .trace-line { height: 22px; border-bottom: 2px dashed #d1d5db; }
+
+  /* ── FOOTER ── */
+  .footer-band {
+    background: linear-gradient(135deg, #6BCB77 0%, #4EA5F5 50%, #B388FF 100%);
+    border-radius: 16px;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+  }
+  .footer-star { font-size: 26px; }
+  .footer-text {
+    font-family: 'Fredoka One', cursive;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.10);
+    flex: 1;
+  }
+  .score-box {
+    background: rgba(255,255,255,0.28);
+    border-radius: 10px;
+    padding: 7px 16px;
+    text-align: center;
+  }
+  .score-label { font-size: 10px; color: rgba(255,255,255,0.92); font-weight: 800; letter-spacing: 1px; }
+  .score-stars { display: flex; gap: 5px; margin-top: 5px; }
+  .score-star {
+    width: 20px; height: 20px;
+    background: rgba(255,255,255,0.35);
+    border: 2px solid rgba(255,255,255,0.75);
+    border-radius: 50%;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 20px; max-width: 100%; }
+    .header-band, .footer-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .verb-card, .match-item-left, .match-item-right, .fill-item, .circle-item, .trace-card, .word-bank { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header-band">
+    <div class="header-logo">BunRey<br>English</div>
+    <div class="header-title">
+      <h1>⚡ Action Verbs! ⚡</h1>
+      <div class="subtitle">Grade 1 &nbsp;·&nbsp; English Worksheet</div>
+    </div>
+    <div class="stars-deco">🌟</div>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-row">
+    <div class="info-box">Name:<span>&nbsp;</span></div>
+    <div class="info-box">Class:<span>&nbsp;</span></div>
+    <div class="info-box">Date:<span>&nbsp;</span></div>
+  </div>
+
+  <!-- ════ SECTION A ════ -->
+  <div class="sec-a">
+    <div class="section-title">
+      <div class="badge" style="background:#e74c3c;">A</div>
+      <span style="color:#e74c3c;">Learn the Verbs! 📚</span>
+      <span class="sec-hint">(Read and remember!)</span>
+    </div>
+    <div class="verb-cards">
+      <div class="verb-card vc-red">
+        <span class="emoji">🏃</span>
+        <span class="vword">run</span>
+        <span class="vex">I run fast.</span>
+      </div>
+      <div class="verb-card vc-orange">
+        <span class="emoji">🦘</span>
+        <span class="vword">jump</span>
+        <span class="vex">I jump high.</span>
+      </div>
+      <div class="verb-card vc-yellow">
+        <span class="emoji">🎤</span>
+        <span class="vword">sing</span>
+        <span class="vex">I sing a song.</span>
+      </div>
+      <div class="verb-card vc-green">
+        <span class="emoji">🍎</span>
+        <span class="vword">eat</span>
+        <span class="vex">I eat an apple.</span>
+      </div>
+      <div class="verb-card vc-teal">
+        <span class="emoji">📖</span>
+        <span class="vword">read</span>
+        <span class="vex">I read a book.</span>
+      </div>
+      <div class="verb-card vc-blue">
+        <span class="emoji">🎨</span>
+        <span class="vword">draw</span>
+        <span class="vex">I draw a cat.</span>
+      </div>
+      <div class="verb-card vc-purple">
+        <span class="emoji">😴</span>
+        <span class="vword">sleep</span>
+        <span class="vex">I sleep at night.</span>
+      </div>
+      <div class="verb-card vc-pink">
+        <span class="emoji">🎮</span>
+        <span class="vword">play</span>
+        <span class="vex">I play a game.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SECTION B ════ -->
+  <div class="sec-b">
+    <div class="section-title">
+      <div class="badge" style="background:#2563eb;">B</div>
+      <span style="color:#2563eb;">Match the Verb! 🔗</span>
+      <span class="sec-hint">(Draw a line!)</span>
+    </div>
+    <div class="match-layout">
+      <div class="match-col">
+        <div class="match-item-left"><div class="match-dot"></div>🏃 run</div>
+        <div class="match-item-left"><div class="match-dot"></div>🎨 draw</div>
+        <div class="match-item-left"><div class="match-dot"></div>🍎 eat</div>
+        <div class="match-item-left"><div class="match-dot"></div>📖 read</div>
+      </div>
+      <div class="line-col">
+        <div class="line-hint">↔</div>
+        <div class="line-hint">↔</div>
+        <div class="line-hint">↔</div>
+        <div class="line-hint">↔</div>
+      </div>
+      <div class="match-col">
+        <div class="match-item-right"><div class="match-dot-r"></div>🍕 an apple / pizza</div>
+        <div class="match-item-right"><div class="match-dot-r"></div>📚 a storybook</div>
+        <div class="match-item-right"><div class="match-dot-r"></div>🖍️ a picture</div>
+        <div class="match-item-right"><div class="match-dot-r"></div>👟 in the park</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SECTION C ════ -->
+  <div class="sec-c">
+    <div class="section-title">
+      <div class="badge" style="background:#059669;">C</div>
+      <span style="color:#059669;">Fill in the Blank! ✏️</span>
+      <span class="sec-hint">(Use the word bank!)</span>
+    </div>
+    <div class="word-bank">
+      <span class="wb-label">Word Bank:</span>
+      <span class="wb-word">jump</span>
+      <span class="wb-word">sing</span>
+      <span class="wb-word">sleep</span>
+      <span class="wb-word">play</span>
+      <span class="wb-word">draw</span>
+    </div>
+    <div class="fill-items">
+      <div class="fill-item">
+        <span class="fill-num">1.</span>
+        <span class="fill-pic">🎤</span>
+        <span class="fill-sentence">I <span class="fill-blank"></span> a happy song.</span>
+      </div>
+      <div class="fill-item">
+        <span class="fill-num">2.</span>
+        <span class="fill-pic">🦘</span>
+        <span class="fill-sentence">Frogs can <span class="fill-blank"></span> very far!</span>
+      </div>
+      <div class="fill-item">
+        <span class="fill-num">3.</span>
+        <span class="fill-pic">⚽</span>
+        <span class="fill-sentence">We <span class="fill-blank"></span> football at school.</span>
+      </div>
+      <div class="fill-item">
+        <span class="fill-num">4.</span>
+        <span class="fill-pic">😴</span>
+        <span class="fill-sentence">Bears <span class="fill-blank"></span> in winter.</span>
+      </div>
+      <div class="fill-item">
+        <span class="fill-num">5.</span>
+        <span class="fill-pic">🎨</span>
+        <span class="fill-sentence">I <span class="fill-blank"></span> a rainbow with crayons.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SECTION D ════ -->
+  <div class="sec-d">
+    <div class="section-title">
+      <div class="badge" style="background:#7c3aed;">D</div>
+      <span style="color:#7c3aed;">Circle the Verb! ⭕</span>
+      <span class="sec-hint">(Find the action word!)</span>
+    </div>
+    <div class="circle-items">
+      <div class="circle-item">
+        <span class="ci-num">1.</span>
+        <span class="ci-pic">🐶</span>
+        <div class="ci-words">
+          <span class="ci-word">dog</span>
+          <span class="ci-word ci-verb">⭕ run</span>
+          <span class="ci-word">big</span>
+          <span class="ci-word">happy</span>
+        </div>
+      </div>
+      <div class="circle-item">
+        <span class="ci-num">2.</span>
+        <span class="ci-pic">🐦</span>
+        <div class="ci-words">
+          <span class="ci-word">blue</span>
+          <span class="ci-word">bird</span>
+          <span class="ci-word ci-verb">⭕ sing</span>
+          <span class="ci-word">small</span>
+        </div>
+      </div>
+      <div class="circle-item">
+        <span class="ci-num">3.</span>
+        <span class="ci-pic">🐰</span>
+        <div class="ci-words">
+          <span class="ci-word">white</span>
+          <span class="ci-word ci-verb">⭕ jump</span>
+          <span class="ci-word">rabbit</span>
+          <span class="ci-word">soft</span>
+        </div>
+      </div>
+      <div class="circle-item">
+        <span class="ci-num">4.</span>
+        <span class="ci-pic">👧</span>
+        <div class="ci-words">
+          <span class="ci-word">girl</span>
+          <span class="ci-word">pretty</span>
+          <span class="ci-word ci-verb">⭕ read</span>
+          <span class="ci-word">tall</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SECTION E ════ -->
+  <div class="sec-e">
+    <div class="section-title">
+      <div class="badge" style="background:#be185d;">E</div>
+      <span style="color:#be185d;">Write &amp; Draw! 🖊️</span>
+      <span class="sec-hint">(Write the verb, then draw!)</span>
+    </div>
+    <div class="trace-items">
+      <div class="trace-card t1">
+        <div class="trace-pic">🏃</div>
+        <span class="trace-word">run</span>
+        <div class="draw-box">Draw here!</div>
+        <div class="trace-lines">
+          <div class="trace-line"></div>
+          <div class="trace-line"></div>
+        </div>
+      </div>
+      <div class="trace-card t2">
+        <div class="trace-pic">🎤</div>
+        <span class="trace-word">sing</span>
+        <div class="draw-box">Draw here!</div>
+        <div class="trace-lines">
+          <div class="trace-line"></div>
+          <div class="trace-line"></div>
+        </div>
+      </div>
+      <div class="trace-card t3">
+        <div class="trace-pic">🦘</div>
+        <span class="trace-word">jump</span>
+        <div class="draw-box">Draw here!</div>
+        <div class="trace-lines">
+          <div class="trace-line"></div>
+          <div class="trace-line"></div>
+        </div>
+      </div>
+      <div class="trace-card t4">
+        <div class="trace-pic">🎨</div>
+        <span class="trace-word">draw</span>
+        <div class="draw-box">Draw here!</div>
+        <div class="trace-lines">
+          <div class="trace-line"></div>
+          <div class="trace-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-band">
+    <div class="footer-star">⭐</div>
+    <div class="footer-text">Great Job, Superstar! Keep Learning! 🚀</div>
+    <div class="score-box">
+      <div class="score-label">MY SCORE</div>
+      <div class="score-stars">
+        <div class="score-star"></div>
+        <div class="score-star"></div>
+        <div class="score-star"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

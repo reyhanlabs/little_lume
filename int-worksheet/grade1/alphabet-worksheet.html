@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Alphabet Worksheet (Grade 1)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ── PRINT STYLES ── */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    body { background: #fff; margin: 0.4in; padding: 0; font-size: 11pt; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    .card { box-shadow: none !important; border: 1.5px solid #e8e0f0; break-inside: avoid; padding: 12px 14px; margin-bottom: 10px; }
+    .worksheet-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .answer-key { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tip-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    header { border-radius: 0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .q-row { padding: 2px 0; font-size: 10pt; }
+    .worksheet-header .field span { min-width: 70px; }
+    .part-label { font-size: 12pt; margin: 8px 0 5px; }
+    .writing-box { min-height: 30px; }
+    .floating-deco { display: none; }
+    .bubble-bg { display: none; }
+    .q-options label { font-size: 10pt; }
+    .ak-row { padding: 2px 0; font-size: 9pt; }
+    .answer-key h3 { font-size: 12pt; }
+    .wordsearch-grid { font-size: 12pt !important; letter-spacing: 3px !important; padding: 8px !important; }
+    .wordsearch-grid div { line-height: 1.6 !important; }
+    .blank { min-width: 50px !important; }
+    .blank-lg { min-width: 80px !important; }
+    .tip-box { padding: 6px 10px; font-size: 9pt; margin-top: 6px; }
+    .header-title { font-size: 14pt !important; }
+    .header-sub { font-size: 9pt !important; }
+    .header-brand { font-size: 16pt !important; }
+    .header-tag { font-size: 7pt !important; padding: 2px 10px !important; }
+    footer { font-size: 7pt; padding: 8px; }
+    .score-box { font-size: 10pt !important; padding: 4px 12px !important; }
+    .letter-grid { gap: 4px !important; }
+    .letter-grid .ltr { font-size: 10pt !important; padding: 2px 4px !important; min-width: 28px !important; }
+  }
+
+  :root {
+    --coral: #FF6B6B;
+    --sun: #FFD93D;
+    --mint: #6BCB77;
+    --sky: #4D96FF;
+    --lavender: #C77DFF;
+    --peach: #FFB347;
+    --rose: #FF8FAB;
+    --teal: #2EC4B6;
+    --cream: #FFFBF2;
+    --dark: #2B2B2B;
+    --shadow: 0 6px 24px rgba(0,0,0,0.10);
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    padding: 0 10px;
+  }
+
+  /* ── DECORATIVE BACKGROUND ── */
+  .bubble-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bubble-bg .bub {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.10;
+    animation: bFloat 14s ease-in-out infinite;
+  }
+  .bubble-bg .bub:nth-child(1) { width: 140px; height: 140px; background: var(--coral); top: 3%; left: 2%; animation-delay: 0s; }
+  .bubble-bg .bub:nth-child(2) { width: 100px; height: 100px; background: var(--sun); bottom: 8%; right: 4%; animation-delay: 2s; }
+  .bubble-bg .bub:nth-child(3) { width: 120px; height: 120px; background: var(--sky); top: 35%; right: 6%; animation-delay: 4s; }
+  .bubble-bg .bub:nth-child(4) { width: 80px; height: 80px; background: var(--mint); bottom: 25%; left: 3%; animation-delay: 1s; }
+  .bubble-bg .bub:nth-child(5) { width: 100px; height: 100px; background: var(--lavender); top: 15%; left: 45%; animation-delay: 3s; }
+  @keyframes bFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-35px) scale(1.06); }
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD93D 30%, #6BCB77 60%, #4D96FF 100%);
+    padding: 16px 18px 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    z-index: 1;
+  }
+  .floating-deco {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .floating-deco span {
+    position: absolute;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.15);
+    animation: floatDeco 5s ease-in-out infinite;
+  }
+  .floating-deco span:nth-child(1) { top: 5%; left: 4%; animation-delay: 0s; }
+  .floating-deco span:nth-child(2) { top: 10%; right: 6%; animation-delay: 1.2s; }
+  .floating-deco span:nth-child(3) { bottom: 12%; left: 5%; animation-delay: 2.4s; }
+  .floating-deco span:nth-child(4) { bottom: 8%; right: 4%; animation-delay: 0.6s; }
+  .floating-deco span:nth-child(5) { top: 40%; left: 2%; animation-delay: 1.8s; }
+  .floating-deco span:nth-child(6) { top: 35%; right: 3%; animation-delay: 3s; }
+  @keyframes floatDeco {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
+  }
+  .header-brand {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 1;
+  }
+  .header-brand span { color: var(--dark); }
+  .header-tag {
+    display: inline-block;
+    background: var(--dark);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    padding: 3px 14px;
+    border-radius: 999px;
+    margin-top: 4px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title {
+    margin-top: 6px;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    color: #fff;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.12);
+    position: relative;
+    z-index: 1;
+  }
+  .header-sub {
+    margin-top: 3px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── MAIN ── */
+  main { max-width: 900px; margin: 0 auto; padding: 14px 0 30px; position: relative; z-index: 1; }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    border: 2px solid #f0ecf5;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--coral), var(--sun), var(--mint), var(--sky), var(--lavender));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .tip-box {
+    background: #fffbe6;
+    border-left: 5px solid var(--sun);
+    border-radius: 0 12px 12px 0;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .tip-box strong { color: var(--sky); }
+
+  .worksheet-header {
+    background: linear-gradient(135deg, #f8f4ff, #f0f7ff);
+    border-radius: 14px;
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px;
+    margin-bottom: 12px;
+    border: 2px solid var(--lavender);
+  }
+  .worksheet-header .field {
+    font-weight: 700;
+    color: #888;
+    font-size: 0.85rem;
+  }
+  .worksheet-header .field span {
+    display: inline-block;
+    border-bottom: 2px solid #ccc;
+    min-width: 80px;
+    color: var(--dark);
+    padding: 0 4px;
+  }
+
+  /* ── PART STYLES ── */
+  .part-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    color: var(--lavender);
+    margin: 10px 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .part-label .pts {
+    font-size: 0.7rem;
+    color: #aaa;
+    font-weight: 700;
+    background: #f0ecf5;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .part-label .emoji-big { font-size: 1.2rem; }
+
+  .q-row {
+    padding: 3px 0;
+    border-bottom: 1px solid #f5f0fa;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .q-row .num {
+    font-weight: 800;
+    color: var(--lavender);
+    min-width: 24px;
+    font-size: 0.8rem;
+  }
+
+  /* ── BLANK SPACE UNTUK JAWABAN ── */
+  .blank {
+    display: inline-block;
+    border-bottom: 2.5px solid var(--lavender);
+    min-width: 50px;
+    height: 22px;
+  }
+  .blank-lg { min-width: 90px; }
+  .blank-sm { min-width: 35px; }
+  .blank-xl { min-width: 120px; }
+
+  .q-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+  }
+  .q-options label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    background: #f8f4ff;
+    padding: 2px 10px 2px 5px;
+    border-radius: 20px;
+    transition: background 0.2s;
+  }
+  .q-options label:hover { background: #ede4ff; }
+  .q-options input[type="radio"],
+  .q-options input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--lavender);
+    cursor: pointer;
+  }
+
+  .writing-box {
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+    padding: 10px 12px;
+    min-height: 35px;
+    margin-top: 4px;
+    background: #fafafa;
+    transition: border-color 0.2s;
+  }
+  .writing-box:hover { border-color: var(--lavender); }
+
+  .word-bank {
+    background: #f8f4ff;
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 8px;
+    border: 2px solid var(--lavender);
+  }
+  .word-bank span {
+    background: #fff;
+    border-radius: 30px;
+    padding: 3px 12px;
+    font-weight: 700;
+    border: 2px solid var(--lavender);
+    font-size: 0.82rem;
+    color: var(--dark);
+  }
+
+  .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 4px;
+    margin: 6px 0;
+  }
+  .letter-grid .ltr {
+    text-align: center;
+    padding: 4px 2px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    border-radius: 8px;
+    background: #f8f4ff;
+    border: 2px solid #e8e0f0;
+    min-width: 30px;
+  }
+  .letter-grid .ltr.vowel { background: #fff0f6; border-color: var(--rose); color: var(--rose); }
+  .letter-grid .ltr.consonant { background: #f0f7ff; border-color: var(--sky); color: var(--sky); }
+
+  .answer-key {
+    background: #f0f7ff;
+    border: 2.5px solid var(--sky);
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin-top: 14px;
+  }
+  .answer-key h3 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--sky);
+    font-size: 1rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .answer-key .ak-row {
+    padding: 2px 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #e0ecf5;
+    display: flex;
+    gap: 6px;
+  }
+  .answer-key .ak-row .ak-num {
+    font-weight: 800;
+    color: var(--sky);
+    min-width: 20px;
+  }
+  .answer-key .ak-row .ak-ans {
+    font-weight: 700;
+    color: var(--coral);
+  }
+
+  .wordsearch-grid {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    background: #f8f4ff;
+    border-radius: 12px;
+    padding: 10px;
+    letter-spacing: 3px;
+    border: 2px solid var(--lavender);
+  }
+  .wordsearch-grid div { letter-spacing: 3px; }
+
+  footer {
+    text-align: center;
+    padding: 12px;
+    color: #bbb;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  footer span { color: var(--coral); }
+
+  .page-break {
+    border-top: 3px dashed var(--lavender);
+    margin: 16px 0;
+    opacity: 0.3;
+  }
+
+  .no-print {
+    text-align: center;
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--sun);
+  }
+  .no-print p {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+  .no-print .btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--sun), var(--peach));
+    color: var(--dark);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+    transition: transform 0.12s;
+  }
+  .no-print .btn:hover { transform: translateY(-2px); }
+
+  /* ── INTERAKTIF SCORE ── */
+  .interactive-score {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    color: var(--lavender);
+    text-align: center;
+    padding: 8px;
+    background: #f8f4ff;
+    border-radius: 12px;
+    margin-top: 8px;
+    border: 2px solid var(--lavender);
+  }
+  .interactive-score .num { color: var(--coral); font-size: 1.3rem; }
+
+  .check-btn-small {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.75rem;
+    padding: 4px 14px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: var(--mint);
+    color: #fff;
+    box-shadow: 0 3px 0 #3d8b4a;
+    transition: transform 0.12s;
+    margin-left: 6px;
+  }
+  .check-btn-small:hover { transform: translateY(-2px); }
+
+  .fb-small {
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 20px;
+  }
+  .fb-ok-small { color: var(--mint); }
+  .fb-no-small { color: var(--coral); }
+
+  @media (max-width: 600px) {
+    .worksheet-header { flex-direction: column; gap: 3px; }
+    .q-options { flex-direction: column; gap: 2px; }
+    .worksheet-header .field span { min-width: 50px; }
+    .wordsearch-grid { font-size: 0.8rem; letter-spacing: 2px; }
+    .wordsearch-grid div { letter-spacing: 2px; }
+    .q-row { font-size: 0.82rem; flex-wrap: wrap; }
+    .letter-grid { grid-template-columns: repeat(7, 1fr); }
+  }
+  @media print and (max-width: 600px) {
+    .q-options { flex-direction: row; flex-wrap: wrap; }
+    .worksheet-header { flex-direction: row; flex-wrap: wrap; }
+    .letter-grid { grid-template-columns: repeat(13, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- DECORATIVE BACKGROUND -->
+<div class="bubble-bg">
+  <div class="bub"></div>
+  <div class="bub"></div>
+  <div class="bub"></div>
+  <div class="bub"></div>
+  <div class="bub"></div>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════════════════════════
+     WORKSHEET: ALPHABET GRADE 1 — INTERAKTIF
+     ════════════════════════════════════════════════════════ -->
+
+<!-- HEADER -->
+<header>
+  <div class="floating-deco">
+    <span>A</span><span>B</span><span>C</span>
+    <span>D</span><span>E</span><span>F</span>
+    <span>G</span><span>H</span><span>I</span>
+  </div>
+  <div class="header-brand">Little<span>Lume</span> English ✨</div>
+  <div><span class="header-tag">⭐ GRADE 1 ⭐</span></div>
+  <div class="header-title">🔤 Alphabet Worksheet</div>
+  <div class="header-sub">A · B · C · Let's Learn the Alphabet! 🎉</div>
+</header>
+
+<!-- STUDENT INFO -->
+<div class="card">
+  <div class="worksheet-header">
+    <div class="field">👤 Name: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+    <div class="field">🏫 Class: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+    <div class="field">📅 Date: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+    <div class="field">⭐ Score: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:10px; background:linear-gradient(135deg, #f3e8ff, #e0f4ff); border-radius:12px; padding:10px 14px; border:2px solid var(--lavender);">
+    <span style="font-size:2rem;">🔤</span>
+    <div>
+      <strong style="color:var(--lavender); font-family:'Fredoka One',cursive;">REMEMBER!</strong>
+      <span style="font-size:0.85rem;"> The alphabet has <strong>26 letters</strong>! <strong style="color:var(--rose);">5 are vowels</strong> (A, E, I, O, U) and <strong style="color:var(--sky);">21 are consonants</strong>!</span>
+      <div style="font-size:0.8rem; color:#888; margin-top:2px;">🔤 A · B · C · D · E · F · G · H · I · J · K · L · M · N · O · P · Q · R · S · T · U · V · W · X · Y · Z</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PART A: CIRCLE THE LETTER
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">🔍</span> PART A – Circle the Letter
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">🎯 Circle the correct letter in each row.</p>
+
+  <div class="q-row"><span class="num">1.</span> A B C → Circle the first letter of "<strong>Apple</strong>"</div>
+  <div class="q-row"><span class="num">2.</span> B C D → Circle the first letter of "<strong>Ball</strong>"</div>
+  <div class="q-row"><span class="num">3.</span> C D E → Circle the first letter of "<strong>Cat</strong>"</div>
+  <div class="q-row"><span class="num">4.</span> D E F → Circle the first letter of "<strong>Dog</strong>"</div>
+  <div class="q-row"><span class="num">5.</span> E F G → Circle the first letter of "<strong>Elephant</strong>"</div>
+  <div class="q-row"><span class="num">6.</span> F G H → Circle the first letter of "<strong>Fish</strong>"</div>
+  <div class="q-row"><span class="num">7.</span> G H I → Circle the first letter of "<strong>Giraffe</strong>"</div>
+  <div class="q-row"><span class="num">8.</span> H I J → Circle the first letter of "<strong>House</strong>"</div>
+  <div class="q-row"><span class="num">9.</span> I J K → Circle the first letter of "<strong>Ice cream</strong>"</div>
+  <div class="q-row"><span class="num">10.</span> J K L → Circle the first letter of "<strong>Juice</strong>"</div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Look at the first letter of each word! Apple starts with <strong>A</strong>, Ball starts with <strong>B</strong>, Cat starts with <strong>C</strong>!
+  </div>
+</div>
+
+<!-- ============================================================
+     PART B: WHAT LETTER COMES NEXT?
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">➡️</span> PART B – What Letter Comes Next?
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">✏️ Write the letter that comes next.</p>
+
+  <div class="q-row"><span class="num">1.</span> A → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">2.</span> B → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">3.</span> D → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">4.</span> F → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">5.</span> H → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">6.</span> J → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">7.</span> L → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">8.</span> N → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">9.</span> P → <span class="blank blank-sm"></span></div>
+  <div class="q-row"><span class="num">10.</span> R → <span class="blank blank-sm"></span></div>
+
+  <div class="tip-box">
+    💡 <strong>Remember:</strong> A → B → C → D! Each letter comes after the one before it!
+  </div>
+</div>
+
+<!-- ============================================================
+     PART C: VOWEL OR CONSONANT?
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">🔊</span> PART C – Vowel or Consonant?
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">✏️ Write <strong style="color:var(--rose);">V</strong> for Vowel or <strong style="color:var(--sky);">C</strong> for Consonant.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 16px;">
+    <div class="q-row"><span class="num">1.</span> A → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">2.</span> B → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">3.</span> E → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">4.</span> F → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">5.</span> I → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">6.</span> M → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">7.</span> O → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">8.</span> P → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">9.</span> U → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">10.</span> Z → <span class="blank blank-sm"></span></div>
+  </div>
+
+  <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; justify-content:center;">
+    <span style="background:#fff0f6; border-radius:20px; padding:2px 10px; font-weight:700; font-size:0.75rem; border:2px solid var(--rose);">🔴 VOWELS: A, E, I, O, U</span>
+    <span style="background:#f0f7ff; border-radius:20px; padding:2px 10px; font-weight:700; font-size:0.75rem; border:2px solid var(--sky);">🔵 CONSONANTS: All other letters</span>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Remember:</strong> Vowels are the "sound-makers"! Every word needs at least one vowel. Try saying "A-E-I-O-U" — it's like singing! 🎵
+  </div>
+</div>
+
+<!-- ============================================================
+     PART D: ALPHABET ORDER
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">📋</span> PART D – Alphabet Order
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">✏️ Fill in the missing letters.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px 16px;">
+    <div class="q-row"><span class="num">1.</span> A, B, <span class="blank blank-sm"></span>, D</div>
+    <div class="q-row"><span class="num">2.</span> C, D, E, <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">3.</span> G, <span class="blank blank-sm"></span>, I, J</div>
+    <div class="q-row"><span class="num">4.</span> K, L, M, <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">5.</span> N, <span class="blank blank-sm"></span>, P, Q</div>
+    <div class="q-row"><span class="num">6.</span> Q, R, S, <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">7.</span> U, <span class="blank blank-sm"></span>, W, X</div>
+    <div class="q-row"><span class="num">8.</span> W, X, Y, <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">9.</span> D, E, <span class="blank blank-sm"></span>, G</div>
+    <div class="q-row"><span class="num">10.</span> P, Q, R, <span class="blank blank-sm"></span></div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Sing the alphabet song to help you find the missing letters! 🎵 A-B-C-D-E-F-G...
+  </div>
+</div>
+
+<!-- ============================================================
+     PART E: MATCH THE LETTER TO THE PICTURE
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">🔗</span> PART E – Match the Letter to the Picture
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">✏️ Write the correct letter next to each picture.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 20px;">
+    <div class="q-row"><span class="num">1.</span> 🍎 Apple → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">2.</span> ⚽ Ball → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">3.</span> 🐱 Cat → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">4.</span> 🐶 Dog → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">5.</span> 🐘 Elephant → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">6.</span> 🐟 Fish → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">7.</span> 🦒 Giraffe → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">8.</span> 🏠 House → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">9.</span> 🍦 Ice cream → <span class="blank blank-sm"></span></div>
+    <div class="q-row"><span class="num">10.</span> 🧃 Juice → <span class="blank blank-sm"></span></div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Think about the first sound of each word! Apple starts with <strong>A</strong>, Ball starts with <strong>B</strong>!
+  </div>
+</div>
+
+<!-- ============================================================
+     PART F: COLOR THE VOWELS
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">🎨</span> PART F – Color the Vowels!
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">🎨 <strong>Color</strong> all the vowels in the grid below!</p>
+
+  <div class="letter-grid">
+    <div class="ltr">A</div><div class="ltr">B</div><div class="ltr">C</div><div class="ltr">D</div><div class="ltr">E</div>
+    <div class="ltr">F</div><div class="ltr">G</div><div class="ltr">H</div><div class="ltr">I</div><div class="ltr">J</div>
+    <div class="ltr">K</div><div class="ltr">L</div><div class="ltr">M</div><div class="ltr">N</div><div class="ltr">O</div>
+    <div class="ltr">P</div><div class="ltr">Q</div><div class="ltr">R</div><div class="ltr">S</div><div class="ltr">T</div>
+    <div class="ltr">U</div><div class="ltr">V</div><div class="ltr">W</div><div class="ltr">X</div><div class="ltr">Y</div>
+    <div class="ltr">Z</div>
+  </div>
+
+  <div style="display:flex; gap:12px; justify-content:center; margin-top:6px; flex-wrap:wrap; font-size:0.8rem;">
+    <span>🔴 <strong style="color:var(--rose);">VOWELS:</strong> A, E, I, O, U</span>
+    <span>🔵 <strong style="color:var(--sky);">CONSONANTS:</strong> All other letters</span>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Remember:</strong> Vowels are the "special" letters! A, E, I, O, U — color them all! 🎨
+  </div>
+</div>
+
+<!-- ============================================================
+     PART G: WRITE YOUR OWN NAME
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">✍️</span> PART G – Write Your Own Name!
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">🌟 Write your name using letters from the alphabet!</p>
+
+  <div style="margin-bottom:6px;">
+    <strong style="color:var(--coral);">My name is:</strong>
+    <div class="writing-box" style="min-height:30px;"></div>
+  </div>
+  <div>
+    <strong style="color:var(--sky);">Now write the first letter of your name:</strong>
+    <div class="writing-box" style="min-height:30px;"></div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Fun!</strong> Every letter has a name and a sound. What is the first sound of your name?
+  </div>
+</div>
+
+<!-- ============================================================
+     PART H: BONUS — WORD SEARCH
+     ============================================================ -->
+<div class="card">
+  <div class="part-label">
+    <span class="emoji-big">🔍</span> PART H – Bonus: Word Search
+    <span class="pts">10 points</span>
+  </div>
+  <p style="color:#666; font-size:0.82rem; margin-bottom:6px;">🔎 Find these 10 words: <strong>APPLE, BALL, CAT, DOG, FISH, SUN, LION, BIRD, STAR, TREE</strong></p>
+
+  <div class="wordsearch-grid">
+    <div>A P P L E B A L L C</div>
+    <div>B I R D S T A R F I</div>
+    <div>C A T D O G F I S H</div>
+    <div>L I O N T R E E S U</div>
+    <div>S T A R F I S H C N</div>
+    <div>D O G B A L L A P P</div>
+    <div>F I S H C A T D O G</div>
+    <div>S U N L I O N B I R</div>
+    <div>T R E E S T A R D O</div>
+    <div>G F I S H C A T S U</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ANSWER KEY — TERPISAH (UNTUK GURU)
+     ============================================================ -->
+<div class="page-break"></div>
+
+<div class="card answer-key">
+  <h3>🔑 ANSWER KEY — Alphabet Grade 1</h3>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 14px;">
+    <div>
+      <strong style="color:var(--lavender);">PART A (10 pts)</strong>
+      <div class="ak-row"><span class="ak-num">1.</span> <span class="ak-ans">A</span></div>
+      <div class="ak-row"><span class="ak-num">2.</span> <span class="ak-ans">B</span></div>
+      <div class="ak-row"><span class="ak-num">3.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">4.</span> <span class="ak-ans">D</span></div>
+      <div class="ak-row"><span class="ak-num">5.</span> <span class="ak-ans">E</span></div>
+      <div class="ak-row"><span class="ak-num">6.</span> <span class="ak-ans">F</span></div>
+      <div class="ak-row"><span class="ak-num">7.</span> <span class="ak-ans">G</span></div>
+      <div class="ak-row"><span class="ak-num">8.</span> <span class="ak-ans">H</span></div>
+      <div class="ak-row"><span class="ak-num">9.</span> <span class="ak-ans">I</span></div>
+      <div class="ak-row"><span class="ak-num">10.</span> <span class="ak-ans">J</span></div>
+    </div>
+
+    <div>
+      <strong style="color:var(--lavender);">PART B (10 pts)</strong>
+      <div class="ak-row"><span class="ak-num">1.</span> <span class="ak-ans">B</span></div>
+      <div class="ak-row"><span class="ak-num">2.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">3.</span> <span class="ak-ans">E</span></div>
+      <div class="ak-row"><span class="ak-num">4.</span> <span class="ak-ans">G</span></div>
+      <div class="ak-row"><span class="ak-num">5.</span> <span class="ak-ans">I</span></div>
+      <div class="ak-row"><span class="ak-num">6.</span> <span class="ak-ans">K</span></div>
+      <div class="ak-row"><span class="ak-num">7.</span> <span class="ak-ans">M</span></div>
+      <div class="ak-row"><span class="ak-num">8.</span> <span class="ak-ans">O</span></div>
+      <div class="ak-row"><span class="ak-num">9.</span> <span class="ak-ans">Q</span></div>
+      <div class="ak-row"><span class="ak-num">10.</span> <span class="ak-ans">S</span></div>
+    </div>
+
+    <div>
+      <strong style="color:var(--lavender);">PART C (10 pts)</strong>
+      <div class="ak-row"><span class="ak-num">1.</span> <span class="ak-ans">V</span></div>
+      <div class="ak-row"><span class="ak-num">2.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">3.</span> <span class="ak-ans">V</span></div>
+      <div class="ak-row"><span class="ak-num">4.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">5.</span> <span class="ak-ans">V</span></div>
+      <div class="ak-row"><span class="ak-num">6.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">7.</span> <span class="ak-ans">V</span></div>
+      <div class="ak-row"><span class="ak-num">8.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">9.</span> <span class="ak-ans">V</span></div>
+      <div class="ak-row"><span class="ak-num">10.</span> <span class="ak-ans">C</span></div>
+    </div>
+
+    <div>
+      <strong style="color:var(--lavender);">PART D (10 pts)</strong>
+      <div class="ak-row"><span class="ak-num">1.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">2.</span> <span class="ak-ans">F</span></div>
+      <div class="ak-row"><span class="ak-num">3.</span> <span class="ak-ans">H</span></div>
+      <div class="ak-row"><span class="ak-num">4.</span> <span class="ak-ans">O</span></div>
+      <div class="ak-row"><span class="ak-num">5.</span> <span class="ak-ans">O</span></div>
+      <div class="ak-row"><span class="ak-num">6.</span> <span class="ak-ans">T</span></div>
+      <div class="ak-row"><span class="ak-num">7.</span> <span class="ak-ans">V</span></div>
+      <div class="ak-row"><span class="ak-num">8.</span> <span class="ak-ans">Z</span></div>
+      <div class="ak-row"><span class="ak-num">9.</span> <span class="ak-ans">F</span></div>
+      <div class="ak-row"><span class="ak-num">10.</span> <span class="ak-ans">S</span></div>
+    </div>
+
+    <div>
+      <strong style="color:var(--lavender);">PART E (10 pts)</strong>
+      <div class="ak-row"><span class="ak-num">1.</span> <span class="ak-ans">A</span></div>
+      <div class="ak-row"><span class="ak-num">2.</span> <span class="ak-ans">B</span></div>
+      <div class="ak-row"><span class="ak-num">3.</span> <span class="ak-ans">C</span></div>
+      <div class="ak-row"><span class="ak-num">4.</span> <span class="ak-ans">D</span></div>
+      <div class="ak-row"><span class="ak-num">5.</span> <span class="ak-ans">E</span></div>
+      <div class="ak-row"><span class="ak-num">6.</span> <span class="ak-ans">F</span></div>
+      <div class="ak-row"><span class="ak-num">7.</span> <span class="ak-ans">G</span></div>
+      <div class="ak-row"><span class="ak-num">8.</span> <span class="ak-ans">H</span></div>
+      <div class="ak-row"><span class="ak-num">9.</span> <span class="ak-ans">I</span></div>
+      <div class="ak-row"><span class="ak-num">10.</span> <span class="ak-ans">J</span></div>
+    </div>
+
+    <div>
+      <strong style="color:var(--lavender);">PART F (10 pts)</strong>
+      <div class="ak-row"><span class="ak-ans">Vowels to color: A, E, I, O, U</span></div>
+      <div style="font-size:0.75rem; color:#888; padding-top:4px;">Check that students colored the 5 vowels correctly.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:8px; border-top:2px solid var(--sky); padding-top:8px;">
+    <strong style="color:var(--lavender);">PART G – Writing (10 pts)</strong>
+    <p style="font-size:0.8rem; color:#555;">Answers will vary. Check that students wrote their name and identified the first letter correctly.</p>
+  </div>
+
+  <div style="margin-top:8px; border-top:2px solid var(--sky); padding-top:8px;">
+    <strong style="color:var(--lavender);">PART H – Word Search (10 pts)</strong>
+    <p style="font-size:0.8rem; color:#555;">All 10 words are hidden: APPLE, BALL, CAT, DOG, FISH, SUN, LION, BIRD, STAR, TREE</p>
+  </div>
+
+  <div style="margin-top:10px; background:linear-gradient(135deg, var(--sun), var(--peach)); border-radius:12px; padding:8px 14px; text-align:center; font-family:'Fredoka One',cursive; font-size:1rem; color:var(--dark);">
+    🎯 Total Score: ___ / 80
+  </div>
+</div>
+
+<!-- ============================================================
+     INTERAKTIF CHECK — TOMBOL CEK JAWABAN
+     ============================================================ -->
+<div class="no-print" style="margin-top:10px;">
+  <p>✅ Click to check your answers! (Answers will appear in green)</p>
+  <button class="btn" onclick="checkAllAnswers()">✅ Check My Answers!</button>
+  <button class="btn" style="background:#f0ecf5; color:#888; box-shadow:0 4px 0 #ccc; margin-left:6px;" onclick="resetAllAnswers()">🔄 Reset All</button>
+</div>
+
+<!-- ============================================================
+     PRINT / SAVE PDF
+     ============================================================ -->
+<div class="no-print">
+  <p>🖨️ Click below to print or save as PDF — <strong>fits perfectly on A4 paper!</strong></p>
+  <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <p style="font-size:0.75rem; margin-top:6px; color:#aaa;">
+    💡 Tip: Choose <strong>"Save as PDF"</strong> in the print dialog.
+  </p>
+</div>
+
+<footer>
+  Made with ❤️ by <span>LittleLume English</span> • Grade 1 • Alphabet Worksheet
+</footer>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   INTERAKTIF — CHECK ANSWERS
+   ═══════════════════════════════════════════════════════════ */
+
+const ANSWER_KEY = {
+  // PART B: What letter comes next?
+  'partB': ['B', 'C', 'E', 'G', 'I', 'K', 'M', 'O', 'Q', 'S'],
+  // PART C: Vowel or Consonant?
+  'partC': ['V', 'C', 'V', 'C', 'V', 'C', 'V', 'C', 'V', 'C'],
+  // PART D: Alphabet Order
+  'partD': ['C', 'F', 'H', 'O', 'O', 'T', 'V', 'Z', 'F', 'S'],
+  // PART E: Match letter to picture
+  'partE': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+};
+
+function checkAllAnswers() {
+  // PART B
+  const partBInputs = document.querySelectorAll('#partB .blank');
+  partBInputs.forEach((input, i) => {
+    const ans = ANSWER_KEY.partB[i];
+    const val = input.textContent.trim().toUpperCase();
+    input.style.borderBottomColor = val === ans ? '#6BCB77' : '#FF6B6B';
+    input.style.borderBottomWidth = '3px';
+  });
+
+  // PART C
+  const partCInputs = document.querySelectorAll('#partC .blank');
+  partCInputs.forEach((input, i) => {
+    const ans = ANSWER_KEY.partC[i];
+    const val = input.textContent.trim().toUpperCase();
+    input.style.borderBottomColor = val === ans ? '#6BCB77' : '#FF6B6B';
+    input.style.borderBottomWidth = '3px';
+  });
+
+  // PART D
+  const partDInputs = document.querySelectorAll('#partD .blank');
+  partDInputs.forEach((input, i) => {
+    const ans = ANSWER_KEY.partD[i];
+    const val = input.textContent.trim().toUpperCase();
+    input.style.borderBottomColor = val === ans ? '#6BCB77' : '#FF6B6B';
+    input.style.borderBottomWidth = '3px';
+  });
+
+  // PART E
+  const partEInputs = document.querySelectorAll('#partE .blank');
+  partEInputs.forEach((input, i) => {
+    const ans = ANSWER_KEY.partE[i];
+    const val = input.textContent.trim().toUpperCase();
+    input.style.borderBottomColor = val === ans ? '#6BCB77' : '#FF6B6B';
+    input.style.borderBottomWidth = '3px';
+  });
+
+  // Count correct answers for Part C (Vowel/Consonant) as a demo
+  let correctCount = 0;
+  const partCValues = [];
+  partCInputs.forEach((input, i) => {
+    const val = input.textContent.trim().toUpperCase();
+    partCValues.push(val);
+    if (val === ANSWER_KEY.partC[i]) correctCount++;
+  });
+
+  // Show a feedback message
+  const fb = document.createElement('div');
+  fb.style.cssText = 'text-align:center; font-family:"Fredoka One",cursive; font-size:1.1rem; margin-top:10px; padding:10px; border-radius:12px; background:#f8f4ff; border:2px solid var(--lavender);';
+  fb.id = 'checkFeedback';
+
+  const existing = document.getElementById('checkFeedback');
+  if (existing) existing.remove();
+
+  const total = partCInputs.length;
+  const pct = Math.round((correctCount / total) * 100);
+  let emoji = pct === 100 ? '🎉' : pct >= 70 ? '🌟' : pct >= 50 ? '😊' : '💪';
+  fb.innerHTML = `${emoji} You got <strong style="color:var(--coral);">${correctCount}</strong> out of <strong>${total}</strong> correct for Vowel/Consonant! Keep going! 🌟`;
+
+  const container = document.querySelector('#partC .card') || document.querySelector('#partC').parentElement;
+  container.appendChild(fb);
+
+  // Scroll to feedback
+  fb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetAllAnswers() {
+  document.querySelectorAll('.blank').forEach(el => {
+    el.textContent = '';
+    el.style.borderBottomColor = 'var(--lavender)';
+    el.style.borderBottomWidth = '2.5px';
+  });
+  const existing = document.getElementById('checkFeedback');
+  if (existing) existing.remove();
+}
+
+// Allow typing in blanks
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.blank').forEach(el => {
+    el.contentEditable = true;
+    el.setAttribute('role', 'textbox');
+    el.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        this.blur();
+      }
+    });
+    // Only allow single character for short blanks
+    el.addEventListener('input', function() {
+      if (this.classList.contains('blank-sm') && this.textContent.length > 1) {
+        this.textContent = this.textContent.slice(-1);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
