@@ -2500,10 +2500,12 @@
             function syncHeaderOffset() {
                 var header = document.querySelector('header');
                 var wasScrolled = header.classList.contains('scrolled');
-                header.classList.remove('scrolled');
+                header.classList.add('scrolled');
+                header.style.transition = 'none';
                 var h = header.offsetHeight;
-                if (wasScrolled) header.classList.add('scrolled');
-                document.body.style.paddingTop = h + 'px';
+                header.style.transition = '';
+                if (!wasScrolled) header.classList.remove('scrolled');
+                document.body.style.paddingTop = (h + 12) + 'px';
             }
             syncHeaderOffset();
             window.addEventListener('resize', syncHeaderOffset);
