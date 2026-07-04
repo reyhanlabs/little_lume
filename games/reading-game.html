@@ -2,7 +2,568 @@
 <html lang="en">
 <head>
 <!-- 🔒 AUTH GUARD — wajib login untuk akses halaman ini -->
-<style>body{visibility:hidden}</style>
+<style>body{visibility:hidden}
+/* ===== SYNCED HOMEPAGE HEADER ===== */
+        /* ============= HEADER / NAVBAR ============= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+        }
+
+        header.scrolled {
+            background: transparent;
+            backdrop-filter: none;
+            border-bottom-color: transparent;
+            box-shadow: none;
+            padding: 14px 16px 0;
+        }
+        header.scrolled::before { opacity: 0; }
+
+        /* Starry background effect */
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(1px 1px at 10% 90%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 40% 20%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(2px 2px at 15% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 85% 30%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1px 1px at 25% 10%, rgba(255, 255, 255, 0.9), transparent);
+            background-size: 200% 200%;
+            background-position: 0 0;
+            animation: twinkleBg 20s ease-in-out infinite;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        @keyframes twinkleBg {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled .navbar {
+            max-width: 1140px;
+            padding: 0.75rem 1.75rem;
+            background: rgba(15, 27, 76, 0.68);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 16px 40px rgba(15, 27, 76, 0.35);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(90deg,
+                    #FF6B9D 0%,
+                    #FFD93D 25%,
+                    #00D2D3 50%,
+                    #FF9FF3 75%,
+                    #FF6B9D 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(255, 107, 157, 0.3));
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ============= MOBILE MENU TOGGLE ============= */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 27, 76, 0.55);
+            z-index: 1050;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-overlay.show {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-close-item { display: none; }
+
+        .nav-link-grammar:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+            color: #0F1B4C;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        .nav-auth-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-user-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.4rem 0.5rem 0.4rem 0.4rem;
+            border-radius: 999px;
+        }
+
+        .nav-user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD93D, #FECA57);
+            color: #0F1B4C;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .nav-user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+        .nav-user-name {
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-logout-btn {
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .nav-logout-btn:hover {
+            background: rgba(239, 68, 68, 0.75);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -320px;
+                height: 100vh;
+                width: min(78vw, 320px);
+                background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 4.5rem 1.5rem 2rem;
+                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+                transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1100;
+                overflow-y: auto;
+            }
+
+            .nav-links.open {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.9rem 0.2rem;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links a::after { display: none; }
+
+            .nav-cta { margin-top: 0.5rem; }
+
+            .menu-toggle { display: flex; }
+
+            .nav-close-item { display: block; text-align: right; margin-bottom: 0.5rem; }
+            .nav-close-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white;
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+                font-size: 1rem;
+                cursor: pointer;
+            }
+
+            /* Dropdowns become accordion-style on mobile (tap instead of hover) */
+            .nav-item-dropdown {
+                position: static !important;
+                display: block !important;
+            }
+            .nav-dropdown-trigger {
+                justify-content: space-between;
+            }
+            .nav-dropdown {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0.5rem 0 0.5rem 0.75rem;
+                min-width: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+            }
+            .nav-dropdown::before { display: none !important; }
+            .nav-item-dropdown.open .nav-dropdown {
+                max-height: 600px;
+                padding: 0.5rem 0 0.75rem 0.75rem;
+            }
+            #navLinks .nav-dropdown-item {
+                color: rgba(255, 255, 255, 0.85) !important;
+            }
+            #navLinks .nav-dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+            .nav-dropdown-bar { display: none !important; }
+            .nav-dropdown-label {
+                color: rgba(255, 255, 255, 0.45) !important;
+                font-size: 0.68rem !important;
+                padding: 0 0 0.5rem !important;
+                margin: 0 !important;
+            }
+            .nav-dropdown-grid { grid-template-columns: 1fr 1fr; }
+
+            .cambridge-dropdown {
+                left: auto !important;
+                right: 0 !important;
+                max-width: calc(100vw - 3rem);
+            }
+        }
+
+        /* ============= NAV DROPDOWNS (Worksheets & Resources) ============= */
+        .nav-item-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-dropdown-trigger {
+            display: flex !important;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .nav-dropdown-arrow {
+            font-size: 0.65rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px) scale(0.97);
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.85rem;
+            min-width: 285px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 200;
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .nav-dropdown-bar {
+            height: 5px;
+            margin: -0.85rem -0.85rem 0.75rem;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .nav-dropdown-bar-ws {
+            background: linear-gradient(90deg, #FF6B9D 0%, #FECA57 20%, #00D2D3 40%, #FF9FF3 60%, #54A0FF 80%, #1DD1A1 100%);
+        }
+
+        .nav-dropdown-bar-res {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent-cyan) 100%);
+        }
+
+        .nav-dropdown-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-secondary);
+            padding: 0 0.2rem 0.6rem;
+        }
+
+        .nav-dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 0.4rem;
+        }
+
+        .nav-dropdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .nav-dropdown-item {
+            display: flex !important;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.5rem 0.55rem;
+            border-radius: 11px;
+            color: var(--text-primary) !important;
+            font-size: 0.83rem;
+            font-weight: 600 !important;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-item::after {
+            content: none !important;
+        }
+
+        .nav-dropdown-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-item:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Worksheet grade colors */
+        .nav-dropdown-item.ws-g1 .nav-dropdown-icon { background: rgba(255, 107, 157, 0.15); }
+        .nav-dropdown-item.ws-g1:hover { color: #FF6B9D !important; }
+        .nav-dropdown-item.ws-g1:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%); }
+
+        .nav-dropdown-item.ws-g2 .nav-dropdown-icon { background: rgba(254, 202, 87, 0.18); }
+        .nav-dropdown-item.ws-g2:hover { color: #E5A800 !important; }
+        .nav-dropdown-item.ws-g2:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FECA57 0%, #FDBA3D 100%); }
+
+        .nav-dropdown-item.ws-g3 .nav-dropdown-icon { background: rgba(0, 210, 211, 0.15); }
+        .nav-dropdown-item.ws-g3:hover { color: #00AEAF !important; }
+        .nav-dropdown-item.ws-g3:hover .nav-dropdown-icon { background: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%); }
+
+        .nav-dropdown-item.ws-g4 .nav-dropdown-icon { background: rgba(255, 159, 243, 0.18); }
+        .nav-dropdown-item.ws-g4:hover { color: #E070D6 !important; }
+        .nav-dropdown-item.ws-g4:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF9FF3 0%, #FF84E8 100%); }
+
+        .nav-dropdown-item.ws-g5 .nav-dropdown-icon { background: rgba(84, 160, 255, 0.15); }
+        .nav-dropdown-item.ws-g5:hover { color: #3B82F6 !important; }
+        .nav-dropdown-item.ws-g5:hover .nav-dropdown-icon { background: linear-gradient(135deg, #54A0FF 0%, #3B82F6 100%); }
+
+        .nav-dropdown-item.ws-g6 .nav-dropdown-icon { background: rgba(29, 209, 161, 0.15); }
+        .nav-dropdown-item.ws-g6:hover { color: #10AC84 !important; }
+        .nav-dropdown-item.ws-g6:hover .nav-dropdown-icon { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%); }
+
+        /* Learning Resources colors */
+        .nav-dropdown-item.res-grammar .nav-dropdown-icon { background: rgba(44, 62, 122, 0.12); }
+        .nav-dropdown-item.res-grammar:hover { color: var(--primary) !important; }
+        .nav-dropdown-item.res-grammar:hover .nav-dropdown-icon { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+
+        .nav-dropdown-item.res-vocab .nav-dropdown-icon { background: rgba(0, 217, 255, 0.15); }
+        .nav-dropdown-item.res-vocab:hover { color: #00AEC7 !important; }
+        .nav-dropdown-item.res-vocab:hover .nav-dropdown-icon { background: linear-gradient(135deg, #48DBFB 0%, #00D9FF 100%); }
+
+        .nav-dropdown-item.res-phrasal .nav-dropdown-icon { background: rgba(245, 158, 11, 0.15); }
+        .nav-dropdown-item.res-phrasal:hover { color: #C9840A !important; }
+        .nav-dropdown-item.res-phrasal:hover .nav-dropdown-icon { background: linear-gradient(135deg, #F59E0B 0%, #FFD93D 100%); }
+
+        .nav-dropdown-item.res-stories .nav-dropdown-icon { background: rgba(255, 107, 157, 0.15); }
+        .nav-dropdown-item.res-stories:hover { color: #FF5A8A !important; }
+        .nav-dropdown-item.res-stories:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF9FF3 0%, #FF6B9D 100%); }
+
+</style>
 <script>window.AUTH_LOGIN_PATH = "../login.html";</script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
@@ -14,7 +575,7 @@
 <title>Reading Games | LittleLume</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
     :root {
         --primary: #2C3E7A;
@@ -58,7 +619,7 @@
     }
     h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-    .topbar { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
+    .topbar { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;  z-index: 50; box-shadow: var(--shadow-sm); }
     .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
     .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
     .topbar-stars { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--warning); font-size: 0.95rem; }
@@ -200,6 +761,35 @@
 </style>
 </head>
 <body>
+<header>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="../index.html" style="text-decoration:none;"><div class="logo">✨ LittleLume</div></a>
+        </div>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-close-item"><button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">✕</button></li>
+            <li><a href="../index.html#courses">Courses</a></li>
+            <li><a href="../curriculum.html">Curriculum</a></li>
+            <li><a href="../index.html#resources">Resources</a></li>
+            <li><a href="../index.html#courses">Worksheets</a></li>
+            <li><a class="nav-link-grammar" href="index.html">🎮 Games</a></li>
+            <li><a href="../index.html#quotes">About</a></li>
+        </ul>
+        <div class="nav-auth-area" id="navAuthArea">
+            <a class="nav-cta" href="../login.html" id="navLoginBtn">Login</a>
+            <div class="nav-user-chip" id="navUserChip" style="display:none;">
+                <span class="nav-user-avatar" id="navUserAvatar">?</span>
+                <span class="nav-user-name" id="navUserName">User</span>
+                <button class="nav-logout-btn" id="navLogoutBtn" title="Logout" aria-label="Logout">⏻</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
 
 <div class="topbar">
     <div class="brand"><span class="brand-badge">📚</span> LittleLume Reading Games</div>
@@ -763,5 +1353,179 @@ const READING_DATA = {"grade2": {"comprehension": {"title": "Story Time", "icon"
 })();
 
 </script>
+<script>
+        // ============= MOBILE MENU =============
+        (function () {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navOverlay = document.getElementById('navOverlay');
+            const navCloseBtn = document.getElementById('navCloseBtn');
+
+            function openMenu() {
+                navLinks.classList.add('open');
+                navOverlay.classList.add('show');
+                menuToggle.classList.add('open');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                navLinks.classList.remove('open');
+                navOverlay.classList.remove('show');
+                menuToggle.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', function () {
+                if (navLinks.classList.contains('open')) closeMenu(); else openMenu();
+            });
+            navOverlay.addEventListener('click', closeMenu);
+            navCloseBtn.addEventListener('click', closeMenu);
+
+            // Close menu when a normal (non-dropdown-trigger) link is tapped
+            navLinks.querySelectorAll('a').forEach(function (a) {
+                if (!a.classList.contains('nav-dropdown-trigger')) {
+                    a.addEventListener('click', closeMenu);
+                }
+            });
+
+            // On mobile, dropdown triggers toggle an accordion instead of navigating away
+            navLinks.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
+                trigger.addEventListener('click', function (e) {
+                    if (window.innerWidth > 768) return; // desktop keeps hover behavior + normal link
+                    e.preventDefault();
+                    const parentLi = trigger.closest('.nav-item-dropdown');
+                    const wasOpen = parentLi.classList.contains('open');
+                    navLinks.querySelectorAll('.nav-item-dropdown.open').forEach(function (li) {
+                        li.classList.remove('open');
+                    });
+                    if (!wasOpen) parentLi.classList.add('open');
+                });
+            });
+
+            // Reset state on resize back to desktop
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) closeMenu();
+            });
+        })();
+
+        // Intersection Observer untuk card animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.course-card, .feature, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // Navbar background on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('header');
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Header is now position:fixed (immune to ancestor overflow quirks that
+        // break position:sticky). Compensate by pushing page content down by
+        // the header's real height so nothing is hidden underneath it.
+        // Exposed on window so other scripts (e.g. the login-state script,
+        // which changes navbar content asynchronously once Firebase responds)
+        // can trigger a recalculation after they change the navbar's content.
+        window.syncHeaderOffset = function () {
+            var header = document.querySelector('header');
+            // Measure using an invisible clone so the real header (which the
+            // user may be actively looking at, mid-scroll or mid-transition)
+            // is never touched or flashed during measurement.
+            var clone = header.cloneNode(true);
+            clone.classList.add('scrolled');
+            clone.style.transition = 'none';
+            clone.style.visibility = 'hidden';
+            clone.style.pointerEvents = 'none';
+            clone.style.position = 'fixed';
+            clone.style.top = '-9999px';
+            document.body.appendChild(clone);
+            var h = clone.offsetHeight;
+            document.body.removeChild(clone);
+            document.body.style.paddingTop = (h + 12) + 'px';
+        };
+        window.syncHeaderOffset();
+        window.addEventListener('resize', window.syncHeaderOffset);
+        window.addEventListener('load', window.syncHeaderOffset);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(window.syncHeaderOffset);
+        }
+        // Extra safety net: real-world conditions (slow connections, font
+        // loading, Firebase auth resolving) can change the navbar's height
+        // slightly after our first measurement. Re-check a few times shortly
+        // after load to make sure content is never hidden behind the header.
+        [200, 500, 1000, 2000].forEach(function (delay) {
+            setTimeout(window.syncHeaderOffset, delay);
+        });
+    </script>
+
+    <!-- ============= LOGIN STATE (navbar) =============
+         This page already loads Firebase via auth-guard.js in <head>.
+         This script just reflects login state in the navbar
+         (Login button <-> user name chip + logout button). -->
+    <script>
+        (function () {
+            var loginBtn = document.getElementById('navLoginBtn');
+            var userChip = document.getElementById('navUserChip');
+            var userAvatar = document.getElementById('navUserAvatar');
+            var userName = document.getElementById('navUserName');
+            var logoutBtn = document.getElementById('navLogoutBtn');
+
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    var displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
+                    userName.textContent = displayName;
+                    userName.title = user.email || '';
+
+                    if (user.photoURL) {
+                        userAvatar.innerHTML = '<img src="' + user.photoURL + '" alt="' + displayName + '">';
+                    } else {
+                        userAvatar.textContent = displayName.charAt(0).toUpperCase();
+                    }
+
+                    loginBtn.style.display = 'none';
+                    userChip.style.display = 'flex';
+                } else {
+                    loginBtn.style.display = 'inline-block';
+                    userChip.style.display = 'none';
+                }
+                // Navbar content just changed (Login button <-> user chip),
+                // which can change the header's rendered height. Recalculate
+                // the page's top spacing so nothing ends up hidden behind it.
+                if (window.syncHeaderOffset) {
+                    window.syncHeaderOffset();
+                    setTimeout(window.syncHeaderOffset, 50);
+                }
+            });
+
+            logoutBtn.addEventListener('click', function () {
+                firebase.auth().signOut().then(function () {
+                    window.location.reload();
+                });
+            });
+        })();
+    </script>
+
 </body>
 </html>
