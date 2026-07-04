@@ -2496,20 +2496,39 @@
         // Header is now position:fixed (immune to ancestor overflow quirks that
         // break position:sticky). Compensate by pushing page content down by
         // the header's real height so nothing is hidden underneath it.
-        (function () {
-            function syncHeaderOffset() {
-                var header = document.querySelector('header');
-                var wasScrolled = header.classList.contains('scrolled');
-                header.classList.add('scrolled');
-                header.style.transition = 'none';
-                var h = header.offsetHeight;
-                header.style.transition = '';
-                if (!wasScrolled) header.classList.remove('scrolled');
-                document.body.style.paddingTop = (h + 12) + 'px';
-            }
-            syncHeaderOffset();
-            window.addEventListener('resize', syncHeaderOffset);
-        })();
+        // Exposed on window so other scripts (e.g. the login-state script,
+        // which changes navbar content asynchronously once Firebase responds)
+        // can trigger a recalculation after they change the navbar's content.
+        window.syncHeaderOffset = function () {
+            var header = document.querySelector('header');
+            // Measure using an invisible clone so the real header (which the
+            // user may be actively looking at, mid-scroll or mid-transition)
+            // is never touched or flashed during measurement.
+            var clone = header.cloneNode(true);
+            clone.classList.add('scrolled');
+            clone.style.transition = 'none';
+            clone.style.visibility = 'hidden';
+            clone.style.pointerEvents = 'none';
+            clone.style.position = 'fixed';
+            clone.style.top = '-9999px';
+            document.body.appendChild(clone);
+            var h = clone.offsetHeight;
+            document.body.removeChild(clone);
+            document.body.style.paddingTop = (h + 12) + 'px';
+        };
+        window.syncHeaderOffset();
+        window.addEventListener('resize', window.syncHeaderOffset);
+        window.addEventListener('load', window.syncHeaderOffset);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(window.syncHeaderOffset);
+        }
+        // Extra safety net: real-world conditions (slow connections, font
+        // loading, Firebase auth resolving) can change the navbar's height
+        // slightly after our first measurement. Re-check a few times shortly
+        // after load to make sure content is never hidden behind the header.
+        [200, 500, 1000, 2000].forEach(function (delay) {
+            setTimeout(window.syncHeaderOffset, delay);
+        });
     </script>
 
     <!-- ============= LOGIN STATE (navbar) =============
@@ -2544,6 +2563,13 @@
                 } else {
                     loginBtn.style.display = 'inline-block';
                     userChip.style.display = 'none';
+                }
+                // Navbar content just changed (Login button <-> user chip),
+                // which can change the header's rendered height. Recalculate
+                // the page's top spacing so nothing ends up hidden behind it.
+                if (window.syncHeaderOffset) {
+                    window.syncHeaderOffset();
+                    setTimeout(window.syncHeaderOffset, 50);
                 }
             });
 
