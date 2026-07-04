@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>English Curriculum | LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+        --primary: #2C3E7A;
+        --secondary: #7C5CBF;
+        --success: #10B981;
+        --bg-light: #F8F9FD;
+        --bg-card: #FFFFFF;
+        --text-primary: #1A202C;
+        --text-secondary: #64748B;
+        --border: #E2E8F0;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --g1: #FF6B9D; --g1-bg: rgba(255,107,157,0.1);
+        --g2: #E8A400; --g2-bg: rgba(254,202,87,0.18);
+        --g3: #00A8A9; --g3-bg: rgba(0,210,211,0.1);
+        --g4: #D63FC0; --g4-bg: rgba(255,159,243,0.15);
+        --g5: #2E7BFF; --g5-bg: rgba(84,160,255,0.1);
+        --g6: #0FA37D; --g6-bg: rgba(29,209,161,0.1);
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .topbar {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        box-shadow: var(--shadow-sm);
+    }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
+    .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .back-home { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1rem; border-radius: 10px; transition: var(--transition); white-space: nowrap; }
+    .back-home:hover { background: var(--bg-light); color: var(--primary); }
+
+    .wrap { max-width: 980px; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+
+    .page-head { text-align: center; margin-bottom: 1.8rem; }
+    .page-eyebrow { display: inline-block; background: rgba(44,62,122,0.1); color: var(--primary); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 620px; margin: 0 auto; }
+
+    .overview-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
+    .stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.2rem 1rem; text-align: center; }
+    .stat-num { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+    .stat-label { font-size: 0.72rem; color: var(--text-secondary); font-weight: 600; margin-top: 0.2rem; }
+
+    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin: 1.6rem 0 2rem; }
+    .grade-tab {
+        border: 2px solid var(--border);
+        background: var(--bg-card);
+        padding: 0.6rem 1.2rem;
+        border-radius: 14px;
+        font-weight: 700;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .grade-tab .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .grade-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .grade-tab.active { color: white; border-color: transparent; box-shadow: var(--shadow-md); }
+    .grade-tab.active .dot { background: white; }
+    .t1 .dot { background: var(--g1); } .t1.active { background: linear-gradient(135deg,#FF6B9D,#FF8FB3); }
+    .t2 .dot { background: var(--g2); } .t2.active { background: linear-gradient(135deg,#FECA57,#FFE66D); color:#5A4200; }
+    .t3 .dot { background: var(--g3); } .t3.active { background: linear-gradient(135deg,#48DBFB,#00D2D3); color:#003B3C; }
+    .t4 .dot { background: var(--g4); } .t4.active { background: linear-gradient(135deg,#FF9FF3,#FFCCFE); color:#7A2E70; }
+    .t5 .dot { background: var(--g5); } .t5.active { background: linear-gradient(135deg,#54A0FF,#92B6FF); color:#0B2E66; }
+    .t6 .dot { background: var(--g6); } .t6.active { background: linear-gradient(135deg,#1DD1A1,#10AC84); color:#063D2F; }
+
+    /* ===== GRADE OVERVIEW CARD ===== */
+    .grade-overview {
+        background: var(--bg-card);
+        border-radius: 20px;
+        border-top: 6px solid var(--grade-color, var(--primary));
+        padding: 1.8rem 1.9rem;
+        margin-bottom: 1.6rem;
+        box-shadow: var(--shadow-md);
+    }
+    .grade-overview-top { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
+    .grade-overview-title { font-size: 1.5rem; font-weight: 800; color: var(--grade-color, var(--primary)); }
+    .grade-overview-badge { font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); background: var(--grade-bg, var(--bg-light)); padding: 0.3rem 0.75rem; border-radius: 999px; }
+    .grade-overview-tagline { font-size: 0.95rem; color: var(--grade-color, var(--secondary)); font-weight: 700; margin-bottom: 0.7rem; }
+    .grade-overview-summary { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem; }
+    .grade-overview-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--text-secondary); font-weight: 600; }
+    .grade-overview-meta b { color: var(--text-primary); }
+
+    /* ===== TERM CARDS ===== */
+    .term-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.6rem; }
+    .term-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        overflow: hidden;
+    }
+    .term-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 1.2rem 1.5rem;
+        background: var(--grade-bg, var(--bg-light));
+        cursor: pointer;
+        user-select: none;
+    }
+    .term-num-badge {
+        width: 38px; height: 38px;
+        border-radius: 10px;
+        background: var(--grade-color, var(--primary));
+        color: white;
+        font-weight: 800;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .term-card-title { font-weight: 800; font-size: 1.02rem; color: var(--text-primary); }
+    .term-card-weeks { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
+    .term-toggle-icon { margin-left: auto; color: var(--text-secondary); transition: var(--transition); font-size: 0.9rem; }
+    .term-card.open .term-toggle-icon { transform: rotate(180deg); }
+
+    .term-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .term-card.open .term-body { max-height: 2000px; }
+    .term-body-inner { padding: 1.5rem; }
+
+    .term-section { margin-bottom: 1.3rem; }
+    .term-section-label { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--grade-color, var(--secondary)); margin-bottom: 0.5rem; }
+    .term-section-text { font-size: 0.9rem; color: var(--text-primary); line-height: 1.7; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .skill-box { background: var(--bg-light); border-radius: 12px; padding: 0.9rem 1.1rem; }
+    .skill-box-label { font-size: 0.78rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
+    .skill-box ul { padding-left: 1.1rem; font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .outcomes-list { list-style: none; }
+    .outcomes-list li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.88rem; color: var(--text-primary); margin-bottom: 0.55rem; line-height: 1.55; }
+    .outcomes-list li::before { content: "✓"; color: var(--success); font-weight: 800; flex-shrink: 0; margin-top: 0.1rem; }
+
+    /* ===== CHECKLIST ===== */
+    .checklist-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 1.6rem 1.8rem;
+    }
+    .checklist-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+    .checklist-sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.1rem; }
+    .checklist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem 1.5rem; }
+    .checklist-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.86rem; color: var(--text-primary); line-height: 1.5; }
+    .checklist-box { width: 18px; height: 18px; border: 2px solid var(--grade-color, var(--secondary)); border-radius: 5px; flex-shrink: 0; margin-top: 0.1rem; }
+
+    @media (max-width: 640px) {
+        .topbar { padding: 0.85rem 1.1rem; }
+        .page-title { font-size: 1.5rem; }
+        .overview-stats { grid-template-columns: repeat(2, 1fr); }
+        .grade-overview { padding: 1.4rem; }
+        .skills-grid { grid-template-columns: 1fr; }
+        .checklist-grid { grid-template-columns: 1fr; }
+        .term-body-inner { padding: 1.1rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="brand"><span class="brand-badge">🎓</span> English Curriculum</div>
+    <a href="index.html" class="back-home">← Back to Home</a>
+</div>
+
+<div class="wrap">
+
+    <div class="page-head">
+        <span class="page-eyebrow">Grade 1 – 6 · Full Year</span>
+        <h1 class="page-title">Our English Curriculum</h1>
+        <p class="page-desc">A clear, measurable year-by-year plan. Every grade is split into 4 terms of 8 lessons each, with specific grammar, vocabulary, and skill targets — plus a checklist you can use to track real progress.</p>
+    </div>
+
+    <div class="overview-stats">
+        <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Grade Levels</div></div>
+        <div class="stat-box"><div class="stat-num">24</div><div class="stat-label">Terms Total</div></div>
+        <div class="stat-box"><div class="stat-num">192</div><div class="stat-label">Lessons Total</div></div>
+        <div class="stat-box"><div class="stat-num">1,160</div><div class="stat-label">Vocabulary Words</div></div>
+    </div>
+
+    <div class="grade-tabs" id="gradeTabs"></div>
+
+    <div id="gradeOverview"></div>
+    <div class="term-grid" id="termGrid"></div>
+    <div class="checklist-card" id="checklistCard"></div>
+
+</div>
+
+<script>
+const CURRICULUM = {"grade1": {"title": "Grade 1", "level": "Beginner Level", "ageRange": "Ages 6–7", "tagline": "Foundations of English", "summary": "Introduces the building blocks of English: the alphabet, numbers, greetings, and the first 120 core vocabulary words, through games, songs, and simple sentence patterns.", "totalLessons": 32, "totalVocab": 120, "terms": [{"number": 1, "title": "Greetings & Alphabet", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Simple statements with \"I am / You are\"; basic word order in short sentences.", "vocab": "26 alphabet letters, 10 greeting phrases (hello, goodbye, please, thank you, sorry, excuse me...), numbers 1–10", "skills": {"listening": ["Recognize the sound of all 26 letters when spoken aloud", "Identify greeting phrases in short audio clips"], "reading": ["Match uppercase and lowercase letters", "Recognize numbers 1–10 in written form"], "speaking": ["Say 8 greeting phrases clearly and appropriately", "Recite the alphabet from A to Z without help"], "writing": ["Trace and copy all 26 letters correctly", "Copy numbers 1–10 legibly"]}, "outcomes": ["Recite the full alphabet (A–Z) unaided", "Count from 1 to 10 in English", "Use at least 5 greeting phrases in the correct situation", "Write all 26 letters (upper and lowercase) legibly"]}, {"number": 2, "title": "My Family & Colors", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Possessive structure \"This is my...\"; simple description \"It is [color].\"", "vocab": "8 family member words, 8 basic colors, 10 common household objects", "skills": {"listening": ["Identify family member words from short audio descriptions", "Distinguish 8 color names when spoken"], "reading": ["Match family photos/icons to their written labels", "Match objects to their color names"], "speaking": ["Introduce 5+ family members using \"This is my...\"", "Name the color of 8 given objects"], "writing": ["Copy simple sentences: \"This is my mom.\"", "Label 8 colored objects in writing"]}, "outcomes": ["Name at least 6 family members correctly", "Identify and say all 8 basic colors", "Form the sentence pattern \"This is my [family member]\" independently", "Write 5 simple 4-word sentences about family without copying"]}, {"number": 3, "title": "Animals & Simple Nouns", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Singular nouns with articles \"a/an\"; introduction to plural -s.", "vocab": "15 common animals, 12 everyday objects (ball, book, cup, bag, pen...)", "skills": {"listening": ["Recognize 15 animal names from their sounds/descriptions", "Distinguish singular vs. plural nouns when heard"], "reading": ["Match 15 animal words to pictures", "Read simple noun flashcards aloud"], "speaking": ["Name 12 animals without prompting", "Use \"a\" and \"an\" correctly in 8 out of 10 attempts"], "writing": ["Write the names of 10 animals from memory", "Form plural nouns by adding -s (5 examples)"]}, "outcomes": ["Name at least 12 out of 15 taught animals", "Use \"a\" versus \"an\" correctly based on the following sound", "Form regular plural nouns by adding -s", "Spell 10 animal names correctly from memory"]}, {"number": 4, "title": "My Body & Simple Sentences", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Sentence patterns \"I have...\" and \"I can...\"; basic action verbs.", "vocab": "10 body parts, 10 action verbs (run, jump, eat, sleep, sing, swim, read, write, walk, clap)", "skills": {"listening": ["Follow simple spoken commands (Total Physical Response): \"Clap your hands\"", "Identify action verbs from short audio clips"], "reading": ["Read simple 3-word sentences aloud with correct pronunciation", "Match action verbs to matching pictures"], "speaking": ["Name 8 body parts unaided", "Describe 5 actions using \"I can [verb]\""], "writing": ["Write 5 original 3-word sentences (e.g., \"I can jump\")", "Label a body diagram with 8 correct parts"]}, "outcomes": ["Name at least 8 out of 10 body parts", "Use the pattern \"I can [verb]\" to describe 5 different actions", "Follow and physically respond to 10 simple spoken commands", "Independently write 5 correct 3-word sentences"]}], "checklist": ["Recites the alphabet A–Z without assistance", "Counts from 1 to 10 confidently", "Uses 5+ greeting phrases appropriately in context", "Names at least 6 family members in English", "Identifies all 8 basic colors", "Names at least 12 common animals", "Uses \"a\" and \"an\" correctly", "Forms plural nouns by adding -s", "Names at least 8 body parts", "Builds simple 3-word sentences using \"I can...\"", "Writes all 26 letters legibly, upper and lowercase", "Recognizes and reads back at least 100 of the 120 core vocabulary words taught this year"]}, "grade2": {"title": "Grade 2", "level": "Elementary Level", "ageRange": "Ages 7–8", "tagline": "Everyday English", "summary": "Builds everyday conversational confidence: telling time, describing routines, expressing likes and dislikes, and forming simple present-tense sentences about daily life.", "totalLessons": 32, "totalVocab": 160, "terms": [{"number": 1, "title": "Numbers, Time & Prepositions", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Prepositions of place (in / on / under / next to); telling time using \"o'clock\" and \"half past.\"", "vocab": "Numbers 1–100, 7 days of the week, 12 months, prepositions of place", "skills": {"listening": ["Identify times spoken aloud (e.g., \"three o'clock\")", "Recognize prepositions of place in short spoken sentences"], "reading": ["Read digital and analog clock times", "Match objects to prepositional phrases (e.g., \"the cat is under the table\")"], "speaking": ["Tell the time to the hour and half-hour", "Describe object locations using 4 prepositions"], "writing": ["Write times in words (e.g., \"3:00\" → \"three o'clock\")", "Write 5 sentences using prepositions of place correctly"]}, "outcomes": ["Count confidently from 1 to 100", "Tell time to the hour and half-hour", "Name all 7 days and 12 months in order", "Use in / on / under / next to correctly in original sentences"]}, {"number": 2, "title": "Daily Routines & Pronouns", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Subject pronouns (he / she / it / they); simple present tense with third-person -s.", "vocab": "12 daily routine verbs (wake up, brush teeth, eat breakfast, go to school...)", "skills": {"listening": ["Distinguish he/she/it/they in spoken descriptions", "Sequence a spoken daily routine correctly"], "reading": ["Read a simple daily-routine paragraph and answer 3 comprehension questions", "Identify correct pronoun usage in written sentences"], "speaking": ["Describe their own daily routine using 6+ routine verbs", "Use he/she/it/they correctly in spoken sentences"], "writing": ["Write a 5-sentence paragraph describing a daily routine", "Correctly add -s to third-person present-tense verbs in 8/10 sentences"]}, "outcomes": ["Use he / she / it / they accurately in context", "Add -s correctly to third-person singular verbs", "Describe a daily routine using at least 6 routine verbs", "Write a coherent 5-sentence paragraph about a daily routine"]}, {"number": 3, "title": "Food, Drinks & Adjectives", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Expressing preference: \"I like / I don't like\"; basic descriptive adjectives.", "vocab": "20 food and drink words, 10 basic adjectives (sweet, sour, hot, cold, delicious...)", "skills": {"listening": ["Identify food preferences stated in short dialogues", "Recognize adjectives describing taste and temperature"], "reading": ["Read a simple menu and identify 8 food items", "Match foods to their describing adjectives"], "speaking": ["State personal food likes/dislikes for 8 items", "Describe 5 foods using appropriate adjectives"], "writing": ["Write a short paragraph (4–5 sentences) about favorite foods", "List 10 food words with correct spelling"]}, "outcomes": ["Name at least 15 food and drink items", "Use \"I like / I don't like\" appropriately", "Describe food using at least 5 different adjectives", "Write a short, coherent paragraph about food preferences"]}, {"number": 4, "title": "Animals, Habitats & Articles", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Mastery of a/an with all consonant and vowel sounds; regular plural noun formation.", "vocab": "15 wild animal names, 8 habitat words (jungle, ocean, desert, forest...)", "skills": {"listening": ["Match animal sounds/descriptions to correct habitats", "Identify singular vs. plural animal nouns when heard"], "reading": ["Read a short nonfiction passage about an animal and answer questions", "Correctly identify a/an usage in a gap-fill exercise"], "speaking": ["Describe where 8 animals live using \"It lives in the...\"", "Use a/an with 90% accuracy in spoken practice"], "writing": ["Write 8 sentences pairing animals with their correct habitats", "Form plural nouns correctly for 10 given animal words"]}, "outcomes": ["Use \"a\" and \"an\" correctly at least 9 times out of 10", "Form regular plural nouns without error", "Describe the habitat of at least 8 animals", "Read a short animal passage and answer 4 out of 5 comprehension questions correctly"]}], "checklist": ["Counts confidently from 1 to 100", "Tells time to the hour and half-hour", "Names all 7 days of the week and 12 months in order", "Uses prepositions of place (in/on/under/next to) correctly", "Uses he/she/it/they accurately", "Applies third-person -s correctly in present-tense sentences", "Describes a personal daily routine in 5+ sentences", "States food preferences using \"I like / I don't like\"", "Describes food and objects using 5+ adjectives", "Uses \"a\" and \"an\" with over 90% accuracy", "Forms regular plural nouns without error", "Recognizes and reads back at least 130 of the 160 vocabulary words taught this year"]}, "grade3": {"title": "Grade 3", "level": "Intermediate Level", "ageRange": "Ages 8–9", "tagline": "Building Stories", "summary": "Shifts focus to storytelling: forming the past tense, using object pronouns, comparing things, and sequencing short narratives with clear beginnings, middles, and ends.", "totalLessons": 32, "totalVocab": 190, "terms": [{"number": 1, "title": "Simple Past Tense", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Simple past tense with regular verbs (-ed); common irregular past forms (went, saw, ate, had).", "vocab": "15 regular action verbs, 10 common irregular verbs and their past forms", "skills": {"listening": ["Distinguish present vs. past tense verb forms when spoken", "Identify irregular past-tense verbs in short stories read aloud"], "reading": ["Read a short past-tense narrative and identify 5 past-tense verbs", "Answer comprehension questions about sequence of past events"], "speaking": ["Recount a simple past event using 5+ past-tense verbs", "Correctly pronounce -ed endings (t/d/id sounds)"], "writing": ["Write a 5-sentence paragraph about \"What I did yesterday\"", "Correctly conjugate 10 regular and irregular verbs into the past tense"]}, "outcomes": ["Correctly form the past tense of 15 regular verbs by adding -ed", "Correctly use 10 common irregular past-tense verbs", "Recount a personal past event in 5+ grammatically correct sentences", "Identify past-tense verbs within a short written passage"]}, {"number": 2, "title": "School Life & Object Pronouns", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Object pronouns (me / him / her / us / them); question formation with do/does/did.", "vocab": "20 school-related words (subjects, classroom objects, school staff)", "skills": {"listening": ["Identify object pronouns in spoken sentences", "Recognize question intonation and structure"], "reading": ["Read a short school-day narrative and answer 5 questions", "Identify correct object pronoun usage in a written passage"], "speaking": ["Ask and answer 5 questions about school life using do/does/did", "Use object pronouns correctly in conversation"], "writing": ["Write 5 questions about a classmate's school day", "Use object pronouns correctly in a 5-sentence paragraph"]}, "outcomes": ["Use object pronouns (me/him/her/us/them) with at least 90% accuracy", "Correctly form yes/no and wh- questions using do/does/did", "Describe school life using at least 15 subject-specific vocabulary words", "Write and correctly punctuate 5 original questions"]}, {"number": 3, "title": "Weather & Comparatives", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Comparative adjectives (-er / more); weather-related sentence patterns.", "vocab": "10 weather terms, 12 comparative adjective pairs (big/bigger, good/better...)", "skills": {"listening": ["Identify weather conditions described in short audio clips", "Recognize comparative adjective forms when spoken"], "reading": ["Read a short weather report and extract key information", "Identify correctly and incorrectly formed comparatives in text"], "speaking": ["Describe current weather conditions using appropriate vocabulary", "Compare two objects or people using 5 comparative adjectives"], "writing": ["Write a 4-sentence weather report", "Form comparative adjectives correctly for 10 given words"]}, "outcomes": ["Correctly form comparative adjectives for both short (-er) and long (more) adjectives", "Describe weather conditions using at least 8 relevant vocabulary words", "Compare two items grammatically correctly in 5 original sentences", "Write a short, clear weather report of at least 4 sentences"]}, {"number": 4, "title": "Short Stories & Sequencing", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Sequencing connectors (first, then, next, after that, finally); consolidation of irregular past-tense verbs.", "vocab": "10 story-sequencing words, 15 additional irregular past-tense verbs", "skills": {"listening": ["Identify the correct order of events in a spoken story", "Recognize sequencing words in an audio narrative"], "reading": ["Read a short story and place 5 events in the correct order", "Answer 5-item comprehension questions about a short story"], "speaking": ["Retell a simple 4-part story using sequencing connectors", "Narrate a personal experience with a clear beginning, middle, and end"], "writing": ["Write a short story of at least 6 sentences using 3+ sequencing words", "Correctly use at least 20 irregular past-tense verbs across the writing sample"]}, "outcomes": ["Use at least 4 different sequencing connectors correctly", "Write an original short story of 6+ sentences with a clear structure", "Correctly apply 20+ irregular past-tense verbs learned this year", "Retell a story aloud in the correct sequence without prompting"]}], "checklist": ["Forms the past tense of regular verbs by adding -ed", "Correctly uses at least 20 irregular past-tense verbs", "Uses object pronouns (me/him/her/us/them) accurately", "Forms questions correctly using do/does/did", "Describes school life using 15+ relevant vocabulary words", "Forms comparative adjectives correctly (-er and more)", "Describes weather using 8+ relevant vocabulary words", "Uses at least 4 sequencing connectors (first, then, next, finally)", "Writes an original short story of 6+ sentences with clear structure", "Retells a story aloud in correct chronological order", "Reads short grade-level passages and answers comprehension questions with 80%+ accuracy", "Recognizes and reads back at least 160 of the 190 vocabulary words taught this year"]}, "grade4": {"title": "Grade 4", "level": "Advanced Level", "ageRange": "Ages 9–10", "tagline": "Expanding Expression", "summary": "Deepens grammatical range with present perfect, comparatives and superlatives, modal verbs, and question formation, while building confidence in descriptive writing.", "totalLessons": 32, "totalVocab": 210, "terms": [{"number": 1, "title": "Present Perfect Tense", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Present perfect with have/has + past participle; already/yet/just/ever/never.", "vocab": "20 irregular past participles, time markers (already, yet, just, ever, never)", "skills": {"listening": ["Distinguish simple past from present perfect in spoken sentences", "Identify time markers (already/yet/just) in audio dialogues"], "reading": ["Read a short passage and identify present perfect usage", "Answer comprehension questions distinguishing past events from present-relevant results"], "speaking": ["Ask and answer \"Have you ever...?\" questions with 5 classmates", "Use already/yet/just correctly in spoken sentences"], "writing": ["Write 5 sentences describing life experiences using present perfect", "Correctly form the past participle of 15 irregular verbs"]}, "outcomes": ["Correctly form present perfect with have/has for 15+ irregular verbs", "Use already, yet, just, ever, and never accurately in context", "Distinguish when to use simple past versus present perfect", "Ask and answer 5 \"Have you ever...?\" questions correctly"]}, {"number": 2, "title": "Comparatives & Superlatives", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Mastery of comparative and superlative forms, including irregular forms (good/better/best, bad/worse/worst).", "vocab": "20 descriptive adjectives across categories (size, speed, quality, age)", "skills": {"listening": ["Identify comparative vs. superlative forms when spoken", "Recognize irregular comparison forms in context"], "reading": ["Read a comparison passage (e.g., comparing animals) and extract facts", "Identify correctly and incorrectly formed superlatives in text"], "speaking": ["Compare 3+ items using both comparative and superlative forms", "Describe the \"most\" and \"best\" of a group of items"], "writing": ["Write a 5-sentence comparison paragraph about two or more subjects", "Correctly form comparatives and superlatives for 15 given adjectives"]}, "outcomes": ["Correctly form comparative adjectives for regular and irregular forms", "Correctly form superlative adjectives for regular and irregular forms", "Compare three or more items accurately in original sentences", "Write a coherent comparison paragraph of 5+ sentences"]}, {"number": 3, "title": "Modal Verbs & Question Words", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Modal verbs (can/must/should/may) for ability, obligation, and advice; full range of question words (who/what/when/where/why/how).", "vocab": "6 modal verbs and their functions, question word set", "skills": {"listening": ["Distinguish the function of each modal verb (ability vs. obligation vs. advice) when heard", "Identify the correct question word used in spoken questions"], "reading": ["Read a set of school rules and identify modal verb usage", "Match question words to the type of answer they require"], "speaking": ["Give advice using \"should\" for 5 different scenarios", "Ask questions using all 6 question words appropriately"], "writing": ["Write 5 school rules using must/mustn't/should", "Write 6 original questions, one for each question word"]}, "outcomes": ["Correctly use can, must, should, and may according to their distinct functions", "Correctly select and use all 6 question words (who/what/when/where/why/how)", "Give advice appropriately using \"should\" in 5 scenarios", "Write grammatically correct rules using modal verbs"]}, {"number": 4, "title": "Descriptive Writing & Present Continuous", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Present continuous for current and temporary actions; descriptive sentence expansion using adjectives and adverbs.", "vocab": "15 descriptive adverbs, expansion of descriptive adjective bank", "skills": {"listening": ["Distinguish simple present from present continuous when spoken", "Identify descriptive details in a spoken description"], "reading": ["Read a descriptive paragraph and identify 5 descriptive techniques used", "Answer inferential questions based on descriptive text"], "speaking": ["Describe an ongoing action using present continuous", "Describe a person, place, or object using 5+ descriptive words"], "writing": ["Write a descriptive paragraph of 6+ sentences about a chosen topic", "Correctly use present continuous in 8 out of 10 sentences"]}, "outcomes": ["Correctly form and use the present continuous tense", "Distinguish appropriate use of simple present versus present continuous", "Write a descriptive paragraph of 6+ sentences using varied adjectives and adverbs", "Use at least 10 newly learned descriptive words accurately in writing"]}], "checklist": ["Correctly forms present perfect with have/has for 15+ irregular verbs", "Uses already, yet, just, ever, and never accurately", "Distinguishes simple past from present perfect appropriately", "Forms comparative and superlative adjectives correctly, including irregular forms", "Compares three or more items accurately in original sentences", "Uses can, must, should, and may according to their correct functions", "Uses all 6 question words (who/what/when/where/why/how) correctly", "Gives advice appropriately using \"should\"", "Forms and uses the present continuous tense correctly", "Writes a coherent descriptive paragraph of 6+ sentences", "Reads grade-level passages and answers inferential questions with 75%+ accuracy", "Recognizes and reads back at least 175 of the 210 vocabulary words taught this year"]}, "grade5": {"title": "Grade 5", "level": "Advanced Level", "ageRange": "Ages 10–11", "tagline": "Complex Structures", "summary": "Introduces more sophisticated grammar — conditionals, advanced modals, the passive voice, and relative clauses — alongside persuasive speaking through structured debates.", "totalLessons": 32, "totalVocab": 230, "terms": [{"number": 1, "title": "Conditional Sentences (Type 1)", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "First conditional: If + present simple, will + base verb, for real future possibilities.", "vocab": "15 cause-and-effect vocabulary items, connector words (if, unless, when)", "skills": {"listening": ["Distinguish real (likely) conditions from general statements when spoken", "Identify if-clauses and result-clauses in spoken sentences"], "reading": ["Read a short passage with conditional sentences and identify cause-effect pairs", "Answer 5 comprehension questions based on conditional statements"], "speaking": ["Make 5 predictions about real future possibilities using first conditional", "Discuss consequences of choices using \"If... , I will...\""], "writing": ["Write 5 original first-conditional sentences about realistic future situations", "Correctly punctuate conditional sentences (comma after if-clause)"]}, "outcomes": ["Correctly form first conditional sentences (If + present, will + base verb)", "Distinguish real future possibility from general truths", "Use \"unless\" correctly as an alternative to \"if...not\"", "Write 5 grammatically correct original conditional sentences"]}, {"number": 2, "title": "Modal Verbs: Advanced", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Modals of deduction and necessity: might, must (deduction), have to, don't have to.", "vocab": "12 vocabulary items related to obligation, certainty, and possibility", "skills": {"listening": ["Distinguish levels of certainty (might vs. must) in spoken statements", "Identify obligation vs. lack of obligation (have to vs. don't have to) when heard"], "reading": ["Read short scenarios and identify the most logical modal verb to complete them", "Answer inference questions requiring modal verb understanding"], "speaking": ["Make logical deductions about scenarios using might/must", "Explain rules and their absence using have to / don't have to"], "writing": ["Write 5 sentences making deductions about a mystery scenario", "Write a short set of rules distinguishing obligation from choice"]}, "outcomes": ["Correctly use \"might\" to express possibility", "Correctly use \"must\" to express strong deduction", "Distinguish and correctly use have to versus don't have to", "Apply modal verbs of deduction accurately in a written scenario"]}, {"number": 3, "title": "Passive Voice (Introduction)", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Passive voice in present and past simple: is/are + past participle; was/were + past participle.", "vocab": "15 additional past participles, process-description vocabulary", "skills": {"listening": ["Distinguish active from passive sentences when spoken", "Identify the passive voice used in short descriptions of processes"], "reading": ["Read a short passage describing a process (e.g., how something is made) written in passive voice", "Identify the agent (by whom) in passive sentences where present"], "speaking": ["Describe a simple process using passive voice (e.g., \"The cake is baked...\")", "Transform 5 active sentences into passive voice aloud"], "writing": ["Transform 8 active sentences into correct passive voice in writing", "Write a short paragraph describing a process using passive voice"]}, "outcomes": ["Correctly transform active sentences into passive voice (present and past)", "Correctly use is/are and was/were with past participles", "Describe a process of at least 4 steps using passive voice", "Identify passive voice constructions within a written passage"]}, {"number": 4, "title": "Relative Clauses & Debates", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Relative clauses with who/which/that/where; persuasive language for structured debate.", "vocab": "10 opinion and persuasion phrases (I believe..., In my opinion..., On the other hand...)", "skills": {"listening": ["Identify relative clauses in spoken descriptions", "Distinguish opinion statements from factual statements in a debate recording"], "reading": ["Read an opinion article and identify the writer's main argument", "Identify relative clauses within a written passage"], "speaking": ["Combine two sentences using an appropriate relative pronoun", "Participate in a structured 3-minute debate, stating and defending an opinion"], "writing": ["Write 5 sentences using relative clauses to combine ideas", "Write a short persuasive paragraph defending a position with 2+ reasons"]}, "outcomes": ["Correctly use who, which, that, and where to form relative clauses", "Combine two simple sentences into one using a relative clause", "State and defend a personal opinion using persuasive language", "Write a persuasive paragraph with a clear position and 2+ supporting reasons"]}], "checklist": ["Correctly forms first conditional sentences", "Distinguishes real future possibility from general truths", "Uses \"might\" and \"must\" correctly to express possibility and deduction", "Distinguishes have to versus don't have to appropriately", "Correctly transforms active sentences into passive voice", "Describes a process of 4+ steps using passive voice", "Uses who, which, that, and where correctly to form relative clauses", "Combines two sentences into one using a relative clause", "States and defends a personal opinion using persuasive language", "Writes a persuasive paragraph with a clear position and supporting reasons", "Participates in a structured debate for at least 3 minutes", "Recognizes and reads back at least 190 of the 230 vocabulary words taught this year"]}, "grade6": {"title": "Grade 6", "level": "Master Level", "ageRange": "Ages 11–12", "tagline": "Academic & Critical Thinking", "summary": "Prepares students for higher-level English use through reported speech, advanced sentence structures, academic writing conventions, and discussion of real-world global issues.", "totalLessons": 32, "totalVocab": 250, "terms": [{"number": 1, "title": "Reported Speech", "weeks": "Weeks 1–8 · Lessons 1–8", "grammar": "Reported statements, questions, and commands; tense backshift rules.", "vocab": "10 reporting verbs (said, told, asked, explained, replied...)", "skills": {"listening": ["Distinguish direct speech from reported speech when heard", "Identify correct tense backshift in spoken reported sentences"], "reading": ["Read a dialogue and rewrite key lines as reported speech", "Answer comprehension questions requiring identification of who said what"], "speaking": ["Report a classmate's statement accurately using correct tense backshift", "Report questions and commands accurately in conversation"], "writing": ["Transform 8 direct-speech sentences into reported speech in writing", "Write a short summary of a conversation using reported speech"]}, "outcomes": ["Correctly apply tense backshift when converting direct speech to reported speech", "Correctly report statements, questions, and commands", "Use at least 5 different reporting verbs appropriately", "Write an accurate summary of a conversation using reported speech"]}, {"number": 2, "title": "Subjunctive Mood & Inversion", "weeks": "Weeks 9–16 · Lessons 9–16", "grammar": "Subjunctive mood for wishes and hypotheticals (I wish..., If only...); inversion for emphasis (Never have I..., Rarely does...).", "vocab": "10 formal/academic sentence-starter phrases", "skills": {"listening": ["Identify subjunctive and inverted structures in spoken formal English", "Distinguish standard word order from inverted word order when heard"], "reading": ["Read a formal or literary passage and identify subjunctive/inverted structures", "Answer questions requiring understanding of hypothetical meaning"], "speaking": ["Express wishes and hypothetical situations using \"I wish...\" and \"If only...\"", "Use one inverted structure correctly in a spoken sentence"], "writing": ["Write 5 sentences expressing wishes or hypotheticals using the subjunctive", "Write 2 sentences using inversion for emphasis"]}, "outcomes": ["Correctly use \"I wish\" and \"If only\" to express hypothetical situations", "Correctly form at least 2 inverted sentence structures", "Distinguish formal/academic sentence structures from everyday speech", "Apply subjunctive mood accurately in original writing"]}, {"number": 3, "title": "Academic Writing", "weeks": "Weeks 17–24 · Lessons 17–24", "grammar": "Paragraph structure (topic sentence, supporting details, conclusion); linking words for academic writing (furthermore, however, therefore, in conclusion).", "vocab": "12 academic linking words and transition phrases", "skills": {"listening": ["Identify the main idea versus supporting details in a spoken academic talk", "Recognize linking words that signal contrast, addition, or conclusion"], "reading": ["Read a model academic paragraph and identify its structural components", "Analyze how linking words connect ideas across paragraphs"], "speaking": ["Present a short structured talk with a clear introduction and conclusion", "Use academic linking words appropriately in discussion"], "writing": ["Write a well-structured 3-paragraph essay on a given topic", "Correctly use at least 4 different academic linking words in the essay"]}, "outcomes": ["Write a paragraph with a clear topic sentence, supporting details, and conclusion", "Correctly use at least 4 academic linking words in original writing", "Structure a complete 3-paragraph essay with introduction, body, and conclusion", "Present a short talk (2+ minutes) with a clear structure"]}, {"number": 4, "title": "Global Issues & Capstone Project", "weeks": "Weeks 25–32 · Lessons 25–32", "grammar": "Consolidation of all Grade 6 grammar in extended writing and speech; complex sentence construction combining multiple clause types.", "vocab": "20 global-issues vocabulary words (environment, technology, community, sustainability...)", "skills": {"listening": ["Understand extended spoken discussion on a global issue topic", "Identify key arguments and counterarguments in a recorded debate"], "reading": ["Read an article on a global issue and summarize its main points", "Critically evaluate an argument presented in a written text"], "speaking": ["Deliver a 3-minute presentation on a chosen global issue", "Answer follow-up questions about the presentation topic confidently"], "writing": ["Write a 5-paragraph research-style essay on a chosen global issue", "Combine at least 3 grammar structures learned this year within the essay"]}, "outcomes": ["Deliver a structured 3-minute presentation on a global issue", "Write a complete 5-paragraph essay with a clear argument and conclusion", "Correctly combine at least 3 different grammar structures learned during the year", "Use at least 15 global-issues vocabulary words accurately in speech and writing"]}], "checklist": ["Correctly applies tense backshift in reported speech", "Reports statements, questions, and commands accurately", "Uses \"I wish\" and \"If only\" to express hypothetical situations", "Forms at least 2 correctly inverted sentence structures", "Writes a paragraph with a clear topic sentence, details, and conclusion", "Uses 4+ academic linking words correctly in writing", "Structures a complete 3-paragraph essay independently", "Delivers a structured presentation of 2+ minutes", "Writes a complete 5-paragraph essay on a global issue", "Combines multiple grammar structures accurately within extended writing", "Critically evaluates an argument presented in a written text", "Recognizes and reads back at least 210 of the 250 vocabulary words taught this year"]}};
+</script>
+<script>
+    const GRADE_META = {
+        grade1: { cls: "t1", color: "var(--g1)", bg: "var(--g1-bg)", label: "Grade 1" },
+        grade2: { cls: "t2", color: "var(--g2)", bg: "var(--g2-bg)", label: "Grade 2" },
+        grade3: { cls: "t3", color: "var(--g3)", bg: "var(--g3-bg)", label: "Grade 3" },
+        grade4: { cls: "t4", color: "var(--g4)", bg: "var(--g4-bg)", label: "Grade 4" },
+        grade5: { cls: "t5", color: "var(--g5)", bg: "var(--g5-bg)", label: "Grade 5" },
+        grade6: { cls: "t6", color: "var(--g6)", bg: "var(--g6-bg)", label: "Grade 6" },
+    };
+    const GRADE_ORDER = ["grade1", "grade2", "grade3", "grade4", "grade5", "grade6"];
+
+    var state = { grade: "grade1", openTerm: 1 };
+
+    function renderGradeTabs() {
+        var wrap = document.getElementById("gradeTabs");
+        wrap.innerHTML = "";
+        GRADE_ORDER.forEach(function (g) {
+            var meta = GRADE_META[g];
+            var btn = document.createElement("button");
+            btn.className = "grade-tab " + meta.cls + (g === state.grade ? " active" : "");
+            btn.innerHTML = '<span class="dot"></span>' + meta.label;
+            btn.addEventListener("click", function () {
+                state.grade = g;
+                state.openTerm = 1;
+                renderAll();
+            });
+            wrap.appendChild(btn);
+        });
+    }
+
+    function renderOverview() {
+        var g = CURRICULUM[state.grade];
+        var meta = GRADE_META[state.grade];
+        var el = document.getElementById("gradeOverview");
+        el.innerHTML =
+            '<div class="grade-overview" style="--grade-color:' + meta.color + ';--grade-bg:' + meta.bg + '">' +
+                '<div class="grade-overview-top">' +
+                    '<span class="grade-overview-title">' + g.title + '</span>' +
+                    '<span class="grade-overview-badge">' + g.level + '</span>' +
+                    '<span class="grade-overview-badge">' + g.ageRange + '</span>' +
+                '</div>' +
+                '<div class="grade-overview-tagline">' + g.tagline + '</div>' +
+                '<p class="grade-overview-summary">' + g.summary + '</p>' +
+                '<div class="grade-overview-meta">' +
+                    '<span><b>' + g.totalLessons + '</b> lessons / year</span>' +
+                    '<span><b>4</b> terms</span>' +
+                    '<span><b>' + g.totalVocab + '</b> vocabulary words</span>' +
+                '</div>' +
+            '</div>';
+    }
+
+    function renderTerms() {
+        var g = CURRICULUM[state.grade];
+        var meta = GRADE_META[state.grade];
+        var grid = document.getElementById("termGrid");
+        grid.innerHTML = "";
+        g.terms.forEach(function (t) {
+            var isOpen = t.number === state.openTerm;
+            var card = document.createElement("div");
+            card.className = "term-card" + (isOpen ? " open" : "");
+            card.style.setProperty("--grade-color", meta.color);
+            card.style.setProperty("--grade-bg", meta.bg);
+
+            var skillsHtml = ["listening", "reading", "speaking", "writing"].map(function (skillKey) {
+                var icons = { listening: "🎧", reading: "📖", speaking: "🗣", writing: "✍" };
+                var labels = { listening: "Listening", reading: "Reading", speaking: "Speaking", writing: "Writing" };
+                var items = t.skills[skillKey].map(function (i) { return "<li>" + i + "</li>"; }).join("");
+                return '<div class="skill-box"><div class="skill-box-label">' + icons[skillKey] + " " + labels[skillKey] + '</div><ul>' + items + '</ul></div>';
+            }).join("");
+
+            var outcomesHtml = t.outcomes.map(function (o) { return "<li>" + o + "</li>"; }).join("");
+
+            card.innerHTML =
+                '<div class="term-card-header">' +
+                    '<div class="term-num-badge">T' + t.number + '</div>' +
+                    '<div>' +
+                        '<div class="term-card-title">' + t.title + '</div>' +
+                        '<div class="term-card-weeks">' + t.weeks + '</div>' +
+                    '</div>' +
+                    '<span class="term-toggle-icon">▾</span>' +
+                '</div>' +
+                '<div class="term-body"><div class="term-body-inner">' +
+                    '<div class="term-section"><div class="term-section-label">Grammar Focus</div><div class="term-section-text">' + t.grammar + '</div></div>' +
+                    '<div class="term-section"><div class="term-section-label">Vocabulary Focus</div><div class="term-section-text">' + t.vocab + '</div></div>' +
+                    '<div class="term-section"><div class="term-section-label">Skills Breakdown</div><div class="skills-grid">' + skillsHtml + '</div></div>' +
+                    '<div class="term-section"><div class="term-section-label">Measurable Learning Outcomes</div><ul class="outcomes-list">' + outcomesHtml + '</ul></div>' +
+                '</div></div>';
+
+            card.querySelector(".term-card-header").addEventListener("click", function () {
+                state.openTerm = isOpen ? 0 : t.number;
+                renderTerms();
+            });
+            grid.appendChild(card);
+        });
+    }
+
+    function renderChecklist() {
+        var g = CURRICULUM[state.grade];
+        var meta = GRADE_META[state.grade];
+        var el = document.getElementById("checklistCard");
+        el.style.setProperty("--grade-color", meta.color);
+        var items = g.checklist.map(function (c) {
+            return '<div class="checklist-item"><span class="checklist-box"></span>' + c + '</div>';
+        }).join("");
+        el.innerHTML =
+            '<div class="checklist-title">✅ End of ' + g.title + ' Checklist</div>' +
+            '<div class="checklist-sub">By the end of the year, a student should be able to demonstrate all of the following:</div>' +
+            '<div class="checklist-grid">' + items + '</div>';
+    }
+
+    function renderAll() {
+        renderGradeTabs();
+        renderOverview();
+        renderTerms();
+        renderChecklist();
+    }
+
+    renderAll();
+</script>
+</body>
+</html>
