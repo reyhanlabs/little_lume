@@ -68,8 +68,8 @@
       margin-top: 0.25rem;
     }
     header h1 { font-family: 'Poppins', sans-serif; color: white; font-size: 1.5rem; margin: 0; }
-    .container { display: grid; grid-template-columns: 300px 1fr; gap: 0; margin-top: 0; height: calc(100vh - 90px); }
-    .sidebar { background: white; padding: 1.5rem; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05); overflow-y: auto; border-right: 1px solid var(--border); height: 100%; }
+    .container { display: grid; grid-template-columns: 300px 1fr; gap: 0; margin-top: 0; }
+    .sidebar { background: white; padding: 1.5rem; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05); position: sticky; top: 95px; align-self: flex-start; max-height: calc(100vh - 115px); overflow-y: auto; border-right: 1px solid var(--border); height: 100%; }
     .sidebar::-webkit-scrollbar { width: 8px; }
     .sidebar::-webkit-scrollbar-track { background: #f1f1f1; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
