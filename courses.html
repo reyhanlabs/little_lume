@@ -100,11 +100,12 @@
     .course-card {
         background: var(--bg-card);
         border: 1px solid var(--border);
+        border-top: 5px solid var(--grade-color, var(--primary));
         border-radius: 20px;
         overflow: hidden;
         transition: var(--transition);
     }
-    .course-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .course-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--grade-color, var(--border)); }
 
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px); }
@@ -883,7 +884,7 @@ function renderCourses() {
             return '<span class="topic-pill" style="--grade-color:' + c.color + ';--grade-bg:' + c.bg + '">' + t + '</span>';
         }).join("");
         return (
-            '<div class="course-card" id="' + c.id + '">' +
+            '<div class="course-card" id="' + c.id + '" style="--grade-color:' + c.color + '">' +
                 '<div class="course-top">' +
                     '<div class="course-badge" style="--grade-bg:' + c.bg + '">' + c.icon + '</div>' +
                     '<div class="course-info">' +
@@ -909,7 +910,7 @@ function renderWorksheets() {
         return '<a class="course-link" href="worksheet/' + w.id + '/" style="--grade-color:' + w.color + '">' + w.icon + ' ' + w.title + '</a>';
     }).join("");
     grid.innerHTML =
-        '<div class="course-card" id="worksheets">' +
+        '<div class="course-card" id="worksheets" style="--grade-color:var(--gws)">' +
             '<div class="course-top">' +
                 '<div class="course-badge" style="--grade-bg:rgba(124,92,191,0.12)">📄</div>' +
                 '<div class="course-info">' +
