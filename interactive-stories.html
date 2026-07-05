@@ -859,7 +859,7 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0;
-                padding: 4.5rem 1.5rem 2rem;
+                padding: 0 1.5rem 2rem;
                 box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
                 transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 1100;
@@ -891,17 +891,44 @@
 
             .menu-toggle { display: flex; }
 
-            .nav-close-item { display: block; text-align: right; margin-bottom: 0.5rem; }
+            .nav-close-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: calc(100% + 3rem);
+                margin: 0 -1.5rem 0.75rem;
+                padding: 1.25rem 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                position: sticky;
+                top: 0;
+                background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 90%, transparent 100%);
+                z-index: 1;
+            }
+            .nav-close-brand {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 1.05rem;
+                color: white;
+            }
             .nav-close-btn {
                 background: rgba(255, 255, 255, 0.1);
                 border: none;
                 color: white;
-                width: 36px;
-                height: 36px;
+                width: 34px;
+                height: 34px;
                 border-radius: 8px;
-                font-size: 1rem;
+                font-size: 0.95rem;
                 cursor: pointer;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
             }
+            .nav-close-btn:hover { background: rgba(255, 255, 255, 0.2); }
 
             /* Dropdowns become accordion-style on mobile (tap instead of hover) */
             .nav-item-dropdown {
@@ -1140,7 +1167,7 @@
         </div>
         <div class="nav-overlay" id="navOverlay"></div>
         <ul class="nav-links" id="navLinks">
-            <li class="nav-close-item"><button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">✕</button></li>
+            <li class="nav-close-item"><span class="nav-close-brand">✨ LittleLume</span><button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">✕</button></li>
             <li><a href="index.html#courses">Courses</a></li>
             <li><a href="curriculum.html">Curriculum</a></li>
             <li><a href="index.html#resources">Resources</a></li>
