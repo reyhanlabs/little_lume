@@ -1328,16 +1328,29 @@ renderWorksheets();
     }
 
     document.getElementById("openPlacementModalBtn").addEventListener("click", openPlacementModal);
-    document.getElementById("ptModalCloseBtn").addEventListener("click", closePlacementModal);
-    document.getElementById("ptSkipBtn").addEventListener("click", closePlacementModal);
+    document.getElementById("ptModalCloseBtn").addEventListener("click", function () {
+        localStorage.setItem("ll_placement_autopopup_seen", "1");
+        closePlacementModal();
+    });
+    document.getElementById("ptSkipBtn").addEventListener("click", function () {
+        localStorage.setItem("ll_placement_autopopup_seen", "1");
+        closePlacementModal();
+    });
     document.getElementById("ptStartTestBtn").addEventListener("click", ptStartTest);
     document.getElementById("ptModalOverlay").addEventListener("click", function (e) {
-        if (e.target.id === "ptModalOverlay") closePlacementModal();
+        if (e.target.id === "ptModalOverlay") {
+            localStorage.setItem("ll_placement_autopopup_seen", "1");
+            closePlacementModal();
+        }
     });
     document.getElementById("ptStartLearningBtn").addEventListener("click", function () {
         closePlacementModal();
         if (ptSelectedGrade) scrollToGradeCard("grade" + ptSelectedGrade);
     });
+
+    // Exposed so the banner-eligibility script below can auto-open the
+    // modal for first-time users, without needing them to click first.
+    window.openPlacementModal = openPlacementModal;
 })();
 
 
@@ -1377,32 +1390,45 @@ function scrollToGradeCard(gradeId) {
     })();
 </script>
 
-<!-- Placement test banner: shown unless the user dismissed it before, or
-     already has a saved placement test result in Firestore. -->
+<!-- Placement test: auto-opens the modal for first-time users (unless
+     dismissed before, or they already have a saved result in Firestore).
+     The banner stays visible underneath as a reminder even if they skip,
+     so they can still start it manually later. -->
 <script>
     (function () {
         var banner = document.getElementById("placementBanner");
         var closeBtn = document.getElementById("placementBannerClose");
-        var DISMISS_KEY = "ll_placement_banner_dismissed";
+        var BANNER_DISMISS_KEY = "ll_placement_banner_dismissed";
+        var AUTOPOPUP_SEEN_KEY = "ll_placement_autopopup_seen";
 
         closeBtn.addEventListener("click", function () {
-            localStorage.setItem(DISMISS_KEY, "1");
+            localStorage.setItem(BANNER_DISMISS_KEY, "1");
             banner.style.display = "none";
         });
 
-        if (localStorage.getItem(DISMISS_KEY)) return;
+        function showBannerAndMaybeAutoOpen() {
+            banner.style.display = "flex";
+            if (!localStorage.getItem(AUTOPOPUP_SEEN_KEY)) {
+                // Small delay so it doesn't pop before the page has settled.
+                setTimeout(function () {
+                    if (window.openPlacementModal) window.openPlacementModal();
+                }, 400);
+            }
+        }
+
+        if (localStorage.getItem(BANNER_DISMISS_KEY)) return;
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (!user) return;
             if (!firebase.firestore) {
-                banner.style.display = "flex";
+                showBannerAndMaybeAutoOpen();
                 return;
             }
             firebase.firestore().collection("users").doc(user.uid).get().then(function (doc) {
                 var hasResult = doc.exists && doc.data().placementTest;
-                if (!hasResult) banner.style.display = "flex";
+                if (!hasResult) showBannerAndMaybeAutoOpen();
             }).catch(function () {
-                banner.style.display = "flex";
+                showBannerAndMaybeAutoOpen();
             });
         });
     })();
