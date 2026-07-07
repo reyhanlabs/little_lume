@@ -1,4 +1,4 @@
-# 📋 LittleLume Worksheet Generator
+# 📋 LittleLume Worksheet Generator New
 
 A simple, efficient system for generating customized English worksheets for students across grades 1-6.
 
