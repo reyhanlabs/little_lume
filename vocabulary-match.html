@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- This game is intentionally open to guests as a free trial —
+     no login required. Firebase is still loaded so the navbar can show
+     the correct Login/logged-in state if the visitor happens to have
+     an account already. -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="../firebase-config.js"></script>
+<!-- end guest-mode notice -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Vocabulary Match | LittleLume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #2C3E7A;
+        --secondary: #7C5CBF;
+        --accent-cyan: #00D9FF;
+        --success: #10B981;
+        --warning: #F59E0B;
+        --danger: #EF4444;
+        --bg-light: #F8F9FD;
+        --bg-card: #FFFFFF;
+        --text-primary: #1A202C;
+        --text-secondary: #64748B;
+        --border: #E2E8F0;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+        --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+        --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+        --grade2: linear-gradient(135deg, #FECA57 0%, #FFE66D 100%);
+        --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
+        --grade4: linear-gradient(135deg, #FF9FF3 0%, #FFCCFE 100%);
+        --grade5: linear-gradient(135deg, #54A0FF 0%, #92B6FF 100%);
+        --grade6: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%);
+
+        --grade2-solid: #FECA57;
+        --grade3-solid: #00D2D3;
+        --grade4-solid: #FF9FF3;
+        --grade5-solid: #54A0FF;
+        --grade6-solid: #1DD1A1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-light);
+        color: var(--text-primary);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        user-select: none;
+    }
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .topbar { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;  z-index: 50; box-shadow: var(--shadow-sm); }
+    .brand { display: flex; align-items: center; gap: 0.6rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--primary); }
+    .brand-badge { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .topbar-stars { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; color: var(--warning); font-size: 0.95rem; }
+
+    .guest-trial-banner {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        background: linear-gradient(135deg, rgba(255,217,61,0.15) 0%, rgba(255,159,67,0.12) 100%);
+        border-bottom: 1.5px solid rgba(245,158,11,0.3);
+        padding: 0.85rem 1.5rem;
+        flex-wrap: wrap;
+    }
+    .guest-trial-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .guest-trial-text { flex: 1; min-width: 200px; font-size: 0.85rem; color: var(--text-primary); line-height: 1.4; }
+    .guest-trial-btn {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.83rem;
+        padding: 0.55rem 1.1rem;
+        border-radius: 10px;
+        white-space: nowrap;
+        transition: var(--transition);
+        flex-shrink: 0;
+    }
+    .guest-trial-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    @media (max-width: 640px) {
+        .guest-trial-banner { padding: 0.75rem 1rem; }
+        .guest-trial-btn { width: 100%; text-align: center; }
+    }
+
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+
+    .page-head { text-align: center; margin-bottom: 2rem; }
+    .page-eyebrow { display: inline-block; background: rgba(44,62,122,0.1); color: var(--primary); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.9rem; border-radius: 999px; margin-bottom: 0.9rem; }
+    .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-desc { color: var(--text-secondary); font-size: 0.98rem; max-width: 560px; margin: 0 auto; }
+
+    /* ===== GRADE TABS ===== */
+    .grade-tabs { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .grade-tab { border: 2px solid var(--border); background: var(--bg-card); padding: 0.6rem 1.2rem; border-radius: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+    .grade-tab .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .grade-tab:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .grade-tab.active { color: white; border-color: transparent; box-shadow: var(--shadow-md); }
+    .grade-tab.active .dot { background: white; }
+    .g2 .dot { background: var(--grade2-solid); }
+    .g3 .dot { background: var(--grade3-solid); }
+    .g4 .dot { background: var(--grade4-solid); }
+    .g5 .dot { background: var(--grade5-solid); }
+    .g6 .dot { background: var(--grade6-solid); }
+    .g2.active { background: var(--grade2); color: #7A5A00; }
+    .g3.active { background: var(--grade3); color: #003B3C; }
+    .g4.active { background: var(--grade4); color: #7A2E70; }
+    .g5.active { background: var(--grade5); color: #0B2E66; }
+    .g6.active { background: var(--grade6); color: #063D2F; }
+
+    /* ===== TOPIC GRID ===== */
+    .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.1rem; }
+    .topic-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 1.7rem; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; }
+    .topic-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--grade-color, var(--primary)); }
+    .topic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .topic-icon { font-size: 2.1rem; margin-bottom: 0.7rem; display: block; }
+    .topic-name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.35rem; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .topic-count { font-size: 0.8rem; color: var(--text-secondary); }
+    .topic-stars { margin-top: 0.9rem; font-size: 1rem; }
+
+    /* ===== GAME VIEW ===== */
+    .game-view { display: none; }
+    .game-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+    .back-btn { background: var(--bg-card); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 12px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: var(--transition); flex-shrink: 0; }
+    .back-btn:hover { background: var(--bg-light); transform: translateX(-2px); }
+    .game-title-wrap { flex: 1; min-width: 140px; }
+    .game-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.1rem; }
+    .game-meta { font-size: 0.83rem; color: var(--text-secondary); }
+    .game-stats { display: flex; gap: 1rem; font-weight: 700; font-size: 0.9rem; color: var(--primary); }
+    .game-stats span { white-space: nowrap; }
+
+    .memory-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.8rem;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+    .mem-card {
+        aspect-ratio: 1 / 1;
+        border-radius: 16px;
+        cursor: pointer;
+        position: relative;
+        perspective: 800px;
+    }
+    .mem-card-inner {
+        position: relative;
+        width: 100%; height: 100%;
+        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+    }
+    .mem-card.flipped .mem-card-inner,
+    .mem-card.matched .mem-card-inner {
+        transform: rotateY(180deg);
+    }
+    .mem-face {
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backface-visibility: hidden;
+        padding: 0.5rem;
+        text-align: center;
+    }
+    .mem-face-back {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        font-size: 1.6rem;
+        color: white;
+        box-shadow: var(--shadow-md);
+    }
+    .mem-face-front {
+        background: var(--bg-card);
+        border: 2px solid var(--border);
+        transform: rotateY(180deg);
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text-primary);
+        line-height: 1.25;
+        box-shadow: var(--shadow-sm);
+        word-break: break-word;
+    }
+    .mem-face-front.is-emoji { font-size: 2.2rem; }
+    .mem-card.matched .mem-face-front { border-color: var(--success); background: rgba(16,185,129,0.1); color: #067A55; }
+    .mem-card.wrong-flash .mem-face-front { border-color: var(--danger); background: rgba(239,68,68,0.08); }
+    .mem-card.matched { cursor: default; }
+
+    @keyframes shake { 0%, 100% { transform: rotateY(180deg) translateX(0); } 20% { transform: rotateY(180deg) translateX(-6px); } 40% { transform: rotateY(180deg) translateX(6px); } 60% { transform: rotateY(180deg) translateX(-4px); } 80% { transform: rotateY(180deg) translateX(4px); } }
+    .mem-card.wrong-flash .mem-card-inner { animation: shake 0.4s; }
+
+    @keyframes pop { 0% { transform: rotateY(180deg) scale(0.9); } 60% { transform: rotateY(180deg) scale(1.08); } 100% { transform: rotateY(180deg) scale(1); } }
+    .mem-card.matched .mem-card-inner { animation: pop 0.35s; }
+
+    .board-footer { text-align: center; margin-top: 1.6rem; }
+    .next-btn { border: none; background: var(--primary); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.8rem 1.8rem; border-radius: 14px; cursor: pointer; font-size: 0.95rem; transition: var(--transition); display: none; }
+    .next-btn.show { display: inline-flex; }
+    .next-btn:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    /* ===== RESULT VIEW ===== */
+    .result-view { display: none; text-align: center; }
+    .result-card { background: var(--bg-card); border-radius: 24px; padding: 3rem 2rem; box-shadow: var(--shadow-xl); max-width: 460px; margin: 0 auto; }
+    .result-stars { font-size: 2.6rem; margin-bottom: 1rem; }
+    .result-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .result-sub { color: var(--text-secondary); margin-bottom: 1.8rem; font-weight: 500; }
+    .result-detail { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .result-stat-num { font-size: 1.4rem; font-weight: 800; }
+    .result-stat-label { font-size: 0.78rem; color: var(--text-secondary); }
+    .result-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+    .result-btn { border: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; padding: 0.8rem 1.6rem; border-radius: 14px; cursor: pointer; font-size: 0.9rem; transition: var(--transition); }
+    .result-btn.primary { background: var(--primary); color: white; }
+    .result-btn.primary:hover { background: var(--secondary); transform: translateY(-2px); }
+    .result-btn.ghost { background: var(--bg-light); color: var(--text-primary); border: 1px solid var(--border); }
+    .result-btn.ghost:hover { background: var(--border); }
+
+    .confetti-piece { position: fixed; top: -20px; font-size: 1.4rem; pointer-events: none; z-index: 998; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0.2; } }
+
+    @media (max-width: 600px) {
+        .topbar { padding: 0.85rem 1.1rem; }
+        .page-title { font-size: 1.5rem; }
+        .memory-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+        .mem-face-front { font-size: 0.8rem; }
+        .mem-face-front.is-emoji { font-size: 1.7rem; }
+        .mem-face-back { font-size: 1.3rem; }
+    }
+
+/* ===== SYNCED HOMEPAGE HEADER ===== */
+        /* ============= HEADER / NAVBAR ============= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(15, 27, 76, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+        }
+
+        header.scrolled {
+            background: transparent;
+            backdrop-filter: none;
+            border-bottom-color: transparent;
+            box-shadow: none;
+            padding: 14px 16px 0;
+        }
+        header.scrolled::before { opacity: 0; }
+
+        /* Starry background effect */
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(1px 1px at 10% 90%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 40% 20%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(1px 1px at 30% 80%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.85), transparent),
+                radial-gradient(2px 2px at 15% 50%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 85% 30%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1px 1px at 25% 10%, rgba(255, 255, 255, 0.9), transparent);
+            background-size: 200% 200%;
+            background-position: 0 0;
+            animation: twinkleBg 20s ease-in-out infinite;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        @keyframes twinkleBg {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled .navbar {
+            max-width: 1140px;
+            padding: 0.75rem 1.75rem;
+            background: rgba(15, 27, 76, 0.68);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 16px 40px rgba(15, 27, 76, 0.35);
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(90deg,
+                    #FF6B9D 0%,
+                    #FFD93D 25%,
+                    #00D2D3 50%,
+                    #FF9FF3 75%,
+                    #FF6B9D 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(255, 107, 157, 0.3));
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD93D 0%, #FECA57 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ============= MOBILE MENU TOGGLE ============= */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 27, 76, 0.55);
+            z-index: 1050;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-overlay.show {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-close-item { display: none; }
+
+        .nav-link-grammar:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #FFD93D 0%, #FECA57 100%);
+            color: #0F1B4C;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255, 217, 61, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 217, 61, 0.4);
+        }
+
+        .nav-auth-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-user-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.4rem 0.5rem 0.4rem 0.4rem;
+            border-radius: 999px;
+        }
+
+        .nav-user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD93D, #FECA57);
+            color: #0F1B4C;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .nav-user-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+        .nav-user-name {
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            max-width: 120px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-logout-btn {
+            border: none;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .nav-logout-btn:hover {
+            background: rgba(239, 68, 68, 0.75);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -320px;
+                height: 100vh;
+                width: min(78vw, 320px);
+                background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 50%, #0D1F40 100%);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 0 1.5rem 2rem;
+                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.3);
+                transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1100;
+                overflow-y: auto;
+            }
+
+            .nav-links.open {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.9rem 0.2rem;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-links a::after { display: none; }
+
+            .nav-cta { margin-top: 0.5rem; }
+            .nav-user-name { display: none; }
+            .nav-user-chip { padding: 0.35rem; gap: 0.35rem; }
+            .navbar { padding: 1rem; }
+            .logo { font-size: 1.25rem; }
+
+            .menu-toggle { display: flex; }
+
+            .nav-close-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: calc(100% + 3rem);
+                margin: 0 -1.5rem 0.75rem;
+                padding: 1.25rem 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                position: sticky;
+                top: 0;
+                background: linear-gradient(180deg, #0F1B4C 0%, #1A2B6E 90%, transparent 100%);
+                z-index: 1;
+            }
+            .nav-close-brand {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 1.05rem;
+                color: white;
+            }
+            .nav-close-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white;
+                width: 34px;
+                height: 34px;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                cursor: pointer;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+            .nav-close-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+            /* Dropdowns become accordion-style on mobile (tap instead of hover) */
+            .nav-item-dropdown {
+                position: static !important;
+                display: block !important;
+            }
+            .nav-dropdown-trigger {
+                justify-content: space-between;
+            }
+            .nav-dropdown {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0.5rem 0 0.5rem 0.75rem;
+                min-width: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+            }
+            .nav-dropdown::before { display: none !important; }
+            .nav-item-dropdown.open .nav-dropdown {
+                max-height: 600px;
+                padding: 0.5rem 0 0.75rem 0.75rem;
+            }
+            #navLinks .nav-dropdown-item {
+                color: rgba(255, 255, 255, 0.85) !important;
+            }
+            #navLinks .nav-dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+            .nav-dropdown-bar { display: none !important; }
+            .nav-dropdown-label {
+                color: rgba(255, 255, 255, 0.45) !important;
+                font-size: 0.68rem !important;
+                padding: 0 0 0.5rem !important;
+                margin: 0 !important;
+            }
+            .nav-dropdown-grid { grid-template-columns: 1fr 1fr; }
+
+            .cambridge-dropdown {
+                left: auto !important;
+                right: 0 !important;
+                max-width: calc(100vw - 3rem);
+            }
+        }
+
+        /* ============= NAV DROPDOWNS (Worksheets & Resources) ============= */
+        .nav-item-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-dropdown-trigger {
+            display: flex !important;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .nav-dropdown-arrow {
+            font-size: 0.65rem;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 18px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px) scale(0.97);
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.85rem;
+            min-width: 285px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 200;
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-left: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item-dropdown:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .nav-dropdown-bar {
+            height: 5px;
+            margin: -0.85rem -0.85rem 0.75rem;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .nav-dropdown-bar-ws {
+            background: linear-gradient(90deg, #FF6B9D 0%, #FECA57 20%, #00D2D3 40%, #FF9FF3 60%, #54A0FF 80%, #1DD1A1 100%);
+        }
+
+        .nav-dropdown-bar-res {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent-cyan) 100%);
+        }
+
+        .nav-dropdown-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-secondary);
+            padding: 0 0.2rem 0.6rem;
+        }
+
+        .nav-dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 0.4rem;
+        }
+
+        .nav-dropdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .nav-dropdown-item {
+            display: flex !important;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.5rem 0.55rem;
+            border-radius: 11px;
+            color: var(--text-primary) !important;
+            font-size: 0.83rem;
+            font-weight: 600 !important;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-item::after {
+            content: none !important;
+        }
+
+        .nav-dropdown-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .nav-dropdown-item:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Worksheet grade colors */
+        .nav-dropdown-item.ws-g1 .nav-dropdown-icon { background: rgba(255, 107, 157, 0.15); }
+        .nav-dropdown-item.ws-g1:hover { color: #FF6B9D !important; }
+        .nav-dropdown-item.ws-g1:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF6B9D 0%, #FF5A8A 100%); }
+
+        .nav-dropdown-item.ws-g2 .nav-dropdown-icon { background: rgba(254, 202, 87, 0.18); }
+        .nav-dropdown-item.ws-g2:hover { color: #E5A800 !important; }
+        .nav-dropdown-item.ws-g2:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FECA57 0%, #FDBA3D 100%); }
+
+        .nav-dropdown-item.ws-g3 .nav-dropdown-icon { background: rgba(0, 210, 211, 0.15); }
+        .nav-dropdown-item.ws-g3:hover { color: #00AEAF !important; }
+        .nav-dropdown-item.ws-g3:hover .nav-dropdown-icon { background: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%); }
+
+        .nav-dropdown-item.ws-g4 .nav-dropdown-icon { background: rgba(255, 159, 243, 0.18); }
+        .nav-dropdown-item.ws-g4:hover { color: #E070D6 !important; }
+        .nav-dropdown-item.ws-g4:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF9FF3 0%, #FF84E8 100%); }
+
+        .nav-dropdown-item.ws-g5 .nav-dropdown-icon { background: rgba(84, 160, 255, 0.15); }
+        .nav-dropdown-item.ws-g5:hover { color: #3B82F6 !important; }
+        .nav-dropdown-item.ws-g5:hover .nav-dropdown-icon { background: linear-gradient(135deg, #54A0FF 0%, #3B82F6 100%); }
+
+        .nav-dropdown-item.ws-g6 .nav-dropdown-icon { background: rgba(29, 209, 161, 0.15); }
+        .nav-dropdown-item.ws-g6:hover { color: #10AC84 !important; }
+        .nav-dropdown-item.ws-g6:hover .nav-dropdown-icon { background: linear-gradient(135deg, #1DD1A1 0%, #10AC84 100%); }
+
+        /* Learning Resources colors */
+        .nav-dropdown-item.res-grammar .nav-dropdown-icon { background: rgba(44, 62, 122, 0.12); }
+        .nav-dropdown-item.res-grammar:hover { color: var(--primary) !important; }
+        .nav-dropdown-item.res-grammar:hover .nav-dropdown-icon { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+
+        .nav-dropdown-item.res-vocab .nav-dropdown-icon { background: rgba(0, 217, 255, 0.15); }
+        .nav-dropdown-item.res-vocab:hover { color: #00AEC7 !important; }
+        .nav-dropdown-item.res-vocab:hover .nav-dropdown-icon { background: linear-gradient(135deg, #48DBFB 0%, #00D9FF 100%); }
+
+        .nav-dropdown-item.res-phrasal .nav-dropdown-icon { background: rgba(245, 158, 11, 0.15); }
+        .nav-dropdown-item.res-phrasal:hover { color: #C9840A !important; }
+        .nav-dropdown-item.res-phrasal:hover .nav-dropdown-icon { background: linear-gradient(135deg, #F59E0B 0%, #FFD93D 100%); }
+
+        .nav-dropdown-item.res-stories .nav-dropdown-icon { background: rgba(255, 107, 157, 0.15); }
+        .nav-dropdown-item.res-stories:hover { color: #FF5A8A !important; }
+        .nav-dropdown-item.res-stories:hover .nav-dropdown-icon { background: linear-gradient(135deg, #FF9FF3 0%, #FF6B9D 100%); }
+
+</style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="../index.html" style="text-decoration:none;"><div class="logo">✨ LittleLume</div></a>
+        </div>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-close-item"><span class="nav-close-brand">✨ LittleLume</span><button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">✕</button></li>
+            <li><a href="../index.html#courses">Courses</a></li>
+            <li><a href="../curriculum.html">Curriculum</a></li>
+            <li><a href="../index.html#resources">Resources</a></li>
+            <li><a href="../index.html#courses">Worksheets</a></li>
+            <li><a class="nav-link-grammar" href="../games/index.html">🎮 Games</a></li>
+            <li><a href="../index.html#quotes">About</a></li>
+        </ul>
+        <div class="nav-auth-area" id="navAuthArea">
+            <a class="nav-cta" href="../login.html" id="navLoginBtn">Login</a>
+            <div class="nav-user-chip" id="navUserChip" style="display:none;">
+                <span class="nav-user-avatar" id="navUserAvatar">?</span>
+                <span class="nav-user-name" id="navUserName">User</span>
+                <button class="nav-logout-btn" id="navLogoutBtn" title="Logout" aria-label="Logout">⏻</button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class="topbar">
+    <div class="brand"><span class="brand-badge">🧠</span> LittleLume Vocabulary Match</div>
+    <div class="topbar-stars" id="totalStars">⭐ 0</div>
+</div>
+
+<div class="guest-trial-banner" id="guestTrialBanner">
+    <span class="guest-trial-icon">🎁</span>
+    <span class="guest-trial-text">You're playing a <b>free trial game</b> — sign up to unlock all 8 games, 192 lessons, and track your progress!</span>
+    <a href="../signup.html" class="guest-trial-btn">Create Free Account →</a>
+</div>
+
+<div class="wrap">
+
+    <!-- ============ HOME VIEW ============ -->
+    <div id="homeView">
+        <div class="page-head">
+            <span class="page-eyebrow">Match & Remember</span>
+            <h1 class="page-title">Vocabulary Match</h1>
+            <p class="page-desc">Flip two cards at a time to find matching pairs — words with their meanings. Pick a grade and a theme to start!</p>
+        </div>
+
+        <div class="grade-tabs" id="gradeTabs"></div>
+        <div class="topic-grid" id="topicGrid"></div>
+    </div>
+
+    <!-- ============ GAME VIEW ============ -->
+    <div class="game-view" id="gameView">
+        <div class="game-header">
+            <button class="back-btn" id="backBtn">←</button>
+            <div class="game-title-wrap">
+                <div class="game-title" id="gameTitle">Theme</div>
+                <div class="game-meta" id="gameMeta">Find all 6 pairs</div>
+            </div>
+            <div class="game-stats">
+                <span id="movesCounter">Moves: 0</span>
+                <span id="pairsCounter">Pairs: 0/6</span>
+            </div>
+        </div>
+
+        <div class="memory-grid" id="memoryGrid"></div>
+
+        <div class="board-footer">
+            <button class="next-btn" id="nextBtn">See Results →</button>
+        </div>
+    </div>
+
+    <!-- ============ RESULT VIEW ============ -->
+    <div class="result-view" id="resultView">
+        <div class="result-card">
+            <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+            <div class="result-title" id="resultTitle">Great Matching!</div>
+            <div class="result-sub" id="resultSub">You found all the pairs!</div>
+            <div class="result-detail">
+                <div><div class="result-stat-num" id="resultMoves">0</div><div class="result-stat-label">Moves</div></div>
+                <div><div class="result-stat-num" id="resultPairs">0</div><div class="result-stat-label">Pairs Found</div></div>
+                <div><div class="result-stat-num" id="resultMistakes">0</div><div class="result-stat-label">Mistakes</div></div>
+            </div>
+            <div class="result-actions">
+                <button class="result-btn primary" id="retryTopicBtn">🔁 Play Again</button>
+                <button class="result-btn ghost" id="homeBtnResult">🏠 Back to Themes</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const VOCAB_DATA = {"grade2": {"animals": {"title": "Animals", "icon": "🐾", "pairs": [{"word": "cat", "meaning": "🐱"}, {"word": "dog", "meaning": "🐶"}, {"word": "bird", "meaning": "🐦"}, {"word": "fish", "meaning": "🐟"}, {"word": "cow", "meaning": "🐄"}, {"word": "duck", "meaning": "🦆"}]}, "food": {"title": "Food & Drinks", "icon": "🍎", "pairs": [{"word": "apple", "meaning": "🍎"}, {"word": "banana", "meaning": "🍌"}, {"word": "bread", "meaning": "🍞"}, {"word": "milk", "meaning": "🥛"}, {"word": "egg", "meaning": "🥚"}, {"word": "rice", "meaning": "🍚"}]}, "colors_numbers": {"title": "Colors & Numbers", "icon": "🔴", "pairs": [{"word": "red", "meaning": "🔴"}, {"word": "blue", "meaning": "🔵"}, {"word": "green", "meaning": "🟢"}, {"word": "five", "meaning": "5️⃣"}, {"word": "ten", "meaning": "🔟"}, {"word": "three", "meaning": "3️⃣"}]}, "body_parts": {"title": "Body Parts", "icon": "🧍", "pairs": [{"word": "eye", "meaning": "👁️"}, {"word": "ear", "meaning": "👂"}, {"word": "nose", "meaning": "👃"}, {"word": "mouth", "meaning": "👄"}, {"word": "hand", "meaning": "✋"}, {"word": "foot", "meaning": "🦶"}]}, "clothes": {"title": "Clothes", "icon": "👕", "pairs": [{"word": "shirt", "meaning": "👕"}, {"word": "pants", "meaning": "👖"}, {"word": "shoes", "meaning": "👟"}, {"word": "hat", "meaning": "🎩"}, {"word": "socks", "meaning": "🧦"}, {"word": "dress", "meaning": "👗"}]}, "transportation": {"title": "Transportation", "icon": "🚗", "pairs": [{"word": "car", "meaning": "🚗"}, {"word": "bus", "meaning": "🚌"}, {"word": "bike", "meaning": "🚲"}, {"word": "train", "meaning": "🚆"}, {"word": "plane", "meaning": "✈️"}, {"word": "boat", "meaning": "⛵"}]}}, "grade3": {"family_home": {"title": "Family & Home", "icon": "🏠", "pairs": [{"word": "mother", "meaning": "👩"}, {"word": "father", "meaning": "👨"}, {"word": "sister", "meaning": "👧"}, {"word": "brother", "meaning": "👦"}, {"word": "house", "meaning": "🏠"}, {"word": "bed", "meaning": "🛏️"}]}, "weather_nature": {"title": "Weather & Nature", "icon": "☀️", "pairs": [{"word": "sun", "meaning": "☀️"}, {"word": "rain", "meaning": "🌧️"}, {"word": "cloud", "meaning": "☁️"}, {"word": "snow", "meaning": "❄️"}, {"word": "wind", "meaning": "💨"}, {"word": "star", "meaning": "⭐"}]}, "school": {"title": "School Objects", "icon": "🎒", "pairs": [{"word": "book", "meaning": "📖"}, {"word": "pencil", "meaning": "✏️"}, {"word": "bag", "meaning": "🎒"}, {"word": "chair", "meaning": "🪑"}, {"word": "ruler", "meaning": "📏"}, {"word": "scissors", "meaning": "✂️"}]}, "emotions": {"title": "Emotions", "icon": "😀", "pairs": [{"word": "happy", "meaning": "😀"}, {"word": "sad", "meaning": "😢"}, {"word": "angry", "meaning": "😠"}, {"word": "scared", "meaning": "😨"}, {"word": "surprised", "meaning": "😲"}, {"word": "sleepy", "meaning": "😴"}]}, "sports_hobbies": {"title": "Sports & Hobbies", "icon": "⚽", "pairs": [{"word": "soccer", "meaning": "⚽"}, {"word": "swimming", "meaning": "🏊"}, {"word": "painting", "meaning": "🎨"}, {"word": "dancing", "meaning": "💃"}, {"word": "reading", "meaning": "📖"}, {"word": "singing", "meaning": "🎤"}]}, "time_days": {"title": "Time & Days", "icon": "⏰", "pairs": [{"word": "morning", "meaning": "🌅"}, {"word": "night", "meaning": "🌙"}, {"word": "today", "meaning": "📅"}, {"word": "week", "meaning": "📆"}, {"word": "hour", "meaning": "⏰"}, {"word": "clock", "meaning": "🕐"}]}}, "grade4": {"feelings": {"title": "Feelings", "icon": "😊", "pairs": [{"word": "happy", "meaning": "Feeling joy"}, {"word": "sad", "meaning": "Feeling unhappy"}, {"word": "angry", "meaning": "Feeling mad"}, {"word": "scared", "meaning": "Feeling afraid"}, {"word": "excited", "meaning": "Feeling very eager and happy"}, {"word": "tired", "meaning": "Needing rest"}]}, "action_verbs": {"title": "Action Verbs", "icon": "🏃", "pairs": [{"word": "whisper", "meaning": "To speak very softly"}, {"word": "shout", "meaning": "To speak very loudly"}, {"word": "giggle", "meaning": "To laugh softly"}, {"word": "stumble", "meaning": "To trip while walking"}, {"word": "sprint", "meaning": "To run very fast"}, {"word": "tiptoe", "meaning": "To walk quietly on your toes"}]}, "describing_words": {"title": "Describing Words", "icon": "🎨", "pairs": [{"word": "enormous", "meaning": "Very big"}, {"word": "tiny", "meaning": "Very small"}, {"word": "ancient", "meaning": "Very old"}, {"word": "modern", "meaning": "New and current"}, {"word": "narrow", "meaning": "Not wide"}, {"word": "spacious", "meaning": "Having a lot of room"}]}, "household_chores": {"title": "Household Chores", "icon": "🧹", "pairs": [{"word": "sweep", "meaning": "To clean the floor with a broom"}, {"word": "fold", "meaning": "To bend clothes neatly for storage"}, {"word": "dust", "meaning": "To remove dust from surfaces"}, {"word": "vacuum", "meaning": "To clean floors using a machine"}, {"word": "tidy", "meaning": "To make a place neat and organized"}, {"word": "scrub", "meaning": "To clean by rubbing hard"}]}, "nature_outdoors": {"title": "Nature & Outdoors", "icon": "🏞️", "pairs": [{"word": "valley", "meaning": "Low land between hills or mountains"}, {"word": "meadow", "meaning": "A field full of grass and flowers"}, {"word": "stream", "meaning": "A small narrow river"}, {"word": "boulder", "meaning": "A very large rock"}, {"word": "trail", "meaning": "A path through nature"}, {"word": "canyon", "meaning": "A deep valley with steep sides"}]}, "occupations": {"title": "Occupations", "icon": "👩‍⚕️", "pairs": [{"word": "veterinarian", "meaning": "A doctor for animals"}, {"word": "architect", "meaning": "A person who designs buildings"}, {"word": "firefighter", "meaning": "A person who puts out fires"}, {"word": "journalist", "meaning": "A person who writes news stories"}, {"word": "electrician", "meaning": "A person who works with electrical wiring"}, {"word": "pilot", "meaning": "A person who flies airplanes"}]}}, "grade5": {"character_traits": {"title": "Character Traits", "icon": "🌟", "pairs": [{"word": "honest", "meaning": "Always telling the truth"}, {"word": "brave", "meaning": "Not afraid of danger"}, {"word": "generous", "meaning": "Willing to give"}, {"word": "curious", "meaning": "Eager to learn"}, {"word": "patient", "meaning": "Able to wait calmly"}, {"word": "stubborn", "meaning": "Refusing to change one's mind"}]}, "science_nature": {"title": "Science & Nature", "icon": "🌿", "pairs": [{"word": "habitat", "meaning": "The natural home of an animal"}, {"word": "ecosystem", "meaning": "A community of living things"}, {"word": "predator", "meaning": "An animal that hunts others"}, {"word": "herbivore", "meaning": "An animal that eats only plants"}, {"word": "migration", "meaning": "Moving from one place to another"}, {"word": "extinct", "meaning": "No longer existing"}]}, "everyday_advanced": {"title": "Everyday Advanced Words", "icon": "📘", "pairs": [{"word": "ancient", "meaning": "Extremely old"}, {"word": "confirmed", "meaning": "Proven to be true"}, {"word": "fragile", "meaning": "Easily damaged"}, {"word": "triumph", "meaning": "Great victory or success"}, {"word": "plummeted", "meaning": "Dropped suddenly"}, {"word": "abundant", "meaning": "Plentiful"}]}, "emotions_advanced": {"title": "Emotions: Advanced", "icon": "😌", "pairs": [{"word": "anxious", "meaning": "Feeling worried or nervous"}, {"word": "relieved", "meaning": "Feeling less worried after stress ends"}, {"word": "jealous", "meaning": "Feeling envious of someone else"}, {"word": "embarrassed", "meaning": "Feeling shy or ashamed"}, {"word": "confident", "meaning": "Feeling sure of yourself"}, {"word": "frustrated", "meaning": "Feeling annoyed when things don't go well"}]}, "geography_places": {"title": "Geography & Places", "icon": "🗺️", "pairs": [{"word": "peninsula", "meaning": "Land surrounded by water on three sides"}, {"word": "plateau", "meaning": "A large flat area of high land"}, {"word": "archipelago", "meaning": "A group of many islands"}, {"word": "equator", "meaning": "An imaginary line around the middle of Earth"}, {"word": "hemisphere", "meaning": "Half of the Earth"}, {"word": "continent", "meaning": "One of the seven large land masses on Earth"}]}, "technology_words": {"title": "Technology Words", "icon": "💻", "pairs": [{"word": "software", "meaning": "Programs that run on a computer"}, {"word": "hardware", "meaning": "The physical parts of a computer"}, {"word": "download", "meaning": "To copy data from the internet to a device"}, {"word": "upload", "meaning": "To send data from a device to the internet"}, {"word": "password", "meaning": "A secret code used to protect an account"}, {"word": "browser", "meaning": "A program used to view websites"}]}}, "grade6": {"academic_impact": {"title": "Academic Words I", "icon": "📗", "pairs": [{"word": "significant", "meaning": "Important and notable"}, {"word": "controversial", "meaning": "Causing disagreement"}, {"word": "minimize", "meaning": "Reduce to the smallest amount"}, {"word": "remarkable", "meaning": "Worthy of attention; impressive"}, {"word": "regulate", "meaning": "Control through rules"}, {"word": "devastating", "meaning": "Extremely harmful"}]}, "academic_thinking": {"title": "Academic Words II", "icon": "🧩", "pairs": [{"word": "analyze", "meaning": "To examine something in detail"}, {"word": "conclude", "meaning": "To decide after considering facts"}, {"word": "predict", "meaning": "To say what will happen before it does"}, {"word": "justify", "meaning": "To give a good reason for something"}, {"word": "collaborate", "meaning": "To work together with others"}, {"word": "evaluate", "meaning": "To judge the value of something"}]}, "advanced_vocab": {"title": "Advanced Vocabulary", "icon": "🎓", "pairs": [{"word": "persistent", "meaning": "Continuing firmly despite difficulty"}, {"word": "ambiguous", "meaning": "Having more than one possible meaning"}, {"word": "inevitable", "meaning": "Certain to happen"}, {"word": "diverse", "meaning": "Showing a variety"}, {"word": "crucial", "meaning": "Extremely important"}, {"word": "skeptical", "meaning": "Having doubts"}]}, "idioms_expressions": {"title": "Idioms & Expressions", "icon": "💭", "pairs": [{"word": "break the ice", "meaning": "To start a conversation in an awkward situation"}, {"word": "piece of cake", "meaning": "Something very easy to do"}, {"word": "under the weather", "meaning": "Feeling sick"}, {"word": "hit the books", "meaning": "To study hard"}, {"word": "once in a blue moon", "meaning": "Something that rarely happens"}, {"word": "cost an arm and a leg", "meaning": "Something very expensive"}]}, "science_research": {"title": "Science & Research", "icon": "🔬", "pairs": [{"word": "hypothesis", "meaning": "An idea to be tested through experiments"}, {"word": "variable", "meaning": "A factor that can change in an experiment"}, {"word": "data", "meaning": "Facts and information collected for analysis"}, {"word": "conclusion", "meaning": "A judgment reached after examining evidence"}, {"word": "observation", "meaning": "Information gathered by watching carefully"}, {"word": "experiment", "meaning": "A test done to discover something new"}]}, "global_issues": {"title": "Global Issues", "icon": "🌍", "pairs": [{"word": "poverty", "meaning": "The state of being extremely poor"}, {"word": "sustainability", "meaning": "Using resources without depleting them for the future"}, {"word": "inequality", "meaning": "Unfair differences between people or groups"}, {"word": "migration", "meaning": "The movement of people from one place to another"}, {"word": "biodiversity", "meaning": "The variety of life in a particular habitat"}, {"word": "globalization", "meaning": "The process of countries becoming more connected"}]}}};
+</script>
+<script>
+(function () {
+    var GRADE_META = {
+        grade2: { label: "Grade 2", cls: "g2", color: "var(--grade2)" },
+        grade3: { label: "Grade 3", cls: "g3", color: "var(--grade3)" },
+        grade4: { label: "Grade 4", cls: "g4", color: "var(--grade4)" },
+        grade5: { label: "Grade 5", cls: "g5", color: "var(--grade5)" },
+        grade6: { label: "Grade 6", cls: "g6", color: "var(--grade6)" }
+    };
+    var GRADE_ORDER = ["grade2", "grade3", "grade4", "grade5", "grade6"];
+    var STORAGE_KEY = "llg_vocab_match_progress_v1";
+
+    var state = {
+        grade: "grade2",
+        topicKey: null,
+        pairs: [],
+        cards: [],       // {id, pairId, display, kind:'word'|'meaning', matched:bool}
+        flipped: [],      // currently face-up (max 2) card ids
+        moves: 0,
+        mistakes: 0,
+        matchedPairs: 0,
+        busy: false
+    };
+
+    var homeView = document.getElementById("homeView");
+    var gameView = document.getElementById("gameView");
+    var resultView = document.getElementById("resultView");
+    var gradeTabs = document.getElementById("gradeTabs");
+    var topicGrid = document.getElementById("topicGrid");
+    var memoryGrid = document.getElementById("memoryGrid");
+
+    // ---------- persistence ----------
+    function loadProgress() {
+        try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
+        catch (e) { return {}; }
+    }
+    function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (e) {} }
+    function getTopicBest(grade, topicKey) {
+        var p = loadProgress();
+        return p[grade + ":" + topicKey] || 0;
+    }
+    function setTopicBest(grade, topicKey, stars) {
+        var p = loadProgress();
+        var key = grade + ":" + topicKey;
+        if (!p[key] || stars > p[key]) { p[key] = stars; saveProgress(p); }
+    }
+    function getGlobalStars() {
+        var p = loadProgress(), total = 0;
+        Object.keys(p).forEach(function (k) { total += p[k]; });
+        return total;
+    }
+    function refreshGlobalStars() { document.getElementById("totalStars").textContent = "⭐ " + getGlobalStars(); }
+
+    function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+    }
+
+    function isEmoji(str) {
+        return /\p{Extended_Pictographic}/u.test(str) && str.length <= 6;
+    }
+
+    // ---------- home / topic grid ----------
+    function renderGradeTabs() {
+        gradeTabs.innerHTML = "";
+        GRADE_ORDER.forEach(function (g) {
+            var meta = GRADE_META[g];
+            var btn = document.createElement("button");
+            btn.className = "grade-tab " + meta.cls + (g === state.grade ? " active" : "");
+            btn.innerHTML = '<span class="dot"></span>' + meta.label;
+            btn.addEventListener("click", function () {
+                state.grade = g;
+                renderGradeTabs();
+                renderTopicGrid();
+            });
+            gradeTabs.appendChild(btn);
+        });
+    }
+
+    function starString(stars, max) {
+        var full = Math.round((stars / max) * 3);
+        full = Math.max(0, Math.min(3, full));
+        return "⭐".repeat(full) + "☆".repeat(3 - full);
+    }
+
+    function renderTopicGrid() {
+        topicGrid.innerHTML = "";
+        var gradeData = VOCAB_DATA[state.grade];
+        var meta = GRADE_META[state.grade];
+        Object.keys(gradeData).forEach(function (topicKey) {
+            var topic = gradeData[topicKey];
+            var best = getTopicBest(state.grade, topicKey);
+            var card = document.createElement("div");
+            card.className = "topic-card";
+            card.style.setProperty("--grade-color", meta.color);
+            card.innerHTML =
+                '<span class="topic-icon">' + topic.icon + '</span>' +
+                '<div class="topic-name">' + topic.title + '</div>' +
+                '<div class="topic-count">' + topic.pairs.length + ' pairs to match</div>' +
+                '<div class="topic-stars">' + starString(best, 3) + '</div>';
+            card.addEventListener("click", function () { startTopic(state.grade, topicKey); });
+            topicGrid.appendChild(card);
+        });
+    }
+
+    // ---------- game flow ----------
+    function startTopic(grade, topicKey) {
+        var topic = VOCAB_DATA[grade][topicKey];
+        state.grade = grade;
+        state.topicKey = topicKey;
+        state.pairs = topic.pairs;
+        state.moves = 0;
+        state.mistakes = 0;
+        state.matchedPairs = 0;
+        state.flipped = [];
+        state.busy = false;
+
+        document.getElementById("gameTitle").textContent = topic.icon + " " + topic.title;
+        document.getElementById("gameMeta").textContent = "Find all " + topic.pairs.length + " pairs";
+
+        buildCards(topic.pairs);
+
+        homeView.style.display = "none";
+        resultView.style.display = "none";
+        gameView.style.display = "block";
+        document.getElementById("nextBtn").classList.remove("show");
+        renderStats();
+        renderGrid();
+    }
+
+    function buildCards(pairs) {
+        var cards = [];
+        pairs.forEach(function (pair, i) {
+            cards.push({ id: "w" + i, pairId: i, display: pair.word, kind: "word", matched: false });
+            cards.push({ id: "m" + i, pairId: i, display: pair.meaning, kind: "meaning", matched: false });
+        });
+        state.cards = shuffle(cards);
+    }
+
+    function renderStats() {
+        document.getElementById("movesCounter").textContent = "Moves: " + state.moves;
+        document.getElementById("pairsCounter").textContent = "Pairs: " + state.matchedPairs + "/" + state.pairs.length;
+    }
+
+    function renderGrid() {
+        memoryGrid.innerHTML = "";
+        state.cards.forEach(function (c) {
+            var cardEl = document.createElement("div");
+            cardEl.className = "mem-card";
+            cardEl.dataset.id = c.id;
+
+            var emojiClass = (c.kind === "meaning" && isEmoji(c.display)) ? " is-emoji" : "";
+
+            cardEl.innerHTML =
+                '<div class="mem-card-inner">' +
+                    '<div class="mem-face mem-face-back">❓</div>' +
+                    '<div class="mem-face mem-face-front' + emojiClass + '">' + c.display + '</div>' +
+                '</div>';
+            cardEl.addEventListener("click", function () { flipCard(c.id, cardEl); });
+            memoryGrid.appendChild(cardEl);
+        });
+    }
+
+    function flipCard(id, cardEl) {
+        if (state.busy) return;
+        var card = state.cards.find(function (c) { return c.id === id; });
+        if (!card || card.matched) return;
+        if (state.flipped.indexOf(id) !== -1) return;
+        if (state.flipped.length >= 2) return;
+
+        cardEl.classList.add("flipped");
+        state.flipped.push(id);
+
+        if (state.flipped.length === 2) {
+            state.busy = true;
+            state.moves++;
+            renderStats();
+            var id1 = state.flipped[0], id2 = state.flipped[1];
+            var c1 = state.cards.find(function (c) { return c.id === id1; });
+            var c2 = state.cards.find(function (c) { return c.id === id2; });
+            var el1 = memoryGrid.querySelector('.mem-card[data-id="' + id1 + '"]');
+            var el2 = memoryGrid.querySelector('.mem-card[data-id="' + id2 + '"]');
+
+            if (c1.pairId === c2.pairId && c1.kind !== c2.kind) {
+                setTimeout(function () {
+                    c1.matched = true; c2.matched = true;
+                    el1.classList.add("matched");
+                    el2.classList.add("matched");
+                    state.matchedPairs++;
+                    state.flipped = [];
+                    state.busy = false;
+                    renderStats();
+                    spawnConfetti();
+                    if (state.matchedPairs === state.pairs.length) {
+                        setTimeout(showResult, 500);
+                    }
+                }, 350);
+            } else {
+                state.mistakes++;
+                el1.classList.add("wrong-flash");
+                el2.classList.add("wrong-flash");
+                setTimeout(function () {
+                    el1.classList.remove("flipped", "wrong-flash");
+                    el2.classList.remove("flipped", "wrong-flash");
+                    state.flipped = [];
+                    state.busy = false;
+                }, 800);
+            }
+        }
+    }
+
+    function spawnConfetti() {
+        var emojis = ["🎉", "✨", "⭐", "🎊"];
+        for (var i = 0; i < 8; i++) {
+            var piece = document.createElement("div");
+            piece.className = "confetti-piece";
+            piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            piece.style.left = (40 + Math.random() * 20) + "%";
+            piece.style.animationDuration = (1 + Math.random() * 0.8) + "s";
+            document.body.appendChild(piece);
+            (function (p) { setTimeout(function () { if (p.parentNode) p.parentNode.removeChild(p); }, 2000); })(piece);
+        }
+    }
+
+    function showResult() {
+        var pairsCount = state.pairs.length;
+        var perfectMoves = pairsCount; // best possible: each move is a match
+        var extraMoves = Math.max(0, state.moves - perfectMoves);
+        var stars;
+        if (extraMoves === 0) stars = 3;
+        else if (extraMoves <= Math.ceil(pairsCount * 0.5)) stars = 2;
+        else stars = 1;
+
+        setTopicBest(state.grade, state.topicKey, stars);
+        refreshGlobalStars();
+
+        gameView.style.display = "none";
+        resultView.style.display = "block";
+
+        var titles = { 3: "Outstanding!", 2: "Well Done!", 1: "Good Try!" };
+        document.getElementById("resultStars").textContent = "⭐".repeat(stars) + "☆".repeat(3 - stars);
+        document.getElementById("resultTitle").textContent = titles[stars];
+        document.getElementById("resultSub").textContent = "You matched all " + pairsCount + " pairs!";
+        document.getElementById("resultMoves").textContent = state.moves;
+        document.getElementById("resultPairs").textContent = state.matchedPairs;
+        document.getElementById("resultMistakes").textContent = state.mistakes;
+    }
+
+    document.getElementById("retryTopicBtn").addEventListener("click", function () {
+        startTopic(state.grade, state.topicKey);
+    });
+    document.getElementById("homeBtnResult").addEventListener("click", goHome);
+    document.getElementById("backBtn").addEventListener("click", goHome);
+
+    function goHome() {
+        gameView.style.display = "none";
+        resultView.style.display = "none";
+        homeView.style.display = "block";
+        renderGradeTabs();
+        renderTopicGrid();
+    }
+
+    renderGradeTabs();
+    renderTopicGrid();
+    refreshGlobalStars();
+})();
+
+</script>
+<script>
+        // ============= MOBILE MENU =============
+        (function () {
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navOverlay = document.getElementById('navOverlay');
+            const navCloseBtn = document.getElementById('navCloseBtn');
+
+            function openMenu() {
+                navLinks.classList.add('open');
+                navOverlay.classList.add('show');
+                menuToggle.classList.add('open');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                navLinks.classList.remove('open');
+                navOverlay.classList.remove('show');
+                menuToggle.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', function () {
+                if (navLinks.classList.contains('open')) closeMenu(); else openMenu();
+            });
+            navOverlay.addEventListener('click', closeMenu);
+            navCloseBtn.addEventListener('click', closeMenu);
+
+            // Close menu when a normal (non-dropdown-trigger) link is tapped
+            navLinks.querySelectorAll('a').forEach(function (a) {
+                if (!a.classList.contains('nav-dropdown-trigger')) {
+                    a.addEventListener('click', closeMenu);
+                }
+            });
+
+            // On mobile, dropdown triggers toggle an accordion instead of navigating away
+            navLinks.querySelectorAll('.nav-dropdown-trigger').forEach(function (trigger) {
+                trigger.addEventListener('click', function (e) {
+                    if (window.innerWidth > 768) return; // desktop keeps hover behavior + normal link
+                    e.preventDefault();
+                    const parentLi = trigger.closest('.nav-item-dropdown');
+                    const wasOpen = parentLi.classList.contains('open');
+                    navLinks.querySelectorAll('.nav-item-dropdown.open').forEach(function (li) {
+                        li.classList.remove('open');
+                    });
+                    if (!wasOpen) parentLi.classList.add('open');
+                });
+            });
+
+            // Reset state on resize back to desktop
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) closeMenu();
+            });
+        })();
+
+        // Intersection Observer untuk card animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.course-card, .feature, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // Navbar background on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('header');
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Header is now position:fixed (immune to ancestor overflow quirks that
+        // break position:sticky). Compensate by pushing page content down by
+        // the header's real height so nothing is hidden underneath it.
+        // Exposed on window so other scripts (e.g. the login-state script,
+        // which changes navbar content asynchronously once Firebase responds)
+        // can trigger a recalculation after they change the navbar's content.
+        window.syncHeaderOffset = function () {
+            var header = document.querySelector('header');
+            // Measure using an invisible clone so the real header (which the
+            // user may be actively looking at, mid-scroll or mid-transition)
+            // is never touched or flashed during measurement.
+            var clone = header.cloneNode(true);
+            clone.classList.add('scrolled');
+            clone.style.transition = 'none';
+            clone.style.visibility = 'hidden';
+            clone.style.pointerEvents = 'none';
+            clone.style.position = 'fixed';
+            clone.style.top = '-9999px';
+            document.body.appendChild(clone);
+            var h = clone.offsetHeight;
+            document.body.removeChild(clone);
+            document.body.style.paddingTop = (h + 12) + 'px';
+        };
+        window.syncHeaderOffset();
+        window.addEventListener('resize', window.syncHeaderOffset);
+        window.addEventListener('load', window.syncHeaderOffset);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(window.syncHeaderOffset);
+        }
+        // Extra safety net: real-world conditions (slow connections, font
+        // loading, Firebase auth resolving) can change the navbar's height
+        // slightly after our first measurement. Re-check a few times shortly
+        // after load to make sure content is never hidden behind the header.
+        [200, 500, 1000, 2000].forEach(function (delay) {
+            setTimeout(window.syncHeaderOffset, delay);
+        });
+    </script>
+
+    <!-- ============= LOGIN STATE (navbar) =============
+         This page already loads Firebase via auth-guard.js in <head>.
+         This script just reflects login state in the navbar
+         (Login button <-> user name chip + logout button). -->
+    <script>
+        (function () {
+            var loginBtn = document.getElementById('navLoginBtn');
+            var userChip = document.getElementById('navUserChip');
+            var userAvatar = document.getElementById('navUserAvatar');
+            var userName = document.getElementById('navUserName');
+            var logoutBtn = document.getElementById('navLogoutBtn');
+
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    var displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
+                    userName.textContent = displayName;
+                    userName.title = user.email || '';
+
+                    if (user.photoURL) {
+                        userAvatar.innerHTML = '<img src="' + user.photoURL + '" alt="' + displayName + '">';
+                    } else {
+                        userAvatar.textContent = displayName.charAt(0).toUpperCase();
+                    }
+
+                    loginBtn.style.display = 'none';
+                    userChip.style.display = 'flex';
+
+                    // Already have an account? No need for the guest-trial nudge.
+                    var guestBanner = document.getElementById('guestTrialBanner');
+                    if (guestBanner) guestBanner.style.display = 'none';
+                } else {
+                    loginBtn.style.display = 'inline-block';
+                    userChip.style.display = 'none';
+                }
+                // Navbar content just changed (Login button <-> user chip),
+                // which can change the header's rendered height. Recalculate
+                // the page's top spacing so nothing ends up hidden behind it.
+                if (window.syncHeaderOffset) {
+                    window.syncHeaderOffset();
+                    setTimeout(window.syncHeaderOffset, 50);
+                }
+            });
+
+            logoutBtn.addEventListener('click', function () {
+                firebase.auth().signOut().then(function () {
+                    window.location.reload();
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
