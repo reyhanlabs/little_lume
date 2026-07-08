@@ -778,18 +778,6 @@
             transform: translateY(-4px);
         }
 
-        .btn-trial {
-            background: linear-gradient(135deg, #FFD93D 0%, #FF9F43 100%);
-            color: #4A3200;
-            border: none;
-            box-shadow: 0 4px 14px rgba(255, 159, 67, 0.35);
-        }
-
-        .btn-trial:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(255, 159, 67, 0.45);
-        }
-
         .hero-image {
             position: relative;
             z-index: 2;
@@ -822,50 +810,6 @@
             filter: drop-shadow(0 10px 20px rgba(44, 62, 122, 0.15));
             position: relative;
             z-index: 1;
-        }
-
-        .lumi-mascot-wrap {
-            position: absolute;
-            left: -18px;
-            bottom: -14px;
-            z-index: 3;
-            display: flex;
-            align-items: flex-end;
-            gap: 0.6rem;
-            animation: lumiFloat 3s ease-in-out infinite;
-        }
-        @keyframes lumiFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        .lumi-mascot-svg { width: 84px; height: 84px; flex-shrink: 0; filter: drop-shadow(0 6px 14px rgba(44, 62, 122, 0.25)); }
-        .lumi-speech-bubble {
-            background: white;
-            border-radius: 16px;
-            padding: 0.6rem 1rem;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--primary);
-            box-shadow: 0 6px 18px rgba(44, 62, 122, 0.18);
-            white-space: nowrap;
-            margin-bottom: 1.6rem;
-            position: relative;
-        }
-        .lumi-speech-bubble::after {
-            content: '';
-            position: absolute;
-            left: 18px;
-            bottom: -7px;
-            width: 14px;
-            height: 14px;
-            background: white;
-            clip-path: polygon(0 0, 100% 0, 0 100%);
-        }
-
-        @media (max-width: 1024px) {
-            .lumi-mascot-wrap { left: 6px; bottom: -8px; }
-            .lumi-mascot-svg { width: 68px; height: 68px; }
-            .lumi-speech-bubble { font-size: 0.74rem; padding: 0.5rem 0.8rem; white-space: normal; max-width: 150px; }
         }
 
         @media (max-width: 1024px) {
@@ -2058,32 +2002,10 @@
             <div class="hero-buttons">
                 <a class="btn btn-primary" href="#courses">Explore Courses →</a>
                 <a class="btn btn-secondary" href="#features">Learn More</a>
-                <a class="btn btn-trial" href="games/vocabulary-match.html">🎮 Try a Free Game — No Sign-up</a>
             </div>
         </div>
         <div class="hero-image">
             <img alt="Child reading book" class="hero-img" src="https://raw.githubusercontent.com/reyhanlabs/little_lume/main/image_kids.png" />
-            <div class="lumi-mascot-wrap">
-                <div class="lumi-speech-bubble">Hi, I'm Lumi! Let's learn together! 👋</div>
-                <svg class="lumi-mascot-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lumi the mascot waving hello">
-                    <defs>
-                        <linearGradient id="lumiBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#54DBFF"/>
-                            <stop offset="50%" stop-color="#7C5CBF"/>
-                            <stop offset="100%" stop-color="#FF6B9D"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M110 22 C114 22 117 24 118 28 L129 60 C130 63 133 65 136 65 L170 66 C178 66 182 76 175 81 L149 101 C146 103 145 107 146 110 L156 143 C159 151 150 158 143 153 L114 133 C112 131 108 131 106 133 L77 153 C70 158 61 151 64 143 L74 110 C75 107 74 103 71 101 L45 81 C38 76 42 66 50 66 L84 65 C87 65 90 63 91 60 L102 28 C103 24 106 22 110 22 Z"
-                          fill="url(#lumiBodyGrad)" stroke="#FFFFFF" stroke-width="3"/>
-                    <ellipse cx="82" cy="118" rx="9" ry="6" fill="#FF9FC7" opacity="0.7"/>
-                    <ellipse cx="138" cy="118" rx="9" ry="6" fill="#FF9FC7" opacity="0.7"/>
-                    <ellipse cx="94" cy="103" rx="10" ry="12" fill="#0F1B4C"/>
-                    <ellipse cx="126" cy="103" rx="10" ry="12" fill="#0F1B4C"/>
-                    <circle cx="97" cy="98" r="3" fill="#FFFFFF"/>
-                    <circle cx="129" cy="98" r="3" fill="#FFFFFF"/>
-                    <path d="M98 122 Q110 133 122 122" stroke="#0F1B4C" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                </svg>
-            </div>
         </div>
     </section>
     <!-- ============= DASHBOARD STATS ============= -->
