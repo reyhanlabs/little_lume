@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>LittleLume English · All About Me</title>
+<style>
+/* ============================================================
+   LITTLELUME ENGLISH — "ALL ABOUT ME"  (Grade 4 · Speaking focus)
+   Single-file offline lesson. No external assets.
+   ------------------------------------------------------------
+   DESIGN TOKENS
+   Colour  : sky #BFE3F2 · mint #BCEFDA · lavender #E4DAF7
+             orange #FFD1A3 · yellow #FFF3AE · white #FFFFFF
+             ink (text) #3B3358 · ink-soft #786F99 · coral (cta) #FF8B6B
+   Type    : system rounded stack only (no webfonts) — personality
+             carried by shape/colour/motion instead of a custom font.
+   Signature: "Lumi" the firefly guide + a stepping-stone island map
+             as the home screen, tying the brand name (Lume=light)
+             to a character who narrates and celebrates progress.
+   ============================================================ */
+:root{
+  --sky:#BFE3F2; --mint:#BCEFDA; --lav:#E4DAF7; --orange:#FFD1A3; --yellow:#FFF3AE;
+  --white:#FFFFFF; --ink:#3B3358; --ink-soft:#786F99; --coral:#FF8B6B; --coral-deep:#F16B4D;
+  --green-ok:#3FBF83; --red-no:#FF6B6B;
+  --shadow: 0 10px 24px rgba(59,51,88,.12);
+  --shadow-sm: 0 4px 10px rgba(59,51,88,.10);
+  --radius-lg: 28px; --radius-md: 18px; --radius-sm: 12px;
+  --font: -apple-system, "SF Pro Rounded", "Segoe UI Rounded", "Segoe UI", "Nunito", Verdana, sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--font);
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 0%, var(--sky) 0%, transparent 45%),
+    radial-gradient(circle at 90% 10%, var(--lav) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, var(--mint) 0%, transparent 45%),
+    linear-gradient(180deg,#F7FBFE 0%, #FBF9FF 100%);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+}
+button{font-family:inherit; cursor:pointer;}
+button:focus-visible, [tabindex]:focus-visible, a:focus-visible{
+  outline:3px solid var(--coral-deep); outline-offset:2px; border-radius:8px;
+}
+h1,h2,h3,h4{margin:0; line-height:1.15;}
+p{margin:0;}
+img,svg{display:block;}
+.hidden{display:none !important;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+
+/* ---------- App shell ---------- */
+#app{max-width:1180px;margin:0 auto;padding:14px 16px 60px;}
+
+.topbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:10px 16px; margin:0 0 16px;
+  background:rgba(255,255,255,.82); backdrop-filter:blur(6px);
+  border-radius:var(--radius-md); box-shadow:var(--shadow-sm);
+}
+.brand{display:flex; align-items:center; gap:8px; font-weight:800; font-size:1.05rem;}
+.brand small{display:block; font-weight:600; color:var(--ink-soft); font-size:.68rem;}
+.topbar-spacer{flex:1;}
+.stat-pill{
+  display:flex; align-items:center; gap:6px; background:var(--white);
+  border-radius:999px; padding:6px 12px; box-shadow:var(--shadow-sm); font-weight:800; font-size:.85rem;
+}
+.progress-wrap{flex-basis:100%; order:5; margin-top:8px;}
+.progress-track{height:12px; border-radius:999px; background:#EDEAFB; overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,.06);}
+.progress-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--mint),var(--sky)); width:0%; transition:width .6s cubic-bezier(.34,1.4,.64,1);}
+.home-btn{
+  border:none; background:var(--white); border-radius:999px; padding:8px 14px; font-weight:800;
+  box-shadow:var(--shadow-sm); display:flex; gap:6px; align-items:center;
+}
+
+/* ---------- Lumi mascot ---------- */
+.lumi-float{position:fixed; right:18px; bottom:18px; width:74px; height:74px; z-index:60; filter:drop-shadow(0 6px 10px rgba(0,0,0,.15));}
+.lumi-float svg{animation:lumiBob 2.6s ease-in-out infinite;}
+@keyframes lumiBob{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-10px) rotate(2deg);}}
+.lumi-bubble{
+  position:fixed; right:96px; bottom:24px; max-width:260px; background:var(--white); border-radius:16px 16px 4px 16px;
+  padding:10px 14px; font-size:.85rem; font-weight:700; box-shadow:var(--shadow); z-index:60; display:none;
+}
+.lumi-bubble.show{display:block; animation:pop .3s ease;}
+@keyframes pop{from{transform:scale(.7); opacity:0;}to{transform:scale(1); opacity:1;}}
+
+/* ---------- Section headers ---------- */
+.section-head{display:flex; align-items:center; gap:14px; margin-bottom:18px; flex-wrap:wrap;}
+.section-head h2{font-size:1.5rem;}
+.eyebrow{
+  font-size:.72rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);
+  background:var(--white); padding:4px 10px; border-radius:999px; box-shadow:var(--shadow-sm);
+}
+.section-sub{color:var(--ink-soft); font-weight:600; font-size:.92rem; flex-basis:100%;}
+
+/* ---------- Cards / grid ---------- */
+.card{background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:20px;}
+.grid{display:grid; gap:16px;}
+.grid.cols-2{grid-template-columns:repeat(2,1fr);}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+.grid.cols-4{grid-template-columns:repeat(4,1fr);}
+@media(max-width:900px){.grid.cols-4{grid-template-columns:repeat(2,1fr);} .grid.cols-3{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr;}}
+
+.btn{
+  border:none; border-radius:999px; padding:11px 20px; font-weight:800; font-size:.92rem;
+  background:var(--coral); color:var(--white); box-shadow:var(--shadow-sm); transition:transform .15s ease;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(0) scale(.97);}
+.btn.ghost{background:var(--white); color:var(--ink);}
+.btn.mint{background:var(--mint); color:var(--ink);}
+.btn.sky{background:var(--sky); color:var(--ink);}
+.btn.lav{background:var(--lav); color:var(--ink);}
+.btn.sm{padding:7px 14px; font-size:.8rem;}
+.btn[disabled]{opacity:.45; pointer-events:none;}
+.btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+
+/* ---------- Home island map ---------- */
+.island-map{position:relative; padding:30px 10px 10px;}
+.path-svg{width:100%; height:auto; display:block;}
+.stone-btn{
+  position:absolute; transform:translate(-50%,-50%); width:130px; text-align:center;
+  background:none; border:none; padding:0;
+}
+.stone-face{
+  width:92px; height:92px; margin:0 auto 6px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:2.1rem; box-shadow:var(--shadow); border:5px solid var(--white); transition:transform .2s ease;
+}
+.stone-btn:hover .stone-face{transform:scale(1.08) rotate(-4deg);}
+.stone-label{font-weight:800; font-size:.82rem; background:var(--white); border-radius:10px; padding:4px 8px; box-shadow:var(--shadow-sm); display:inline-block;}
+.stone-lock{position:absolute; top:-4px; right:6px; font-size:1.1rem;}
+.stone-done{position:absolute; top:-6px; left:2px; font-size:1.3rem;}
+
+/* ---------- Vocabulary flashcards ---------- */
+.flip-card{perspective:1200px; height:230px;}
+.flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius-md); padding:16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:6px;}
+.flip-front{background:var(--white); align-items:center; justify-content:center; text-align:center;}
+.flip-back{background:var(--lav); transform:rotateY(180deg); justify-content:center;}
+.vocab-emoji{font-size:2.6rem;}
+.vocab-word{font-weight:800; font-size:1.1rem; margin-top:4px;}
+.vocab-pron{color:var(--ink-soft); font-size:.8rem; font-weight:700;}
+.mini-icon-btn{border:none; background:var(--white); border-radius:999px; width:34px; height:34px; box-shadow:var(--shadow-sm); font-size:1rem;}
+
+/* ---------- Speaking checkpoint ---------- */
+.speak-box{background:var(--sky); border-radius:var(--radius-md); padding:16px; margin-top:14px;}
+.mic-btn{
+  width:60px; height:60px; border-radius:50%; border:none; background:var(--coral); color:#fff; font-size:1.5rem;
+  box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center;
+}
+.mic-btn.listening{animation:pulseMic 1s infinite;}
+@keyframes pulseMic{0%{box-shadow:0 0 0 0 rgba(255,139,107,.6);}70%{box-shadow:0 0 0 18px rgba(255,139,107,0);}100%{box-shadow:0 0 0 0 rgba(255,139,107,0);}}
+.confidence-row{display:flex; align-items:center; gap:10px; margin-top:12px;}
+.confidence-row input[type=range]{flex:1; accent-color:var(--coral);}
+
+/* ---------- Sentence builder / chips ---------- */
+.chip-bank{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0;}
+.chip{background:var(--yellow); border:none; border-radius:12px; padding:8px 14px; font-weight:800; box-shadow:var(--shadow-sm); font-size:.9rem;}
+.chip.used{opacity:.35; pointer-events:none;}
+.sentence-slot{
+  min-height:52px; border:3px dashed #D9D2F2; border-radius:14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:8px 10px; background:#FBFAFF;
+}
+.sentence-slot .chip{background:var(--mint);}
+
+/* ---------- Quiz ---------- */
+.quiz-option{
+  display:block; width:100%; text-align:left; background:var(--white); border:2px solid #ECE7FB; border-radius:14px; padding:12px 16px;
+  font-weight:700; margin-bottom:10px; box-shadow:var(--shadow-sm);
+}
+.quiz-option.correct{border-color:var(--green-ok); background:#EAFBF2;}
+.quiz-option.wrong{border-color:var(--red-no); background:#FFEDED;}
+.feedback-banner{border-radius:14px; padding:12px 16px; font-weight:800; margin-top:10px;}
+.feedback-banner.ok{background:#EAFBF2; color:#1E8A57;}
+.feedback-banner.no{background:#FFEDED; color:#C1493A;}
+
+/* ---------- Badges / stars ---------- */
+.badge-shelf{display:flex; gap:14px; flex-wrap:wrap;}
+.badge{
+  width:84px; text-align:center; font-size:.72rem; font-weight:800; color:var(--ink-soft);
+}
+.badge-icon{width:64px; height:64px; border-radius:50%; margin:0 auto 4px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; box-shadow:var(--shadow-sm);}
+.badge.locked .badge-icon{background:#EFEDF7; filter:grayscale(1); opacity:.5;}
+.badge.earned .badge-icon{background:linear-gradient(160deg,var(--yellow),var(--orange));}
+
+/* ---------- Games hub tiles ---------- */
+.game-tile{
+  background:var(--white); border-radius:var(--radius-md); padding:18px; box-shadow:var(--shadow-sm); text-align:left; border:none;
+  display:flex; flex-direction:column; gap:8px;
+}
+.game-tile .g-emoji{font-size:1.8rem;}
+.game-tile:hover{transform:translateY(-3px);}
+
+/* memory game */
+.memory-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.memory-card{aspect-ratio:1; border-radius:12px; background:var(--lav); display:flex; align-items:center; justify-content:center; font-size:1.6rem; box-shadow:var(--shadow-sm); border:none;}
+.memory-card.open{background:var(--white);}
+.memory-card.matched{background:#EAFBF2;}
+
+/* word search */
+.wordsearch-grid{display:grid; gap:2px; margin:14px 0; user-select:none;}
+.ws-cell{width:34px; height:34px; display:flex; align-items:center; justify-content:center; font-weight:800; background:var(--white); border-radius:6px; font-size:.85rem;}
+.ws-cell.sel{background:var(--yellow);}
+.ws-cell.found{background:var(--mint);}
+
+/* balloon pop */
+.balloon-field{position:relative; height:340px; background:linear-gradient(180deg,var(--sky),var(--mint)); border-radius:var(--radius-md); overflow:hidden;}
+.balloon{
+  position:absolute; bottom:-60px; width:70px; height:86px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; font-size:.78rem; border:none; text-align:center; padding:4px;
+  animation:floatUp linear forwards;
+}
+@keyframes floatUp{from{bottom:-90px;}to{bottom:380px;}}
+.balloon.pop{animation:none !important; transform:scale(0); opacity:0; transition:all .25s ease;}
+
+/* spin wheel */
+.wheel-wrap{display:flex; flex-direction:column; align-items:center; gap:14px;}
+.wheel{width:260px; height:260px; border-radius:50%; position:relative; transition:transform 3.2s cubic-bezier(.17,.67,.2,1); box-shadow:var(--shadow);}
+.wheel-pointer{font-size:1.8rem;}
+
+/* presentation project */
+.teleprompter{background:var(--white); border-radius:var(--radius-md); padding:20px; box-shadow:var(--shadow); font-size:1.15rem; line-height:1.8;}
+.tele-line{padding:6px 4px; border-radius:8px; color:#B9B3D3;}
+.tele-line.active{background:var(--yellow); color:var(--ink); font-weight:800;}
+.tele-line.done{color:var(--green-ok);}
+.timer-display{font-size:2.2rem; font-weight:900; text-align:center;}
+.checklist-item{display:flex; align-items:center; gap:8px; padding:6px 0; font-weight:700;}
+.checklist-item input{width:18px; height:18px; accent-color:var(--coral);}
+
+/* avatar creator */
+.avatar-stage{background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:10px; display:flex; justify-content:center;}
+.swatch-row{display:flex; gap:8px; flex-wrap:wrap;}
+.swatch{width:34px; height:34px; border-radius:50%; border:3px solid transparent; box-shadow:var(--shadow-sm);}
+.swatch.active{border-color:var(--ink);}
+.opt-btn{background:var(--white); border:2px solid #EEEAFA; border-radius:12px; padding:8px 12px; font-weight:700; font-size:.85rem;}
+.opt-btn.active{border-color:var(--coral); background:#FFF1EC;}
+
+/* certificate */
+.certificate{
+  background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:34px; text-align:center;
+  border:6px double var(--orange); position:relative;
+}
+.certificate h2{font-size:1.6rem; margin-bottom:4px;}
+.cert-name{font-size:1.8rem; font-weight:900; color:var(--coral-deep); margin:14px 0;}
+
+/* confetti canvas */
+#confetti-canvas{position:fixed; inset:0; pointer-events:none; z-index:200;}
+
+/* tabs */
+.tab-row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
+.tab-btn{background:var(--white); border:none; border-radius:999px; padding:8px 16px; font-weight:800; box-shadow:var(--shadow-sm); color:var(--ink-soft);}
+.tab-btn.active{background:var(--coral); color:#fff;}
+
+.toast{
+  position:fixed; top:20px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 20px; border-radius:999px;
+  font-weight:800; z-index:300; box-shadow:var(--shadow); opacity:0; transition:opacity .3s ease, top .3s ease;
+}
+.toast.show{opacity:1; top:34px;}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div id="app">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <button class="home-btn" id="btn-home" aria-label="Go to map home">🏝️ Map</button>
+    <div class="brand">
+      <span style="font-size:1.6rem">✨</span>
+      <span>LittleLume English<br><small>All About Me · Grade 4</small></span>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="stat-pill" title="Stars earned">⭐ <span id="stat-stars">0</span></div>
+    <div class="stat-pill" title="Coins earned">🪙 <span id="stat-coins">0</span></div>
+    <div class="stat-pill" title="Level">🎖️ Lv <span id="stat-level">1</span></div>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN SECTION MOUNT ============ -->
+  <main id="section-mount"></main>
+
+</div>
+
+<!-- ============ LUMI MASCOT ============ -->
+<div class="lumi-bubble" id="lumi-bubble"></div>
+<button class="lumi-float" id="lumi-btn" aria-label="Talk to Lumi the guide" title="Hi, I'm Lumi!"></button>
+
+<script>
+/* ============================================================
+   LITTLELUME ENGLISH — APP SCRIPT
+   Architecture: a tiny state object + reusable "component"
+   render functions (renderFlashcards, renderGrammarLesson,
+   renderQuiz, renderGame...) so future LittleLume lessons can
+   reuse the same building blocks with new data.
+   ============================================================ */
+
+/* ---------------- GLOBAL STATE (in-memory only) ---------------- */
+const STATE = {
+  stars:0, coins:0, level:1, badges:{}, sectionsDone:{},
+  profile:{ name:"", nickname:"", age:9, city:"", school:"", hobby:"drawing", hobbyReason:"", subject:"English",
+            subjectReason:"because I enjoy it", food:"fried rice", animal:"a dolphin", dream:"a doctor", dreamReason:"I want to help people",
+            skin:"#F2C79E", hair:"#4A3222", hairStyle:"short", eyes:"#4A3222", outfit:"#FF8B6B", bg:"#BCEFDA" },
+  currentSection:"home"
+};
+const SECTION_ORDER = ["home","profile","vocab","grammar","listening","conversation","games","project","review"];
+const BADGE_DEFS = [
+  {id:"vocab", icon:"📚", label:"Word Wizard"},
+  {id:"grammar", icon:"🧩", label:"Grammar Star"},
+  {id:"listening", icon:"👂", label:"Great Listener"},
+  {id:"conversation", icon:"💬", label:"Chatty Champ"},
+  {id:"games", icon:"🎮", label:"Game Master"},
+  {id:"project", icon:"🎤", label:"Star Speaker"},
+  {id:"review", icon:"🏆", label:"All-About-Me Hero"},
+];
+
+/* ---------------- UTILITIES ---------------- */
+function $(sel,root=document){return root.querySelector(sel);}
+function $all(sel,root=document){return [...root.querySelectorAll(sel)];}
+function el(tag,cls,html){const e=document.createElement(tag); if(cls)e.className=cls; if(html!==undefined)e.innerHTML=html; return e;}
+
+function speak(text, rate=0.92){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = rate; u.pitch = 1.05; u.lang = "en-US";
+    window.speechSynthesis.speak(u);
+  }catch(e){ /* offline / unsupported: fail silently, text is still visible */ }
+}
+
+function toast(msg){
+  let t = $("#toast"); 
+  if(!t){ t = el("div","toast"); t.id="toast"; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(window.__toastT);
+  window.__toastT = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+function addStars(n){ STATE.stars += n; maybeLevelUp(); updateTopbar(); }
+function addCoins(n){ STATE.coins += n; updateTopbar(); }
+function maybeLevelUp(){
+  const target = STATE.level*20;
+  if(STATE.stars >= target){ STATE.level++; toast("🎉 Level up! You're now Level "+STATE.level); confettiBurst(); }
+}
+function earnBadge(id){
+  if(STATE.badges[id]) return;
+  STATE.badges[id]=true; addStars(5); addCoins(10);
+  const b = BADGE_DEFS.find(x=>x.id===id);
+  if(b) toast("🏅 Badge earned: "+b.label);
+  confettiBurst();
+}
+function markSectionProgress(id){
+  STATE.sectionsDone[id]=true;
+  updateTopbar();
+}
+function updateTopbar(){
+  $("#stat-stars").textContent = STATE.stars;
+  $("#stat-coins").textContent = STATE.coins;
+  $("#stat-level").textContent = STATE.level;
+  const doneCount = Object.keys(STATE.sectionsDone).length;
+  const total = SECTION_ORDER.length-1; // exclude home
+  const pct = Math.min(100, Math.round(doneCount/total*100));
+  $("#progress-fill").style.width = pct+"%";
+}
+
+/* ---------------- CONFETTI ---------------- */
+const confettiCanvas = document.getElementById("confetti-canvas");
+const ctx = confettiCanvas.getContext("2d");
+function resizeCanvas(){ confettiCanvas.width=innerWidth; confettiCanvas.height=innerHeight; }
+resizeCanvas(); window.addEventListener("resize", resizeCanvas);
+let confettiParticles = [];
+function confettiBurst(count=90){
+  const colors = ["#FF8B6B","#BCEFDA","#E4DAF7","#FFD1A3","#FFF3AE","#BFE3F2"];
+  for(let i=0;i<count;i++){
+    confettiParticles.push({
+      x: innerWidth/2 + (Math.random()-0.5)*innerWidth*0.6,
+      y: -20 - Math.random()*100,
+      vx: (Math.random()-0.5)*4,
+      vy: 2+Math.random()*4,
+      size: 5+Math.random()*6,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      rot: Math.random()*360, vr:(Math.random()-0.5)*10,
+      life: 0
+    });
+  }
+  requestAnimationFrame(animateConfetti);
+}
+function animateConfetti(){
+  ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  confettiParticles.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.vy+=0.03; p.rot+=p.vr; p.life++;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillStyle=p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+    ctx.restore();
+  });
+  confettiParticles = confettiParticles.filter(p=>p.y < innerHeight+40 && p.life<400);
+  if(confettiParticles.length>0) requestAnimationFrame(animateConfetti);
+  else ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+}
+
+/* ---------------- LUMI MASCOT ---------------- */
+function lumiSVG(mood="happy"){
+  const mouth = mood==="happy" ? "M20,30 Q26,37 32,30" : mood==="cheer" ? "M18,28 Q26,40 34,28" : "M20,31 Q26,33 32,31";
+  return `<svg viewBox="0 0 52 52" width="74" height="74">
+    <ellipse cx="26" cy="30" rx="18" ry="16" fill="#FFD1A3"/>
+    <ellipse cx="26" cy="30" rx="18" ry="16" fill="url(#g1)" opacity=".55"/>
+    <defs><radialGradient id="g1" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFF3AE"/><stop offset="100%" stop-color="#FF8B6B" stop-opacity="0"/>
+    </radialGradient></defs>
+    <path d="M26 8 C 30 2, 40 4, 38 12" stroke="#3B3358" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="19" cy="28" r="3.4" fill="#3B3358"/><circle cx="33" cy="28" r="3.4" fill="#3B3358"/>
+    <circle cx="20" cy="27" r="1" fill="#fff"/><circle cx="34" cy="27" r="1" fill="#fff"/>
+    <circle cx="14" cy="33" r="3" fill="#FF8B6B" opacity=".6"/><circle cx="38" cy="33" r="3" fill="#FF8B6B" opacity=".6"/>
+    <path d="${mouth}" stroke="#3B3358" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="26" cy="44" rx="7" ry="4" fill="#FFF3AE" opacity=".85"/>
+  </svg>`;
+}
+document.getElementById("lumi-btn").innerHTML = lumiSVG("happy");
+const LUMI_LINES = [
+  "You're doing great! Keep going! 🌟",
+  "Remember: speak in full sentences!",
+  "Tip: smile while you talk — it helps your voice sound friendly!",
+  "Try saying it out loud, not just reading it!",
+  "I love learning about you! Tell me more!",
+  "Mistakes help us learn. Try again!",
+];
+function lumiSay(text){
+  const b = $("#lumi-bubble");
+  b.textContent = text; b.classList.add("show");
+  clearTimeout(window.__lumiT);
+  window.__lumiT = setTimeout(()=>b.classList.remove("show"), 3600);
+}
+document.getElementById("lumi-btn").addEventListener("click", ()=>{
+  lumiSay(LUMI_LINES[Math.floor(Math.random()*LUMI_LINES.length)]);
+});
+document.getElementById("btn-home").addEventListener("click", ()=>navigate("home"));
+
+/* small expressive kid-character SVG generator, used across the app
+   (flashcards / conversation / games) so every character has a face. */
+function kidSVG({skin="#F2C79E",hair="#4A3222",hairStyle="short",outfit="#FF8B6B",mood="happy",size=72}){
+  const mouth = mood==="happy" ? "M25,46 Q34,55 43,46" : mood==="wow" ? "M28,46 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0" : "M26,47 Q34,50 42,47";
+  const hairPath = hairStyle==="short"
+    ? `<path d="M10,30 Q10,6 34,6 Q58,6 58,30 L52,30 Q52,14 34,14 Q16,14 16,30 Z" fill="${hair}"/>`
+    : `<path d="M8,34 Q6,4 34,4 Q62,4 60,34 L54,44 Q56,18 34,16 Q12,18 14,44 Z" fill="${hair}"/>`;
+  return `<svg viewBox="0 0 68 68" width="${size}" height="${size}">
+    <circle cx="34" cy="36" r="26" fill="${skin}"/>
+    ${hairPath}
+    <circle cx="24" cy="36" r="3.4" fill="#3B3358"/><circle cx="44" cy="36" r="3.4" fill="#3B3358"/>
+    <circle cx="16" cy="42" r="4" fill="${outfit}" opacity=".45"/><circle cx="52" cy="42" r="4" fill="${outfit}" opacity=".45"/>
+    <path d="${mouth}" stroke="#3B3358" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M4,66 Q34,50 64,66 L64,68 L4,68 Z" fill="${outfit}"/>
+  </svg>`;
+}
+
+/* ============================================================
+   DATA BANKS
+   ============================================================ */
+const VOCAB = {
+  "Personal Information": [
+    ["name","👤","/naym/","What you are called.","My name is Kevin."],
+    ["nickname","😊","/NIK-naym/","A friendly short name.","My nickname is Kiki."],
+    ["age","🎂","/eyj/","How many years old you are.","My age is nine."],
+    ["birthday","🎁","/BURTH-day/","The day you were born.","My birthday is in May."],
+    ["city","🏙️","/SIT-ee/","A big town where you live.","My city is Bandung."],
+    ["country","🌏","/KUN-tree/","A nation, like Indonesia.","My country is Indonesia."],
+    ["address","🏠","/uh-DRES/","Where your house is.","My address is Melati Street."],
+    ["school","🏫","/skool/","Where you learn.","My school is Bright Elementary."],
+    ["grade","📗","/grayd/","Your class level.","I am in Grade 4."],
+    ["student","🎒","/STOO-dent/","A person who studies.","I am a student."],
+    ["class","🧑‍🤝‍🧑","/klass/","Your group at school.","My class is 4B."],
+    ["teacher","👩‍🏫","/TEE-cher/","A person who teaches.","My teacher is kind."],
+    ["family","👨‍👩‍👧‍👦","/FAM-uh-lee/","People related to you.","I love my family."],
+    ["future dream","🚀","/FYOO-cher dreem/","What you want to become.","My future dream is a pilot."],
+  ],
+  "Personality": [
+    ["friendly","🤗","/FREND-lee/","Kind and easy to like.","She is friendly."],
+    ["kind","💗","/kynd/","Caring about others.","He is kind."],
+    ["helpful","🤝","/HELP-ful/","Likes to help.","I am helpful."],
+    ["honest","✅","/ON-est/","Tells the truth.","I am honest."],
+    ["creative","🎨","/kree-AY-tiv/","Full of new ideas.","I am creative."],
+    ["hardworking","💪","/HARD-wur-king/","Works hard.","I am hardworking."],
+    ["polite","🙏","/puh-LYTE/","Has good manners.","I am polite."],
+    ["funny","😂","/FUN-ee/","Makes people laugh.","My friend is funny."],
+    ["confident","🦁","/KON-fi-dent/","Sure of yourself.","I am confident."],
+    ["active","⚡","/AK-tiv/","Full of energy.","I am active."],
+    ["curious","🔍","/KYOOR-ee-us/","Wants to know things.","I am curious."],
+    ["responsible","🗂️","/ri-SPON-si-bul/","Careful and reliable.","I am responsible."],
+  ],
+  "Hobbies": [
+    ["drawing","✏️","/DRAW-ing/","Making pictures.","My hobby is drawing."],
+    ["painting","🖌️","/PAYNT-ing/","Painting pictures.","My hobby is painting."],
+    ["reading","📖","/REE-ding/","Reading books.","My hobby is reading."],
+    ["playing football","⚽","/FOOT-bawl/","Playing soccer.","My hobby is playing football."],
+    ["playing badminton","🏸","/BAD-min-tun/","A racket sport.","My hobby is playing badminton."],
+    ["playing basketball","🏀","/BAS-kit-bawl/","Shooting hoops.","My hobby is playing basketball."],
+    ["cycling","🚲","/SY-kling/","Riding a bike.","My hobby is cycling."],
+    ["singing","🎤","/SING-ing/","Singing songs.","My hobby is singing."],
+    ["dancing","💃","/DAN-sing/","Moving to music.","My hobby is dancing."],
+    ["coding","💻","/KOH-ding/","Writing computer programs.","My hobby is coding."],
+    ["playing games","🎮","/gaymz/","Playing video games.","My hobby is playing games."],
+    ["playing music","🎸","/MYOO-zik/","Playing an instrument.","My hobby is playing music."],
+    ["cooking","🍳","/KOOK-ing/","Making food.","My hobby is cooking."],
+    ["gardening","🌱","/GAR-den-ing/","Growing plants.","My hobby is gardening."],
+    ["photography","📷","/fuh-TOG-ruh-fee/","Taking photos.","My hobby is photography."],
+  ],
+  "Favorite Things": [
+    ["favorite subject","📘","/SUB-jekt/","The class you like best.","My favorite subject is English."],
+    ["favorite food","🍕","/food/","The food you like best.","My favorite food is fried rice."],
+    ["favorite drink","🥤","/dringk/","The drink you like best.","My favorite drink is orange juice."],
+    ["favorite animal","🐬","/AN-uh-mul/","The animal you like best.","My favorite animal is a dolphin."],
+    ["favorite sport","🏆","/sport/","The sport you like best.","My favorite sport is badminton."],
+    ["favorite book","📚","/book/","The book you like best.","My favorite book is a comic."],
+    ["favorite movie","🎬","/MOO-vee/","The movie you like best.","My favorite movie is an animation."],
+    ["favorite place","🏞️","/plays/","The place you like best.","My favorite place is the beach."],
+    ["favorite season","🍁","/SEE-zun/","The season you like best.","My favorite season is summer."],
+  ],
+};
+
+const GRAMMAR_LESSONS = [
+  { id:"g1", title:"I am…", explain:"Use “I am” + a name, a job/role, or a describing word to say who you are.",
+    examples:["I am Kevin.","I am a Grade 4 student.","I am friendly.","I am responsible."],
+    bank:["I","am","Kevin","a Grade 4 student","friendly","confident"],
+    answer:["I","am","confident"],
+    quiz:{q:"Which sentence is correct?", options:["I am friendly.","I friendly am.","Am I friendly."], correct:0} },
+  { id:"g2", title:"I am … years old.", explain:"Use “I am” + a number + “years old” to tell your age.",
+    examples:["I am nine years old.","I am ten years old."],
+    bank:["I","am","nine","ten","years old"],
+    answer:["I","am","ten","years old"],
+    quiz:{q:"How do we say age?", options:["I nine years old.","I am nine years old.","I am nine year."], correct:1},
+    ageSelector:true },
+  { id:"g3", title:"I live in…", explain:"Use “I live in” + a city or country to say where you live.",
+    examples:["I live in Jakarta.","I live in Bekasi.","I live in Indonesia."],
+    bank:["I","live","in","Jakarta","Indonesia","Bandung"],
+    answer:["I","live","in","Bandung"],
+    quiz:{q:"Choose the correct sentence:", options:["I live Jakarta.","I in live Jakarta.","I live in Jakarta."], correct:2} },
+  { id:"g4", title:"My hobby is…", explain:"Use “My hobby is” + an activity (usually with -ing) to talk about what you enjoy doing.",
+    examples:["My hobby is drawing.","My hobby is swimming.","My hobby is coding."],
+    bank:["My","hobby","is","drawing","coding","singing"],
+    answer:["My","hobby","is","coding"],
+    quiz:{q:"Complete: My hobby ___ drawing.", options:["am","is","are"], correct:1} },
+  { id:"g5", title:"I like…", explain:"Use “I like” + an activity or subject to say what you enjoy.",
+    examples:["I like reading books.","I like playing basketball.","I like science."],
+    bank:["I","like","reading","books","science","playing basketball"],
+    answer:["I","like","playing basketball"],
+    quiz:{q:"Choose the correct sentence:", options:["I likes science.","I like science.","I liking science."], correct:1} },
+  { id:"g6", title:"I like ___ because ___.", explain:"Use “because” to give a reason for what you like.",
+    examples:["I like drawing because it helps me relax.","I like reading because I learn many new things.","I like basketball because it is exciting.","I like science because it is interesting.","I like music because it makes me happy."],
+    bank:["I like","drawing","because","it helps me relax","it is exciting"],
+    answer:["I like","drawing","because","it helps me relax"],
+    quiz:{q:"Which word gives a reason?", options:["and","because","but"], correct:1},
+    matching:{ left:["drawing","reading","basketball","science","music"],
+               right:["it helps me relax","I learn many new things","it is exciting","it is interesting","it makes me happy"] } },
+  { id:"g7", title:"My favorite … is …", explain:"Use “My favorite [category] is [thing]” to talk about favourites.",
+    examples:["My favorite subject is English.","My favorite animal is a dolphin.","My favorite food is fried rice."],
+    bank:["My","favorite","subject","is","English","food"],
+    answer:["My","favorite","subject","is","English"],
+    quiz:{q:"Complete: My favorite ___ is a dolphin.", options:["animal","subject","food"], correct:0} },
+  { id:"g8", title:"I want to be…", explain:"Use “I want to be” + a job, and add “because” to explain why.",
+    examples:["I want to be a doctor.","I want to be a pilot.","I want to be a teacher.","I want to be an engineer.","I want to be a doctor because I want to help people."],
+    bank:["I want to be","a doctor","because","I want to help people","a pilot"],
+    answer:["I want to be","a pilot"],
+    quiz:{q:"Choose the correct sentence:", options:["I want be a pilot.","I want to be a pilot.","I to want be pilot."], correct:1} },
+];
+
+const LISTENING_TEXT = "Hello. My name is Kevin. I am ten years old. I live in Bandung. I study at Bright Elementary School. My hobby is drawing. I like drawing because it makes me happy. My favorite subject is English. I want to be an architect because I love designing buildings.";
+const LISTENING_QUESTIONS = [
+  {q:"How old is Kevin?", options:["Nine","Ten","Eleven"], correct:1},
+  {q:"Where does Kevin live?", options:["Bekasi","Jakarta","Bandung"], correct:2},
+  {q:"What is Kevin's hobby?", options:["Drawing","Singing","Cooking"], correct:0},
+  {q:"What does Kevin want to be?", options:["A doctor","An architect","A teacher"], correct:1},
+  {q:"Why does Kevin want to be an architect?", options:["He loves designing buildings.","He loves animals.","He loves cooking."], correct:0},
+];
+
+const CONVERSATION_QUESTIONS = [
+  {q:"What is your name?", suggestions:["My name is ___.","I'm called ___."]},
+  {q:"How old are you?", suggestions:["I am ___ years old."]},
+  {q:"Where do you live?", suggestions:["I live in ___."]},
+  {q:"What school do you go to?", suggestions:["I go to ___ School."]},
+  {q:"What grade are you in?", suggestions:["I am in Grade 4."]},
+  {q:"What is your hobby?", suggestions:["My hobby is ___."]},
+  {q:"Why do you like it?", suggestions:["I like it because ___."]},
+  {q:"What is your favorite subject?", suggestions:["My favorite subject is ___."]},
+  {q:"Why do you like English?", suggestions:["I like English because ___."]},
+  {q:"What do you want to be?", suggestions:["I want to be a ___."]},
+  {q:"Why?", suggestions:["Because I want to ___."]},
+];
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+const RENDERERS = {}; // filled below, one function per section id
+function navigate(id){
+  STATE.currentSection = id;
+  const mount = $("#section-mount");
+  mount.innerHTML = "";
+  mount.appendChild(RENDERERS[id]());
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ============================================================
+   SECTION: HOME (island map)
+   ============================================================ */
+RENDERERS.home = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">All About Me</span>
+      <h2>Your Learning Island 🏝️</h2>
+      <p class="section-sub">Tap a stepping stone to start. Finish them all to earn your certificate!</p>
+    </div>
+    <div class="card" style="margin-bottom:18px;">
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+        <div>${kidSVG({...avatarSkinProps(), mood:"happy", size:88})}</div>
+        <div>
+          <h3>${STATE.profile.name ? "Welcome back, "+STATE.profile.name+"!" : "Welcome! Let's build your profile first."}</h3>
+          <p class="section-sub">Stars: ${STATE.stars} · Coins: ${STATE.coins} · Level ${STATE.level}</p>
+        </div>
+      </div>
+    </div>
+    <div class="island-map" id="island-map"></div>
+    <div class="card" style="margin-top:24px;">
+      <h3 style="margin-bottom:10px;">Badge Shelf 🏅</h3>
+      <div class="badge-shelf" id="home-badges"></div>
+    </div>
+  `;
+  const stones = [
+    {id:"profile", icon:"🧑‍🎨", label:"My Profile"},
+    {id:"vocab", icon:"📚", label:"Vocabulary"},
+    {id:"grammar", icon:"🧩", label:"Grammar"},
+    {id:"listening", icon:"👂", label:"Listening"},
+    {id:"conversation", icon:"💬", label:"Conversation"},
+    {id:"games", icon:"🎮", label:"Games"},
+    {id:"project", icon:"🎤", label:"My Presentation"},
+    {id:"review", icon:"🏆", label:"Final Review"},
+  ];
+  const map = $("#island-map", wrap);
+  const cols = 4;
+  stones.forEach((s,i)=>{
+    const row = Math.floor(i/cols), col = i%cols;
+    const x = (col%2===0? 14+col*24 : 14+col*24) ;
+    const left = 12 + (i%cols)*25 + (row%2===1?6:0);
+    const top = row*150 + 10;
+    const btn = el("button","stone-btn");
+    btn.style.left = (10+ (i%4)*25 + (row%2? 8:0)) + "%";
+    btn.style.top = top+"px";
+    const done = STATE.sectionsDone[s.id];
+    btn.innerHTML = `
+      ${done? '<div class="stone-done">✅</div>' : ''}
+      <div class="stone-face" style="background:${done? 'var(--mint)':'var(--white)'}">${s.icon}</div>
+      <div class="stone-label">${s.label}</div>`;
+    btn.addEventListener("click", ()=>navigate(s.id));
+    map.appendChild(btn);
+  });
+  map.style.minHeight = (Math.ceil(stones.length/cols)*150+80)+"px";
+
+  const badgeShelf = $("#home-badges", wrap);
+  BADGE_DEFS.forEach(b=>{
+    const earned = STATE.badges[b.id];
+    const d = el("div","badge "+(earned?"earned":"locked"));
+    d.innerHTML = `<div class="badge-icon">${earned? b.icon : "🔒"}</div><div>${b.label}</div>`;
+    badgeShelf.appendChild(d);
+  });
+  return wrap;
+};
+
+function avatarSkinProps(){
+  const p = STATE.profile;
+  return {skin:p.skin, hair:p.hair, hairStyle:p.hairStyle, outfit:p.outfit};
+}
+
+/* ============================================================
+   SECTION: PROFILE / AVATAR CREATOR  ("Create My Digital Profile")
+   ============================================================ */
+RENDERERS.profile = function(){
+  const p = STATE.profile;
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Creative Activity</span>
+      <h2>Create My Digital Profile 🧑‍🎨</h2>
+      <p class="section-sub">Design your avatar and fill in your details — you'll use these later in your presentation!</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="avatar-stage" id="avatar-stage"></div>
+        <h4 style="margin-top:16px;">Skin tone</h4>
+        <div class="swatch-row" data-field="skin">
+          ${["#F2C79E","#D9A066","#8D5A3B","#FFE0BD","#4B3621"].map(c=>`<button class="swatch" style="background:${c}" data-value="${c}" aria-label="skin tone"></button>`).join("")}
+        </div>
+        <h4 style="margin-top:14px;">Hair colour</h4>
+        <div class="swatch-row" data-field="hair">
+          ${["#2B1B12","#4A3222","#8A5A2E","#D6B370","#B33A3A"].map(c=>`<button class="swatch" style="background:${c}" data-value="${c}" aria-label="hair colour"></button>`).join("")}
+        </div>
+        <h4 style="margin-top:14px;">Hair style</h4>
+        <div class="chip-bank">
+          <button class="opt-btn" data-field="hairStyle" data-value="short">Short</button>
+          <button class="opt-btn" data-field="hairStyle" data-value="long">Long</button>
+        </div>
+        <h4 style="margin-top:14px;">Outfit colour</h4>
+        <div class="swatch-row" data-field="outfit">
+          ${["#FF8B6B","#BCEFDA","#E4DAF7","#BFE3F2","#FFF3AE"].map(c=>`<button class="swatch" style="background:${c}" data-value="${c}" aria-label="outfit colour"></button>`).join("")}
+        </div>
+        <h4 style="margin-top:14px;">Background</h4>
+        <div class="swatch-row" data-field="bg">
+          ${["#BCEFDA","#BFE3F2","#E4DAF7","#FFD1A3","#FFF3AE"].map(c=>`<button class="swatch" style="background:${c}" data-value="${c}" aria-label="background colour"></button>`).join("")}
+        </div>
+      </div>
+      <div class="card">
+        <h3>My Details</h3>
+        <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+          <label>Name<input type="text" id="f-name" value="${p.name}" placeholder="Kevin" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>Nickname<input type="text" id="f-nickname" value="${p.nickname}" placeholder="Kiki" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>Age
+            <select id="f-age" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;">
+              ${[8,9,10,11].map(a=>`<option value="${a}" ${p.age==a?"selected":""}>${a}</option>`).join("")}
+            </select>
+          </label>
+          <label>City<input type="text" id="f-city" value="${p.city}" placeholder="Bandung" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>School<input type="text" id="f-school" value="${p.school}" placeholder="Bright Elementary" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>Dream job<input type="text" id="f-dream" value="${p.dream}" placeholder="a doctor" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>Hobby
+            <select id="f-hobby" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;">
+              ${VOCAB.Hobbies.map(h=>`<option value="${h[0]}" ${p.hobby===h[0]?"selected":""}>${h[0]}</option>`).join("")}
+            </select>
+          </label>
+          <label>Favorite subject<input type="text" id="f-subject" value="${p.subject}" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>Favorite food<input type="text" id="f-food" value="${p.food}" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+          <label>Favorite animal<input type="text" id="f-animal" value="${p.animal}" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;"></label>
+        </div>
+        <div class="btn-row">
+          <button class="btn" id="save-profile">Save my profile ✅</button>
+        </div>
+      </div>
+    </div>
+  `;
+  function paintAvatar(){
+    $("#avatar-stage", wrap).style.background = p.bg;
+    $("#avatar-stage", wrap).innerHTML = kidSVG({skin:p.skin,hair:p.hair,hairStyle:p.hairStyle,outfit:p.outfit,mood:"happy",size:180});
+    $all(".swatch-row", wrap).forEach(row=>{
+      const field = row.dataset.field;
+      $all(".swatch", row).forEach(sw=> sw.classList.toggle("active", sw.dataset.value===p[field]));
+    });
+    $all(".opt-btn", wrap).forEach(b=> b.classList.toggle("active", b.dataset.value===p[b.dataset.field]));
+  }
+  $all(".swatch, .opt-btn", wrap).forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      p[btn.dataset.field] = btn.dataset.value;
+      paintAvatar();
+    });
+  });
+  paintAvatar();
+  $("#save-profile", wrap).addEventListener("click", ()=>{
+    p.name = $("#f-name",wrap).value.trim() || "Kevin";
+    p.nickname = $("#f-nickname",wrap).value.trim();
+    p.age = $("#f-age",wrap).value;
+    p.city = $("#f-city",wrap).value.trim() || "my city";
+    p.school = $("#f-school",wrap).value.trim() || "my school";
+    p.dream = $("#f-dream",wrap).value.trim() || "a doctor";
+    p.hobby = $("#f-hobby",wrap).value;
+    p.subject = $("#f-subject",wrap).value.trim() || "English";
+    p.food = $("#f-food",wrap).value.trim() || "fried rice";
+    p.animal = $("#f-animal",wrap).value.trim() || "a dolphin";
+    addStars(5); toast("Profile saved! ⭐ +5"); markSectionProgress("profile");
+    lumiSay("Nice avatar, "+p.name+"! Let's learn some words next!");
+  });
+  return wrap;
+};
+
+/* ============================================================
+   SECTION: VOCABULARY FLASHCARDS
+   ============================================================ */
+RENDERERS.vocab = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Vocabulary</span>
+      <h2>Flashcard Deck 📚</h2>
+      <p class="section-sub">Tap a card to flip it, listen to the word, then practice saying it aloud.</p>
+    </div>
+    <div class="tab-row" id="vocab-tabs"></div>
+    <div class="grid cols-4" id="vocab-grid"></div>
+    <div class="card" style="margin-top:20px;" id="vocab-quiz-mount"></div>
+  `;
+  const tabRow = $("#vocab-tabs", wrap);
+  const grid = $("#vocab-grid", wrap);
+  const categories = Object.keys(VOCAB);
+  let activeCat = categories[0];
+
+  function renderCards(){
+    grid.innerHTML = "";
+    VOCAB[activeCat].forEach(([word,emoji,pron,def,ex])=>{
+      const card = el("div","flip-card");
+      card.innerHTML = `
+        <div class="flip-inner">
+          <div class="flip-face flip-front">
+            <div class="vocab-emoji">${emoji}</div>
+            <div class="vocab-word">${word}</div>
+            <div class="vocab-pron">tap to flip</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="vocab-word">${word}</div>
+            <div class="vocab-pron">${pron}</div>
+            <p style="font-size:.82rem;">${def}</p>
+            <p style="font-size:.82rem;font-style:italic;">“${ex}”</p>
+            <div style="display:flex; gap:6px; margin-top:6px;">
+              <button class="mini-icon-btn" title="Listen" aria-label="Listen">🔊</button>
+              <button class="mini-icon-btn" title="Practice speaking" aria-label="Practice">🎙️</button>
+            </div>
+          </div>
+        </div>`;
+      card.addEventListener("click", (e)=>{
+        if(e.target.closest(".mini-icon-btn")) return;
+        card.classList.toggle("flipped");
+      });
+      $all(".mini-icon-btn",card)[0].addEventListener("click",(e)=>{e.stopPropagation(); speak(ex);});
+      $all(".mini-icon-btn",card)[1].addEventListener("click",(e)=>{
+        e.stopPropagation();
+        toast("🎙️ Say it out loud: \""+ex+"\"");
+        addStars(1);
+      });
+      grid.appendChild(card);
+    });
+  }
+  categories.forEach(cat=>{
+    const b = el("button","tab-btn"+(cat===activeCat?" active":""), cat);
+    b.addEventListener("click", ()=>{
+      activeCat = cat;
+      $all(".tab-btn", tabRow).forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      renderCards();
+    });
+    tabRow.appendChild(b);
+  });
+  renderCards();
+
+  // mini quiz mixing a few words across categories
+  const allWords = Object.values(VOCAB).flat();
+  function pickQuizItem(){
+    const item = allWords[Math.floor(Math.random()*allWords.length)];
+    const distractors = allWords.filter(w=>w!==item).sort(()=>0.5-Math.random()).slice(0,2);
+    const options = [item, ...distractors].sort(()=>0.5-Math.random());
+    return {item, options};
+  }
+  let quizScore = 0, quizRound = 0;
+  function renderQuizRound(){
+    const mount = $("#vocab-quiz-mount", wrap);
+    if(quizRound>=5){
+      mount.innerHTML = `<h3>Mini Quiz complete! 🎉</h3><p>Score: ${quizScore}/5</p>`;
+      addStars(quizScore); markSectionProgress("vocab"); earnBadge("vocab");
+      lumiSay("Great vocabulary practice!");
+      return;
+    }
+    const {item, options} = pickQuizItem();
+    mount.innerHTML = `<h3>Mini Quiz (${quizRound+1}/5)</h3><p class="section-sub">Which word matches: “${item[3]}”?</p>`;
+    options.forEach(opt=>{
+      const b = el("button","quiz-option", opt[0]);
+      b.addEventListener("click", ()=>{
+        $all(".quiz-option", mount).forEach(x=>x.disabled=true);
+        if(opt[0]===item[0]){ b.classList.add("correct"); quizScore++; addCoins(2);}
+        else { b.classList.add("wrong"); }
+        setTimeout(()=>{ quizRound++; renderQuizRound(); }, 900);
+      });
+      mount.appendChild(b);
+    });
+  }
+  renderQuizRound();
+  return wrap;
+};
+
+/* ============================================================
+   SECTION: GRAMMAR LESSONS (reusable per-lesson component)
+   ============================================================ */
+RENDERERS.grammar = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Grammar</span>
+      <h2>Grammar Lessons 🧩</h2>
+      <p class="section-sub">Work through all 8 patterns. Each one ends with a speaking checkpoint and mini quiz.</p>
+    </div>
+    <div class="tab-row" id="grammar-tabs"></div>
+    <div id="grammar-mount"></div>
+  `;
+  const tabRow = $("#grammar-tabs", wrap);
+  const mount = $("#grammar-mount", wrap);
+  let idx = 0;
+  let completedCount = 0;
+  const completed = new Set();
+
+  GRAMMAR_LESSONS.forEach((g,i)=>{
+    const b = el("button","tab-btn"+(i===0?" active":""), "G"+(i+1));
+    b.addEventListener("click", ()=>{ idx=i; refreshTabs(); renderLesson(); });
+    tabRow.appendChild(b);
+  });
+  function refreshTabs(){
+    $all(".tab-btn", tabRow).forEach((b,i)=>b.classList.toggle("active", i===idx));
+  }
+
+  function renderLesson(){
+    const g = GRAMMAR_LESSONS[idx];
+    mount.innerHTML = `
+      <div class="card">
+        <h3>${g.title}</h3>
+        <p style="margin-top:8px;">${g.explain}</p>
+        <div class="chip-bank" style="margin-top:10px;">${g.examples.map(e=>`<span class="chip" style="background:var(--yellow); pointer-events:none;">${e}</span>`).join("")}</div>
+
+        ${g.ageSelector ? `
+        <div class="speak-box" style="background:var(--yellow); margin-top:16px;">
+          <strong>Interactive age selector</strong>
+          <div style="display:flex; gap:10px; align-items:center; margin-top:8px;">
+            <input type="range" min="8" max="11" value="9" id="age-slider" style="flex:1; accent-color:var(--coral);">
+            <span id="age-value" style="font-weight:900; font-size:1.3rem;">9</span>
+          </div>
+          <p id="age-sentence" style="margin-top:8px; font-weight:700;">I am nine years old.</p>
+        </div>` : ""}
+
+        <h4 style="margin-top:18px;">Build your own sentence</h4>
+        <p class="section-sub">Tap words in order to build: <em>${g.answer.join(" ")}</em></p>
+        <div class="sentence-slot" id="sentence-slot"></div>
+        <div class="chip-bank" id="chip-bank"></div>
+        <div class="btn-row">
+          <button class="btn ghost sm" id="clear-sentence">Clear</button>
+          <button class="btn mint sm" id="check-sentence">Check sentence</button>
+        </div>
+        <div id="sentence-feedback"></div>
+
+        ${g.matching ? renderMatchingHTML(g.matching) : ""}
+
+        <div class="speak-box">
+          <strong>🎙️ Speaking checkpoint</strong>
+          <p style="margin-top:6px;">Say this sentence aloud: <strong>"${g.examples[0]}"</strong></p>
+          <div style="display:flex; align-items:center; gap:14px; margin-top:10px;">
+            <button class="mic-btn" id="mic-btn" aria-label="Listen and speak">🎤</button>
+            <button class="btn sky sm" id="play-example">🔊 Hear it</button>
+          </div>
+          <div class="confidence-row">
+            <span>😟</span><input type="range" min="1" max="5" value="3" id="confidence-slider"><span>😄</span>
+          </div>
+        </div>
+
+        <h4 style="margin-top:18px;">Mini quiz</h4>
+        <p>${g.quiz.q}</p>
+        <div id="grammar-quiz-mount"></div>
+
+        <div class="btn-row">
+          <button class="btn" id="lesson-done">Mark lesson complete ✅</button>
+          ${idx<GRAMMAR_LESSONS.length-1 ? `<button class="btn ghost" id="next-lesson">Next lesson →</button>` : ""}
+        </div>
+      </div>
+    `;
+
+    // age selector
+    if(g.ageSelector){
+      const slider = $("#age-slider", mount);
+      const words = ["eight","nine","ten","eleven"];
+      const update = ()=>{
+        const v = +slider.value;
+        $("#age-value", mount).textContent = v;
+        $("#age-sentence", mount).textContent = "I am "+words[v-8]+" years old.";
+      };
+      slider.addEventListener("input", update); update();
+    }
+
+    // sentence builder
+    const slot = $("#sentence-slot", mount);
+    const bank = $("#chip-bank", mount);
+    let built = [];
+    function renderBank(){
+      bank.innerHTML = "";
+      g.bank.forEach(word=>{
+        const chip = el("button","chip", word);
+        chip.addEventListener("click", ()=>{
+          built.push(word); chip.classList.add("used"); renderSlot();
+        });
+        bank.appendChild(chip);
+      });
+    }
+    function renderSlot(){
+      slot.innerHTML = built.map(w=>`<span class="chip">${w}</span>`).join("") || `<span class="section-sub">Your sentence appears here…</span>`;
+    }
+    renderBank(); renderSlot();
+    $("#clear-sentence", mount).addEventListener("click", ()=>{ built=[]; renderBank(); renderSlot(); $("#sentence-feedback",mount).innerHTML=""; });
+    $("#check-sentence", mount).addEventListener("click", ()=>{
+      const fb = $("#sentence-feedback", mount);
+      const ok = built.length>0 && built.join(" ").toLowerCase() === g.answer.join(" ").toLowerCase();
+      if(ok){ fb.innerHTML = `<div class="feedback-banner ok">🎉 Perfect sentence! +2 stars</div>`; addStars(2); speak(built.join(" ")); }
+      else { fb.innerHTML = `<div class="feedback-banner no">Try again — remember the word order!</div>`; }
+    });
+
+    // matching (grammar 6)
+    if(g.matching) setupMatching(mount, g.matching);
+
+    // speaking checkpoint
+    $("#play-example", mount).addEventListener("click", ()=> speak(g.examples[0]));
+    const micBtn = $("#mic-btn", mount);
+    micBtn.addEventListener("click", ()=>{
+      micBtn.classList.add("listening");
+      toast("🎙️ Listening... now say it with confidence!");
+      setTimeout(()=>{ micBtn.classList.remove("listening"); toast("Nice speaking! ⭐ +1"); addStars(1); }, 1600);
+    });
+
+    // quiz
+    const qm = $("#grammar-quiz-mount", mount);
+    g.quiz.options.forEach((opt,i)=>{
+      const b = el("button","quiz-option", opt);
+      b.addEventListener("click", ()=>{
+        $all(".quiz-option", qm).forEach(x=>x.disabled=true);
+        if(i===g.quiz.correct){ b.classList.add("correct"); addStars(2); toast("Correct! ⭐+2"); }
+        else { b.classList.add("wrong"); $all(".quiz-option",qm)[g.quiz.correct].classList.add("correct"); toast("Not quite — the highlighted one is correct."); }
+      });
+      qm.appendChild(b);
+    });
+
+    $("#lesson-done", mount).addEventListener("click", ()=>{
+      if(!completed.has(g.id)){ completed.add(g.id); addStars(3); addCoins(5); }
+      if(completed.size>=GRAMMAR_LESSONS.length){ markSectionProgress("grammar"); earnBadge("grammar"); toast("🏆 All grammar lessons complete!"); }
+      else toast("Lesson saved! ✅");
+    });
+    const nextBtn = $("#next-lesson", mount);
+    if(nextBtn) nextBtn.addEventListener("click", ()=>{ idx++; refreshTabs(); renderLesson(); });
+  }
+
+  function renderMatchingHTML(m){
+    return `<h4 style="margin-top:18px;">Match hobby + reason</h4>
+      <div class="grid cols-2" id="match-area">
+        <div id="match-left"></div>
+        <div id="match-right"></div>
+      </div>
+      <div id="match-feedback"></div>`;
+  }
+  function setupMatching(mount, m){
+    const left = $("#match-left", mount), right = $("#match-right", mount);
+    let selectedLeft = null;
+    const rightShuffled = [...m.right].sort(()=>0.5-Math.random());
+    const matched = new Set();
+    m.left.forEach((txt,i)=>{
+      const b = el("button","quiz-option", txt);
+      b.addEventListener("click", ()=>{
+        if(matched.has(i)) return;
+        $all(".quiz-option", left).forEach(x=>x.style.outline="");
+        selectedLeft = i; b.style.outline="3px solid var(--coral)";
+      });
+      left.appendChild(b);
+    });
+    rightShuffled.forEach(txt=>{
+      const b = el("button","quiz-option", txt);
+      b.addEventListener("click", ()=>{
+        if(selectedLeft===null) return;
+        const correctTxt = m.right[selectedLeft];
+        if(txt===correctTxt){
+          b.classList.add("correct"); b.disabled=true; matched.add(selectedLeft);
+          addStars(1);
+          if(matched.size===m.left.length){ $("#match-feedback",mount).innerHTML = `<div class="feedback-banner ok">All matched! Great reasoning with "because"! 🎉</div>`; }
+        } else {
+          b.classList.add("wrong"); setTimeout(()=>b.classList.remove("wrong"),600);
+        }
+        selectedLeft=null;
+      });
+      right.appendChild(b);
+    });
+  }
+
+  renderLesson();
+  return wrap;
+};
+
+/* ============================================================
+   SECTION: LISTENING PRACTICE
+   ============================================================ */
+RENDERERS.listening = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Listening</span>
+      <h2>Listen &amp; Understand 👂</h2>
+      <p class="section-sub">Press play to hear a self-introduction, then answer the questions.</p>
+    </div>
+    <div class="card">
+      <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+        <div>${kidSVG({skin:"#F2C79E",hair:"#2B1B12",hairStyle:"short",outfit:"#BFE3F2",mood:"happy",size:96})}</div>
+        <div style="flex:1;">
+          <p id="listening-text" style="font-size:1.05rem; line-height:1.7;">${LISTENING_TEXT}</p>
+          <div class="btn-row">
+            <button class="btn" id="play-listening">▶️ Play introduction</button>
+            <button class="btn ghost" id="replay-listening">🔁 Replay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;" id="listening-quiz"></div>
+  `;
+  const playBtn = $("#play-listening", wrap), replayBtn = $("#replay-listening", wrap);
+  const playFn = ()=> speak(LISTENING_TEXT, 0.88);
+  playBtn.addEventListener("click", playFn);
+  replayBtn.addEventListener("click", playFn);
+
+  const quizMount = $("#listening-quiz", wrap);
+  let qi = 0, score = 0;
+  function renderQ(){
+    if(qi>=LISTENING_QUESTIONS.length){
+      quizMount.innerHTML = `<h3>Listening check complete! 🎉</h3><p>Score: ${score}/${LISTENING_QUESTIONS.length}</p>`;
+      addStars(score); markSectionProgress("listening"); earnBadge("listening");
+      lumiSay("Your listening skills are shining!");
+      return;
+    }
+    const q = LISTENING_QUESTIONS[qi];
+    quizMount.innerHTML = `<h4>Question ${qi+1} of ${LISTENING_QUESTIONS.length}</h4><p>${q.q}</p>`;
+    q.options.forEach((opt,i)=>{
+      const b = el("button","quiz-option", opt);
+      b.addEventListener("click", ()=>{
+        $all(".quiz-option", quizMount).forEach(x=>x.disabled=true);
+        if(i===q.correct){ b.classList.add("correct"); score++; addCoins(2); }
+        else { b.classList.add("wrong"); $all(".quiz-option",quizMount)[q.correct].classList.add("correct"); }
+        setTimeout(()=>{ qi++; renderQ(); }, 900);
+      });
+      quizMount.appendChild(b);
+    });
+  }
+  renderQ();
+  return wrap;
+};
+
+/* ============================================================
+   SECTION: CONVERSATION PRACTICE
+   ============================================================ */
+RENDERERS.conversation = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Conversation</span>
+      <h2>Interview Practice 💬</h2>
+      <p class="section-sub">Lumi asks — you answer out loud! Tap the mic, then choose a sentence starter to help you.</p>
+    </div>
+    <div class="card" id="conv-mount"></div>
+  `;
+  const mount = $("#conv-mount", wrap);
+  let qi = 0;
+  function renderQ(){
+    if(qi>=CONVERSATION_QUESTIONS.length){
+      mount.innerHTML = `<h3>Interview complete! 🎉</h3><p>You answered all ${CONVERSATION_QUESTIONS.length} questions like a pro.</p>`;
+      addStars(6); markSectionProgress("conversation"); earnBadge("conversation");
+      lumiSay("You're a chatty champion!");
+      return;
+    }
+    const q = CONVERSATION_QUESTIONS[qi];
+    mount.innerHTML = `
+      <div style="display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap;">
+        ${lumiSVG("cheer")}
+        <div style="flex:1; min-width:220px;">
+          <p class="eyebrow">Question ${qi+1} of ${CONVERSATION_QUESTIONS.length}</p>
+          <h3>${q.q}</h3>
+          <div class="btn-row">
+            <button class="btn sky sm" id="hear-q">🔊 Hear question</button>
+          </div>
+          <div class="speak-box">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <button class="mic-btn" id="conv-mic">🎤</button>
+              <span class="section-sub">Tap and answer out loud!</span>
+            </div>
+            <h4 style="margin-top:12px;">Need help? Try a starter:</h4>
+            <div class="chip-bank">${q.suggestions.map(s=>`<span class="chip">${s}</span>`).join("")}</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="conv-next">Next question →</button>
+      </div>
+    `;
+    $("#hear-q", mount).addEventListener("click", ()=>speak(q.q));
+    $("#conv-mic", mount).addEventListener("click", (e)=>{
+      e.target.classList.add("listening");
+      setTimeout(()=>{ e.target.classList.remove("listening"); toast("Great answer! ⭐+1"); addStars(1); }, 1500);
+    });
+    $("#conv-next", mount).addEventListener("click", ()=>{ qi++; renderQ(); });
+  }
+  renderQ();
+  return wrap;
+};
+
+/* ============================================================
+   SECTION: GAMES HUB
+   ============================================================ */
+const GAME_LIST = [
+  {id:"matching", icon:"🔗", title:"Matching", desc:"Match words to pictures."},
+  {id:"memory", icon:"🧠", title:"Memory Game", desc:"Flip cards to find pairs."},
+  {id:"dragdrop", icon:"🧲", title:"Drag &amp; Drop Sort", desc:"Sort words into categories."},
+  {id:"balloon", icon:"🎈", title:"Balloon Pop", desc:"Pop the correct word balloons."},
+  {id:"wheel", icon:"🎡", title:"Spin the Wheel", desc:"Spin for a surprise speaking question."},
+  {id:"wordsearch", icon:"🔎", title:"Word Search", desc:"Find hidden vocabulary words."},
+  {id:"missing", icon:"✍️", title:"Missing Words", desc:"Fill in the blanks."},
+  {id:"quizchallenge", icon:"🏁", title:"Quiz Challenge", desc:"Fast mixed-topic quiz."},
+];
+RENDERERS.games = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Games</span>
+      <h2>Games Hub 🎮</h2>
+      <p class="section-sub">Play any game, in any order. New games unlock more badges!</p>
+    </div>
+    <div class="grid cols-4" id="games-grid"></div>
+    <div id="game-mount" style="margin-top:20px;"></div>
+  `;
+  const grid = $("#games-grid", wrap);
+  const gameMount = $("#game-mount", wrap);
+  const gamesDone = new Set();
+  GAME_LIST.forEach(g=>{
+    const b = el("button","game-tile");
+    b.innerHTML = `<span class="g-emoji">${g.icon}</span><strong>${g.title}</strong><span class="section-sub">${g.desc}</span>`;
+    b.addEventListener("click", ()=>{
+      gameMount.innerHTML = "";
+      gameMount.appendChild(GAME_RENDERERS[g.id](()=>{
+        gamesDone.add(g.id);
+        if(gamesDone.size>=3){ markSectionProgress("games"); earnBadge("games"); }
+      }));
+      gameMount.scrollIntoView({behavior:"smooth"});
+    });
+    grid.appendChild(b);
+  });
+  return wrap;
+};
+
+const GAME_RENDERERS = {};
+
+// --- Matching game: word -> emoji ---
+GAME_RENDERERS.matching = function(onWin){
+  const items = Object.values(VOCAB).flat().sort(()=>0.5-Math.random()).slice(0,6);
+  const box = el("div","card");
+  box.innerHTML = `<h3>🔗 Matching</h3><p class="section-sub">Tap a word, then tap its matching picture.</p>
+    <div class="grid cols-2"><div id="m-words"></div><div id="m-pics"></div></div><div id="m-fb"></div>`;
+  const wordsCol = $("#m-words",box), picsCol = $("#m-pics",box);
+  let selected = null; let matched = 0;
+  const shuffledPics = [...items].sort(()=>0.5-Math.random());
+  items.forEach(it=>{
+    const b = el("button","quiz-option", it[0]);
+    b.addEventListener("click", ()=>{ $all(".quiz-option",wordsCol).forEach(x=>x.style.outline=""); selected=it; b.style.outline="3px solid var(--coral)"; });
+    wordsCol.appendChild(b);
+  });
+  shuffledPics.forEach(it=>{
+    const b = el("button","quiz-option", it[1]+" "+it[0].split(" ")[0]);
+    b.addEventListener("click", ()=>{
+      if(!selected) return;
+      if(it===selected){ b.classList.add("correct"); b.disabled=true; matched++; addStars(1);
+        if(matched===items.length){ $("#m-fb",box).innerHTML=`<div class="feedback-banner ok">All matched! 🎉</div>`; onWin(); } }
+      else { b.classList.add("wrong"); setTimeout(()=>b.classList.remove("wrong"),500); }
+      selected=null;
+    });
+    picsCol.appendChild(b);
+  });
+  return box;
+};
+
+// --- Memory game ---
+GAME_RENDERERS.memory = function(onWin){
+  const pool = Object.values(VOCAB).flat().sort(()=>0.5-Math.random()).slice(0,8);
+  let deck = [...pool.map(p=>p[1]+p[0]), ...pool.map(p=>p[1]+p[0])].sort(()=>0.5-Math.random());
+  const box = el("div","card");
+  box.innerHTML = `<h3>🧠 Memory Game</h3><p class="section-sub">Find all 8 pairs.</p><div class="memory-grid" id="mem-grid"></div><div id="mem-fb"></div>`;
+  const grid = $("#mem-grid",box);
+  let first=null, lock=false, pairsFound=0;
+  deck.forEach((val,i)=>{
+    const c = el("button","memory-card","❓");
+    c.dataset.val = val; c.dataset.idx = i;
+    c.addEventListener("click", ()=>{
+      if(lock || c.classList.contains("matched") || c.classList.contains("open")) return;
+      c.classList.add("open"); c.textContent = val;
+      if(!first){ first = c; return; }
+      lock = true;
+      if(first.dataset.val === c.dataset.val && first!==c){
+        first.classList.add("matched"); c.classList.add("matched"); pairsFound++;
+        addStars(1); first=null; lock=false;
+        if(pairsFound===pool.length){ $("#mem-fb",box).innerHTML = `<div class="feedback-banner ok">All pairs found! 🎉</div>`; onWin(); }
+      } else {
+        setTimeout(()=>{ first.classList.remove("open"); first.textContent="❓"; c.classList.remove("open"); c.textContent="❓"; first=null; lock=false; }, 700);
+      }
+    });
+    grid.appendChild(c);
+  });
+  return box;
+};
+
+// --- Drag & drop sort: hobbies vs personality words ---
+GAME_RENDERERS.dragdrop = function(onWin){
+  const hobbies = VOCAB.Hobbies.slice(0,4).map(x=>x[0]);
+  const traits = VOCAB.Personality.slice(0,4).map(x=>x[0]);
+  const items = [...hobbies.map(h=>({w:h,cat:"hobby"})), ...traits.map(t=>({w:t,cat:"trait"}))].sort(()=>0.5-Math.random());
+  const box = el("div","card");
+  box.innerHTML = `<h3>🧲 Sort It Out</h3><p class="section-sub">Tap a word, then tap the correct basket: Hobby or Personality.</p>
+    <div class="chip-bank" id="dd-bank"></div>
+    <div class="grid cols-2">
+      <div class="card" style="background:var(--mint);" data-cat="hobby"><h4>🎨 Hobby</h4><div class="chip-bank" id="dd-hobby"></div></div>
+      <div class="card" style="background:var(--lav);" data-cat="trait"><h4>😊 Personality</h4><div class="chip-bank" id="dd-trait"></div></div>
+    </div><div id="dd-fb"></div>`;
+  const bank = $("#dd-bank",box);
+  let selected=null, placed=0;
+  items.forEach(it=>{
+    const chip = el("button","chip", it.w);
+    chip.addEventListener("click", ()=>{ selected=it; $all(".chip",bank).forEach(c=>c.style.outline=""); chip.style.outline="3px solid var(--coral)"; });
+    bank.appendChild(chip);
+  });
+  ["hobby","trait"].forEach(cat=>{
+    const basket = $(cat==="hobby"?"#dd-hobby":"#dd-trait", box);
+    basket.closest(".card").addEventListener("click", ()=>{
+      if(!selected) return;
+      if(selected.cat===cat){
+        basket.appendChild(el("span","chip", selected.w));
+        [...bank.children].find(c=>c.textContent===selected.w)?.remove();
+        placed++; addStars(1); selected=null;
+        if(placed===items.length){ $("#dd-fb",box).innerHTML=`<div class="feedback-banner ok">Perfectly sorted! 🎉</div>`; onWin(); }
+      } else { toast("Not quite — try the other basket!"); }
+    });
+  });
+  return box;
+};
+
+// --- Balloon pop ---
+GAME_RENDERERS.balloon = function(onWin){
+  const target = VOCAB.Hobbies[Math.floor(Math.random()*VOCAB.Hobbies.length)];
+  const others = VOCAB.Hobbies.filter(h=>h!==target).sort(()=>0.5-Math.random()).slice(0,5);
+  const words = [target, ...others].sort(()=>0.5-Math.random());
+  const box = el("div","card");
+  box.innerHTML = `<h3>🎈 Balloon Pop</h3><p class="section-sub">Pop the balloon that says: <strong>${target[0]}</strong></p>
+    <div class="balloon-field" id="balloon-field"></div><div id="balloon-fb"></div>`;
+  const field = $("#balloon-field",box);
+  const colors = ["#FF8B6B","#BCEFDA","#E4DAF7","#FFD1A3","#BFE3F2","#FFF3AE"];
+  let popped=false;
+  function spawn(){
+    if(popped) return;
+    const w = words[Math.floor(Math.random()*words.length)];
+    const b = el("button","balloon", w[0]);
+    b.style.left = (5+Math.random()*80)+"%";
+    b.style.background = colors[Math.floor(Math.random()*colors.length)];
+    b.style.animationDuration = (4+Math.random()*2)+"s";
+    b.addEventListener("click", ()=>{
+      if(w[0]===target[0]){
+        popped=true; b.classList.add("pop");
+        $("#balloon-fb",box).innerHTML = `<div class="feedback-banner ok">Popped the right one! 🎉</div>`;
+        addStars(3); onWin();
+      } else { b.classList.add("pop"); toast("Not that one — try again!"); }
+    });
+    field.appendChild(b);
+    b.addEventListener("animationend", ()=> b.remove());
+    if(!popped) setTimeout(spawn, 700);
+  }
+  spawn();
+  return box;
+};
+
+// --- Spin the wheel: random speaking question ---
+GAME_RENDERERS.wheel = function(onWin){
+  const qs = CONVERSATION_QUESTIONS.map(q=>q.q);
+  const box = el("div","card");
+  box.innerHTML = `<h3>🎡 Spin the Wheel</h3><p class="section-sub">Spin for a surprise speaking question, then answer it out loud!</p>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer">🔻</div>
+      <div class="wheel" id="wheel-el" style="background:conic-gradient(var(--sky) 0 12.5%, var(--mint) 0 25%, var(--lav) 0 37.5%, var(--orange) 0 50%, var(--yellow) 0 62.5%, var(--sky) 0 75%, var(--mint) 0 87.5%, var(--lav) 0 100%);"></div>
+      <button class="btn" id="spin-btn">Spin! 🎯</button>
+      <div id="wheel-result" class="card" style="display:none;"></div>
+    </div>`;
+  const wheelEl = $("#wheel-el",box);
+  let spins=0;
+  $("#spin-btn",box).addEventListener("click", ()=>{
+    const turns = 4+Math.random()*3;
+    const deg = turns*360;
+    wheelEl.style.transform = `rotate(${deg}deg)`;
+    setTimeout(()=>{
+      const q = qs[Math.floor(Math.random()*qs.length)];
+      const res = $("#wheel-result",box);
+      res.style.display="block";
+      res.innerHTML = `<strong>Your question:</strong> ${q}<div class="btn-row"><button class="btn sky sm" id="wheel-hear">🔊 Hear it</button></div>`;
+      $("#wheel-hear",res).addEventListener("click", ()=>speak(q));
+      addStars(2); spins++;
+      if(spins>=1) onWin();
+    }, 3300);
+  });
+  return box;
+};
+
+// --- Word search ---
+GAME_RENDERERS.wordsearch = function(onWin){
+  const words = ["KIND","FUNNY","ACTIVE","BOOK"];
+  const size = 8;
+  let grid = Array.from({length:size},()=>Array(size).fill(""));
+  // place words horizontally/vertically simply
+  function placeWord(word, row, col, dir){
+    for(let i=0;i<word.length;i++){
+      const r = dir==="V"? row+i : row;
+      const c = dir==="H"? col+i : col;
+      if(r>=size||c>=size) return false;
+      grid[r][c]=word[i];
+    }
+    return true;
+  }
+  placeWord("KIND",1,1,"H"); placeWord("FUNNY",3,0,"V"); placeWord("ACTIVE",5,2,"H"); placeWord("BOOK",0,6,"V");
+  const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for(let r=0;r<size;r++) for(let c=0;c<size;c++) if(!grid[r][c]) grid[r][c]=letters[Math.floor(Math.random()*26)];
+
+  const box = el("div","card");
+  box.innerHTML = `<h3>🔎 Word Search</h3><p class="section-sub">Find: ${words.join(", ")}. Click letters in a row to select, click the last one again to confirm.</p>
+    <div class="wordsearch-grid" style="grid-template-columns:repeat(${size},34px);" id="ws-grid"></div>
+    <div id="ws-fb"></div>`;
+  const gridEl = $("#ws-grid",box);
+  let selection=[];
+  const foundWords = new Set();
+  for(let r=0;r<size;r++) for(let c=0;c<size;c++){
+    const cell = el("button","ws-cell", grid[r][c]);
+    cell.dataset.r=r; cell.dataset.c=c;
+    cell.addEventListener("click", ()=>{
+      cell.classList.add("sel"); selection.push({r,c,ch:grid[r][c],el:cell});
+      const str = selection.map(s=>s.ch).join("");
+      const rev = str.split("").reverse().join("");
+      const hit = words.find(w=> (w===str||w===rev) && !foundWords.has(w));
+      if(hit){
+        foundWords.add(hit);
+        selection.forEach(s=>{ s.el.classList.remove("sel"); s.el.classList.add("found"); });
+        selection=[];
+        addStars(2);
+        if(foundWords.size===words.length){ $("#ws-fb",box).innerHTML=`<div class="feedback-banner ok">Found them all! 🎉</div>`; onWin(); }
+      } else if(selection.length>6){
+        selection.forEach(s=>s.el.classList.remove("sel")); selection=[];
+      }
+    });
+    gridEl.appendChild(cell);
+  }
+  return box;
+};
+
+// --- Missing words (fill the blank) ---
+GAME_RENDERERS.missing = function(onWin){
+  const sentences = [
+    {s:"My ___ is drawing.", a:"hobby"},
+    {s:"I ___ nine years old.", a:"am"},
+    {s:"I live ___ Bandung.", a:"in"},
+    {s:"I like science ___ it is interesting.", a:"because"},
+  ];
+  let i=0, score=0;
+  const box = el("div","card");
+  function render(){
+    if(i>=sentences.length){
+      box.innerHTML = `<h3>✍️ Missing Words</h3><p>Score: ${score}/${sentences.length} 🎉</p>`;
+      addStars(score); onWin(); return;
+    }
+    const cur = sentences[i];
+    box.innerHTML = `<h3>✍️ Missing Words (${i+1}/${sentences.length})</h3><p style="font-size:1.1rem;">${cur.s}</p>
+      <input type="text" id="mw-input" placeholder="type the missing word" style="padding:10px;border-radius:10px;border:2px solid #ECE7FB;width:100%;max-width:260px;">
+      <div class="btn-row"><button class="btn" id="mw-check">Check</button></div><div id="mw-fb"></div>`;
+    $("#mw-check",box).addEventListener("click", ()=>{
+      const val = $("#mw-input",box).value.trim().toLowerCase();
+      const fb = $("#mw-fb",box);
+      if(val===cur.a){ fb.innerHTML=`<div class="feedback-banner ok">Correct! ✅</div>`; score++; }
+      else fb.innerHTML=`<div class="feedback-banner no">The answer was “${cur.a}”.</div>`;
+      setTimeout(()=>{ i++; render(); }, 1000);
+    });
+  }
+  render();
+  return box;
+};
+
+// --- Quiz challenge: fast mixed quiz ---
+GAME_RENDERERS.quizchallenge = function(onWin){
+  const bank = [
+    {q:"I ___ Kevin.", options:["am","is","are"], correct:0},
+    {q:"My hobby ___ coding.", options:["am","is","are"], correct:1},
+    {q:"I live ___ Jakarta.", options:["at","on","in"], correct:2},
+    {q:"I like music ___ it makes me happy.", options:["because","so","but"], correct:0},
+    {q:"My favorite animal ___ a dolphin.", options:["am","are","is"], correct:2},
+  ];
+  let i=0, score=0;
+  const box = el("div","card");
+  function render(){
+    if(i>=bank.length){
+      box.innerHTML = `<h3>🏁 Quiz Challenge complete!</h3><p>Score: ${score}/${bank.length}</p>`;
+      addStars(score); onWin(); return;
+    }
+    const q = bank[i];
+    box.innerHTML = `<h3>🏁 Quiz Challenge (${i+1}/${bank.length})</h3><p>${q.q}</p>`;
+    q.options.forEach((opt,idx)=>{
+      const b = el("button","quiz-option", opt);
+      b.addEventListener("click", ()=>{
+        $all(".quiz-option",box).forEach(x=>x.disabled=true);
+        if(idx===q.correct){ b.classList.add("correct"); score++; }
+        else { b.classList.add("wrong"); $all(".quiz-option",box)[q.correct].classList.add("correct"); }
+        setTimeout(()=>{ i++; render(); }, 800);
+      });
+      box.appendChild(b);
+    });
+  }
+  render();
+  return box;
+};
+
+/* ============================================================
+   SECTION: MAIN PROJECT — Self Introduction Presentation
+   ============================================================ */
+RENDERERS.project = function(){
+  const p = STATE.profile;
+  const wrap = el("div");
+  const lines = [
+    "Hello everyone.",
+    `My name is ${p.name||"___"}.`,
+    `My nickname is ${p.nickname||"___"}.`,
+    `I am ${p.age||"___"} years old.`,
+    `I live in ${p.city||"___"}.`,
+    `I study at ${p.school||"___"} School.`,
+    "I am in Grade 4.",
+    "I am friendly and hardworking.",
+    `My hobby is ${p.hobby||"___"}.`,
+    `I like ${p.hobby||"this"} because ${p.hobbyReason||"it makes me happy"}.`,
+    `My favorite subject is ${p.subject||"___"} because ${p.subjectReason||"I enjoy it"}.`,
+    `My favorite food is ${p.food||"___"}.`,
+    `My favorite animal is ${p.animal||"___"}.`,
+    `In the future, I want to be ${p.dream||"___"} because ${p.dreamReason||"I want to help people"}.`,
+    "Thank you for listening.",
+  ];
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Main Project</span>
+      <h2>My Self-Introduction Presentation 🎤</h2>
+      <p class="section-sub">Practice sentence-by-sentence, then perform your full presentation!</p>
+    </div>
+    ${(!p.name) ? `<div class="feedback-banner no">Visit "My Profile" first to fill in your details for a personalised script!</div>` : ""}
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Customize your reasons</h3>
+        <label>Why do you like your hobby?<input type="text" id="proj-hobby-reason" value="${p.hobbyReason}" placeholder="it makes me happy" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;margin-top:4px;"></label>
+        <label style="display:block;margin-top:10px;">Why is it your favourite subject?<input type="text" id="proj-subject-reason" value="${p.subjectReason}" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;margin-top:4px;"></label>
+        <label style="display:block;margin-top:10px;">Why that dream job?<input type="text" id="proj-dream-reason" value="${p.dreamReason}" style="width:100%;padding:8px;border-radius:10px;border:2px solid #ECE7FB;margin-top:4px;"></label>
+        <div class="btn-row"><button class="btn sm" id="proj-save">Update script ✅</button></div>
+
+        <h4 style="margin-top:18px;">Speaking checklist</h4>
+        <div id="proj-checklist"></div>
+      </div>
+      <div class="card">
+        <h3>Teleprompter</h3>
+        <div class="teleprompter" id="teleprompter"></div>
+        <div class="btn-row">
+          <button class="btn sky sm" id="proj-prev">◀ Prev line</button>
+          <button class="btn sky sm" id="proj-hear-line">🔊 Hear line</button>
+          <button class="btn sky sm" id="proj-next">Next line ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px;">
+      <h3>Perform your presentation</h3>
+      <div class="timer-display" id="proj-timer">01:15</div>
+      <div class="confidence-row"><span>😟</span><input type="range" min="1" max="5" value="3" id="proj-confidence"><span>😄</span></div>
+      <div class="btn-row">
+        <button class="btn" id="proj-start">Start timer &amp; perform 🎬</button>
+        <button class="btn ghost" id="proj-replay">🔁 Replay whole script</button>
+        <button class="btn ghost" id="proj-tryagain">Try again</button>
+      </div>
+      <div id="proj-result"></div>
+    </div>
+  `;
+  $("#proj-save", wrap)?.addEventListener("click", ()=>{
+    p.hobbyReason = $("#proj-hobby-reason",wrap).value.trim();
+    p.subjectReason = $("#proj-subject-reason",wrap).value.trim();
+    p.dreamReason = $("#proj-dream-reason",wrap).value.trim();
+    navigate("project");
+  });
+
+  const checklist = ["I said my name clearly","I told my age","I told where I live","I explained my hobby with 'because'","I said thank you at the end"];
+  const cl = $("#proj-checklist", wrap);
+  checklist.forEach((c,i)=>{
+    const row = el("label","checklist-item", `<input type="checkbox" id="cl-${i}"> ${c}`);
+    cl.appendChild(row);
+  });
+
+  let lineIdx = 0;
+  const tele = $("#teleprompter", wrap);
+  function renderTele(){
+    tele.innerHTML = lines.map((l,i)=>`<div class="tele-line ${i===lineIdx?'active':i<lineIdx?'done':''}">${l}</div>`).join("");
+  }
+  renderTele();
+  $("#proj-prev",wrap).addEventListener("click", ()=>{ lineIdx=Math.max(0,lineIdx-1); renderTele(); });
+  $("#proj-next",wrap).addEventListener("click", ()=>{ lineIdx=Math.min(lines.length-1,lineIdx+1); renderTele(); });
+  $("#proj-hear-line",wrap).addEventListener("click", ()=> speak(lines[lineIdx]));
+  $("#proj-replay",wrap).addEventListener("click", ()=> speak(lines.join(" ")) );
+
+  // timer
+  let timerId=null, secondsLeft=75;
+  const timerDisp = $("#proj-timer",wrap);
+  function fmt(s){ const m=Math.floor(s/60), r=s%60; return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0"); }
+  $("#proj-start",wrap).addEventListener("click", ()=>{
+    clearInterval(timerId); secondsLeft=75; timerDisp.textContent=fmt(secondsLeft);
+    timerId = setInterval(()=>{
+      secondsLeft--; timerDisp.textContent=fmt(Math.max(0,secondsLeft));
+      if(secondsLeft<=0){
+        clearInterval(timerId);
+        finishPresentation();
+      }
+    },1000);
+    lumiSay("You've got this! Speak clearly and smile!");
+  });
+  $("#proj-tryagain",wrap).addEventListener("click", ()=>{
+    clearInterval(timerId); secondsLeft=75; timerDisp.textContent=fmt(secondsLeft);
+    $("#proj-result",wrap).innerHTML="";
+    $all("input[type=checkbox]",wrap).forEach(c=>c.checked=false);
+  });
+  function finishPresentation(){
+    const checks = $all("input[type=checkbox]",wrap).filter(c=>c.checked).length;
+    $("#proj-result",wrap).innerHTML = `<div class="feedback-banner ok">🎉 Wonderful presentation, ${p.name||"star"}! Checklist: ${checks}/${checklist.length}. 👏👏👏</div>`;
+    addStars(10); addCoins(15); markSectionProgress("project"); earnBadge("project");
+    confettiBurst(140);
+  }
+  return wrap;
+};
+
+/* ============================================================
+   SECTION: FINAL REVIEW + CERTIFICATE
+   ============================================================ */
+const REVIEW_BANK = [
+  {type:"vocab", q:"Which word means 'makes people laugh'?", options:["honest","funny","polite"], correct:1},
+  {type:"grammar", q:"Choose the correct sentence:", options:["I am nine year old.","I am nine years old.","I nine years old."], correct:1},
+  {type:"listening", q:"In the listening story, what is Kevin's hobby?", options:["Singing","Drawing","Cooking"], correct:1},
+  {type:"grammar", q:"Complete: My favorite ___ is a dolphin.", options:["animal","food","subject"], correct:0},
+  {type:"vocab", q:"Which word matches 🏸 ?", options:["playing badminton","playing football","cycling"], correct:0},
+  {type:"speaking", q:"Practice saying: \"I want to be a pilot because I love flying.\" Ready?", options:["I said it confidently!","I need more practice."], correct:0},
+  {type:"interview", q:"Answer aloud: What is your favorite subject and why?", options:["I answered in a full sentence!","I'll try next time."], correct:0},
+  {type:"arrangement", q:"Put in order: 'in / I / Bandung / live'", options:["I live in Bandung.","In live I Bandung.","Bandung live I in."], correct:0},
+  {type:"picture", q:"Describe this picture: 🎨✏️ — which sentence fits best?", options:["My hobby is drawing.","My hobby is cooking.","My hobby is singing."], correct:0},
+  {type:"oral", q:"Mini oral test: Say your full self-introduction from memory. Did you include your name, age, city, hobby, and dream job?", options:["Yes, I included everything!","I missed a few parts."], correct:0},
+];
+RENDERERS.review = function(){
+  const wrap = el("div");
+  wrap.innerHTML = `
+    <div class="section-head">
+      <span class="eyebrow">Final Review</span>
+      <h2>Show What You Know 🏆</h2>
+      <p class="section-sub">A mix of vocabulary, grammar, listening, and speaking to finish strong.</p>
+    </div>
+    <div class="card" id="review-mount"></div>
+  `;
+  const mount = $("#review-mount", wrap);
+  let i=0, score=0;
+  function render(){
+    if(i>=REVIEW_BANK.length){
+      markSectionProgress("review"); earnBadge("review");
+      const pct = Math.round(score/REVIEW_BANK.length*100);
+      mount.innerHTML = `<h3>Review complete! 🎉</h3><p>Score: ${score}/${REVIEW_BANK.length} (${pct}%)</p>
+        <div class="btn-row"><button class="btn" id="show-cert">See my certificate 📜</button></div>`;
+      addStars(score*2); addCoins(20);
+      $("#show-cert",wrap).addEventListener("click", showCertificate);
+      confettiBurst(160);
+      return;
+    }
+    const item = REVIEW_BANK[i];
+    mount.innerHTML = `<p class="eyebrow">${item.type}</p><h4 style="margin:6px 0 12px;">Question ${i+1} of ${REVIEW_BANK.length}</h4><p>${item.q}</p>`;
+    item.options.forEach((opt,idx)=>{
+      const b = el("button","quiz-option", opt);
+      b.addEventListener("click", ()=>{
+        $all(".quiz-option",mount).forEach(x=>x.disabled=true);
+        if(idx===item.correct){ b.classList.add("correct"); score++; }
+        else { b.classList.add("wrong"); $all(".quiz-option",mount)[item.correct].classList.add("correct"); }
+        setTimeout(()=>{ i++; render(); }, 800);
+      });
+      mount.appendChild(b);
+    });
+  }
+  function showCertificate(){
+    const p = STATE.profile;
+    mount.innerHTML = `
+      <div class="certificate">
+        <div style="font-size:2.4rem;">🏅</div>
+        <h2>Certificate of Completion</h2>
+        <p class="section-sub">LittleLume English · All About Me</p>
+        <div class="cert-name">${p.name || "Little Star"}</div>
+        <p>has successfully completed the "All About Me" speaking journey<br>and can confidently introduce themselves in English!</p>
+        <div style="margin-top:16px; display:flex; justify-content:center; gap:24px; flex-wrap:wrap;">
+          <span>⭐ ${STATE.stars} stars</span><span>🪙 ${STATE.coins} coins</span><span>🎖️ Level ${STATE.level}</span>
+        </div>
+        <div style="margin-top:14px;">${kidSVG({...avatarSkinProps(), mood:"cheer", size:100})}</div>
+      </div>`;
+    confettiBurst(200);
+  }
+  render();
+  return wrap;
+};
+
+/* ============================================================
+   INIT
+   ============================================================ */
+updateTopbar();
+navigate("home");
+setTimeout(()=> lumiSay("Hi! I'm Lumi ✨ Let's learn All About Me together!"), 800);
+</script>
+</body>
+</html>

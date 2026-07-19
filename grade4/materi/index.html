@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Grade 1 – All Lessons</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:#3A86FF;
+  --purple:#7C5CBF;
+  --pink:#FF4D8D;
+  --yellow:#FFD93D;
+  --dark:#1A1A2E;
+  --bg:#F0F6FF;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  min-height:100vh;
+}
+
+/* ── HEADER ── */
+header{
+  position:relative;
+  background:linear-gradient(135deg,#74b9ff 0%,#a29bfe 55%,#fd79a8 100%);
+  color:white;
+  text-align:center;
+  padding:52px 20px 80px;
+  overflow:hidden;
+}
+header::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 55% 60% at 25% 40%, rgba(255,255,255,0.2) 0%, transparent 70%);
+  pointer-events:none;
+}
+header::after{
+  content:'';
+  position:absolute;
+  bottom:-1px; left:0;
+  width:100%; height:55px;
+  background:#F0F6FF;
+  clip-path:ellipse(55% 100% at 50% 100%);
+}
+header h1{
+  font-family:'Fredoka',sans-serif;
+  font-size:2.6rem;
+  text-shadow:0 2px 14px rgba(80,40,120,0.22);
+  position:relative;
+}
+
+/* ── CONTAINER ── */
+.container{
+  max-width:960px;
+  margin:auto;
+  padding:42px 20px 60px;
+}
+
+/* ── BACK BUTTON ── */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  text-decoration:none;
+  background:white;
+  color:var(--blue);
+  font-weight:800;
+  font-size:.95rem;
+  padding:10px 20px;
+  border-radius:50px;
+  box-shadow:0 4px 14px rgba(58,134,255,0.18);
+  margin-bottom:36px;
+  transition:.2s;
+}
+.back-btn:hover{
+  background:var(--blue);
+  color:white;
+  transform:translateX(-3px);
+}
+
+/* ── LESSON GRID ── */
+.lesson-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(270px,1fr));
+  gap:22px;
+}
+
+/* ── LESSON CARD ── */
+.lesson-card{
+  background:white;
+  border-radius:22px;
+  padding:22px 22px 20px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+  transition:.28s cubic-bezier(.34,1.56,.64,1);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  border-top:5px solid transparent;
+}
+.lesson-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 40px rgba(0,0,0,0.13);
+}
+
+.lesson-card:nth-child(1){ border-top-color:#74b9ff; background:linear-gradient(180deg,#dbeeff 0%,white 90px); }
+.lesson-card:nth-child(2){ border-top-color:#00b894; background:linear-gradient(180deg,#d4f5e9 0%,white 90px); }
+.lesson-card:nth-child(3){ border-top-color:#e17055; background:linear-gradient(180deg,#ffe5d9 0%,white 90px); }
+.lesson-card:nth-child(4){ border-top-color:#6c5ce7; background:linear-gradient(180deg,#e8e2ff 0%,white 90px); }
+.lesson-card:nth-child(5){ border-top-color:#fdcb6e; background:linear-gradient(180deg,#fff4cc 0%,white 90px); }
+.lesson-card:nth-child(6){ border-top-color:#fd79a8; background:linear-gradient(180deg,#ffd6e8 0%,white 90px); }
+.lesson-card:nth-child(7){ border-top-color:#a29bfe; background:linear-gradient(180deg,#dcc9ff 0%,white 90px); }
+.lesson-card:nth-child(8){ border-top-color:#00cec9; background:linear-gradient(180deg,#d4f8f6 0%,white 90px); }
+.lesson-card:nth-child(9){ border-top-color:#ff7675; background:linear-gradient(180deg,#ffe3e1 0%,white 90px); }
+
+.lesson-card a{
+  text-decoration:none;
+  font-size:1.12rem;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  line-height:1.3;
+  transition:.2s;
+}
+.lesson-card:nth-child(1) a{ color:#1a5a9a; }
+.lesson-card:nth-child(2) a{ color:#0d6e4a; }
+.lesson-card:nth-child(3) a{ color:#8a3210; }
+.lesson-card:nth-child(4) a{ color:#3a1a8a; }
+.lesson-card:nth-child(5) a{ color:#7a5500; }
+.lesson-card:nth-child(6) a{ color:#7a0035; }
+.lesson-card:nth-child(7) a{ color:#3d1a6d; }
+.lesson-card:nth-child(8) a{ color:#006b62; }
+.lesson-card:nth-child(9) a{ color:#8a2500; }
+
+.lesson-card a:hover{ opacity:.75; }
+
+.lesson-card a::after{
+  content:'→';
+  margin-left:auto;
+  font-size:1rem;
+  opacity:.5;
+  transition:.2s;
+}
+.lesson-card:hover a::after{
+  opacity:1;
+  transform:translateX(3px);
+}
+
+.lesson-card p{
+  margin-top:10px;
+  color:#666;
+  font-size:.93rem;
+  line-height:1.55;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);
+  color:rgba(255,255,255,0.65);
+  text-align:center;
+  padding:24px;
+  font-size:.9rem;
+  margin-top:0;
+}
+
+@media(max-width:600px){
+  header h1{ font-size:2rem; }
+  .lesson-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 Grade 1 – All Lessons</h1>
+</header>
+<div class="container">
+<a class="back-btn" href="../../index.html">⬅ Back to Homepage</a>
+<div class="lesson-grid">
+<div class="lesson-card">
+<a href="classroom.html">
+        🏫 Classroom
+      </a>
+<p>Learn vocabulary and expressions related to classroom activities and objects.</p>
+</div>
+<div class="lesson-card">
+<a href="daily-life.html">
+        🌅 Daily Life
+      </a>
+<p>Practice vocabulary about daily routines and activities.</p>
+</div>
+<div class="lesson-card">
+<a href="greetings.html">
+        👋 Greetings
+      </a>
+<p>Master basic greetings and common polite expressions.</p>
+</div>
+<div class="lesson-card">
+<a href="listening.html">
+        🎧 Listening
+      </a>
+<p>Develop listening skills with engaging audio activities.</p>
+</div>
+<div class="lesson-card">
+<a href="nouns.html">
+        📗 Nouns
+      </a>
+<p>Learn about nouns and practice identifying people, places, and things.</p>
+</div>
+<div class="lesson-card">
+<a href="number.html">
+        🔢 Numbers
+      </a>
+<p>Master counting and number vocabulary from 0 to 100.</p>
+</div>
+<div class="lesson-card">
+<a href="reading.html">
+        📖 Reading
+      </a>
+<p>Improve reading comprehension with simple stories and texts.</p>
+</div>
+<div class="lesson-card">
+<a href="self-introduction-1.html">
+        🙋 Self Introduction 1
+      </a>
+<p>Learn how to introduce yourself with basic personal information.</p>
+</div>
+<div class="lesson-card">
+<a href="self-introduction-2.html">
+        🙋 Self Introduction 2
+      </a>
+<p>Practice more advanced self-introduction and personal details.</p>
+</div>
+<div class="lesson-card"><a href="all-about-me.html">🙋 All About Me</a><p>Learn to talk about yourself, your name, age, favorites, and personal information in English.</p></div></div>
+</div>
+<footer>
+<strong>BunRey English Course</strong> • Grade 1 – All Lessons
+</footer>
+</body>
+</html>
