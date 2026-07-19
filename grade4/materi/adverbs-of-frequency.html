@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English · Adverbs of Frequency</title>
+<style>
+  :root{
+    --sun:#FFD873;
+    --day-sky:#7EC8E3;
+    --dusk:#B79FDB;
+    --night:#3A3D6B;
+    --coral:#FF9B85;
+    --leaf:#8FD9A8;
+    --cream:#FFFBF2;
+    --ink:#2E2A3D;
+    --card:#ffffff;
+    --shadow: 0 10px 25px rgba(46,42,61,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,"Segoe UI",Verdana,sans-serif;
+    background:linear-gradient(180deg,#FFF6E0 0%, var(--cream) 40%, #EAF6FF 100%);
+    color:var(--ink);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-weight:800; letter-spacing:0.3px;}
+  .app{max-width:900px;margin:0 auto;padding:0 0 60px;}
+
+  /* ---- top bar / sky progress ---- */
+  #topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,251,242,0.92);
+    backdrop-filter:blur(6px);
+    padding:10px 16px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+  #topbar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+  #sky-track{
+    flex:1;height:16px;border-radius:20px;position:relative;overflow:hidden;
+    background:linear-gradient(90deg, var(--sun), var(--day-sky) 35%, var(--dusk) 70%, var(--night));
+  }
+  #sky-fill{
+    position:absolute; top:0; right:0; height:100%; width:100%;
+    background:rgba(255,251,242,0.85);
+    border-left:3px solid #fff;
+    transition:width .5s ease;
+  }
+  #sky-sun{
+    position:absolute; top:50%; transform:translate(-50%,-50%); font-size:20px;
+    transition:left .5s ease; filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
+  }
+  #score-chip{
+    background:var(--leaf); color:#134d29; font-weight:800; font-size:14px;
+    padding:6px 12px; border-radius:20px; white-space:nowrap;
+  }
+  #menu-btn{
+    background:var(--coral); color:#fff; border:none; border-radius:20px;
+    padding:8px 14px; font-weight:800; font-size:14px; cursor:pointer;
+  }
+
+  /* ---- section menu overlay ---- */
+  #menu-overlay{
+    display:none; position:fixed; inset:0; background:rgba(46,42,61,0.55); z-index:100;
+    align-items:center; justify-content:center; padding:20px;
+  }
+  #menu-overlay.open{display:flex;}
+  #menu-panel{
+    background:var(--card); border-radius:24px; padding:20px; max-width:720px; width:100%;
+    max-height:80vh; overflow-y:auto; box-shadow:var(--shadow);
+  }
+  #menu-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px;}
+  .menu-item{
+    background:#F3F0FF; border:2px solid transparent; border-radius:14px; padding:10px;
+    cursor:pointer; font-weight:700; font-size:13px; text-align:left;
+  }
+  .menu-item:hover{border-color:var(--dusk);}
+  .menu-item.done{background:#E4F7EA;}
+
+  section.page{display:none; padding:26px 18px 10px; animation:fadeUp .5s ease;}
+  section.page.active{display:block;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+  .card{
+    background:var(--card); border-radius:26px; padding:22px; box-shadow:var(--shadow);
+    margin-bottom:18px;
+  }
+  .eyebrow{
+    display:inline-block; background:var(--sun); color:#5c4400; font-weight:800;
+    font-size:12px; padding:4px 12px; border-radius:20px; margin-bottom:10px;
+  }
+  .big-title{font-size:clamp(28px,6vw,44px); margin:6px 0;}
+  .subtitle{font-size:18px; color:#5c5675; margin-bottom:16px;}
+
+  .btn{
+    display:inline-block; border:none; border-radius:18px; padding:14px 26px;
+    font-size:18px; font-weight:800; cursor:pointer; color:#fff;
+    background:var(--coral); box-shadow:0 6px 0 #d97a63; transition:transform .1s;
+  }
+  .btn:active{transform:translateY(4px); box-shadow:0 2px 0 #d97a63;}
+  .btn.secondary{background:var(--day-sky); box-shadow:0 6px 0 #4d9bbd;}
+  .btn.green{background:var(--leaf); box-shadow:0 6px 0 #5cb37e;}
+  .btn.small{padding:8px 16px; font-size:14px; box-shadow:0 4px 0 #d97a63; border-radius:12px;}
+  .btn:disabled{opacity:.5; cursor:not-allowed;}
+  .nav-row{display:flex; justify-content:space-between; gap:10px; margin-top:20px;}
+
+  .emoji-row{font-size:40px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin:14px 0;}
+  .emoji-row span{cursor:pointer; transition:transform .15s;}
+  .emoji-row span:hover{transform:scale(1.25) rotate(-6deg);}
+
+  .grid{display:grid; gap:14px;}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr);}
+  .grid.cols-4{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+  @media (max-width:560px){.grid.cols-2{grid-template-columns:1fr;}}
+
+  .vocab-card{
+    border-radius:20px; padding:16px; text-align:center; box-shadow:var(--shadow);
+    background:linear-gradient(160deg,#fff,#F6F3FF);
+  }
+  .vocab-card .emoji{font-size:44px;}
+  .vocab-card .word{font-size:20px; font-weight:800; margin:4px 0;}
+  .vocab-card .stars{color:var(--sun); text-shadow:0 1px 1px rgba(0,0,0,.15);}
+  .vocab-card .percent{font-weight:800; color:var(--coral);}
+  .vocab-card .example{font-style:italic; margin-top:6px; font-size:14px;}
+  .vocab-card .pron{font-size:12px; color:#8a84a3;}
+
+  /* frequency scale */
+  #freq-scale-bar{
+    height:70px; border-radius:20px; position:relative; margin:20px 0 40px;
+    background:linear-gradient(90deg, var(--sun), var(--day-sky) 30%, var(--dusk) 65%, var(--night));
+  }
+  .scale-tick{position:absolute; top:100%; transform:translateX(-50%); text-align:center; font-size:12px; font-weight:700; width:90px;}
+  #freq-pointer{
+    position:absolute; top:-14px; transform:translateX(-50%); font-size:36px; transition:left .3s ease;
+    filter:drop-shadow(0 3px 3px rgba(0,0,0,.3));
+  }
+  #freq-slider{width:100%; margin-top:6px;}
+  #freq-readout{text-align:center; font-size:20px; font-weight:800; margin-top:8px;}
+
+  .pattern-box{
+    display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:14px 0; font-weight:800; font-size:18px;
+  }
+  .pattern-box span{padding:8px 14px; border-radius:12px;}
+  .p-subj{background:#DDEBFF;} .p-adv{background:var(--sun);} .p-verb{background:var(--leaf);} .p-be{background:var(--coral); color:#fff;}
+
+  .example-line{
+    display:flex; align-items:center; gap:10px; padding:8px 12px; border-radius:14px; margin-bottom:8px;
+    background:#F9F7FF;
+  }
+  .example-line b{color:#7A4FCB;}
+
+  .mistake-box{display:flex; gap:16px; flex-wrap:wrap; margin:10px 0;}
+  .mistake-box .wrong{background:#FFE4E1; border-radius:14px; padding:10px 14px;}
+  .mistake-box .correct{background:#E4F7EA; border-radius:14px; padding:10px 14px;}
+
+  .speak-card{
+    background:linear-gradient(160deg,#FFF6E0,#fff); border-radius:20px; padding:18px; box-shadow:var(--shadow);
+  }
+  .speak-card q{font-size:18px; font-weight:700;}
+  .starters{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+  .starters span{background:var(--day-sky); color:#fff; padding:5px 12px; border-radius:14px; font-size:13px; font-weight:700;}
+
+  /* games */
+  .q-block{background:#F9F7FF; border-radius:18px; padding:16px; margin-bottom:14px;}
+  .q-block .q-title{font-weight:800; margin-bottom:8px; font-size:16px;}
+  .options{display:flex; gap:10px; flex-wrap:wrap;}
+  .opt-btn{
+    background:#fff; border:2px solid #ddd6f5; border-radius:14px; padding:10px 16px;
+    font-weight:700; cursor:pointer; font-size:15px;
+  }
+  .opt-btn.correct{background:var(--leaf); border-color:#5cb37e; color:#134d29;}
+  .opt-btn.wrong{background:#FFB4A8; border-color:#e0725f; color:#7a2314;}
+  .opt-btn[disabled]{cursor:default;}
+  .feedback{margin-top:8px; font-weight:700; min-height:20px;}
+
+  .scramble-word{
+    display:inline-block; background:var(--sun); border-radius:10px; padding:8px 12px; margin:4px;
+    font-weight:800; cursor:pointer; user-select:none;
+  }
+  .scramble-word.used{opacity:.35; cursor:default;}
+  .answer-line{min-height:46px; border:3px dashed #ccc; border-radius:14px; padding:10px; margin:10px 0; font-weight:700; font-size:17px;}
+
+  .match-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .match-col .match-item{
+    background:#fff; border:2px solid #ddd6f5; border-radius:14px; padding:10px 14px; margin-bottom:8px;
+    cursor:pointer; font-weight:700; text-align:center;
+  }
+  .match-item.selected{border-color:var(--coral); background:#FFF0EC;}
+  .match-item.matched{background:var(--leaf); border-color:#5cb37e; color:#134d29; cursor:default;}
+  @media(max-width:560px){.match-grid{grid-template-columns:1fr;}}
+
+  .wheel-wrap{display:flex; flex-direction:column; align-items:center; gap:16px;}
+  #wheel{
+    width:240px; height:240px; border-radius:50%; position:relative;
+    background:conic-gradient(var(--sun) 0 12.5%, var(--coral) 0 25%, var(--day-sky) 0 37.5%, var(--leaf) 0 50%, var(--dusk) 0 62.5%, var(--sun) 0 75%, var(--coral) 0 87.5%, var(--day-sky) 0 100%);
+    transition:transform 3.2s cubic-bezier(.17,.67,.32,1.02);
+    box-shadow:var(--shadow);
+    border:6px solid #fff;
+  }
+  #wheel-pointer{font-size:30px;}
+  #wheel-result{font-size:19px; font-weight:800; min-height:30px; text-align:center;}
+
+  .story-box{line-height:1.7; font-size:17px;}
+  .story-box b{color:#7A4FCB;}
+
+  .fill-line{display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;}
+  .fill-line input[type=text]{
+    border:2px solid #ddd6f5; border-radius:10px; padding:8px 10px; font-size:15px; flex:1; min-width:160px;
+  }
+  textarea{
+    width:100%; min-height:140px; border:2px solid #ddd6f5; border-radius:14px; padding:12px; font-size:15px; font-family:inherit;
+  }
+
+  table.interview{width:100%; border-collapse:collapse; margin-top:10px;}
+  table.interview th, table.interview td{border:2px solid #ddd6f5; padding:8px; text-align:left;}
+  table.interview th{background:#F3F0FF;}
+  table.interview input{width:100%; border:none; font-size:14px; font-family:inherit;}
+
+  .flip-card{perspective:1000px; height:170px; cursor:pointer;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px; box-shadow:var(--shadow);}
+  .flip-front{background:linear-gradient(160deg,#DDEBFF,#fff); font-weight:800; font-size:20px;}
+  .flip-back{background:linear-gradient(160deg,var(--sun),#fff); transform:rotateY(180deg); font-size:13px; text-align:center;}
+
+  .badge-box{text-align:center;}
+  .badge-medal{font-size:90px;}
+  .badge-title{font-size:24px; font-weight:800; margin-top:6px;}
+
+  #certificate{
+    border:8px solid var(--sun); border-radius:24px; padding:34px; text-align:center;
+    background:linear-gradient(160deg,#fff,#FFFDF5);
+  }
+  #certificate .brand{color:var(--coral); font-weight:800; letter-spacing:2px;}
+  #certificate .cert-title{font-size:30px; margin:10px 0;}
+  #certificate input{
+    border:none; border-bottom:2px dashed #ccc; text-align:center; font-size:22px; font-weight:800;
+    font-family:inherit; padding:4px; width:80%;
+  }
+
+  .confetti-piece{position:fixed; top:-20px; width:10px; height:16px; z-index:200; pointer-events:none; border-radius:2px;}
+
+  @media print{
+    #topbar, .no-print, .nav-row{display:none !important;}
+    section.page{display:none !important;}
+    section.page.print-target{display:block !important;}
+  }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div id="topbar-inner">
+    <button id="menu-btn" class="no-print" onclick="openMenu()">☰ Map</button>
+    <div id="sky-track"><div id="sky-fill"></div><div id="sky-sun">🌞</div></div>
+    <div id="score-chip">⭐ 0</div>
+  </div>
+</div>
+
+<div id="menu-overlay" class="no-print">
+  <div id="menu-panel">
+    <h2 style="margin-top:0;">🗺️ Lesson Map</h2>
+    <div id="menu-grid"></div>
+    <div style="text-align:right;margin-top:14px;"><button class="btn secondary small" onclick="closeMenu()">Close</button></div>
+  </div>
+</div>
+
+<div class="app">
+
+<!-- 1. WELCOME -->
+<section class="page active" id="s0" data-title="Welcome">
+  <div class="card" style="text-align:center;">
+    <span class="eyebrow">LittleLume English · Grade 4</span>
+    <h1 class="big-title">🌤️ Adverbs of Frequency 🌙</h1>
+    <p class="subtitle">How often do you do something?</p>
+    <div class="emoji-row">
+      <span>🛏️</span><span>🪥</span><span>📚</span><span>⚽</span><span>📺</span><span>🍎</span>
+    </div>
+    <p>Get ready to learn words like <b>always</b>, <b>sometimes</b>, and <b>never</b> — and talk all about YOUR daily routine!</p>
+    <button class="btn" onclick="goTo(1)">🚀 Start Lesson</button>
+  </div>
+</section>
+
+<!-- 2. WARM-UP -->
+<section class="page" id="s1" data-title="Warm-Up">
+  <div class="card">
+    <span class="eyebrow">Warm-Up</span>
+    <h2>What do you do every day? 🌞</h2>
+    <p>Tap the pictures of things <b>you</b> do every day!</p>
+    <div class="emoji-row" id="warmup-row"></div>
+    <p id="warmup-count" style="text-align:center; font-weight:800;"></p>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(0)">← Back</button><button class="btn" onclick="goTo(2)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 3. VOCABULARY -->
+<section class="page" id="s2" data-title="Vocabulary">
+  <div class="card">
+    <span class="eyebrow">Vocabulary</span>
+    <h2>8 Frequency Words 📖</h2>
+    <div class="grid cols-4" id="vocab-grid"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(1)">← Back</button><button class="btn" onclick="goTo(3)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 4. FREQUENCY SCALE -->
+<section class="page" id="s3" data-title="Frequency Scale">
+  <div class="card">
+    <span class="eyebrow">Frequency Scale</span>
+    <h2>From 100% to 0% ☀️→🌙</h2>
+    <div id="freq-scale-bar">
+      <div id="freq-pointer">☀️</div>
+      <div class="scale-tick" style="left:2%;">100%<br>Always</div>
+      <div class="scale-tick" style="left:16%;">Usually</div>
+      <div class="scale-tick" style="left:30%;">Often</div>
+      <div class="scale-tick" style="left:44%;">Sometimes</div>
+      <div class="scale-tick" style="left:58%;">Occasionally</div>
+      <div class="scale-tick" style="left:72%;">Rarely</div>
+      <div class="scale-tick" style="left:86%;">Hardly ever</div>
+      <div class="scale-tick" style="left:98%;">0%<br>Never</div>
+    </div>
+    <input type="range" id="freq-slider" min="0" max="100" value="100" oninput="moveFreqSlider(this.value)">
+    <p id="freq-readout"></p>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(2)">← Back</button><button class="btn" onclick="goTo(4)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 5. GRAMMAR LESSON -->
+<section class="page" id="s4" data-title="Grammar Lesson">
+  <div class="card">
+    <span class="eyebrow">Grammar Lesson</span>
+    <h2>Where does the adverb go? 🧩</h2>
+    <p>Adverbs of frequency tell us <b>how often</b> something happens.</p>
+    <h3>With action verbs:</h3>
+    <div class="pattern-box"><span class="p-subj">Subject</span> + <span class="p-adv">Adverb</span> + <span class="p-verb">Verb</span></div>
+    <div class="example-line">I <b>always</b> eat breakfast.</div>
+    <div class="example-line">She <b>usually</b> walks to school.</div>
+    <div class="example-line">They <b>often</b> play football.</div>
+    <div class="example-line">We <b>sometimes</b> watch movies.</div>
+    <h3>With the verb "be":</h3>
+    <div class="pattern-box"><span class="p-subj">Subject</span> + <span class="p-be">be</span> + <span class="p-adv">Adverb</span></div>
+    <div class="example-line">I am <b>always</b> happy.</div>
+    <div class="example-line">She is <b>usually</b> busy.</div>
+    <div class="example-line">They are <b>often</b> late.</div>
+    <div class="example-line">He is <b>never</b> angry.</div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(3)">← Back</button><button class="btn" onclick="goTo(5)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 6. GRAMMAR TIPS -->
+<section class="page" id="s5" data-title="Grammar Tips">
+  <div class="card">
+    <span class="eyebrow">Grammar Tips</span>
+    <h2>Don't make these mistakes! ⚠️</h2>
+    <p>✔ Adverbs come <b>before</b> action verbs.<br>✔ Adverbs come <b>after</b> "be" verbs.</p>
+    <div class="mistake-box">
+      <div class="wrong">❌ I eat <u>always</u> breakfast.</div>
+      <div class="correct">✅ I <u>always</u> eat breakfast.</div>
+    </div>
+    <div class="mistake-box">
+      <div class="wrong">❌ She always <u>is</u> happy.</div>
+      <div class="correct">✅ She is <u>always</u> happy.</div>
+    </div>
+    <div class="mistake-box">
+      <div class="wrong">❌ He plays never chess.</div>
+      <div class="correct">✅ He <u>never</u> plays chess.</div>
+    </div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(4)">← Back</button><button class="btn" onclick="goTo(6)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 7. DAILY ROUTINE EXAMPLES -->
+<section class="page" id="s6" data-title="Routine Examples">
+  <div class="card">
+    <span class="eyebrow">Daily Routine Examples</span>
+    <h2>20 Example Sentences 📝</h2>
+    <div id="routine-list"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(5)">← Back</button><button class="btn" onclick="goTo(7)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 8. SPEAKING PRACTICE -->
+<section class="page" id="s7" data-title="Speaking Practice">
+  <div class="card">
+    <span class="eyebrow">Speaking Practice</span>
+    <h2>Talk about YOU! 🗣️</h2>
+    <p>Use a sentence starter to answer each question aloud.</p>
+    <div class="starters">
+      <span>I always...</span><span>I usually...</span><span>I often...</span>
+      <span>I sometimes...</span><span>I rarely...</span><span>I never...</span>
+    </div>
+    <div class="grid cols-2" id="speak-grid" style="margin-top:14px;"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(6)">← Back</button><button class="btn" onclick="goTo(8)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 9. GAME 1: MATCH PERCENTAGE -->
+<section class="page" id="s8" data-title="Game 1: Match %">
+  <div class="card">
+    <span class="eyebrow">Game 1</span>
+    <h2>Match the Word to the Percentage 🔗</h2>
+    <p>Tap a word, then tap its matching percentage.</p>
+    <div class="match-grid">
+      <div class="match-col" id="match-words"></div>
+      <div class="match-col" id="match-percents"></div>
+    </div>
+    <p id="match-status" style="font-weight:800; margin-top:10px;"></p>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(7)">← Back</button><button class="btn" onclick="goTo(9)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 10. GAME 2: CHOOSE CORRECT ADVERB -->
+<section class="page" id="s9" data-title="Game 2: Choose">
+  <div class="card">
+    <span class="eyebrow">Game 2</span>
+    <h2>Choose the Correct Adverb ✅</h2>
+    <div id="game2-block"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(8)">← Back</button><button class="btn" onclick="goTo(10)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 11. GAME 3: ARRANGE WORDS -->
+<section class="page" id="s10" data-title="Game 3: Arrange">
+  <div class="card">
+    <span class="eyebrow">Game 3</span>
+    <h2>Arrange the Words 🧷</h2>
+    <div id="game3-block"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(9)">← Back</button><button class="btn" onclick="goTo(11)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 12. GAME 4: FIND THE MISTAKE -->
+<section class="page" id="s11" data-title="Game 4: Fix It">
+  <div class="card">
+    <span class="eyebrow">Game 4</span>
+    <h2>Find the Mistake 🔍</h2>
+    <div id="game4-block"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(10)">← Back</button><button class="btn" onclick="goTo(12)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 13. GAME 5: SPEAKING SPINNER -->
+<section class="page" id="s12" data-title="Game 5: Spinner">
+  <div class="card wheel-wrap">
+    <span class="eyebrow">Game 5</span>
+    <h2>Speaking Spinner 🎡</h2>
+    <div id="wheel"></div>
+    <div id="wheel-pointer">🔻</div>
+    <button class="btn" onclick="spinWheel()">Spin!</button>
+    <p id="wheel-result"></p>
+    <div class="nav-row" style="width:100%;"><button class="btn secondary" onclick="goTo(11)">← Back</button><button class="btn" onclick="goTo(13)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 14. READING PRACTICE -->
+<section class="page" id="s13" data-title="Reading">
+  <div class="card">
+    <span class="eyebrow">Reading Practice</span>
+    <h2>Emma's Healthy Habits 📗</h2>
+    <div class="story-box" id="story-text"></div>
+  </div>
+  <div class="card">
+    <h3>Comprehension Questions</h3>
+    <div id="reading-quiz"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(12)">← Back</button><button class="btn" onclick="goTo(14)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 15. WRITING PRACTICE -->
+<section class="page" id="s14" data-title="Writing">
+  <div class="card">
+    <span class="eyebrow">Writing Practice</span>
+    <h2>Complete the Sentences ✍️</h2>
+    <div id="fill-block"></div>
+  </div>
+  <div class="card">
+    <h3>My Daily Routine (write at least 8 sentences)</h3>
+    <textarea id="my-routine" placeholder="I always...&#10;I usually...&#10;I often...&#10;I sometimes...&#10;I rarely...&#10;I never..."></textarea>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(13)">← Back</button><button class="btn" onclick="goTo(15)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 16. MINI CONVERSATION -->
+<section class="page" id="s15" data-title="Mini Conversations">
+  <div class="card">
+    <span class="eyebrow">Mini Conversations</span>
+    <h2>Practice with a Friend 💬</h2>
+    <div id="convo-block"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(14)">← Back</button><button class="btn" onclick="goTo(16)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 17. CHALLENGE ACTIVITY -->
+<section class="page" id="s16" data-title="Challenge">
+  <div class="card">
+    <span class="eyebrow">Challenge Activity</span>
+    <h2>Interview 3 Classmates 🎙️</h2>
+    <p>Ask a question, write your friend's name and their answer. Then press Print for your teacher.</p>
+    <table class="interview" id="interview-table">
+      <tr><th>Friend</th><th>Question</th><th>Answer</th></tr>
+    </table>
+    <div class="no-print" style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btn small secondary" onclick="addInterviewRow()">+ Add Row</button>
+      <button class="btn small green" onclick="printSection('s16')">🖨️ Print</button>
+    </div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(15)">← Back</button><button class="btn" onclick="goTo(17)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 18. QUIZ -->
+<section class="page" id="s17" data-title="Final Quiz">
+  <div class="card">
+    <span class="eyebrow">Final Quiz</span>
+    <h2>20 Mixed Questions 🎯</h2>
+    <p id="quiz-score-line" style="font-weight:800;"></p>
+    <div id="quiz-block"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(16)">← Back</button><button class="btn" onclick="goTo(18)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 19. VOCAB REVIEW -->
+<section class="page" id="s18" data-title="Vocab Review">
+  <div class="card">
+    <span class="eyebrow">Vocabulary Review</span>
+    <h2>Flip the Flashcards 🃏</h2>
+    <div class="grid cols-4" id="flip-grid"></div>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(17)">← Back</button><button class="btn" onclick="goTo(19)">Next →</button></div>
+  </div>
+</section>
+
+<!-- 20. SUMMARY -->
+<section class="page" id="s19" data-title="Summary">
+  <div class="card">
+    <span class="eyebrow">Summary</span>
+    <h2>What we learned 🌟</h2>
+    <ul style="font-size:16px; line-height:1.8;">
+      <li>Adverbs of frequency tell us <b>how often</b> something happens.</li>
+      <li>With action verbs, the adverb goes <b>before</b> the verb.</li>
+      <li>With the verb "be", the adverb goes <b>after</b> "be".</li>
+      <li>Order: <b>always → usually → often → sometimes → occasionally → rarely → hardly ever → never</b></li>
+    </ul>
+    <div class="nav-row"><button class="btn secondary" onclick="goTo(18)">← Back</button><button class="btn" onclick="goTo(20)">See my Badge →</button></div>
+  </div>
+</section>
+
+<!-- 21. ACHIEVEMENT BADGE -->
+<section class="page" id="s20" data-title="Badge">
+  <div class="card badge-box">
+    <span class="eyebrow">Achievement Badge</span>
+    <div id="badge-content"></div>
+    <div class="nav-row" style="justify-content:center;"><button class="btn" onclick="goTo(21)">Get my Certificate →</button></div>
+  </div>
+</section>
+
+<!-- 22. CERTIFICATE -->
+<section class="page" id="s21" data-title="Certificate">
+  <div class="card">
+    <div id="certificate">
+      <div class="brand">🌤️ LITTLELUME ENGLISH</div>
+      <div class="cert-title">Certificate of Achievement</div>
+      <p>Awarded to</p>
+      <input type="text" id="cert-name" placeholder="Type your name here">
+      <p style="margin-top:18px;">For successfully completing</p>
+      <h2>Adverbs of Frequency</h2>
+      <p id="cert-score" style="font-weight:800;"></p>
+      <div style="display:flex; justify-content:space-between; margin-top:30px; font-size:14px;">
+        <div>Date: <span id="cert-date"></span></div>
+        <div>Teacher: ____________________</div>
+      </div>
+    </div>
+    <div class="no-print" style="text-align:center; margin-top:16px;">
+      <button class="btn green" onclick="printSection('s21')">🖨️ Print Certificate</button>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+/* ================= AUDIO ================= */
+let audioCtx = null;
+function beep(type){
+  try{
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.type = 'sine';
+    if(type==='correct'){ o.frequency.setValueAtTime(523,audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(1046,audioCtx.currentTime+0.18); }
+    else if(type==='wrong'){ o.frequency.setValueAtTime(200,audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(90,audioCtx.currentTime+0.25); }
+    else { o.frequency.setValueAtTime(700,audioCtx.currentTime); }
+    g.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+    o.start(); o.stop(audioCtx.currentTime + 0.3);
+  }catch(e){}
+}
+
+/* ================= CONFETTI ================= */
+function confetti(){
+  const colors=['#FFD873','#7EC8E3','#B79FDB','#FF9B85','#8FD9A8'];
+  for(let i=0;i<28;i++){
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.left=Math.random()*100+'vw';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.transform=`rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(p);
+    const duration = 1400 + Math.random()*900;
+    p.animate([
+      {transform:`translateY(0) rotate(0deg)`, opacity:1},
+      {transform:`translateY(100vh) rotate(${360+Math.random()*360}deg)`, opacity:0.9}
+    ],{duration:duration, easing:'ease-in'});
+    setTimeout(()=>p.remove(), duration+50);
+  }
+}
+
+/* ================= SCORE / PROGRESS ================= */
+let score = 0, totalPossible = 0;
+function addScore(correct, pointVal){
+  pointVal = pointVal || 1;
+  totalPossible += pointVal;
+  if(correct){ score += pointVal; }
+  document.getElementById('score-chip').textContent = '⭐ ' + score;
+}
+
+const sections = [];
+document.querySelectorAll('section.page').forEach((el,i)=>sections.push(el));
+let current = 0;
+function goTo(i){
+  sections[current].classList.remove('active');
+  current = i;
+  sections[current].classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  updateProgress();
+}
+function updateProgress(){
+  const pct = Math.round((current/(sections.length-1))*100);
+  document.getElementById('sky-fill').style.width = (100-pct) + '%';
+  document.getElementById('sky-sun').style.left = pct + '%';
+  document.getElementById('sky-sun').textContent = pct > 70 ? '🌙' : (pct>35 ? '🌆' : '☀️');
+}
+function buildMenu(){
+  const grid = document.getElementById('menu-grid');
+  grid.innerHTML='';
+  sections.forEach((sec,i)=>{
+    const b=document.createElement('button');
+    b.className='menu-item';
+    b.textContent=(i+1)+'. '+sec.dataset.title;
+    b.onclick=()=>{goTo(i); closeMenu();};
+    grid.appendChild(b);
+  });
+}
+function openMenu(){ buildMenu(); document.getElementById('menu-overlay').classList.add('open'); }
+function closeMenu(){ document.getElementById('menu-overlay').classList.remove('open'); }
+
+function printSection(id){
+  sections.forEach(s=>s.classList.remove('print-target'));
+  document.getElementById(id).classList.add('print-target');
+  window.print();
+}
+
+/* ================= WARM UP ================= */
+const warmupItems = [
+  {e:'🛏️', label:'Wake up'}, {e:'🪥', label:'Brush teeth'}, {e:'📚', label:'Study'},
+  {e:'⚽', label:'Play football'}, {e:'📺', label:'Watch TV'}, {e:'🍎', label:'Eat breakfast'}
+];
+let warmupPicked = new Set();
+function renderWarmup(){
+  const row = document.getElementById('warmup-row');
+  warmupItems.forEach((it,idx)=>{
+    const s=document.createElement('span');
+    s.textContent=it.e;
+    s.title=it.label;
+    s.onclick=()=>{
+      if(warmupPicked.has(idx)) warmupPicked.delete(idx); else warmupPicked.add(idx);
+      s.style.transform = warmupPicked.has(idx) ? 'scale(1.4)' : '';
+      beep('click');
+      document.getElementById('warmup-count').textContent = warmupPicked.size + ' / 6 things I do every day';
+    };
+    row.appendChild(s);
+  });
+  document.getElementById('warmup-count').textContent = '0 / 6 things I do every day';
+}
+
+/* ================= VOCABULARY ================= */
+const vocab = [
+  {word:'Always', stars:'⭐⭐⭐⭐⭐', percent:'100%', emoji:'🛌', example:'I always brush my teeth.', pron:'AWL-wayz'},
+  {word:'Usually', stars:'⭐⭐⭐⭐', percent:'90%', emoji:'🌞', example:'She usually walks to school.', pron:'YOO-zhoo-uh-lee'},
+  {word:'Often', stars:'⭐⭐⭐', percent:'70%', emoji:'📚', example:'They often play football.', pron:'AW-fen'},
+  {word:'Sometimes', stars:'⭐⭐', percent:'50%', emoji:'🎬', example:'We sometimes watch movies.', pron:'SUM-times'},
+  {word:'Occasionally', stars:'⭐', percent:'30%', emoji:'🎡', example:'I occasionally visit my grandmother.', pron:'oh-KAY-zhuh-nuh-lee'},
+  {word:'Rarely', stars:'✨', percent:'15%', emoji:'🥤', example:'I rarely drink soda.', pron:'RAIR-lee'},
+  {word:'Hardly ever', stars:'·', percent:'5%', emoji:'🌙', example:'I hardly ever stay up late.', pron:'HARD-lee EV-er'},
+  {word:'Never', stars:'—', percent:'0%', emoji:'🚫', example:'I never skip breakfast.', pron:'NEV-er'}
+];
+function renderVocab(){
+  const grid = document.getElementById('vocab-grid');
+  vocab.forEach(v=>{
+    const c=document.createElement('div');
+    c.className='vocab-card';
+    c.innerHTML = `<div class="emoji">${v.emoji}</div><div class="word">${v.word}</div>
+      <div class="stars">${v.stars}</div><div class="percent">${v.percent}</div>
+      <div class="example">"${v.example}"</div><div class="pron">/${v.pron}/</div>`;
+    grid.appendChild(c);
+  });
+}
+
+/* ================= FREQUENCY SCALE ================= */
+function moveFreqSlider(val){
+  val = Number(val);
+  document.getElementById('freq-pointer').style.left = (100-val) + '%';
+  const labels = [
+    {min:95,label:'Always ☀️'}, {min:80,label:'Usually 🌤️'}, {min:60,label:'Often ⛅'},
+    {min:40,label:'Sometimes 🌥️'}, {min:22,label:'Occasionally ☁️'}, {min:10,label:'Rarely 🌆'},
+    {min:2,label:'Hardly ever 🌇'}, {min:-1,label:'Never 🌙'}
+  ];
+  const found = labels.find(l=>val>=l.min);
+  document.getElementById('freq-readout').textContent = val + '% — ' + found.label;
+}
+
+/* ================= ROUTINE EXAMPLES ================= */
+const routines = [
+  ['always','wake up at 6 in the morning','⏰'], ['usually','ride my bike to school','🚲'],
+  ['often','read books at night','📖'], ['sometimes','eat pizza on Friday','🍕'],
+  ['occasionally','visit my grandmother','👵'], ['rarely','drink soda','🥤'],
+  ['hardly ever','stay up late','😴'], ['never','skip breakfast','🍳'],
+  ['always','wash my hands before eating','🧼'], ['usually','do my homework after school','📓'],
+  ['often','play with my friends','🧒'], ['sometimes','watch cartoons','📺'],
+  ['occasionally','bake cookies with mom','🍪'], ['rarely','forget my bag','🎒'],
+  ['hardly ever','eat candy for breakfast','🍬'], ['never','talk back to my teacher','🙅'],
+  ['always','say thank you','🙏'], ['usually','walk the dog','🐕'],
+  ['often','draw pictures','🎨'], ['never','tell a lie','🚫']
+];
+function renderRoutines(){
+  const list = document.getElementById('routine-list');
+  routines.forEach(r=>{
+    const d=document.createElement('div');
+    d.className='example-line';
+    d.innerHTML = `<span style="font-size:26px;">${r[2]}</span> I <b>${r[0]}</b> ${r[1]}.`;
+    list.appendChild(d);
+  });
+}
+
+/* ================= SPEAKING PRACTICE ================= */
+const speakQs = [
+  'How often do you brush your teeth?', 'How often do you watch TV?', 'How often do you read books?',
+  'How often do you play games?', 'How often do you eat vegetables?', 'How often do you help your parents?',
+  'How often do you clean your room?', 'How often do you go swimming?'
+];
+function renderSpeak(){
+  const grid = document.getElementById('speak-grid');
+  speakQs.forEach(q=>{
+    const c=document.createElement('div');
+    c.className='speak-card';
+    c.innerHTML = `<q>${q}</q>`;
+    grid.appendChild(c);
+  });
+}
+
+/* ================= GAME 1: MATCH ================= */
+const matchPairs = [
+  ['Always','100%'], ['Usually','90%'], ['Often','70%'], ['Sometimes','50%'],
+  ['Occasionally','30%'], ['Rarely','15%'], ['Hardly ever','5%'], ['Never','0%']
+];
+let matchSelectedWord=null, matchSelectedPct=null, matchedCount=0;
+function renderMatch(){
+  const wordsCol = document.getElementById('match-words');
+  const pctCol = document.getElementById('match-percents');
+  const words = matchPairs.map(p=>p[0]);
+  const pcts = [...matchPairs.map(p=>p[1])].sort(()=>Math.random()-0.5);
+  words.forEach(w=>{
+    const el=document.createElement('div');
+    el.className='match-item'; el.textContent=w; el.dataset.val=w;
+    el.onclick=()=>selectMatch(el,'word');
+    wordsCol.appendChild(el);
+  });
+  pcts.forEach(p=>{
+    const el=document.createElement('div');
+    el.className='match-item'; el.textContent=p; el.dataset.val=p;
+    el.onclick=()=>selectMatch(el,'pct');
+    pctCol.appendChild(el);
+  });
+}
+function selectMatch(el,kind){
+  if(el.classList.contains('matched')) return;
+  if(kind==='word'){
+    if(matchSelectedWord) matchSelectedWord.classList.remove('selected');
+    matchSelectedWord = el; el.classList.add('selected');
+  } else {
+    if(matchSelectedPct) matchSelectedPct.classList.remove('selected');
+    matchSelectedPct = el; el.classList.add('selected');
+  }
+  if(matchSelectedWord && matchSelectedPct){
+    const pair = matchPairs.find(p=>p[0]===matchSelectedWord.dataset.val);
+    const isCorrect = pair && pair[1]===matchSelectedPct.dataset.val;
+    if(isCorrect){
+      matchSelectedWord.classList.add('matched'); matchSelectedPct.classList.add('matched');
+      matchSelectedWord.classList.remove('selected'); matchSelectedPct.classList.remove('selected');
+      matchedCount++; beep('correct'); confetti(); addScore(true);
+      document.getElementById('match-status').textContent = matchedCount + ' / 8 matched! 🎉';
+      matchSelectedWord=null; matchSelectedPct=null;
+      if(matchedCount===8) document.getElementById('match-status').textContent = 'All matched! Great job! 🌟';
+    } else {
+      beep('wrong'); addScore(false);
+      document.getElementById('match-status').textContent = 'Try again!';
+      setTimeout(()=>{
+        if(matchSelectedWord) matchSelectedWord.classList.remove('selected');
+        if(matchSelectedPct) matchSelectedPct.classList.remove('selected');
+        matchSelectedWord=null; matchSelectedPct=null;
+      },500);
+    }
+  }
+}
+
+/* ================= GENERIC MCQ RENDERER ================= */
+function renderMCQ(container, questions, opts){
+  opts = opts || {};
+  questions.forEach((q,qi)=>{
+    const block = document.createElement('div');
+    block.className='q-block';
+    block.innerHTML = `<div class="q-title">${qi+1}. ${q.title}</div>
+      <div class="options"></div><div class="feedback"></div>`;
+    const optionsDiv = block.querySelector('.options');
+    const feedbackDiv = block.querySelector('.feedback');
+    q.options.forEach((optText,oi)=>{
+      const b=document.createElement('button');
+      b.className='opt-btn';
+      b.textContent = optText;
+      b.onclick=()=>{
+        if(b.disabled) return;
+        Array.from(optionsDiv.children).forEach(c=>c.disabled=true);
+        const correct = oi===q.correct;
+        b.classList.add(correct?'correct':'wrong');
+        if(!correct){
+          optionsDiv.children[q.correct].classList.add('correct');
+        }
+        feedbackDiv.textContent = correct ? '✅ Correct! '+ (q.explain||'') : '❌ Not quite. '+(q.explain||'');
+        beep(correct?'correct':'wrong');
+        if(correct) confetti();
+        addScore(correct);
+        if(opts.onAnswer) opts.onAnswer();
+      };
+      optionsDiv.appendChild(b);
+    });
+    container.appendChild(block);
+  });
+}
+
+/* ================= GAME 2: CHOOSE CORRECT ADVERB ================= */
+const game2Qs = [
+  {title:'I ______ brush my teeth before bed.', options:['always','never','rarely'], correct:0, explain:'"Always" fits a healthy habit.'},
+  {title:'She ______ eats candy for breakfast — maybe once a year!', options:['always','hardly ever','usually'], correct:1, explain:'"Hardly ever" = very rare.'},
+  {title:'They ______ play football on Saturdays.', options:['often','never','hardly ever'], correct:0, explain:'"Often" fits a weekly habit.'},
+  {title:'He is ______ late for school.', options:['never','rarely never','sometime'], correct:0, explain:'"Never" = 0% of the time.'},
+  {title:'We ______ visit our grandmother once a month.', options:['occasionally','always','often'], correct:0, explain:'"Occasionally" fits something not-too-frequent.'},
+  {title:'I ______ drink soda — maybe twice a year.', options:['usually','rarely','often'], correct:1, explain:'"Rarely" = very few times.'},
+  {title:'She is ______ happy when she sees her friends.', options:['always','always is','is always'], correct:0, explain:'Adverb goes after "is": She is always happy.'},
+  {title:'My dad ______ cooks dinner on Sundays.', options:['usually','never ever','hardly'], correct:0, explain:'"Usually" fits a common weekly routine.'},
+  {title:'I ______ skip my homework.', options:['always','never','usually'], correct:1, explain:'A good student "never" skips homework.'},
+  {title:'We ______ watch a movie on Friday nights.', options:['sometimes','sometime','some times'], correct:0, explain:'"Sometimes" is one word.'},
+  {title:'He ______ eats vegetables — every single meal!', options:['rarely','always','never'], correct:1, explain:'"Always" = 100% of the time.'},
+  {title:'They are ______ on time for class.', options:['usually','usually are','are usually'], correct:0, explain:'They are usually on time.'},
+  {title:'I ______ clean my room every day.', options:['always','never','rarely'], correct:0, explain:'Daily habit = "always".'},
+  {title:'She ______ goes swimming — just in summer.', options:['occasionally','always','never'], correct:0, explain:'"Occasionally" fits a seasonal activity.'},
+  {title:'We ______ help our parents with chores.', options:['often','hardly ever helps','never helping'], correct:0, explain:'"Often" is the correct adverb form.'}
+];
+
+/* ================= GAME 3: ARRANGE WORDS ================= */
+const game3Qs = [
+  {words:['always','I','breakfast','eat'], answer:'I always eat breakfast.'},
+  {words:['walks','usually','school','She','to'], answer:'She usually walks to school.'},
+  {words:['football','often','They','play'], answer:'They often play football.'},
+  {words:['watch','sometimes','movies','We'], answer:'We sometimes watch movies.'},
+  {words:['am','I','happy','always'], answer:'I am always happy.'},
+  {words:['busy','is','usually','She'], answer:'She is usually busy.'},
+  {words:['late','are','often','They'], answer:'They are often late.'},
+  {words:['angry','never','is','He'], answer:'He is never angry.'},
+  {words:['drinks','rarely','He','soda'], answer:'He rarely drinks soda.'},
+  {words:['grandmother','I','my','occasionally','visit'], answer:'I occasionally visit my grandmother.'}
+];
+function renderGame3(){
+  const container = document.getElementById('game3-block');
+  game3Qs.forEach((q,qi)=>{
+    const block = document.createElement('div');
+    block.className='q-block';
+    const shuffled = [...q.words].sort(()=>Math.random()-0.5);
+    block.innerHTML = `<div class="q-title">${qi+1}. Put the words in order:</div>
+      <div class="words-pool"></div>
+      <div class="answer-line" data-built=""></div>
+      <div class="feedback"></div>
+      <button class="btn small secondary" style="margin-top:6px;">Reset</button>`;
+    const pool = block.querySelector('.words-pool');
+    const answerLine = block.querySelector('.answer-line');
+    const feedback = block.querySelector('.feedback');
+    const resetBtn = block.querySelector('button');
+    let built = [];
+    function renderPool(){
+      pool.innerHTML='';
+      shuffled.forEach((w,wi)=>{
+        const span=document.createElement('span');
+        span.className='scramble-word' + (built.includes(wi)?' used':'');
+        span.textContent=w;
+        span.onclick=()=>{
+          if(built.includes(wi)) return;
+          built.push(wi);
+          answerLine.textContent = built.map(i=>shuffled[i]).join(' ');
+          renderPool();
+          if(built.length===shuffled.length){
+            const finalSentence = built.map(i=>shuffled[i]).join(' ') + '.';
+            const correct = finalSentence.toLowerCase()===q.answer.toLowerCase();
+            feedback.textContent = correct ? '✅ Correct! "'+q.answer+'"' : '❌ Not quite. Correct answer: "'+q.answer+'"';
+            beep(correct?'correct':'wrong');
+            if(correct) confetti();
+            addScore(correct);
+          }
+        };
+        pool.appendChild(span);
+      });
+    }
+    resetBtn.onclick=()=>{ built=[]; answerLine.textContent=''; feedback.textContent=''; renderPool(); };
+    renderPool();
+    container.appendChild(block);
+  });
+}
+
+/* ================= GAME 4: FIND THE MISTAKE ================= */
+const game4Qs = [
+  {wrong:'She always is happy.', correct:'She is always happy.', explain:'Adverb goes after "be".'},
+  {wrong:'I eat always breakfast.', correct:'I always eat breakfast.', explain:'Adverb goes before the action verb.'},
+  {wrong:'He plays never chess.', correct:'He never plays chess.', explain:'Adverb goes before the action verb.'},
+  {wrong:'They late are often.', correct:'They are often late.', explain:'Word order: Subject + be + adverb.'},
+  {wrong:'We watch sometimes TV.', correct:'We sometimes watch TV.', explain:'Adverb comes before the verb "watch".'},
+  {wrong:'She rarely is busy.', correct:'She is rarely busy.', explain:'With "be", adverb comes after.'},
+  {wrong:'I usually am tired at night.', correct:'I am usually tired at night.', explain:'Adverb comes right after "am".'},
+  {wrong:'He drinks never soda.', correct:'He never drinks soda.', explain:'Adverb goes before the verb.'},
+  {wrong:'Occasionally I visit my grandmother she.', correct:'I occasionally visit my grandmother.', explain:'Adverb usually comes right after the subject.'},
+  {wrong:'They hardly ever are late.', correct:'They are hardly ever late.', explain:'With "be", adverb comes after "are".'}
+];
+function renderGame4(){
+  const container = document.getElementById('game4-block');
+  game4Qs.forEach((q,qi)=>{
+    const block=document.createElement('div');
+    block.className='q-block';
+    block.innerHTML = `<div class="q-title">${qi+1}. Find and fix the mistake:</div>
+      <div class="mistake-box"><div class="wrong">❌ ${q.wrong}</div></div>
+      <input type="text" placeholder="Type the correct sentence..." style="width:100%; border:2px solid #ddd6f5; border-radius:10px; padding:8px 10px; font-size:15px;">
+      <button class="btn small" style="margin-top:8px;">Check</button>
+      <div class="feedback"></div>`;
+    const input = block.querySelector('input');
+    const btn = block.querySelector('button');
+    const feedback = block.querySelector('.feedback');
+    btn.onclick=()=>{
+      const norm = s => s.trim().toLowerCase().replace(/[.!?]+$/,'').replace(/\s+/g,' ');
+      const correct = norm(input.value) === norm(q.correct);
+      feedback.textContent = correct ? '✅ Correct! '+q.explain : '❌ Correct answer: "'+q.correct+'" — '+q.explain;
+      beep(correct?'correct':'wrong');
+      if(correct) confetti();
+      addScore(correct);
+      btn.disabled=true; input.disabled=true;
+    };
+    container.appendChild(block);
+  });
+}
+
+/* ================= GAME 5: SPIN WHEEL ================= */
+const wheelQs = [
+  'How often do you play outside?', 'How often do you help your parents?', 'How often do you eat fruit?',
+  'How often do you read a book?', 'How often do you tidy your room?', 'How often do you ride a bike?',
+  'How often do you visit relatives?', 'How often do you watch cartoons?'
+];
+let wheelRotation = 0;
+function spinWheel(){
+  const extraSpins = 4 + Math.floor(Math.random()*3);
+  const randomAngle = Math.floor(Math.random()*360);
+  wheelRotation += extraSpins*360 + randomAngle;
+  document.getElementById('wheel').style.transform = `rotate(${wheelRotation}deg)`;
+  document.getElementById('wheel-result').textContent = '';
+  beep('click');
+  setTimeout(()=>{
+    const idx = Math.floor(Math.random()*wheelQs.length);
+    document.getElementById('wheel-result').textContent = '🎤 ' + wheelQs[idx];
+    beep('correct');
+    confetti();
+  },3200);
+}
+
+/* ================= READING ================= */
+const storyHTML = `Emma <b>always</b> wakes up early, at seven o'clock, before the sun is too bright. She <b>usually</b> eats a big breakfast with eggs and fruit, because breakfast gives her energy for the day. Emma <b>often</b> walks to school with her best friend, and they <b>often</b> talk about their favorite books along the way. At school, Emma <b>always</b> listens carefully to her teacher and <b>always</b> finishes her homework before dinner.<br><br>
+In the afternoon, Emma <b>sometimes</b> plays outside with her neighbors, and she <b>sometimes</b> rides her bicycle around the park. She <b>occasionally</b> visits her grandmother on the weekend, and they bake cookies together. Emma <b>rarely</b> drinks soda, because she knows water is much healthier for her body. She <b>hardly ever</b> stays up late, because she needs good sleep to feel strong the next day.<br><br>
+Emma <b>never</b> skips her homework, and she <b>never</b> forgets to brush her teeth before bed. Her healthy habits make her happy, strong, and ready for every new day!`;
+const readingQs = [
+  {title:'What time does Emma always wake up?', options:['Six in the morning','Seven in the morning','Eight in the morning'], correct:1},
+  {title:'How often does Emma eat a big breakfast?', options:['Usually','Never','Rarely'], correct:0},
+  {title:'How does Emma often go to school?', options:['By bus','She walks','By car'], correct:1},
+  {title:'When does Emma always finish her homework?', options:['After bed','Before dinner','At school only'], correct:1},
+  {title:'What does Emma sometimes do in the afternoon?', options:['Play outside','Go to work','Cook dinner'], correct:0},
+  {title:'How often does Emma visit her grandmother?', options:['Every day','Occasionally','Never'], correct:1},
+  {title:'How often does Emma drink soda?', options:['Rarely','Always','Often'], correct:0},
+  {title:'Does Emma ever skip her homework?', options:['Yes, often','No, never','Yes, sometimes'], correct:1}
+];
+function renderStory(){ document.getElementById('story-text').innerHTML = storyHTML; }
+
+/* ================= WRITING FILL-IN ================= */
+const fillPrompts = ['I always ______.','I usually ______.','I often ______.','I sometimes ______.','I rarely ______.','I never ______.'];
+function renderFill(){
+  const block = document.getElementById('fill-block');
+  fillPrompts.forEach((p,i)=>{
+    const d=document.createElement('div');
+    d.className='fill-line';
+    d.innerHTML = `<span>${p.replace('______','')}</span><input type="text" placeholder="finish the sentence...">`;
+    block.appendChild(d);
+  });
+}
+
+/* ================= MINI CONVERSATIONS ================= */
+const convos = [
+  ['How often do you read books?','I usually read books after dinner.'],
+  ['How often do you play sports?','I often play sports on the weekend.'],
+  ['How often do you eat breakfast?','I always eat breakfast before school.'],
+  ['How often do you watch TV?','I sometimes watch TV in the evening.'],
+  ['How often do you clean your room?','I usually clean my room on Saturday.'],
+  ['How often do you visit your cousins?','I occasionally visit my cousins.'],
+  ['How often do you eat candy?','I rarely eat candy.'],
+  ['How often do you stay up past ten?','I hardly ever stay up past ten.'],
+  ['How often do you skip breakfast?','I never skip breakfast.'],
+  ['How often do you help at home?','I always help at home after school.']
+];
+function renderConvos(){
+  const block = document.getElementById('convo-block');
+  convos.forEach(c=>{
+    const d=document.createElement('div');
+    d.className='example-line';
+    d.style.display='block';
+    d.innerHTML = `<b>A:</b> ${c[0]}<br><b>B:</b> ${c[1]}`;
+    block.appendChild(d);
+  });
+}
+
+/* ================= INTERVIEW TABLE ================= */
+function addInterviewRow(){
+  const table = document.getElementById('interview-table');
+  const row = document.createElement('tr');
+  row.innerHTML = `<td><input type="text" placeholder="Friend's name"></td>
+    <td><input type="text" placeholder="How often do you...?"></td>
+    <td><input type="text" placeholder="Answer"></td>`;
+  table.appendChild(row);
+}
+
+/* ================= FINAL QUIZ (20 mixed) ================= */
+const quizQs = [
+  {title:'Choose: I ______ eat vegetables.', options:['always','alway','all ways'], correct:0},
+  {title:'Choose: She is ______ kind.', options:['always is','always','is always always'], correct:1},
+  {title:'Fill in: We ______ (70%) play football on weekends.', options:['often','never','rarely'], correct:0},
+  {title:'Fill in: He ______ (0%) tells a lie.', options:['always','never','sometimes'], correct:1},
+  {title:'Correct word order: "I eat always breakfast."', options:['I always eat breakfast.','I eat breakfast always.','Always I eat breakfast.'], correct:0},
+  {title:'Correct word order: "She always is happy."', options:['She happy is always.','She is always happy.','Always she is happy.'], correct:1},
+  {title:'Matching: "Usually" is closest to...', options:['90%','10%','50%'], correct:0},
+  {title:'Matching: "Hardly ever" is closest to...', options:['80%','5%','60%'], correct:1},
+  {title:'Which sentence uses the adverb correctly?', options:['They play often chess.','They often play chess.','Often they chess play.'], correct:1},
+  {title:'Which sentence uses the adverb correctly?', options:['He is never late.','He never is late.','Never he is late.'], correct:0},
+  {title:'Choose the correct question word: "______ do you brush your teeth?"', options:['How much','How often','How many'], correct:1},
+  {title:'Choose: They ______ visit their cousins once a year.', options:['occasionally','always','never'], correct:0},
+  {title:'Choose: I ______ drink soda — maybe twice a year.', options:['usually','rarely','often'], correct:1},
+  {title:'Fix the mistake: "We watch sometimes TV."', options:['We sometimes watch TV.','Sometimes we TV watch.','We watch TV sometimes always.'], correct:0},
+  {title:'Fix the mistake: "He drinks never soda."', options:['He never drinks soda.','Never soda he drinks.','He soda never drinks.'], correct:0},
+  {title:'Which adverb means 100%?', options:['Sometimes','Always','Rarely'], correct:1},
+  {title:'Which adverb means 0%?', options:['Never','Often','Usually'], correct:0},
+  {title:'Choose: My dad ______ cooks dinner on Sundays.', options:['usual','usually','use to'], correct:1},
+  {title:'Choose the correct "be" sentence.', options:['They are often late.','They often are late.','Often they late are.'], correct:0},
+  {title:'Choose the correct action-verb sentence.', options:['We sometimes watch movies.','We watch sometimes movies.','Sometimes movies we watch.'], correct:0}
+];
+function shuffleArray(arr){ return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(p=>p[1]); }
+let quizAnswered=0, quizCorrect=0;
+function renderQuiz(){
+  const container = document.getElementById('quiz-block');
+  const shuffled = shuffleArray(quizQs);
+  renderMCQ(container, shuffled, {onAnswer:()=>{
+    quizAnswered++;
+    document.getElementById('quiz-score-line').textContent = `Answered ${quizAnswered} / ${quizQs.length}`;
+    if(quizAnswered===quizQs.length){
+      setTimeout(showBadge, 300);
+    }
+  }});
+}
+
+/* ================= VOCAB REVIEW FLASHCARDS ================= */
+function renderFlip(){
+  const grid = document.getElementById('flip-grid');
+  vocab.forEach(v=>{
+    const c=document.createElement('div');
+    c.className='flip-card';
+    c.innerHTML = `<div class="flip-inner">
+        <div class="flip-face flip-front">${v.word}</div>
+        <div class="flip-face flip-back">${v.percent}<br>"${v.example}"</div>
+      </div>`;
+    c.onclick=()=>{ c.classList.toggle('flipped'); beep('click'); };
+    grid.appendChild(c);
+  });
+}
+
+/* ================= BADGE ================= */
+function showBadge(){
+  const pct = totalPossible ? Math.round((score/totalPossible)*100) : 0;
+  let medal='🏅', title='Keep Practicing';
+  if(pct>=100){medal='🏆'; title='Grammar Master';}
+  else if(pct>=90){medal='🥇'; title='Frequency Champion';}
+  else if(pct>=80){medal='🥈'; title='Excellent';}
+  else if(pct>=70){medal='🥉'; title='Great Job';}
+  else {medal='🎖️'; title='Keep Practicing';}
+  document.getElementById('badge-content').innerHTML = `
+    <div class="badge-medal">${medal}</div>
+    <div class="badge-title">${title}</div>
+    <p>You scored <b>${score} / ${totalPossible}</b> (${pct}%)</p>`;
+  document.getElementById('cert-score').textContent = `Score: ${score} / ${totalPossible} (${pct}%)`;
+}
+
+/* ================= CERT DATE ================= */
+function setCertDate(){
+  const d = new Date();
+  document.getElementById('cert-date').textContent = d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+}
+
+/* ================= INIT ================= */
+window.onload = function(){
+  renderWarmup();
+  renderVocab();
+  moveFreqSlider(100);
+  renderRoutines();
+  renderSpeak();
+  renderMatch();
+  renderMCQ(document.getElementById('game2-block'), game2Qs);
+  renderGame3();
+  renderGame4();
+  renderStory();
+  renderMCQ(document.getElementById('reading-quiz'), readingQs);
+  renderFill();
+  renderConvos();
+  addInterviewRow(); addInterviewRow(); addInterviewRow();
+  renderQuiz();
+  renderFlip();
+  showBadge();
+  setCertDate();
+  updateProgress();
+};
+</script>
+</body>
+</html>
