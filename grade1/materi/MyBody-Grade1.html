@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>LittleLume English — My Body — Grade 1</title>
+<style>
+  :root{
+    --pink:#FFD6E8;
+    --pink-deep:#FF9EC4;
+    --mint:#BFF4E0;
+    --mint-deep:#7FE0C2;
+    --cream:#FFFBF2;
+    --yellow:#FFE9A8;
+    --yellow-deep:#FFD766;
+    --lavender:#E9DFFC;
+    --lavender-deep:#C9B6F5;
+    --ink:#4A3F55;
+    --ink-soft:#8B7F98;
+    --white:#FFFFFF;
+    --shadow: 0 10px 30px rgba(150,110,180,0.18);
+    --shadow-sm: 0 4px 14px rgba(150,110,180,0.14);
+    --radius: 28px;
+    --radius-sm: 18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Baloo 2','Segoe UI Rounded','Comic Sans MS','Trebuchet MS',sans-serif;
+    background:
+      radial-gradient(circle at 8% 12%, var(--pink) 0%, transparent 40%),
+      radial-gradient(circle at 92% 18%, var(--mint) 0%, transparent 38%),
+      radial-gradient(circle at 15% 90%, var(--yellow) 0%, transparent 35%),
+      radial-gradient(circle at 90% 85%, var(--lavender) 0%, transparent 40%),
+      var(--cream);
+    color:var(--ink);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-weight:800; margin:0 0 8px 0;}
+  p{margin:0 0 10px 0; line-height:1.5;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  .hidden{display:none !important;}
+
+  /* ===== Layout shell ===== */
+  #app{max-width:980px; margin:0 auto; padding:18px 16px 60px; position:relative;}
+  .screen{display:none; animation:fadeUp .5s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ===== Top dashboard ===== */
+  #dashboard{
+    position:sticky; top:8px; z-index:50;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(8px);
+    border-radius: 24px;
+    box-shadow:var(--shadow-sm);
+    padding:10px 16px;
+    display:flex; align-items:center; gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+    border:2px solid var(--pink);
+  }
+  #dashboard .brand{font-weight:800; font-size:1.05rem; color:var(--ink); white-space:nowrap;}
+  #dashboard .brand span{color:var(--pink-deep);}
+  .dash-stat{display:flex; align-items:center; gap:5px; font-weight:700; font-size:.92rem; background:var(--cream); padding:5px 10px; border-radius:14px;}
+  .progress-track{flex:1; min-width:110px; height:14px; background:var(--lavender); border-radius:10px; overflow:hidden;}
+  .progress-fill{height:100%; width:0%; background:linear-gradient(90deg, var(--mint-deep), var(--pink-deep)); border-radius:10px; transition:width .6s ease;}
+
+  /* ===== Mascot ===== */
+  #mascot-wrap{position:fixed; right:18px; bottom:18px; z-index:60; display:flex; align-items:flex-end; gap:8px; max-width:260px;}
+  #mascot-bubble{background:var(--white); border:2px solid var(--yellow-deep); border-radius:18px; padding:10px 14px; font-size:.86rem; font-weight:700; box-shadow:var(--shadow-sm); max-width:190px; display:none;}
+  #mascot-bubble.show{display:block; animation:popIn .3s ease;}
+  @keyframes popIn{from{transform:scale(.7); opacity:0;} to{transform:scale(1); opacity:1;}}
+  #lume{width:56px; height:56px; animation:float 3s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+
+  /* ===== Cards & buttons ===== */
+  .card{background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); padding:26px; margin-bottom:20px;}
+  .eyebrow{display:inline-block; background:var(--lavender); color:var(--ink); font-weight:800; font-size:.72rem; letter-spacing:.06em; padding:5px 12px; border-radius:20px; margin-bottom:10px; text-transform:uppercase;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--pink-deep); color:var(--white); font-weight:800; font-size:1rem;
+    padding:14px 26px; border-radius:18px; box-shadow:0 6px 0 #E0699E; transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:translateY(4px); box-shadow:0 2px 0 #E0699E;}
+  .btn.secondary{background:var(--mint-deep); box-shadow:0 6px 0 #4FC29E;}
+  .btn.secondary:active{box-shadow:0 2px 0 #4FC29E;}
+  .btn.yellow{background:var(--yellow-deep); color:var(--ink); box-shadow:0 6px 0 #E0B93C;}
+  .btn.yellow:active{box-shadow:0 2px 0 #E0B93C;}
+  .btn.lav{background:var(--lavender-deep); color:var(--ink); box-shadow:0 6px 0 #A88AE8;}
+  .btn.lav:active{box-shadow:0 2px 0 #A88AE8;}
+  .btn:disabled{opacity:.4; cursor:not-allowed; box-shadow:none; transform:none;}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;}
+  .btn-row.center{justify-content:center;}
+  .sound-btn{background:var(--yellow); color:var(--ink); border-radius:50%; width:44px; height:44px; font-size:1.2rem; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 3px 0 var(--yellow-deep);}
+  .sound-btn:active{transform:translateY(3px); box-shadow:none;}
+
+  .step-nav{display:flex; gap:6px; overflow-x:auto; padding:4px 2px 12px; margin-bottom:6px;}
+  .step-dot{flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--white); border:2px solid var(--lavender-deep); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.78rem; color:var(--ink-soft);}
+  .step-dot.done{background:var(--mint-deep); border-color:var(--mint-deep); color:white;}
+  .step-dot.current{background:var(--pink-deep); border-color:var(--pink-deep); color:white; transform:scale(1.15);}
+
+  /* ===== Welcome ===== */
+  .welcome-hero{text-align:center; padding:30px 10px;}
+  .welcome-hero .kids{font-size:4.2rem; margin-bottom:6px;}
+  .kid-wave{display:inline-block; animation:wave 1.6s ease-in-out infinite;}
+  .kid-wave:nth-child(2){animation-delay:.3s;}
+  @keyframes wave{0%,100%{transform:rotate(0deg);} 25%{transform:rotate(-8deg);} 75%{transform:rotate(8deg);}}
+  .welcome-hero h1{font-size:2.3rem; background:linear-gradient(90deg,var(--pink-deep),var(--lavender-deep)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .badge-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:14px 0 20px;}
+  .badge-chip{background:var(--mint); padding:8px 16px; border-radius:20px; font-weight:800; font-size:.9rem;}
+
+  /* ===== Warm up ===== */
+  .yn-question{background:var(--lavender); border-radius:var(--radius-sm); padding:18px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  .yn-question .qtext{font-weight:800; font-size:1.05rem;}
+  .yn-btns{display:flex; gap:8px;}
+  .yn-btns button{padding:8px 18px; border-radius:14px; font-weight:800; background:white; box-shadow:var(--shadow-sm);}
+  .yn-btns button.selected.correct{background:var(--mint-deep); color:white;}
+  .yn-btns button.selected.wrong{background:#FF9E9E; color:white;}
+
+  /* ===== Vocabulary flashcards ===== */
+  .vocab-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:16px;}
+  .flip-card{background:transparent; perspective:1000px; height:190px;}
+  .flip-inner{position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d; border-radius:20px; box-shadow:var(--shadow-sm);}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-front,.flip-back{position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px; text-align:center;}
+  .flip-front{background:var(--white); border:3px solid var(--pink);}
+  .flip-front .emoji{font-size:3rem;}
+  .flip-front .word{font-weight:800; margin-top:6px;}
+  .flip-back{background:var(--mint); transform:rotateY(180deg);}
+  .flip-back .phonics{font-size:.8rem; color:var(--ink-soft); font-weight:700;}
+  .flip-back .sentence{font-size:.85rem; font-weight:700; margin-top:6px;}
+  .mastered-tag{position:absolute; top:6px; right:6px; background:var(--yellow-deep); border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:.75rem;}
+
+  /* ===== Body diagram ===== */
+  .body-wrap{display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;}
+  .body-svg-holder{flex:0 0 auto; margin:0 auto;}
+  .body-svg-holder svg{width:220px; height:auto; filter:drop-shadow(0 8px 14px rgba(0,0,0,0.08));}
+  .body-part{cursor:pointer; transition:filter .15s ease;}
+  .body-part:hover{filter:brightness(1.08);}
+  .body-part.active-highlight{filter:brightness(1.3) saturate(1.4); animation:pulse .6s ease;}
+  @keyframes pulse{0%{transform:scale(1);} 50%{transform:scale(1.06);} 100%{transform:scale(1);}}
+  .explorer-info{flex:1; min-width:220px; background:var(--yellow); border-radius:var(--radius-sm); padding:18px; min-height:150px;}
+  .explorer-info .big-word{font-size:1.6rem; font-weight:800;}
+
+  /* ===== Drag and drop ===== */
+  .dd-zone{display:flex; gap:24px; flex-wrap:wrap;}
+  .dd-labels{display:flex; flex-direction:column; gap:10px; min-width:150px;}
+  .dd-label{background:var(--lavender); padding:10px 16px; border-radius:14px; font-weight:800; cursor:grab; text-align:center; box-shadow:var(--shadow-sm);}
+  .dd-label.used{opacity:.3; cursor:not-allowed;}
+  .dd-target{position:absolute; border:3px dashed var(--pink-deep); border-radius:14px; min-width:70px; min-height:30px; display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:800; background:rgba(255,255,255,.6);}
+  .dd-target.filled{border-style:solid; background:var(--mint);}
+  .dd-canvas{position:relative; flex:1; min-width:260px;}
+
+  /* ===== Generic option grids (MC, TF, images) ===== */
+  .option-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:14px; margin-top:14px;}
+  .option-card{background:var(--white); border:3px solid var(--lavender); border-radius:18px; padding:16px 10px; text-align:center; font-weight:800; font-size:1.6rem; box-shadow:var(--shadow-sm); transition:transform .12s ease;}
+  .option-card .lbl{font-size:.85rem; margin-top:4px;}
+  .option-card:hover{transform:translateY(-3px);}
+  .option-card.correct{background:var(--mint-deep); color:white; border-color:var(--mint-deep);}
+  .option-card.wrong{background:#FF9E9E; color:white; border-color:#FF9E9E;}
+
+  .tf-row{display:flex; gap:16px; justify-content:center; margin-top:16px;}
+  .tf-btn{padding:16px 40px; border-radius:18px; font-weight:800; font-size:1.1rem; background:var(--white); border:3px solid var(--mint-deep); box-shadow:var(--shadow-sm);}
+  .tf-btn.false-btn{border-color:var(--pink-deep);}
+
+  .qbox{background:var(--cream); border-radius:20px; padding:20px; border:2px solid var(--lavender);}
+  .qcount{font-weight:800; color:var(--ink-soft); font-size:.85rem; margin-bottom:6px;}
+  .feedback{margin-top:12px; font-weight:800; min-height:24px;}
+  .feedback.good{color:#3FAE87;}
+  .feedback.bad{color:#E0698A;}
+
+  /* spelling blanks */
+  .blank-word{font-size:2.4rem; font-weight:800; letter-spacing:6px; margin:14px 0; text-align:center;}
+  .blank-word input{width:44px; text-align:center; font-size:2rem; font-weight:800; border:3px solid var(--pink-deep); border-radius:10px; background:var(--white); color:var(--ink); font-family:inherit;}
+  .letter-fixed{display:inline-block; width:44px;}
+
+  /* unscramble */
+  .scramble-row{display:flex; gap:8px; justify-content:center; margin:16px 0; flex-wrap:wrap;}
+  .scramble-letter{width:48px; height:48px; background:var(--pink); border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.4rem; cursor:grab; box-shadow:var(--shadow-sm); user-select:none;}
+  .scramble-answer{display:flex; gap:8px; justify-content:center; min-height:58px; border:3px dashed var(--lavender-deep); border-radius:14px; padding:8px; flex-wrap:wrap;}
+  .scramble-answer .scramble-letter{background:var(--mint);}
+
+  /* reading */
+  .reading-passage{background:var(--lavender); border-radius:20px; padding:22px; font-size:1.15rem; line-height:1.9; font-weight:600;}
+  .reading-passage strong{color:var(--pink-deep);}
+
+  /* sentence build */
+  .word-bank{display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;}
+  .word-chip{background:var(--yellow); padding:10px 16px; border-radius:14px; font-weight:800; cursor:pointer; box-shadow:var(--shadow-sm);}
+  .word-chip.used{opacity:.35; cursor:not-allowed;}
+  .sentence-line{min-height:56px; border:3px dashed var(--pink-deep); border-radius:14px; display:flex; gap:8px; align-items:center; padding:8px; flex-wrap:wrap; margin-bottom:8px;}
+  .sentence-line .word-chip{background:var(--mint);}
+
+  /* simon / movement */
+  .simon-instruction{text-align:center; font-size:1.3rem; font-weight:800; background:var(--pink); border-radius:18px; padding:16px; margin-bottom:16px;}
+  .move-card{background:var(--mint); border-radius:20px; padding:24px; text-align:center; margin-bottom:14px;}
+  .move-emoji{font-size:3.4rem; animation:bounce 1s infinite;}
+  @keyframes bounce{0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);}}
+
+  /* speaking */
+  .mic-btn{width:90px; height:90px; border-radius:50%; background:var(--pink-deep); color:white; font-size:2rem; box-shadow:0 6px 0 #E0699E; margin:16px auto; display:flex; align-items:center; justify-content:center;}
+  .mic-btn.listening{animation:mic-pulse 1s infinite;}
+  @keyframes mic-pulse{0%{box-shadow:0 0 0 0 rgba(255,158,196,.7);} 70%{box-shadow:0 0 0 20px rgba(255,158,196,0);} 100%{box-shadow:0 0 0 0 rgba(255,158,196,0);}}
+
+  /* conversation */
+  .chat-bubble{max-width:80%; padding:12px 18px; border-radius:20px; margin-bottom:10px; font-weight:700;}
+  .chat-bubble.a{background:var(--lavender); border-bottom-left-radius:4px;}
+  .chat-bubble.b{background:var(--mint); margin-left:auto; border-bottom-right-radius:4px;}
+  .chat-bubble input{border:2px solid var(--pink-deep); border-radius:8px; padding:2px 8px; font-family:inherit; font-weight:800; width:100px; text-align:center;}
+
+  /* adventure */
+  .adventure-map{background:linear-gradient(180deg, var(--mint) 0%, var(--lavender) 100%); border-radius:24px; padding:24px; text-align:center; position:relative; overflow:hidden;}
+  .adventure-star-track{display:flex; justify-content:center; gap:10px; font-size:1.6rem; margin:14px 0;}
+
+  /* report */
+  .report-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:16px 0;}
+  .report-stat{background:var(--lavender); border-radius:16px; padding:14px; text-align:center;}
+  .report-stat .num{font-size:1.6rem; font-weight:800; color:var(--pink-deep);}
+  .name-input{font-size:1.1rem; padding:10px 14px; border:3px solid var(--mint-deep); border-radius:14px; font-family:inherit; font-weight:700; width:100%; max-width:300px;}
+  .tag-pill{display:inline-block; background:var(--mint); padding:6px 12px; border-radius:14px; font-weight:700; font-size:.85rem; margin:3px;}
+  .tag-pill.retry{background:#FFD7D7;}
+
+  /* confetti */
+  .confetti-piece{position:fixed; top:-20px; z-index:200; border-radius:2px; animation:confetti-fall linear forwards; pointer-events:none;}
+  @keyframes confetti-fall{to{transform:translateY(110vh) rotate(540deg); opacity:0.3;}}
+
+  /* badge popup */
+  #badgePopup{position:fixed; inset:0; background:rgba(74,63,85,0.55); display:none; align-items:center; justify-content:center; z-index:300;}
+  #badgePopup.show{display:flex;}
+  .badge-card{background:white; border-radius:28px; padding:36px; text-align:center; max-width:320px; box-shadow:var(--shadow); animation:popIn .4s ease;}
+  .badge-card .icon{font-size:4rem;}
+
+  @media (max-width:640px){
+    .welcome-hero h1{font-size:1.6rem;}
+    .body-wrap{flex-direction:column; align-items:center;}
+    #mascot-wrap{right:10px; bottom:10px;}
+    #lume{width:44px; height:44px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001s !important; animation-iteration-count:1 !important; transition:none !important;}
+  }
+  #ddCanvas{width:220px; height:440px; margin:0 auto;}
+  #ddCanvas svg{width:220px; height:440px;}
+  @media print{
+    #dashboard, #mascot-wrap, .step-nav, .btn-row, #badgePopup{display:none !important;}
+    .screen{display:none !important;}
+    #screen-report{display:block !important;}
+    body{background:white;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div id="dashboard">
+    <div class="brand">Little<span>Lume</span> English</div>
+    <div class="dash-stat">⭐ <span id="statStars">0</span></div>
+    <div class="dash-stat">🎯 <span id="statScore">0</span> pts</div>
+    <div class="dash-stat">✅ <span id="statActivities">0</span>/18</div>
+    <div class="dash-stat">📊 <span id="statAccuracy">0%</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <div class="step-nav" id="stepNav"></div>
+
+  <!-- 1. WELCOME -->
+  <section class="screen active" id="screen-welcome">
+    <div class="card welcome-hero">
+      <div class="kids"><span class="kid-wave">🧑</span><span class="kid-wave">👧</span></div>
+      <div class="eyebrow">Grade 1 · Theme: My Body</div>
+      <h1>Little Lume English</h1>
+      <p style="font-size:1.15rem; font-weight:700;">Let's learn the parts of our body together!</p>
+      <div class="badge-row">
+        <div class="badge-chip">🧠 20 Words</div>
+        <div class="badge-chip">🎮 18 Activities</div>
+        <div class="badge-chip">⭐ Earn Stars</div>
+        <div class="badge-chip">🏅 Win Badges</div>
+      </div>
+      <div class="btn-row center">
+        <button class="btn" onclick="goTo('screen-warmup')">Start Learning 🚀</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. WARM UP -->
+  <section class="screen" id="screen-warmup">
+    <div class="card">
+      <div class="eyebrow">Activity 1 · Warm Up</div>
+      <h2>Let's Wake Up Our Bodies! 🌞</h2>
+      <p>Answer Yes or No for each question.</p>
+      <div id="warmupList"></div>
+      <div class="btn-row"><button class="btn" id="warmupNext" onclick="goTo('screen-vocab')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 3. VOCABULARY -->
+  <section class="screen" id="screen-vocab">
+    <div class="card">
+      <div class="eyebrow">Activity 2 · Learn Vocabulary</div>
+      <h2>Body Word Flashcards 🃏</h2>
+      <p>Tap a card to flip it, listen, and read the sentence.</p>
+      <div class="vocab-grid" id="vocabGrid"></div>
+      <div class="btn-row"><button class="btn" onclick="goTo('screen-explorer')">Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 4. BODY EXPLORER -->
+  <section class="screen" id="screen-explorer">
+    <div class="card">
+      <div class="eyebrow">Activity 3 · Interactive Body Explorer</div>
+      <h2>Meet Ben! Tap His Body Parts 🧑</h2>
+      <div class="body-wrap">
+        <div class="body-svg-holder" id="explorerSvgHolder"></div>
+        <div class="explorer-info" id="explorerInfo">
+          <p>👉 Tap any part of Ben's body to learn its name!</p>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="goTo('screen-listen')">Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 5. LISTEN AND POINT -->
+  <section class="screen" id="screen-listen">
+    <div class="card">
+      <div class="eyebrow">Activity 4 · Listen and Point</div>
+      <h2>Listen and Touch! 👂</h2>
+      <div class="qbox">
+        <div class="qcount" id="listenCount"></div>
+        <p id="listenPrompt" style="font-size:1.2rem; font-weight:800;"></p>
+        <button class="sound-btn" onclick="speakCurrentListen()">🔊</button>
+        <div class="feedback" id="listenFeedback"></div>
+      </div>
+      <div class="body-wrap" style="margin-top:16px;">
+        <div class="body-svg-holder" id="listenSvgHolder"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="listenNext" onclick="goTo('screen-dragdrop')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 6. DRAG AND DROP -->
+  <section class="screen" id="screen-dragdrop">
+    <div class="card">
+      <div class="eyebrow">Activity 5 · Drag and Drop Labels</div>
+      <h2>Label Ben's Body 🏷️</h2>
+      <p>Drag each word onto the correct body part.</p>
+      <div class="dd-zone">
+        <div class="dd-canvas" id="ddCanvas"></div>
+        <div class="dd-labels" id="ddLabels"></div>
+      </div>
+      <div class="feedback" id="ddFeedback"></div>
+      <div class="btn-row"><button class="btn" id="ddNext" onclick="goTo('screen-missing')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 7. MISSING LETTERS -->
+  <section class="screen" id="screen-missing">
+    <div class="card">
+      <div class="eyebrow">Activity 6 · Missing Letters</div>
+      <h2>Fill in the Missing Letters ✏️</h2>
+      <div class="qbox">
+        <div class="qcount" id="missingCount"></div>
+        <div class="blank-word" id="missingWord"></div>
+        <button class="sound-btn" onclick="speakText(missingState.list[missingState.i].word)">🔊</button>
+        <div class="btn-row center"><button class="btn secondary" onclick="checkMissing()">Check ✔️</button></div>
+        <div class="feedback" id="missingFeedback"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="missingNext" onclick="goTo('screen-unscramble')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 8. UNSCRAMBLE -->
+  <section class="screen" id="screen-unscramble">
+    <div class="card">
+      <div class="eyebrow">Activity 7 · Unscramble Words</div>
+      <h2>Put the Letters in Order 🔤</h2>
+      <div class="qbox">
+        <div class="qcount" id="unscrambleCount"></div>
+        <p style="text-align:center; font-weight:700;">Tap letters in the right order to build the word:</p>
+        <div class="scramble-row" id="scrambleLetters"></div>
+        <p style="text-align:center; font-weight:700; margin-top:14px;">Your word:</p>
+        <div class="scramble-answer" id="scrambleAnswer"></div>
+        <div class="btn-row center">
+          <button class="btn yellow" onclick="clearScramble()">Clear ↺</button>
+          <button class="btn secondary" onclick="checkScramble()">Check ✔️</button>
+        </div>
+        <div class="feedback" id="scrambleFeedback"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="unscrambleNext" onclick="goTo('screen-mc')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 9. MULTIPLE CHOICE -->
+  <section class="screen" id="screen-mc">
+    <div class="card">
+      <div class="eyebrow">Activity 8 · Multiple Choice</div>
+      <h2>Which One Is It? 🤔</h2>
+      <div class="qbox">
+        <div class="qcount" id="mcCount"></div>
+        <p id="mcQuestion" style="font-size:1.2rem; font-weight:800; text-align:center;"></p>
+        <div class="option-grid" id="mcOptions"></div>
+        <div class="feedback" id="mcFeedback"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="mcNext" onclick="goTo('screen-tf')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 10. TRUE OR FALSE -->
+  <section class="screen" id="screen-tf">
+    <div class="card">
+      <div class="eyebrow">Activity 9 · True or False</div>
+      <h2>True or False? ✅❌</h2>
+      <div class="qbox">
+        <div class="qcount" id="tfCount"></div>
+        <p id="tfStatement" style="font-size:1.25rem; font-weight:800; text-align:center;"></p>
+        <div class="tf-row">
+          <button class="tf-btn" onclick="answerTF(true)">✅ True</button>
+          <button class="tf-btn false-btn" onclick="answerTF(false)">❌ False</button>
+        </div>
+        <div class="feedback" id="tfFeedback"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="tfNext" onclick="goTo('screen-reading')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 11. READING -->
+  <section class="screen" id="screen-reading">
+    <div class="card">
+      <div class="eyebrow">Activity 10 · Reading Practice</div>
+      <h2>Read About Ben 📖</h2>
+      <div class="reading-passage">
+        Hello! 👋<br>
+        My name is <strong>Ben</strong>.<br>
+        This is my body.<br>
+        I have two <strong>eyes</strong>.<br>
+        I have one <strong>nose</strong>.<br>
+        I have two <strong>hands</strong>.<br>
+        I have two <strong>feet</strong>.<br>
+        I can clap my hands.<br>
+        I can jump.<br>
+        I love my body! 💖
+      </div>
+      <button class="sound-btn" style="margin-top:10px;" onclick="speakText('Hello! My name is Ben. This is my body. I have two eyes. I have one nose. I have two hands. I have two feet. I can clap my hands. I can jump. I love my body.')">🔊</button>
+      <h3 style="margin-top:20px;">Comprehension Questions</h3>
+      <div id="readingQs"></div>
+      <div class="feedback" id="readingFeedback"></div>
+      <div class="btn-row"><button class="btn" id="readingNext" onclick="goTo('screen-buildsentence')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 12. BUILD THE SENTENCE -->
+  <section class="screen" id="screen-buildsentence">
+    <div class="card">
+      <div class="eyebrow">Activity 11 · Build the Sentence</div>
+      <h2>Put the Words in Order 🧩</h2>
+      <div class="qbox">
+        <div class="qcount" id="buildCount"></div>
+        <p style="font-weight:700;">Your sentence:</p>
+        <div class="sentence-line" id="buildLine"></div>
+        <p style="font-weight:700;">Word bank:</p>
+        <div class="word-bank" id="buildBank"></div>
+        <div class="btn-row center">
+          <button class="btn yellow" onclick="clearBuild()">Clear ↺</button>
+          <button class="btn secondary" onclick="checkBuild()">Check ✔️</button>
+        </div>
+        <div class="feedback" id="buildFeedback"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="buildNext" onclick="goTo('screen-simon')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 13. SIMON SAYS -->
+  <section class="screen" id="screen-simon">
+    <div class="card">
+      <div class="eyebrow">Activity 12 · Simon Says</div>
+      <h2>Simon Says... 🕹️</h2>
+      <div class="simon-instruction" id="simonInstruction"></div>
+      <button class="sound-btn" onclick="speakText(simonState.list[simonState.i].text)">🔊</button>
+      <div class="body-wrap" style="margin-top:14px;">
+        <div class="body-svg-holder" id="simonSvgHolder"></div>
+      </div>
+      <div class="feedback" id="simonFeedback"></div>
+      <div class="btn-row"><button class="btn" id="simonNext" onclick="goTo('screen-speaking')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 14. SPEAKING PRACTICE -->
+  <section class="screen" id="screen-speaking">
+    <div class="card">
+      <div class="eyebrow">Activity 13 · Speaking Practice</div>
+      <h2>Say It Out Loud! 🎤</h2>
+      <div class="qbox" style="text-align:center;">
+        <div class="qcount" id="speakCount"></div>
+        <p style="font-size:1.3rem; font-weight:800;" id="speakTarget"></p>
+        <button class="sound-btn" onclick="speakText(speakState.list[speakState.i])">🔊 Hear it</button>
+        <div>
+          <button class="mic-btn" id="micBtn" onclick="startSpeaking()">🎤</button>
+        </div>
+        <p id="speakHint" style="color:var(--ink-soft); font-weight:700;">Tap the microphone and repeat the sentence.</p>
+        <div class="feedback" id="speakFeedback"></div>
+        <div class="btn-row center"><button class="btn yellow" onclick="skipSpeaking()">I said it! Continue ✔️</button></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="speakNext" onclick="goTo('screen-movement')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 15. MOVEMENT CHALLENGE -->
+  <section class="screen" id="screen-movement">
+    <div class="card">
+      <div class="eyebrow">Activity 14 · Body Movement Challenge</div>
+      <h2>Move Your Body! 🤸</h2>
+      <div class="qcount" id="moveCount"></div>
+      <div class="move-card">
+        <div class="move-emoji" id="moveEmoji"></div>
+        <p style="font-size:1.3rem; font-weight:800;" id="moveText"></p>
+        <button class="sound-btn" onclick="speakText(moveState.list[moveState.i].text)">🔊</button>
+      </div>
+      <div class="btn-row center"><button class="btn secondary" onclick="doneMove()">Done! ✔️</button></div>
+      <div class="btn-row"><button class="btn" id="moveNext" onclick="goTo('screen-conversation')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 16. MINI CONVERSATION -->
+  <section class="screen" id="screen-conversation">
+    <div class="card">
+      <div class="eyebrow">Activity 15 · Mini Conversation</div>
+      <h2>Finish the Conversation 💬</h2>
+      <div id="convoList"></div>
+      <div class="feedback" id="convoFeedback"></div>
+      <div class="btn-row center"><button class="btn secondary" onclick="checkConvo()">Check ✔️</button></div>
+      <div class="btn-row"><button class="btn" id="convoNext" onclick="goTo('screen-funquiz')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 17. FUN QUIZ CHALLENGE -->
+  <section class="screen" id="screen-funquiz">
+    <div class="card">
+      <div class="eyebrow">Activity 16 · Fun Quiz Challenge</div>
+      <h2>Big Mixed Quiz! 🎉</h2>
+      <div class="qbox">
+        <div class="qcount" id="funCount"></div>
+        <div id="funQuestionArea"></div>
+        <div class="feedback" id="funFeedback"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="funNext" onclick="goTo('screen-adventure')" disabled>Continue ➜</button></div>
+    </div>
+  </section>
+
+  <!-- 18. FINAL ADVENTURE -->
+  <section class="screen" id="screen-adventure">
+    <div class="card">
+      <div class="eyebrow">Activity 17 · Final Adventure</div>
+      <h2>Help Lume Collect Every Body Part! 🗺️</h2>
+      <div class="adventure-map">
+        <p id="advPrompt" style="font-size:1.2rem; font-weight:800;"></p>
+        <div class="option-grid" id="advOptions"></div>
+        <div class="adventure-star-track" id="advStarTrack"></div>
+      </div>
+      <div class="feedback" id="advFeedback"></div>
+      <div class="btn-row"><button class="btn" id="advNext" onclick="goTo('screen-report')" disabled>See My Report ➜</button></div>
+    </div>
+  </section>
+
+  <!-- REPORT -->
+  <section class="screen" id="screen-report">
+    <div class="card" id="reportCard">
+      <div class="eyebrow">Activity 18 · Parent &amp; Teacher Report</div>
+      <h2>🎓 Body Expert Report Card</h2>
+      <label style="font-weight:800;">Student Name:</label><br>
+      <input class="name-input" id="studentName" placeholder="Type your name..." style="margin:8px 0 16px;"><br>
+      <p id="reportDate" style="color:var(--ink-soft); font-weight:700;"></p>
+      <div class="report-grid">
+        <div class="report-stat"><div class="num" id="repScore">0</div>Final Score</div>
+        <div class="report-stat"><div class="num" id="repStars">0</div>Stars Earned</div>
+        <div class="report-stat"><div class="num" id="repAccuracy">0%</div>Accuracy</div>
+        <div class="report-stat"><div class="num" id="repActivities">0/18</div>Activities Completed</div>
+      </div>
+      <div class="report-stat" style="text-align:left; margin-bottom:10px;">
+        <div style="font-weight:800; margin-bottom:6px;">🏅 Badge Earned</div>
+        <div id="repBadge" style="font-size:1.2rem; font-weight:800;">—</div>
+      </div>
+      <div class="report-stat" style="text-align:left; margin-bottom:10px;">
+        <div style="font-weight:800; margin-bottom:6px;">✅ Vocabulary Mastered</div>
+        <div id="repMastered"></div>
+      </div>
+      <div class="report-stat" style="text-align:left;">
+        <div style="font-weight:800; margin-bottom:6px;">🔁 Words to Practice Again</div>
+        <div id="repRetry"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="window.print()">🖨️ Print Certificate</button>
+        <button class="btn secondary" onclick="downloadReport()">⬇️ Download Report</button>
+        <button class="btn yellow" onclick="location.reload()">🔄 Restart Lesson</button>
+        <button class="btn lav" onclick="goTo('screen-welcome')">▶️ Play Again</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div id="mascot-wrap">
+  <div id="mascot-bubble"></div>
+  <svg id="lume" viewBox="0 0 100 100" onclick="mascotPoke()">
+    <ellipse cx="50" cy="60" rx="30" ry="26" fill="#FFE9A8"/>
+    <ellipse cx="50" cy="60" rx="30" ry="26" fill="none" stroke="#FFD766" stroke-width="3"/>
+    <circle cx="40" cy="55" r="5" fill="#4A3F55"/>
+    <circle cx="62" cy="55" r="5" fill="#4A3F55"/>
+    <path d="M40 70 Q50 78 62 70" stroke="#4A3F55" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="30" cy="62" r="5" fill="#FF9EC4" opacity=".6"/>
+    <circle cx="72" cy="62" r="5" fill="#FF9EC4" opacity=".6"/>
+    <path d="M20 40 Q10 20 30 25" stroke="#FFD766" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M80 40 Q90 20 70 25" stroke="#FFD766" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="50" cy="30" r="6" fill="#FFF6D6"/>
+  </svg>
+</div>
+
+<div id="badgePopup">
+  <div class="badge-card">
+    <div class="icon" id="badgeIcon">🏅</div>
+    <h2 id="badgeTitle">New Badge!</h2>
+    <p id="badgeText"></p>
+    <button class="btn" onclick="closeBadge()">Yay! ✨</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   LITTLELUME ENGLISH — MY BODY — GRADE 1
+   ============================================================ */
+
+/* ---------- DATA ---------- */
+const VOCAB = [
+  {id:'head', word:'Head', emoji:'👦', phonics:'/hed/', sentence:'This is my head.'},
+  {id:'hair', word:'Hair', emoji:'💇', phonics:'/hair/', sentence:'This is my hair.'},
+  {id:'face', word:'Face', emoji:'😀', phonics:'/fays/', sentence:'This is my face.'},
+  {id:'eyes', word:'Eyes', emoji:'👀', phonics:'/ize/', sentence:'These are my eyes.'},
+  {id:'ears', word:'Ears', emoji:'👂', phonics:'/eerz/', sentence:'These are my ears.'},
+  {id:'nose', word:'Nose', emoji:'👃', phonics:'/nohz/', sentence:'This is my nose.'},
+  {id:'mouth', word:'Mouth', emoji:'👄', phonics:'/mowth/', sentence:'This is my mouth.'},
+  {id:'teeth', word:'Teeth', emoji:'🦷', phonics:'/teeth/', sentence:'These are my teeth.'},
+  {id:'tongue', word:'Tongue', emoji:'👅', phonics:'/tung/', sentence:'This is my tongue.'},
+  {id:'neck', word:'Neck', emoji:'🧣', phonics:'/nek/', sentence:'This is my neck.'},
+  {id:'shoulders', word:'Shoulders', emoji:'🤷', phonics:'/shohl-derz/', sentence:'These are my shoulders.'},
+  {id:'arms', word:'Arms', emoji:'💪', phonics:'/armz/', sentence:'These are my arms.'},
+  {id:'hands', word:'Hands', emoji:'🖐️', phonics:'/handz/', sentence:'I have two hands.'},
+  {id:'fingers', word:'Fingers', emoji:'✋', phonics:'/fing-gerz/', sentence:'These are my fingers.'},
+  {id:'chest', word:'Chest', emoji:'🫁', phonics:'/chest/', sentence:'This is my chest.'},
+  {id:'stomach', word:'Stomach', emoji:'🤰', phonics:'/stum-uk/', sentence:'This is my stomach.'},
+  {id:'legs', word:'Legs', emoji:'🦵', phonics:'/legz/', sentence:'I can walk with my legs.'},
+  {id:'knees', word:'Knees', emoji:'🦿', phonics:'/neez/', sentence:'These are my knees.'},
+  {id:'feet', word:'Feet', emoji:'🦶', phonics:'/feet/', sentence:'I have two feet.'},
+  {id:'toes', word:'Toes', emoji:'👣', phonics:'/tohz/', sentence:'These are my toes.'}
+];
+const VBY = {}; VOCAB.forEach(v=>VBY[v.id]=v);
+
+const ACTIVITY_IDS = ['screen-warmup','screen-vocab','screen-explorer','screen-listen','screen-dragdrop',
+  'screen-missing','screen-unscramble','screen-mc','screen-tf','screen-reading','screen-buildsentence',
+  'screen-simon','screen-speaking','screen-movement','screen-conversation','screen-funquiz','screen-adventure','screen-report'];
+const ACTIVITY_LABELS = {'screen-warmup':'Warm Up','screen-vocab':'Vocabulary','screen-explorer':'Explorer','screen-listen':'Listen',
+  'screen-dragdrop':'Labels','screen-missing':'Spelling','screen-unscramble':'Unscramble','screen-mc':'Choice','screen-tf':'True/False',
+  'screen-reading':'Reading','screen-buildsentence':'Sentences','screen-simon':'Simon','screen-speaking':'Speaking','screen-movement':'Movement',
+  'screen-conversation':'Chat','screen-funquiz':'Fun Quiz','screen-adventure':'Adventure','screen-report':'Report'};
+
+/* ---------- STATE ---------- */
+const state = {stars:0, score:0, correct:0, attempted:0, completed:new Set(), mastered:new Set(), retry:new Set(), shownBadges:new Set()};
+const initialized = new Set();
+
+/* ---------- HELPERS ---------- */
+function shuffle(arr){const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a;}
+function sample(arr,n){return shuffle(arr).slice(0,n);}
+function esc(s){return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+function speakText(text){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.82; u.pitch = 1.2; u.lang = 'en-US';
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+function mascotSay(text, ms){
+  const b = document.getElementById('mascot-bubble');
+  b.textContent = text;
+  b.classList.add('show');
+  clearTimeout(window._mascotTimeout);
+  window._mascotTimeout = setTimeout(()=>b.classList.remove('show'), ms||3200);
+}
+const ENCOURAGE = ['Great job! ⭐','You are amazing! 🌟','Super work! 💖','Keep going, star learner! ✨','Wonderful! 🎉','Yes! That is right! 👍'];
+const TRYAGAIN = ['Almost! Try again 💛','Not quite — you can do it! 🌈','Keep trying, friend! 🌟','Oops, try once more! 😊'];
+function mascotPoke(){ mascotSay(ENCOURAGE[Math.floor(Math.random()*ENCOURAGE.length)]); speakText("You're doing great!"); }
+
+function confettiBurst(count){
+  count = count || 40;
+  const colors = ['#FF9EC4','#7FE0C2','#FFD766','#C9B6F5','#FFB199'];
+  for(let i=0;i<count;i++){
+    const d = document.createElement('div');
+    d.className = 'confetti-piece';
+    const size = 6 + Math.random()*8;
+    d.style.left = (Math.random()*100)+'vw';
+    d.style.width = size+'px';
+    d.style.height = (size*0.6)+'px';
+    d.style.background = colors[Math.floor(Math.random()*colors.length)];
+    d.style.animationDuration = (2 + Math.random()*2)+'s';
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(), 4200);
+  }
+}
+
+/* ---------- SCORING ---------- */
+function gradeAnswer(isCorrect, vocabId){
+  state.attempted++;
+  if(isCorrect){
+    state.correct++; state.stars++; state.score += 10;
+    if(vocabId){ state.mastered.add(vocabId); state.retry.delete(vocabId); }
+  } else {
+    state.score += 2;
+    if(vocabId){ state.retry.add(vocabId); }
+  }
+  updateDashboard();
+}
+function engagementStar(vocabId){
+  state.stars++; state.score += 3;
+  if(vocabId) state.mastered.add(vocabId);
+  updateDashboard();
+}
+function markComplete(screenId){
+  if(!state.completed.has(screenId)){
+    state.completed.add(screenId);
+    updateDashboard();
+  }
+}
+
+function updateDashboard(){
+  document.getElementById('statStars').textContent = state.stars;
+  document.getElementById('statScore').textContent = state.score;
+  document.getElementById('statActivities').textContent = state.completed.size;
+  document.getElementById('statAccuracy').textContent = state.attempted ? Math.round(state.correct/state.attempted*100)+'%' : '0%';
+  document.getElementById('progressFill').style.width = Math.round(state.completed.size/ACTIVITY_IDS.length*100)+'%';
+  renderStepNav();
+  checkBadgeMilestones();
+}
+
+function checkBadgeMilestones(){
+  const tiers = [[40,'🏵️','LittleLume Body Expert!','You collected 40 stars — you are a true Body Expert!'],
+                 [30,'🥇','Gold Badge!','30 stars — golden effort!'],
+                 [20,'🥈','Silver Badge!','20 stars — shining bright!'],
+                 [10,'🥉','Bronze Badge!','10 stars — great start!']];
+  for(const [n,icon,title,text] of tiers){
+    if(state.stars>=n && !state.shownBadges.has(n)){
+      state.shownBadges.add(n);
+      showBadge(icon,title,text);
+      break;
+    }
+  }
+}
+function showBadge(icon,title,text){
+  document.getElementById('badgeIcon').textContent = icon;
+  document.getElementById('badgeTitle').textContent = title;
+  document.getElementById('badgeText').textContent = text;
+  document.getElementById('badgePopup').classList.add('show');
+  confettiBurst(70);
+}
+function closeBadge(){ document.getElementById('badgePopup').classList.remove('show'); }
+
+/* ---------- NAVIGATION ---------- */
+function renderStepNav(){
+  const nav = document.getElementById('stepNav');
+  nav.innerHTML = ACTIVITY_IDS.map((id,i)=>{
+    let cls = 'step-dot';
+    if(state.completed.has(id)) cls += ' done';
+    if(id===window._currentScreen) cls += ' current';
+    return `<div class="${cls}" title="${ACTIVITY_LABELS[id]}" onclick="goTo('${id}')">${i+1}</div>`;
+  }).join('');
+}
+
+const SCREEN_GREETINGS = {
+  'screen-warmup':"Let's warm up!",
+  'screen-vocab':"Tap a card to learn a word!",
+  'screen-explorer':"Tap Ben's body parts!",
+  'screen-listen':"Listen carefully!",
+  'screen-dragdrop':"Match the labels!",
+  'screen-missing':"Fill in the letters!",
+  'screen-unscramble':"Unscramble the word!",
+  'screen-mc':"Pick the right picture!",
+  'screen-tf':"True or false?",
+  'screen-reading':"Let's read together!",
+  'screen-buildsentence':"Build the sentence!",
+  'screen-simon':"Simon says... listen!",
+  'screen-speaking':"Your turn to talk!",
+  'screen-movement':"Let's move our body!",
+  'screen-conversation':"Finish the chat!",
+  'screen-funquiz':"Big quiz time!",
+  'screen-adventure':"Final adventure time!",
+  'screen-report':"Look at your report!"
+};
+
+function goTo(screenId){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  window._currentScreen = screenId;
+  window.scrollTo({top:0, behavior:'smooth'});
+  renderStepNav();
+  if(SCREEN_GREETINGS[screenId]) mascotSay(SCREEN_GREETINGS[screenId]);
+  if(!initialized.has(screenId)){
+    initialized.add(screenId);
+    const initFn = INIT_FUNCS[screenId];
+    if(initFn) initFn();
+  }
+}
+
+/* ---------- BODY SVG ---------- */
+function bodySVG(){
+  return `<svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+    <rect class="body-part" data-part="legs" x="112" y="330" width="34" height="120" rx="12" fill="#C9B6F5"/>
+    <rect class="body-part" data-part="legs" x="154" y="330" width="34" height="120" rx="12" fill="#C9B6F5"/>
+    <ellipse class="body-part" data-part="feet" cx="128" cy="460" rx="24" ry="15" fill="#FF9EC4"/>
+    <ellipse class="body-part" data-part="feet" cx="172" cy="460" rx="24" ry="15" fill="#FF9EC4"/>
+    <ellipse class="body-part" data-part="toes" cx="128" cy="472" rx="11" ry="6" fill="#E0699E"/>
+    <ellipse class="body-part" data-part="toes" cx="172" cy="472" rx="11" ry="6" fill="#E0699E"/>
+    <ellipse class="body-part" data-part="knees" cx="130" cy="395" rx="15" ry="10" fill="#B39AE0"/>
+    <ellipse class="body-part" data-part="knees" cx="170" cy="395" rx="15" ry="10" fill="#B39AE0"/>
+    <rect class="body-part" data-part="stomach" x="108" y="258" width="84" height="72" rx="18" fill="#8FE0C2"/>
+    <rect class="body-part" data-part="chest" x="103" y="203" width="94" height="62" rx="20" fill="#BFF4E0"/>
+    <path class="body-part" data-part="arms" d="M104,208 Q74,238 68,300 L86,306 Q96,248 118,213 Z" fill="#FFD9B3"/>
+    <path class="body-part" data-part="arms" d="M196,208 Q226,238 232,300 L214,306 Q204,248 182,213 Z" fill="#FFD9B3"/>
+    <circle class="body-part" data-part="hands" cx="75" cy="312" r="17" fill="#FFD9B3"/>
+    <circle class="body-part" data-part="hands" cx="225" cy="312" r="17" fill="#FFD9B3"/>
+    <ellipse class="body-part" data-part="fingers" cx="75" cy="328" rx="13" ry="7" fill="#FFC79A"/>
+    <ellipse class="body-part" data-part="fingers" cx="225" cy="328" rx="13" ry="7" fill="#FFC79A"/>
+    <path class="body-part" data-part="shoulders" d="M98,204 Q150,183 202,204 L196,221 Q150,206 104,221 Z" fill="#7FE0C2"/>
+    <rect class="body-part" data-part="neck" x="134" y="174" width="32" height="32" rx="9" fill="#FFD9B3"/>
+    <ellipse class="body-part" data-part="head" cx="150" cy="108" rx="59" ry="61" fill="#FFD9B3"/>
+    <ellipse class="body-part" data-part="ears" cx="93" cy="115" rx="12" ry="19" fill="#FFD9B3"/>
+    <ellipse class="body-part" data-part="ears" cx="207" cy="115" rx="12" ry="19" fill="#FFD9B3"/>
+    <ellipse class="body-part" data-part="face" cx="150" cy="123" rx="47" ry="43" fill="#FFE0C2"/>
+    <path class="body-part" data-part="hair" d="M91,96 Q88,38 150,36 Q212,38 209,96 Q209,58 150,56 Q91,58 91,96 Z" fill="#6B4226"/>
+    <path d="M117,101 Q128,95 139,101" stroke="#6B4226" stroke-width="3" fill="none" stroke-linecap="round" pointer-events="none"/>
+    <path d="M161,101 Q172,95 183,101" stroke="#6B4226" stroke-width="3" fill="none" stroke-linecap="round" pointer-events="none"/>
+    <g class="body-part" data-part="eyes">
+      <circle cx="128" cy="116" r="11" fill="white"/><circle cx="128" cy="117" r="5.5" fill="#4A3F55"/>
+      <circle cx="172" cy="116" r="11" fill="white"/><circle cx="172" cy="117" r="5.5" fill="#4A3F55"/>
+    </g>
+    <ellipse class="body-part" data-part="nose" cx="150" cy="133" rx="9" ry="11" fill="#F5B98A"/>
+    <ellipse cx="111" cy="141" rx="10" ry="6" fill="#FF9EC4" opacity=".5" pointer-events="none"/>
+    <ellipse cx="189" cy="141" rx="10" ry="6" fill="#FF9EC4" opacity=".5" pointer-events="none"/>
+    <path class="body-part" data-part="mouth" d="M124,152 Q150,170 176,152 Q150,163 124,152 Z" fill="#E0698A"/>
+    <rect class="body-part" data-part="teeth" x="139" y="150" width="22" height="6" rx="2" fill="white"/>
+    <ellipse class="body-part" data-part="tongue" cx="150" cy="162" rx="11" ry="5" fill="#FF9EC4"/>
+  </svg>`;
+}
+function mountBodySVG(holderId, onPartClick){
+  const holder = document.getElementById(holderId);
+  holder.innerHTML = bodySVG();
+  holder.querySelectorAll('.body-part').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const part = el.dataset.part;
+      holder.querySelectorAll(`[data-part="${part}"]`).forEach(m=>{
+        m.classList.add('active-highlight');
+        setTimeout(()=>m.classList.remove('active-highlight'), 650);
+      });
+      onPartClick(part);
+    });
+  });
+}
+
+/* ============================================================
+   1. WARM UP
+   ============================================================ */
+const WARMUP_Q = ["Can you touch your nose?","Can you clap your hands?","Can you jump?"];
+let warmupAnswered = 0;
+function initWarmup(){
+  const list = document.getElementById('warmupList');
+  list.innerHTML = WARMUP_Q.map((q,i)=>`
+    <div class="yn-question">
+      <span class="qtext">${esc(q)}</span>
+      <div class="yn-btns" id="yn-${i}">
+        <button onclick="answerWarmup(${i},true)">Yes 🙂</button>
+        <button onclick="answerWarmup(${i},false)">No</button>
+      </div>
+    </div>`).join('');
+  warmupAnswered = 0;
+  mascotSay("Answer Yes or No!");
+}
+function answerWarmup(i, yes){
+  const wrap = document.getElementById('yn-'+i);
+  if(wrap.dataset.done) return;
+  wrap.dataset.done = '1';
+  const btns = wrap.querySelectorAll('button');
+  btns[0].classList.add('selected'); if(yes) btns[0].classList.add('correct');
+  if(!yes) btns[1].classList.add('selected','wrong');
+  speakText(WARMUP_Q[i]);
+  gradeAnswer(yes===true);
+  warmupAnswered++;
+  if(warmupAnswered===WARMUP_Q.length){
+    document.getElementById('warmupNext').disabled = false;
+    markComplete('screen-warmup');
+    mascotSay("Wonderful warm up! 🎉");
+  }
+}
+
+/* ============================================================
+   2. VOCABULARY FLASHCARDS
+   ============================================================ */
+const flippedCards = new Set();
+function initVocab(){
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = VOCAB.map(v=>`
+    <div class="flip-card" id="card-${v.id}" onclick="flipCard('${v.id}')">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="emoji">${v.emoji}</div>
+          <div class="word">${v.word}</div>
+        </div>
+        <div class="flip-back">
+          <div class="phonics">${v.phonics}</div>
+          <div class="sentence">"${esc(v.sentence)}"</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function flipCard(id){
+  const card = document.getElementById('card-'+id);
+  card.classList.toggle('flipped');
+  if(card.classList.contains('flipped')){
+    speakText(VBY[id].sentence);
+    if(!flippedCards.has(id)){
+      flippedCards.add(id);
+      engagementStar(id);
+      if(flippedCards.size===VOCAB.length){
+        markComplete('screen-vocab');
+        mascotSay("You learned all 20 words! ⭐");
+      }
+    }
+  }
+}
+
+/* ============================================================
+   3. BODY EXPLORER
+   ============================================================ */
+const exploredParts = new Set();
+function initExplorer(){
+  mountBodySVG('explorerSvgHolder', (part)=>{
+    const v = VBY[part];
+    document.getElementById('explorerInfo').innerHTML = `
+      <div class="big-word">${v.emoji} ${v.word}</div>
+      <div style="font-weight:700;color:var(--ink-soft);">${v.phonics}</div>
+      <p style="margin-top:8px;font-weight:700;">"${esc(v.sentence)}"</p>`;
+    speakText(v.sentence);
+    if(!exploredParts.has(part)){
+      exploredParts.add(part);
+      engagementStar(part);
+      if(exploredParts.size===VOCAB.length){
+        markComplete('screen-explorer');
+        mascotSay("Ben has no secrets left! 🎉");
+      }
+    }
+  });
+}
+
+/* ============================================================
+   4. LISTEN AND POINT
+   ============================================================ */
+let listenState = {list:[], i:0};
+function initListen(){
+  listenState.list = shuffle(VOCAB).slice(0,10);
+  listenState.i = 0;
+  mountBodySVG('listenSvgHolder', (part)=>{
+    const target = listenState.list[listenState.i];
+    if(part===target.id){
+      document.getElementById('listenFeedback').textContent = ENCOURAGE[0];
+      document.getElementById('listenFeedback').className='feedback good';
+      gradeAnswer(true, target.id);
+      listenState.i++;
+      setTimeout(nextListenQuestion, 700);
+    } else {
+      document.getElementById('listenFeedback').textContent = TRYAGAIN[0];
+      document.getElementById('listenFeedback').className='feedback bad';
+      gradeAnswer(false, target.id);
+    }
+  });
+  nextListenQuestion();
+}
+function nextListenQuestion(){
+  document.getElementById('listenFeedback').textContent='';
+  if(listenState.i>=listenState.list.length){
+    document.getElementById('listenPrompt').textContent = "🎉 All done! Great listening!";
+    document.getElementById('listenCount').textContent='';
+    document.getElementById('listenNext').disabled=false;
+    markComplete('screen-listen');
+    return;
+  }
+  document.getElementById('listenCount').textContent = `Question ${listenState.i+1} / ${listenState.list.length}`;
+  const t = listenState.list[listenState.i];
+  document.getElementById('listenPrompt').textContent = `Touch your ${t.word.toLowerCase()}.`;
+  speakCurrentListen();
+}
+function speakCurrentListen(){
+  if(listenState.i<listenState.list.length) speakText(`Touch your ${listenState.list[listenState.i].word.toLowerCase()}.`);
+}
+
+/* ============================================================
+   5. DRAG AND DROP LABELS
+   ============================================================ */
+const DD_PARTS = ['head','ears','nose','mouth','shoulders','hands','legs','feet'];
+const DD_POS = {head:[110,81],ears:[151,84],nose:[110,97],mouth:[110,114],shoulders:[110,154],hands:[164,229],legs:[95,286],feet:[94,337]};
+let ddSelected = null, ddFilled = 0;
+function initDragdrop(){
+  const canvas = document.getElementById('ddCanvas');
+  canvas.innerHTML = `<div id="ddSvgHolder"></div>` + DD_PARTS.map(p=>{
+    const [x,y] = DD_POS[p];
+    return `<div class="dd-target" id="ddt-${p}" style="left:${x}px; top:${y}px; transform:translate(-50%,-50%);" data-part="${p}">?</div>`;
+  }).join('');
+  document.getElementById('ddSvgHolder').innerHTML = bodySVG();
+  document.querySelectorAll('#ddCanvas svg')[0].style.pointerEvents='none';
+  const labelsWrap = document.getElementById('ddLabels');
+  labelsWrap.innerHTML = shuffle(DD_PARTS).map(p=>`<div class="dd-label" id="ddl-${p}" data-part="${p}" onclick="selectLabel('${p}')">${VBY[p].word}</div>`).join('');
+  ddSelected = null; ddFilled = 0;
+  document.getElementById('ddFeedback').textContent='';
+  document.querySelectorAll('.dd-target').forEach(t=>t.addEventListener('click', ()=>placeLabel(t.dataset.part)));
+}
+function selectLabel(part){
+  const el = document.getElementById('ddl-'+part);
+  if(el.classList.contains('used')) return;
+  document.querySelectorAll('.dd-label').forEach(l=>l.style.outline='none');
+  ddSelected = part;
+  el.style.outline = '3px solid #FF9EC4';
+  speakText(VBY[part].word);
+}
+function placeLabel(targetPart){
+  if(!ddSelected) return;
+  const targetEl = document.getElementById('ddt-'+targetPart);
+  if(targetEl.classList.contains('filled')) return;
+  if(ddSelected===targetPart){
+    targetEl.textContent = VBY[targetPart].word;
+    targetEl.classList.add('filled');
+    document.getElementById('ddl-'+ddSelected).classList.add('used');
+    document.getElementById('ddFeedback').textContent = ENCOURAGE[Math.floor(Math.random()*ENCOURAGE.length)];
+    document.getElementById('ddFeedback').className='feedback good';
+    gradeAnswer(true, targetPart);
+    ddFilled++;
+    if(ddFilled===DD_PARTS.length){
+      document.getElementById('ddNext').disabled=false;
+      markComplete('screen-dragdrop');
+      mascotSay("Perfect labeling! 🏷️");
+    }
+  } else {
+    document.getElementById('ddFeedback').textContent = TRYAGAIN[Math.floor(Math.random()*TRYAGAIN.length)];
+    document.getElementById('ddFeedback').className='feedback bad';
+    gradeAnswer(false, targetPart);
+  }
+  document.querySelectorAll('.dd-label').forEach(l=>l.style.outline='none');
+  ddSelected = null;
+}
+
+/* ============================================================
+   6. MISSING LETTERS
+   ============================================================ */
+let missingState = {list:[], i:0};
+function initMissing(){
+  missingState.list = sample(VOCAB, 8);
+  missingState.i = 0;
+  renderMissing();
+}
+function renderMissing(){
+  document.getElementById('missingFeedback').textContent='';
+  if(missingState.i>=missingState.list.length){
+    document.getElementById('missingWord').innerHTML = "🎉 Great spelling!";
+    document.getElementById('missingCount').textContent='';
+    document.getElementById('missingNext').disabled=false;
+    markComplete('screen-missing');
+    return;
+  }
+  document.getElementById('missingCount').textContent = `Word ${missingState.i+1} / ${missingState.list.length}`;
+  const word = missingState.list[missingState.i].word.toUpperCase();
+  const n = word.length;
+  const numBlanks = n<=4 ? 1 : 2;
+  const idxs = new Set();
+  while(idxs.size<numBlanks) idxs.add(Math.floor(Math.random()*n));
+  let html = '';
+  for(let k=0;k<n;k++){
+    if(idxs.has(k)) html += `<input maxlength="1" data-i="${k}" autocomplete="off">`;
+    else html += `<span class="letter-fixed">${word[k]}</span>`;
+  }
+  document.getElementById('missingWord').innerHTML = html;
+  missingState.blanks = idxs;
+  missingState.answered = false;
+}
+function checkMissing(){
+  if(missingState.answered) return;
+  const item = missingState.list[missingState.i];
+  const word = item.word.toUpperCase();
+  const inputs = document.querySelectorAll('#missingWord input');
+  let ok = true;
+  inputs.forEach(inp=>{ if((inp.value||'').toUpperCase() !== word[+inp.dataset.i]) ok=false; });
+  missingState.answered = true;
+  document.getElementById('missingFeedback').textContent = ok ? ENCOURAGE[0] : `${TRYAGAIN[0]} (${item.word})`;
+  document.getElementById('missingFeedback').className = 'feedback ' + (ok?'good':'bad');
+  gradeAnswer(ok, item.id);
+  speakText(item.word);
+  missingState.i++;
+  setTimeout(renderMissing, 1300);
+}
+
+/* ============================================================
+   7. UNSCRAMBLE
+   ============================================================ */
+let unscrambleState = {list:[], i:0, current:[], built:[]};
+function initUnscramble(){
+  unscrambleState.list = sample(VOCAB, 7);
+  unscrambleState.i = 0;
+  renderUnscramble();
+}
+function scrambleWord(word){
+  let letters;
+  do { letters = shuffle(word.toUpperCase().split('')); } while(letters.join('')===word.toUpperCase() && word.length>1);
+  return letters;
+}
+function renderUnscramble(){
+  document.getElementById('scrambleFeedback').textContent='';
+  if(unscrambleState.i>=unscrambleState.list.length){
+    document.getElementById('scrambleLetters').innerHTML='';
+    document.getElementById('scrambleAnswer').innerHTML='🎉 All words solved!';
+    document.getElementById('unscrambleCount').textContent='';
+    document.getElementById('unscrambleNext').disabled=false;
+    markComplete('screen-unscramble');
+    return;
+  }
+  document.getElementById('unscrambleCount').textContent = `Word ${unscrambleState.i+1} / ${unscrambleState.list.length}`;
+  const item = unscrambleState.list[unscrambleState.i];
+  unscrambleState.current = scrambleWord(item.word).map((l,idx)=>({l,idx,used:false}));
+  unscrambleState.built = [];
+  renderScrambleTiles();
+}
+function renderScrambleTiles(){
+  document.getElementById('scrambleLetters').innerHTML = unscrambleState.current.map(t=>
+    `<div class="scramble-letter" style="${t.used?'opacity:.25;pointer-events:none;':''}" onclick="pickScrambleLetter(${t.idx})">${t.l}</div>`).join('');
+  document.getElementById('scrambleAnswer').innerHTML = unscrambleState.built.map(t=>
+    `<div class="scramble-letter">${t.l}</div>`).join('');
+}
+function pickScrambleLetter(idx){
+  const t = unscrambleState.current.find(x=>x.idx===idx);
+  if(!t || t.used) return;
+  t.used = true;
+  unscrambleState.built.push(t);
+  renderScrambleTiles();
+}
+function clearScramble(){
+  unscrambleState.current.forEach(t=>t.used=false);
+  unscrambleState.built = [];
+  renderScrambleTiles();
+}
+function checkScramble(){
+  const item = unscrambleState.list[unscrambleState.i];
+  const guess = unscrambleState.built.map(t=>t.l).join('');
+  const ok = guess===item.word.toUpperCase();
+  document.getElementById('scrambleFeedback').textContent = ok ? ENCOURAGE[1] : `${TRYAGAIN[1]} (${item.word})`;
+  document.getElementById('scrambleFeedback').className = 'feedback ' + (ok?'good':'bad');
+  gradeAnswer(ok, item.id);
+  speakText(item.word);
+  unscrambleState.i++;
+  setTimeout(renderUnscramble, 1300);
+}
+
+/* ============================================================
+   8. MULTIPLE CHOICE (min 20 questions)
+   ============================================================ */
+let mcState = {list:[], i:0};
+function buildMCQuestion(){
+  const target = VOCAB[Math.floor(Math.random()*VOCAB.length)];
+  const distractors = sample(VOCAB.filter(v=>v.id!==target.id), 3);
+  const options = shuffle([target, ...distractors]);
+  return {target, options};
+}
+function initMC(){
+  mcState.list = Array.from({length:20}, buildMCQuestion);
+  mcState.i = 0;
+  renderMC();
+}
+function renderMC(){
+  document.getElementById('mcFeedback').textContent='';
+  if(mcState.i>=mcState.list.length){
+    document.getElementById('mcQuestion').textContent = "🎉 Quiz complete!";
+    document.getElementById('mcOptions').innerHTML='';
+    document.getElementById('mcCount').textContent='';
+    document.getElementById('mcNext').disabled=false;
+    markComplete('screen-mc');
+    return;
+  }
+  document.getElementById('mcCount').textContent = `Question ${mcState.i+1} / ${mcState.list.length}`;
+  const q = mcState.list[mcState.i];
+  document.getElementById('mcQuestion').textContent = `Which one is the ${q.target.word.toLowerCase()}?`;
+  document.getElementById('mcOptions').innerHTML = q.options.map(o=>`
+    <div class="option-card" data-id="${o.id}" onclick="answerMC('${o.id}')">
+      <div>${o.emoji}</div><div class="lbl">${o.word}</div>
+    </div>`).join('');
+}
+function answerMC(pickedId){
+  if(mcState.answered) return;
+  mcState.answered = true;
+  const q = mcState.list[mcState.i];
+  const ok = pickedId===q.target.id;
+  document.querySelectorAll('#mcOptions .option-card').forEach(c=>{
+    if(c.dataset.id===q.target.id) c.classList.add('correct');
+    else if(c.dataset.id===pickedId) c.classList.add('wrong');
+  });
+  document.getElementById('mcFeedback').textContent = ok ? ENCOURAGE[2] : TRYAGAIN[2];
+  document.getElementById('mcFeedback').className = 'feedback ' + (ok?'good':'bad');
+  gradeAnswer(ok, q.target.id);
+  speakText(q.target.sentence);
+  mcState.i++;
+  setTimeout(()=>{ mcState.answered=false; renderMC(); }, 1100);
+}
+
+/* ============================================================
+   9. TRUE OR FALSE
+   ============================================================ */
+const TF_BANK = [
+  {s:"You have two eyes.", a:true},
+  {s:"You have three noses.", a:false},
+  {s:"You have one nose.", a:true},
+  {s:"You have two hands.", a:true},
+  {s:"You have five hands.", a:false},
+  {s:"You have two feet.", a:true},
+  {s:"You have one head.", a:true},
+  {s:"You have two heads.", a:false},
+  {s:"You walk with your legs.", a:true},
+  {s:"You smell with your ears.", a:false},
+  {s:"You hear with your ears.", a:true},
+  {s:"You see with your eyes.", a:true},
+  {s:"You have two mouths.", a:false},
+  {s:"You have ten fingers.", a:true}
+];
+let tfState = {list:[], i:0};
+function initTF(){
+  tfState.list = shuffle(TF_BANK);
+  tfState.i = 0;
+  renderTF();
+}
+function renderTF(){
+  document.getElementById('tfFeedback').textContent='';
+  if(tfState.i>=tfState.list.length){
+    document.getElementById('tfStatement').textContent = "🎉 All finished!";
+    document.getElementById('tfCount').textContent='';
+    document.getElementById('tfNext').disabled=false;
+    markComplete('screen-tf');
+    return;
+  }
+  document.getElementById('tfCount').textContent = `Statement ${tfState.i+1} / ${tfState.list.length}`;
+  document.getElementById('tfStatement').textContent = tfState.list[tfState.i].s;
+  speakText(tfState.list[tfState.i].s);
+  tfState.answered = false;
+}
+function answerTF(val){
+  if(tfState.answered) return;
+  tfState.answered = true;
+  const item = tfState.list[tfState.i];
+  const ok = val===item.a;
+  document.getElementById('tfFeedback').textContent = ok ? ENCOURAGE[3] : `${TRYAGAIN[3]} The answer is ${item.a?'True':'False'}.`;
+  document.getElementById('tfFeedback').className = 'feedback ' + (ok?'good':'bad');
+  gradeAnswer(ok);
+  tfState.i++;
+  setTimeout(renderTF, 1200);
+}
+
+/* ============================================================
+   10. READING PRACTICE
+   ============================================================ */
+const READING_Q = [
+  {q:"What is the boy's name?", opts:['Ben','Sam','Max'], a:'Ben'},
+  {q:"How many eyes does he have?", opts:['One','Two','Three'], a:'Two'},
+  {q:"How many noses does he have?", opts:['One','Two','Three'], a:'One'},
+  {q:"What can Ben do with his hands?", opts:['Clap','Fly','Swim'], a:'Clap'},
+  {q:"What else can Ben do?", opts:['Sleep all day','Jump','Drive a car'], a:'Jump'}
+];
+let readingAnswered = 0;
+function initReading(){
+  readingAnswered = 0;
+  const wrap = document.getElementById('readingQs');
+  wrap.innerHTML = READING_Q.map((item,i)=>`
+    <div class="qbox" style="margin-bottom:12px;">
+      <p style="font-weight:800;">${i+1}. ${esc(item.q)}</p>
+      <div class="option-grid" id="rq-${i}">
+        ${shuffle(item.opts).map(o=>`<div class="option-card" style="font-size:1rem;" onclick="answerReading(${i},'${esc(o)}')">${esc(o)}</div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function answerReading(i, picked){
+  const box = document.getElementById('rq-'+i);
+  if(box.dataset.done) return;
+  box.dataset.done = '1';
+  const item = READING_Q[i];
+  const ok = picked===item.a;
+  [...box.children].forEach(c=>{
+    if(c.textContent===item.a) c.classList.add('correct');
+    else if(c.textContent===picked) c.classList.add('wrong');
+  });
+  gradeAnswer(ok);
+  readingAnswered++;
+  document.getElementById('readingFeedback').textContent = ok? ENCOURAGE[4] : TRYAGAIN[0];
+  document.getElementById('readingFeedback').className = 'feedback ' + (ok?'good':'bad');
+  if(readingAnswered===READING_Q.length){
+    document.getElementById('readingNext').disabled=false;
+    markComplete('screen-reading');
+    mascotSay("Fantastic reading! 📖");
+  }
+}
+
+/* ============================================================
+   11. BUILD THE SENTENCE
+   ============================================================ */
+const BUILD_BANK = [
+  {words:['This','is','my','head.'], answer:'This is my head.'},
+  {words:['I','have','two','hands.'], answer:'I have two hands.'},
+  {words:['Touch','your','nose.'], answer:'Touch your nose.'},
+  {words:['I','can','clap','my','hands.'], answer:'I can clap my hands.'},
+  {words:['These','are','my','eyes.'], answer:'These are my eyes.'}
+];
+let buildState = {list:[], i:0, bank:[], line:[]};
+function initBuildSentence(){
+  buildState.list = shuffle(BUILD_BANK);
+  buildState.i = 0;
+  renderBuild();
+}
+function renderBuild(){
+  document.getElementById('buildFeedback').textContent='';
+  if(buildState.i>=buildState.list.length){
+    document.getElementById('buildLine').innerHTML='🎉 All sentences built!';
+    document.getElementById('buildBank').innerHTML='';
+    document.getElementById('buildCount').textContent='';
+    document.getElementById('buildNext').disabled=false;
+    markComplete('screen-buildsentence');
+    return;
+  }
+  document.getElementById('buildCount').textContent = `Sentence ${buildState.i+1} / ${buildState.list.length}`;
+  const item = buildState.list[buildState.i];
+  buildState.bank = shuffle(item.words).map((w,idx)=>({w,idx,used:false}));
+  buildState.line = [];
+  renderBuildTiles();
+}
+function renderBuildTiles(){
+  document.getElementById('buildBank').innerHTML = buildState.bank.map(t=>
+    `<div class="word-chip ${t.used?'used':''}" onclick="${t.used?'':`pickBuildWord(${t.idx})`}">${esc(t.w)}</div>`).join('');
+  document.getElementById('buildLine').innerHTML = buildState.line.map(t=>
+    `<div class="word-chip" onclick="unpickBuildWord(${t.idx})">${esc(t.w)}</div>`).join('') || '<span style="color:var(--ink-soft);">Tap words below to build your sentence</span>';
+}
+function pickBuildWord(idx){
+  const t = buildState.bank.find(x=>x.idx===idx);
+  if(!t || t.used) return;
+  t.used = true;
+  buildState.line.push(t);
+  renderBuildTiles();
+}
+function unpickBuildWord(idx){
+  const t = buildState.bank.find(x=>x.idx===idx);
+  if(!t) return;
+  t.used = false;
+  buildState.line = buildState.line.filter(x=>x.idx!==idx);
+  renderBuildTiles();
+}
+function clearBuild(){
+  buildState.bank.forEach(t=>t.used=false);
+  buildState.line = [];
+  renderBuildTiles();
+}
+function checkBuild(){
+  const item = buildState.list[buildState.i];
+  const guess = buildState.line.map(t=>t.w).join(' ');
+  const ok = guess.toLowerCase()===item.answer.toLowerCase();
+  document.getElementById('buildFeedback').textContent = ok ? ENCOURAGE[0] : `${TRYAGAIN[1]} ("${item.answer}")`;
+  document.getElementById('buildFeedback').className = 'feedback ' + (ok?'good':'bad');
+  gradeAnswer(ok);
+  speakText(item.answer);
+  buildState.i++;
+  setTimeout(renderBuild, 1400);
+}
+
+/* ============================================================
+   12. SIMON SAYS
+   ============================================================ */
+const SIMON_BANK = [
+  {text:'Touch your head.', part:'head'},
+  {text:'Touch your shoulders.', part:'shoulders'},
+  {text:'Raise your hands.', part:'hands'},
+  {text:'Stamp your feet.', part:'feet'},
+  {text:'Touch your knees.', part:'knees'},
+  {text:'Touch your nose.', part:'nose'},
+  {text:'Touch your ears.', part:'ears'},
+  {text:'Touch your toes.', part:'toes'}
+];
+let simonState = {list:[], i:0};
+function initSimon(){
+  simonState.list = shuffle(SIMON_BANK);
+  simonState.i = 0;
+  mountBodySVG('simonSvgHolder', (part)=>{
+    const cur = simonState.list[simonState.i];
+    const ok = part===cur.part;
+    document.getElementById('simonFeedback').textContent = ok ? ENCOURAGE[1] : TRYAGAIN[2];
+    document.getElementById('simonFeedback').className = 'feedback ' + (ok?'good':'bad');
+    gradeAnswer(ok, cur.part);
+    if(ok){ simonState.i++; setTimeout(renderSimon, 700); }
+  });
+  renderSimon();
+}
+function renderSimon(){
+  document.getElementById('simonFeedback').textContent='';
+  if(simonState.i>=simonState.list.length){
+    document.getElementById('simonInstruction').textContent = "🎉 Simon is proud of you!";
+    document.getElementById('simonNext').disabled=false;
+    markComplete('screen-simon');
+    return;
+  }
+  const cur = simonState.list[simonState.i];
+  document.getElementById('simonInstruction').textContent = `Simon says: "${cur.text}"`;
+  speakText('Simon says. ' + cur.text);
+}
+
+/* ============================================================
+   13. SPEAKING PRACTICE
+   ============================================================ */
+const SPEAK_BANK = ['This is my head.','I have two eyes.','Touch your nose.'];
+let speakState = {list: SPEAK_BANK, i:0};
+let recognition = null;
+function initSpeaking(){
+  speakState.i = 0;
+  renderSpeak();
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(SR){
+    recognition = new SR();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+  } else {
+    document.getElementById('speakHint').textContent = "Speech recognition isn't available on this device — just say it out loud, then tap the button below!";
+  }
+}
+function renderSpeak(){
+  document.getElementById('speakFeedback').textContent='';
+  if(speakState.i>=speakState.list.length){
+    document.getElementById('speakTarget').textContent = "🎉 Great speaking practice!";
+    document.getElementById('speakCount').textContent='';
+    document.getElementById('speakNext').disabled=false;
+    markComplete('screen-speaking');
+    return;
+  }
+  document.getElementById('speakCount').textContent = `Sentence ${speakState.i+1} / ${speakState.list.length}`;
+  document.getElementById('speakTarget').textContent = speakState.list[speakState.i];
+}
+function startSpeaking(){
+  const micBtn = document.getElementById('micBtn');
+  const target = speakState.list[speakState.i];
+  if(!recognition){
+    document.getElementById('speakFeedback').textContent = "Say it proudly, then tap 'I said it!' below.";
+    document.getElementById('speakFeedback').className = 'feedback good';
+    return;
+  }
+  micBtn.classList.add('listening');
+  document.getElementById('speakFeedback').textContent = 'Listening... 🎧';
+  document.getElementById('speakFeedback').className = 'feedback';
+  try{
+    recognition.start();
+    recognition.onresult = (e)=>{
+      const said = e.results[0][0].transcript.toLowerCase().replace(/[^a-z ]/g,'').trim();
+      const targetWords = target.toLowerCase().replace(/[^a-z ]/g,'').split(' ').filter(Boolean);
+      const saidWords = said.split(' ').filter(Boolean);
+      let matches = 0;
+      targetWords.forEach(w=>{ if(saidWords.includes(w)) matches++; });
+      const ok = targetWords.length ? (matches/targetWords.length) >= 0.6 : false;
+      micBtn.classList.remove('listening');
+      document.getElementById('speakFeedback').textContent = ok ? `${ENCOURAGE[2]} I heard: "${said}"` : `Nice try! I heard: "${said}". Let's try again!`;
+      document.getElementById('speakFeedback').className = 'feedback ' + (ok?'good':'bad');
+      engagementStar(); 
+    };
+    recognition.onerror = ()=>{
+      micBtn.classList.remove('listening');
+      document.getElementById('speakFeedback').textContent = "I couldn't hear that — try again or tap 'I said it!'";
+    };
+    recognition.onend = ()=> micBtn.classList.remove('listening');
+  }catch(e){ micBtn.classList.remove('listening'); }
+}
+function skipSpeaking(){
+  speakState.i++;
+  renderSpeak();
+}
+
+/* ============================================================
+   14. MOVEMENT CHALLENGE
+   ============================================================ */
+const MOVE_BANK = [
+  {text:'Jump!', emoji:'🤸'},
+  {text:'Clap your hands!', emoji:'👏'},
+  {text:'Wave!', emoji:'👋'},
+  {text:'Touch your nose!', emoji:'👃'},
+  {text:'Touch your ears!', emoji:'👂'},
+  {text:'Raise your hands!', emoji:'🙌'}
+];
+let moveState = {list: MOVE_BANK, i:0};
+function initMovement(){
+  moveState.i = 0;
+  renderMove();
+}
+function renderMove(){
+  if(moveState.i>=moveState.list.length){
+    document.getElementById('moveEmoji').textContent = '🏆';
+    document.getElementById('moveText').textContent = "You finished the movement challenge!";
+    document.getElementById('moveCount').textContent='';
+    document.getElementById('moveNext').disabled=false;
+    markComplete('screen-movement');
+    return;
+  }
+  document.getElementById('moveCount').textContent = `Move ${moveState.i+1} / ${moveState.list.length}`;
+  const cur = moveState.list[moveState.i];
+  document.getElementById('moveEmoji').textContent = cur.emoji;
+  document.getElementById('moveText').textContent = cur.text;
+  speakText(cur.text);
+}
+function doneMove(){
+  engagementStar();
+  moveState.i++;
+  renderMove();
+}
+
+/* ============================================================
+   15. MINI CONVERSATION
+   ============================================================ */
+const CONVO_BANK = [
+  {emoji:'👃', answer:'nose'},
+  {emoji:'👄', answer:'mouth'},
+  {emoji:'🧣', answer:'neck'}
+];
+function initConversation(){
+  document.getElementById('convoList').innerHTML = CONVO_BANK.map((c,i)=>`
+    <div class="chat-bubble a">A: What is this? ${c.emoji}</div>
+    <div class="chat-bubble b">B: It is my <input type="text" id="convo-${i}" maxlength="12" autocomplete="off">.</div>
+  `).join('');
+  document.getElementById('convoFeedback').textContent='';
+}
+function checkConvo(){
+  let allOk = true, anyAnswered = false;
+  CONVO_BANK.forEach((c,i)=>{
+    const inp = document.getElementById('convo-'+i);
+    const val = (inp.value||'').trim().toLowerCase();
+    if(val) anyAnswered = true;
+    const ok = val===c.answer;
+    if(!ok) allOk = false;
+    inp.style.borderColor = val ? (ok ? '#7FE0C2' : '#FF9E9E') : 'var(--pink-deep)';
+    if(val) gradeAnswer(ok, c.answer==='nose'?'nose':(c.answer==='mouth'?'mouth':'neck'));
+  });
+  document.getElementById('convoFeedback').textContent = allOk && anyAnswered ? "Perfect conversation! 🎉" : "Good try! Check the highlighted answers.";
+  document.getElementById('convoFeedback').className = 'feedback ' + (allOk && anyAnswered ? 'good':'bad');
+  if(anyAnswered){
+    document.getElementById('convoNext').disabled=false;
+    markComplete('screen-conversation');
+  }
+}
+
+/* ============================================================
+   16. FUN QUIZ CHALLENGE (20 mixed questions)
+   ============================================================ */
+let funState = {list:[], i:0};
+function buildFunQuiz(){
+  const items = [];
+  for(let k=0;k<8;k++) items.push({type:'mc', ...buildMCQuestion()});
+  sample(TF_BANK,6).forEach(t=>items.push({type:'tf', s:t.s, a:t.a}));
+  sample(VOCAB,3).forEach(v=>{
+    const word = v.word.toUpperCase();
+    const blankIdx = Math.floor(Math.random()*word.length);
+    items.push({type:'spell', vocab:v, word, blankIdx});
+  });
+  sample(BUILD_BANK,3).forEach(b=>items.push({type:'order', words:shuffle(b.words), answer:b.answer}));
+  return shuffle(items);
+}
+function initFunQuiz(){
+  funState.list = buildFunQuiz();
+  funState.i = 0;
+  renderFun();
+}
+function renderFun(){
+  document.getElementById('funFeedback').textContent='';
+  const area = document.getElementById('funQuestionArea');
+  if(funState.i>=funState.list.length){
+    area.innerHTML = "<p style='text-align:center;font-weight:800;font-size:1.2rem;'>🎉 You finished the Big Quiz!</p>";
+    document.getElementById('funCount').textContent='';
+    document.getElementById('funNext').disabled=false;
+    markComplete('screen-funquiz');
+    return;
+  }
+  document.getElementById('funCount').textContent = `Question ${funState.i+1} / ${funState.list.length}`;
+  const q = funState.list[funState.i];
+  funState.answered = false;
+  if(q.type==='mc'){
+    area.innerHTML = `<p style="font-weight:800;text-align:center;">Which one is the ${q.target.word.toLowerCase()}?</p>
+      <div class="option-grid">${q.options.map(o=>`<div class="option-card" data-id="${o.id}" onclick="answerFunMC('${o.id}')"><div>${o.emoji}</div><div class="lbl">${o.word}</div></div>`).join('')}</div>`;
+  } else if(q.type==='tf'){
+    speakText(q.s);
+    area.innerHTML = `<p style="font-weight:800;text-align:center;font-size:1.15rem;">${esc(q.s)}</p>
+      <div class="tf-row"><button class="tf-btn" onclick="answerFunTF(true)">✅ True</button><button class="tf-btn false-btn" onclick="answerFunTF(false)">❌ False</button></div>`;
+  } else if(q.type==='spell'){
+    let word = '';
+    for(let k=0;k<q.word.length;k++) word += (k===q.blankIdx ? '<input maxlength="1" id="funSpellInput" autocomplete="off">' : `<span class="letter-fixed">${q.word[k]}</span>`);
+    area.innerHTML = `<p style="font-weight:800;text-align:center;">Fill in the missing letter: ${q.vocab.emoji}</p>
+      <div class="blank-word">${word}</div>
+      <div class="btn-row center"><button class="btn secondary" onclick="answerFunSpell()">Check ✔️</button></div>`;
+  } else if(q.type==='order'){
+    funState.orderPicked = [];
+    funState.orderBank = q.words.map((w,idx)=>({w,idx,used:false}));
+    area.innerHTML = `<p style="font-weight:800;text-align:center;">Put the words in order:</p>
+      <div class="sentence-line" id="funOrderLine"></div>
+      <div class="word-bank" id="funOrderBank"></div>
+      <div class="btn-row center"><button class="btn secondary" onclick="answerFunOrder()">Check ✔️</button></div>`;
+    renderFunOrder();
+  }
+}
+function nextFun(){ funState.i++; setTimeout(renderFun, 1200); }
+function answerFunMC(pickedId){
+  if(funState.answered) return; funState.answered = true;
+  const q = funState.list[funState.i];
+  const ok = pickedId===q.target.id;
+  gradeAnswer(ok, q.target.id);
+  document.getElementById('funFeedback').textContent = ok?ENCOURAGE[3]:TRYAGAIN[0];
+  document.getElementById('funFeedback').className = 'feedback ' + (ok?'good':'bad');
+  nextFun();
+}
+function answerFunTF(val){
+  if(funState.answered) return; funState.answered = true;
+  const q = funState.list[funState.i];
+  const ok = val===q.a;
+  gradeAnswer(ok);
+  document.getElementById('funFeedback').textContent = ok?ENCOURAGE[4]:TRYAGAIN[1];
+  document.getElementById('funFeedback').className = 'feedback ' + (ok?'good':'bad');
+  nextFun();
+}
+function answerFunSpell(){
+  if(funState.answered) return; funState.answered = true;
+  const q = funState.list[funState.i];
+  const inp = document.getElementById('funSpellInput');
+  const ok = (inp.value||'').toUpperCase()===q.word[q.blankIdx];
+  gradeAnswer(ok, q.vocab.id);
+  document.getElementById('funFeedback').textContent = ok?ENCOURAGE[0]:`${TRYAGAIN[2]} (${q.word})`;
+  document.getElementById('funFeedback').className = 'feedback ' + (ok?'good':'bad');
+  nextFun();
+}
+function renderFunOrder(){
+  document.getElementById('funOrderBank').innerHTML = funState.orderBank.map(t=>
+    `<div class="word-chip ${t.used?'used':''}" onclick="${t.used?'':`pickFunOrder(${t.idx})`}">${esc(t.w)}</div>`).join('');
+  document.getElementById('funOrderLine').innerHTML = funState.orderPicked.map(t=>`<div class="word-chip">${esc(t.w)}</div>`).join('');
+}
+function pickFunOrder(idx){
+  const t = funState.orderBank.find(x=>x.idx===idx);
+  if(!t||t.used) return;
+  t.used = true;
+  funState.orderPicked.push(t);
+  renderFunOrder();
+}
+function answerFunOrder(){
+  if(funState.answered) return; funState.answered = true;
+  const q = funState.list[funState.i];
+  const guess = funState.orderPicked.map(t=>t.w).join(' ');
+  const ok = guess.toLowerCase()===q.answer.toLowerCase();
+  gradeAnswer(ok);
+  document.getElementById('funFeedback').textContent = ok?ENCOURAGE[1]:`${TRYAGAIN[3]} ("${q.answer}")`;
+  document.getElementById('funFeedback').className = 'feedback ' + (ok?'good':'bad');
+  nextFun();
+}
+
+/* ============================================================
+   17. FINAL ADVENTURE
+   ============================================================ */
+let advState = {list:[], i:0};
+function initAdventure(){
+  advState.list = sample(VOCAB, 8);
+  advState.i = 0;
+  document.getElementById('advStarTrack').innerHTML = advState.list.map((_,i)=>`<span id="advstar-${i}">☆</span>`).join('');
+  renderAdventure();
+}
+function renderAdventure(){
+  document.getElementById('advFeedback').textContent='';
+  if(advState.i>=advState.list.length){
+    document.getElementById('advPrompt').textContent = "🏆 Lume collected every body part! Adventure complete!";
+    document.getElementById('advOptions').innerHTML='';
+    document.getElementById('advNext').disabled=false;
+    markComplete('screen-adventure');
+    confettiBurst(80);
+    showBadge('🏆','Adventure Complete!','You helped Lume find every body part!');
+    return;
+  }
+  const target = advState.list[advState.i];
+  document.getElementById('advPrompt').textContent = `Help Lume find the ${target.word.toUpperCase()}! ${target.emoji===undefined?'':''}`;
+  const distractors = sample(VOCAB.filter(v=>v.id!==target.id), 3);
+  const options = shuffle([target, ...distractors]);
+  document.getElementById('advOptions').innerHTML = options.map(o=>`
+    <div class="option-card" data-id="${o.id}" onclick="answerAdventure('${o.id}')"><div>${o.emoji}</div><div class="lbl">${o.word}</div></div>`).join('');
+}
+function answerAdventure(pickedId){
+  if(advState.answered) return; advState.answered = true;
+  const target = advState.list[advState.i];
+  const ok = pickedId===target.id;
+  gradeAnswer(ok, target.id);
+  document.getElementById('advstar-'+advState.i).textContent = ok ? '⭐' : '💫';
+  document.getElementById('advFeedback').textContent = ok ? ENCOURAGE[Math.floor(Math.random()*ENCOURAGE.length)] : TRYAGAIN[Math.floor(Math.random()*TRYAGAIN.length)];
+  document.getElementById('advFeedback').className = 'feedback ' + (ok?'good':'bad');
+  advState.i++;
+  setTimeout(()=>{ advState.answered=false; renderAdventure(); }, 1000);
+}
+
+/* ============================================================
+   REPORT
+   ============================================================ */
+function initReport(){
+  document.getElementById('reportDate').textContent = new Date().toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+  markComplete('screen-report');
+  renderReport();
+}
+function renderReport(){
+  document.getElementById('repScore').textContent = state.score;
+  document.getElementById('repStars').textContent = state.stars;
+  document.getElementById('repAccuracy').textContent = state.attempted ? Math.round(state.correct/state.attempted*100)+'%' : '—';
+  document.getElementById('repActivities').textContent = state.completed.size + '/' + ACTIVITY_IDS.length;
+  let badge = '—';
+  if(state.stars>=40) badge = '🏵️ LittleLume Body Expert';
+  else if(state.stars>=30) badge = '🥇 Gold Badge';
+  else if(state.stars>=20) badge = '🥈 Silver Badge';
+  else if(state.stars>=10) badge = '🥉 Bronze Badge';
+  document.getElementById('repBadge').textContent = badge;
+  document.getElementById('repMastered').innerHTML = state.mastered.size
+    ? [...state.mastered].map(id=>`<span class="tag-pill">${VBY[id]?VBY[id].word:id}</span>`).join('')
+    : '<span style="color:var(--ink-soft);">Keep practicing to master words!</span>';
+  const retryList = [...state.retry].filter(id=>!state.mastered.has(id));
+  document.getElementById('repRetry').innerHTML = retryList.length
+    ? retryList.map(id=>`<span class="tag-pill retry">${VBY[id]?VBY[id].word:id}</span>`).join('')
+    : '<span style="color:var(--ink-soft);">Nothing to review — amazing work!</span>';
+  confettiBurst(50);
+}
+function downloadReport(){
+  const name = document.getElementById('studentName').value.trim() || 'Student';
+  const date = document.getElementById('reportDate').textContent;
+  const badge = document.getElementById('repBadge').textContent;
+  const mastered = [...state.mastered].map(id=>VBY[id]?VBY[id].word:id).join(', ') || 'None yet';
+  const retry = [...state.retry].filter(id=>!state.mastered.has(id)).map(id=>VBY[id]?VBY[id].word:id).join(', ') || 'None';
+  const text =
+`LittleLume English — Learning Report
+=====================================
+Student Name: ${name}
+Date: ${date}
+Theme: My Body (Grade 1)
+
+Final Score: ${state.score}
+Stars Earned: ${state.stars}
+Accuracy: ${state.attempted ? Math.round(state.correct/state.attempted*100)+'%' : '—'}
+Activities Completed: ${state.completed.size}/${ACTIVITY_IDS.length}
+Badge Earned: ${badge}
+
+Vocabulary Mastered: ${mastered}
+Words to Practice Again: ${retry}
+
+Great job learning with LittleLume English! 🌟`;
+  const blob = new Blob([text], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `LittleLume-Report-${name.replace(/\s+/g,'_')}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* ---------- INIT MAP ---------- */
+const INIT_FUNCS = {
+  'screen-warmup': initWarmup,
+  'screen-vocab': initVocab,
+  'screen-explorer': initExplorer,
+  'screen-listen': initListen,
+  'screen-dragdrop': initDragdrop,
+  'screen-missing': initMissing,
+  'screen-unscramble': initUnscramble,
+  'screen-mc': initMC,
+  'screen-tf': initTF,
+  'screen-reading': initReading,
+  'screen-buildsentence': initBuildSentence,
+  'screen-simon': initSimon,
+  'screen-speaking': initSpeaking,
+  'screen-movement': initMovement,
+  'screen-conversation': initConversation,
+  'screen-funquiz': initFunQuiz,
+  'screen-adventure': initAdventure,
+  'screen-report': initReport
+};
+
+/* ---------- BOOT ---------- */
+window._currentScreen = 'screen-welcome';
+renderStepNav();
+updateDashboard();
+setTimeout(()=>mascotSay("Hi! I'm Lume! Tap Start Learning! 👋"), 800);
+</script>
+</body>
+</html>
