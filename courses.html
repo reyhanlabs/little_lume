@@ -30,7 +30,7 @@
         --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
         --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-        --g1: #FF6B9D; --g2: #FECA57; --g3: #00D2D3; --g4: #FF9FF3; --g5: #54A0FF; --g6: #1DD1A1; --gws: #7C5CBF;
+        --gk: #FF8C42; --g1: #FF6B9D; --g2: #FECA57; --g3: #00D2D3; --g4: #FF9FF3; --g5: #54A0FF; --g6: #1DD1A1; --gws: #7C5CBF;
     }
     body {
         font-family: 'Inter', sans-serif;
@@ -959,7 +959,7 @@
 <div class="wrap">
 
     <div class="greeting">
-        <span class="page-eyebrow">Grade 1 – 6</span>
+        <span class="page-eyebrow">Kindergarten – Grade 6</span>
         <h1 class="greeting-title">Welcome back, <span id="greetName">there</span>! 👋</h1>
         <p class="greeting-desc">Pick up where you left off, or explore a new grade. Every course covers Materials, Listening, Reading, Speaking, and Writing.</p>
     </div>
@@ -1036,6 +1036,12 @@
 
 <script>
 const COURSES = [
+    {
+        id: "kindergarten", icon: "🧸", color: "var(--gk)", bg: "rgba(255,140,66,0.14)",
+        title: "Kindergarten", level: "Early Learner Level", lessons: "24 Lessons", progress: 0,
+        desc: "A playful first step into English — songs, picture words, and simple sounds designed for our youngest learners.",
+        topics: ["Alphabet Sounds", "Colors & Shapes", "Numbers 1–10", "Animals", "Action Songs"],
+    },
     {
         id: "grade1", icon: "📘", color: "var(--g1)", bg: "rgba(255,107,157,0.12)",
         title: "Grade 1", level: "Beginner Level", lessons: "32 Lessons", progress: 100,
