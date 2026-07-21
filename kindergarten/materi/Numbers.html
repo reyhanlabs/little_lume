@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittleLume English - Numbers for Kindergarten</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #1a3a52 0%, #0A2342 50%, #0081A7 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .floating-bubble {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .bubble1 { width: 80px; height: 80px; background: #FF006E; top: 10%; left: 5%; animation-delay: 0s; }
+        .bubble2 { width: 60px; height: 60px; background: #FFD60A; top: 60%; right: 10%; animation-delay: 2s; }
+        .bubble3 { width: 100px; height: 100px; background: #00D9FF; top: 30%; right: 5%; animation-delay: 1s; }
+        .bubble4 { width: 70px; height: 70px; background: #00FF88; bottom: 15%; left: 8%; animation-delay: 3s; }
+        .bubble5 { width: 90px; height: 90px; background: #FF8C42; top: 50%; left: 15%; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a3a52 0%, #0081A7 50%, #00CED1 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 8px solid #00D9FF;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,30 Q300,0 600,30 T1200,30 L1200,120 L0,120" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: wave 3s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(1200px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-logo {
+            font-size: 13px;
+            color: #00D9FF;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 55px;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            animation: slideInDown 0.8s ease-out;
+        }
+        
+        @keyframes slideInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header-subtitle {
+            font-size: 18px;
+            color: #e0e0e0;
+            font-weight: 400;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .stars {
+            font-size: 24px;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .content {
+            padding: 50px 35px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #1a3a52;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 4px dashed #1a3a52;
+            font-weight: 800;
+        }
+        
+        .section-icon {
+            font-size: 40px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .definition-box {
+            background: linear-gradient(135deg, #B0E0E6 0%, #E0F7FF 100%);
+            border-left: 8px solid #1a3a52;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 17px;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(26, 58, 82, 0.2);
+            position: relative;
+        }
+        
+        .definition-box::before {
+            content: '💡';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 35px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .number-card {
+            background: linear-gradient(135deg, #00CED1 0%, #0081A7 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: slideInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .number-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+        
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .number-card:hover::before {
+            left: 100%;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .number-card .number-big {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .number-card .number-word {
+            font-size: 14px;
+            color: #f0e6ff;
+        }
+        
+        .game-section {
+            background: linear-gradient(135deg, #1a3a52 0%, #0081A7 50%, #00CED1 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 20s linear infinite;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .game-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .game-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 350px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        .flashcard:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+        
+        .flashcard .number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 80px;
+            font-weight: 800;
+            color: #1a3a52;
+            margin-bottom: 15px;
+        }
+        
+        .flashcard .word {
+            font-size: 24px;
+            color: #555;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+        
+        .flashcard .dots {
+            font-size: 40px;
+            margin: 15px 0;
+            letter-spacing: 5px;
+        }
+        
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .matching-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+        
+        .matching-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: #E0F7FF !important;
+        }
+        
+        .matching-item.matched {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .matching-item .item-number {
+            font-size: 50px;
+            font-weight: 800;
+            color: #1a3a52;
+            margin-bottom: 10px;
+        }
+        
+        .matching-item .item-word {
+            font-size: 16px;
+            color: #1a3a52;
+        }
+        
+        .btn-check {
+            background: linear-gradient(135deg, #1a3a52 0%, #0081A7 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 6px 20px rgba(26, 58, 82, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-check::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+        
+        .btn-check:hover::before {
+            left: 100%;
+        }
+        
+        .btn-check:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(26, 58, 82, 0.6);
+        }
+        
+        .btn-next {
+            background: white;
+            color: #1a3a52;
+            padding: 12px 30px;
+            border: 3px solid #1a3a52;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .btn-next:hover {
+            background: #1a3a52;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            display: none;
+            font-weight: 700;
+            font-size: 17px;
+            animation: slideIn 0.5s ease-out;
+            text-align: center;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 3px solid #28a745;
+            display: block;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #B0E0E6 0%, #E0F7FF 100%);
+            padding: 40px;
+            text-align: center;
+            color: #1a3a52;
+            font-weight: 700;
+        }
+        
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+        
+        @keyframes confettiFall {
+            to {
+                transform: translateY(800px) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .counting-box {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #1a3a52;
+            font-size: 15px;
+        }
+        
+        .number-input {
+            width: 50px;
+            padding: 10px;
+            border: 2px solid #1a3a52;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            color: #1a3a52;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .matching-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Bubbles -->
+    <div class="floating-bubble bubble1"></div>
+    <div class="floating-bubble bubble2"></div>
+    <div class="floating-bubble bubble3"></div>
+    <div class="floating-bubble bubble4"></div>
+    <div class="floating-bubble bubble5"></div>
+    
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <span class="stars">✨</span> LittleLume English <span class="stars">✨</span>
+                </div>
+                <h1>Numbers 1-10</h1>
+                <div class="header-subtitle">🔢 Fun Learning Numbers! Count and Learn! 🔢</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- INTRODUCTION SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🎓</span>
+                    Let's Learn Numbers!
+                </div>
+                
+                <div class="definition-box">
+                    Numbers are all around us! We use numbers to count things - like one apple, two dogs, or ten fingers! Learning to count and say numbers in English is very important. Today we will learn numbers from one to ten! We will have fun counting, playing games, and saying the numbers out loud! Are you ready? Let's count together! 🎉
+                </div>
+            </div>
+            
+            <!-- NUMBERS 1-5 SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">1️⃣</span>
+                    Numbers One to Five (1-5)
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 20px; color: #555; font-weight: 600;">
+                    These are our first numbers! Let's learn them!
+                </p>
+                
+                <div class="number-grid">
+                    <div class="number-card" onclick="playSound('one')">
+                        <div class="number-big">1</div>
+                        <div class="number-word">One</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('two')">
+                        <div class="number-big">2</div>
+                        <div class="number-word">Two</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('three')">
+                        <div class="number-big">3</div>
+                        <div class="number-word">Three</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('four')">
+                        <div class="number-big">4</div>
+                        <div class="number-word">Four</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('five')">
+                        <div class="number-big">5</div>
+                        <div class="number-word">Five</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NUMBERS 6-10 SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">6️⃣</span>
+                    Numbers Six to Ten (6-10)
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 20px; color: #555; font-weight: 600;">
+                    Now let's learn the bigger numbers!
+                </p>
+                
+                <div class="number-grid">
+                    <div class="number-card" onclick="playSound('six')">
+                        <div class="number-big">6</div>
+                        <div class="number-word">Six</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('seven')">
+                        <div class="number-big">7</div>
+                        <div class="number-word">Seven</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('eight')">
+                        <div class="number-big">8</div>
+                        <div class="number-word">Eight</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('nine')">
+                        <div class="number-big">9</div>
+                        <div class="number-word">Nine</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                    <div class="number-card" onclick="playSound('ten')">
+                        <div class="number-big">10</div>
+                        <div class="number-word">Ten</div>
+                        <div style="font-size: 16px; margin-top: 8px;">🔊</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 1: NUMBER FLASHCARDS -->
+            <div class="game-section">
+                <div class="game-title">
+                    🎴 GAME 1: NUMBER FLASHCARDS!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Click the card to see the number and hear how to say it!
+                    </p>
+                    
+                    <div id="flashcardContainer" style="text-align: center;">
+                        <div class="flashcard" onclick="flipFlashcard(0)">
+                            <div class="number" id="flashnumber0">1</div>
+                            <div class="word" id="flashword0">One</div>
+                            <div class="dots" id="flashdots0">●</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button class="btn-next" onclick="nextFlashcard()">Next Number →</button>
+                        <button class="btn-next" onclick="prevFlashcard()">← Previous Number</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 2: MATCHING NUMBERS WITH WORDS -->
+            <div class="game-section">
+                <div class="game-title">
+                    🔗 GAME 2: MATCH NUMBERS WITH WORDS!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Click a number, then click the word that matches! Can you match them all?
+                    </p>
+                    
+                    <div class="matching-grid">
+                        <div class="matching-item" onclick="selectMatchNumber(this, 1)">
+                            <div class="item-number">1</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchNumber(this, 3)">
+                            <div class="item-number">3</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchNumber(this, 5)">
+                            <div class="item-number">5</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchNumber(this, 7)">
+                            <div class="item-number">7</div>
+                        </div>
+                    </div>
+                    
+                    <p style="color: white; text-align: center; font-size: 14px; margin-top: 20px; font-weight: 600;">
+                        Now click the word:
+                    </p>
+                    
+                    <div class="matching-grid">
+                        <div class="matching-item" onclick="selectMatchWord(this, 1)">
+                            <div class="item-word">One</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchWord(this, 7)">
+                            <div class="item-word">Seven</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchWord(this, 5)">
+                            <div class="item-word">Five</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchWord(this, 3)">
+                            <div class="item-word">Three</div>
+                        </div>
+                    </div>
+                    
+                    <div id="matchFeedback" class="feedback"></div>
+                </div>
+            </div>
+            
+            <!-- GAME 3: NUMBER COUNTING -->
+            <div class="game-section">
+                <div class="game-title">
+                    🧮 GAME 3: COUNT THE DOTS!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Count the dots and type the number! How many dots do you see? Answer all 5 questions!
+                    </p>
+                    
+                    <div id="countingContainer">
+                        <div class="counting-box" style="background: white;">
+                            <p style="font-size: 16px; font-weight: 600; color: #1a3a52; margin-bottom: 15px;">
+                                <strong>Question 1:</strong> ●
+                            </p>
+                            <input type="number" id="countInput1" class="number-input" min="1" max="10" placeholder="?">
+                            <button class="btn-check" onclick="checkCounting(1, 1)">Check ✓</button>
+                            <div id="countFeedback1" class="feedback"></div>
+                        </div>
+                        
+                        <div class="counting-box" style="background: white;">
+                            <p style="font-size: 16px; font-weight: 600; color: #1a3a52; margin-bottom: 15px;">
+                                <strong>Question 2:</strong> ● ● ● ●
+                            </p>
+                            <input type="number" id="countInput2" class="number-input" min="1" max="10" placeholder="?">
+                            <button class="btn-check" onclick="checkCounting(2, 4)">Check ✓</button>
+                            <div id="countFeedback2" class="feedback"></div>
+                        </div>
+                        
+                        <div class="counting-box" style="background: white;">
+                            <p style="font-size: 16px; font-weight: 600; color: #1a3a52; margin-bottom: 15px;">
+                                <strong>Question 3:</strong> ● ● ● ● ● ● ●
+                            </p>
+                            <input type="number" id="countInput3" class="number-input" min="1" max="10" placeholder="?">
+                            <button class="btn-check" onclick="checkCounting(3, 7)">Check ✓</button>
+                            <div id="countFeedback3" class="feedback"></div>
+                        </div>
+                        
+                        <div class="counting-box" style="background: white;">
+                            <p style="font-size: 16px; font-weight: 600; color: #1a3a52; margin-bottom: 15px;">
+                                <strong>Question 4:</strong> ● ● ● ● ● ● ● ● ●
+                            </p>
+                            <input type="number" id="countInput4" class="number-input" min="1" max="10" placeholder="?">
+                            <button class="btn-check" onclick="checkCounting(4, 9)">Check ✓</button>
+                            <div id="countFeedback4" class="feedback"></div>
+                        </div>
+                        
+                        <div class="counting-box" style="background: white;">
+                            <p style="font-size: 16px; font-weight: 600; color: #1a3a52; margin-bottom: 15px;">
+                                <strong>Question 5:</strong> ● ● ● ● ● ● ● ● ● ●
+                            </p>
+                            <input type="number" id="countInput5" class="number-input" min="1" max="10" placeholder="?">
+                            <button class="btn-check" onclick="checkCounting(5, 10)">Check ✓</button>
+                            <div id="countFeedback5" class="feedback"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="countingProgress" style="color: white; text-align: center; margin-top: 25px; font-size: 16px; font-weight: 700;">
+                        Correct Answers: <span id="countingScore">0</span>/5
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 4: NUMBER SEQUENCE -->
+            <div class="game-section">
+                <div class="game-title">
+                    📊 GAME 4: COMPLETE THE SEQUENCE!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        What number comes next? Answer all 5 questions!
+                    </p>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="font-size: 18px; font-weight: 700; color: #1a3a52; margin-bottom: 15px;">
+                            <strong>Question 1:</strong> 1, 2, 3, <span style="border-bottom: 3px solid #1a3a52; display: inline-block; width: 50px; text-align: center;">___</span>
+                        </p>
+                        <input type="number" id="seqInput1" class="number-input" min="1" max="10" placeholder="?" style="margin-right: 10px;">
+                        <button class="btn-check" style="background: white; color: #1a3a52; border: 2px solid #1a3a52; box-shadow: none;" onclick="checkSequence(1, 4)">Check ✓</button>
+                        <div id="seqFeedback1" class="feedback"></div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="font-size: 18px; font-weight: 700; color: #1a3a52; margin-bottom: 15px;">
+                            <strong>Question 2:</strong> 5, 6, 7, <span style="border-bottom: 3px solid #1a3a52; display: inline-block; width: 50px; text-align: center;">___</span>
+                        </p>
+                        <input type="number" id="seqInput2" class="number-input" min="1" max="10" placeholder="?" style="margin-right: 10px;">
+                        <button class="btn-check" style="background: white; color: #1a3a52; border: 2px solid #1a3a52; box-shadow: none;" onclick="checkSequence(2, 8)">Check ✓</button>
+                        <div id="seqFeedback2" class="feedback"></div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="font-size: 18px; font-weight: 700; color: #1a3a52; margin-bottom: 15px;">
+                            <strong>Question 3:</strong> 2, 4, 6, <span style="border-bottom: 3px solid #1a3a52; display: inline-block; width: 50px; text-align: center;">___</span>
+                        </p>
+                        <input type="number" id="seqInput3" class="number-input" min="1" max="10" placeholder="?" style="margin-right: 10px;">
+                        <button class="btn-check" style="background: white; color: #1a3a52; border: 2px solid #1a3a52; box-shadow: none;" onclick="checkSequence(3, 8)">Check ✓</button>
+                        <div id="seqFeedback3" class="feedback"></div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="font-size: 18px; font-weight: 700; color: #1a3a52; margin-bottom: 15px;">
+                            <strong>Question 4:</strong> 7, 8, 9, <span style="border-bottom: 3px solid #1a3a52; display: inline-block; width: 50px; text-align: center;">___</span>
+                        </p>
+                        <input type="number" id="seqInput4" class="number-input" min="1" max="10" placeholder="?" style="margin-right: 10px;">
+                        <button class="btn-check" style="background: white; color: #1a3a52; border: 2px solid #1a3a52; box-shadow: none;" onclick="checkSequence(4, 10)">Check ✓</button>
+                        <div id="seqFeedback4" class="feedback"></div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="font-size: 18px; font-weight: 700; color: #1a3a52; margin-bottom: 15px;">
+                            <strong>Question 5:</strong> 1, 3, 5, <span style="border-bottom: 3px solid #1a3a52; display: inline-block; width: 50px; text-align: center;">___</span>
+                        </p>
+                        <input type="number" id="seqInput5" class="number-input" min="1" max="10" placeholder="?" style="margin-right: 10px;">
+                        <button class="btn-check" style="background: white; color: #1a3a52; border: 2px solid #1a3a52; box-shadow: none;" onclick="checkSequence(5, 7)">Check ✓</button>
+                        <div id="seqFeedback5" class="feedback"></div>
+                    </div>
+                    
+                    <div id="sequenceProgress" style="color: white; text-align: center; margin-top: 25px; font-size: 16px; font-weight: 700;">
+                        Correct Answers: <span id="sequenceScore">0</span>/5
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 5: NUMBER LISTENING -->
+            <div class="game-section">
+                <div class="game-title">
+                    🔊 GAME 5: LISTEN AND REPEAT!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Click each number to hear how to say it! Then repeat it out loud! 🗣️
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px;">
+                        <button class="btn-check" onclick="playSound('one')">🔊 One</button>
+                        <button class="btn-check" onclick="playSound('two')">🔊 Two</button>
+                        <button class="btn-check" onclick="playSound('three')">🔊 Three</button>
+                        <button class="btn-check" onclick="playSound('four')">🔊 Four</button>
+                        <button class="btn-check" onclick="playSound('five')">🔊 Five</button>
+                        <button class="btn-check" onclick="playSound('six')">🔊 Six</button>
+                        <button class="btn-check" onclick="playSound('seven')">🔊 Seven</button>
+                        <button class="btn-check" onclick="playSound('eight')">🔊 Eight</button>
+                        <button class="btn-check" onclick="playSound('nine')">🔊 Nine</button>
+                        <button class="btn-check" onclick="playSound('ten')">🔊 Ten</button>
+                    </div>
+                    
+                    <p style="color: white; text-align: center; margin-top: 20px; font-size: 14px; font-weight: 600;">
+                        Excellent! You are learning to count in English! 👏
+                    </p>
+                </div>
+            </div>
+            
+            <!-- CELEBRATION -->
+            <div class="section">
+                <div class="game-section" style="text-align: center; background: linear-gradient(135deg, #1a3a52 0%, #0081A7 50%, #00CED1 100%);">
+                    <h2 style="color: white; font-size: 40px; font-family: 'Poppins', sans-serif; font-weight: 800; margin-bottom: 20px;">
+                        🌟 YOU ARE A COUNTING STAR! 🌟
+                    </h2>
+                    <p style="color: white; font-size: 18px; font-weight: 600; margin: 10px 0;">
+                        You have learned to count from one to ten!
+                    </p>
+                    <p style="color: white; font-size: 16px; margin: 10px 0;">
+                        Now you can count anything in English! Keep practicing and you will be a number expert! Can you count higher? Try counting to twenty! 🚀
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 15px;">
+                🎨 LittleLume English - Numbers 1-10 🎨
+            </h3>
+            <p>Learning numbers opens the door to mathematics and counting! Numbers are everywhere! 🔢✨</p>
+            <p style="margin-top: 15px; font-size: 14px;">
+                Remember: Practice counting every day! Numbers are your friends! 1️⃣2️⃣3️⃣
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Flashcard Data
+        const flashcards = [
+            { number: '1', word: 'One', dots: '●' },
+            { number: '2', word: 'Two', dots: '● ●' },
+            { number: '3', word: 'Three', dots: '● ● ●' },
+            { number: '4', word: 'Four', dots: '● ● ● ●' },
+            { number: '5', word: 'Five', dots: '● ● ● ● ●' },
+            { number: '6', word: 'Six', dots: '● ● ● ● ● ●' },
+            { number: '7', word: 'Seven', dots: '● ● ● ● ● ● ●' },
+            { number: '8', word: 'Eight', dots: '● ● ● ● ● ● ● ●' },
+            { number: '9', word: 'Nine', dots: '● ● ● ● ● ● ● ● ●' },
+            { number: '10', word: 'Ten', dots: '● ● ● ● ● ● ● ● ● ●' }
+        ];
+        
+        let currentFlashcard = 0;
+        let selectedNumber = null;
+        
+        function nextFlashcard() {
+            currentFlashcard = (currentFlashcard + 1) % flashcards.length;
+            updateFlashcard();
+            createConfetti();
+        }
+        
+        function prevFlashcard() {
+            currentFlashcard = (currentFlashcard - 1 + flashcards.length) % flashcards.length;
+            updateFlashcard();
+        }
+        
+        function updateFlashcard() {
+            const card = flashcards[currentFlashcard];
+            document.getElementById('flashnumber0').textContent = card.number;
+            document.getElementById('flashword0').textContent = card.word;
+            document.getElementById('flashdots0').textContent = card.dots;
+        }
+        
+        function flipFlashcard(index) {
+            const card = document.getElementById('flashcardContainer').children[0];
+            card.style.transform = 'rotateY(360deg)';
+            setTimeout(() => {
+                card.style.transform = 'rotateY(0deg)';
+            }, 500);
+            playSound(flashcards[currentFlashcard].word.toLowerCase());
+        }
+        
+        // Matching Game
+        function selectMatchNumber(element, number) {
+            document.querySelectorAll('.matching-item').forEach(el => {
+                if (el.textContent.includes('One') || el.textContent.includes('Three') || el.textContent.includes('Five') || el.textContent.includes('Seven')) {
+                    el.style.background = 'white';
+                }
+            });
+            element.style.background = '#E0F7FF';
+            selectedNumber = number;
+        }
+        
+        function selectMatchWord(element, number) {
+            if (selectedNumber === number) {
+                element.style.opacity = '0.5';
+                element.style.pointerEvents = 'none';
+                document.getElementById('matchFeedback').className = 'feedback correct';
+                document.getElementById('matchFeedback').innerHTML = '✅ Perfect Match! Great job!';
+                createConfetti();
+                selectedNumber = null;
+            } else {
+                document.getElementById('matchFeedback').className = 'feedback';
+                document.getElementById('matchFeedback').innerHTML = 'Try again! Pick a number first!';
+            }
+        }
+        
+        // Counting Game - 5 Questions
+        let countingScore = 0;
+        
+        function checkCounting(questionNum, correctAnswer) {
+            const input = document.getElementById('countInput' + questionNum);
+            const feedback = document.getElementById('countFeedback' + questionNum);
+            const answer = parseInt(input.value);
+            
+            if (answer === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '✅ Correct! Great counting!';
+                input.disabled = true;
+                countingScore++;
+                document.getElementById('countingScore').textContent = countingScore;
+                createConfetti();
+            } else {
+                feedback.className = 'feedback';
+                feedback.innerHTML = '❌ Not quite right! Try again!';
+            }
+        }
+        
+        // Sequence Game - 5 Questions
+        let sequenceScore = 0;
+        
+        function checkSequence(questionNum, correctAnswer) {
+            const input = document.getElementById('seqInput' + questionNum);
+            const feedback = document.getElementById('seqFeedback' + questionNum);
+            const answer = parseInt(input.value);
+            
+            if (answer === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = '✅ Correct! You found the pattern!';
+                input.disabled = true;
+                sequenceScore++;
+                document.getElementById('sequenceScore').textContent = sequenceScore;
+                createConfetti();
+            } else {
+                feedback.className = 'feedback';
+                feedback.innerHTML = '❌ Not quite right! Think about the pattern!';
+            }
+        }
+        
+        // Text to Speech
+        function playSound(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        // Confetti Effect
+        function createConfetti() {
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = ['🎉', '⭐', '🌟', '✨', '🔢'][Math.floor(Math.random() * 5)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.fontSize = Math.random() * 10 + 20 + 'px';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>

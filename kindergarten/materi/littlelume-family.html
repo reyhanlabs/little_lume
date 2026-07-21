@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Family</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap');
+:root{
+  --red:#FF4757;--orange:#FF9A3C;--yellow:#FFD93D;--green:#6BCB77;
+  --blue:#5BC8F5;--purple:#C77DFF;--pink:#FF9DC6;--teal:#2EC4B6;
+  --navy:#1A1A6C;--cream:#FFFBE6;--white:#fff;
+  --shadow:0 8px 28px rgba(0,0,0,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(155deg,#fff0f6 0%,#fffbe6 45%,#e8f5ff 100%);min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#1A1A6C 0%,#2d2da8 55%,#6b0d6e 100%);padding:20px 24px 16px;text-align:center;overflow:hidden;position:relative}
+header::before{content:'👨‍👩‍👧‍👦💕👨‍👩‍👦💖👪💗👨‍👩‍👧💕👨‍👩‍👧‍👦';display:block;font-size:17px;letter-spacing:3px;opacity:.35;margin-bottom:8px}
+.logo{font-family:'Fredoka One',cursive;font-size:clamp(2rem,6vw,3.6rem);color:#FFD93D;text-shadow:3px 3px 0 #FF9A3C,6px 6px 0 rgba(0,0,0,.2);letter-spacing:2px}
+.logo span{color:#FF9DC6}
+.tagline{color:#d0e8ff;font-size:clamp(.75rem,2.5vw,1rem);font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-top:4px}
+.badge{display:inline-block;background:#FF4757;color:#fff;font-size:.75rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;border-radius:20px;padding:3px 14px;margin-top:6px}
+
+/* TABS */
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:20px 16px 0}
+.tab-btn{font-family:'Fredoka One',cursive;font-size:.95rem;border:none;border-radius:50px;padding:10px 20px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.tab-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.tab-btn:active,.tab-btn.active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tab-btn[data-tab="learn"]{background:#FF9DC6;color:#fff}
+.tab-btn[data-tab="tree"]{background:#6BCB77;color:#fff}
+.tab-btn[data-tab="vocab"]{background:#5BC8F5;color:#1A1A6C}
+.tab-btn[data-tab="quiz"]{background:#FF4757;color:#fff}
+.tab-btn[data-tab="game"]{background:#C77DFF;color:#fff}
+.tab-btn[data-tab="match"]{background:#FF9A3C;color:#fff}
+.tab-btn[data-tab="roles"]{background:#FFD93D;color:#1A1A6C}
+
+/* SECTIONS */
+.section{display:none;padding:24px 16px 52px;max-width:980px;margin:0 auto}
+.section.active{display:block}
+.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(1.5rem,5vw,2.4rem);text-align:center;color:#1A1A6C;margin-bottom:6px}
+.sec-sub{text-align:center;color:#666;margin-bottom:22px;font-size:.95rem}
+
+/* ── LEARN ── */
+.member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px}
+.member-card{background:#fff;border-radius:26px;padding:20px 12px 16px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;border:3px solid transparent;position:relative;overflow:hidden}
+.member-card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px}
+.member-card:hover{transform:scale(1.06)}
+.m-avatar{font-size:3.6rem;display:block;line-height:1}
+.m-name{font-family:'Fredoka One',cursive;font-size:1.2rem;margin-top:8px}
+.m-role{font-size:.76rem;color:#999;font-weight:700;margin-top:3px;text-transform:uppercase;letter-spacing:1px}
+.listen-btn{margin-top:10px;background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:5px 14px;font-family:'Fredoka One',cursive;font-size:.85rem;cursor:pointer}
+.listen-btn:hover{background:#e6c800}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.54);z-index:200;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#FFFBE6;border-radius:32px;padding:32px 28px;max-width:480px;width:100%;box-shadow:0 16px 48px rgba(0,0,0,.28);text-align:center;position:relative;animation:popIn .25s ease;max-height:90vh;overflow-y:auto}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-close{position:absolute;top:14px;right:16px;font-size:1.5rem;cursor:pointer;background:none;border:none}
+.modal-avatar{font-size:5rem}
+.modal-name{font-family:'Fredoka One',cursive;font-size:2rem;margin:8px 0 4px}
+.fact-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:.9rem;color:#444;text-align:left}
+.fi{font-size:1.1rem;width:24px;flex-shrink:0}
+.say-btn{background:#FF9DC6;color:#fff;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1.05rem;cursor:pointer;margin-top:12px}
+.say-btn:hover{background:#e07ab0}
+
+/* ── FAMILY TREE ── */
+.tree-wrap{text-align:center}
+.tree-title-text{font-family:'Fredoka One',cursive;font-size:1.4rem;color:#1A1A6C;margin-bottom:18px;background:#FFFBE6;border-radius:20px;padding:8px 20px;display:inline-block;box-shadow:var(--shadow)}
+.tree-svg-wrap{overflow-x:auto;padding-bottom:10px}
+.tree-level{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.tree-connector{text-align:center;font-size:1.5rem;color:#ccc;margin:2px 0}
+.tree-node{background:#fff;border-radius:20px;padding:14px 12px;text-align:center;box-shadow:var(--shadow);border:3px solid transparent;min-width:110px;cursor:pointer;transition:transform .15s}
+.tree-node:hover{transform:scale(1.07)}
+.tn-avatar{font-size:2.4rem;display:block}
+.tn-name{font-family:'Fredoka One',cursive;font-size:.95rem;margin-top:4px}
+.tn-rel{font-size:.7rem;color:#999;font-weight:700;text-transform:uppercase}
+.tree-row{display:flex;flex-direction:column;align-items:center;gap:0}
+.branch-line{width:2px;height:22px;background:#ddd;margin:0 auto}
+.horiz-branches{display:flex;justify-content:center;position:relative;gap:0}
+.horiz-line{height:2px;background:#ddd;flex:1;margin-top:11px}
+.tree-children{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+/* ── VOCAB ── */
+.vocab-group{margin-bottom:26px}
+.vg-title{font-family:'Fredoka One',cursive;font-size:1.2rem;padding:6px 18px;border-radius:20px;display:inline-block;color:#fff;margin-bottom:10px}
+.vocab-cards{display:flex;flex-wrap:wrap;gap:10px}
+.vocab-chip{background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(0,0,0,.1);font-size:.88rem;font-weight:700;cursor:pointer;transition:transform .15s;display:flex;align-items:center;gap:7px}
+.vocab-chip:hover{transform:scale(1.07)}
+.vc-em{font-size:1.3rem}
+
+/* ── QUIZ ── */
+.quiz-box{background:#fff;border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);max-width:580px;margin:0 auto;text-align:center}
+.qprog{font-weight:800;color:#bbb;font-size:.85rem;margin-bottom:8px}
+.prog-bar{height:11px;background:#eee;border-radius:10px;margin-bottom:20px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#FF9DC6,#C77DFF);border-radius:10px;transition:width .4s}
+.q-avatar{font-size:4.5rem;display:block;margin-bottom:10px}
+.q-text{font-family:'Fredoka One',cursive;font-size:clamp(1.05rem,4vw,1.4rem);color:#1A1A6C;margin-bottom:20px;line-height:1.3}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q-opt{background:#FFFBE6;border:3px solid #ddd;border-radius:18px;padding:14px 10px;font-family:'Fredoka One',cursive;font-size:.98rem;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.25}
+.q-opt:hover{border-color:#FF9DC6;background:#fff0f6;transform:scale(1.03)}
+.q-opt.correct{border-color:#6BCB77;background:#d4f5da}
+.q-opt.wrong{border-color:#FF4757;background:#ffe0e3}
+.q-opt:disabled{cursor:default;transform:none}
+.q-fb{margin-top:14px;font-family:'Fredoka One',cursive;font-size:1.2rem;min-height:32px}
+.fb-ok{color:#6BCB77}.fb-no{color:#FF4757}
+.next-btn,.restart-btn{margin-top:16px;background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:12px 32px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 0 #e6b800;transition:transform .1s}
+.next-btn:hover,.restart-btn:hover{transform:translateY(-2px)}
+.score-board{display:none;text-align:center;padding:20px 0}
+.score-board.show{display:block}
+.sc-trophy{font-size:4.5rem}
+.sc-title{font-family:'Fredoka One',cursive;font-size:2rem;color:#1A1A6C;margin:10px 0 4px}
+.sc-num{font-size:3rem;font-weight:900;color:#FF4757}
+.sc-msg{color:#555;margin:8px 0 16px}
+.stars-row{font-size:2rem;letter-spacing:4px;margin-bottom:6px}
+
+/* ── SPELL GAME ── */
+.game-box{background:#fff;border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);max-width:580px;margin:0 auto;text-align:center}
+.g-score-row{display:flex;gap:12px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.g-pill{background:#FFFBE6;border-radius:30px;padding:6px 16px;font-family:'Fredoka One',cursive;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.g-big-avatar{font-size:5.5rem;display:block;margin-bottom:6px}
+.g-hint{font-family:'Fredoka One',cursive;font-size:1.15rem;color:#1A1A6C;margin-bottom:16px}
+.blanks{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.blank{width:46px;height:54px;border-bottom:4px solid #1A1A6C;font-family:'Fredoka One',cursive;font-size:1.7rem;color:#FF4757;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;transition:border-color .2s}
+.blank.filled{border-color:#6BCB77}
+.letter-pool{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.l-tile{width:46px;height:46px;background:#C77DFF;color:#fff;border-radius:13px;font-family:'Fredoka One',cursive;font-size:1.4rem;border:none;cursor:pointer;box-shadow:0 4px 0 #9a3fd6;transition:transform .1s,box-shadow .1s}
+.l-tile:hover{transform:translateY(-3px)}
+.l-tile:active{transform:translateY(1px);box-shadow:0 2px 0 #9a3fd6}
+.l-tile.used{opacity:.22;pointer-events:none}
+.g-fb{font-family:'Fredoka One',cursive;font-size:1.15rem;min-height:30px;margin-bottom:8px}
+.g-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.clear-btn{background:#eee;color:#666;border:none;border-radius:24px;padding:10px 20px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer}
+.submit-btn{background:#6BCB77;color:#fff;border:none;border-radius:24px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #4aaa5a}
+.nword-btn{background:#FF9DC6;color:#fff;border:none;border-radius:24px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #e07ab0}
+
+/* ── MATCH ── */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px;margin:0 auto}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.m-item{background:#fff;border-radius:20px;padding:13px 16px;font-family:'Fredoka One',cursive;font-size:1.05rem;text-align:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.1);border:3px solid transparent;transition:transform .15s,border-color .15s;user-select:none}
+.m-item:hover{transform:scale(1.04)}
+.m-item.selected{border-color:#FF9DC6;background:#fff0f6}
+.m-item.matched{border-color:#6BCB77;background:#d4f5da;opacity:.68;pointer-events:none}
+.m-item.wrong{border-color:#FF4757;background:#ffe0e3;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.match-status{text-align:center;font-family:'Fredoka One',cursive;font-size:1.1rem;margin-top:14px;min-height:30px}
+.match-reset{display:block;margin:14px auto 0;background:#FF9DC6;color:#fff;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #e07ab0}
+
+/* ── ROLES GAME ── */
+.roles-wrap{max-width:700px;margin:0 auto}
+.roles-intro{background:#fff;border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-bottom:20px}
+.roles-intro p{color:#555;line-height:1.7;font-size:.95rem}
+.roles-q-box{background:#fff;border-radius:28px;padding:26px 22px;box-shadow:var(--shadow);text-align:center}
+.rq-avatar{font-size:4rem;display:block;margin-bottom:8px}
+.rq-scene{font-family:'Fredoka One',cursive;font-size:1.25rem;color:#1A1A6C;margin-bottom:6px}
+.rq-question{color:#555;font-size:.95rem;margin-bottom:20px}
+.rq-opts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:14px}
+.rq-opt{background:#FFFBE6;border:3px solid #ddd;border-radius:18px;padding:12px 20px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;transition:all .15s}
+.rq-opt:hover{border-color:#FF9DC6;background:#fff0f6;transform:scale(1.04)}
+.rq-opt.correct{border-color:#6BCB77;background:#d4f5da}
+.rq-opt.wrong{border-color:#FF4757;background:#ffe0e3}
+.rq-opt:disabled{cursor:default;transform:none}
+.rq-fb{font-family:'Fredoka One',cursive;font-size:1.1rem;min-height:28px;margin-bottom:8px}
+.rq-next{background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #e6b800}
+.roles-score{font-family:'Fredoka One',cursive;font-size:1rem;color:#888;text-align:center;margin-top:10px}
+
+/* BUBBLES */
+.bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;opacity:.11;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh)}100%{transform:translateY(-200px)}}
+main{position:relative;z-index:1}
+
+/* CONFETTI */
+.cp{position:fixed;pointer-events:none;z-index:999;border-radius:2px;animation:fall 2.5s ease-in forwards}
+@keyframes fall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+@media(max-width:520px){
+  .q-opts{grid-template-columns:1fr}
+  .match-wrap{grid-template-columns:1fr}
+  .member-grid{grid-template-columns:repeat(2,1fr)}
+  .rq-opts{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<div class="bubbles" id="bubbles"></div>
+
+<header>
+  <div class="logo">LittleLume <span>English</span></div>
+  <div class="tagline">Fun Learning for Little Stars ✨</div>
+  <div class="badge">🌱 Kindergarten</div>
+</header>
+
+<main>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="learn">👨‍👩‍👧 Family</button>
+    <button class="tab-btn" data-tab="tree">🌳 Family Tree</button>
+    <button class="tab-btn" data-tab="vocab">📚 Vocabulary</button>
+    <button class="tab-btn" data-tab="quiz">✏️ Quiz</button>
+    <button class="tab-btn" data-tab="game">🔤 Spell It!</button>
+    <button class="tab-btn" data-tab="match">🔗 Match It!</button>
+    <button class="tab-btn" data-tab="roles">🏡 Roles Game</button>
+  </div>
+
+  <!-- LEARN -->
+  <section class="section active" id="learn">
+    <div class="sec-title">👨‍👩‍👧 Meet My Family!</div>
+    <p class="sec-sub">Tap any family member to learn all about them! 💕</p>
+    <div class="member-grid" id="memberGrid"></div>
+  </section>
+
+  <!-- FAMILY TREE -->
+  <section class="section" id="tree">
+    <div class="sec-title">🌳 My Family Tree</div>
+    <p class="sec-sub">See how everyone is connected! Tap a person to learn more! 🌟</p>
+    <div class="tree-wrap" id="treeWrap"></div>
+  </section>
+
+  <!-- VOCAB -->
+  <section class="section" id="vocab">
+    <div class="sec-title">📚 Family Words!</div>
+    <p class="sec-sub">Tap any word to hear it! 🔊</p>
+    <div id="vocabContent"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <div class="sec-title">✏️ Quiz Time!</div>
+    <p class="sec-sub">Answer 10 questions about family! 💖</p>
+    <div class="quiz-box">
+      <div id="quizInner">
+        <div class="qprog" id="qProg">Question 1 of 10</div>
+        <div class="prog-bar"><div class="prog-fill" id="qBar" style="width:10%"></div></div>
+        <span class="q-avatar" id="qEmoji"></span>
+        <div class="q-text" id="qText"></div>
+        <div class="q-opts" id="qOpts"></div>
+        <div class="q-fb" id="qFb"></div>
+        <button class="next-btn" id="nextBtn" style="display:none" onclick="nextQ()">Next ➜</button>
+      </div>
+      <div class="score-board" id="scoreBoard">
+        <div class="sc-trophy" id="scTrophy"></div>
+        <div class="stars-row" id="scStars"></div>
+        <div class="sc-title">You scored</div>
+        <div class="sc-num" id="scNum"></div>
+        <div class="sc-msg" id="scMsg"></div>
+        <button class="restart-btn" onclick="startQuiz()">Play Again 🔄</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPELL -->
+  <section class="section" id="game">
+    <div class="sec-title">🔤 Spell the Family Word!</div>
+    <p class="sec-sub">Pick the letters in the right order! 🏆</p>
+    <div class="game-box">
+      <div class="g-score-row">
+        <div class="g-pill">✅ Correct: <span id="gOk">0</span></div>
+        <div class="g-pill">❌ Wrong: <span id="gBad">0</span></div>
+        <div class="g-pill">📝 Word: <span id="gWNum">1</span>/12</div>
+      </div>
+      <span class="g-big-avatar" id="gEmoji"></span>
+      <div class="g-hint" id="gHint"></div>
+      <div class="blanks" id="gBlanks"></div>
+      <div class="letter-pool" id="gPool"></div>
+      <div class="g-fb" id="gFb"></div>
+      <div class="g-actions">
+        <button class="clear-btn" onclick="clearSpell()">🗑️ Clear</button>
+        <button class="submit-btn" onclick="checkSpell()">✅ Check</button>
+        <button class="nword-btn" id="gNextBtn" style="display:none" onclick="nextWord()">Next ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATCH -->
+  <section class="section" id="match">
+    <div class="sec-title">🔗 Match the Family Member!</div>
+    <p class="sec-sub">Tap an emoji, then tap the right word! 🎉</p>
+    <div class="match-wrap">
+      <div class="match-col" id="mEmojis"></div>
+      <div class="match-col" id="mWords"></div>
+    </div>
+    <div class="match-status" id="mStatus"></div>
+    <button class="match-reset" onclick="resetMatch()">🔄 New Game</button>
+  </section>
+
+  <!-- ROLES GAME -->
+  <section class="section" id="roles">
+    <div class="sec-title">🏡 Family Roles Game!</div>
+    <p class="sec-sub">Read the clue and pick the right family member! 👨‍👩‍👧‍👦</p>
+    <div class="roles-wrap">
+      <div class="roles-q-box" id="rolesBox">
+        <span class="rq-avatar" id="rqAvatar"></span>
+        <div class="rq-scene" id="rqScene"></div>
+        <div class="rq-question" id="rqQ"></div>
+        <div class="rq-opts" id="rqOpts"></div>
+        <div class="rq-fb" id="rqFb"></div>
+        <button class="rq-next" id="rqNext" style="display:none" onclick="nextRole()">Next ➜</button>
+      </div>
+      <div class="roles-score" id="rolesScore"></div>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-avatar" id="mEm"></div>
+    <div class="modal-name" id="mNm"></div>
+    <div id="mFacts"></div>
+    <button class="say-btn" id="mSay">🔊 Say It!</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+const members = [
+  {
+    name:'Father', emoji:'👨', color:'#5BC8F5', gen:'male', side:'nuclear',
+    nickname:'Dad / Daddy / Papa',
+    role:'The father works hard to take care of the family.',
+    age_group:'Adult',
+    relation:'He is your Mum\'s husband.',
+    loves:'Working, cooking BBQ, reading newspapers, and playing with children.',
+    says:'"I love you to the moon and back!"',
+    facts:[
+      'A father protects and provides for the whole family.',
+      'Dads love to give big bear hugs!',
+      'Fathers teach us how to be brave and kind.'
+    ]
+  },
+  {
+    name:'Mother', emoji:'👩', color:'#FF9DC6', gen:'female', side:'nuclear',
+    nickname:'Mum / Mummy / Mama',
+    role:'The mother loves and nurtures the whole family.',
+    age_group:'Adult',
+    relation:'She is your Dad\'s wife.',
+    loves:'Cooking, gardening, reading bedtime stories, and hugging.',
+    says:'"You are my sunshine!"',
+    facts:[
+      'A mother kisses away all our bumps and bruises.',
+      'Mums give the warmest, cosiest hugs in the world!',
+      'Mothers always know how to make us feel better.'
+    ]
+  },
+  {
+    name:'Brother', emoji:'👦', color:'#5BC8F5', gen:'male', side:'nuclear',
+    nickname:'Bro / Big Bro / Little Bro',
+    role:'A brother is a boy sibling in the family.',
+    age_group:'Child',
+    relation:'He is your parents\' son.',
+    loves:'Playing video games, football, running, and pranking siblings.',
+    says:'"Let\'s play together!"',
+    facts:[
+      'Brothers can be older or younger than you.',
+      'They are your best playmates at home!',
+      'Brothers look out for each other and share toys.'
+    ]
+  },
+  {
+    name:'Sister', emoji:'👧', color:'#FF9DC6', gen:'female', side:'nuclear',
+    nickname:'Sis / Big Sis / Little Sis',
+    role:'A sister is a girl sibling in the family.',
+    age_group:'Child',
+    relation:'She is your parents\' daughter.',
+    loves:'Drawing, dancing, dressing up, and playing pretend.',
+    says:'"We are best friends forever!"',
+    facts:[
+      'Sisters can be older or younger than you.',
+      'A sister is a built-in best friend!',
+      'Sisters love to play, share secrets, and laugh together.'
+    ]
+  },
+  {
+    name:'Grandfather', emoji:'👴', color:'#FF9A3C', gen:'male', side:'extended',
+    nickname:'Grandpa / Grandad / Pops',
+    role:'Grandfather is the father of your Mum or Dad.',
+    age_group:'Senior',
+    relation:'He is your parent\'s father.',
+    loves:'Telling stories, fishing, gardening, and watching TV.',
+    says:'"Back in my day..."',
+    facts:[
+      'Grandfathers have lots of amazing stories to tell!',
+      'They are the wisest people in the family.',
+      'Grandpas love to spoil their grandchildren with treats.'
+    ]
+  },
+  {
+    name:'Grandmother', emoji:'👵', color:'#C77DFF', gen:'female', side:'extended',
+    nickname:'Grandma / Granny / Nana',
+    role:'Grandmother is the mother of your Mum or Dad.',
+    age_group:'Senior',
+    relation:'She is your parent\'s mother.',
+    loves:'Baking cookies, knitting, gardening, and cuddling grandchildren.',
+    says:'"Have you eaten enough today?"',
+    facts:[
+      'Grandmothers make the best cookies and cakes!',
+      'Grannies always have sweets hidden in their bags.',
+      'Grandmas give the longest, softest, warmest hugs.'
+    ]
+  },
+  {
+    name:'Uncle', emoji:'👨', color:'#6BCB77', gen:'male', side:'extended',
+    nickname:'Uncle / Unc',
+    role:'Uncle is the brother of your Mum or Dad.',
+    age_group:'Adult',
+    relation:'He is your parent\'s brother.',
+    loves:'Telling jokes, playing sports, and taking kids on adventures.',
+    says:'"Pull my finger!"',
+    facts:[
+      'Uncles are like cool second dads who teach fun things!',
+      'They love to play games and tell funny jokes.',
+      'Uncles take us on exciting trips and outings.'
+    ]
+  },
+  {
+    name:'Aunt', emoji:'👩', color:'#FF4757', gen:'female', side:'extended',
+    nickname:'Auntie / Aunty',
+    role:'Aunt is the sister of your Mum or Dad.',
+    age_group:'Adult',
+    relation:'She is your parent\'s sister.',
+    loves:'Shopping, cooking new recipes, painting, and playing dress-up.',
+    says:'"You look just like your mum/dad!"',
+    facts:[
+      'Aunties are like glamorous best friends!',
+      'They bring the best birthday and holiday gifts.',
+      'Aunts love to spoil their nieces and nephews.'
+    ]
+  },
+  {
+    name:'Cousin', emoji:'🧒', color:'#FFD93D', gen:'either', side:'extended',
+    nickname:'Cuz / Cousin',
+    role:'Cousin is the child of your Uncle or Aunt.',
+    age_group:'Child',
+    relation:'Their parent is your parent\'s sibling.',
+    loves:'Playing games, video games, swimming, and going to the park.',
+    says:'"We\'re cousins – that means we\'re best friends!"',
+    facts:[
+      'Cousins are like friends you are related to!',
+      'You might see your cousins at family gatherings and holidays.',
+      'Some people have lots of cousins and some have just a few.'
+    ]
+  },
+  {
+    name:'Baby', emoji:'👶', color:'#FF9DC6', gen:'either', side:'nuclear',
+    nickname:'Baby / Little One / Tiny',
+    role:'The newest and tiniest member of the family!',
+    age_group:'Infant',
+    relation:'Baby is the youngest child of Mum and Dad.',
+    loves:'Sleeping, eating, giggling, and being cuddled.',
+    says:'"Goo goo ga ga!"',
+    facts:[
+      'Babies need lots of love, food, and sleep to grow.',
+      'They communicate by smiling and crying!',
+      'Everyone in the family helps take care of the baby.'
+    ]
+  },
+  {
+    name:'Son', emoji:'👦', color:'#5BC8F5', gen:'male', side:'nuclear',
+    nickname:'Son / Boy / Lad',
+    role:'A son is a male child of the parents.',
+    age_group:'Child',
+    relation:'He is the male child of Mum and Dad.',
+    loves:'Playing, exploring, building things, and learning.',
+    says:'"Watch what I can do!"',
+    facts:[
+      'A son makes parents incredibly proud every single day.',
+      'Sons grow up to be strong and kind young men.',
+      'They love to show off their new skills to Mum and Dad.'
+    ]
+  },
+  {
+    name:'Daughter', emoji:'👧', color:'#FF9DC6', gen:'female', side:'nuclear',
+    nickname:'Daughter / Girl / Little One',
+    role:'A daughter is a female child of the parents.',
+    age_group:'Child',
+    relation:'She is the female child of Mum and Dad.',
+    loves:'Dancing, drawing, reading, and helping Mum in the kitchen.',
+    says:'"I love you, Mummy!"',
+    facts:[
+      'A daughter fills the home with joy and laughter.',
+      'Daughters grow up to be strong and wonderful women.',
+      'They love to help around the house and make everyone smile.'
+    ]
+  },
+];
+
+// Roles / Scenarios quiz
+const rolesScenarios = [
+  {avatar:'👴',scene:'Grandpa is sitting in his chair telling a long story.',question:'Who is telling the story?',answer:'Grandfather',opts:['Grandfather','Father','Uncle','Brother']},
+  {avatar:'👵',scene:'Granny just baked a big tray of chocolate chip cookies!',question:'Who baked the cookies?',answer:'Grandmother',opts:['Mother','Grandmother','Aunt','Sister']},
+  {avatar:'👨',scene:'Dad is mowing the grass in the garden on Saturday morning.',question:'Who is mowing the garden?',answer:'Father',opts:['Uncle','Father','Brother','Grandfather']},
+  {avatar:'👩',scene:'Mum is reading a bedtime story and tucking us into bed.',question:'Who is reading the bedtime story?',answer:'Mother',opts:['Mother','Aunt','Sister','Grandmother']},
+  {avatar:'👦',scene:'Your mum\'s brother is making us laugh with funny jokes!',question:'Who is making us laugh?',answer:'Uncle',opts:['Father','Uncle','Brother','Cousin']},
+  {avatar:'👩',scene:'Your dad\'s sister brought us amazing birthday presents!',question:'Who brought the birthday presents?',answer:'Aunt',opts:['Aunt','Mother','Sister','Grandmother']},
+  {avatar:'🧒',scene:'Your uncle\'s son is playing football with you at the park.',question:'Who are you playing football with?',answer:'Cousin',opts:['Brother','Cousin','Uncle','Friend']},
+  {avatar:'👶',scene:'A tiny new person just arrived home from the hospital!',question:'Who just came home from the hospital?',answer:'Baby',opts:['Baby','Son','Daughter','Sister']},
+  {avatar:'👧',scene:'Your parents\' little girl is learning to ride her bicycle.',question:'Who is learning to ride a bicycle?',answer:'Daughter',opts:['Daughter','Sister','Cousin','Baby']},
+  {avatar:'👦',scene:'Your parents\' boy just won first place in the school race!',question:'Who won the school race?',answer:'Son',opts:['Son','Brother','Cousin','Father']},
+  {avatar:'👧',scene:'A girl in the family shares her bedroom with her sibling.',question:'What do we call a girl sibling?',answer:'Sister',opts:['Sister','Daughter','Cousin','Aunt']},
+  {avatar:'👦',scene:'A boy in the family loves to play games with his sibling.',question:'What do we call a boy sibling?',answer:'Brother',opts:['Son','Cousin','Brother','Uncle']},
+];
+
+// Family tree nodes
+const treeData = {
+  grandparents:[
+    {name:'Grandpa',emoji:'👴',color:'#FF9A3C',ref:'Grandfather'},
+    {name:'Grandma',emoji:'👵',color:'#C77DFF',ref:'Grandmother'},
+  ],
+  parents:[
+    {name:'Father',emoji:'👨',color:'#5BC8F5',ref:'Father'},
+    {name:'Mother',emoji:'👩',color:'#FF9DC6',ref:'Mother'},
+  ],
+  children:[
+    {name:'Brother',emoji:'👦',color:'#5BC8F5',ref:'Brother'},
+    {name:'Me 🌟',emoji:'😊',color:'#FFD93D',ref:null},
+    {name:'Sister',emoji:'👧',color:'#FF9DC6',ref:'Sister'},
+    {name:'Baby',emoji:'👶',color:'#FF9DC6',ref:'Baby'},
+  ]
+};
+
+// ══════════════════════════════════════════
+// BUBBLES
+// ══════════════════════════════════════════
+(function(){
+  const cols=['#FF9DC6','#FFD93D','#6BCB77','#5BC8F5','#C77DFF','#FF9A3C','#FF4757'];
+  const c=document.getElementById('bubbles');
+  for(let i=0;i<18;i++){
+    const d=document.createElement('div');d.className='bubble';
+    const s=Math.random()*65+20;
+    d.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${Math.random()*-200}px;background:${cols[i%cols.length]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(d);
+  }
+})();
+
+// ══════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════
+// SPEECH
+// ══════════════════════════════════════════
+function speak(txt){
+  if(!window.speechSynthesis)return;
+  const u=new SpeechSynthesisUtterance(txt);
+  u.rate=.85;u.pitch=1.2;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+// ══════════════════════════════════════════
+// LEARN SECTION
+// ══════════════════════════════════════════
+const grid=document.getElementById('memberGrid');
+members.forEach(m=>{
+  const c=document.createElement('div');
+  c.className='member-card';
+  c.style.borderColor=m.color;
+  c.style.setProperty('--card-top',m.color);
+  c.querySelector
+  c.innerHTML=`
+    <span class="m-avatar">${m.emoji}</span>
+    <div class="m-name" style="color:${m.color}">${m.name}</div>
+    <div class="m-role">${m.nickname}</div>
+    <button class="listen-btn" onclick="event.stopPropagation();speak('${m.name}. Also called ${m.nickname}.')">🔊 Listen</button>`;
+  c.style.setProperty('background','linear-gradient(180deg, '+m.color+'22 0%, #fff 40%)');
+  c.addEventListener('click',()=>openModal(m));
+  grid.appendChild(c);
+});
+
+function openModal(m){
+  document.getElementById('mEm').textContent=m.emoji;
+  const nm=document.getElementById('mNm');nm.textContent=m.name;nm.style.color=m.color;
+  document.getElementById('mFacts').innerHTML=`
+    <div class="fact-row"><span class="fi">💬</span><span><b>Also called:</b> ${m.nickname}</span></div>
+    <div class="fact-row"><span class="fi">👔</span><span><b>Role:</b> ${m.role}</span></div>
+    <div class="fact-row"><span class="fi">🔗</span><span><b>Relation:</b> ${m.relation}</span></div>
+    <div class="fact-row"><span class="fi">🧑</span><span><b>Age group:</b> ${m.age_group}</span></div>
+    <div class="fact-row"><span class="fi">❤️</span><span><b>Loves:</b> ${m.loves}</span></div>
+    <div class="fact-row"><span class="fi">💭</span><span><b>Often says:</b> ${m.says}</span></div>
+    ${m.facts.map(f=>`<div class="fact-row"><span class="fi">⭐</span><span>${f}</span></div>`).join('')}`;
+  document.getElementById('mSay').onclick=()=>speak(`${m.name}. Also called ${m.nickname}. ${m.facts[0]}`);
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('overlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('overlay').classList.remove('open');}
+
+// ══════════════════════════════════════════
+// FAMILY TREE
+// ══════════════════════════════════════════
+(function buildTree(){
+  const wrap=document.getElementById('treeWrap');
+  wrap.innerHTML=`<div class="tree-title-text">💝 The Happy Family Tree 💝</div>`;
+
+  function makeNode(n){
+    const d=document.createElement('div');
+    d.className='tree-node';
+    d.style.borderColor=n.color;
+    d.style.background=`linear-gradient(180deg,${n.color}22 0%,#fff 50%)`;
+    d.innerHTML=`<span class="tn-avatar">${n.emoji}</span><div class="tn-name" style="color:${n.color}">${n.name}</div>`;
+    if(n.ref){
+      const m=members.find(x=>x.name===n.ref);
+      if(m)d.addEventListener('click',()=>openModal(m));
+    }
+    return d;
+  }
+
+  // Grandparent row
+  const gpRow=document.createElement('div');gpRow.className='tree-level';
+  treeData.grandparents.forEach(n=>gpRow.appendChild(makeNode(n)));
+  wrap.appendChild(gpRow);
+
+  // Connector grandparents → parents
+  const c1=document.createElement('div');c1.className='tree-connector';c1.textContent='│';
+  wrap.appendChild(c1);
+
+  // Parent row
+  const pRow=document.createElement('div');pRow.className='tree-level';
+  treeData.parents.forEach(n=>pRow.appendChild(makeNode(n)));
+  wrap.appendChild(pRow);
+
+  // Connector parents → children
+  const c2=document.createElement('div');c2.className='tree-connector';c2.textContent='│';
+  wrap.appendChild(c2);
+
+  // Children row
+  const chRow=document.createElement('div');chRow.className='tree-level';
+  treeData.children.forEach(n=>{
+    const node=makeNode(n);
+    if(n.name==='Me 🌟'){node.style.boxShadow='0 0 0 4px #FFD93D, 0 8px 24px rgba(0,0,0,.15)';node.style.cursor='default';}
+    chRow.appendChild(node);
+  });
+  wrap.appendChild(chRow);
+
+  // Extended family
+  const extWrap=document.createElement('div');
+  extWrap.style.cssText='margin-top:28px;text-align:center';
+  extWrap.innerHTML=`<div style="font-family:\'Fredoka One\',cursive;font-size:1.2rem;color:#888;margin-bottom:14px">👨‍👩‍👧‍👦 Extended Family</div>`;
+  const extRow=document.createElement('div');extRow.className='tree-level';
+  [{name:'Uncle',emoji:'👨',color:'#6BCB77',ref:'Uncle'},
+   {name:'Aunt',emoji:'👩',color:'#FF4757',ref:'Aunt'},
+   {name:'Cousin',emoji:'🧒',color:'#FFD93D',ref:'Cousin'}
+  ].forEach(n=>extRow.appendChild(makeNode(n)));
+  extWrap.appendChild(extRow);
+  wrap.appendChild(extWrap);
+})();
+
+// ══════════════════════════════════════════
+// VOCAB
+// ══════════════════════════════════════════
+const vocabGroups=[
+  {title:'👨‍👩‍👧 Nuclear Family',  color:'#FF9DC6',
+   items:members.filter(m=>m.side==='nuclear').map(m=>({name:m.name,emoji:m.emoji,spk:`${m.name}. Also called ${m.nickname}.`}))},
+  {title:'👨‍👩‍👧‍👦 Extended Family', color:'#C77DFF',
+   items:members.filter(m=>m.side==='extended').map(m=>({name:m.name,emoji:m.emoji,spk:`${m.name}. Also called ${m.nickname}.`}))},
+  {title:'💬 Nicknames',         color:'#FF9A3C',
+   items:members.map(m=>({name:`${m.name} → ${m.nickname}`,emoji:m.emoji,spk:`${m.name} is also called ${m.nickname}`}))},
+  {title:'👔 What They Do',      color:'#5BC8F5',
+   items:members.map(m=>({name:`${m.name}: ${m.role.slice(0,35)}...`,emoji:m.emoji,spk:m.role}))},
+  {title:'👧👦 Age Groups',      color:'#6BCB77',
+   items:[
+     {name:'Infant – Baby 👶',    emoji:'👶',spk:'Infant. The youngest baby in the family.'},
+     {name:'Child – Boy or Girl', emoji:'🧒',spk:'Child. Boys and girls who are still growing up.'},
+     {name:'Adult – Grown-up',    emoji:'🧑',spk:'Adult. A grown-up person who is fully grown.'},
+     {name:'Senior – Grandparents',emoji:'👴',spk:'Senior. Older grown-ups like grandparents.'},
+   ]},
+  {title:'💑 Pairs',             color:'#FFD93D',
+   items:[
+     {name:'Father & Mother',emoji:'👨👩',spk:'Father and mother. They are husband and wife.'},
+     {name:'Grandfather & Grandmother',emoji:'👴👵',spk:'Grandfather and grandmother. They are the grandparents.'},
+     {name:'Brother & Sister',emoji:'👦👧',spk:'Brother and sister. They are siblings.'},
+     {name:'Uncle & Aunt',emoji:'👨👩',spk:'Uncle and aunt. They are your parent\'s siblings.'},
+     {name:'Son & Daughter',emoji:'👦👧',spk:'Son and daughter. They are the children of the parents.'},
+   ]},
+  {title:'❤️ I Love My Family!',  color:'#FF4757',
+   items:[
+     {name:'"I love you, Mum!"',   emoji:'💕',spk:'I love you, Mum!'},
+     {name:'"I love you, Dad!"',   emoji:'💙',spk:'I love you, Dad!'},
+     {name:'"Thank you, Grandma!"',emoji:'💜',spk:'Thank you, Grandma!'},
+     {name:'"You are the best, Grandpa!"',emoji:'🧡',spk:'You are the best, Grandpa!'},
+     {name:'"Let\'s play together!"',emoji:'💚',spk:'Let\'s play together!'},
+     {name:'"My family is special!"',emoji:'🌟',spk:'My family is special!'},
+   ]},
+  {title:'🏠 Family Phrases',    color:'#2EC4B6',
+   items:[
+     {name:'nuclear family',  emoji:'🏠',spk:'Nuclear family. Parents and children living together.'},
+     {name:'extended family', emoji:'🏡',spk:'Extended family. Grandparents, aunts, uncles, and cousins.'},
+     {name:'sibling',         emoji:'👫',spk:'Sibling. A brother or sister.'},
+     {name:'relative',        emoji:'👨‍👩‍👧‍👦',spk:'Relative. Anyone in your family.'},
+     {name:'grandparent',     emoji:'👴👵',spk:'Grandparent. Your parent\'s mother or father.'},
+     {name:'family member',   emoji:'💝',spk:'Family member. Anyone who is part of your family.'},
+   ]},
+];
+
+const vc=document.getElementById('vocabContent');
+vocabGroups.forEach(g=>{
+  const div=document.createElement('div');div.className='vocab-group';
+  div.innerHTML=`<div class="vg-title" style="background:${g.color}">${g.title}</div>
+  <div class="vocab-cards">${g.items.map(i=>`<div class="vocab-chip" onclick="speak('${i.spk.replace(/'/g,"\\'")}')"><span class="vc-em">${i.emoji}</span>${i.name}</div>`).join('')}</div>`;
+  vc.appendChild(div);
+});
+
+// ══════════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════════
+let quizQs=[],quizIdx=0,quizScore=0,answered=false;
+function shuffle(arr){return[...arr].sort(()=>Math.random()-.5)}
+
+function buildQuiz(){
+  const types=['avatar-name','nickname','relation','role','age-group','side','avatar-find'];
+  const pool=shuffle(members).slice(0,10);
+  return pool.map((m,i)=>{
+    const t=types[i%types.length];
+    const others=shuffle(members.filter(x=>x.name!==m.name)).slice(0,3);
+    let q={};
+    if(t==='avatar-name'){
+      q={emoji:m.emoji,text:`Who is this family member?`,ans:m.name,
+         opts:shuffle([m.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:members.find(x=>x.name===o)?.emoji||''}))};
+    } else if(t==='nickname'){
+      q={emoji:m.emoji,text:`What is another name for ${m.name}?`,ans:m.nickname.split(' / ')[0],
+         opts:shuffle([m.nickname.split(' / ')[0],...others.map(x=>x.nickname.split(' / ')[0])]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='relation'){
+      q={emoji:m.emoji,text:`Complete: "${m.relation.replace(/^He is |^She is |^Their /,'').replace(/\./,'')}. Who is this?"`,ans:m.name,
+         opts:shuffle([m.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:members.find(x=>x.name===o)?.emoji||''}))};
+    } else if(t==='role'){
+      q={emoji:'🤔',text:`Who is it? "${m.role}"`,ans:m.name,
+         opts:shuffle([m.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:members.find(x=>x.name===o)?.emoji||''}))};
+    } else if(t==='age-group'){
+      q={emoji:m.emoji,text:`What age group is the ${m.name}?`,ans:m.age_group,
+         opts:shuffle([m.age_group,...others.map(x=>x.age_group)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='side'){
+      q={emoji:m.emoji,text:`Is the ${m.name} part of the nuclear or extended family?`,ans:m.side==='nuclear'?'Nuclear Family':'Extended Family',
+         opts:[{lbl:'Nuclear Family',em:'🏠'},{lbl:'Extended Family',em:'🏡'}]};
+    } else {
+      q={emoji:'❓',text:`Find the ${m.name}!`,ans:m.emoji,
+         opts:shuffle([m.emoji,...others.map(x=>x.emoji)]).map(o=>({lbl:o,em:''}))};
+    }
+    return q;
+  });
+}
+
+function startQuiz(){
+  quizQs=buildQuiz();quizIdx=0;quizScore=0;
+  document.getElementById('scoreBoard').classList.remove('show');
+  document.getElementById('quizInner').style.display='';
+  renderQ();
+}
+
+function renderQ(){
+  answered=false;
+  const q=quizQs[quizIdx];
+  document.getElementById('qProg').textContent=`Question ${quizIdx+1} of ${quizQs.length}`;
+  document.getElementById('qBar').style.width=`${((quizIdx+1)/quizQs.length)*100}%`;
+  document.getElementById('qEmoji').textContent=q.emoji;
+  document.getElementById('qText').textContent=q.text;
+  document.getElementById('qFb').textContent='';
+  document.getElementById('nextBtn').style.display='none';
+  const opts=document.getElementById('qOpts');opts.innerHTML='';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='q-opt';
+    b.innerHTML=(o.em?`<span style="font-size:1.4rem">${o.em}</span> `:'')+o.lbl;
+    b.onclick=()=>checkAns(o.lbl,q.ans,b);
+    opts.appendChild(b);
+  });
+}
+
+function checkAns(chosen,correct,btn){
+  if(answered)return;answered=true;
+  document.querySelectorAll('.q-opt').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('qFb');
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.innerHTML='<span class="fb-ok">💖 Wonderful! That\'s right!</span>';
+    quizScore++;confetti();
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent.includes(correct))b.classList.add('correct');});
+    fb.innerHTML=`<span class="fb-no">💪 The answer is: ${correct}</span>`;
+  }
+  document.getElementById('nextBtn').style.display='inline-block';
+}
+
+function nextQ(){
+  quizIdx++;
+  if(quizIdx>=quizQs.length){showScore();return;}
+  renderQ();
+}
+
+function showScore(){
+  document.getElementById('quizInner').style.display='none';
+  document.getElementById('scoreBoard').classList.add('show');
+  const pct=quizScore/quizQs.length;
+  let trophy='🎉',stars='⭐⭐⭐',msg='Amazing! You know your family so well! 👨‍👩‍👧‍👦💖';
+  if(pct<.5){trophy='💪';stars='⭐';msg='Keep practising – families are fun to learn! 🌈';}
+  else if(pct<.8){trophy='😊';stars='⭐⭐';msg='Great effort! Nearly perfect! 🎊';}
+  document.getElementById('scTrophy').textContent=trophy;
+  document.getElementById('scStars').textContent=stars;
+  document.getElementById('scNum').textContent=`${quizScore} / ${quizQs.length}`;
+  document.getElementById('scMsg').textContent=msg;
+  if(pct>=.8)confetti();
+}
+startQuiz();
+
+// ══════════════════════════════════════════
+// SPELL GAME
+// ══════════════════════════════════════════
+let spellList=[],spellIdx=0,spellOk=0,spellBad=0,curWord='',userSpell=[];
+
+function initSpell(){
+  spellList=shuffle(members).slice(0,12);
+  spellIdx=0;spellOk=0;spellBad=0;
+  document.getElementById('gOk').textContent=0;
+  document.getElementById('gBad').textContent=0;
+  loadWord();
+}
+
+function loadWord(){
+  if(spellIdx>=spellList.length){endSpell();return;}
+  const m=spellList[spellIdx];
+  curWord=m.name.toUpperCase();
+  userSpell=Array(curWord.length).fill('');
+  document.getElementById('gEmoji').textContent=m.emoji;
+  document.getElementById('gHint').textContent=`Spell the family member! Starts with "${curWord[0]}"`;
+  document.getElementById('gFb').textContent='';
+  document.getElementById('gNextBtn').style.display='none';
+  document.getElementById('gWNum').textContent=spellIdx+1;
+  renderBlanks();renderPool(m.name);
+}
+
+function renderBlanks(){
+  const el=document.getElementById('gBlanks');el.innerHTML='';
+  curWord.split('').forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='blank'+(userSpell[i]?' filled':'');
+    d.id='bl_'+i;d.textContent=userSpell[i]||'';
+    el.appendChild(d);
+  });
+}
+
+function renderPool(name){
+  const base=[...name.toUpperCase()];
+  const extras='AEIOURSTLNMPBDGHF'.split('').filter(c=>!base.includes(c));
+  const pool=shuffle([...base,...shuffle(extras).slice(0,3)]);
+  const el=document.getElementById('gPool');el.innerHTML='';
+  pool.forEach((l,i)=>{
+    const b=document.createElement('button');
+    b.className='l-tile';b.id='t_'+i;b.textContent=l;
+    b.onclick=()=>{
+      const next=userSpell.findIndex(x=>!x);
+      if(next===-1)return;
+      userSpell[next]=l;b.classList.add('used');renderBlanks();
+    };
+    el.appendChild(b);
+  });
+}
+
+function clearSpell(){
+  userSpell=Array(curWord.length).fill('');
+  document.querySelectorAll('.l-tile').forEach(t=>t.classList.remove('used'));
+  renderBlanks();document.getElementById('gFb').textContent='';
+}
+
+function checkSpell(){
+  if(userSpell.includes('')){document.getElementById('gFb').textContent='⚠️ Fill all letters first!';return;}
+  const typed=userSpell.join('');
+  if(typed===curWord){
+    document.getElementById('gFb').innerHTML='<span style="color:#6BCB77">🎉 Perfect spelling! Brilliant!</span>';
+    spellOk++;confetti();
+  } else {
+    document.getElementById('gFb').innerHTML=`<span style="color:#FF4757">💪 It is: ${curWord}</span>`;
+    spellBad++;
+  }
+  document.getElementById('gOk').textContent=spellOk;
+  document.getElementById('gBad').textContent=spellBad;
+  document.getElementById('gNextBtn').style.display='inline-block';
+  document.querySelectorAll('.l-tile').forEach(t=>t.disabled=true);
+}
+
+function nextWord(){spellIdx++;loadWord();}
+
+function endSpell(){
+  document.getElementById('gEmoji').textContent='🏆';
+  document.getElementById('gHint').textContent=`Finished! You got ${spellOk} out of ${spellList.length}!`;
+  document.getElementById('gBlanks').innerHTML='';document.getElementById('gPool').innerHTML='';
+  document.getElementById('gFb').innerHTML='<span style="color:#FF9DC6">💕 You are a spelling superstar! Play again!</span>';
+  const nb=document.getElementById('gNextBtn');
+  nb.textContent='Play Again 🔄';nb.style.display='inline-block';nb.onclick=initSpell;
+  if(spellOk>=8)confetti();
+}
+initSpell();
+
+// ══════════════════════════════════════════
+// MATCH GAME
+// ══════════════════════════════════════════
+let mSelected=null,mPairs=[],mDone=0;
+
+function resetMatch(){
+  mSelected=null;mDone=0;
+  mPairs=shuffle(members).slice(0,8);
+  document.getElementById('mStatus').textContent='';
+  const eCol=document.getElementById('mEmojis');
+  const wCol=document.getElementById('mWords');
+  eCol.innerHTML='';wCol.innerHTML='';
+  shuffle(mPairs).forEach(m=>{
+    const d=document.createElement('div');
+    d.className='m-item';d.dataset.id=m.name;d.dataset.type='emoji';
+    d.textContent=m.emoji;d.style.fontSize='2.3rem';
+    d.addEventListener('click',()=>mClick(d));eCol.appendChild(d);
+  });
+  shuffle(mPairs).forEach(m=>{
+    const d=document.createElement('div');
+    d.className='m-item';d.dataset.id=m.name;d.dataset.type='word';
+    d.textContent=m.name;d.style.color=m.color;
+    d.addEventListener('click',()=>mClick(d));wCol.appendChild(d);
+  });
+}
+
+function mClick(el){
+  if(el.classList.contains('matched'))return;
+  if(mSelected===el){el.classList.remove('selected');mSelected=null;return;}
+  if(!mSelected){el.classList.add('selected');mSelected=el;return;}
+  if(mSelected.dataset.type===el.dataset.type){
+    mSelected.classList.remove('selected');el.classList.add('selected');mSelected=el;return;
+  }
+  if(mSelected.dataset.id===el.dataset.id){
+    [mSelected,el].forEach(e=>{e.classList.remove('selected');e.classList.add('matched');});
+    speak(mSelected.dataset.id);mDone++;mSelected=null;
+    document.getElementById('mStatus').innerHTML=mDone===mPairs.length
+      ?'<span style="color:#6BCB77">🎉 All matched! What a family expert!</span>'
+      :'<span style="color:#6BCB77">💕 Great match! Keep going!</span>';
+    if(mDone===mPairs.length)confetti();
+  } else {
+    const tmp=mSelected;
+    [tmp,el].forEach(e=>e.classList.add('wrong'));
+    document.getElementById('mStatus').innerHTML='<span style="color:#FF4757">❌ Try again!</span>';
+    setTimeout(()=>{[tmp,el].forEach(e=>e.classList.remove('wrong','selected'));mSelected=null;},700);
+  }
+}
+resetMatch();
+
+// ══════════════════════════════════════════
+// ROLES GAME
+// ══════════════════════════════════════════
+let rolesQs=[],rolesIdx=0,rolesScore=0,rolesAnswered=false;
+
+function initRoles(){
+  rolesQs=shuffle(rolesScenarios);
+  rolesIdx=0;rolesScore=0;rolesAnswered=false;
+  document.getElementById('rolesScore').textContent='';
+  renderRole();
+}
+
+function renderRole(){
+  if(rolesIdx>=rolesQs.length){endRoles();return;}
+  rolesAnswered=false;
+  const q=rolesQs[rolesIdx];
+  document.getElementById('rqAvatar').textContent=q.avatar;
+  document.getElementById('rqScene').textContent=q.scene;
+  document.getElementById('rqQ').textContent=q.question;
+  document.getElementById('rqFb').textContent='';
+  document.getElementById('rqNext').style.display='none';
+  document.getElementById('rolesScore').textContent=`Question ${rolesIdx+1} of ${rolesQs.length} | Score: ${rolesScore}`;
+  const opts=document.getElementById('rqOpts');opts.innerHTML='';
+  shuffle(q.opts).forEach(o=>{
+    const b=document.createElement('button');b.className='rq-opt';b.textContent=o;
+    b.onclick=()=>{
+      if(rolesAnswered)return;rolesAnswered=true;
+      document.querySelectorAll('.rq-opt').forEach(x=>x.disabled=true);
+      if(o===q.answer){
+        b.classList.add('correct');
+        document.getElementById('rqFb').innerHTML='<span style="color:#6BCB77">🌟 That\'s right! Great job!</span>';
+        rolesScore++;confetti();
+      } else {
+        b.classList.add('wrong');
+        document.querySelectorAll('.rq-opt').forEach(x=>{if(x.textContent===q.answer)x.classList.add('correct');});
+        document.getElementById('rqFb').innerHTML=`<span style="color:#FF4757">💪 The answer is: ${q.answer}</span>`;
+      }
+      document.getElementById('rqNext').style.display='inline-block';
+    };
+    opts.appendChild(b);
+  });
+}
+
+function nextRole(){rolesIdx++;renderRole();}
+
+function endRoles(){
+  const pct=rolesScore/rolesQs.length;
+  let msg='💖 You know every family member! Amazing!';
+  if(pct<.5)msg='💪 Keep practising! You will get it soon!';
+  else if(pct<.8)msg='😊 So close to perfect! Wonderful effort!';
+  document.getElementById('rolesBox').innerHTML=`
+    <div style="font-size:4rem;margin-bottom:12px">${pct>=.8?'🎉':'😊'}</div>
+    <div style="font-family:\'Fredoka One\',cursive;font-size:1.8rem;color:#1A1A6C;margin-bottom:8px">All Done!</div>
+    <div style="font-size:2.5rem;font-weight:900;color:#FF4757;margin-bottom:8px">${rolesScore} / ${rolesQs.length}</div>
+    <div style="color:#555;margin-bottom:20px">${msg}</div>
+    <button class="rq-next" onclick="initRoles()">Play Again 🔄</button>`;
+  if(pct>=.8)confetti();
+}
+
+initRoles();
+
+// ══════════════════════════════════════════
+// CONFETTI
+// ══════════════════════════════════════════
+function confetti(){
+  const cols=['#FF9DC6','#FFD93D','#6BCB77','#5BC8F5','#C77DFF','#FF9A3C','#FF4757'];
+  for(let i=0;i<42;i++){
+    const p=document.createElement('div');p.className='cp';
+    p.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*-20}px;background:${cols[Math.floor(Math.random()*cols.length)]};width:${Math.random()*12+6}px;height:${Math.random()*12+6}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-delay:${Math.random()*.8}s;animation-duration:${Math.random()*1.5+1.5}s`;
+    document.body.appendChild(p);setTimeout(()=>p.remove(),3500);
+  }
+}
+</script>
+</body>
+</html>

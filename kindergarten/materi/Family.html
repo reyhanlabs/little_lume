@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LittleLume English - Family for Kindergarten</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 50%, #26C6DA 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .floating-bubble {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.6;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        .bubble1 { width: 80px; height: 80px; background: #FF6B9D; top: 10%; left: 5%; animation-delay: 0s; }
+        .bubble2 { width: 60px; height: 60px; background: #FFD700; top: 60%; right: 10%; animation-delay: 2s; }
+        .bubble3 { width: 100px; height: 100px; background: #80DEEA; top: 30%; right: 5%; animation-delay: 1s; }
+        .bubble4 { width: 70px; height: 70px; background: #FFB347; bottom: 15%; left: 8%; animation-delay: 3s; }
+        .bubble5 { width: 90px; height: 90px; background: #00FF88; top: 50%; left: 15%; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 50%, #26C6DA 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 8px solid #80DEEA;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,30 Q300,0 600,30 T1200,30 L1200,120 L0,120" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: wave 3s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(1200px); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-logo {
+            font-size: 13px;
+            color: #E0F7FA;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 55px;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            animation: slideInDown 0.8s ease-out;
+        }
+        
+        @keyframes slideInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header-subtitle {
+            font-size: 18px;
+            color: #e0e0e0;
+            font-weight: 400;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .stars {
+            font-size: 24px;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .content {
+            padding: 50px 35px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: #00BCD4;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 4px dashed #00BCD4;
+            font-weight: 800;
+        }
+        
+        .section-icon {
+            font-size: 40px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .definition-box {
+            background: linear-gradient(135deg, #B2EBF2 0%, #80DEEA 100%);
+            border-left: 8px solid #00BCD4;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 17px;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.2);
+            position: relative;
+        }
+        
+        .definition-box::before {
+            content: '💡';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 35px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .family-card {
+            background: linear-gradient(135deg, #B2EBF2 0%, #80DEEA 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        .family-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .family-card .family-text {
+            font-size: 18px;
+            color: #00695C;
+            margin-bottom: 8px;
+        }
+        
+        .family-card .family-emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .game-section {
+            background: linear-gradient(135deg, #E0F7FA 0%, #00BCD4 50%, #00ACC1 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveGrid 20s linear infinite;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .game-title {
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .game-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .flashcard {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 20px auto;
+            max-width: 320px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        .flashcard:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+        
+        .flashcard .word {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 800;
+            color: #00BCD4;
+            margin-bottom: 15px;
+        }
+        
+        .flashcard .emoji {
+            font-size: 70px;
+            margin: 15px 0;
+        }
+        
+        .flashcard .sentence {
+            font-size: 16px;
+            color: #555;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .matching-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 3px solid white;
+        }
+        
+        .matching-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .matching-item.matched {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .matching-item .item-emoji {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+        
+        .matching-item .item-text {
+            font-size: 16px;
+            color: #00BCD4;
+        }
+        
+        .btn-check {
+            background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-check::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
+        }
+        
+        .btn-check:hover::before {
+            left: 100%;
+        }
+        
+        .btn-check:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.6);
+        }
+        
+        .btn-next {
+            background: white;
+            color: #00BCD4;
+            padding: 12px 30px;
+            border: 3px solid #00BCD4;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            font-family: 'Fredoka', sans-serif;
+        }
+        
+        .btn-next:hover {
+            background: #00BCD4;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .feedback {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            display: none;
+            font-weight: 700;
+            font-size: 17px;
+            animation: slideIn 0.5s ease-out;
+            text-align: center;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: #155724;
+            border: 3px solid #28a745;
+            display: block;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #f5f7fa 0%, #E0F7FA 100%);
+            padding: 40px;
+            text-align: center;
+            color: #00897B;
+            font-weight: 700;
+        }
+        
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+        
+        @keyframes confettiFall {
+            to {
+                transform: translateY(800px) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .family-relationship {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border-left: 5px solid #00BCD4;
+            font-size: 15px;
+        }
+        
+        .relationship-title {
+            font-weight: 800;
+            color: #00BCD4;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 40px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .matching-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Bubbles -->
+    <div class="floating-bubble bubble1"></div>
+    <div class="floating-bubble bubble2"></div>
+    <div class="floating-bubble bubble3"></div>
+    <div class="floating-bubble bubble4"></div>
+    <div class="floating-bubble bubble5"></div>
+    
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <span class="stars">✨</span> LittleLume English <span class="stars">✨</span>
+                </div>
+                <h1>My Family</h1>
+                <div class="header-subtitle">👨‍👩‍👧‍👦 Fun Learning About Family Members! Learn and Play! 👨‍👩‍👧‍👦</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- INTRODUCTION SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">👨‍👩‍👧‍👦</span>
+                    Welcome to My Family!
+                </div>
+                
+                <div class="definition-box">
+                    A family is a group of people who love each other very much! Your family includes your mother, father, brothers, sisters, grandparents, and other relatives. Today we will learn all about family members and how to talk about our families in English! Let's have fun learning together! 🎉
+                </div>
+            </div>
+            
+            <!-- IMMEDIATE FAMILY SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">❤️</span>
+                    My Immediate Family (Close Family)
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 20px; color: #555; font-weight: 600;">
+                    These are the people who live with you or are very close to you!
+                </p>
+                
+                <div class="family-grid">
+                    <div class="family-card">
+                        <div class="family-emoji">👩</div>
+                        <div class="family-text">mother</div>
+                        <p style="font-size: 12px; color: #666;">Mom</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👨</div>
+                        <div class="family-text">father</div>
+                        <p style="font-size: 12px; color: #666;">Dad</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👦</div>
+                        <div class="family-text">brother</div>
+                        <p style="font-size: 12px; color: #666;">Male sibling</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👧</div>
+                        <div class="family-text">sister</div>
+                        <p style="font-size: 12px; color: #666;">Female sibling</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👶</div>
+                        <div class="family-text">baby</div>
+                        <p style="font-size: 12px; color: #666;">Little one</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">🏠</div>
+                        <div class="family-text">family</div>
+                        <p style="font-size: 12px; color: #666;">All together</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- EXTENDED FAMILY SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🌳</span>
+                    Extended Family (More Family Members)
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 20px; color: #555; font-weight: 600;">
+                    These are aunts, uncles, cousins, and grandparents!
+                </p>
+                
+                <div class="family-grid">
+                    <div class="family-card">
+                        <div class="family-emoji">👵</div>
+                        <div class="family-text">grandmother</div>
+                        <p style="font-size: 12px; color: #666;">Grandma</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👴</div>
+                        <div class="family-text">grandfather</div>
+                        <p style="font-size: 12px; color: #666;">Grandpa</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👩‍🤝‍👨</div>
+                        <div class="family-text">uncle</div>
+                        <p style="font-size: 12px; color: #666;">Father's brother</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👩‍🤝‍👨</div>
+                        <div class="family-text">aunt</div>
+                        <p style="font-size: 12px; color: #666;">Mother's sister</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">👫</div>
+                        <div class="family-text">cousin</div>
+                        <p style="font-size: 12px; color: #666;">Relative</p>
+                    </div>
+                    <div class="family-card">
+                        <div class="family-emoji">🐕</div>
+                        <div class="family-text">pet</div>
+                        <p style="font-size: 12px; color: #666;">Family friend</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAMILY RELATIONSHIPS SECTION -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🔗</span>
+                    Family Relationships (How We Are Connected)
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 20px; color: #555; font-weight: 600;">
+                    Let's understand how family members are connected!
+                </p>
+                
+                <div class="family-relationship">
+                    <div class="relationship-title">👨‍👩‍👧 What is a family?</div>
+                    A family is a group of people related by blood, marriage, or love. Families take care of each other and show love every day!
+                </div>
+                
+                <div class="family-relationship">
+                    <div class="relationship-title">👩 + 👨 = 👨‍👩‍👧‍👦 Family!</div>
+                    A mother and father together have children. These children are brothers and sisters to each other. This is a nuclear family!
+                </div>
+                
+                <div class="family-relationship">
+                    <div class="relationship-title">👴 👵 = Grandparents</div>
+                    Grandparents are the parents of your mother or father. They are very special and tell us stories!
+                </div>
+                
+                <div class="family-relationship">
+                    <div class="relationship-title">👫 = Cousins</div>
+                    Cousins are the children of your aunts and uncles. They are your relatives and friends!
+                </div>
+            </div>
+            
+            <!-- GAME 1: FLASHCARDS -->
+            <div class="game-section">
+                <div class="game-title">
+                    🎴 GAME 1: FAMILY FLASHCARDS!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Click the card to see the family member and hear the word!
+                    </p>
+                    
+                    <div id="flashcardContainer" style="text-align: center;">
+                        <div class="flashcard" onclick="flipFlashcard(0)">
+                            <div class="word" id="flashword0">mother</div>
+                            <div class="emoji" id="flashemoji0">👩</div>
+                            <div class="sentence" id="flashsentence0">My mother loves me very much!</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button class="btn-next" onclick="nextFlashcard()">Next Family Member →</button>
+                        <button class="btn-next" onclick="prevFlashcard()">← Previous Family Member</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 2: MATCHING FAMILY MEMBERS -->
+            <div class="game-section">
+                <div class="game-title">
+                    🔗 GAME 2: MATCH FAMILY MEMBERS WITH PICTURES!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Click a word, then click the picture that matches! Can you match them all?
+                    </p>
+                    
+                    <div class="matching-grid">
+                        <div class="matching-item" onclick="selectMatchWord(this, 'mother')">
+                            <div class="item-text">mother</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchWord(this, 'father')">
+                            <div class="item-text">father</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchWord(this, 'grandmother')">
+                            <div class="item-text">grandmother</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchWord(this, 'grandfather')">
+                            <div class="item-text">grandfather</div>
+                        </div>
+                    </div>
+                    
+                    <p style="color: white; text-align: center; font-size: 14px; margin-top: 20px; font-weight: 600;">
+                        Now click the picture:
+                    </p>
+                    
+                    <div class="matching-grid">
+                        <div class="matching-item" onclick="selectMatchPicture(this, 'mother')">
+                            <div class="item-emoji">👩</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchPicture(this, 'father')">
+                            <div class="item-emoji">👨</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchPicture(this, 'grandmother')">
+                            <div class="item-emoji">👵</div>
+                        </div>
+                        <div class="matching-item" onclick="selectMatchPicture(this, 'grandfather')">
+                            <div class="item-emoji">👴</div>
+                        </div>
+                    </div>
+                    
+                    <div id="matchFeedback" class="feedback"></div>
+                </div>
+            </div>
+            
+            <!-- GAME 3: FAMILY QUIZ -->
+            <div class="game-section">
+                <div class="game-title">
+                    🎯 GAME 3: FAMILY QUIZ!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Answer the questions about family! Let's see how much you learned! 🧠
+                    </p>
+                    
+                    <div style="color: white; text-align: center; margin-bottom: 15px; font-size: 14px; font-weight: 600;">
+                        <span id="quizProgress">Question 1 of 5</span> | Score: <span id="quizScore">0</span>/5
+                    </div>
+                    
+                    <div id="quizContainer" style="background: white; padding: 25px; border-radius: 15px; margin: 15px 0;">
+                        <div id="quizQuestion" style="font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #00BCD4;">
+                            Question 1: Who is your mother?
+                        </div>
+                        
+                        <div style="display: grid; gap: 10px;" id="quizOptions">
+                            <button class="btn-check" style="background: white; color: #00BCD4; border: 2px solid #00BCD4; box-shadow: none; text-align: left; padding: 12px 20px;" onclick="selectQuizAnswer(this, 0)">👩 A) A woman who takes care of you</button>
+                            <button class="btn-check" style="background: white; color: #00BCD4; border: 2px solid #00BCD4; box-shadow: none; text-align: left; padding: 12px 20px;" onclick="selectQuizAnswer(this, 1)">🎨 B) An artist</button>
+                            <button class="btn-check" style="background: white; color: #00BCD4; border: 2px solid #00BCD4; box-shadow: none; text-align: left; padding: 12px 20px;" onclick="selectQuizAnswer(this, 2)">🐕 C) A dog</button>
+                        </div>
+                    </div>
+                    
+                    <div id="quizFeedback" class="feedback"></div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-next" id="nextQuizBtn" onclick="nextQuizQuestion()" style="display: none;">Next Question →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GAME 4: FAMILY LISTENING -->
+            <div class="game-section">
+                <div class="game-title">
+                    🔊 GAME 4: LISTEN AND REPEAT!
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Click each word to hear how to say it! Then repeat it out loud! 🗣️
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
+                        <button class="btn-check" onclick="playSound('mother')">🔊 mother</button>
+                        <button class="btn-check" onclick="playSound('father')">🔊 father</button>
+                        <button class="btn-check" onclick="playSound('brother')">🔊 brother</button>
+                        <button class="btn-check" onclick="playSound('sister')">🔊 sister</button>
+                        <button class="btn-check" onclick="playSound('grandmother')">🔊 grandmother</button>
+                        <button class="btn-check" onclick="playSound('grandfather')">🔊 grandfather</button>
+                    </div>
+                    
+                    <p style="color: white; text-align: center; margin-top: 20px; font-size: 14px; font-weight: 600;">
+                        Excellent! You are learning about families! 👏
+                    </p>
+                </div>
+            </div>
+            
+            <!-- GAME 5: FAMILY ACTIVITIES -->
+            <div class="game-section">
+                <div class="game-title">
+                    🎪 GAME 5: WHAT DO FAMILIES DO?
+                </div>
+                <div class="game-content">
+                    <p style="color: white; font-size: 16px; margin-bottom: 20px; font-weight: 600;">
+                        Families like to spend time together! Here are fun things families do:
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🍽️</div>
+                            <div style="font-weight: 600; color: #00BCD4;">Eat together</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🎮</div>
+                            <div style="font-weight: 600; color: #00BCD4;">Play together</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🛏️</div>
+                            <div style="font-weight: 600; color: #00BCD4;">Sleep together</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🧸</div>
+                            <div style="font-weight: 600; color: #00BCD4;">Hug each other</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">🎂</div>
+                            <div style="font-weight: 600; color: #00BCD4;">Celebrate</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 40px; margin-bottom: 10px;">❤️</div>
+                            <div style="font-weight: 600; color: #00BCD4;">Love each other</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CELEBRATION -->
+            <div class="section">
+                <div class="game-section" style="text-align: center; background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 50%, #26C6DA 100%);">
+                    <h2 style="color: white; font-size: 40px; font-family: 'Poppins', sans-serif; font-weight: 800; margin-bottom: 20px;">
+                        🌟 YOU ARE A FAMILY EXPERT! 🌟
+                    </h2>
+                    <p style="color: white; font-size: 18px; font-weight: 600; margin: 10px 0;">
+                        You have learned so much about families!
+                    </p>
+                    <p style="color: white; font-size: 16px; margin: 10px 0;">
+                        Now you can talk about your family in English! Your family loves you very much! Tell them what you learned today! 💕
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3 style="font-family: 'Poppins', sans-serif; margin-bottom: 15px;">
+                🎨 LittleLume English - My Family 🎨
+            </h3>
+            <p>Learning about families brings us closer together! Family is LOVE! 👨‍👩‍👧‍👦❤️</p>
+            <p style="margin-top: 15px; font-size: 14px;">
+                Remember: Your family is special and unique! Cherish every moment! 🌈
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Flashcard Data
+        const flashcards = [
+            { word: 'mother', emoji: '👩', sentence: 'My mother loves me very much!' },
+            { word: 'father', emoji: '👨', sentence: 'My father plays with me!' },
+            { word: 'brother', emoji: '👦', sentence: 'My brother is my best friend!' },
+            { word: 'sister', emoji: '👧', sentence: 'My sister likes to play games!' },
+            { word: 'grandmother', emoji: '👵', sentence: 'My grandmother tells wonderful stories!' },
+            { word: 'grandfather', emoji: '👴', sentence: 'My grandfather is very kind!' }
+        ];
+        
+        let currentFlashcard = 0;
+        let selectedWord = null;
+        
+        function nextFlashcard() {
+            currentFlashcard = (currentFlashcard + 1) % flashcards.length;
+            updateFlashcard();
+            createConfetti();
+        }
+        
+        function prevFlashcard() {
+            currentFlashcard = (currentFlashcard - 1 + flashcards.length) % flashcards.length;
+            updateFlashcard();
+        }
+        
+        function updateFlashcard() {
+            const card = flashcards[currentFlashcard];
+            document.getElementById('flashword0').textContent = card.word;
+            document.getElementById('flashemoji0').textContent = card.emoji;
+            document.getElementById('flashsentence0').textContent = card.sentence;
+        }
+        
+        function flipFlashcard(index) {
+            const card = document.getElementById('flashcardContainer').children[0];
+            card.style.transform = 'rotateY(360deg)';
+            setTimeout(() => {
+                card.style.transform = 'rotateY(0deg)';
+            }, 500);
+            playSound(flashcards[currentFlashcard].word);
+        }
+        
+        // Matching Game
+        function selectMatchWord(element, word) {
+            document.querySelectorAll('.matching-item').forEach(el => {
+                el.style.background = 'white';
+            });
+            element.style.background = '#B2EBF2';
+            selectedWord = word;
+        }
+        
+        function selectMatchPicture(element, word) {
+            if (selectedWord === word) {
+                element.classList.add('matched');
+                document.getElementById('matchFeedback').className = 'feedback correct';
+                document.getElementById('matchFeedback').innerHTML = '✅ Perfect Match! You got it!';
+                createConfetti();
+                selectedWord = null;
+            } else {
+                document.getElementById('matchFeedback').className = 'feedback';
+                document.getElementById('matchFeedback').innerHTML = 'Try again! Pick a word first!';
+            }
+        }
+        
+        
+        const quizQuestions = [
+            {
+                question: 'Question 1: Who is your mother?',
+                options: ['👩 A) A woman who takes care of you', '🎨 B) An artist', '🐕 C) A dog'],
+                correct: 0
+            },
+            {
+                question: 'Question 2: Who is your father?',
+                options: ['👨 A) A man who takes care of you', '🎮 B) A game player', '⚽ C) A soccer player'],
+                correct: 0
+            },
+            {
+                question: 'Question 3: What do families do together?',
+                options: ['❤️ A) Love and spend time together', '🚗 B) Drive cars only', '📚 C) Read books only'],
+                correct: 0
+            },
+            {
+                question: 'Question 4: Who are your grandparents?',
+                options: ['👴👵 A) Parents of your mother or father', '🧑 B) Your friends', '🐱 C) Your pets'],
+                correct: 0
+            },
+            {
+                question: 'Question 5: What is a family?',
+                options: ['👨‍👩‍👧‍👦 A) People who love you and take care of you', '🚗 B) Only cars', '🍕 C) Only food'],
+                correct: 0
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let quizScore = 0;
+        let quizAnswered = false;
+        
+        function displayQuizQuestion() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('quizQuestion').textContent = question.question;
+            document.getElementById('quizProgress').textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            
+            const optionsDiv = document.getElementById('quizOptions');
+            optionsDiv.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-check';
+                btn.style.cssText = 'background: white; color: #00BCD4; border: 2px solid #00BCD4; box-shadow: none; text-align: left; padding: 12px 20px;';
+                btn.textContent = option;
+                btn.onclick = function() { selectQuizAnswer(this, index); };
+                optionsDiv.appendChild(btn);
+            });
+            
+            document.getElementById('quizFeedback').style.display = 'none';
+            document.getElementById('nextQuizBtn').style.display = 'none';
+            quizAnswered = false;
+        }
+        
+        function selectQuizAnswer(element, answerIndex) {
+            if (quizAnswered) return;
+            
+            quizAnswered = true;
+            const allButtons = document.querySelectorAll('#quizOptions button');
+            allButtons.forEach(btn => btn.disabled = true);
+            
+            const question = quizQuestions[currentQuestion];
+            
+            if (answerIndex === question.correct) {
+                document.getElementById('quizFeedback').className = 'feedback correct';
+                document.getElementById('quizFeedback').innerHTML = '✅ Correct! Great job! You know your family!';
+                document.getElementById('quizFeedback').style.display = 'block';
+                quizScore++;
+                document.getElementById('quizScore').textContent = quizScore;
+                createConfetti();
+            } else {
+                document.getElementById('quizFeedback').className = 'feedback';
+                document.getElementById('quizFeedback').innerHTML = '❌ Not quite right! The correct answer is option A!';
+                document.getElementById('quizFeedback').style.display = 'block';
+            }
+            
+            // Show next button
+            document.getElementById('nextQuizBtn').style.display = 'inline-block';
+        }
+        
+        function nextQuizQuestion() {
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                displayQuizQuestion();
+            } else {
+                // Quiz finished
+                document.getElementById('quizContainer').innerHTML = `
+                    <div style="text-align: center;">
+                        <h2 style="font-size: 32px; color: #00BCD4; margin-bottom: 20px;">Quiz Complete! 🎉</h2>
+                        <p style="font-size: 20px; margin: 20px 0;">Your Score: <strong>${quizScore}/5</strong></p>
+                        <p style="font-size: 16px; color: #555; margin-bottom: 20px;">
+                            ${quizScore === 5 ? '🌟 Perfect! You are a Family Expert!' : quizScore >= 3 ? '⭐ Great job! You know a lot about families!' : '💪 Good effort! Learn more about families!'}
+                        </p>
+                        <button class="btn-next" onclick="restartQuiz()" style="background: #00BCD4; color: white;">Start Quiz Again</button>
+                    </div>
+                `;
+                document.getElementById('nextQuizBtn').style.display = 'none';
+            }
+        }
+        
+        function restartQuiz() {
+            currentQuestion = 0;
+            quizScore = 0;
+            quizAnswered = false;
+            document.getElementById('quizScore').textContent = '0';
+            document.getElementById('quizContainer').innerHTML = `
+                <div id="quizQuestion" style="font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #00BCD4;">
+                    Question 1: Who is your mother?
+                </div>
+                <div style="display: grid; gap: 10px;" id="quizOptions"></div>
+            `;
+            displayQuizQuestion();
+        }
+        
+        // Initialize quiz
+        displayQuizQuestion();
+        
+        // Text to Speech
+        function playSound(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.rate = 0.8;
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        // Confetti Effect
+        function createConfetti() {
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = ['🎉', '⭐', '🌟', '✨', '👨‍👩‍👧‍👦'][Math.floor(Math.random() * 5)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.fontSize = Math.random() * 10 + 20 + 'px';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Speaking for Little Stars</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun:    #FFD54F;
+    --sky:    #4FC3F7;
+    --grass:  #66BB6A;
+    --berry:  #EF5350;
+    --plum:   #7C4DFF;
+    --cream:  #FFFDE7;
+    --white:  #FFFFFF;
+    --ink:    #1A1A2E;
+    --soft:   #F3F0FF;
+    --badge:  #FF6F00;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  .hero {
+    background: linear-gradient(135deg, #7C4DFF 0%, #4FC3F7 60%, #66BB6A 100%);
+    text-align: center; padding: 56px 24px 72px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='rgba(255,255,255,0.10)'/%3E%3C/svg%3E") repeat;
+  }
+  .logo-badge {
+    display: inline-block; background: var(--white); color: var(--plum);
+    font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 1.1rem;
+    letter-spacing: .06em; padding: 6px 20px; border-radius: 999px;
+    margin-bottom: 28px; box-shadow: 0 4px 16px rgba(0,0,0,.18); position: relative;
+  }
+  .hero h1 {
+    font-family: 'Baloo 2', sans-serif; font-weight: 800;
+    font-size: clamp(2.4rem, 7vw, 4.2rem); color: var(--white);
+    line-height: 1.1; text-shadow: 0 4px 18px rgba(0,0,0,.22); position: relative;
+  }
+  .hero h1 span { color: var(--sun); }
+  .hero p { margin-top: 16px; font-size: 1.2rem; color: rgba(255,255,255,.88); position: relative; }
+  .stars-row { margin-top: 24px; font-size: 2rem; position: relative; letter-spacing: .2em; }
+  .wave-divider { display: block; width: 100%; margin-top: -2px; }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 56px 0; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--plum); color: var(--white); font-weight: 900;
+    font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 999px; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Baloo 2', sans-serif; font-weight: 800;
+    font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 8px; line-height: 1.2;
+  }
+  .section-sub { font-size: 1.05rem; color: #555; margin-bottom: 40px; }
+
+  .obj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .obj-card {
+    background: var(--white); border-radius: 20px; padding: 28px 20px; text-align: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,.07); transition: transform .2s; border-top: 5px solid;
+  }
+  .obj-card:nth-child(1) { border-color: var(--sky); }
+  .obj-card:nth-child(2) { border-color: var(--grass); }
+  .obj-card:nth-child(3) { border-color: var(--berry); }
+  .obj-card:nth-child(4) { border-color: var(--plum); }
+  .obj-card:hover { transform: translateY(-6px); }
+  .obj-icon { font-size: 2.6rem; margin-bottom: 12px; }
+  .obj-card h3 { font-weight: 900; font-size: 1.05rem; margin-bottom: 8px; }
+  .obj-card p { font-size: .92rem; color: #555; line-height: 1.5; }
+
+  .lessons-bg { background: var(--soft); }
+  .lesson {
+    background: var(--white); border-radius: 24px; padding: 36px; margin-bottom: 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06); display: grid;
+    grid-template-columns: 80px 1fr; gap: 24px; align-items: start;
+  }
+  .lesson-num {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 1.6rem;
+    color: var(--white); flex-shrink: 0;
+  }
+  .l1 .lesson-num { background: var(--sky); }
+  .l2 .lesson-num { background: var(--grass); }
+  .l3 .lesson-num { background: var(--berry); }
+  .l4 .lesson-num { background: var(--plum); }
+  .l5 .lesson-num { background: var(--badge); }
+  .lesson-body h3 { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 1.35rem; margin-bottom: 6px; }
+  .lesson-body .tag {
+    display: inline-block; background: var(--cream); border: 1.5px solid #ddd;
+    font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    padding: 3px 12px; border-radius: 999px; margin-bottom: 14px; color: #666;
+  }
+  .lesson-body p { font-size: 1rem; color: #444; line-height: 1.65; margin-bottom: 14px; }
+  .phrases { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .chip {
+    background: linear-gradient(135deg, #7C4DFF22, #4FC3F722);
+    border: 1.5px solid #7C4DFF44; color: var(--plum);
+    font-weight: 700; font-size: .9rem; padding: 6px 16px; border-radius: 999px;
+  }
+  .activity-box {
+    background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+    border-left: 4px solid var(--sun); border-radius: 0 12px 12px 0;
+    padding: 14px 18px; font-size: .93rem; color: #555;
+  }
+  .activity-box strong { color: var(--badge); display: block; margin-bottom: 4px; }
+
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .vocab-card {
+    background: var(--white); border-radius: 18px; padding: 20px 12px;
+    text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.06); transition: transform .2s;
+  }
+  .vocab-card:hover { transform: scale(1.06); }
+  .vocab-emoji { font-size: 2.4rem; display: block; margin-bottom: 8px; }
+  .vocab-word { font-weight: 900; font-size: 1rem; color: var(--plum); }
+  .vocab-sentence { font-size: .78rem; color: #888; margin-top: 4px; line-height: 1.4; }
+
+  .tips-bg { background: linear-gradient(135deg, #7C4DFF, #4FC3F7); }
+  .tips-bg .section-title { color: var(--white); }
+  .tips-bg .section-label { background: var(--sun); color: var(--ink); }
+  .tips-bg .section-sub { color: rgba(255,255,255,.8); }
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .tip-card {
+    background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255,255,255,.3); border-radius: 20px; padding: 24px; color: var(--white);
+  }
+  .tip-card .tip-icon { font-size: 2rem; margin-bottom: 12px; }
+  .tip-card h4 { font-weight: 900; margin-bottom: 8px; font-size: 1.05rem; }
+  .tip-card p { font-size: .9rem; line-height: 1.55; opacity: .88; }
+
+  .progress-table {
+    width: 100%; border-collapse: collapse; font-size: .95rem;
+    background: var(--white); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  }
+  .progress-table thead tr { background: var(--plum); color: var(--white); }
+  .progress-table th, .progress-table td { padding: 14px 20px; text-align: left; }
+  .progress-table tbody tr:nth-child(even) { background: var(--soft); }
+  .progress-table tbody tr:hover { background: #E8F5FF; }
+  .badge-can {
+    display: inline-block; background: #E8F5E9; color: var(--grass);
+    border: 1.5px solid var(--grass); border-radius: 999px;
+    padding: 2px 12px; font-size: .78rem; font-weight: 700;
+  }
+  .badge-practice {
+    display: inline-block; background: #FFF8E1; color: var(--badge);
+    border: 1.5px solid var(--badge); border-radius: 999px;
+    padding: 2px 12px; font-size: .78rem; font-weight: 700;
+  }
+
+  footer { background: var(--ink); color: rgba(255,255,255,.7); text-align: center; padding: 36px 20px; font-size: .9rem; }
+  footer strong { color: var(--sun); }
+
+  @media (max-width: 560px) {
+    .lesson { grid-template-columns: 1fr; }
+    .lesson-num { width: 48px; height: 48px; font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="logo-badge">🐰 BunRey English Course</div>
+  <h1>Let's <span>SPEAK</span> English! 🎉</h1>
+  <p>Speaking Module · Age 5 · Beginner Level</p>
+  <div class="stars-row">⭐ ⭐ ⭐ ⭐ ⭐</div>
+  <svg class="wave-divider" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="margin-top:40px;">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFFDE7"/>
+  </svg>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-label">🎯 Learning Goals</div>
+    <h2 class="section-title">What Will Your Child Learn?</h2>
+    <p class="section-sub">By the end of this module, little learners will be able to:</p>
+    <div class="obj-grid">
+      <div class="obj-card"><div class="obj-icon">👋</div><h3>Greet Friends</h3><p>Say hello, goodbye, and ask how someone is doing.</p></div>
+      <div class="obj-card"><div class="obj-icon">🙋</div><h3>Talk About Me</h3><p>Share their name, age, and favourite things in simple sentences.</p></div>
+      <div class="obj-card"><div class="obj-icon">🌈</div><h3>Name the World</h3><p>Speak about colours, animals, food, and everyday objects.</p></div>
+      <div class="obj-card"><div class="obj-icon">🗣️</div><h3>Ask &amp; Answer</h3><p>Use simple questions like "What is this?" and "Can I…?"</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="lessons-bg">
+  <div class="container">
+    <div class="section-label">📚 Lessons</div>
+    <h2 class="section-title">5 Fun Speaking Lessons</h2>
+    <p class="section-sub">Each lesson is 20–25 minutes of play-based speaking practice.</p>
+
+    <div class="lesson l1">
+      <div class="lesson-num">1</div>
+      <div class="lesson-body">
+        <h3>Hello, World! 🌍</h3>
+        <span class="tag">Greetings &amp; Introductions</span>
+        <p>Children learn to greet others, say their name, and respond to simple questions. Repetition through songs and role-play builds confidence right away.</p>
+        <div class="phrases">
+          <span class="chip">Hello! / Hi!</span><span class="chip">Good morning!</span>
+          <span class="chip">My name is ___.</span><span class="chip">Nice to meet you!</span>
+          <span class="chip">Goodbye! / Bye-bye!</span>
+        </div>
+        <div class="activity-box">
+          <strong>🎵 Activity: "Hello Song" Circle Game</strong>
+          Children sit in a circle. The teacher holds a puppet and says "Hello! My name is Bunny." Each child greets the puppet and introduces themselves in turn.
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson l2">
+      <div class="lesson-num">2</div>
+      <div class="lesson-body">
+        <h3>All About Me! 🧒</h3>
+        <span class="tag">Personal Information</span>
+        <p>Young learners practice speaking about themselves — their age, their family, and what they love. Short sentence frames make it easy and fun.</p>
+        <div class="phrases">
+          <span class="chip">I am ___ years old.</span><span class="chip">I like ___.</span>
+          <span class="chip">I have a ___.</span><span class="chip">My favourite colour is ___.</span>
+          <span class="chip">I am happy / sad / hungry.</span>
+        </div>
+        <div class="activity-box">
+          <strong>🖍️ Activity: "Me Bag" Show &amp; Tell</strong>
+          Each child brings a small bag with three favourite items. They stand up and say one sentence about each item: "This is my teddy bear. I like my teddy bear!"
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson l3">
+      <div class="lesson-num">3</div>
+      <div class="lesson-body">
+        <h3>Colours &amp; Animals 🦁🌈</h3>
+        <span class="tag">Vocabulary in Context</span>
+        <p>Children learn to name colours and animals through chants and picture cards, then practice putting words into short sentences for real communication.</p>
+        <div class="phrases">
+          <span class="chip">The cat is orange.</span><span class="chip">I see a dog!</span>
+          <span class="chip">What colour is it?</span><span class="chip">It is a big elephant.</span>
+          <span class="chip">The frog is green.</span>
+        </div>
+        <div class="activity-box">
+          <strong>🃏 Activity: Flashcard Races</strong>
+          Teacher holds up a flashcard. The first child to shout the correct sentence — e.g. "It is a yellow duck!" — wins a sticker. Fast, loud, and full of laughter!
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson l4">
+      <div class="lesson-num">4</div>
+      <div class="lesson-body">
+        <h3>Yummy Food! 🍎🍕</h3>
+        <span class="tag">Food &amp; Preferences</span>
+        <p>Talking about food is naturally motivating for young children. Learners practice expressing likes and dislikes, making requests, and answering questions at a pretend café.</p>
+        <div class="phrases">
+          <span class="chip">I like apples!</span><span class="chip">I don't like broccoli.</span>
+          <span class="chip">Can I have some ___?</span><span class="chip">Yes, please! / No, thank you.</span>
+          <span class="chip">It is yummy / yucky!</span>
+        </div>
+        <div class="activity-box">
+          <strong>☕ Activity: BunRey Café Role-Play</strong>
+          Set up a pretend café with toy food or picture menus. One child is the waiter, one is the customer. They practice ordering, serving, and saying thank you.
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson l5">
+      <div class="lesson-num">5</div>
+      <div class="lesson-body">
+        <h3>Where Is It? 📦</h3>
+        <span class="tag">Simple Questions &amp; Locations</span>
+        <p>Children learn to ask and answer questions about location using simple prepositions. A hide-and-seek game keeps every child engaged and speaking.</p>
+        <div class="phrases">
+          <span class="chip">Where is the ___?</span><span class="chip">It is on / in / under the ___.</span>
+          <span class="chip">Look! Over there!</span><span class="chip">I found it!</span>
+          <span class="chip">Is it here? Yes / No!</span>
+        </div>
+        <div class="activity-box">
+          <strong>🔍 Activity: Classroom Treasure Hunt</strong>
+          The teacher hides a stuffed animal around the room. Children ask "Is it under the table?" or "Is it on the chair?" and the teacher answers until they find it!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">💬 Vocabulary Bank</div>
+    <h2 class="section-title">Key Words to Know &amp; Say</h2>
+    <p class="section-sub">Practice these 16 words every day — say them out loud, nice and loud! 🔊</p>
+    <div class="vocab-grid">
+      <div class="vocab-card"><span class="vocab-emoji">🐱</span><div class="vocab-word">cat</div><div class="vocab-sentence">"I see a cat!"</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🐶</span><div class="vocab-word">dog</div><div class="vocab-sentence">"The dog is big."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🍎</span><div class="vocab-word">apple</div><div class="vocab-sentence">"I like apples."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">📚</span><div class="vocab-word">book</div><div class="vocab-sentence">"My book is blue."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🌳</span><div class="vocab-word">tree</div><div class="vocab-sentence">"It is a big tree."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🚗</span><div class="vocab-word">car</div><div class="vocab-sentence">"I have a red car."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🏠</span><div class="vocab-word">house</div><div class="vocab-sentence">"My house is here."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🌙</span><div class="vocab-word">moon</div><div class="vocab-sentence">"I see the moon!"</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">☀️</span><div class="vocab-word">sun</div><div class="vocab-sentence">"The sun is yellow."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🐸</span><div class="vocab-word">frog</div><div class="vocab-sentence">"The frog is green."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🎈</span><div class="vocab-word">balloon</div><div class="vocab-sentence">"I like balloons!"</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🎂</span><div class="vocab-word">cake</div><div class="vocab-sentence">"The cake is yummy!"</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">💧</span><div class="vocab-word">water</div><div class="vocab-sentence">"Can I have water?"</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">👩‍👧</span><div class="vocab-word">family</div><div class="vocab-sentence">"I love my family."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">🌸</span><div class="vocab-word">flower</div><div class="vocab-sentence">"The flower is pink."</div></div>
+      <div class="vocab-card"><span class="vocab-emoji">⭐</span><div class="vocab-word">star</div><div class="vocab-sentence">"I am a star!"</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tips-bg">
+  <div class="container">
+    <div class="section-label">💡 Tips</div>
+    <h2 class="section-title">Tips for Teachers &amp; Parents</h2>
+    <p class="section-sub">Help your little one shine brighter every day!</p>
+    <div class="tips-grid">
+      <div class="tip-card"><div class="tip-icon">🎵</div><h4>Sing Every Day</h4><p>Songs wire new words into long-term memory. Sing target phrases in the car, at meals, and at bedtime — repetition is the magic.</p></div>
+      <div class="tip-card"><div class="tip-icon">🎭</div><h4>Role-Play Together</h4><p>Pretend to be characters from stories. Children speak freely when there's no pressure — only play. Even 5 minutes counts!</p></div>
+      <div class="tip-card"><div class="tip-icon">🏆</div><h4>Celebrate Every Word</h4><p>Clap and cheer for every attempt, even imperfect ones. Confidence at age 5 is the foundation of fluency at age 15.</p></div>
+      <div class="tip-card"><div class="tip-icon">👂</div><h4>Listen More, Correct Less</h4><p>Let children finish their sentences before gently modelling the correct form. Interrupting to correct stops speaking before it starts.</p></div>
+      <div class="tip-card"><div class="tip-icon">📺</div><h4>English Media for 10 min</h4><p>Short English cartoons or nursery rhyme videos (10–15 min/day) expose children to natural rhythm and pronunciation effortlessly.</p></div>
+      <div class="tip-card"><div class="tip-icon">🌟</div><h4>Keep It Positive</h4><p>End every session with a high five and one phrase the child got right. Positive closure builds the habit of coming back for more.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">📋 Assessment</div>
+    <h2 class="section-title">Speaking Progress Checklist</h2>
+    <p class="section-sub">Use this checklist after each lesson to track your child's growing confidence.</p>
+    <table class="progress-table">
+      <thead><tr><th>Skill</th><th>Example</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Greets the teacher or classmates</td><td>"Hello! Good morning!"</td><td><span class="badge-can">✅ Can Do</span></td></tr>
+        <tr><td>States their own name</td><td>"My name is Rani."</td><td><span class="badge-can">✅ Can Do</span></td></tr>
+        <tr><td>Tells their age</td><td>"I am five years old."</td><td><span class="badge-practice">⏳ Practising</span></td></tr>
+        <tr><td>Names at least 8 colours</td><td>"Red, blue, yellow, green…"</td><td><span class="badge-practice">⏳ Practising</span></td></tr>
+        <tr><td>Names 10 common animals</td><td>"cat, dog, bird, fish…"</td><td><span class="badge-can">✅ Can Do</span></td></tr>
+        <tr><td>Expresses likes and dislikes</td><td>"I like pizza!" / "I don't like peas."</td><td><span class="badge-practice">⏳ Practising</span></td></tr>
+        <tr><td>Asks a simple question</td><td>"What is this?" / "Where is it?"</td><td><span class="badge-practice">⏳ Practising</span></td></tr>
+        <tr><td>Answers a yes/no question</td><td>"Yes, please!" / "No, thank you."</td><td><span class="badge-can">✅ Can Do</span></td></tr>
+        <tr><td>Uses a full sentence (5 words+)</td><td>"I like the blue balloon!"</td><td><span class="badge-practice">⏳ Practising</span></td></tr>
+        <tr><td>Speaks confidently in front of peers</td><td>Role-play or show &amp; tell</td><td><span class="badge-practice">⏳ Practising</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p><strong>🐰 BunRey English Course</strong> · Speaking Module · Age 5 · Beginner Level</p>
+  <p style="margin-top:8px;">Every child is a star. Every word is a step forward. Keep going! ⭐</p>
+</footer>
+
+</body>
+</html>

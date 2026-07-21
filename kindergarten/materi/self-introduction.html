@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BunRey English Course – Self Introduction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sky:    #5BC8F5;
+      --sun:    #FFD23F;
+      --coral:  #FF6B6B;
+      --mint:   #4ECDC4;
+      --grape:  #A78BFA;
+      --peach:  #FFB347;
+      --white:  #FFFDF7;
+      --dark:   #2D2D2D;
+      --light-bg: #FFF6EE;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--light-bg);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--peach) 0%, var(--coral) 100%);
+      padding: 32px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "👋😊👋😊👋😊👋😊👋😊";
+      display: block;
+      font-size: 22px;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+      opacity: .7;
+    }
+    .logo-badge {
+      display: inline-block;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 10px 28px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 0 rgba(0,0,0,.1);
+    }
+    .logo-badge span {
+      font-family: 'Fredoka One', cursive;
+      font-size: 26px;
+      color: var(--coral);
+    }
+    .logo-badge span b { color: var(--sky); }
+    header h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(32px, 7vw, 60px);
+      color: var(--white);
+      text-shadow: 0 4px 0 rgba(0,0,0,.15);
+      line-height: 1.1;
+    }
+    header p {
+      font-size: 18px;
+      color: var(--white);
+      margin-top: 10px;
+      font-weight: 700;
+      opacity: .9;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .18;
+      background: var(--white);
+    }
+    .b1 { width:120px; height:120px; top:-30px; left:-20px; }
+    .b2 { width:80px;  height:80px;  bottom:10px; right:40px; }
+    .b3 { width:50px;  height:50px;  top:20px; right:80px; }
+
+    /* ── MAIN ── */
+    main { max-width: 960px; margin: 0 auto; padding: 40px 20px 60px; }
+
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sun);
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+    }
+    h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(24px, 5vw, 36px);
+      margin-bottom: 24px;
+    }
+
+    /* ── UNIT OVERVIEW CARDS ── */
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    .unit-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 28px 24px 24px;
+      box-shadow: 0 6px 0 rgba(0,0,0,.08);
+      border-top: 8px solid var(--sky);
+      transition: transform .15s;
+    }
+    .unit-card:hover { transform: translateY(-4px); }
+    .unit-card.coral  { border-color: var(--coral); }
+    .unit-card.mint   { border-color: var(--mint);  }
+    .unit-card.grape  { border-color: var(--grape); }
+    .unit-card.peach  { border-color: var(--peach); }
+
+    .unit-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+    .unit-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .unit-card p { font-size: 14px; color: #555; line-height: 1.55; }
+
+    /* ── SCRIPT BUBBLE SECTION ── */
+    .script-section { margin-bottom: 50px; }
+    .speech-bubble {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: 0 8px 0 rgba(0,0,0,.08);
+      position: relative;
+      border: 4px dashed var(--mint);
+    }
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -24px;
+      left: 60px;
+      border-width: 24px 24px 0 0;
+      border-style: solid;
+      border-color: var(--white) transparent transparent transparent;
+      filter: drop-shadow(0 4px 0 rgba(0,0,0,.06));
+    }
+    .speech-bubble .avatar {
+      font-size: 64px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .script-line {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 2.1;
+      text-align: center;
+      color: #333;
+    }
+    .script-line .fill {
+      display: inline-block;
+      background: var(--sun);
+      border-radius: 8px;
+      padding: 2px 14px;
+      color: var(--dark);
+      margin: 0 4px;
+    }
+    .wave-icon { display:block; text-align:center; font-size:36px; margin-top:14px; }
+
+    /* ── VOCAB / FILL-IN GRID ── */
+    .vocab-section { margin-bottom: 50px; }
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .vocab-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 5px 0 rgba(0,0,0,.07);
+      border-bottom: 6px solid var(--grape);
+    }
+    .vocab-card .icon { font-size: 38px; display:block; margin-bottom:8px; }
+    .vocab-card h4 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: var(--grape);
+    }
+    .vocab-card p { font-size: 14px; color:#555; margin-bottom: 10px; }
+    .example-row {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #444;
+    }
+
+    /* ── COLORS / FEELINGS PALETTE ── */
+    .palette-section { margin-bottom: 50px; }
+    .palette-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .palette-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 4px 0 rgba(0,0,0,.06);
+      border: 3px solid transparent;
+    }
+    .palette-chip .em { font-size: 26px; }
+    .palette-chip.red    { border-color: #FF6B6B; }
+    .palette-chip.blue   { border-color: #5BC8F5; }
+    .palette-chip.yellow { border-color: #FFD23F; }
+    .palette-chip.green  { border-color: #4ECDC4; }
+    .palette-chip.purple { border-color: #A78BFA; }
+    .palette-chip.orange { border-color: #FFB347; }
+    .palette-chip.pink   { border-color: #FF8FB1; }
+    .palette-chip.black  { border-color: #555; }
+
+    /* ── DIALOGUE PRACTICE ── */
+    .dialog-section { margin-bottom: 50px; }
+    .dialog-card {
+      background: var(--white);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 0 rgba(0,0,0,.08);
+    }
+    .dialog-header {
+      background: linear-gradient(135deg, var(--sky), var(--mint));
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .dialog-header .icon { font-size: 48px; }
+    .dialog-header h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 24px;
+      color: var(--white);
+      text-shadow: 0 2px 0 rgba(0,0,0,.1);
+    }
+    .dialog-header p { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 700; }
+    .dialog-body { padding: 28px 32px; }
+    .dialog-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .dialog-row .who {
+      min-width: 64px;
+      text-align: center;
+      font-size: 36px;
+    }
+    .dialog-row .bubble-text {
+      background: var(--light-bg);
+      border-radius: 16px;
+      padding: 12px 18px;
+      font-size: 18px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .dialog-row.b .bubble-text { background: #E6F7FF; }
+
+    /* ── ACTION SONG / CHANT ── */
+    .song-section { margin-bottom: 50px; }
+    .song-card {
+      background: linear-gradient(135deg, var(--grape), #c4b5fd);
+      border-radius: 24px;
+      padding: 28px 32px;
+      color: var(--white);
+      box-shadow: 0 8px 0 rgba(0,0,0,.1);
+    }
+    .song-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+    .song-line {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.9;
+    }
+    .song-line .action { opacity: .85; font-style: normal; }
+
+    /* ── ACTIVITY / PRACTICE ── */
+    .activity-section { margin-bottom: 50px; }
+    .activity-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
+    .activity-list li {
+      background: var(--white);
+      border-left: 6px solid var(--coral);
+      border-radius: 0 16px 16px 0;
+      padding: 16px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      box-shadow: 0 3px 0 rgba(0,0,0,.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .a-num {
+      min-width: 32px;
+      height: 32px;
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: 'Fredoka One', cursive;
+      font-size: 18px;
+    }
+
+    /* ── TIPS ── */
+    .tips-section { margin-bottom: 50px; }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .tip-card {
+      background: linear-gradient(135deg, var(--mint), var(--sky));
+      border-radius: 20px;
+      padding: 24px 20px;
+      color: var(--white);
+      box-shadow: 0 6px 0 rgba(0,0,0,.1);
+    }
+    .tip-card .tip-icon { font-size: 36px; margin-bottom: 10px; display: block; }
+    .tip-card h4 { font-family: 'Fredoka One', cursive; font-size: 18px; margin-bottom: 6px; }
+    .tip-card p { font-size: 13px; line-height: 1.6; opacity: .9; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+      padding: 28px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    footer span { color: var(--sun); }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+  <div class="logo-badge"><span>Bun<b>Rey</b> English Course</span></div>
+  <h1>👋 Hello, It's Me! 👋</h1>
+  <p>Level 1 · For Kids Age 5 · Self Introduction</p>
+</header>
+
+<main>
+
+  <!-- ══ UNITS OVERVIEW ══ -->
+  <section style="margin-bottom:50px;">
+    <div class="section-eyebrow">📋 Course Overview</div>
+    <h2>What We Will Learn!</h2>
+    <div class="unit-grid">
+      <div class="unit-card coral">
+        <span class="unit-icon">🙋</span>
+        <h3>My Name</h3>
+        <p>Learn to say your name with a big smile: "My name is..."</p>
+      </div>
+      <div class="unit-card mint">
+        <span class="unit-icon">🎂</span>
+        <h3>My Age</h3>
+        <p>Count and share how old you are: "I am 5 years old!"</p>
+      </div>
+      <div class="unit-card">
+        <span class="unit-icon">💖</span>
+        <h3>My Favorites</h3>
+        <p>Talk about your favorite color, animal, food, and toy.</p>
+      </div>
+      <div class="unit-card grape">
+        <span class="unit-icon">🗣️</span>
+        <h3>Greeting Dialogue</h3>
+        <p>Practice a real conversation: meeting a new friend!</p>
+      </div>
+      <div class="unit-card peach">
+        <span class="unit-icon">🎤</span>
+        <h3>Show & Tell</h3>
+        <p>Stand up and introduce yourself to the whole class!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MY NAME SCRIPT ══ -->
+  <section class="script-section">
+    <div class="section-eyebrow">🙋 Unit 1</div>
+    <h2>My Name &amp; Greeting</h2>
+    <div class="speech-bubble">
+      <div class="avatar">🧒</div>
+      <div class="script-line">
+        Hello! 👋<br/>
+        My name is <span class="fill">______</span>.<br/>
+        Nice to meet you! 😊
+      </div>
+      <div class="wave-icon">👋😊👋</div>
+    </div>
+    <p style="margin-top:16px; font-size:14px; color:#777; font-weight:700;">
+      💡 Teacher Tip: Practice with a real wave! Say it slowly, then say it with a big happy voice.
+    </p>
+  </section>
+
+  <!-- ══ MY AGE ══ -->
+  <section class="script-section">
+    <div class="section-eyebrow">🎂 Unit 2</div>
+    <h2>My Age</h2>
+    <div class="speech-bubble" style="border-color: var(--coral);">
+      <div class="avatar">🎉</div>
+      <div class="script-line">
+        I am <span class="fill" style="background:var(--coral); color:var(--white);">5</span> years old! 🖐️<br/>
+        Happy birthday to me! 🎂
+      </div>
+      <div class="wave-icon">🖐️1️⃣2️⃣3️⃣4️⃣5️⃣</div>
+    </div>
+    <p style="margin-top:16px; font-size:14px; color:#777; font-weight:700;">
+      💡 Hold up 5 fingers while saying "five"! Count together: one, two, three, four, five!
+    </p>
+  </section>
+
+  <!-- ══ MY FAVORITES ══ -->
+  <section class="vocab-section">
+    <div class="section-eyebrow">💖 Unit 3</div>
+    <h2>My Favorites</h2>
+    <div class="vocab-grid">
+      <div class="vocab-card">
+        <span class="icon">🎨</span>
+        <h4>My Favorite Color</h4>
+        <p>Tell what color you love best.</p>
+        <div class="example-row">"My favorite color is <b>blue</b>." 💙</div>
+      </div>
+      <div class="vocab-card">
+        <span class="icon">🐾</span>
+        <h4>My Favorite Animal</h4>
+        <p>Tell which animal you love.</p>
+        <div class="example-row">"My favorite animal is a <b>cat</b>." 🐱</div>
+      </div>
+      <div class="vocab-card">
+        <span class="icon">🍕</span>
+        <h4>My Favorite Food</h4>
+        <p>Tell what food makes you happy.</p>
+        <div class="example-row">"My favorite food is <b>pizza</b>." 🍕</div>
+      </div>
+      <div class="vocab-card">
+        <span class="icon">🧸</span>
+        <h4>My Favorite Toy</h4>
+        <p>Tell what toy you love to play with.</p>
+        <div class="example-row">"My favorite toy is a <b>teddy bear</b>." 🧸</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COLOR PALETTE FOR FAVORITES ══ -->
+  <section class="palette-section">
+    <div class="section-eyebrow">🎨 Color Words</div>
+    <h2>Colors I Can Say!</h2>
+    <div class="palette-grid">
+      <div class="palette-chip red"><span class="em">🔴</span> red</div>
+      <div class="palette-chip blue"><span class="em">🔵</span> blue</div>
+      <div class="palette-chip yellow"><span class="em">🟡</span> yellow</div>
+      <div class="palette-chip green"><span class="em">🟢</span> green</div>
+      <div class="palette-chip purple"><span class="em">🟣</span> purple</div>
+      <div class="palette-chip orange"><span class="em">🟠</span> orange</div>
+      <div class="palette-chip pink"><span class="em">🩷</span> pink</div>
+      <div class="palette-chip black"><span class="em">⚫</span> black</div>
+    </div>
+  </section>
+
+  <!-- ══ DIALOGUE PRACTICE ══ -->
+  <section class="dialog-section">
+    <div class="section-eyebrow">🗣️ Unit 4</div>
+    <h2>Let's Practice a Conversation!</h2>
+    <div class="dialog-card">
+      <div class="dialog-header">
+        <div class="icon">🧑‍🤝‍🧑</div>
+        <div>
+          <h3>Meeting a New Friend</h3>
+          <p>Practice with a partner — take turns!</p>
+        </div>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-row a">
+          <div class="who">🧒</div>
+          <div class="bubble-text">Hi! My name is Sam. What's your name?</div>
+        </div>
+        <div class="dialog-row b">
+          <div class="who">👧</div>
+          <div class="bubble-text">Hello, Sam! My name is Mia.</div>
+        </div>
+        <div class="dialog-row a">
+          <div class="who">🧒</div>
+          <div class="bubble-text">How old are you, Mia?</div>
+        </div>
+        <div class="dialog-row b">
+          <div class="who">👧</div>
+          <div class="bubble-text">I am 5 years old. How old are you?</div>
+        </div>
+        <div class="dialog-row a">
+          <div class="who">🧒</div>
+          <div class="bubble-text">I am 5 years old too! Nice to meet you!</div>
+        </div>
+        <div class="dialog-row b">
+          <div class="who">👧</div>
+          <div class="bubble-text">Nice to meet you too! Let's be friends! 🤝</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:16px; font-size:14px; color:#777; font-weight:700;">
+      💡 Teacher Tip: Swap roles! Then try with a real classmate using your own name and age.
+    </p>
+  </section>
+
+  <!-- ══ ACTION CHANT ══ -->
+  <section class="song-section">
+    <div class="section-eyebrow" style="background:var(--white); color:var(--grape);">🎵 Fun Chant</div>
+    <h2>The "Hello, It's Me!" Chant</h2>
+    <div class="song-card">
+      <h3>👋 Sing &amp; Move Along!</h3>
+      <div class="song-line">
+        Hello, hello! <span class="action">(wave both hands)</span><br/>
+        My name is me! <span class="action">(point to self)</span><br/>
+        I am five! <span class="action">(hold up 5 fingers)</span><br/>
+        One, two, three, four, five! <span class="action">(count on fingers)</span><br/>
+        I like to play! <span class="action">(clap clap)</span><br/>
+        Hooray, hooray! <span class="action">(jump up)</span> 🎉
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SHOW & TELL ACTIVITY ══ -->
+  <section class="activity-section">
+    <div class="section-eyebrow">🎤 Unit 5</div>
+    <h2>Show &amp; Tell Time!</h2>
+    <p style="margin-bottom:20px; font-weight:700; color:#555;">
+      Stand up tall, smile, and tell your friends about yourself! Use this checklist:
+    </p>
+    <ul class="activity-list">
+      <li><div class="a-num">1</div> Say "Hello! My name is ___."</li>
+      <li><div class="a-num">2</div> Say "I am ___ years old."</li>
+      <li><div class="a-num">3</div> Say "My favorite color is ___."</li>
+      <li><div class="a-num">4</div> Say "My favorite animal is ___."</li>
+      <li><div class="a-num">5</div> Say "Thank you! 😊" and bow or wave!</li>
+    </ul>
+    <p style="margin-top:16px; font-size:13px; color:#888; font-weight:700;">
+      🌟 Bonus: Bring a favorite toy or drawing to show your friends while you talk!
+    </p>
+  </section>
+
+  <!-- ══ TEACHER TIPS ══ -->
+  <section class="tips-section">
+    <div class="section-eyebrow">🍎 Teacher &amp; Parent Corner</div>
+    <h2>Tips for Success!</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">🪞</span>
+        <h4>Practice in the Mirror</h4>
+        <p>Kids love practicing their introduction in front of a mirror — it builds confidence!</p>
+      </div>
+      <div class="tip-card" style="background: linear-gradient(135deg, var(--coral), var(--peach));">
+        <span class="tip-icon">🎭</span>
+        <h4>Use Puppets</h4>
+        <p>Let a puppet ask the questions first. Kids feel braver answering a puppet friend.</p>
+      </div>
+      <div class="tip-card" style="background: linear-gradient(135deg, var(--grape), #c4b5fd);">
+        <span class="tip-icon">👏</span>
+        <h4>Cheer Loudly</h4>
+        <p>Clap and cheer after every try, even small ones — confidence grows with praise.</p>
+      </div>
+      <div class="tip-card" style="background: linear-gradient(135deg, var(--sun), var(--peach));">
+        <span class="tip-icon">🔁</span>
+        <h4>Repeat Daily</h4>
+        <p>Say the introduction every morning at home or in class to build fluency naturally.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>👋 <span>BunRey English Course</span> · Self Introduction · For Age 5</p>
+  <p style="margin-top:6px; opacity:.6; font-weight:400;">Stand tall, smile big — you're a star! 🌟</p>
+</footer>
+
+</body>
+</html>

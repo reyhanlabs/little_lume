@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Vehicles</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap');
+:root{
+  --red:#FF4757;--orange:#FF9A3C;--yellow:#FFD93D;--green:#6BCB77;
+  --blue:#5BC8F5;--purple:#C77DFF;--pink:#FF9DC6;--teal:#2EC4B6;
+  --indigo:#4361EE;--navy:#1A1A6C;--cream:#FFFBE6;
+  --shadow:0 8px 28px rgba(0,0,0,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(155deg,#e8f4ff 0%,#fffbe6 45%,#e8ffe8 100%);min-height:100vh;overflow-x:hidden}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,#1A1A6C 0%,#2d2da8 55%,#0d4e6e 100%);padding:20px 24px 16px;text-align:center;overflow:hidden;position:relative}
+header::before{content:'🚗🚕🚌🚑🚒🚂🛳️✈️🚁🚀🚜🏎️';display:block;font-size:18px;letter-spacing:3px;opacity:.35;margin-bottom:8px}
+.logo{font-family:'Fredoka One',cursive;font-size:clamp(2rem,6vw,3.6rem);color:#FFD93D;text-shadow:3px 3px 0 #FF9A3C,6px 6px 0 rgba(0,0,0,.2);letter-spacing:2px}
+.logo span{color:#5BC8F5}
+.tagline{color:#d0e8ff;font-size:clamp(.75rem,2.5vw,1rem);font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-top:4px}
+.badge{display:inline-block;background:#FF4757;color:#fff;font-size:.75rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;border-radius:20px;padding:3px 14px;margin-top:6px}
+
+/* ── TABS ── */
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;padding:18px 14px 0}
+.tab-btn{font-family:'Fredoka One',cursive;font-size:.92rem;border:none;border-radius:50px;padding:9px 18px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 rgba(0,0,0,.18);white-space:nowrap}
+.tab-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.tab-btn:active,.tab-btn.active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tab-btn[data-tab="learn"]{background:#5BC8F5;color:#1A1A6C}
+.tab-btn[data-tab="vocab"]{background:#6BCB77;color:#fff}
+.tab-btn[data-tab="quiz"]{background:#FF4757;color:#fff}
+.tab-btn[data-tab="game"]{background:#C77DFF;color:#fff}
+.tab-btn[data-tab="match"]{background:#FF9A3C;color:#fff}
+.tab-btn[data-tab="sort"]{background:#FFD93D;color:#1A1A6C}
+.tab-btn[data-tab="sounds"]{background:#2EC4B6;color:#fff}
+
+/* ── SECTIONS ── */
+.section{display:none;padding:24px 16px 52px;max-width:980px;margin:0 auto}
+.section.active{display:block}
+.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(1.5rem,5vw,2.4rem);text-align:center;color:#1A1A6C;margin-bottom:6px}
+.sec-sub{text-align:center;color:#666;margin-bottom:22px;font-size:.95rem}
+
+/* ── LEARN ── */
+.vehicle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:15px}
+.vehicle-card{background:#fff;border-radius:26px;padding:20px 12px 15px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;border:3px solid transparent;position:relative;overflow:hidden}
+.vehicle-card:hover{transform:scale(1.06) rotate(-1deg)}
+.v-emoji{font-size:3.5rem;display:block;line-height:1;transition:transform .3s}
+.vehicle-card:hover .v-emoji{transform:translateX(6px)}
+.v-name{font-family:'Fredoka One',cursive;font-size:1.15rem;margin-top:8px}
+.v-sound{font-size:.76rem;color:#aaa;font-weight:700;margin-top:3px}
+.listen-btn{margin-top:10px;background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:5px 14px;font-family:'Fredoka One',cursive;font-size:.84rem;cursor:pointer;transition:background .15s}
+.listen-btn:hover{background:#e6c800}
+.v-badge{position:absolute;top:10px;right:10px;font-size:.6rem;font-weight:900;padding:2px 8px;border-radius:10px;color:#fff;letter-spacing:.5px;text-transform:uppercase}
+
+/* ── MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.54);z-index:200;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#FFFBE6;border-radius:32px;padding:30px 26px;max-width:480px;width:100%;box-shadow:0 16px 48px rgba(0,0,0,.28);text-align:center;position:relative;animation:popIn .25s ease;max-height:90vh;overflow-y:auto}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-close{position:absolute;top:14px;right:16px;font-size:1.5rem;cursor:pointer;background:none;border:none}
+.modal-emoji{font-size:5rem}
+.modal-name{font-family:'Fredoka One',cursive;font-size:2rem;margin:8px 0 4px}
+.fact-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:.9rem;color:#444;text-align:left}
+.fi{font-size:1.1rem;width:24px;flex-shrink:0}
+.say-btn{background:#5BC8F5;color:#1A1A6C;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1.05rem;cursor:pointer;margin-top:12px}
+.say-btn:hover{background:#3ab8e8}
+
+/* ── VOCAB ── */
+.vocab-group{margin-bottom:26px}
+.vg-title{font-family:'Fredoka One',cursive;font-size:1.2rem;padding:6px 18px;border-radius:20px;display:inline-block;color:#fff;margin-bottom:10px}
+.vocab-cards{display:flex;flex-wrap:wrap;gap:10px}
+.vocab-chip{background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(0,0,0,.1);font-size:.88rem;font-weight:700;cursor:pointer;transition:transform .15s;display:flex;align-items:center;gap:7px}
+.vocab-chip:hover{transform:scale(1.07)}
+.vc-em{font-size:1.3rem}
+
+/* ── QUIZ ── */
+.quiz-box{background:#fff;border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);max-width:580px;margin:0 auto;text-align:center}
+.qprog{font-weight:800;color:#bbb;font-size:.85rem;margin-bottom:8px}
+.prog-bar{height:11px;background:#eee;border-radius:10px;margin-bottom:20px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#5BC8F5,#4361EE);border-radius:10px;transition:width .4s}
+.q-avatar{font-size:4.5rem;display:block;margin-bottom:10px}
+.q-text{font-family:'Fredoka One',cursive;font-size:clamp(1.05rem,4vw,1.4rem);color:#1A1A6C;margin-bottom:20px;line-height:1.3}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q-opt{background:#FFFBE6;border:3px solid #ddd;border-radius:18px;padding:13px 10px;font-family:'Fredoka One',cursive;font-size:.96rem;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.3}
+.q-opt:hover{border-color:#5BC8F5;background:#e4f6ff;transform:scale(1.03)}
+.q-opt.correct{border-color:#6BCB77;background:#d4f5da}
+.q-opt.wrong{border-color:#FF4757;background:#ffe0e3}
+.q-opt:disabled{cursor:default;transform:none}
+.q-fb{margin-top:14px;font-family:'Fredoka One',cursive;font-size:1.2rem;min-height:32px}
+.fb-ok{color:#6BCB77}.fb-no{color:#FF4757}
+.next-btn,.restart-btn{margin-top:16px;background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:12px 32px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 0 #e6b800;transition:transform .1s}
+.next-btn:hover,.restart-btn:hover{transform:translateY(-2px)}
+.score-board{display:none;text-align:center;padding:20px 0}
+.score-board.show{display:block}
+.sc-trophy{font-size:4.5rem}
+.sc-title{font-family:'Fredoka One',cursive;font-size:2rem;color:#1A1A6C;margin:10px 0 4px}
+.sc-num{font-size:3rem;font-weight:900;color:#FF4757}
+.sc-msg{color:#555;margin:8px 0 16px}
+.stars-row{font-size:2rem;letter-spacing:4px;margin-bottom:6px}
+
+/* ── SPELL GAME ── */
+.game-box{background:#fff;border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);max-width:600px;margin:0 auto;text-align:center}
+.g-score-row{display:flex;gap:12px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.g-pill{background:#FFFBE6;border-radius:30px;padding:6px 16px;font-family:'Fredoka One',cursive;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.g-big{font-size:5.5rem;display:block;margin-bottom:6px}
+.g-hint{font-family:'Fredoka One',cursive;font-size:1.15rem;color:#1A1A6C;margin-bottom:16px}
+.blanks{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.blank{width:44px;height:52px;border-bottom:4px solid #1A1A6C;font-family:'Fredoka One',cursive;font-size:1.6rem;color:#FF4757;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;transition:border-color .2s}
+.blank.filled{border-color:#6BCB77}
+.letter-pool{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.l-tile{width:44px;height:44px;background:#4361EE;color:#fff;border-radius:13px;font-family:'Fredoka One',cursive;font-size:1.4rem;border:none;cursor:pointer;box-shadow:0 4px 0 #2943cc;transition:transform .1s,box-shadow .1s}
+.l-tile:hover{transform:translateY(-3px)}
+.l-tile:active{transform:translateY(1px);box-shadow:0 2px 0 #2943cc}
+.l-tile.used{opacity:.22;pointer-events:none}
+.g-fb{font-family:'Fredoka One',cursive;font-size:1.15rem;min-height:30px;margin-bottom:8px}
+.g-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.clear-btn{background:#eee;color:#666;border:none;border-radius:24px;padding:10px 20px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer}
+.submit-btn{background:#6BCB77;color:#fff;border:none;border-radius:24px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #4aaa5a}
+.nword-btn{background:#5BC8F5;color:#1A1A6C;border:none;border-radius:24px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #3ab8e8}
+
+/* ── MATCH ── */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px;margin:0 auto}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.m-item{background:#fff;border-radius:20px;padding:13px 16px;font-family:'Fredoka One',cursive;font-size:1.05rem;text-align:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.1);border:3px solid transparent;transition:transform .15s,border-color .15s;user-select:none}
+.m-item:hover{transform:scale(1.04)}
+.m-item.selected{border-color:#5BC8F5;background:#e4f6ff}
+.m-item.matched{border-color:#6BCB77;background:#d4f5da;opacity:.68;pointer-events:none}
+.m-item.wrong{border-color:#FF4757;background:#ffe0e3;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.match-status{text-align:center;font-family:'Fredoka One',cursive;font-size:1.1rem;margin-top:14px;min-height:30px}
+.match-reset{display:block;margin:14px auto 0;background:#5BC8F5;color:#1A1A6C;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #3ab8e8}
+
+/* ── SORT GAME ── */
+.sort-wrap{max-width:880px;margin:0 auto}
+.sort-baskets{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.sort-basket{flex:1;min-width:140px;max-width:200px;background:#fff;border-radius:22px;padding:16px 12px;box-shadow:var(--shadow);text-align:center;border:3px dashed #ddd;transition:border-color .2s,background .2s;min-height:130px}
+.sort-basket.drag-over{border-color:#FFD93D;background:#fffde8}
+.basket-label{font-family:'Fredoka One',cursive;font-size:.95rem;margin-bottom:10px;padding:4px 10px;border-radius:12px;display:inline-block;color:#fff}
+.basket-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:50px;padding:4px}
+.sort-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
+.sort-chip{background:#fff;border-radius:16px;padding:10px 14px;font-family:'Fredoka One',cursive;font-size:1.05rem;box-shadow:0 3px 10px rgba(0,0,0,.12);cursor:grab;user-select:none;transition:transform .15s,border-color .15s;display:flex;align-items:center;gap:6px;border:3px solid transparent}
+.sort-chip:hover{transform:scale(1.07)}
+.sort-chip.active-pick{border-color:#FFD93D;background:#fffde8}
+.basket-chip{background:#fff;border-radius:12px;padding:5px 10px;font-size:.85rem;font-family:'Fredoka One',cursive;display:flex;align-items:center;gap:4px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1);border:2px solid transparent}
+.basket-chip.correct-item{border-color:#6BCB77;background:#d4f5da}
+.basket-chip.wrong-item{border-color:#FF4757;background:#ffe0e3}
+.sort-status{text-align:center;font-family:'Fredoka One',cursive;font-size:1.1rem;margin-top:10px;min-height:30px}
+.sort-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.sort-check-btn{background:#FF9A3C;color:#fff;border:none;border-radius:30px;padding:11px 28px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #c97200}
+.sort-reset-btn{background:#6BCB77;color:#fff;border:none;border-radius:30px;padding:11px 24px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #4aaa5a}
+
+/* ── SOUNDS GAME ── */
+.sounds-wrap{max-width:680px;margin:0 auto}
+.sounds-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px;margin-bottom:24px}
+.sound-card{background:#fff;border-radius:24px;padding:20px 14px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;border:3px solid transparent;position:relative}
+.sound-card:hover{transform:scale(1.07)}
+.sound-card.playing{animation:pulse .5s ease}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.sound-emoji{font-size:3rem;display:block;margin-bottom:8px}
+.sound-name{font-family:'Fredoka One',cursive;font-size:1rem}
+.sound-word{font-size:.78rem;color:#aaa;font-weight:700;margin-top:3px}
+/* Sounds quiz */
+.sounds-quiz{background:#fff;border-radius:28px;padding:24px;box-shadow:var(--shadow);text-align:center}
+.sq-title{font-family:'Fredoka One',cursive;font-size:1.3rem;color:#1A1A6C;margin-bottom:6px}
+.sq-sub{color:#888;font-size:.9rem;margin-bottom:18px}
+.sq-question{font-family:'Fredoka One',cursive;font-size:1.2rem;color:#1A1A6C;margin-bottom:14px;background:#FFFBE6;border-radius:16px;padding:12px 16px}
+.sq-opts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:14px}
+.sq-opt{background:#FFFBE6;border:3px solid #ddd;border-radius:18px;padding:12px 18px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;transition:all .15s;min-width:90px}
+.sq-opt:hover{border-color:#5BC8F5;background:#e4f6ff;transform:scale(1.05)}
+.sq-opt.correct{border-color:#6BCB77;background:#d4f5da}
+.sq-opt.wrong{border-color:#FF4757;background:#ffe0e3}
+.sq-opt:disabled{cursor:default;transform:none}
+.sq-fb{font-family:'Fredoka One',cursive;font-size:1.1rem;min-height:28px;margin-bottom:8px}
+.sq-score{font-family:'Fredoka One',cursive;font-size:.95rem;color:#888;margin-top:8px}
+
+/* ── ROAD ANIMATION ── */
+.road-strip{width:100%;height:60px;background:linear-gradient(90deg,#555,#666);border-radius:12px;margin-bottom:20px;overflow:hidden;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+.road-line{position:absolute;top:50%;transform:translateY(-50%);height:4px;width:40px;background:#FFD93D;border-radius:2px;animation:roadMove 1.2s linear infinite}
+.road-car{position:absolute;font-size:1.8rem;animation:carDrive 4s linear infinite}
+@keyframes roadMove{0%{left:110%}100%{left:-10%}}
+@keyframes carDrive{0%{left:-10%;top:14px}100%{left:110%;top:14px}}
+
+/* ── BUBBLES ── */
+.bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;opacity:.1;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh)}100%{transform:translateY(-200px)}}
+main{position:relative;z-index:1}
+
+/* ── CONFETTI ── */
+.cp{position:fixed;pointer-events:none;z-index:999;border-radius:2px;animation:fall 2.5s ease-in forwards}
+@keyframes fall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+@media(max-width:520px){
+  .q-opts{grid-template-columns:1fr}
+  .match-wrap{grid-template-columns:1fr}
+  .vehicle-grid{grid-template-columns:repeat(2,1fr)}
+  .sounds-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="bubbles" id="bubbles"></div>
+
+<header>
+  <div class="logo">LittleLume <span>English</span></div>
+  <div class="tagline">Fun Learning for Little Stars ✨</div>
+  <div class="badge">🌱 Kindergarten</div>
+</header>
+
+<main>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="learn">🚗 Vehicles</button>
+    <button class="tab-btn" data-tab="vocab">📚 Vocabulary</button>
+    <button class="tab-btn" data-tab="quiz">✏️ Quiz</button>
+    <button class="tab-btn" data-tab="game">🔤 Spell It!</button>
+    <button class="tab-btn" data-tab="match">🔗 Match It!</button>
+    <button class="tab-btn" data-tab="sort">🗂️ Sort It!</button>
+    <button class="tab-btn" data-tab="sounds">🔊 Sounds!</button>
+  </div>
+
+  <!-- LEARN -->
+  <section class="section active" id="learn">
+    <div class="sec-title">🚗 Let's Learn Vehicles!</div>
+    <p class="sec-sub">Tap any vehicle to discover all about it! 🌟</p>
+    <!-- Road animation -->
+    <div class="road-strip" id="roadStrip"></div>
+    <div class="vehicle-grid" id="vehicleGrid"></div>
+  </section>
+
+  <!-- VOCAB -->
+  <section class="section" id="vocab">
+    <div class="sec-title">📚 Vehicle Words!</div>
+    <p class="sec-sub">Tap any word card to hear it! 🔊</p>
+    <div id="vocabContent"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <div class="sec-title">✏️ Quiz Time!</div>
+    <p class="sec-sub">Answer 10 questions about vehicles! 🚀</p>
+    <div class="quiz-box">
+      <div id="quizInner">
+        <div class="qprog" id="qProg">Question 1 of 10</div>
+        <div class="prog-bar"><div class="prog-fill" id="qBar" style="width:10%"></div></div>
+        <span class="q-avatar" id="qEmoji"></span>
+        <div class="q-text" id="qText"></div>
+        <div class="q-opts" id="qOpts"></div>
+        <div class="q-fb" id="qFb"></div>
+        <button class="next-btn" id="nextBtn" style="display:none" onclick="nextQ()">Next ➜</button>
+      </div>
+      <div class="score-board" id="scoreBoard">
+        <div class="sc-trophy" id="scTrophy"></div>
+        <div class="stars-row" id="scStars"></div>
+        <div class="sc-title">You scored</div>
+        <div class="sc-num" id="scNum"></div>
+        <div class="sc-msg" id="scMsg"></div>
+        <button class="restart-btn" onclick="startQuiz()">Play Again 🔄</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPELL -->
+  <section class="section" id="game">
+    <div class="sec-title">🔤 Spell the Vehicle!</div>
+    <p class="sec-sub">Tap the letters in the right order! 🏆</p>
+    <div class="game-box">
+      <div class="g-score-row">
+        <div class="g-pill">✅ Correct: <span id="gOk">0</span></div>
+        <div class="g-pill">❌ Wrong: <span id="gBad">0</span></div>
+        <div class="g-pill">🚗 Word: <span id="gWNum">1</span>/12</div>
+      </div>
+      <span class="g-big" id="gEmoji"></span>
+      <div class="g-hint" id="gHint"></div>
+      <div class="blanks" id="gBlanks"></div>
+      <div class="letter-pool" id="gPool"></div>
+      <div class="g-fb" id="gFb"></div>
+      <div class="g-actions">
+        <button class="clear-btn" onclick="clearSpell()">🗑️ Clear</button>
+        <button class="submit-btn" onclick="checkSpell()">✅ Check</button>
+        <button class="nword-btn" id="gNextBtn" style="display:none" onclick="nextWord()">Next ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATCH -->
+  <section class="section" id="match">
+    <div class="sec-title">🔗 Match the Vehicle!</div>
+    <p class="sec-sub">Tap an emoji, then tap the right word! 🎉</p>
+    <div class="match-wrap">
+      <div class="match-col" id="mEmojis"></div>
+      <div class="match-col" id="mWords"></div>
+    </div>
+    <div class="match-status" id="mStatus"></div>
+    <button class="match-reset" onclick="resetMatch()">🔄 New Game</button>
+  </section>
+
+  <!-- SORT -->
+  <section class="section" id="sort">
+    <div class="sec-title">🗂️ Sort the Vehicles!</div>
+    <p class="sec-sub">Drag (or tap) each vehicle into the right group! 🌈</p>
+    <div class="sort-wrap">
+      <div class="sort-baskets" id="sortBaskets"></div>
+      <div class="sort-pool" id="sortPool"></div>
+      <div class="sort-status" id="sortStatus"></div>
+      <div class="sort-actions">
+        <button class="sort-check-btn" onclick="checkSort()">✅ Check!</button>
+        <button class="sort-reset-btn" onclick="initSort()">🔄 Reset</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOUNDS -->
+  <section class="section" id="sounds">
+    <div class="sec-title">🔊 Vehicle Sounds!</div>
+    <p class="sec-sub">Listen to each vehicle's sound – then take the quiz! 🎵</p>
+    <div class="sounds-wrap">
+      <div class="sounds-grid" id="soundsGrid"></div>
+      <div class="sounds-quiz">
+        <div class="sq-title">🎧 Sound Quiz!</div>
+        <div class="sq-sub">Read the sound – which vehicle makes it?</div>
+        <div class="sq-question" id="sqQuestion"></div>
+        <div class="sq-opts" id="sqOpts"></div>
+        <div class="sq-fb" id="sqFb"></div>
+        <div class="sq-score" id="sqScore"></div>
+        <button class="next-btn" id="sqNext" style="display:none;margin-top:10px" onclick="nextSoundQ()">Next ➜</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-emoji" id="mEm"></div>
+    <div class="modal-name" id="mNm"></div>
+    <div id="mFacts"></div>
+    <button class="say-btn" id="mSay">🔊 Say It!</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════
+const vehicles = [
+  {
+    name:'Car', emoji:'🚗', color:'#FF4757', category:'Road', sound:'Vroom vroom!',
+    fuel:'Petrol or electric', wheels:4, passengers:'Up to 5 people', speed:'Fast',
+    use:'Driving families around town and on road trips.',
+    driver:'Driver', funFact:'Some cars can drive themselves – they are called self-driving cars!',
+    facts:['Cars are the most popular way to travel on roads.','The first car was invented in 1885 by Karl Benz.','There are over 1 billion cars in the world today!']
+  },
+  {
+    name:'Bus', emoji:'🚌', color:'#FF9A3C', category:'Road', sound:'Beep beep!',
+    fuel:'Petrol or diesel', wheels:6, passengers:'Up to 80 people', speed:'Medium',
+    use:'Taking many people to school, work, or around the city.',
+    driver:'Bus driver', funFact:'Double-decker buses have two floors and are famous in London!',
+    facts:['Buses can carry many more people than a car.','School buses are usually bright yellow to be easy to see.','Bus drivers stop at special places called bus stops.']
+  },
+  {
+    name:'Truck', emoji:'🚛', color:'#FF9A3C', category:'Road', sound:'Honk honk!',
+    fuel:'Diesel', wheels:18, passengers:'1–2 people', speed:'Medium',
+    use:'Carrying heavy goods and deliveries across long distances.',
+    driver:'Truck driver', funFact:'The biggest trucks can be as long as a train carriage!',
+    facts:['Trucks carry food, toys, and furniture to shops.','Some trucks carry liquids like milk or petrol.','Truck drivers travel very long distances every day.']
+  },
+  {
+    name:'Ambulance', emoji:'🚑', color:'#FF4757', category:'Emergency', sound:'Wee-woo wee-woo!',
+    fuel:'Diesel', wheels:4, passengers:'Paramedics + 1 patient', speed:'Very fast',
+    use:'Rushing sick or injured people quickly to hospital.',
+    driver:'Paramedic', funFact:'The word AMBULANCE is written backwards on the front so drivers in mirrors can read it!',
+    facts:['Ambulances have flashing lights and loud sirens.','Paramedics inside help sick people on the way to hospital.','When you hear a siren, cars must move out of the way!']
+  },
+  {
+    name:'Fire Truck', emoji:'🚒', color:'#FF4757', category:'Emergency', sound:'Woo woo woo!',
+    fuel:'Diesel', wheels:4, passengers:'Up to 6 firefighters', speed:'Very fast',
+    use:'Carrying firefighters and water to put out fires.',
+    driver:'Firefighter', funFact:'Fire trucks carry ladders that can reach 30 floors high!',
+    facts:['Fire trucks are bright red so everyone can see them coming.','They carry long hoses that spray water on fires.','Firefighters are very brave heroes who keep us safe.']
+  },
+  {
+    name:'Police Car', emoji:'🚔', color:'#4361EE', category:'Emergency', sound:'Nee-naw nee-naw!',
+    fuel:'Petrol', wheels:4, passengers:'1–2 officers', speed:'Very fast',
+    use:'Helping police officers keep streets safe and catch criminals.',
+    driver:'Police officer', funFact:'Police cars can go over 200 km/h – much faster than ordinary cars!',
+    facts:['Police cars have blue and red flashing lights on top.','Police officers protect communities and help people in danger.','Police cars have computers and radios inside to communicate.']
+  },
+  {
+    name:'Bicycle', emoji:'🚲', color:'#6BCB77', category:'Road', sound:'Ring ring!',
+    fuel:'No fuel – pedal power!', wheels:2, passengers:'1 person', speed:'Slow',
+    use:'Riding to school, the park, or just for fun and exercise.',
+    driver:'Cyclist / Rider', funFact:'Bicycles are the most popular vehicle in the world – over 1 billion exist!',
+    facts:['Bicycles do not use any petrol – they run on leg power!','Riding a bicycle is great exercise for your body.','Always wear a helmet when riding a bicycle to stay safe.']
+  },
+  {
+    name:'Motorcycle', emoji:'🏍️', color:'#C77DFF', category:'Road', sound:'Vroom vroom!',
+    fuel:'Petrol', wheels:2, passengers:'1–2 people', speed:'Very fast',
+    use:'Quick travel on roads, especially through busy traffic.',
+    driver:'Motorcyclist / Rider', funFact:'The fastest motorcycles can reach 400 km/h – faster than most aeroplanes take off!',
+    facts:['Motorcycles have only two wheels and can be very fast.','Riders must always wear a special helmet for safety.','Motorcycles use much less petrol than cars.']
+  },
+  {
+    name:'Aeroplane', emoji:'✈️', color:'#5BC8F5', category:'Air', sound:'Whoooosh!',
+    fuel:'Jet fuel', wheels:0, passengers:'Up to 853 people', speed:'Extremely fast',
+    use:'Flying passengers and cargo to faraway countries across the sky.',
+    driver:'Pilot', funFact:'The biggest aeroplane (Airbus A380) can carry 853 passengers – that is a whole school!',
+    facts:['Aeroplanes can fly thousands of kilometres in just hours.','They take off and land at special places called airports.','Pilots must study for many years to learn to fly safely.']
+  },
+  {
+    name:'Helicopter', emoji:'🚁', color:'#2EC4B6', category:'Air', sound:'Whirr whirr!',
+    fuel:'Jet fuel', wheels:0, passengers:'Up to 14 people', speed:'Fast',
+    use:'Rescue missions, news reporting, and reaching places planes cannot land.',
+    driver:'Pilot', funFact:'Helicopters can hover in one place – something aeroplanes cannot do!',
+    facts:['Helicopters have spinning blades on top called rotors.','They can take off and land without a runway.','Medical helicopters save lives by reaching hospitals quickly.']
+  },
+  {
+    name:'Rocket', emoji:'🚀', color:'#FF4757', category:'Air', sound:'Blast off!',
+    fuel:'Liquid hydrogen / oxygen', wheels:0, passengers:'Up to 7 astronauts', speed:'Unbelievably fast',
+    use:'Launching astronauts and satellites into outer space.',
+    driver:'Astronaut / Commander', funFact:'Rockets travel at 28,000 km/h – you could travel around the Earth in just 90 minutes!',
+    facts:['Rockets are the only vehicles that can travel into outer space!','They need enormous power to escape Earth\'s gravity.','NASA has sent rockets to the Moon, Mars, and beyond.']
+  },
+  {
+    name:'Train', emoji:'🚂', color:'#FF9A3C', category:'Rail', sound:'Chugga chugga choo choo!',
+    fuel:'Electricity or diesel', wheels:0, passengers:'Hundreds of people', speed:'Very fast',
+    use:'Carrying lots of passengers along railway tracks across the country.',
+    driver:'Train driver', funFact:'The fastest train (Maglev) travels at 603 km/h – faster than a racing car!',
+    facts:['Trains travel on special metal tracks called railways.','They can carry far more passengers than any bus or car.','Some trains go underwater through tunnels beneath the sea!']
+  },
+  {
+    name:'Ship', emoji:'🛳️', color:'#4361EE', category:'Water', sound:'Toot toot!',
+    fuel:'Diesel / heavy fuel oil', wheels:0, passengers:'Up to 6,000 passengers', speed:'Medium',
+    use:'Sailing across oceans to carry passengers or large amounts of cargo.',
+    driver:'Captain', funFact:'The largest cruise ships are taller than the Eiffel Tower when measured sideways!',
+    facts:['Ships can travel across entire oceans to other continents.','The captain is in charge of the whole ship and its crew.','Ships have been used for thousands of years to explore the world.']
+  },
+  {
+    name:'Boat', emoji:'⛵', color:'#5BC8F5', category:'Water', sound:'Splash splash!',
+    fuel:'Wind / petrol / oars', wheels:0, passengers:'2–10 people', speed:'Slow to medium',
+    use:'Sailing on rivers, lakes, and near coasts for travel or fun.',
+    driver:'Sailor / Captain', funFact:'Sailboats use wind power and do not need any engine – just the breeze!',
+    facts:['Boats come in all sizes from tiny to very large.','Sailboats use the wind to move through the water.','Fishermen use boats to catch fish in the sea.']
+  },
+  {
+    name:'Submarine', emoji:'🤿', color:'#4361EE', category:'Water', sound:'Whooomp!',
+    fuel:'Nuclear / diesel-electric', wheels:0, passengers:'Up to 140 crew', speed:'Medium',
+    use:'Travelling underwater for military missions and ocean research.',
+    driver:'Commander / Captain', funFact:'Some military submarines can stay underwater for up to 6 months without surfacing!',
+    facts:['Submarines can dive very deep beneath the ocean surface.','They have special equipment to breathe and see underwater.','Scientists use research submarines to study deep sea creatures.']
+  },
+  {
+    name:'Tractor', emoji:'🚜', color:'#6BCB77', category:'Special', sound:'Chug chug!',
+    fuel:'Diesel', wheels:4, passengers:'1 farmer', speed:'Slow',
+    use:'Pulling heavy farm equipment to plough fields and harvest crops.',
+    driver:'Farmer', funFact:'Modern tractors use GPS satellites to drive in perfectly straight lines across fields!',
+    facts:['Tractors are the most important vehicle on a farm.','They have huge back wheels to grip muddy soil.','Farmers use tractors to plant seeds and harvest food.']
+  },
+  {
+    name:'Taxi', emoji:'🚕', color:'#FFD93D', category:'Road', sound:'Beep beep!',
+    fuel:'Petrol / electric', wheels:4, passengers:'Up to 4 people', speed:'Fast',
+    use:'Driving passengers to any destination they want in the city.',
+    driver:'Taxi driver / Cabbie', funFact:'New York City has over 13,000 yellow taxis – that\'s one of the most famous sights in the world!',
+    facts:['You can hail a taxi by raising your hand on the street.','Taxis have a meter that counts how much the ride costs.','In many cities you can book a taxi using your phone.']
+  },
+  {
+    name:'Scooter', emoji:'🛵', color:'#FF9DC6', category:'Road', sound:'Putt putt!',
+    fuel:'Petrol / electric', wheels:2, passengers:'1–2 people', speed:'Medium',
+    use:'Zooming through city streets quickly and affordably.',
+    driver:'Rider', funFact:'Electric scooters produce zero pollution – they are great for the environment!',
+    facts:['Scooters are smaller and lighter than motorcycles.','They are perfect for short journeys around town.','Many delivery workers use scooters to bring food quickly.']
+  },
+];
+
+// Sort categories
+const sortCats = [
+  {id:'road',   label:'🛣️ Road',    color:'#FF9A3C', match:'Road'},
+  {id:'air',    label:'✈️ Air',     color:'#5BC8F5', match:'Air'},
+  {id:'water',  label:'🌊 Water',   color:'#4361EE', match:'Water'},
+  {id:'rail',   label:'🚂 Rail',    color:'#FF4757', match:'Rail'},
+  {id:'emerg',  label:'🚨 Emergency',color:'#C77DFF',match:'Emergency'},
+  {id:'special',label:'⭐ Special', color:'#6BCB77', match:'Special'},
+];
+
+// Sounds data
+const vehicleSounds = vehicles.map(v=>({name:v.name, emoji:v.emoji, sound:v.sound, color:v.color}));
+
+// ══════════════════════════════════════════════
+// BUBBLES
+// ══════════════════════════════════════════════
+(function(){
+  const cols=['#5BC8F5','#FFD93D','#6BCB77','#FF4757','#C77DFF','#FF9A3C','#4361EE'];
+  const c=document.getElementById('bubbles');
+  for(let i=0;i<18;i++){
+    const d=document.createElement('div');d.className='bubble';
+    const s=Math.random()*65+20;
+    d.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${Math.random()*-200}px;background:${cols[i%cols.length]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(d);
+  }
+})();
+
+// ══════════════════════════════════════════════
+// ROAD ANIMATION
+// ══════════════════════════════════════════════
+(function(){
+  const strip=document.getElementById('roadStrip');
+  const roadVehicles=['🚗','🚕','🚌','🚛','🏎️','🚑','🚒'];
+  const delays=[0,1.5,2.8,4.1,0.7];
+  // dashes
+  for(let i=0;i<8;i++){
+    const l=document.createElement('div');
+    l.className='road-line';
+    l.style.animationDelay=(i*0.15)+'s';
+    strip.appendChild(l);
+  }
+  // vehicles
+  roadVehicles.forEach((v,i)=>{
+    const d=document.createElement('div');
+    d.className='road-car';
+    d.textContent=v;
+    d.style.animationDelay=(i*0.7)+'s';
+    d.style.animationDuration=(3+Math.random()*2)+'s';
+    strip.appendChild(d);
+  });
+})();
+
+// ══════════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════════
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ══════════════════════════════════════════════
+// SPEECH
+// ══════════════════════════════════════════════
+function speak(txt){
+  if(!window.speechSynthesis)return;
+  const u=new SpeechSynthesisUtterance(txt);
+  u.rate=.85;u.pitch=1.15;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+// ══════════════════════════════════════════════
+// LEARN
+// ══════════════════════════════════════════════
+const catColors={Road:'#FF9A3C',Air:'#5BC8F5',Water:'#4361EE',Rail:'#FF4757',Emergency:'#FF4757',Special:'#6BCB77'};
+const grid=document.getElementById('vehicleGrid');
+vehicles.forEach(v=>{
+  const c=document.createElement('div');
+  c.className='vehicle-card';
+  c.style.borderColor=v.color;
+  c.style.background=`linear-gradient(170deg,${v.color}1a 0%,#fff 45%)`;
+  c.innerHTML=`
+    <div class="v-badge" style="background:${catColors[v.category]||v.color}">${v.category}</div>
+    <span class="v-emoji">${v.emoji}</span>
+    <div class="v-name" style="color:${v.color}">${v.name}</div>
+    <div class="v-sound">"${v.sound}"</div>
+    <button class="listen-btn" onclick="event.stopPropagation();speak('${v.name}. The ${v.name.toLowerCase()} says ${v.sound.replace(/'/g,"\\'")}')">🔊 Listen</button>`;
+  c.addEventListener('click',()=>openModal(v));
+  grid.appendChild(c);
+});
+
+function openModal(v){
+  document.getElementById('mEm').textContent=v.emoji;
+  const nm=document.getElementById('mNm');nm.textContent=v.name;nm.style.color=v.color;
+  document.getElementById('mFacts').innerHTML=`
+    <div class="fact-row"><span class="fi">🔊</span><span><b>Sound:</b> ${v.sound}</span></div>
+    <div class="fact-row"><span class="fi">🗂️</span><span><b>Type:</b> ${v.category} vehicle</span></div>
+    <div class="fact-row"><span class="fi">⚡</span><span><b>Fuel:</b> ${v.fuel}</span></div>
+    <div class="fact-row"><span class="fi">🛞</span><span><b>Wheels:</b> ${v.wheels}</span></div>
+    <div class="fact-row"><span class="fi">👥</span><span><b>Passengers:</b> ${v.passengers}</span></div>
+    <div class="fact-row"><span class="fi">⚡</span><span><b>Speed:</b> ${v.speed}</span></div>
+    <div class="fact-row"><span class="fi">🎯</span><span><b>Used for:</b> ${v.use}</span></div>
+    <div class="fact-row"><span class="fi">👨‍✈️</span><span><b>Driver called:</b> ${v.driver}</span></div>
+    <div class="fact-row"><span class="fi">🤩</span><span><b>Fun fact:</b> ${v.funFact}</span></div>
+    ${v.facts.map(f=>`<div class="fact-row"><span class="fi">⭐</span><span>${f}</span></div>`).join('')}`;
+  document.getElementById('mSay').onclick=()=>speak(`${v.name}. The ${v.name.toLowerCase()} says ${v.sound}. ${v.facts[0]}`);
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('overlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('overlay').classList.remove('open');}
+
+// ══════════════════════════════════════════════
+// VOCAB
+// ══════════════════════════════════════════════
+const vocabGroups=[
+  {title:'🛣️ Road Vehicles',   color:'#FF9A3C', items:vehicles.filter(v=>v.category==='Road').map(v=>({name:v.name,emoji:v.emoji,spk:`${v.name}. A road vehicle.`}))},
+  {title:'✈️ Air Vehicles',    color:'#5BC8F5', items:vehicles.filter(v=>v.category==='Air').map(v=>({name:v.name,emoji:v.emoji,spk:`${v.name}. An air vehicle.`}))},
+  {title:'🌊 Water Vehicles',  color:'#4361EE', items:vehicles.filter(v=>v.category==='Water').map(v=>({name:v.name,emoji:v.emoji,spk:`${v.name}. A water vehicle.`}))},
+  {title:'🚂 Rail Vehicles',   color:'#FF4757', items:vehicles.filter(v=>v.category==='Rail').map(v=>({name:v.name,emoji:v.emoji,spk:`${v.name}. A rail vehicle.`}))},
+  {title:'🚨 Emergency Vehicles',color:'#C77DFF',items:vehicles.filter(v=>v.category==='Emergency').map(v=>({name:v.name,emoji:v.emoji,spk:`${v.name}. An emergency vehicle.`}))},
+  {title:'⭐ Special Vehicles', color:'#6BCB77', items:vehicles.filter(v=>v.category==='Special').map(v=>({name:v.name,emoji:v.emoji,spk:`${v.name}. A special vehicle.`}))},
+  {title:'🔊 Vehicle Sounds',  color:'#2EC4B6', items:vehicles.map(v=>({name:`${v.name} → "${v.sound}"`,emoji:v.emoji,spk:`The ${v.name} says ${v.sound}`}))},
+  {title:'👤 Who Drives?',     color:'#FF9DC6', items:vehicles.map(v=>({name:`${v.name} → ${v.driver}`,emoji:v.emoji,spk:`The ${v.name} is driven by a ${v.driver}`}))},
+  {title:'⚡ Fuel Types',      color:'#FFD93D', items:[
+    {name:'Petrol – Cars, Motorcycles',emoji:'⛽',spk:'Petrol is used in cars and motorcycles.'},
+    {name:'Diesel – Trucks, Buses',    emoji:'🛢️',spk:'Diesel is used in trucks and buses.'},
+    {name:'Electricity – Electric cars',emoji:'⚡',spk:'Electricity powers electric cars.'},
+    {name:'Jet fuel – Aeroplanes',     emoji:'✈️',spk:'Jet fuel powers aeroplanes.'},
+    {name:'Pedal power – Bicycles',    emoji:'🚲',spk:'Bicycles are powered by pedalling.'},
+    {name:'Wind – Sailboats',          emoji:'⛵',spk:'Sailboats are powered by the wind.'},
+    {name:'Nuclear – Submarines',      emoji:'🤿',spk:'Some submarines are powered by nuclear energy.'},
+  ]},
+  {title:'🛞 Number of Wheels',color:'#FF9A3C', items:[
+    {name:'0 wheels – Boat, Ship, Aeroplane, Helicopter, Rocket, Train, Submarine',emoji:'0️⃣',spk:'Some vehicles have no wheels, like aeroplanes and ships.'},
+    {name:'2 wheels – Bicycle, Motorcycle, Scooter',emoji:'2️⃣',spk:'Bicycles, motorcycles and scooters have two wheels.'},
+    {name:'4 wheels – Car, Taxi, Ambulance, Fire Truck, Police Car, Tractor',emoji:'4️⃣',spk:'Cars, taxis and ambulances have four wheels.'},
+    {name:'6+ wheels – Bus, Truck',emoji:'6️⃣',spk:'Buses and trucks have six or more wheels.'},
+  ]},
+  {title:'🌍 Where They Go',   color:'#6BCB77', items:[
+    {name:'On the road – Car, Bus, Truck, Taxi',emoji:'🛣️',spk:'Cars, buses, and trucks travel on roads.'},
+    {name:'In the air – Aeroplane, Helicopter, Rocket',emoji:'☁️',spk:'Aeroplanes, helicopters and rockets fly in the air.'},
+    {name:'On the water – Ship, Boat',emoji:'🌊',spk:'Ships and boats travel on water.'},
+    {name:'Under the water – Submarine',emoji:'🤿',spk:'Submarines travel under the water.'},
+    {name:'On tracks – Train',emoji:'🛤️',spk:'Trains travel on special tracks called railways.'},
+    {name:'On the farm – Tractor',emoji:'🌾',spk:'Tractors travel on farms.'},
+  ]},
+];
+
+const vc=document.getElementById('vocabContent');
+vocabGroups.forEach(g=>{
+  const div=document.createElement('div');div.className='vocab-group';
+  div.innerHTML=`<div class="vg-title" style="background:${g.color}">${g.title}</div>
+  <div class="vocab-cards">${g.items.map(i=>`<div class="vocab-chip" onclick="speak('${i.spk.replace(/'/g,"\\'")}')"><span class="vc-em">${i.emoji}</span>${i.name}</div>`).join('')}</div>`;
+  vc.appendChild(div);
+});
+
+// ══════════════════════════════════════════════
+// QUIZ
+// ══════════════════════════════════════════════
+let quizQs=[],quizIdx=0,quizScore=0,answered=false;
+function shuffle(arr){return[...arr].sort(()=>Math.random()-.5)}
+
+function buildQuiz(){
+  const types=['emoji-name','sound','category','fuel','wheels','driver','use','emoji-find'];
+  const pool=shuffle(vehicles).slice(0,10);
+  return pool.map((v,i)=>{
+    const t=types[i%types.length];
+    const others=shuffle(vehicles.filter(x=>x.name!==v.name)).slice(0,3);
+    let q={};
+    if(t==='emoji-name'){
+      q={emoji:v.emoji,text:`What vehicle is this?`,ans:v.name,
+         opts:shuffle([v.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:vehicles.find(x=>x.name===o)?.emoji||''}))};
+    } else if(t==='sound'){
+      q={emoji:v.emoji,text:`Which vehicle says "${v.sound}"?`,ans:v.name,
+         opts:shuffle([v.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:vehicles.find(x=>x.name===o)?.emoji||''}))};
+    } else if(t==='category'){
+      q={emoji:v.emoji,text:`What type of vehicle is a ${v.name}?`,ans:v.category+' vehicle',
+         opts:shuffle([v.category+' vehicle',...others.map(x=>x.category+' vehicle')]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='fuel'){
+      q={emoji:v.emoji,text:`What fuel does a ${v.name} use?`,ans:v.fuel,
+         opts:shuffle([v.fuel,...others.map(x=>x.fuel)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='wheels'){
+      q={emoji:v.emoji,text:`How many wheels does a ${v.name} have?`,ans:String(v.wheels),
+         opts:shuffle([String(v.wheels),...others.map(x=>String(x.wheels))]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='driver'){
+      q={emoji:v.emoji,text:`Who drives a ${v.name}?`,ans:v.driver,
+         opts:shuffle([v.driver,...others.map(x=>x.driver)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='use'){
+      q={emoji:'🤔',text:`Which vehicle is used for: "${v.use.slice(0,60)}..."?`,ans:v.name,
+         opts:shuffle([v.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:vehicles.find(x=>x.name===o)?.emoji||''}))};
+    } else {
+      q={emoji:'❓',text:`Find the ${v.name}!`,ans:v.emoji,
+         opts:shuffle([v.emoji,...others.map(x=>x.emoji)]).map(o=>({lbl:o,em:''}))};
+    }
+    return q;
+  });
+}
+
+function startQuiz(){
+  quizQs=buildQuiz();quizIdx=0;quizScore=0;
+  document.getElementById('scoreBoard').classList.remove('show');
+  document.getElementById('quizInner').style.display='';
+  renderQ();
+}
+
+function renderQ(){
+  answered=false;
+  const q=quizQs[quizIdx];
+  document.getElementById('qProg').textContent=`Question ${quizIdx+1} of ${quizQs.length}`;
+  document.getElementById('qBar').style.width=`${((quizIdx+1)/quizQs.length)*100}%`;
+  document.getElementById('qEmoji').textContent=q.emoji;
+  document.getElementById('qText').textContent=q.text;
+  document.getElementById('qFb').textContent='';
+  document.getElementById('nextBtn').style.display='none';
+  const opts=document.getElementById('qOpts');opts.innerHTML='';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='q-opt';
+    b.innerHTML=(o.em?`<span style="font-size:1.4rem">${o.em}</span> `:'')+o.lbl;
+    b.onclick=()=>checkAns(o.lbl,q.ans,b);
+    opts.appendChild(b);
+  });
+}
+
+function checkAns(chosen,correct,btn){
+  if(answered)return;answered=true;
+  document.querySelectorAll('.q-opt').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('qFb');
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.innerHTML='<span class="fb-ok">🚀 Superb! That\'s correct!</span>';
+    quizScore++;confetti();
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent.includes(correct))b.classList.add('correct');});
+    fb.innerHTML=`<span class="fb-no">💪 The answer is: ${correct}</span>`;
+  }
+  document.getElementById('nextBtn').style.display='inline-block';
+}
+
+function nextQ(){
+  quizIdx++;
+  if(quizIdx>=quizQs.length){showScore();return;}
+  renderQ();
+}
+
+function showScore(){
+  document.getElementById('quizInner').style.display='none';
+  document.getElementById('scoreBoard').classList.add('show');
+  const pct=quizScore/quizQs.length;
+  let trophy='🎉',stars='⭐⭐⭐',msg='Fantastic! You are a Vehicle Expert! 🚀🏆';
+  if(pct<.5){trophy='💪';stars='⭐';msg='Keep practising – vehicles are so exciting! 🌈';}
+  else if(pct<.8){trophy='😊';stars='⭐⭐';msg='Great job! Almost a perfect score! 🎊';}
+  document.getElementById('scTrophy').textContent=trophy;
+  document.getElementById('scStars').textContent=stars;
+  document.getElementById('scNum').textContent=`${quizScore} / ${quizQs.length}`;
+  document.getElementById('scMsg').textContent=msg;
+  if(pct>=.8)confetti();
+}
+startQuiz();
+
+// ══════════════════════════════════════════════
+// SPELL GAME
+// ══════════════════════════════════════════════
+let spellList=[],spellIdx=0,spellOk=0,spellBad=0,curWord='',userSpell=[];
+
+function initSpell(){
+  spellList=shuffle(vehicles).slice(0,12);
+  spellIdx=0;spellOk=0;spellBad=0;
+  document.getElementById('gOk').textContent=0;
+  document.getElementById('gBad').textContent=0;
+  loadWord();
+}
+
+function loadWord(){
+  if(spellIdx>=spellList.length){endSpell();return;}
+  const v=spellList[spellIdx];
+  curWord=v.name.toUpperCase();
+  userSpell=Array(curWord.length).fill('');
+  document.getElementById('gEmoji').textContent=v.emoji;
+  document.getElementById('gHint').textContent=`Spell the vehicle! It starts with "${curWord[0]}" and has ${curWord.length} letters.`;
+  document.getElementById('gFb').textContent='';
+  document.getElementById('gNextBtn').style.display='none';
+  document.getElementById('gWNum').textContent=spellIdx+1;
+  renderBlanks();renderPool(v.name);
+}
+
+function renderBlanks(){
+  const el=document.getElementById('gBlanks');el.innerHTML='';
+  curWord.split('').forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='blank'+(userSpell[i]?' filled':'');
+    d.id='bl_'+i;d.textContent=userSpell[i]||'';
+    el.appendChild(d);
+  });
+}
+
+function renderPool(name){
+  const base=[...name.toUpperCase()];
+  const extras='AEIOURSTLNMPBDFGHK'.split('').filter(c=>!base.includes(c));
+  const pool=shuffle([...base,...shuffle(extras).slice(0,Math.min(4,8-base.length))]);
+  const el=document.getElementById('gPool');el.innerHTML='';
+  pool.forEach((l,i)=>{
+    const b=document.createElement('button');
+    b.className='l-tile';b.id='t_'+i;b.textContent=l;
+    b.onclick=()=>{
+      const next=userSpell.findIndex(x=>!x);
+      if(next===-1)return;
+      userSpell[next]=l;b.classList.add('used');renderBlanks();
+    };
+    el.appendChild(b);
+  });
+}
+
+function clearSpell(){
+  userSpell=Array(curWord.length).fill('');
+  document.querySelectorAll('.l-tile').forEach(t=>t.classList.remove('used'));
+  renderBlanks();document.getElementById('gFb').textContent='';
+}
+
+function checkSpell(){
+  if(userSpell.includes('')){document.getElementById('gFb').textContent='⚠️ Fill all letters first!';return;}
+  const typed=userSpell.join('');
+  if(typed===curWord){
+    document.getElementById('gFb').innerHTML='<span style="color:#6BCB77">🎉 Perfect spelling! Vroom!</span>';
+    spellOk++;confetti();
+  } else {
+    document.getElementById('gFb').innerHTML=`<span style="color:#FF4757">💪 It is: ${curWord}</span>`;
+    spellBad++;
+  }
+  document.getElementById('gOk').textContent=spellOk;
+  document.getElementById('gBad').textContent=spellBad;
+  document.getElementById('gNextBtn').style.display='inline-block';
+  document.querySelectorAll('.l-tile').forEach(t=>t.disabled=true);
+}
+
+function nextWord(){spellIdx++;loadWord();}
+
+function endSpell(){
+  document.getElementById('gEmoji').textContent='🏆';
+  document.getElementById('gHint').textContent=`All done! You got ${spellOk} out of 12!`;
+  document.getElementById('gBlanks').innerHTML='';document.getElementById('gPool').innerHTML='';
+  document.getElementById('gFb').innerHTML='<span style="color:#5BC8F5">🚀 You are a spelling champion! Play again!</span>';
+  const nb=document.getElementById('gNextBtn');
+  nb.textContent='Play Again 🔄';nb.style.display='inline-block';nb.onclick=initSpell;
+  if(spellOk>=8)confetti();
+}
+initSpell();
+
+// ══════════════════════════════════════════════
+// MATCH GAME
+// ══════════════════════════════════════════════
+let mSelected=null,mPairs=[],mDone=0;
+
+function resetMatch(){
+  mSelected=null;mDone=0;
+  mPairs=shuffle(vehicles).slice(0,8);
+  document.getElementById('mStatus').textContent='';
+  const eCol=document.getElementById('mEmojis');
+  const wCol=document.getElementById('mWords');
+  eCol.innerHTML='';wCol.innerHTML='';
+  shuffle(mPairs).forEach(v=>{
+    const d=document.createElement('div');
+    d.className='m-item';d.dataset.id=v.name;d.dataset.type='emoji';
+    d.textContent=v.emoji;d.style.fontSize='2.3rem';
+    d.addEventListener('click',()=>mClick(d));eCol.appendChild(d);
+  });
+  shuffle(mPairs).forEach(v=>{
+    const d=document.createElement('div');
+    d.className='m-item';d.dataset.id=v.name;d.dataset.type='word';
+    d.textContent=v.name;d.style.color=v.color;
+    d.addEventListener('click',()=>mClick(d));wCol.appendChild(d);
+  });
+}
+
+function mClick(el){
+  if(el.classList.contains('matched'))return;
+  if(mSelected===el){el.classList.remove('selected');mSelected=null;return;}
+  if(!mSelected){el.classList.add('selected');mSelected=el;return;}
+  if(mSelected.dataset.type===el.dataset.type){
+    mSelected.classList.remove('selected');el.classList.add('selected');mSelected=el;return;
+  }
+  if(mSelected.dataset.id===el.dataset.id){
+    [mSelected,el].forEach(e=>{e.classList.remove('selected');e.classList.add('matched');});
+    speak(mSelected.dataset.id);mDone++;mSelected=null;
+    document.getElementById('mStatus').innerHTML=mDone===mPairs.length
+      ?'<span style="color:#6BCB77">🎉 All matched! You\'re a vehicle genius!</span>'
+      :'<span style="color:#6BCB77">✅ Great match! Keep going!</span>';
+    if(mDone===mPairs.length)confetti();
+  } else {
+    const tmp=mSelected;
+    [tmp,el].forEach(e=>e.classList.add('wrong'));
+    document.getElementById('mStatus').innerHTML='<span style="color:#FF4757">❌ Try again!</span>';
+    setTimeout(()=>{[tmp,el].forEach(e=>e.classList.remove('wrong','selected'));mSelected=null;},700);
+  }
+}
+resetMatch();
+
+// ══════════════════════════════════════════════
+// SORT GAME
+// ══════════════════════════════════════════════
+let sortPlacements={},sortActivePick=null;
+
+function initSort(){
+  sortPlacements={};sortActivePick=null;
+  document.getElementById('sortStatus').textContent='';
+  const bRow=document.getElementById('sortBaskets');bRow.innerHTML='';
+  sortCats.forEach(cat=>{
+    const div=document.createElement('div');
+    div.className='sort-basket';div.id='basket_'+cat.id;
+    div.innerHTML=`<div class="basket-label" style="background:${cat.color}">${cat.label}</div><div class="basket-items" id="bi_${cat.id}"></div>`;
+    div.addEventListener('dragover',e=>{e.preventDefault();div.classList.add('drag-over');});
+    div.addEventListener('dragleave',()=>div.classList.remove('drag-over'));
+    div.addEventListener('drop',e=>{
+      e.preventDefault();div.classList.remove('drag-over');
+      const vname=e.dataTransfer.getData('vehicle');
+      if(vname)placeVehicle(vname,cat.id);
+    });
+    div.addEventListener('click',()=>{
+      if(sortActivePick){placeVehicle(sortActivePick,cat.id);sortActivePick=null;clearPickHighlight();}
+    });
+    bRow.appendChild(div);
+  });
+  const pool=document.getElementById('sortPool');pool.innerHTML='';
+  vehicles.forEach(v=>{
+    const chip=document.createElement('div');
+    chip.className='sort-chip';chip.id='sc_'+v.name;
+    chip.setAttribute('draggable','true');
+    chip.innerHTML=`<span>${v.emoji}</span>${v.name}`;
+    chip.style.borderColor='transparent';
+    chip.addEventListener('dragstart',e=>{
+      e.dataTransfer.setData('vehicle',v.name);chip.style.opacity='.5';
+    });
+    chip.addEventListener('dragend',()=>chip.style.opacity='1');
+    chip.addEventListener('click',()=>{
+      if(sortActivePick===v.name){sortActivePick=null;clearPickHighlight();}
+      else{clearPickHighlight();sortActivePick=v.name;chip.classList.add('active-pick');}
+    });
+    pool.appendChild(chip);
+  });
+}
+
+function clearPickHighlight(){
+  document.querySelectorAll('.sort-chip').forEach(c=>c.classList.remove('active-pick'));
+}
+
+function placeVehicle(vname,catId){
+  if(sortPlacements[vname]){
+    const old=document.getElementById('bi_'+sortPlacements[vname]);
+    if(old){const o=old.querySelector(`[data-v="${vname}"]`);if(o)o.remove();}
+  }
+  sortPlacements[vname]=catId;
+  const bi=document.getElementById('bi_'+catId);
+  const v=vehicles.find(x=>x.name===vname);
+  const bc=document.createElement('div');
+  bc.className='basket-chip';bc.dataset.v=vname;
+  bc.innerHTML=`${v.emoji} ${v.name}`;
+  bc.addEventListener('click',()=>{
+    bc.remove();delete sortPlacements[vname];
+    const sc=document.getElementById('sc_'+vname);
+    if(sc)sc.style.display='flex';
+  });
+  bi.appendChild(bc);
+  const sc=document.getElementById('sc_'+vname);
+  if(sc)sc.style.display='none';
+}
+
+function checkSort(){
+  let correct=0,total=Object.keys(sortPlacements).length;
+  if(total===0){document.getElementById('sortStatus').innerHTML='<span style="color:#FF4757">⚠️ Place some vehicles first!</span>';return;}
+  document.querySelectorAll('.basket-chip').forEach(bc=>{
+    const vname=bc.dataset.v;
+    const v=vehicles.find(x=>x.name===vname);
+    const placed=sortPlacements[vname];
+    const cat=sortCats.find(c=>c.id===placed);
+    if(cat&&cat.match===v.category){bc.classList.add('correct-item');bc.classList.remove('wrong-item');correct++;}
+    else{bc.classList.add('wrong-item');bc.classList.remove('correct-item');}
+  });
+  const st=document.getElementById('sortStatus');
+  if(correct===vehicles.length){
+    st.innerHTML='<span style="color:#6BCB77">🎉 Perfect! All vehicles sorted correctly! 🏆</span>';confetti();
+  } else {
+    st.innerHTML=`<span style="color:#FF9A3C">✅ ${correct}/${total} correct! Green = right ✅, Red = wrong ❌. Try again! 💪</span>`;
+  }
+}
+initSort();
+
+// ══════════════════════════════════════════════
+// SOUNDS GAME
+// ══════════════════════════════════════════════
+// Build sound cards
+const soundsGrid=document.getElementById('soundsGrid');
+vehicleSounds.forEach(v=>{
+  const c=document.createElement('div');
+  c.className='sound-card';c.style.borderColor=v.color;
+  c.style.background=`linear-gradient(160deg,${v.color}1a 0%,#fff 50%)`;
+  c.innerHTML=`<span class="sound-emoji">${v.emoji}</span>
+    <div class="sound-name" style="color:${v.color}">${v.name}</div>
+    <div class="sound-word">"${v.sound}"</div>`;
+  c.addEventListener('click',()=>{
+    c.classList.add('playing');
+    speak(`The ${v.name} says ${v.sound}`);
+    setTimeout(()=>c.classList.remove('playing'),600);
+  });
+  soundsGrid.appendChild(c);
+});
+
+// Sound quiz
+let sqQs=[],sqIdx=0,sqScore=0,sqAnswered=false;
+
+function buildSoundQuiz(){
+  return shuffle(vehicleSounds).slice(0,10).map((v,i)=>{
+    const others=shuffle(vehicleSounds.filter(x=>x.name!==v.name)).slice(0,3);
+    const type=i%2===0?'sound-to-name':'name-to-sound';
+    if(type==='sound-to-name'){
+      return{text:`Which vehicle says: "${v.sound}"?`,ans:v.name,
+        opts:shuffle([v.name,...others.map(x=>x.name)])};
+    } else {
+      return{text:`What sound does a ${v.name} make?`,ans:v.sound,
+        opts:shuffle([v.sound,...others.map(x=>x.sound)])};
+    }
+  });
+}
+
+function renderSoundQ(){
+  sqAnswered=false;
+  if(sqIdx>=sqQs.length){
+    const pct=sqScore/sqQs.length;
+    document.getElementById('sqQuestion').textContent='🎉 Quiz complete!';
+    document.getElementById('sqOpts').innerHTML='';
+    document.getElementById('sqFb').innerHTML=`<span style="color:${pct>=.8?'#6BCB77':'#FF9A3C'}">You got ${sqScore}/${sqQs.length}! ${pct>=.8?'Amazing! 🚀':'Keep practising! 💪'}</span>`;
+    document.getElementById('sqNext').style.display='none';
+    document.getElementById('sqScore').textContent='';
+    const rb=document.createElement('button');
+    rb.className='next-btn';rb.textContent='Play Again 🔄';rb.style.marginTop='10px';
+    rb.onclick=()=>{sqQs=buildSoundQuiz();sqIdx=0;sqScore=0;document.getElementById('sqScore').textContent='';rb.remove();renderSoundQ();};
+    document.getElementById('sqFb').appendChild(rb);
+    if(pct>=.8)confetti();
+    return;
+  }
+  const q=sqQs[sqIdx];
+  document.getElementById('sqQuestion').textContent=q.text;
+  document.getElementById('sqFb').textContent='';
+  document.getElementById('sqNext').style.display='none';
+  document.getElementById('sqScore').textContent=`Question ${sqIdx+1}/${sqQs.length} | Score: ${sqScore}`;
+  const opts=document.getElementById('sqOpts');opts.innerHTML='';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='sq-opt';b.textContent=o;
+    b.onclick=()=>{
+      if(sqAnswered)return;sqAnswered=true;
+      document.querySelectorAll('.sq-opt').forEach(x=>x.disabled=true);
+      if(o===q.ans){
+        b.classList.add('correct');
+        document.getElementById('sqFb').innerHTML='<span class="fb-ok">🎵 Correct! Great listening!</span>';
+        sqScore++;confetti();
+      } else {
+        b.classList.add('wrong');
+        document.querySelectorAll('.sq-opt').forEach(x=>{if(x.textContent===q.ans)x.classList.add('correct');});
+        document.getElementById('sqFb').innerHTML=`<span class="fb-no">💪 Answer: ${q.ans}</span>`;
+      }
+      document.getElementById('sqNext').style.display='inline-block';
+    };
+    opts.appendChild(b);
+  });
+}
+
+function nextSoundQ(){sqIdx++;renderSoundQ();}
+
+sqQs=buildSoundQuiz();renderSoundQ();
+
+// ══════════════════════════════════════════════
+// CONFETTI
+// ══════════════════════════════════════════════
+function confetti(){
+  const cols=['#5BC8F5','#FFD93D','#6BCB77','#FF4757','#C77DFF','#FF9A3C','#4361EE'];
+  for(let i=0;i<44;i++){
+    const p=document.createElement('div');p.className='cp';
+    p.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*-20}px;background:${cols[Math.floor(Math.random()*cols.length)]};width:${Math.random()*12+6}px;height:${Math.random()*12+6}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-delay:${Math.random()*.8}s;animation-duration:${Math.random()*1.5+1.5}s`;
+    document.body.appendChild(p);setTimeout(()=>p.remove(),3500);
+  }
+}
+</script>
+</body>
+</html>

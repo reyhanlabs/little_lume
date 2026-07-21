@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BunRey English Course – Writing for Kindergarten</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #FF8C42;
+      --orange-light: #FFF1E6;
+      --pink: #FF6B9D;
+      --pink-light: #FFE8F0;
+      --green: #6BCB77;
+      --green-light: #E8F9EA;
+      --blue: #4D96FF;
+      --blue-light: #E8F0FF;
+      --purple: #B98EFF;
+      --purple-light: #F2EBFF;
+      --yellow: #FFD93D;
+      --yellow-light: #FFFBE0;
+      --gray-50: #FAFAF8;
+      --gray-100: #F3F1ED;
+      --gray-200: #E5E1D8;
+      --gray-400: #B0AA9C;
+      --gray-600: #6B6458;
+      --gray-800: #3D372D;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #FFFDF7;
+      color: var(--gray-800);
+      min-height: 100vh;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ══════════════════════════════
+       HOME
+    ══════════════════════════════ */
+    #home {
+      background: linear-gradient(160deg, #FFE5B4 0%, #FFD3E8 50%, #D4E8FF 100%);
+      min-height: 100vh;
+    }
+
+    .home-hero {
+      text-align: center;
+      padding: 44px 24px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .home-hero::before {
+      content: '☁️';
+      position: absolute;
+      font-size: 60px;
+      top: 10px; left: 10px;
+      opacity: 0.6;
+    }
+    .home-hero::after {
+      content: '🌈';
+      position: absolute;
+      font-size: 70px;
+      top: 0px; right: 0px;
+      opacity: 0.7;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      background: #fff;
+      border: 3px solid var(--orange);
+      border-radius: 30px;
+      padding: 8px 24px;
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 0 rgba(255,140,66,0.25);
+    }
+
+    .hero-emoji { font-size: 80px; display: block; margin-bottom: 10px; animation: wiggle 2.5s ease-in-out infinite; }
+    @keyframes wiggle {
+      0%,100% { transform: rotate(-6deg); }
+      50% { transform: rotate(6deg); }
+    }
+
+    .hero-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: clamp(36px, 9vw, 58px);
+      color: var(--gray-800);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .hero-title .hl { color: var(--pink); }
+    .hero-sub {
+      color: var(--gray-600);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: #fff;
+      border: 3px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 10px 18px;
+      text-align: center;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.05);
+    }
+    .stat-pill .num { font-size: 24px; font-weight: 900; display: block; font-family: 'Baloo 2', cursive; }
+    .stat-pill .lbl { color: var(--gray-400); font-size: 11px; font-weight: 700; }
+    .stat-pill:nth-child(1) .num { color: var(--orange); }
+    .stat-pill:nth-child(2) .num { color: var(--pink); }
+    .stat-pill:nth-child(3) .num { color: var(--blue); }
+    .stat-pill:nth-child(4) .num { color: var(--green); }
+
+    .lessons-section {
+      padding: 0 20px 32px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .section-label {
+      color: var(--gray-600);
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 16px;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .lesson-card {
+      background: #fff;
+      border-radius: 26px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      border: 3px solid var(--card-color, #FF8C42);
+      box-shadow: 0 5px 0 var(--card-color, #FF8C42);
+      position: relative;
+    }
+    .lesson-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 0 var(--card-color, #FF8C42);
+    }
+
+    .card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .card-icon {
+      width: 54px; height: 54px;
+      border-radius: 18px;
+      background: var(--card-bg, #FFF1E6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .card-title { font-family: 'Baloo 2', cursive; font-size: 18px; font-weight: 800; color: var(--gray-800); line-height: 1.2; }
+    .card-sub { font-size: 13px; color: var(--gray-400); margin-top: 2px; font-weight: 700; }
+    .card-obj {
+      font-size: 12px;
+      color: var(--gray-600);
+      border-top: 2px dashed var(--gray-200);
+      padding-top: 10px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+    .card-btn {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .card-btn span {
+      background: var(--card-color, #FF8C42);
+      color: #fff;
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .quiz-btn-wrap { text-align: center; margin-top: 24px; padding-bottom: 40px; }
+    .quiz-main-btn {
+      background: var(--yellow);
+      color: var(--gray-800);
+      border: 3px solid #F0C400;
+      border-radius: 26px;
+      padding: 18px 44px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 22px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #F0C400;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .quiz-main-btn:hover { transform: translateY(3px); box-shadow: 0 3px 0 #F0C400; }
+
+    /* ══════════════════════════════
+       LESSON
+    ══════════════════════════════ */
+    #lesson { min-height: 100vh; background: var(--gray-50); }
+
+    .lesson-header {
+      padding: 28px 24px 26px;
+      background: linear-gradient(135deg, var(--lcolor, #FF8C42), var(--lcolor2, #FF6B6B));
+      border-radius: 0 0 36px 36px;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.3);
+      border: none;
+      border-radius: 20px;
+      padding: 8px 20px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 18px;
+      display: inline-block;
+      font-family: 'Baloo 2', cursive;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.45); }
+
+    .lheader-inner { display: flex; align-items: center; gap: 18px; }
+    .lheader-emoji { font-size: 56px; }
+    .lheader-num { color: rgba(255,255,255,0.85); font-size: 13px; letter-spacing: 1px; font-weight: 800; font-family: 'Baloo 2', cursive; }
+    .lheader-title { font-family: 'Baloo 2', cursive; font-size: 30px; color: #fff; margin: 4px 0 2px; }
+    .lheader-sub { color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 700; }
+
+    .obj-banner {
+      background: var(--lbg, #FFF1E6);
+      border-radius: 20px;
+      margin: 16px 24px 0;
+      padding: 14px 20px;
+      font-size: 14px;
+      color: var(--gray-600);
+      font-weight: 600;
+      max-width: 660px;
+      margin-left: auto; margin-right: auto;
+    }
+    .obj-banner strong { color: var(--lcolor, #FF8C42); }
+
+    .lesson-body { padding: 24px; max-width: 660px; margin: 0 auto; }
+
+    /* Content blocks */
+    .block { margin-bottom: 20px; }
+
+    .tip-block {
+      background: var(--yellow-light);
+      border: 3px dashed var(--yellow);
+      border-radius: 22px;
+      padding: 18px 22px;
+    }
+    .tip-label { font-size: 13px; font-weight: 800; color: #C99A00; margin-bottom: 8px; font-family: 'Baloo 2', cursive; }
+    .tip-text { color: var(--gray-600); font-size: 16px; line-height: 1.8; font-weight: 600; }
+
+    .practice-block {
+      background: var(--green-light);
+      border: 3px dashed var(--green);
+      border-radius: 22px;
+      padding: 18px 22px;
+    }
+    .practice-label { font-size: 13px; font-weight: 800; color: #3D9B4A; margin-bottom: 8px; font-family: 'Baloo 2', cursive; }
+    .practice-text { color: var(--gray-600); font-size: 16px; line-height: 1.8; font-weight: 600; }
+
+    .block-label { font-size: 16px; font-weight: 800; color: var(--gray-800); margin-bottom: 12px; font-family: 'Baloo 2', cursive; }
+
+    /* Steps */
+    .step-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .step-num {
+      min-width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--lcolor, #FF8C42);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 15px;
+      flex-shrink: 0;
+      font-family: 'Baloo 2', cursive;
+    }
+    .step-text { color: var(--gray-600); font-size: 16px; padding-top: 5px; line-height: 1.65; font-weight: 600; }
+
+    /* Letter cards (big, kindergarten-friendly) */
+    .letter-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .letter-card {
+      width: 78px;
+      background: #fff;
+      border: 3px solid var(--lcolor, #FF8C42);
+      border-radius: 18px;
+      padding: 10px 6px;
+      text-align: center;
+      box-shadow: 0 3px 0 var(--lcolor, #FF8C42);
+    }
+    .letter-card .big-letters {
+      font-family: 'Baloo 2', cursive;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--lcolor, #FF8C42);
+      line-height: 1.1;
+    }
+    .letter-card .word {
+      font-size: 12px;
+      color: var(--gray-600);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .letter-card .emoji { font-size: 22px; margin-top: 2px; }
+
+    /* Tracing shapes */
+    .shape-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .shape-box {
+      background: #fff;
+      border: 3px solid var(--lcolor, #FF8C42);
+      border-radius: 16px;
+      padding: 16px 22px;
+      text-align: center;
+      flex: 1;
+      min-width: 100px;
+    }
+    .shape-box .shape-icon { font-size: 32px; margin-bottom: 6px; }
+    .shape-box .shape-name { font-weight: 800; color: var(--gray-600); font-size: 14px; font-family: 'Baloo 2', cursive; }
+    .shape-box .shape-trace { font-family: monospace; font-size: 22px; color: var(--gray-400); letter-spacing: 4px; margin-top: 6px; }
+
+    /* Song/rhyme block */
+    .song-block {
+      background: var(--purple-light);
+      border: 3px solid var(--purple);
+      border-radius: 22px;
+      padding: 18px 22px;
+    }
+    .song-label { font-size: 13px; font-weight: 800; color: #8B5CF6; margin-bottom: 10px; font-family: 'Baloo 2', cursive; }
+    .song-line { font-size: 16px; color: var(--gray-600); font-weight: 700; line-height: 1.9; }
+
+    /* Word with picture */
+    .pic-word-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .pic-word-card {
+      background: #fff;
+      border: 3px solid var(--lcolor, #FF8C42);
+      border-radius: 18px;
+      padding: 14px 18px;
+      text-align: center;
+      min-width: 90px;
+    }
+    .pic-word-card .pic-emoji { font-size: 36px; margin-bottom: 6px; }
+    .pic-word-card .pic-word { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 18px; color: var(--lcolor, #FF8C42); }
+
+    /* Name writing */
+    .name-box {
+      background: #fff;
+      border: 3px solid var(--lcolor, #FF8C42);
+      border-radius: 16px;
+      padding: 14px 20px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: var(--gray-600);
+      font-weight: 700;
+    }
+    .name-box .blank-line {
+      display: inline-block;
+      border-bottom: 3px dotted var(--gray-400);
+      width: 140px;
+      margin-left: 8px;
+    }
+
+    /* Lesson nav */
+    .lesson-nav { display: flex; gap: 12px; margin-top: 28px; }
+    .nav-btn {
+      flex: 1;
+      border-radius: 18px;
+      padding: 16px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      font-family: 'Baloo 2', cursive;
+      transition: transform 0.15s;
+    }
+    .nav-btn:hover { transform: translateY(-2px); }
+    .nav-btn.prev { background: #fff; border: 3px solid var(--lcolor, #FF8C42); color: var(--lcolor, #FF8C42); }
+    .nav-btn.next { background: var(--lcolor, #FF8C42); color: #fff; box-shadow: 0 4px 0 var(--lcolor2, #FF6B6B); }
+    .nav-btn.quiz-nav { background: var(--yellow); color: var(--gray-800); box-shadow: 0 4px 0 #F0C400; }
+
+    /* ══════════════════════════════
+       QUIZ
+    ══════════════════════════════ */
+    #quiz {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #FFE5B4 0%, #FFD3E8 50%, #D4E8FF 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .quiz-wrap { width: 100%; max-width: 520px; }
+
+    .quiz-card {
+      background: #fff;
+      border-radius: 30px;
+      padding: 30px;
+      border: 4px solid var(--purple);
+      box-shadow: 0 8px 0 var(--purple);
+    }
+
+    .quiz-toprow {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 18px;
+    }
+    .quiz-counter { font-weight: 800; color: var(--gray-400); font-size: 13px; font-family: 'Baloo 2', cursive; }
+    .quiz-score-badge {
+      background: var(--purple-light);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-weight: 800;
+      color: var(--purple);
+      font-size: 13px;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    .quiz-progress {
+      background: var(--gray-200);
+      border-radius: 8px;
+      height: 10px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      height: 10px;
+      border-radius: 8px;
+      transition: width 0.35s;
+    }
+
+    .quiz-q {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gray-800);
+      margin-bottom: 22px;
+      line-height: 1.5;
+      font-family: 'Baloo 2', cursive;
+    }
+    .quiz-q-emoji { font-size: 44px; text-align: center; margin-bottom: 10px; }
+
+    .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-opt {
+      background: var(--gray-50);
+      border: 3px solid var(--gray-200);
+      border-radius: 18px;
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--gray-600);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--purple); color: var(--purple); background: var(--purple-light); }
+    .quiz-opt.correct { background: var(--green-light); border-color: var(--green); color: #2E7D38; }
+    .quiz-opt.wrong { background: #FFE0E0; border-color: #FF6B6B; color: #C0392B; }
+    .quiz-opt:disabled { cursor: default; }
+
+    /* Result */
+    .result-card {
+      background: #fff;
+      border-radius: 30px;
+      padding: 40px 30px;
+      text-align: center;
+      border: 4px solid var(--green);
+      box-shadow: 0 8px 0 var(--green);
+    }
+    .result-trophy { font-size: 76px; margin-bottom: 16px; display: block; animation: wiggle 2.5s ease-in-out infinite; }
+    .result-title { font-family: 'Baloo 2', cursive; font-size: 30px; color: var(--gray-800); margin-bottom: 8px; }
+    .result-sub { color: var(--gray-400); font-size: 16px; margin-bottom: 24px; font-weight: 700; }
+    .result-score-box {
+      background: var(--gray-100);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 28px;
+    }
+    .result-score-label { font-size: 13px; font-weight: 800; color: var(--gray-400); letter-spacing: 1px; margin-bottom: 6px; font-family: 'Baloo 2', cursive; }
+    .result-pct { font-family: 'Baloo 2', cursive; font-size: 56px; font-weight: 800; }
+    .pct-green { color: var(--green); }
+    .pct-yellow { color: #E8A800; }
+    .pct-red { color: #FF6B6B; }
+
+    .result-btns { display: flex; gap: 12px; }
+    .result-btn {
+      flex: 1;
+      border: none;
+      border-radius: 18px;
+      padding: 16px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.15s;
+      font-family: 'Baloo 2', cursive;
+    }
+    .result-btn:hover { transform: translateY(-2px); }
+    .result-btn.retry { background: var(--purple); color: #fff; box-shadow: 0 4px 0 #9B6DEF; }
+    .result-btn.home { background: var(--gray-100); color: var(--gray-600); }
+
+    @media (max-width: 480px) {
+      .lesson-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 34px; }
+      .letter-card { width: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HOME ─────────────────────────────────── -->
+<div id="home" class="view active">
+  <div class="home-hero">
+    <div class="brand-badge">✨ BunRey English Course</div>
+    <span class="hero-emoji">🖍️</span>
+    <h1 class="hero-title">My First<br><span class="hl">Writing</span> Adventure!</h1>
+    <p class="hero-sub">Kindergarten Writing — Fun for Little Hands!</p>
+    <div class="stats-row">
+      <div class="stat-pill"><span class="num">6</span><span class="lbl">Lessons</span></div>
+      <div class="stat-pill"><span class="num">5</span><span class="lbl">Quiz</span></div>
+      <div class="stat-pill"><span class="num">26</span><span class="lbl">Letters</span></div>
+      <div class="stat-pill"><span class="num">⭐</span><span class="lbl">Star Kid</span></div>
+    </div>
+  </div>
+
+  <div class="lessons-section">
+    <div class="section-label">🎨 Pick a Fun Lesson!</div>
+    <div class="lesson-grid" id="lesson-grid"></div>
+    <div class="quiz-btn-wrap">
+      <button class="quiz-main-btn" onclick="openQuiz()">⭐ Play the Quiz!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSON ─────────────────────────────────── -->
+<div id="lesson" class="view">
+  <div class="lesson-header" id="lheader">
+    <button class="back-btn" onclick="showHome()">← Back</button>
+    <div class="lheader-inner">
+      <span class="lheader-emoji" id="l-emoji"></span>
+      <div>
+        <div class="lheader-num" id="l-num"></div>
+        <div class="lheader-title" id="l-title"></div>
+        <div class="lheader-sub" id="l-sub"></div>
+      </div>
+    </div>
+  </div>
+  <div class="obj-banner" id="l-obj"></div>
+  <div class="lesson-body">
+    <div id="lesson-content"></div>
+    <div class="lesson-nav" id="lesson-nav"></div>
+  </div>
+</div>
+
+<!-- ── QUIZ ─────────────────────────────────── -->
+<div id="quiz" class="view">
+  <div class="quiz-wrap">
+    <button class="back-btn" onclick="showHome(); resetQuiz();" style="background:rgba(255,255,255,0.6); color:#6B6458;">← Back to Lessons</button>
+    <div id="quiz-q-card" class="quiz-card" style="display:none; margin-top:18px;"></div>
+    <div id="quiz-result-card" class="result-card" style="display:none; margin-top:18px;"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════
+const LESSONS = [
+  {
+    id: 1, icon: "🖍️", color: "#FF8C42", color2: "#FF6B6B", bg: "#FFF1E6",
+    title: "Holding My Crayon", sub: "Getting ready to write!",
+    objective: "Children will learn how to hold a crayon or pencil correctly and build hand strength.",
+    content: [
+      { type:"tip", label:"Pinch and Hold!",
+        text:"Use your thumb and pointer finger to <strong>pinch</strong> your crayon, and rest it on your middle finger — just like a little claw! 🦀" },
+      { type:"steps", label:"Let's Try It!",
+        steps:["Hold up your hand and show me a pinch! 🤏","Pick up your crayon with thumb and pointer finger.","Rest the crayon gently on your middle finger.","Hold it softly — not too tight!","Great job! You are ready to write! 🌟"] },
+      { type:"shapes", label:"Trace the Shapes!",
+        shapes:[
+          { icon:"➖", name:"Straight Line", trace:"— — — —" },
+          { icon:"〜", name:"Wavy Line", trace:"〜 〜 〜 〜" },
+          { icon:"⭕", name:"Circle", trace:"○ ○ ○ ○" }
+        ]},
+      { type:"practice", label:"Finger Fun!",
+        text:"Before writing, wiggle your fingers like spaghetti, make a fist like a rock, then pinch like a crab! Do this 3 times to warm up your writing hand." }
+    ]
+  },
+  {
+    id: 2, icon: "🔵", color: "#4D96FF", color2: "#6BB6FF", bg: "#E8F0FF",
+    title: "Drawing Lines & Shapes", sub: "Lines make letters!",
+    objective: "Children will practice drawing lines and shapes that form the basis of letters.",
+    content: [
+      { type:"tip", label:"Why Lines?",
+        text:"Every letter is made of <strong>lines and curves</strong>! If we can draw a line, a circle, and a curve, we can write any letter!" },
+      { type:"shapes", label:"Practice These Strokes",
+        shapes:[
+          { icon:"⬇️", name:"Top to Bottom", trace:"| | | |" },
+          { icon:"➡️", name:"Left to Right", trace:"— — — —" },
+          { icon:"↘️", name:"Slanted Line", trace:"/ / / /" },
+          { icon:"🔄", name:"Big Circle", trace:"◯ ◯ ◯ ◯" }
+        ]},
+      { type:"song", label:"Sing While You Trace! 🎵",
+        lines:["Up and down, up and down,","that's how we make a line!","Round and round, round and round,","that's how we make a circle, all the time!"] },
+      { type:"practice", label:"Coloring & Tracing",
+        text:"In your workbook, trace each line slowly with your crayon. Go slow and steady — being neat is more important than being fast!" }
+    ]
+  },
+  {
+    id: 3, icon: "🔠", color: "#FF6B9D", color2: "#FF8FB3", bg: "#FFE8F0",
+    title: "Letters in My Name", sub: "My name is special!",
+    objective: "Children will recognize and begin to write the letters of their own first name.",
+    content: [
+      { type:"tip", label:"Your Name is Made of Letters!",
+        text:"Every name is a special word made of letters! Your name always starts with a <strong>capital letter</strong> (a BIG letter)." },
+      { type:"steps", label:"Let's Write Your Name!",
+        steps:["Say your name out loud. How many letters does it have?","Find the first letter — it is a BIG capital letter.","Trace each letter of your name slowly.","Color a star ⭐ next to your name when you finish!","Show your name to a friend or teacher! 😊"] },
+      { type:"namewriting", label:"Trace Your Name",
+        text:"Write your name 3 times below. Remember: BIG letter first, then small letters!",
+        examples:["Ana","Budi","Citra"]},
+      { type:"practice", label:"Name Hunt!",
+        text:"Look around the classroom. Can you find your name on your cubby, chair, or name tag? Point to the first letter of your name!" }
+    ]
+  },
+  {
+    id: 4, icon: "🔤", color: "#6BCB77", color2: "#8FE39B", bg: "#E8F9EA",
+    title: "Letters A, B, C", sub: "Our first alphabet friends!",
+    objective: "Children will recognize and trace the letters A, B, and C in both capital and small forms.",
+    content: [
+      { type:"tip", label:"Meet A, B, C!",
+        text:"A, B, and C are the very first letters of the alphabet. Each letter has a BIG (capital) shape and a small shape!" },
+      { type:"letters", label:"Aa, Bb, Cc",
+        letters:[
+          { big:"A", small:"a", word:"Apple", emoji:"🍎" },
+          { big:"B", small:"b", word:"Ball", emoji:"⚽" },
+          { big:"C", small:"c", word:"Cat", emoji:"🐱" }
+        ]},
+      { type:"song", label:"The ABC Song 🎵",
+        lines:["A is for Apple, yum yum yum!","B is for Ball, bounce, bounce, bounce!","C is for Cat, meow meow meow!","Now let's trace them all together now!"] },
+      { type:"practice", label:"Trace and Say!",
+        text:"In your workbook, trace the capital A, B, C and small a, b, c. Say the letter sound out loud each time you trace it!" }
+    ]
+  },
+  {
+    id: 5, icon: "🍌", color: "#FFD93D", color2: "#FFE873", bg: "#FFFBE0",
+    title: "Picture & Word Match", sub: "Connect pictures to words!",
+    objective: "Children will connect simple words with matching pictures and begin copying short words.",
+    content: [
+      { type:"tip", label:"Words Tell Us About Pictures!",
+        text:"Every picture can have a word! When we see a 🐶, we can write the word <strong>dog</strong>." },
+      { type:"picwords", label:"Match the Picture and Word",
+        items:[
+          { emoji:"🐶", word:"dog" },
+          { emoji:"🐱", word:"cat" },
+          { emoji:"☀️", word:"sun" },
+          { emoji:"🎈", word:"red" }
+        ]},
+      { type:"steps", label:"How to Copy a Word",
+        steps:["Look at the picture.","Look at the word under it.","Say the word slowly: d-o-g, dog!","Copy the word with your crayon, one letter at a time.","Color the picture when you're done! 🎨"] },
+      { type:"practice", label:"Your Turn!",
+        text:"In your workbook, copy the words dog, cat, sun, and red under each picture. Take your time — one letter at a time!" }
+    ]
+  },
+  {
+    id: 6, icon: "🎉", color: "#B98EFF", color2: "#D4B3FF", bg: "#F2EBFF",
+    title: "My Writing Show & Tell", sub: "I am a writer!",
+    objective: "Children will review what they learned and proudly share their writing with others.",
+    content: [
+      { type:"tip", label:"Look How Far You've Come!",
+        text:"You learned to hold a crayon, draw lines, write your name, and even copy words! You are a real writer now! 🌟" },
+      { type:"steps", label:"Show & Tell Time!",
+        steps:["Choose your favorite page from your workbook.","Hold it up and show it to the class.","Tell everyone: 'I wrote this!'","Point to one letter or word you are proud of.","Give yourself a clap! 👏"] },
+      { type:"song", label:"Our Writing Song 🎵",
+        lines:["I can hold my crayon tight,","I can write both day and night,","Letters, names, and words so neat,","Writing time is such a treat!"] },
+      { type:"practice", label:"Star Certificate! ⭐",
+        text:"Color a big star on your paper. Write your name under the star using your best handwriting. You earned it — great work, writer!" }
+    ]
+  }
+];
+
+const QUIZ = [
+  { q:"What do we use to hold a crayon — pinch or fist?", emoji:"🤏", opts:["Pinch","Fist","Foot","Elbow"], ans:0 },
+  { q:"Which letter comes first in the alphabet?", emoji:"🔤", opts:["B","C","A","D"], ans:2 },
+  { q:"What sound does this picture make? 🐱", emoji:"🐱", opts:["Dog","Cat","Sun","Ball"], ans:1 },
+  { q:"How should you trace lines — fast or slow?", emoji:"➖", opts:["Very fast","Slow and steady","Jumping around","Not at all"], ans:1 },
+  { q:"What letter does your NAME start with?", emoji:"⭐", opts:["A small letter","A number","A BIG capital letter","No letter"], ans:2 }
+];
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let currentLesson = 0;
+let quizStep = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+// ═══════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showHome() { showView('home'); }
+function openQuiz() { resetQuiz(); showView('quiz'); renderQuizStep(); }
+
+// ═══════════════════════════════════════════════
+//  LESSON CARDS – HOME
+// ═══════════════════════════════════════════════
+function buildHomeCards() {
+  const grid = document.getElementById('lesson-grid');
+  LESSONS.forEach((l, i) => {
+    const card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.style.setProperty('--card-color', l.color);
+    card.style.setProperty('--card-bg', l.bg);
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-icon">${l.icon}</div>
+        <div>
+          <div class="card-title">${l.title}</div>
+          <div class="card-sub">${l.sub}</div>
+        </div>
+      </div>
+      <div class="card-obj">🎯 ${l.objective}</div>
+      <div class="card-btn"><span>Start →</span></div>`;
+    card.onclick = () => openLesson(i);
+    grid.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  OPEN LESSON
+// ═══════════════════════════════════════════════
+function openLesson(idx) {
+  currentLesson = idx;
+  const l = LESSONS[idx];
+  const hdr = document.getElementById('lheader');
+  hdr.style.background = `linear-gradient(135deg, ${l.color}, ${l.color2})`;
+  document.getElementById('l-emoji').textContent = l.icon;
+  document.getElementById('l-num').textContent = `Lesson ${l.id} of ${LESSONS.length}`;
+  document.getElementById('l-title').textContent = l.title;
+  document.getElementById('l-sub').textContent = l.sub;
+
+  const obj = document.getElementById('l-obj');
+  obj.style.background = l.bg;
+  obj.innerHTML = `<strong style="color:${l.color}">🎯 Learning Goal:</strong> ${l.objective}`;
+
+  const body = document.querySelector('.lesson-body');
+  body.style.setProperty('--lcolor', l.color);
+  body.style.setProperty('--lcolor2', l.color2);
+  body.style.setProperty('--lbg', l.bg);
+
+  document.getElementById('lesson-content').innerHTML = l.content.map(renderBlock).join('');
+
+  const nav = document.getElementById('lesson-nav');
+  nav.innerHTML = '';
+  if (idx > 0) {
+    const prev = document.createElement('button');
+    prev.className = 'nav-btn prev';
+    prev.style.setProperty('--lcolor', l.color);
+    prev.textContent = '← Previous';
+    prev.onclick = () => openLesson(idx - 1);
+    nav.appendChild(prev);
+  }
+  if (idx < LESSONS.length - 1) {
+    const next = document.createElement('button');
+    next.className = 'nav-btn next';
+    next.style.background = l.color;
+    next.style.setProperty('--lcolor2', l.color2);
+    next.textContent = 'Next Lesson →';
+    next.onclick = () => openLesson(idx + 1);
+    nav.appendChild(next);
+  } else {
+    const qbtn = document.createElement('button');
+    qbtn.className = 'nav-btn quiz-nav';
+    qbtn.textContent = '⭐ Play the Quiz!';
+    qbtn.onclick = openQuiz;
+    nav.appendChild(qbtn);
+  }
+
+  showView('lesson');
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER CONTENT BLOCKS
+// ═══════════════════════════════════════════════
+function renderBlock(b) {
+  if (b.type === 'tip') {
+    return `<div class="block tip-block">
+      <div class="tip-label">💡 ${b.label}</div>
+      <div class="tip-text">${b.text}</div>
+    </div>`;
+  }
+  if (b.type === 'steps') {
+    const steps = b.steps.map((s,i) => `
+      <div class="step-item">
+        <div class="step-num">${i+1}</div>
+        <div class="step-text">${s}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📋 ${b.label}</div>
+      ${steps}
+    </div>`;
+  }
+  if (b.type === 'practice') {
+    return `<div class="block practice-block">
+      <div class="practice-label">✏️ ${b.label}</div>
+      <div class="practice-text">${b.text}</div>
+    </div>`;
+  }
+  if (b.type === 'shapes') {
+    const shapes = b.shapes.map(s=>`
+      <div class="shape-box">
+        <div class="shape-icon">${s.icon}</div>
+        <div class="shape-name">${s.name}</div>
+        <div class="shape-trace">${s.trace}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🎨 ${b.label}</div>
+      <div class="shape-row">${shapes}</div>
+    </div>`;
+  }
+  if (b.type === 'song') {
+    const lines = b.lines.map(l=>`<div class="song-line">🎵 ${l}</div>`).join('');
+    return `<div class="block song-block">
+      <div class="song-label">${b.label}</div>
+      ${lines}
+    </div>`;
+  }
+  if (b.type === 'letters') {
+    const cards = b.letters.map(l=>`
+      <div class="letter-card">
+        <div class="big-letters">${l.big}${l.small}</div>
+        <div class="emoji">${l.emoji}</div>
+        <div class="word">${l.word}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🔤 ${b.label}</div>
+      <div class="letter-grid">${cards}</div>
+    </div>`;
+  }
+  if (b.type === 'picwords') {
+    const cards = b.items.map(it=>`
+      <div class="pic-word-card">
+        <div class="pic-emoji">${it.emoji}</div>
+        <div class="pic-word">${it.word}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🖼️ ${b.label}</div>
+      <div class="pic-word-grid">${cards}</div>
+    </div>`;
+  }
+  if (b.type === 'namewriting') {
+    const examples = b.examples.map(n=>`
+      <div class="name-box">Example: <strong>${n}</strong> <span class="blank-line"></span></div>`).join('');
+    return `<div class="block">
+      <div class="block-label">✍️ ${b.label}</div>
+      <div class="practice-text" style="margin-bottom:10px;">${b.text}</div>
+      ${examples}
+      <div class="name-box">My name: <span class="blank-line" style="width:200px;"></span></div>
+    </div>`;
+  }
+  return '';
+}
+
+// ═══════════════════════════════════════════════
+//  QUIZ
+// ═══════════════════════════════════════════════
+function resetQuiz() {
+  quizStep = 0;
+  quizScore = 0;
+  quizAnswered = false;
+}
+
+function renderQuizStep() {
+  const qcard = document.getElementById('quiz-q-card');
+  const rcard = document.getElementById('quiz-result-card');
+
+  if (quizStep >= QUIZ.length) {
+    qcard.style.display = 'none';
+    rcard.style.display = 'block';
+    const pct = Math.round((quizScore / QUIZ.length) * 100);
+    const emoji = quizScore === QUIZ.length ? '🏆' : quizScore >= 3 ? '🌟' : '📚';
+    const title = quizScore === QUIZ.length ? 'Super Star!' : quizScore >= 3 ? 'Great Job!' : 'Good Try!';
+    const pctClass = pct >= 80 ? 'pct-green' : pct >= 60 ? 'pct-yellow' : 'pct-red';
+    rcard.innerHTML = `
+      <span class="result-trophy">${emoji}</span>
+      <div class="result-title">${title}</div>
+      <div class="result-sub">You got <strong>${quizScore} out of ${QUIZ.length}</strong> correct!</div>
+      <div class="result-score-box">
+        <div class="result-score-label">Your Score</div>
+        <div class="result-pct ${pctClass}">${pct}%</div>
+      </div>
+      <div class="result-btns">
+        <button class="result-btn retry" onclick="resetQuiz(); renderQuizStep();">Try Again</button>
+        <button class="result-btn home" onclick="showHome(); resetQuiz();">Back Home</button>
+      </div>`;
+    return;
+  }
+
+  rcard.style.display = 'none';
+  qcard.style.display = 'block';
+  quizAnswered = false;
+
+  const q = QUIZ[quizStep];
+  const pct = (quizStep / QUIZ.length) * 100;
+  const opts = q.opts.map((o,i)=>`
+    <button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${['A','B','C','D'][i]}. ${o}</button>`).join('');
+
+  qcard.innerHTML = `
+    <div class="quiz-toprow">
+      <span class="quiz-counter">Question ${quizStep+1} of ${QUIZ.length}</span>
+      <span class="quiz-score-badge">Score: ${quizScore}</span>
+    </div>
+    <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${pct}%"></div></div>
+    <div class="quiz-q-emoji">${q.emoji}</div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-options">${opts}</div>`;
+}
+
+function answerQuiz(i) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = QUIZ[quizStep];
+  if (i === q.ans) quizScore++;
+
+  document.querySelectorAll('.quiz-opt').forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === q.ans) btn.classList.add('correct');
+    else if (idx === i) btn.classList.add('wrong');
+  });
+
+  setTimeout(() => {
+    quizStep++;
+    renderQuizStep();
+  }, 950);
+}
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+buildHomeCards();
+</script>
+</body>
+</html>

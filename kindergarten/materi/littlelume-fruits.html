@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Fruits</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Fredoka+One&display=swap');
+:root{
+  --red:#FF4757;--orange:#FF9A3C;--yellow:#FFD93D;--green:#6BCB77;
+  --blue:#5BC8F5;--purple:#C77DFF;--pink:#FF9DC6;--lime:#B5E61D;
+  --navy:#1A1A6C;--cream:#FFFBE6;--white:#fff;
+  --shadow:0 8px 28px rgba(0,0,0,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(155deg,#fff9e6 0%,#f0fff4 40%,#e8f5ff 100%);min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#1A1A6C 0%,#2d2da8 60%,#3d0d6e 100%);padding:20px 24px 16px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'🍎🍊🍋🍇🍓🍉🍌🍑🍒🥝🍍🥭';display:block;font-size:18px;letter-spacing:4px;opacity:.35;margin-bottom:8px}
+.logo{font-family:'Fredoka One',cursive;font-size:clamp(2rem,6vw,3.6rem);color:#FFD93D;text-shadow:3px 3px 0 #FF9A3C,6px 6px 0 rgba(0,0,0,.2);letter-spacing:2px}
+.logo span{color:#6BCB77}
+.tagline{color:#d0e8ff;font-size:clamp(.75rem,2.5vw,1rem);font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-top:4px}
+.badge{display:inline-block;background:#FF4757;color:#fff;font-size:.75rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;border-radius:20px;padding:3px 14px;margin-top:6px}
+
+/* TABS */
+.tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:20px 16px 0}
+.tab-btn{font-family:'Fredoka One',cursive;font-size:1rem;border:none;border-radius:50px;padding:10px 22px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.tab-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(0,0,0,.18)}
+.tab-btn:active,.tab-btn.active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.tab-btn[data-tab="learn"]{background:#FF9A3C;color:#fff}
+.tab-btn[data-tab="vocab"]{background:#6BCB77;color:#fff}
+.tab-btn[data-tab="quiz"]{background:#FF4757;color:#fff}
+.tab-btn[data-tab="game"]{background:#C77DFF;color:#fff}
+.tab-btn[data-tab="match"]{background:#5BC8F5;color:#1A1A6C}
+.tab-btn[data-tab="sort"]{background:#FFD93D;color:#1A1A6C}
+
+/* SECTIONS */
+.section{display:none;padding:24px 16px 52px;max-width:960px;margin:0 auto}
+.section.active{display:block}
+.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(1.5rem,5vw,2.4rem);text-align:center;color:#1A1A6C;margin-bottom:6px}
+.sec-sub{text-align:center;color:#666;margin-bottom:22px;font-size:.95rem}
+
+/* LEARN */
+.fruit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:14px}
+.fruit-card{background:#fff;border-radius:26px;padding:18px 12px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s;border:3px solid transparent}
+.fruit-card:hover{transform:scale(1.06)}
+.f-emoji{font-size:3.4rem;display:block;line-height:1}
+.f-name{font-family:'Fredoka One',cursive;font-size:1.15rem;margin-top:8px}
+.f-taste{font-size:.75rem;color:#999;font-weight:700;margin-top:2px}
+.listen-btn{margin-top:10px;background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:5px 14px;font-family:'Fredoka One',cursive;font-size:.85rem;cursor:pointer;transition:background .15s}
+.listen-btn:hover{background:#e6c800}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.54);z-index:200;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:#FFFBE6;border-radius:32px;padding:32px 28px;max-width:460px;width:100%;box-shadow:0 16px 48px rgba(0,0,0,.28);text-align:center;position:relative;animation:popIn .25s ease}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-close{position:absolute;top:14px;right:16px;font-size:1.5rem;cursor:pointer;background:none;border:none}
+.modal-emoji{font-size:5rem}
+.modal-name{font-family:'Fredoka One',cursive;font-size:2rem;margin:8px 0 4px}
+.fact-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:.9rem;color:#444;text-align:left}
+.fi{font-size:1.1rem;width:24px;flex-shrink:0}
+.say-btn{background:#FF9A3C;color:#fff;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1.05rem;cursor:pointer;margin-top:12px}
+.say-btn:hover{background:#e07a22}
+
+/* VOCAB */
+.vocab-group{margin-bottom:26px}
+.vg-title{font-family:'Fredoka One',cursive;font-size:1.2rem;padding:6px 18px;border-radius:20px;display:inline-block;color:#fff;margin-bottom:10px}
+.vocab-cards{display:flex;flex-wrap:wrap;gap:10px}
+.vocab-chip{background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 3px 10px rgba(0,0,0,.1);font-size:.88rem;font-weight:700;cursor:pointer;transition:transform .15s;display:flex;align-items:center;gap:7px}
+.vocab-chip:hover{transform:scale(1.07)}
+.vc-em{font-size:1.3rem}
+
+/* QUIZ */
+.quiz-box{background:#fff;border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);max-width:560px;margin:0 auto;text-align:center}
+.qprog{font-weight:800;color:#aaa;font-size:.85rem;margin-bottom:8px}
+.prog-bar{height:11px;background:#eee;border-radius:10px;margin-bottom:20px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,#FF9A3C,#FFD93D);border-radius:10px;transition:width .4s}
+.q-emoji{font-size:4.5rem;display:block;margin-bottom:10px}
+.q-text{font-family:'Fredoka One',cursive;font-size:clamp(1.05rem,4vw,1.4rem);color:#1A1A6C;margin-bottom:20px;line-height:1.3}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q-opt{background:#FFFBE6;border:3px solid #ddd;border-radius:18px;padding:14px 10px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.2}
+.q-opt:hover{border-color:#FF9A3C;background:#fff5e6;transform:scale(1.03)}
+.q-opt.correct{border-color:#6BCB77;background:#d4f5da}
+.q-opt.wrong{border-color:#FF4757;background:#ffe0e3}
+.q-opt:disabled{cursor:default;transform:none}
+.q-fb{margin-top:14px;font-family:'Fredoka One',cursive;font-size:1.2rem;min-height:32px}
+.fb-ok{color:#6BCB77}.fb-no{color:#FF4757}
+.next-btn,.restart-btn{margin-top:16px;background:#FFD93D;color:#1A1A6C;border:none;border-radius:30px;padding:12px 32px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 0 #e6b800;transition:transform .1s}
+.next-btn:hover,.restart-btn:hover{transform:translateY(-2px)}
+.score-board{display:none;text-align:center;padding:20px 0}
+.score-board.show{display:block}
+.sc-trophy{font-size:4.5rem}
+.sc-title{font-family:'Fredoka One',cursive;font-size:2rem;color:#1A1A6C;margin:10px 0 4px}
+.sc-num{font-size:3rem;font-weight:900;color:#FF4757}
+.sc-msg{color:#555;margin:8px 0 16px}
+.stars-row{font-size:2rem;letter-spacing:4px;margin-bottom:6px}
+
+/* SPELL GAME */
+.game-box{background:#fff;border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);max-width:580px;margin:0 auto;text-align:center}
+.g-score-row{display:flex;gap:12px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.g-pill{background:#FFFBE6;border-radius:30px;padding:6px 16px;font-family:'Fredoka One',cursive;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.g-fruit-emoji{font-size:5.5rem;display:block;margin-bottom:6px}
+.g-hint{font-family:'Fredoka One',cursive;font-size:1.15rem;color:#1A1A6C;margin-bottom:16px}
+.blanks{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.blank{width:46px;height:54px;border-bottom:4px solid #1A1A6C;font-family:'Fredoka One',cursive;font-size:1.7rem;color:#FF4757;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;transition:border-color .2s}
+.blank.filled{border-color:#6BCB77}
+.letter-pool{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.l-tile{width:46px;height:46px;background:#FF9A3C;color:#fff;border-radius:13px;font-family:'Fredoka One',cursive;font-size:1.4rem;border:none;cursor:pointer;box-shadow:0 4px 0 #c97200;transition:transform .1s,box-shadow .1s}
+.l-tile:hover{transform:translateY(-3px)}
+.l-tile:active{transform:translateY(1px);box-shadow:0 2px 0 #c97200}
+.l-tile.used{opacity:.22;pointer-events:none}
+.g-fb{font-family:'Fredoka One',cursive;font-size:1.15rem;min-height:30px;margin-bottom:8px}
+.g-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.clear-btn{background:#eee;color:#666;border:none;border-radius:24px;padding:10px 20px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer}
+.submit-btn{background:#6BCB77;color:#fff;border:none;border-radius:24px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #4aaa5a}
+.nword-btn{background:#C77DFF;color:#fff;border:none;border-radius:24px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #9a3fd6}
+
+/* MATCH GAME */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px;margin:0 auto}
+.match-col{display:flex;flex-direction:column;gap:10px}
+.m-item{background:#fff;border-radius:20px;padding:13px 16px;font-family:'Fredoka One',cursive;font-size:1.05rem;text-align:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.1);border:3px solid transparent;transition:transform .15s,border-color .15s;user-select:none}
+.m-item:hover{transform:scale(1.04)}
+.m-item.selected{border-color:#5BC8F5;background:#e4f6ff}
+.m-item.matched{border-color:#6BCB77;background:#d4f5da;opacity:.68;pointer-events:none}
+.m-item.wrong{border-color:#FF4757;background:#ffe0e3;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.match-status{text-align:center;font-family:'Fredoka One',cursive;font-size:1.1rem;margin-top:14px;min-height:30px}
+.match-reset{display:block;margin:14px auto 0;background:#5BC8F5;color:#1A1A6C;border:none;border-radius:30px;padding:10px 28px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #3ab8e8}
+
+/* SORT GAME */
+.sort-game{max-width:820px;margin:0 auto}
+.sort-basket-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.sort-basket{flex:1;min-width:130px;background:#fff;border-radius:22px;padding:16px 12px;box-shadow:var(--shadow);text-align:center;border:3px dashed #ddd;transition:border-color .2s;min-height:120px}
+.sort-basket.drag-over{border-color:#FFD93D;background:#fffde8}
+.basket-label{font-family:'Fredoka One',cursive;font-size:1rem;margin-bottom:10px}
+.basket-items{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:50px}
+.sort-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
+.sort-chip{background:#fff;border-radius:16px;padding:10px 16px;font-family:'Fredoka One',cursive;font-size:1.1rem;box-shadow:0 3px 10px rgba(0,0,0,.12);cursor:grab;user-select:none;transition:transform .15s;display:flex;align-items:center;gap:6px;border:3px solid transparent}
+.sort-chip:hover{transform:scale(1.07)}
+.sort-chip.dragging{opacity:.5}
+.basket-chip{background:#fff;border-radius:12px;padding:6px 10px;font-size:.9rem;font-family:'Fredoka One',cursive;display:flex;align-items:center;gap:4px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.sort-check-btn{display:block;margin:14px auto 0;background:#FF9A3C;color:#fff;border:none;border-radius:30px;padding:12px 32px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 0 #c97200}
+.sort-status{text-align:center;font-family:'Fredoka One',cursive;font-size:1.15rem;margin-top:12px;min-height:32px}
+.sort-reset-btn{display:block;margin:12px auto 0;background:#6BCB77;color:#fff;border:none;border-radius:30px;padding:10px 26px;font-family:'Fredoka One',cursive;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #4aaa5a}
+.basket-chip.correct-item{border:2px solid #6BCB77;background:#d4f5da}
+.basket-chip.wrong-item{border:2px solid #FF4757;background:#ffe0e3}
+
+/* BUBBLES */
+.bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bubble{position:absolute;border-radius:50%;opacity:.11;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh)}100%{transform:translateY(-200px)}}
+main{position:relative;z-index:1}
+
+/* CONFETTI */
+.cp{position:fixed;pointer-events:none;z-index:999;border-radius:2px;animation:fall 2.5s ease-in forwards}
+@keyframes fall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+@media(max-width:500px){
+  .q-opts{grid-template-columns:1fr}
+  .match-wrap{grid-template-columns:1fr}
+  .fruit-grid{grid-template-columns:repeat(2,1fr)}
+  .sort-basket-row{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<div class="bubbles" id="bubbles"></div>
+
+<header>
+  <div class="logo">LittleLume <span>English</span></div>
+  <div class="tagline">Fun Learning for Little Stars ✨</div>
+  <div class="badge">🌱 Kindergarten</div>
+</header>
+
+<main>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="learn">🍎 Fruits</button>
+    <button class="tab-btn" data-tab="vocab">📚 Vocabulary</button>
+    <button class="tab-btn" data-tab="quiz">✏️ Quiz</button>
+    <button class="tab-btn" data-tab="game">🔤 Spell It!</button>
+    <button class="tab-btn" data-tab="match">🔗 Match It!</button>
+    <button class="tab-btn" data-tab="sort">🧺 Sort It!</button>
+  </div>
+
+  <!-- LEARN -->
+  <section class="section active" id="learn">
+    <div class="sec-title">🍎 Meet the Fruits!</div>
+    <p class="sec-sub">Tap any fruit to learn all about it! 🌟</p>
+    <div class="fruit-grid" id="fruitGrid"></div>
+  </section>
+
+  <!-- VOCAB -->
+  <section class="section" id="vocab">
+    <div class="sec-title">📚 Fruit Words!</div>
+    <p class="sec-sub">Tap any word to hear it! 🔊</p>
+    <div id="vocabContent"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <div class="sec-title">✏️ Quiz Time!</div>
+    <p class="sec-sub">Answer 10 questions about fruits! 🍇</p>
+    <div class="quiz-box">
+      <div id="quizInner">
+        <div class="qprog" id="qProg">Question 1 of 10</div>
+        <div class="prog-bar"><div class="prog-fill" id="qBar" style="width:10%"></div></div>
+        <span class="q-emoji" id="qEmoji"></span>
+        <div class="q-text" id="qText"></div>
+        <div class="q-opts" id="qOpts"></div>
+        <div class="q-fb" id="qFb"></div>
+        <button class="next-btn" id="nextBtn" style="display:none" onclick="nextQ()">Next ➜</button>
+      </div>
+      <div class="score-board" id="scoreBoard">
+        <div class="sc-trophy" id="scTrophy"></div>
+        <div class="stars-row" id="scStars"></div>
+        <div class="sc-title">You scored</div>
+        <div class="sc-num" id="scNum"></div>
+        <div class="sc-msg" id="scMsg"></div>
+        <button class="restart-btn" onclick="startQuiz()">Play Again 🔄</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPELL -->
+  <section class="section" id="game">
+    <div class="sec-title">🔤 Spell the Fruit!</div>
+    <p class="sec-sub">Pick the letters in the right order! 🏆</p>
+    <div class="game-box">
+      <div class="g-score-row">
+        <div class="g-pill">✅ Correct: <span id="gOk">0</span></div>
+        <div class="g-pill">❌ Wrong: <span id="gBad">0</span></div>
+        <div class="g-pill">🍓 Fruit: <span id="gWNum">1</span>/10</div>
+      </div>
+      <span class="g-fruit-emoji" id="gEmoji"></span>
+      <div class="g-hint" id="gHint"></div>
+      <div class="blanks" id="gBlanks"></div>
+      <div class="letter-pool" id="gPool"></div>
+      <div class="g-fb" id="gFb"></div>
+      <div class="g-actions">
+        <button class="clear-btn" onclick="clearSpell()">🗑️ Clear</button>
+        <button class="submit-btn" onclick="checkSpell()">✅ Check</button>
+        <button class="nword-btn" id="gNextBtn" style="display:none" onclick="nextWord()">Next ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATCH -->
+  <section class="section" id="match">
+    <div class="sec-title">🔗 Match the Fruit!</div>
+    <p class="sec-sub">Tap an emoji, then tap its name! 🎉</p>
+    <div class="match-wrap">
+      <div class="match-col" id="mEmojis"></div>
+      <div class="match-col" id="mWords"></div>
+    </div>
+    <div class="match-status" id="mStatus"></div>
+    <button class="match-reset" onclick="resetMatch()">🔄 New Game</button>
+  </section>
+
+  <!-- SORT -->
+  <section class="section" id="sort">
+    <div class="sec-title">🧺 Sort the Fruits!</div>
+    <p class="sec-sub">Drag (or tap) each fruit into the right basket! 🌈</p>
+    <div class="sort-game">
+      <div class="sort-basket-row" id="sortBaskets"></div>
+      <div class="sort-pool" id="sortPool"></div>
+      <div class="sort-status" id="sortStatus"></div>
+      <button class="sort-check-btn" onclick="checkSort()">✅ Check My Answers!</button>
+      <button class="sort-reset-btn" onclick="initSort()">🔄 Reset</button>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-emoji" id="mEm"></div>
+    <div class="modal-name" id="mNm"></div>
+    <div id="mFacts"></div>
+    <button class="say-btn" id="mSay">🔊 Say It!</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════
+// DATA
+// ═══════════════════════
+const fruits = [
+  {name:'Apple',    emoji:'🍎',color:'#FF4757',taste:'Sweet & crunchy',  color_desc:'Red',   season:'Autumn', origin:'Grows on trees',  vitamins:'Vitamin C',  category:'Tree Fruit',
+   facts:['Apples grow on big tall trees in orchards.','There are over 7,500 kinds of apples in the world!','Apples are red, green, or yellow – all yummy!']},
+  {name:'Banana',   emoji:'🍌',color:'#FFD93D',taste:'Sweet & soft',     color_desc:'Yellow',season:'All year',origin:'Tropical trees',  vitamins:'Potassium',  category:'Tropical',
+   facts:['Bananas grow in warm, tropical places.','They are curved like a little yellow smile!','Bananas give us energy to run and play!']},
+  {name:'Orange',   emoji:'🍊',color:'#FF9A3C',taste:'Tangy & juicy',    color_desc:'Orange',season:'Winter',  origin:'Citrus trees',   vitamins:'Vitamin C',  category:'Citrus',
+   facts:['Oranges are full of Vitamin C to keep us healthy!','You can peel the skin off to eat the juicy inside.','Orange juice is one of the most popular drinks!']},
+  {name:'Grape',    emoji:'🍇',color:'#C77DFF',taste:'Sweet & juicy',    color_desc:'Purple',season:'Summer',  origin:'Vines',          vitamins:'Vitamin K',  category:'Berry',
+   facts:['Grapes grow in big bunches on twisting vines.','They can be purple, red, or green!','Grapes are used to make raisins when dried in the sun.']},
+  {name:'Strawberry',emoji:'🍓',color:'#FF4757',taste:'Sweet & tangy',  color_desc:'Red',   season:'Spring',  origin:'Garden plants',  vitamins:'Vitamin C',  category:'Berry',
+   facts:['Strawberries have tiny seeds on the outside!','They are a bright, beautiful red colour.','Strawberries grow close to the ground in gardens.']},
+  {name:'Watermelon',emoji:'🍉',color:'#FF6B8A',taste:'Very sweet & watery',color_desc:'Green & red',season:'Summer',origin:'Vines',vitamins:'Vitamin A',  category:'Melon',
+   facts:['Watermelons are 92% water – great for hot days!','They are green on the outside and red on the inside.','Watermelons can grow as big as a football!']},
+  {name:'Mango',    emoji:'🥭',color:'#FF9A3C',taste:'Sweet & tropical', color_desc:'Yellow-orange',season:'Summer',origin:'Tropical trees',vitamins:'Vitamin A',category:'Tropical',
+   facts:['Mangoes are called the king of fruits!','They are very sweet and smell amazing.','Mangoes grow in hot, sunny tropical countries.']},
+  {name:'Pineapple',emoji:'🍍',color:'#FFD93D',taste:'Sweet & tangy',   color_desc:'Yellow',season:'All year',origin:'Tropical plants',vitamins:'Vitamin C', category:'Tropical',
+   facts:['Pineapples have a spiky crown on top!','They grow low on the ground on special plants.','Pineapples are sweet inside but prickly outside!']},
+  {name:'Lemon',    emoji:'🍋',color:'#FFD93D',taste:'Very sour!',       color_desc:'Yellow',season:'All year',origin:'Citrus trees',   vitamins:'Vitamin C', category:'Citrus',
+   facts:['Lemons are very sour – they make your face scrunch up!','They are used to make yummy lemonade.','Lemons are bright yellow and smell amazing.']},
+  {name:'Cherry',   emoji:'🍒',color:'#CC0033',taste:'Sweet & juicy',    color_desc:'Dark red',season:'Summer',origin:'Cherry trees',   vitamins:'Vitamin C', category:'Tree Fruit',
+   facts:['Cherries grow in pairs on long green stems!','They are small, round, and very sweet.','Cherry trees have beautiful pink flowers in spring.']},
+  {name:'Pear',     emoji:'🍐',color:'#B5E61D',taste:'Sweet & soft',     color_desc:'Green-yellow',season:'Autumn',origin:'Trees',      vitamins:'Vitamin C', category:'Tree Fruit',
+   facts:['Pears have a unique teardrop shape!','They start hard and get soft and sweet as they ripen.','Pears can be green, yellow, or even red.']},
+  {name:'Peach',    emoji:'🍑',color:'#FFB347',taste:'Sweet & fuzzy',    color_desc:'Orange-pink',season:'Summer',origin:'Trees',       vitamins:'Vitamin A', category:'Tree Fruit',
+   facts:['Peaches have a fuzzy soft skin on the outside!','Inside is sweet, juicy orange flesh.','Peaches grow on trees and love warm sunny weather.']},
+  {name:'Kiwi',     emoji:'🥝',color:'#6BCB77',taste:'Sweet & tangy',   color_desc:'Brown outside, green inside',season:'All year',origin:'Vines',vitamins:'Vitamin C',category:'Exotic',
+   facts:['Kiwis are brown and fuzzy on the outside.','Inside they are bright green with tiny black seeds!','Kiwis have MORE Vitamin C than oranges!']},
+  {name:'Coconut',  emoji:'🥥',color:'#C4A882',taste:'Sweet & creamy',  color_desc:'Brown',  season:'All year',origin:'Palm trees',    vitamins:'Vitamin B', category:'Tropical',
+   facts:['Coconuts grow at the top of tall palm trees!','Inside is sweet coconut milk and white flesh.','The shell is very hard – like a little helmet!']},
+  {name:'Blueberry',emoji:'🫐',color:'#4A7FC1',taste:'Sweet & mild',    color_desc:'Blue-purple',season:'Summer',origin:'Bushes',       vitamins:'Antioxidants',category:'Berry',
+   facts:['Blueberries are tiny and perfectly round!','They turn your mouth and fingers blue-purple!','Blueberries are a superfood – great for your brain!']},
+  {name:'Melon',    emoji:'🍈',color:'#A8E063',taste:'Sweet & mild',     color_desc:'Light green',season:'Summer',origin:'Vines',       vitamins:'Vitamin C', category:'Melon',
+   facts:['Melons have a hard outer skin and sweet inside.','They are mostly water, which keeps us hydrated!','Melons come in many shapes – round, oval, and more.']},
+];
+
+// ═══════════════════════
+// BUBBLES
+// ═══════════════════════
+(function(){
+  const cols=['#FF9A3C','#FFD93D','#6BCB77','#FF4757','#C77DFF','#5BC8F5','#FF9DC6'];
+  const c=document.getElementById('bubbles');
+  for(let i=0;i<18;i++){
+    const d=document.createElement('div');d.className='bubble';
+    const s=Math.random()*65+20;
+    d.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:${Math.random()*-200}px;background:${cols[i%cols.length]};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(d);
+  }
+})();
+
+// ═══════════════════════
+// TABS
+// ═══════════════════════
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ═══════════════════════
+// SPEECH
+// ═══════════════════════
+function speak(txt){
+  if(!window.speechSynthesis)return;
+  const u=new SpeechSynthesisUtterance(txt);
+  u.rate=.85;u.pitch=1.2;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+// ═══════════════════════
+// LEARN
+// ═══════════════════════
+const grid=document.getElementById('fruitGrid');
+fruits.forEach(f=>{
+  const c=document.createElement('div');
+  c.className='fruit-card';c.style.borderColor=f.color;
+  c.innerHTML=`<span class="f-emoji">${f.emoji}</span>
+    <div class="f-name" style="color:${f.color}">${f.name}</div>
+    <div class="f-taste">${f.taste}</div>
+    <button class="listen-btn" onclick="event.stopPropagation();speak('${f.name}. ${f.name} is ${f.taste}.')">🔊 Listen</button>`;
+  c.addEventListener('click',()=>openModal(f));
+  grid.appendChild(c);
+});
+
+function openModal(f){
+  document.getElementById('mEm').textContent=f.emoji;
+  const nm=document.getElementById('mNm');nm.textContent=f.name;nm.style.color=f.color;
+  document.getElementById('mFacts').innerHTML=`
+    <div class="fact-row"><span class="fi">😋</span><span><b>Taste:</b> ${f.taste}</span></div>
+    <div class="fact-row"><span class="fi">🎨</span><span><b>Colour:</b> ${f.color_desc}</span></div>
+    <div class="fact-row"><span class="fi">🌱</span><span><b>Grows on:</b> ${f.origin}</span></div>
+    <div class="fact-row"><span class="fi">🗓️</span><span><b>Season:</b> ${f.season}</span></div>
+    <div class="fact-row"><span class="fi">💊</span><span><b>Good for you:</b> ${f.vitamins}</span></div>
+    <div class="fact-row"><span class="fi">🏷️</span><span><b>Type:</b> ${f.category}</span></div>
+    ${f.facts.map(fc=>`<div class="fact-row"><span class="fi">⭐</span><span>${fc}</span></div>`).join('')}`;
+  document.getElementById('mSay').onclick=()=>speak(`${f.name}. ${f.name} tastes ${f.taste}. ${f.facts[0]}`);
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('overlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('overlay').classList.remove('open');}
+
+// ═══════════════════════
+// VOCAB
+// ═══════════════════════
+const vocabGroups=[
+  {title:'🌳 Tree Fruits',   color:'#6BCB77', items:fruits.filter(f=>f.category==='Tree Fruit')},
+  {title:'🌴 Tropical Fruits',color:'#FF9A3C',items:fruits.filter(f=>f.category==='Tropical')},
+  {title:'🍋 Citrus Fruits', color:'#FFD93D', items:fruits.filter(f=>f.category==='Citrus')},
+  {title:'🫐 Berries',       color:'#C77DFF', items:fruits.filter(f=>f.category==='Berry')},
+  {title:'🍈 Melons',        color:'#5BC8F5', items:fruits.filter(f=>f.category==='Melon')},
+  {title:'🌍 Exotic Fruits', color:'#FF4757', items:fruits.filter(f=>f.category==='Exotic')},
+  {title:'😋 Tastes',        color:'#FF6B8A', items:fruits.map(f=>({name:`${f.name} → ${f.taste}`,emoji:f.emoji,spk:`${f.name} tastes ${f.taste}`}))},
+  {title:'🎨 Colours',       color:'#4A7FC1', items:fruits.map(f=>({name:`${f.name} is ${f.color_desc}`,emoji:f.emoji,spk:`${f.name} is ${f.color_desc}`}))},
+  {title:'🗓️ Seasons',       color:'#A8E063', items:fruits.map(f=>({name:`${f.name} → ${f.season}`,emoji:f.emoji,spk:`${f.name} grows in ${f.season}`}))},
+  {title:'💊 Vitamins & Goodness',color:'#FF9A3C',items:fruits.map(f=>({name:`${f.name} → ${f.vitamins}`,emoji:f.emoji,spk:`${f.name} gives us ${f.vitamins}`}))},
+];
+
+const vc=document.getElementById('vocabContent');
+vocabGroups.forEach(g=>{
+  const div=document.createElement('div');div.className='vocab-group';
+  div.innerHTML=`<div class="vg-title" style="background:${g.color}">${g.title}</div>
+  <div class="vocab-cards">${g.items.map(f=>`<div class="vocab-chip" onclick="speak('${(f.spk||f.name).replace(/'/g,"\\'")}')"><span class="vc-em">${f.emoji}</span>${f.name}</div>`).join('')}</div>`;
+  vc.appendChild(div);
+});
+
+// ═══════════════════════
+// QUIZ
+// ═══════════════════════
+let quizQs=[],quizIdx=0,quizScore=0,answered=false;
+function shuffle(arr){return[...arr].sort(()=>Math.random()-.5)}
+
+function buildQuiz(){
+  const types=['emoji-name','taste','colour','season','category','origin','emoji-find','vitamin'];
+  const pool=shuffle(fruits).slice(0,10);
+  return pool.map((f,i)=>{
+    const t=types[i%types.length];
+    const others=shuffle(fruits.filter(x=>x.name!==f.name)).slice(0,3);
+    let q={};
+    if(t==='emoji-name'){
+      q={emoji:f.emoji,text:`What fruit is this?`,ans:f.name,
+         opts:shuffle([f.name,...others.map(x=>x.name)]).map(o=>({lbl:o,em:fruits.find(x=>x.name===o)?.emoji||''}))};
+    } else if(t==='taste'){
+      q={emoji:f.emoji,text:`How does a ${f.name} taste?`,ans:f.taste,
+         opts:shuffle([f.taste,...others.map(x=>x.taste)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='colour'){
+      q={emoji:f.emoji,text:`What colour is a ${f.name}?`,ans:f.color_desc,
+         opts:shuffle([f.color_desc,...others.map(x=>x.color_desc)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='season'){
+      q={emoji:f.emoji,text:`When does a ${f.name} grow?`,ans:f.season,
+         opts:shuffle([f.season,...others.map(x=>x.season)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='category'){
+      q={emoji:f.emoji,text:`What type of fruit is a ${f.name}?`,ans:f.category,
+         opts:shuffle([f.category,...others.map(x=>x.category)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='origin'){
+      q={emoji:f.emoji,text:`Where does a ${f.name} grow?`,ans:f.origin,
+         opts:shuffle([f.origin,...others.map(x=>x.origin)]).map(o=>({lbl:o,em:''}))};
+    } else if(t==='emoji-find'){
+      q={emoji:'🤔',text:`Find the ${f.name}!`,ans:f.emoji,
+         opts:shuffle([f.emoji,...others.map(x=>x.emoji)]).map(o=>({lbl:o,em:''}))};
+    } else {
+      q={emoji:f.emoji,text:`What vitamin does a ${f.name} have?`,ans:f.vitamins,
+         opts:shuffle([f.vitamins,...others.map(x=>x.vitamins)]).map(o=>({lbl:o,em:''}))};
+    }
+    return q;
+  });
+}
+
+function startQuiz(){
+  quizQs=buildQuiz();quizIdx=0;quizScore=0;
+  document.getElementById('scoreBoard').classList.remove('show');
+  document.getElementById('quizInner').style.display='';
+  renderQ();
+}
+
+function renderQ(){
+  answered=false;
+  const q=quizQs[quizIdx];
+  document.getElementById('qProg').textContent=`Question ${quizIdx+1} of ${quizQs.length}`;
+  document.getElementById('qBar').style.width=`${((quizIdx+1)/quizQs.length)*100}%`;
+  document.getElementById('qEmoji').textContent=q.emoji;
+  document.getElementById('qText').textContent=q.text;
+  document.getElementById('qFb').textContent='';
+  document.getElementById('nextBtn').style.display='none';
+  const opts=document.getElementById('qOpts');opts.innerHTML='';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='q-opt';
+    b.innerHTML=(o.em?`<span style="font-size:1.5rem">${o.em}</span> `:'')+o.lbl;
+    b.onclick=()=>checkAns(o.lbl,q.ans,b);
+    opts.appendChild(b);
+  });
+}
+
+function checkAns(chosen,correct,btn){
+  if(answered)return;answered=true;
+  document.querySelectorAll('.q-opt').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('qFb');
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.innerHTML='<span class="fb-ok">🍓 Superb! That\'s correct!</span>';
+    quizScore++;confetti();
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent.trim().includes(correct))b.classList.add('correct');});
+    fb.innerHTML=`<span class="fb-no">💪 The answer is: ${correct}</span>`;
+  }
+  document.getElementById('nextBtn').style.display='inline-block';
+}
+
+function nextQ(){
+  quizIdx++;
+  if(quizIdx>=quizQs.length){showScore();return;}
+  renderQ();
+}
+
+function showScore(){
+  document.getElementById('quizInner').style.display='none';
+  document.getElementById('scoreBoard').classList.add('show');
+  const pct=quizScore/quizQs.length;
+  let trophy='🎉',stars='⭐⭐⭐',msg='Brilliant! You\'re a Fruit Master! 🍎🌟';
+  if(pct<.5){trophy='💪';stars='⭐';msg='Keep practising – you\'re doing great! 🌈';}
+  else if(pct<.8){trophy='😊';stars='⭐⭐';msg='Wonderful effort! So close to perfect! 🎊';}
+  document.getElementById('scTrophy').textContent=trophy;
+  document.getElementById('scStars').textContent=stars;
+  document.getElementById('scNum').textContent=`${quizScore} / ${quizQs.length}`;
+  document.getElementById('scMsg').textContent=msg;
+  if(pct>=.8)confetti();
+}
+startQuiz();
+
+// ═══════════════════════
+// SPELL GAME
+// ═══════════════════════
+let spellList=[],spellIdx=0,spellOk=0,spellBad=0,curWord='',userSpell=[];
+
+function initSpell(){
+  spellList=shuffle(fruits).slice(0,10);
+  spellIdx=0;spellOk=0;spellBad=0;
+  document.getElementById('gOk').textContent=0;
+  document.getElementById('gBad').textContent=0;
+  loadWord();
+}
+
+function loadWord(){
+  if(spellIdx>=spellList.length){endSpell();return;}
+  const f=spellList[spellIdx];
+  curWord=f.name.toUpperCase();
+  userSpell=Array(curWord.length).fill('');
+  document.getElementById('gEmoji').textContent=f.emoji;
+  document.getElementById('gHint').textContent=`Spell the fruit! It starts with "${curWord[0]}"`;
+  document.getElementById('gFb').textContent='';
+  document.getElementById('gNextBtn').style.display='none';
+  document.getElementById('gWNum').textContent=spellIdx+1;
+  renderBlanks();renderPool(f.name);
+}
+
+function renderBlanks(){
+  const el=document.getElementById('gBlanks');el.innerHTML='';
+  curWord.split('').forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='blank'+(userSpell[i]?' filled':'');
+    d.id='bl_'+i;d.textContent=userSpell[i]||'';
+    el.appendChild(d);
+  });
+}
+
+function renderPool(name){
+  const base=[...name.toUpperCase()];
+  const extras='AEIOURSTLNMPBD'.split('').filter(c=>!base.includes(c));
+  const pool=shuffle([...base,...shuffle(extras).slice(0,3)]);
+  const el=document.getElementById('gPool');el.innerHTML='';
+  pool.forEach((l,i)=>{
+    const b=document.createElement('button');
+    b.className='l-tile';b.id='t_'+i;b.textContent=l;
+    b.onclick=()=>{
+      const next=userSpell.findIndex(x=>!x);
+      if(next===-1)return;
+      userSpell[next]=l;b.classList.add('used');renderBlanks();
+    };
+    el.appendChild(b);
+  });
+}
+
+function clearSpell(){
+  userSpell=Array(curWord.length).fill('');
+  document.querySelectorAll('.l-tile').forEach(t=>t.classList.remove('used'));
+  renderBlanks();document.getElementById('gFb').textContent='';
+}
+
+function checkSpell(){
+  if(userSpell.includes('')){document.getElementById('gFb').textContent='⚠️ Fill all letters first!';return;}
+  const typed=userSpell.join('');
+  if(typed===curWord){
+    document.getElementById('gFb').innerHTML='<span style="color:#6BCB77">🎉 Perfect spelling!</span>';
+    spellOk++;confetti();
+  } else {
+    document.getElementById('gFb').innerHTML=`<span style="color:#FF4757">💪 It is: ${curWord}</span>`;
+    spellBad++;
+  }
+  document.getElementById('gOk').textContent=spellOk;
+  document.getElementById('gBad').textContent=spellBad;
+  document.getElementById('gNextBtn').style.display='inline-block';
+  document.querySelectorAll('.l-tile').forEach(t=>t.disabled=true);
+}
+
+function nextWord(){spellIdx++;loadWord();}
+
+function endSpell(){
+  document.getElementById('gEmoji').textContent='🏆';
+  document.getElementById('gHint').textContent=`All done! You got ${spellOk} out of 10!`;
+  document.getElementById('gBlanks').innerHTML='';document.getElementById('gPool').innerHTML='';
+  document.getElementById('gFb').innerHTML='<span style="color:#FF9A3C">🎊 Fantastic! Play again!</span>';
+  const nb=document.getElementById('gNextBtn');
+  nb.textContent='Play Again 🔄';nb.style.display='inline-block';nb.onclick=initSpell;
+  if(spellOk>=7)confetti();
+}
+initSpell();
+
+// ═══════════════════════
+// MATCH GAME
+// ═══════════════════════
+let mSelected=null,mPairs=[],mDone=0;
+
+function resetMatch(){
+  mSelected=null;mDone=0;
+  mPairs=shuffle(fruits).slice(0,8);
+  document.getElementById('mStatus').textContent='';
+  const eCol=document.getElementById('mEmojis');
+  const wCol=document.getElementById('mWords');
+  eCol.innerHTML='';wCol.innerHTML='';
+  shuffle(mPairs).forEach(f=>{
+    const d=document.createElement('div');
+    d.className='m-item';d.dataset.id=f.name;d.dataset.type='emoji';
+    d.textContent=f.emoji;d.style.fontSize='2.2rem';
+    d.addEventListener('click',()=>mClick(d));eCol.appendChild(d);
+  });
+  shuffle(mPairs).forEach(f=>{
+    const d=document.createElement('div');
+    d.className='m-item';d.dataset.id=f.name;d.dataset.type='word';
+    d.textContent=f.name;d.style.color=f.color;
+    d.addEventListener('click',()=>mClick(d));wCol.appendChild(d);
+  });
+}
+
+function mClick(el){
+  if(el.classList.contains('matched'))return;
+  if(mSelected===el){el.classList.remove('selected');mSelected=null;return;}
+  if(!mSelected){el.classList.add('selected');mSelected=el;return;}
+  if(mSelected.dataset.type===el.dataset.type){
+    mSelected.classList.remove('selected');el.classList.add('selected');mSelected=el;return;
+  }
+  if(mSelected.dataset.id===el.dataset.id){
+    [mSelected,el].forEach(e=>{e.classList.remove('selected');e.classList.add('matched');});
+    speak(mSelected.dataset.id);mDone++;mSelected=null;
+    document.getElementById('mStatus').innerHTML=mDone===mPairs.length
+      ?'<span style="color:#6BCB77">🎉 All matched! You\'re a fruit genius!</span>'
+      :'<span style="color:#6BCB77">✅ Great match! Keep going!</span>';
+    if(mDone===mPairs.length)confetti();
+  } else {
+    const tmp=mSelected;
+    [tmp,el].forEach(e=>e.classList.add('wrong'));
+    document.getElementById('mStatus').innerHTML='<span style="color:#FF4757">❌ Try again!</span>';
+    setTimeout(()=>{[tmp,el].forEach(e=>e.classList.remove('wrong','selected'));mSelected=null;},700);
+  }
+}
+resetMatch();
+
+// ═══════════════════════
+// SORT GAME
+// ═══════════════════════
+const sortCategories=[
+  {id:'tree',  label:'🌳 Tree Fruits',   color:'#6BCB77', match:'Tree Fruit'},
+  {id:'trop',  label:'🌴 Tropical',      color:'#FF9A3C', match:'Tropical'},
+  {id:'berry', label:'🫐 Berries',        color:'#C77DFF', match:'Berry'},
+  {id:'citrus',label:'🍋 Citrus',         color:'#FFD93D', match:'Citrus'},
+  {id:'melon', label:'🍈 Melons',         color:'#5BC8F5', match:'Melon'},
+  {id:'exotic',label:'🌍 Exotic',         color:'#FF6B8A', match:'Exotic'},
+];
+
+let sortPlacements={};   // fruitName -> categoryId
+let sortActiveFruit=null;
+
+function initSort(){
+  sortPlacements={};sortActiveFruit=null;
+  document.getElementById('sortStatus').textContent='';
+  // build baskets
+  const bRow=document.getElementById('sortBaskets');bRow.innerHTML='';
+  sortCategories.forEach(cat=>{
+    const div=document.createElement('div');
+    div.className='sort-basket';div.id='basket_'+cat.id;
+    div.innerHTML=`<div class="basket-label" style="color:${cat.color}">${cat.label}</div><div class="basket-items" id="bi_${cat.id}"></div>`;
+    // drag events
+    div.addEventListener('dragover',e=>{e.preventDefault();div.classList.add('drag-over');});
+    div.addEventListener('dragleave',()=>div.classList.remove('drag-over'));
+    div.addEventListener('drop',e=>{
+      e.preventDefault();div.classList.remove('drag-over');
+      const fname=e.dataTransfer.getData('fruit');
+      if(fname)placeFruit(fname,cat.id);
+    });
+    // tap to place
+    div.addEventListener('click',()=>{
+      if(sortActiveFruit){placeFruit(sortActiveFruit,cat.id);sortActiveFruit=null;clearHighlight();}
+    });
+    bRow.appendChild(div);
+  });
+  // build pool
+  const pool=document.getElementById('sortPool');pool.innerHTML='';
+  fruits.forEach(f=>{
+    const chip=document.createElement('div');
+    chip.className='sort-chip';chip.id='sc_'+f.name;
+    chip.setAttribute('draggable','true');
+    chip.innerHTML=`<span>${f.emoji}</span>${f.name}`;
+    chip.addEventListener('dragstart',e=>{
+      e.dataTransfer.setData('fruit',f.name);chip.classList.add('dragging');
+    });
+    chip.addEventListener('dragend',()=>chip.classList.remove('dragging'));
+    chip.addEventListener('click',()=>{
+      if(sortActiveFruit===f.name){sortActiveFruit=null;clearHighlight();}
+      else{sortActiveFruit=f.name;clearHighlight();chip.style.borderColor='#FFD93D';}
+    });
+    pool.appendChild(chip);
+  });
+}
+
+function clearHighlight(){
+  document.querySelectorAll('.sort-chip').forEach(c=>c.style.borderColor='transparent');
+}
+
+function placeFruit(fname,catId){
+  // remove from previous basket if any
+  if(sortPlacements[fname]){
+    const oldBi=document.getElementById('bi_'+sortPlacements[fname]);
+    if(oldBi){const old=oldBi.querySelector(`[data-fruit="${fname}"]`);if(old)old.remove();}
+  }
+  sortPlacements[fname]=catId;
+  // add to basket
+  const bi=document.getElementById('bi_'+catId);
+  const f=fruits.find(x=>x.name===fname);
+  const bc=document.createElement('div');
+  bc.className='basket-chip';bc.dataset.fruit=fname;
+  bc.innerHTML=`${f.emoji} ${f.name}`;
+  bc.addEventListener('click',()=>{
+    // click to remove from basket back to pool
+    bc.remove();delete sortPlacements[fname];
+    const poolChip=document.getElementById('sc_'+fname);
+    if(poolChip)poolChip.style.display='flex';
+  });
+  bi.appendChild(bc);
+  // hide from pool
+  const poolChip=document.getElementById('sc_'+fname);
+  if(poolChip)poolChip.style.display='none';
+}
+
+function checkSort(){
+  let correct=0,total=Object.keys(sortPlacements).length;
+  if(total===0){document.getElementById('sortStatus').innerHTML='<span style="color:#FF4757">⚠️ Drag some fruits into the baskets first!</span>';return;}
+  document.querySelectorAll('.basket-chip').forEach(bc=>{
+    const fname=bc.dataset.fruit;
+    const f=fruits.find(x=>x.name===fname);
+    const placed=sortPlacements[fname];
+    const cat=sortCategories.find(c=>c.id===placed);
+    if(cat && cat.match===f.category){bc.classList.add('correct-item');bc.classList.remove('wrong-item');correct++;}
+    else{bc.classList.add('wrong-item');bc.classList.remove('correct-item');}
+  });
+  const st=document.getElementById('sortStatus');
+  if(correct===fruits.length){
+    st.innerHTML='<span style="color:#6BCB77">🎉 Perfect! All fruits sorted correctly!</span>';confetti();
+  } else {
+    st.innerHTML=`<span style="color:#FF9A3C">✅ ${correct}/${total} correct! Green = right, Red = wrong. Keep trying! 💪</span>`;
+  }
+}
+initSort();
+
+// ═══════════════════════
+// CONFETTI
+// ═══════════════════════
+function confetti(){
+  const cols=['#FF4757','#FFD93D','#6BCB77','#5BC8F5','#C77DFF','#FF9A3C','#FF9DC6'];
+  for(let i=0;i<42;i++){
+    const p=document.createElement('div');p.className='cp';
+    p.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*-20}px;background:${cols[Math.floor(Math.random()*cols.length)]};width:${Math.random()*12+6}px;height:${Math.random()*12+6}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-delay:${Math.random()*.8}s;animation-duration:${Math.random()*1.5+1.5}s`;
+    document.body.appendChild(p);setTimeout(()=>p.remove(),3500);
+  }
+}
+</script>
+</body>
+</html>
