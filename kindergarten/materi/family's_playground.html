@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LittleLume English — Family</title>
+<style>
+:root{
+  --pink:#FFD6E8;
+  --pink-deep:#FF8FB1;
+  --mint:#BFF3E6;
+  --mint-deep:#4FC9AE;
+  --yellow:#FFF3B0;
+  --yellow-deep:#FFCF3E;
+  --lavender:#E6DBFF;
+  --lavender-deep:#B39CF0;
+  --white:#FFFFFF;
+  --ink:#5B4B6A;
+  --ink-soft:#8B7B99;
+  --shadow:0 8px 0 rgba(91,75,106,0.15);
+  --radius:28px;
+  --bg:#FFF9F4;
+  --card-bg:#FFFFFF;
+}
+body.dark{
+  --bg:#241F33;
+  --card-bg:#332B47;
+  --ink:#F4EEFF;
+  --ink-soft:#C9BEDD;
+  --white:#3A3152;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Baloo 2","Comic Sans MS","Chalkboard SE","Trebuchet MS",Verdana,sans-serif;
+  background:
+    radial-gradient(circle at 8% 12%, var(--pink) 0%, transparent 40%),
+    radial-gradient(circle at 92% 18%, var(--mint) 0%, transparent 42%),
+    radial-gradient(circle at 15% 90%, var(--lavender) 0%, transparent 40%),
+    radial-gradient(circle at 88% 85%, var(--yellow) 0%, transparent 40%),
+    var(--bg);
+  min-height:100vh;
+  color:var(--ink);
+  overflow-x:hidden;
+  transition:background .4s ease,color .4s ease;
+}
+h1,h2,h3{margin:0 0 .3em 0;}
+button{font-family:inherit;cursor:pointer;border:none;outline:none;}
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible{
+  outline:3px solid var(--lavender-deep);
+  outline-offset:2px;
+}
+.hidden{display:none !important;}
+img{max-width:100%;}
+
+/* ===== TOP BAR ===== */
+#topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;
+  background:rgba(255,255,255,0.75);
+  backdrop-filter:blur(8px);
+  border-bottom:3px solid var(--pink-deep);
+}
+body.dark #topbar{background:rgba(36,31,51,0.85);}
+#brandmini{display:flex;align-items:center;gap:6px;font-weight:800;font-size:1.05rem;color:var(--pink-deep);white-space:nowrap;}
+#brandmini .lume-dot{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #FFF7C4, var(--yellow-deep));box-shadow:0 0 10px var(--yellow-deep);}
+#progresswrap{flex:1;display:flex;align-items:center;gap:8px;min-width:80px;}
+#progressbar{
+  flex:1;height:16px;border-radius:10px;background:var(--lavender);
+  overflow:hidden;border:2px solid var(--lavender-deep);
+}
+#progressfill{height:100%;width:0%;background:linear-gradient(90deg,var(--mint-deep),var(--pink-deep));transition:width .5s ease;border-radius:10px;}
+#progresslabel{font-size:.75rem;color:var(--ink-soft);white-space:nowrap;}
+.iconbtn{
+  width:40px;height:40px;border-radius:50%;background:var(--white);
+  box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;transition:transform .15s;
+}
+.iconbtn:active{transform:scale(0.9);}
+#starcount{
+  display:flex;align-items:center;gap:4px;background:var(--yellow);
+  padding:6px 12px;border-radius:20px;font-weight:800;box-shadow:var(--shadow);white-space:nowrap;
+}
+
+/* ===== MENU DRAWER ===== */
+#menuoverlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:90;
+}
+#menudrawer{
+  position:fixed;top:0;right:0;height:100%;width:min(300px,85vw);z-index:91;
+  background:var(--card-bg);box-shadow:-6px 0 20px rgba(0,0,0,0.2);
+  padding:20px;overflow-y:auto;
+  transform:translateX(0);transition:transform .3s;
+}
+#menudrawer h3{color:var(--pink-deep);}
+.menuitem{
+  display:block;width:100%;text-align:left;background:var(--lavender);
+  color:var(--ink);padding:12px 14px;margin:6px 0;border-radius:14px;font-weight:700;
+  font-size:.95rem;
+}
+.menuitem:active{background:var(--lavender-deep);}
+.teacherbox{margin-top:20px;padding-top:16px;border-top:2px dashed var(--pink-deep);}
+.teacherbox button{
+  display:block;width:100%;background:var(--mint);color:var(--ink);
+  padding:10px;margin:6px 0;border-radius:12px;font-weight:700;font-size:.9rem;
+}
+
+/* ===== LAYOUT ===== */
+#app{max-width:900px;margin:0 auto;padding:18px 16px 60px;}
+.screen{animation:fadein .4s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.card-panel{
+  background:var(--card-bg);border-radius:var(--radius);padding:24px;
+  box-shadow:var(--shadow);margin-bottom:20px;
+}
+.centertext{text-align:center;}
+.bigbtn{
+  background:linear-gradient(135deg,var(--pink-deep),var(--lavender-deep));
+  color:#fff;font-weight:800;font-size:1.15rem;padding:16px 34px;border-radius:50px;
+  box-shadow:0 6px 0 rgba(91,75,106,0.25);transition:transform .15s;
+  min-height:56px;
+}
+.bigbtn:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(91,75,106,0.25);}
+.bigbtn.secondary{background:linear-gradient(135deg,var(--mint-deep),var(--yellow-deep));}
+.bigbtn.ghost{background:var(--white);color:var(--ink);box-shadow:var(--shadow);}
+.rowcenter{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:16px;}
+
+/* mascot */
+.mascot{
+  width:110px;height:110px;margin:0 auto 10px;position:relative;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.mascot .body{
+  width:100%;height:100%;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #FFF7C4, var(--yellow-deep));
+  box-shadow:0 0 30px var(--yellow-deep), inset 0 -8px 14px rgba(255,255,255,0.5);
+  display:flex;align-items:center;justify-content:center;font-size:2.6rem;
+}
+.speechbubble{
+  background:var(--white);border-radius:20px;padding:10px 16px;box-shadow:var(--shadow);
+  display:inline-block;font-weight:700;margin:8px auto;max-width:90%;
+}
+
+/* welcome */
+#screen-welcome h1{
+  font-size:clamp(2rem,7vw,3.2rem);text-align:center;
+  background:linear-gradient(90deg,var(--pink-deep),var(--lavender-deep),var(--mint-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:hue 6s linear infinite;
+}
+@keyframes hue{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(20deg);}}
+.familyrow{display:flex;justify-content:center;gap:6px;font-size:2.4rem;margin:14px 0;}
+.familyrow span{animation:bounce 1.6s ease-in-out infinite;}
+.familyrow span:nth-child(2){animation-delay:.15s;}
+.familyrow span:nth-child(3){animation-delay:.3s;}
+.familyrow span:nth-child(4){animation-delay:.45s;}
+.familyrow span:nth-child(5){animation-delay:.6s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+#nameinput{
+  font-family:inherit;font-size:1.1rem;padding:12px 18px;border-radius:20px;
+  border:3px solid var(--lavender-deep);text-align:center;width:min(280px,100%);
+}
+
+/* chips */
+.chiprow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px;}
+.chip{
+  background:var(--lavender);padding:12px 18px;border-radius:20px;font-weight:700;
+  box-shadow:var(--shadow);font-size:1rem;min-height:48px;
+}
+.chip.selected{background:var(--mint-deep);color:#fff;}
+.chip.correct{background:var(--mint-deep) !important;color:#fff;animation:pop .3s;}
+.chip.wrong{background:var(--pink) !important;animation:shake .4s;}
+@keyframes pop{0%{transform:scale(1);}50%{transform:scale(1.15);}100%{transform:scale(1);}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+
+/* vocab cards */
+.gridcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin-top:16px;}
+.flipcard{
+  perspective:1000px;height:170px;
+}
+.flipcard-inner{
+  position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;
+}
+.flipcard.flipped .flipcard-inner{transform:rotateY(180deg);}
+.flipface{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:8px;box-shadow:var(--shadow);text-align:center;
+}
+.flipfront{background:var(--pink);font-size:2.6rem;}
+.flipback{background:var(--mint);transform:rotateY(180deg);font-size:.85rem;gap:4px;}
+.flipback .emoji{font-size:2rem;}
+.flipback .word{font-weight:800;font-size:1.05rem;}
+.flipback .phon{color:var(--ink-soft);font-style:italic;}
+.flipback .sent{font-size:.78rem;padding:0 4px;}
+.listenbtn{
+  background:var(--yellow-deep);border-radius:14px;padding:4px 10px;font-weight:700;font-size:.85rem;
+  box-shadow:var(--shadow);
+}
+
+/* family tree */
+.tree{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+.treenode{
+  background:var(--lavender);border-radius:20px;padding:14px 6px;text-align:center;
+  box-shadow:var(--shadow);font-size:2rem;transition:transform .15s;min-height:90px;
+}
+.treenode:active{transform:scale(0.92);}
+.treenode .lbl{font-size:.75rem;font-weight:700;margin-top:4px;}
+#treeinfo{margin-top:16px;min-height:70px;}
+
+/* matching */
+.matchwrap{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+.matchcol{display:flex;flex-direction:column;gap:10px;min-width:130px;}
+.matchword{
+  background:var(--yellow);padding:12px;border-radius:16px;font-weight:700;text-align:center;
+  box-shadow:var(--shadow);cursor:grab;
+}
+.matchword.usedok{background:var(--mint-deep);color:#fff;opacity:.6;cursor:default;}
+.matchpic{
+  background:var(--white);border:3px dashed var(--lavender-deep);padding:14px;border-radius:16px;
+  text-align:center;font-size:2rem;min-height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.matchpic .plbl{font-size:.7rem;color:var(--ink-soft);}
+.matchpic.filled{border-style:solid;border-color:var(--mint-deep);}
+.matchword.selected{outline:3px solid var(--pink-deep);}
+
+/* memory */
+.memgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+.memcard{
+  aspect-ratio:1/1;border-radius:14px;background:var(--lavender-deep);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  box-shadow:var(--shadow);transition:transform .3s;color:transparent;
+}
+.memcard.flip{background:var(--white);color:var(--ink);}
+.memcard.matched{background:var(--mint);color:var(--ink);opacity:.7;}
+
+/* options grid (listen&choose, mcq) */
+.optgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:16px;}
+.optcard{
+  background:var(--white);padding:16px 8px;border-radius:18px;box-shadow:var(--shadow);
+  text-align:center;font-size:1.8rem;font-weight:700;min-height:80px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.optcard .otxt{font-size:1rem;}
+.optcard.correctflash{background:var(--mint-deep);color:#fff;animation:pop .4s;}
+.optcard.wrongflash{background:var(--pink);animation:shake .4s;}
+
+/* spelling */
+.spellword{
+  display:flex;justify-content:center;gap:6px;font-size:1.8rem;font-weight:800;margin:14px 0;flex-wrap:wrap;
+}
+.spellslot{
+  width:42px;height:52px;border-bottom:4px solid var(--lavender-deep);text-align:center;
+}
+.letterbank{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.letterbtn{
+  width:46px;height:46px;border-radius:12px;background:var(--yellow);font-weight:800;font-size:1.2rem;
+  box-shadow:var(--shadow);
+}
+.letterbtn.used{opacity:.3;}
+
+/* reading */
+.passage{
+  background:var(--lavender);padding:18px;border-radius:20px;font-size:1.15rem;line-height:1.8;margin-top:12px;
+}
+.qblock{margin-top:18px;}
+
+/* true false */
+.tfrow{
+  display:flex;align-items:center;justify-content:space-between;background:var(--white);
+  padding:14px 18px;border-radius:18px;box-shadow:var(--shadow);margin-bottom:12px;gap:10px;flex-wrap:wrap;
+}
+.tfbtns{display:flex;gap:8px;}
+.tfbtn{width:52px;height:52px;border-radius:14px;font-size:1.4rem;background:var(--lavender);box-shadow:var(--shadow);}
+.tfbtn.chosen-correct{background:var(--mint-deep);}
+.tfbtn.chosen-wrong{background:var(--pink);}
+
+/* build sentence */
+.sentbank{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;}
+.wordchip{background:var(--yellow);padding:10px 16px;border-radius:14px;font-weight:700;box-shadow:var(--shadow);}
+.wordchip.used{opacity:.3;}
+.sentslots{
+  min-height:56px;border:3px dashed var(--lavender-deep);border-radius:16px;
+  display:flex;flex-wrap:wrap;gap:8px;padding:10px;margin-top:14px;justify-content:center;align-items:center;
+}
+.sentslots .placed{background:var(--mint-deep);color:#fff;padding:10px 16px;border-radius:14px;font-weight:700;}
+
+/* speaking */
+.micbtn{
+  width:90px;height:90px;border-radius:50%;background:var(--pink-deep);color:#fff;font-size:2.4rem;
+  box-shadow:var(--shadow);margin:16px auto;display:flex;align-items:center;justify-content:center;
+}
+.micbtn.listening{animation:pulse 1s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,143,177,0.6);}100%{box-shadow:0 0 0 24px rgba(255,143,177,0);}}
+
+/* conversation */
+.bubble{max-width:80%;padding:12px 16px;border-radius:18px;margin:8px 0;font-weight:600;}
+.bubble.left{background:var(--lavender);border-bottom-left-radius:4px;}
+.bubble.right{background:var(--mint);margin-left:auto;border-bottom-right-radius:4px;text-align:right;}
+.blankbtn{background:var(--yellow-deep);padding:4px 10px;border-radius:10px;font-weight:800;}
+
+/* adventure */
+.mapwrap{display:flex;flex-direction:column;gap:14px;margin-top:16px;}
+.mapstop{
+  background:var(--white);border-radius:18px;padding:14px;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.mapstop.locked{opacity:.45;}
+.mapstop .stopicon{font-size:2rem;}
+.mapstop .stopinfo{flex:1;}
+.mapstop .stopstatus{font-size:1.3rem;}
+
+/* badges */
+.badgegrid{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.badge{
+  width:90px;text-align:center;font-size:2.2rem;padding:10px;border-radius:18px;background:var(--white);
+  box-shadow:var(--shadow);opacity:.3;
+}
+.badge.unlocked{opacity:1;background:var(--yellow);}
+.badge .blbl{font-size:.7rem;font-weight:700;margin-top:4px;}
+
+/* report */
+.reportgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.reportcell{background:var(--lavender);padding:12px;border-radius:14px;}
+.reportcell b{display:block;font-size:1.3rem;}
+.wordpill{display:inline-block;background:var(--mint);padding:4px 10px;border-radius:10px;margin:3px;font-size:.85rem;}
+.wordpill.review{background:var(--pink);}
+
+/* certificate */
+#certificate{
+  border:6px double var(--lavender-deep);border-radius:20px;padding:30px;text-align:center;
+  background:linear-gradient(135deg,#fff,var(--yellow) 200%);margin-top:16px;
+}
+#certificate h2{font-size:1.8rem;color:var(--pink-deep);}
+#certname{font-size:1.6rem;font-weight:800;margin:10px 0;color:var(--ink);}
+
+/* confetti canvas */
+#confetticanvas{position:fixed;inset:0;pointer-events:none;z-index:200;}
+
+/* footer nav */
+.footernav{display:flex;justify-content:space-between;margin-top:22px;gap:10px;}
+
+@media print{
+  #topbar,.footernav,#menudrawer,#menuoverlay,.screen:not(#screen-report){display:none !important;}
+  #screen-report{display:block !important;}
+  body{background:#fff;}
+}
+
+@media (max-width:480px){
+  .gridcards{grid-template-columns:repeat(2,1fr);}
+  .tree{grid-template-columns:repeat(2,1fr);}
+  .memgrid{grid-template-columns:repeat(3,1fr);}
+  .reportgrid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetticanvas"></canvas>
+
+<div id="topbar">
+  <div id="brandmini"><span class="lume-dot"></span> LittleLume</div>
+  <div id="progresswrap">
+    <div id="progressbar"><div id="progressfill"></div></div>
+    <div id="progresslabel">0%</div>
+  </div>
+  <div id="starcount">⭐ <span id="starnum">0</span></div>
+  <button class="iconbtn" id="soundtoggle" aria-label="Toggle sound">🔊</button>
+  <button class="iconbtn" id="menubtn" aria-label="Open menu">☰</button>
+</div>
+
+<div id="menuoverlay" class="hidden"></div>
+<div id="menudrawer" class="hidden">
+  <h3>Jump to lesson</h3>
+  <button class="menuitem" data-goto="welcome">🏠 Welcome</button>
+  <button class="menuitem" data-goto="warmup">💬 Warm Up</button>
+  <button class="menuitem" data-goto="vocab">🗂️ Vocabulary</button>
+  <button class="menuitem" data-goto="familytree">🌳 Family Tree</button>
+  <button class="menuitem" data-goto="matching">🎯 Matching Game</button>
+  <button class="menuitem" data-goto="memory">🧠 Memory Game</button>
+  <button class="menuitem" data-goto="listen">👂 Listen & Choose</button>
+  <button class="menuitem" data-goto="spelling">🔤 Spelling</button>
+  <button class="menuitem" data-goto="reading">📖 Reading</button>
+  <button class="menuitem" data-goto="truefalse">✅ True / False</button>
+  <button class="menuitem" data-goto="mcq">📝 Choose Answer</button>
+  <button class="menuitem" data-goto="buildsentence">🧩 Build Sentence</button>
+  <button class="menuitem" data-goto="speaking">🎤 Speaking</button>
+  <button class="menuitem" data-goto="conversation">💭 Conversation</button>
+  <button class="menuitem" data-goto="funquiz">🎉 Fun Quiz</button>
+  <button class="menuitem" data-goto="final">🏆 Final Challenge</button>
+  <button class="menuitem" data-goto="report">📊 Parent Report</button>
+  <div class="teacherbox">
+    <h3>Teacher tools</h3>
+    <button id="btn-restart">🔁 Restart Lesson</button>
+    <button id="btn-resetscore">🧹 Reset Score</button>
+    <button id="btn-shuffle">🔀 Shuffle Questions</button>
+    <button id="btn-fullscreen">⛶ Fullscreen</button>
+    <button id="btn-darkmode">🌙 Dark / Light Mode</button>
+  </div>
+</div>
+
+<div id="app"></div>
+
+<script>
+/* ============================================================
+   LittleLume English — Family
+   Single-file offline learning app. No external assets/libs.
+============================================================ */
+(function(){
+"use strict";
+
+/* ---------- DATA ---------- */
+const VOCAB = [
+ {id:"father", emoji:"👨", word:"Father", phon:"/FAH-ther/", sentence:"This is my father.", ctx:"a man with children"},
+ {id:"mother", emoji:"👩", word:"Mother", phon:"/MUH-ther/", sentence:"This is my mother.", ctx:"a woman with children"},
+ {id:"brother", emoji:"👦", word:"Brother", phon:"/BRUH-ther/", sentence:"He is my brother.", ctx:"a boy in the family"},
+ {id:"sister", emoji:"👧", word:"Sister", phon:"/SIS-ter/", sentence:"She is my sister.", ctx:"a girl in the family"},
+ {id:"grandfather", emoji:"👴", word:"Grandfather", phon:"/GRAND-fah-ther/", sentence:"He is my grandfather.", ctx:"father's father"},
+ {id:"grandmother", emoji:"👵", word:"Grandmother", phon:"/GRAND-muh-ther/", sentence:"She is my grandmother.", ctx:"mother's mother"},
+ {id:"baby", emoji:"👶", word:"Baby", phon:"/BAY-bee/", sentence:"This is my baby.", ctx:"a very young child"},
+ {id:"family", emoji:"👨‍👩‍👧‍👦", word:"Family", phon:"/FAM-uh-lee/", sentence:"I love my family.", ctx:"everyone together"},
+ {id:"parents", emoji:"👨‍👩‍👧", word:"Parents", phon:"/PAIR-ents/", sentence:"These are my parents.", ctx:"father and mother"},
+ {id:"grandparents", emoji:"👴👵", word:"Grandparents", phon:"/GRAND-pair-ents/", sentence:"They are my grandparents.", ctx:"grandfather and grandmother"},
+ {id:"me", emoji:"🧒", word:"Me", phon:"/MEE/", sentence:"This is me.", ctx:"you!"},
+ {id:"boy", emoji:"👦", word:"Boy", phon:"/BOY/", sentence:"He is a boy.", ctx:"a young male"},
+ {id:"girl", emoji:"👧", word:"Girl", phon:"/GURL/", sentence:"She is a girl.", ctx:"a young female"},
+ {id:"son", emoji:"👦", word:"Son", phon:"/SUHN/", sentence:"He is their son.", ctx:"a parent's boy"},
+ {id:"daughter", emoji:"👧", word:"Daughter", phon:"/DAW-ter/", sentence:"She is their daughter.", ctx:"a parent's girl"}
+];
+function vb(id){return VOCAB.find(v=>v.id===id);}
+
+const SCREEN_ORDER = ["welcome","warmup","vocab","familytree","matching","memory","listen","spelling",
+  "reading","truefalse","mcq","buildsentence","speaking","conversation","funquiz","final","report"];
+
+const MCQ_BANK = [
+ {q:"Which one is Father?", correct:"father", opts:["father","mother","sister","baby"]},
+ {q:"Which one is Mother?", correct:"mother", opts:["mother","brother","grandfather","boy"]},
+ {q:"Which one is Sister?", correct:"sister", opts:["sister","son","grandmother","family"]},
+ {q:"Which one is Brother?", correct:"brother", opts:["brother","daughter","parents","me"]},
+ {q:"Which one is Grandmother?", correct:"grandmother", opts:["grandmother","grandfather","mother","girl"]},
+ {q:"Which one is Grandfather?", correct:"grandfather", opts:["grandfather","father","baby","boy"]},
+ {q:"Which one is Baby?", correct:"baby", opts:["baby","family","sister","son"]},
+ {q:"Which one means everyone together?", correct:"family", opts:["family","me","girl","daughter"]},
+ {q:"Which one means father and mother?", correct:"parents", opts:["parents","grandparents","brother","sister"]},
+ {q:"Which one means grandfather and grandmother?", correct:"grandparents", opts:["grandparents","parents","family","me"]},
+ {q:"Which one is a young female?", correct:"girl", opts:["girl","boy","father","grandfather"]},
+ {q:"Which one is a young male?", correct:"boy", opts:["boy","girl","mother","grandmother"]},
+ {q:"Which one is a parent's boy?", correct:"son", opts:["son","daughter","baby","family"]},
+ {q:"Which one is a parent's girl?", correct:"daughter", opts:["daughter","son","brother","grandfather"]},
+ {q:"Which one is you?", correct:"me", opts:["me","family","parents","baby"]}
+];
+
+const TF_BANK = [
+ {s:"Father is a man.", answer:true},
+ {s:"Mother is a woman.", answer:true},
+ {s:"Father is a girl.", answer:false},
+ {s:"Baby is a grandfather.", answer:false},
+ {s:"Sister is a girl.", answer:true},
+ {s:"Brother is a girl.", answer:false},
+ {s:"Grandparents are old.", answer:true},
+ {s:"Parents means father and mother.", answer:true},
+ {s:"A baby is very young.", answer:true},
+ {s:"A daughter is a boy.", answer:false}
+];
+
+const CONVERSATIONS = [
+ {a:"Who is she?", b:"She is my ___.", answer:"mother", opts:["mother","father","brother"]},
+ {a:"Who is he?", b:"He is my ___.", answer:"grandfather", opts:["grandfather","sister","baby"]},
+ {a:"Is this your family?", b:"Yes! I love my ___.", answer:"family", opts:["family","boy","me"]},
+ {a:"Who is this baby?", b:"She is my ___.", answer:"sister", opts:["sister","grandmother","parents"]}
+];
+
+const SENTENCE_BANK = [
+ {words:["This","is","my","family"], full:"This is my family."},
+ {words:["This","is","my","father"], full:"This is my father."},
+ {words:["This","is","my","mother"], full:"This is my mother."},
+ {words:["I","love","my","family"], full:"I love my family."},
+ {words:["He","is","my","brother"], full:"He is my brother."},
+ {words:["She","is","my","sister"], full:"She is my sister."},
+ {words:["They","are","my","grandparents"], full:"They are my grandparents."}
+];
+
+const SPELL_WORDS = ["father","mother","brother","sister","family","baby"];
+
+const SPEAKING_LINES = ["This is my father.","This is my family.","I love my family."];
+
+const READING_PASSAGE = "Hello! This is my family. This is my father. This is my mother. I love my family.";
+const READING_Q = [
+ {q:"Who is in the story?", correct:"My family", opts:["My family","My school","My dog"]},
+ {q:"What does the child say about family?", correct:"I love my family", opts:["I love my family","I love my school","I love my toy"]},
+ {q:"Is father in the story?", correct:"Yes", opts:["Yes","No"]}
+];
+
+const TREE_NODES = [
+ {id:"grandfather", x:0}, {id:"grandmother", x:0},
+ {id:"father", x:0}, {id:"mother", x:0},
+ {id:"brother", x:0}, {id:"sister", x:0},
+ {id:"baby", x:0}, {id:"me", x:0}
+];
+
+/* ---------- STATE ---------- */
+const state = {
+  studentName:"Little Learner",
+  stars:0,
+  score:0,
+  correctCount:0,
+  wrongCount:0,
+  correctWords:new Set(),
+  reviewWords:new Set(),
+  completed:new Set(),
+  soundOn:true,
+  darkMode:false,
+  vocabSeen:new Set(),
+};
+
+/* ---------- AUDIO (WebAudio, no external files) ---------- */
+let actx=null;
+function getCtx(){
+  if(!actx){ actx = new (window.AudioContext||window.webkitAudioContext)(); }
+  return actx;
+}
+function beep(freq,dur,type){
+  if(!state.soundOn) return;
+  try{
+    const ctx=getCtx();
+    const osc=ctx.createOscillator();
+    const gain=ctx.createGain();
+    osc.type=type||"sine";
+    osc.frequency.value=freq;
+    gain.gain.setValueAtTime(0.15,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+dur);
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.start();osc.stop(ctx.currentTime+dur);
+  }catch(e){}
+}
+function sfxCorrect(){ beep(880,0.15,"sine"); setTimeout(()=>beep(1180,0.2,"sine"),120); }
+function sfxWrong(){ beep(220,0.25,"triangle"); }
+function sfxClick(){ beep(500,0.06,"square"); }
+function sfxBadge(){ beep(660,0.15);setTimeout(()=>beep(880,0.15),140);setTimeout(()=>beep(1100,0.25),280); }
+
+function speak(text){
+  if(!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.rate=0.85; u.pitch=1.15; u.lang="en-US";
+  window.speechSynthesis.speak(u);
+}
+
+/* ---------- CONFETTI ---------- */
+const confettiCanvas = document.getElementById("confetticanvas");
+const cctx = confettiCanvas.getContext("2d");
+function resizeCanvas(){ confettiCanvas.width=window.innerWidth; confettiCanvas.height=window.innerHeight; }
+window.addEventListener("resize",resizeCanvas); resizeCanvas();
+let confettiParticles=[];
+function confettiBurst(count){
+  const colors=["#FF8FB1","#4FC9AE","#FFCF3E","#B39CF0","#FFD6E8"];
+  for(let i=0;i<(count||60);i++){
+    confettiParticles.push({
+      x:Math.random()*confettiCanvas.width,
+      y:-20-Math.random()*100,
+      vx:(Math.random()-0.5)*4,
+      vy:2+Math.random()*3,
+      size:6+Math.random()*6,
+      color:colors[Math.floor(Math.random()*colors.length)],
+      rot:Math.random()*360,
+      vr:(Math.random()-0.5)*10
+    });
+  }
+  if(!confettiRunning){ confettiRunning=true; requestAnimationFrame(runConfetti); }
+}
+let confettiRunning=false;
+function runConfetti(){
+  cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+  confettiParticles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;
+    cctx.save();
+    cctx.translate(p.x,p.y);cctx.rotate(p.rot*Math.PI/180);
+    cctx.fillStyle=p.color;
+    cctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+    cctx.restore();
+  });
+  confettiParticles=confettiParticles.filter(p=>p.y<confettiCanvas.height+40);
+  if(confettiParticles.length>0){ requestAnimationFrame(runConfetti); }
+  else{ confettiRunning=false; }
+}
+
+/* ---------- STAR / SCORE / ENCOURAGEMENT ---------- */
+const ENCOURAGEMENTS = ["Great try!","So close! Try again!","You can do it!","Keep going, superstar!","Nice thinking!"];
+function addStar(n){
+  state.stars += (n||1);
+  document.getElementById("starnum").textContent = state.stars;
+  checkBadges();
+}
+function markCorrect(wordId){
+  state.score += 10; state.correctCount++;
+  if(wordId){ state.correctWords.add(wordId); state.reviewWords.delete(wordId); }
+  addStar(1); sfxCorrect();
+}
+function markWrong(wordId){
+  state.wrongCount++;
+  if(wordId){ state.reviewWords.add(wordId); }
+  sfxWrong();
+}
+function encourage(){
+  return ENCOURAGEMENTS[Math.floor(Math.random()*ENCOURAGEMENTS.length)];
+}
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+const BADGE_LEVELS = [
+ {stars:10,name:"Bronze",icon:"🥉"},
+ {stars:20,name:"Silver",icon:"🥈"},
+ {stars:30,name:"Gold",icon:"🏅"}
+];
+let championUnlocked=false;
+function checkBadges(){
+  BADGE_LEVELS.forEach(b=>{
+    const el=document.getElementById("badge-"+b.name);
+    if(el && state.stars>=b.stars && !el.classList.contains("unlocked")){
+      el.classList.add("unlocked");
+      sfxBadge(); confettiBurst(80);
+    }
+  });
+}
+function unlockChampion(){
+  if(championUnlocked) return;
+  championUnlocked=true;
+  const el=document.getElementById("badge-Champion");
+  if(el) el.classList.add("unlocked");
+  sfxBadge(); confettiBurst(140);
+}
+
+/* ---------- PROGRESS / NAV ---------- */
+function updateProgress(){
+  const pct = Math.round((state.completed.size / SCREEN_ORDER.length) * 100);
+  document.getElementById("progressfill").style.width = pct+"%";
+  document.getElementById("progresslabel").textContent = pct+"%";
+}
+function markScreenComplete(name){
+  state.completed.add(name);
+  updateProgress();
+}
+let currentScreen="welcome";
+function goTo(name){
+  currentScreen = name;
+  render();
+  window.scrollTo({top:0,behavior:"smooth"});
+  closeMenu();
+}
+function nextScreen(){
+  const idx = SCREEN_ORDER.indexOf(currentScreen);
+  markScreenComplete(currentScreen);
+  if(idx>=0 && idx<SCREEN_ORDER.length-1){ goTo(SCREEN_ORDER[idx+1]); }
+}
+function prevScreen(){
+  const idx = SCREEN_ORDER.indexOf(currentScreen);
+  if(idx>0){ goTo(SCREEN_ORDER[idx-1]); }
+}
+
+/* ---------- MENU / TEACHER TOOLS ---------- */
+const menuBtn=document.getElementById("menubtn");
+const menuDrawer=document.getElementById("menudrawer");
+const menuOverlay=document.getElementById("menuoverlay");
+function openMenu(){ menuDrawer.classList.remove("hidden"); menuOverlay.classList.remove("hidden"); }
+function closeMenu(){ menuDrawer.classList.add("hidden"); menuOverlay.classList.add("hidden"); }
+menuBtn.addEventListener("click",()=>{ sfxClick(); openMenu(); });
+menuOverlay.addEventListener("click",closeMenu);
+menuDrawer.addEventListener("click",(e)=>{
+  const item=e.target.closest(".menuitem");
+  if(item){ goTo(item.dataset.goto); }
+});
+document.getElementById("btn-restart").addEventListener("click",()=>{
+  if(confirm("Restart the whole lesson? Your progress will reset.")){
+    state.stars=0;state.score=0;state.correctCount=0;state.wrongCount=0;
+    state.correctWords.clear();state.reviewWords.clear();state.completed.clear();
+    state.vocabSeen.clear();championUnlocked=false;
+    document.getElementById("starnum").textContent="0";
+    updateProgress();
+    goTo("welcome");
+  }
+});
+document.getElementById("btn-resetscore").addEventListener("click",()=>{
+  state.stars=0;state.score=0;
+  document.getElementById("starnum").textContent="0";
+  BADGE_LEVELS.forEach(b=>{const el=document.getElementById("badge-"+b.name); if(el) el.classList.remove("unlocked");});
+  championUnlocked=false;
+  alert("Score and stars reset!");
+});
+document.getElementById("btn-shuffle").addEventListener("click",()=>{
+  shuffleAll(); alert("Questions shuffled!"); render();
+});
+document.getElementById("btn-fullscreen").addEventListener("click",()=>{
+  if(!document.fullscreenElement){ document.documentElement.requestFullscreen().catch(()=>{}); }
+  else{ document.exitFullscreen(); }
+});
+document.getElementById("btn-darkmode").addEventListener("click",()=>{
+  state.darkMode=!state.darkMode;
+  document.body.classList.toggle("dark",state.darkMode);
+});
+document.getElementById("soundtoggle").addEventListener("click",(e)=>{
+  state.soundOn=!state.soundOn;
+  e.currentTarget.textContent = state.soundOn?"🔊":"🔇";
+  if(state.soundOn) sfxClick();
+});
+
+let mcqOrder=shuffle(MCQ_BANK);
+let tfOrder=shuffle(TF_BANK);
+function shuffleAll(){
+  mcqOrder=shuffle(MCQ_BANK);
+  tfOrder=shuffle(TF_BANK);
+}
+
+/* ============================================================
+   RENDER — each screen returns an HTML string + attaches events
+============================================================ */
+const app = document.getElementById("app");
+
+function render(){
+  let html="";
+  switch(currentScreen){
+    case "welcome": html=renderWelcome(); break;
+    case "warmup": html=renderWarmup(); break;
+    case "vocab": html=renderVocab(); break;
+    case "familytree": html=renderFamilyTree(); break;
+    case "matching": html=renderMatching(); break;
+    case "memory": html=renderMemory(); break;
+    case "listen": html=renderListen(); break;
+    case "spelling": html=renderSpelling(); break;
+    case "reading": html=renderReading(); break;
+    case "truefalse": html=renderTrueFalse(); break;
+    case "mcq": html=renderMCQ(); break;
+    case "buildsentence": html=renderBuildSentence(); break;
+    case "speaking": html=renderSpeaking(); break;
+    case "conversation": html=renderConversation(); break;
+    case "funquiz": html=renderFunQuiz(); break;
+    case "final": html=renderFinal(); break;
+    case "report": html=renderReport(); break;
+    default: html=renderWelcome();
+  }
+  app.innerHTML = `<div class="screen" id="screen-${currentScreen}">${html}</div>`;
+  attachHandlers();
+}
+function footerNav(showPrev,nextLabel){
+  return `<div class="footernav">
+    ${showPrev? `<button class="bigbtn ghost" data-nav="prev">⬅ Back</button>`:`<span></span>`}
+    <button class="bigbtn" data-nav="next">${nextLabel||"Continue ➜"}</button>
+  </div>`;
+}
+
+/* ---- 1. WELCOME ---- */
+function renderWelcome(){
+  return `
+  <div class="card-panel centertext">
+    <div class="mascot"><div class="body">🐝</div></div>
+    <div class="speechbubble">Hi! I'm Lumi! Let's learn about Family! ✨</div>
+    <h1>LittleLume English</h1>
+    <h2 style="color:var(--mint-deep);">Family 👨‍👩‍👧‍👦</h2>
+    <div class="familyrow"><span>👴</span><span>👵</span><span>👨</span><span>👩</span><span>🧒</span></div>
+    <p>What's your name, superstar?</p>
+    <input id="nameinput" type="text" placeholder="Type your name" maxlength="20">
+    <div class="rowcenter">
+      <button class="bigbtn" id="startlearning">🚀 Start Learning</button>
+    </div>
+  </div>`;
+}
+
+/* ---- 2. WARM UP ---- */
+function renderWarmup(){
+  const options=["Father","Mother","Brother","Sister","Grandparents","Baby","Me"];
+  return `
+  <div class="card-panel centertext">
+    <div class="mascot"><div class="body">🐝</div></div>
+    <h2>Warm Up 💬</h2>
+    <p>Who is in your family? Tap everyone you have!</p>
+    <div class="chiprow" id="warmup-chips">
+      ${options.map(o=>`<button class="chip" data-word="${o}">${o}</button>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 3. VOCAB ---- */
+function renderVocab(){
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Learn Vocabulary 🗂️</h2>
+    <p class="centertext">Tap a card to flip it and learn the word!</p>
+    <div class="gridcards" id="vocab-grid">
+      ${VOCAB.map(v=>`
+      <div class="flipcard" data-id="${v.id}">
+        <div class="flipcard-inner">
+          <div class="flipface flipfront">${v.emoji}</div>
+          <div class="flipface flipback">
+            <div class="emoji">${v.emoji}</div>
+            <div class="word">${v.word}</div>
+            <div class="phon">${v.phon}</div>
+            <button class="listenbtn" data-say="${v.word}">🔊 Listen</button>
+            <div class="sent">"${v.sentence}"</div>
+          </div>
+        </div>
+      </div>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 4. FAMILY TREE ---- */
+function renderFamilyTree(){
+  const ids=["grandfather","grandmother","father","mother","me","brother","sister","baby"];
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Family Tree 🌳</h2>
+    <p class="centertext">Tap each family member to learn about them.</p>
+    <div class="tree" id="tree-grid">
+      ${ids.map(id=>{const v=vb(id); const label=id==="me"?"Me":v.word;
+        return `<button class="treenode" data-id="${id}">${v.emoji}<div class="lbl">${label}</div></button>`;}).join("")}
+    </div>
+    <div id="treeinfo" class="card-panel centertext" style="background:var(--yellow);display:none;"></div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 5. MATCHING ---- */
+let matchState={};
+function setupMatching(){
+  const words=shuffle(VOCAB.slice(0,8));
+  const pics=shuffle(words);
+  matchState={words, pics, matched:new Set(), selectedWord:null};
+}
+function renderMatching(){
+  if(!matchState.words) setupMatching();
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Matching Game 🎯</h2>
+    <p class="centertext">Tap a word, then tap its matching picture!</p>
+    <div class="centertext" id="match-score">Score: ${matchState.matched.size} / ${matchState.words.length}</div>
+    <div class="matchwrap">
+      <div class="matchcol" id="match-words">
+        ${matchState.words.map(w=>`<button class="matchword ${matchState.matched.has(w.id)?'usedok':''}" data-id="${w.id}" ${matchState.matched.has(w.id)?'disabled':''}>${w.word}</button>`).join("")}
+      </div>
+      <div class="matchcol" id="match-pics">
+        ${matchState.pics.map(p=>`<div class="matchpic ${matchState.matched.has(p.id)?'filled':''}" data-id="${p.id}">
+          <div>${p.emoji}</div>${matchState.matched.has(p.id)?`<div class="plbl">${p.word}</div>`:''}
+        </div>`).join("")}
+      </div>
+    </div>
+    <div class="rowcenter">
+      <button class="bigbtn ghost" id="match-replay">🔁 Replay</button>
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 6. MEMORY ---- */
+let memState={};
+function setupMemory(){
+  const chosen=shuffle(VOCAB.slice(0,8));
+  let cards=[];
+  chosen.forEach(v=>{
+    cards.push({key:v.id,type:"emoji",display:v.emoji});
+    cards.push({key:v.id,type:"word",display:v.word});
+  });
+  cards=shuffle(cards);
+  memState={cards, flipped:[], matched:new Set(), moves:0, seconds:0, timer:null, done:false};
+}
+function renderMemory(){
+  if(!memState.cards) setupMemory();
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Memory Game 🧠</h2>
+    <p class="centertext">Flip two cards to find a matching picture and word!</p>
+    <div class="centertext">⏱️ <span id="mem-timer">0</span>s &nbsp; | &nbsp; Moves: <span id="mem-moves">0</span></div>
+    <div class="memgrid" id="mem-grid">
+      ${memState.cards.map((c,i)=>`<button class="memcard ${memState.matched.has(i)?'matched':''}" data-i="${i}">${memState.matched.has(i)?c.display:'✨'}</button>`).join("")}
+    </div>
+    <div class="rowcenter">
+      <button class="bigbtn ghost" id="mem-replay">🔁 Replay</button>
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+function startMemTimer(){
+  if(memState.timer) clearInterval(memState.timer);
+  memState.timer=setInterval(()=>{
+    if(memState.done){clearInterval(memState.timer);return;}
+    memState.seconds++;
+    const el=document.getElementById("mem-timer");
+    if(el) el.textContent=memState.seconds;
+  },1000);
+}
+
+/* ---- 7. LISTEN & CHOOSE ---- */
+let listenState={};
+function setupListen(){
+  const words=shuffle(VOCAB.slice(0,8));
+  listenState={words, index:0, done:false};
+}
+function renderListen(){
+  if(!listenState.words) setupListen();
+  if(listenState.index>=listenState.words.length){
+    return `<div class="card-panel centertext">
+      <h2>Listen & Choose 👂</h2>
+      <div class="mascot"><div class="body">🐝</div></div>
+      <p>Wonderful listening, ${state.studentName}! 🎉</p>
+      <div class="rowcenter"><button class="bigbtn ghost" id="listen-replay">🔁 Play Again</button></div>
+      ${footerNav(true)}
+    </div>`;
+  }
+  const current=listenState.words[listenState.index];
+  const distractors=shuffle(VOCAB.filter(v=>v.id!==current.id)).slice(0,3);
+  const opts=shuffle([current,...distractors]);
+  listenState.currentOpts=opts;
+  return `
+  <div class="card-panel centertext">
+    <h2>Listen & Choose 👂</h2>
+    <p>Question ${listenState.index+1} / ${listenState.words.length}</p>
+    <button class="bigbtn secondary" id="listen-play">🔊 Play Word</button>
+    <div class="optgrid" id="listen-opts">
+      ${opts.map(o=>`<button class="optcard" data-id="${o.id}">${o.emoji}<div class="otxt">${o.word}</div></button>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 8. SPELLING ---- */
+let spellState={};
+function setupSpelling(){
+  spellState={index:0, words:shuffle(SPELL_WORDS), filled:[], bank:[]};
+  prepSpellWord();
+}
+function prepSpellWord(){
+  const word=spellState.words[spellState.index];
+  const missing = new Set();
+  // pick ~40% of letter positions (not first letter) to hide
+  for(let i=1;i<word.length;i++){ if(Math.random()<0.45) missing.add(i); }
+  if(missing.size===0) missing.add(Math.min(2,word.length-1));
+  spellState.word=word;
+  spellState.missing=Array.from(missing).sort((a,b)=>a-b);
+  spellState.filled=spellState.missing.map(()=>null);
+  spellState.bank=shuffle(spellState.missing.map(i=>word[i]).concat(["x","q","z"].slice(0,1)));
+}
+function renderSpelling(){
+  if(!spellState.words) setupSpelling();
+  if(spellState.index>=spellState.words.length){
+    return `<div class="card-panel centertext"><h2>Spelling Game 🔤</h2>
+    <div class="mascot"><div class="body">🐝</div></div>
+    <p>You're a spelling star, ${state.studentName}! ⭐</p>
+    ${footerNav(true)}</div>`;
+  }
+  const w=spellState.word;
+  let slotIdx=0;
+  const slotsHtml = w.split("").map((ch,i)=>{
+    if(spellState.missing.includes(i)){
+      const pos=spellState.missing.indexOf(i);
+      const filled=spellState.filled[pos];
+      return `<div class="spellslot" data-pos="${pos}">${filled?filled.toUpperCase():""}</div>`;
+    } else {
+      return `<div class="spellslot" style="border-bottom:none;">${ch.toUpperCase()}</div>`;
+    }
+  }).join("");
+  return `
+  <div class="card-panel centertext">
+    <h2>Spelling Game 🔤</h2>
+    <p>Word ${spellState.index+1} / ${spellState.words.length} — fill in the missing letters!</p>
+    <div style="font-size:3rem;">${vb(w).emoji}</div>
+    <div class="spellword" id="spell-slots">${slotsHtml}</div>
+    <div class="letterbank" id="spell-bank">
+      ${spellState.bank.map((l,i)=>`<button class="letterbtn" data-i="${i}" data-letter="${l}">${l.toUpperCase()}</button>`).join("")}
+    </div>
+    <div class="rowcenter">
+      <button class="bigbtn secondary" id="spell-check">✅ Check</button>
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 9. READING ---- */
+function renderReading(){
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Reading Practice 📖</h2>
+    <div class="passage" id="reading-passage">${READING_PASSAGE}</div>
+    <div class="rowcenter"><button class="bigbtn secondary" id="reading-listen">🔊 Listen to passage</button></div>
+    <div id="reading-questions">
+      ${READING_Q.map((rq,qi)=>`
+      <div class="qblock">
+        <p><b>${qi+1}. ${rq.q}</b></p>
+        <div class="optgrid">
+          ${shuffle(rq.opts).map(o=>`<button class="optcard" data-qi="${qi}" data-val="${o}">${o}</button>`).join("")}
+        </div>
+      </div>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 10. TRUE / FALSE ---- */
+function renderTrueFalse(){
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">True or False ✅❌</h2>
+    <div id="tf-list">
+      ${tfOrder.map((t,i)=>`
+      <div class="tfrow" data-i="${i}">
+        <span>${t.s}</span>
+        <div class="tfbtns">
+          <button class="tfbtn" data-i="${i}" data-val="true">✅</button>
+          <button class="tfbtn" data-i="${i}" data-val="false">❌</button>
+        </div>
+      </div>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 11. MCQ ---- */
+function renderMCQ(){
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Choose the Correct Answer 📝</h2>
+    <p class="centertext">Answer all ${mcqOrder.length} questions!</p>
+    <div id="mcq-list">
+      ${mcqOrder.map((m,i)=>`
+      <div class="qblock" data-i="${i}">
+        <p><b>${i+1}. ${m.q}</b></p>
+        <div class="optgrid">
+          ${shuffle(m.opts).map(o=>`<button class="optcard" data-i="${i}" data-val="${o}">${vb(o)?vb(o).emoji:''}<div class="otxt">${vb(o)?vb(o).word:o}</div></button>`).join("")}
+        </div>
+      </div>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 12. BUILD SENTENCE ---- */
+let sentState={};
+function setupSentence(){
+  sentState={index:0, order:shuffle(SENTENCE_BANK), placed:[]};
+  prepSentence();
+}
+function prepSentence(){
+  const item=sentState.order[sentState.index];
+  sentState.bank=shuffle(item.words.map((w,i)=>({w,i})));
+  sentState.placed=[];
+}
+function renderBuildSentence(){
+  if(!sentState.order) setupSentence();
+  if(sentState.index>=sentState.order.length){
+    return `<div class="card-panel centertext"><h2>Build the Sentence 🧩</h2>
+    <div class="mascot"><div class="body">🐝</div></div>
+    <p>Amazing sentence building, ${state.studentName}!</p>
+    ${footerNav(true)}</div>`;
+  }
+  const item=sentState.order[sentState.index];
+  return `
+  <div class="card-panel centertext">
+    <h2>Build the Sentence 🧩</h2>
+    <p>Sentence ${sentState.index+1} / ${sentState.order.length} — tap the words in order!</p>
+    <div class="sentslots" id="sent-slots">
+      ${sentState.placed.map(p=>`<span class="placed">${p}</span>`).join("") || '<span style="color:var(--ink-soft);">Tap words below...</span>'}
+    </div>
+    <div class="sentbank" id="sent-bank">
+      ${sentState.bank.map(b=>`<button class="wordchip ${sentState.placed.length>0 && sentState.usedIdx && sentState.usedIdx.has(b.i)?'used':''}" data-i="${b.i}" data-w="${b.w}">${b.w}</button>`).join("")}
+    </div>
+    <div class="rowcenter">
+      <button class="bigbtn ghost" id="sent-reset">↩️ Reset</button>
+      <button class="bigbtn secondary" id="sent-check">✅ Check</button>
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 13. SPEAKING ---- */
+let speakState={index:0, listening:false};
+function renderSpeaking(){
+  const line=SPEAKING_LINES[speakState.index % SPEAKING_LINES.length];
+  const supported = ("webkitSpeechRecognition" in window) || ("SpeechRecognition" in window);
+  return `
+  <div class="card-panel centertext">
+    <h2>Speaking Practice 🎤</h2>
+    <div class="mascot"><div class="body">🐝</div></div>
+    <p>Say this sentence out loud:</p>
+    <h3 style="color:var(--pink-deep);">"${line}"</h3>
+    <button class="bigbtn ghost" id="speak-hear">🔊 Hear it first</button>
+    <div class="micbtn" id="speak-mic">🎤</div>
+    <p id="speak-feedback" style="min-height:1.4em;font-weight:700;"></p>
+    ${!supported ? '<p style="color:var(--ink-soft);font-size:.85rem;">Speech recognition isn\'t available in this browser — try Chrome, or just practice out loud with a grown-up listening!</p>':''}
+    <div class="rowcenter">
+      <button class="bigbtn secondary" id="speak-next">Next sentence ➜</button>
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 14. CONVERSATION ---- */
+let convState={index:0};
+function renderConversation(){
+  if(convState.index>=CONVERSATIONS.length){
+    return `<div class="card-panel centertext"><h2>Mini Conversation 💭</h2>
+    <div class="mascot"><div class="body">🐝</div></div>
+    <p>You're a great conversation star, ${state.studentName}!</p>
+    ${footerNav(true)}</div>`;
+  }
+  const c=CONVERSATIONS[convState.index];
+  const beforeBlank=c.b.split("___")[0];
+  const afterBlank=c.b.split("___")[1];
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Mini Conversation 💭</h2>
+    <p class="centertext">Conversation ${convState.index+1} / ${CONVERSATIONS.length}</p>
+    <div class="bubble left">🧑 A: ${c.a}</div>
+    <div class="bubble right">🧒 B: ${beforeBlank}<span id="conv-blank">____</span>${afterBlank}</div>
+    <div class="optgrid" id="conv-opts">
+      ${shuffle(c.opts).map(o=>`<button class="optcard" data-val="${o}"><div class="otxt">${o}</div></button>`).join("")}
+    </div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 15. FUN QUIZ CHALLENGE (20 mixed) ---- */
+let funQuizState={};
+function buildFunQuizPool(){
+  let pool=[];
+  MCQ_BANK.forEach(m=>pool.push({type:"mcq", q:m.q, correct:m.correct, opts:m.opts}));
+  TF_BANK.forEach(t=>pool.push({type:"tf", q:t.s, correct:t.answer}));
+  VOCAB.slice(0,8).forEach(v=>pool.push({type:"listen", word:v.id}));
+  READING_Q.forEach(r=>pool.push({type:"read", q:r.q, correct:r.correct, opts:r.opts}));
+  SPELL_WORDS.forEach(w=>pool.push({type:"spellmcq", word:w}));
+  return shuffle(pool).slice(0,20);
+}
+function renderFunQuiz(){
+  if(!funQuizState.pool){ funQuizState={pool:buildFunQuizPool(), index:0, correctInRound:0}; }
+  if(funQuizState.index>=funQuizState.pool.length){
+    return `<div class="card-panel centertext">
+      <h2>Fun Quiz Challenge 🎉</h2>
+      <div class="mascot"><div class="body">🐝</div></div>
+      <p>You got ${funQuizState.correctInRound} / ${funQuizState.pool.length} — amazing work, ${state.studentName}!</p>
+      <div class="rowcenter"><button class="bigbtn ghost" id="funquiz-replay">🔁 Play Again</button></div>
+      ${footerNav(true)}
+    </div>`;
+  }
+  const item=funQuizState.pool[funQuizState.index];
+  let body="";
+  if(item.type==="mcq"||item.type==="read"){
+    body=`<p><b>${item.q}</b></p><div class="optgrid">${shuffle(item.opts).map(o=>`<button class="optcard" data-val="${o}">${vb(o)?vb(o).emoji:''}<div class="otxt">${vb(o)?vb(o).word:o}</div></button>`).join("")}</div>`;
+  } else if(item.type==="tf"){
+    body=`<p><b>${item.q}</b></p><div class="rowcenter"><button class="bigbtn ghost" data-val="true">✅ True</button><button class="bigbtn ghost" data-val="false">❌ False</button></div>`;
+  } else if(item.type==="listen"){
+    const v=vb(item.word);
+    const opts=shuffle([v,...shuffle(VOCAB.filter(x=>x.id!==v.id)).slice(0,3)]);
+    body=`<p><b>Listen and choose!</b></p><div class="rowcenter"><button class="bigbtn secondary" id="funquiz-play">🔊 Play Word</button></div>
+    <div class="optgrid">${opts.map(o=>`<button class="optcard" data-val="${o.id}">${o.emoji}<div class="otxt">${o.word}</div></button>`).join("")}</div>`;
+  } else if(item.type==="spellmcq"){
+    const w=item.word; const wrong1=w.slice(0,-1)+ (w.slice(-1)==="r"?"l":"r"); const wrong2=w[0]+w.slice(1).split("").reverse().join("").slice(0,w.length-1);
+    const opts=shuffle([w,wrong1,wrong2]);
+    body=`<p><b>Which spelling is correct?</b> ${vb(w).emoji}</p><div class="optgrid">${opts.map(o=>`<button class="optcard" data-val="${o}"><div class="otxt">${o.toUpperCase()}</div></button>`).join("")}</div>`;
+  }
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Fun Quiz Challenge 🎉</h2>
+    <p class="centertext">Question ${funQuizState.index+1} / ${funQuizState.pool.length}</p>
+    <div id="funquiz-body">${body}</div>
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 16. FINAL CHALLENGE (ADVENTURE) ---- */
+let finalState={};
+function setupFinal(){
+  finalState={
+    stops:[
+      {id:"grandfather", place:"Grandpa's chair", q:"Find Grandfather!", opts:shuffle(["grandfather","father","boy"])},
+      {id:"grandmother", place:"Grandma's kitchen", q:"Find Grandmother!", opts:shuffle(["grandmother","mother","girl"])},
+      {id:"father", place:"The garage", q:"Find Father!", opts:shuffle(["father","brother","baby"])},
+      {id:"mother", place:"The garden", q:"Find Mother!", opts:shuffle(["mother","sister","son"])},
+      {id:"brother", place:"The playroom", q:"Find Brother!", opts:shuffle(["brother","daughter","family"])},
+      {id:"sister", place:"The bedroom", q:"Find Sister!", opts:shuffle(["sister","grandparents","me"])},
+      {id:"baby", place:"The nursery", q:"Find Baby!", opts:shuffle(["baby","parents","girl"])}
+    ],
+    foundCount:0
+  };
+}
+function renderFinal(){
+  if(!finalState.stops) setupFinal();
+  const allFound = finalState.foundCount >= finalState.stops.length;
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Final Challenge — Family Adventure 🏆</h2>
+    <p class="centertext">Help find every family member around the house!</p>
+    <div class="mapwrap" id="final-map">
+      ${finalState.stops.map((s,i)=>{
+        const found = s.found;
+        const locked = i>0 && !finalState.stops[i-1].found;
+        return `<div class="mapstop ${locked?'locked':''}" data-i="${i}">
+          <div class="stopicon">${found?vb(s.id).emoji:'🔒'}</div>
+          <div class="stopinfo"><b>${s.place}</b><div style="font-size:.85rem;color:var(--ink-soft);">${found?('Found: '+vb(s.id).word):(locked?'Locked':s.q)}</div></div>
+          <div class="stopstatus">${found?'✅':(locked?'🔒':'➡️')}</div>
+        </div>`;
+      }).join("")}
+    </div>
+    <div class="centertext" style="margin-top:14px;">Found: ${finalState.foundCount} / ${finalState.stops.length}</div>
+    ${allFound?`<div class="centertext" style="margin-top:10px;"><h3>🎉 You found the whole family! Family Badge unlocked! 🏅</h3></div>`:''}
+    ${footerNav(true)}
+  </div>`;
+}
+
+/* ---- 17. PARENT REPORT ---- */
+function renderReport(){
+  const total = state.correctCount + state.wrongCount;
+  const pct = total>0 ? Math.round((state.correctCount/total)*100) : 0;
+  const excellent = Array.from(state.correctWords).map(id=>vb(id)).filter(Boolean);
+  const review = Array.from(state.reviewWords).map(id=>vb(id)).filter(Boolean);
+  const dateStr = new Date().toLocaleDateString();
+  return `
+  <div class="card-panel">
+    <h2 class="centertext">Parent Report 📊</h2>
+    <div class="reportgrid">
+      <div class="reportcell">Student<br><b>${state.studentName}</b></div>
+      <div class="reportcell">Completion Date<br><b>${dateStr}</b></div>
+      <div class="reportcell">Score<br><b>${state.score}</b></div>
+      <div class="reportcell">Stars Earned<br><b>${state.stars} ⭐</b></div>
+      <div class="reportcell">Correct Answers<br><b>${state.correctCount} (${pct}%)</b></div>
+      <div class="reportcell">Needs Practice<br><b>${state.wrongCount}</b></div>
+    </div>
+    <div style="margin-top:16px;">
+      <h3>Excellent Vocabulary 🌟</h3>
+      ${excellent.length? excellent.map(v=>`<span class="wordpill">${v.emoji} ${v.word}</span>`).join("") : '<p style="color:var(--ink-soft);">Keep playing to earn words here!</p>'}
+    </div>
+    <div style="margin-top:12px;">
+      <h3>Words to Review 📘</h3>
+      ${review.length? review.map(v=>`<span class="wordpill review">${v.emoji} ${v.word}</span>`).join("") : '<p style="color:var(--ink-soft);">No words to review — great job!</p>'}
+    </div>
+    <div class="badgegrid" id="badge-grid-report">
+      <div class="badge" id="badge-Bronze">🥉<div class="blbl">Bronze<br>10⭐</div></div>
+      <div class="badge" id="badge-Silver">🥈<div class="blbl">Silver<br>20⭐</div></div>
+      <div class="badge" id="badge-Gold">🏅<div class="blbl">Gold<br>30⭐</div></div>
+      <div class="badge" id="badge-Champion">🏆<div class="blbl">Champion<br>Final Challenge</div></div>
+    </div>
+    <div id="certificate">
+      <h2>🏆 Certificate of Achievement 🏆</h2>
+      <p>This certifies that</p>
+      <div id="certname">${state.studentName}</div>
+      <p>completed <b>LittleLume English — Family</b> with a score of <b>${state.score}</b> and <b>${state.stars}</b> stars!</p>
+      <p style="color:var(--ink-soft);">${dateStr}</p>
+    </div>
+    <div class="rowcenter">
+      <button class="bigbtn secondary" id="report-print">🖨️ Print Certificate</button>
+      <button class="bigbtn ghost" id="report-download">⬇️ Download Certificate</button>
+    </div>
+    <div class="footernav">
+      <button class="bigbtn ghost" data-nav="prev">⬅ Back</button>
+      <button class="bigbtn" id="report-restart">🔁 Start Over</button>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   EVENT HANDLERS (delegated per-screen, re-attached on render)
+============================================================ */
+function attachHandlers(){
+  // universal footer nav
+  app.querySelectorAll('[data-nav="next"]').forEach(b=>b.addEventListener("click",()=>{sfxClick();nextScreen();}));
+  app.querySelectorAll('[data-nav="prev"]').forEach(b=>b.addEventListener("click",()=>{sfxClick();prevScreen();}));
+  // universal listen buttons
+  app.querySelectorAll('[data-say]').forEach(b=>b.addEventListener("click",(e)=>{e.stopPropagation();speak(b.dataset.say);}));
+
+  if(currentScreen==="welcome"){
+    document.getElementById("startlearning").addEventListener("click",()=>{
+      const val=document.getElementById("nameinput").value.trim();
+      if(val) state.studentName=val;
+      sfxClick(); nextScreen();
+    });
+  }
+
+  if(currentScreen==="warmup"){
+    document.getElementById("warmup-chips").addEventListener("click",(e)=>{
+      const chip=e.target.closest(".chip"); if(!chip) return;
+      chip.classList.toggle("selected");
+      sfxClick();
+    });
+  }
+
+  if(currentScreen==="vocab"){
+    document.getElementById("vocab-grid").addEventListener("click",(e)=>{
+      const card=e.target.closest(".flipcard"); if(!card) return;
+      if(e.target.closest(".listenbtn")) return;
+      card.classList.toggle("flipped");
+      const id=card.dataset.id;
+      if(!state.vocabSeen.has(id)){
+        state.vocabSeen.add(id);
+        if(state.vocabSeen.size===1 || state.vocabSeen.size%5===0) addStar(1);
+      }
+      sfxClick();
+    });
+  }
+
+  if(currentScreen==="familytree"){
+    document.getElementById("tree-grid").addEventListener("click",(e)=>{
+      const node=e.target.closest(".treenode"); if(!node) return;
+      const id=node.dataset.id;
+      const v=vb(id);
+      const info=document.getElementById("treeinfo");
+      info.style.display="block";
+      const label = id==="me" ? "Me" : v.word;
+      info.innerHTML=`<div style="font-size:2.4rem;">${v.emoji}</div><h3>${label}</h3><p>${v.sentence}</p>
+        <button class="bigbtn ghost" data-say="${v.sentence}">🔊 Listen</button>`;
+      info.querySelector('[data-say]').addEventListener("click",()=>speak(v.sentence));
+      sfxClick();
+      if(!state.vocabSeen.has(id)){ state.vocabSeen.add(id); addStar(1); }
+    });
+  }
+
+  if(currentScreen==="matching"){
+    document.getElementById("match-words").addEventListener("click",(e)=>{
+      const w=e.target.closest(".matchword"); if(!w || w.disabled) return;
+      document.querySelectorAll(".matchword").forEach(el=>el.classList.remove("selected"));
+      w.classList.add("selected");
+      matchState.selectedWord=w.dataset.id;
+      sfxClick();
+    });
+    document.getElementById("match-pics").addEventListener("click",(e)=>{
+      const p=e.target.closest(".matchpic"); if(!p) return;
+      if(!matchState.selectedWord) return;
+      if(matchState.matched.has(p.dataset.id)) return;
+      if(matchState.selectedWord===p.dataset.id){
+        matchState.matched.add(p.dataset.id);
+        markCorrect(p.dataset.id);
+        matchState.selectedWord=null;
+      } else {
+        markWrong(matchState.selectedWord);
+        p.classList.add("wrong"); setTimeout(()=>p.classList.remove("wrong"),400);
+      }
+      renderMatchingInPlace();
+    });
+    document.getElementById("match-replay").addEventListener("click",()=>{ setupMatching(); render(); });
+    if(matchState.matched.size===matchState.words.length){ markScreenComplete("matching"); }
+  }
+
+  if(currentScreen==="memory"){
+    if(!memState.timer) startMemTimer();
+    document.getElementById("mem-grid").addEventListener("click",(e)=>{
+      const card=e.target.closest(".memcard"); if(!card) return;
+      const i=parseInt(card.dataset.i,10);
+      if(memState.matched.has(i) || memState.flipped.includes(i) || memState.flipped.length>=2) return;
+      card.classList.add("flip"); card.textContent=memState.cards[i].display;
+      memState.flipped.push(i);
+      if(memState.flipped.length===2){
+        memState.moves++;
+        document.getElementById("mem-moves").textContent=memState.moves;
+        const [a,b]=memState.flipped;
+        if(memState.cards[a].key===memState.cards[b].key){
+          memState.matched.add(a); memState.matched.add(b);
+          markCorrect(memState.cards[a].key);
+          memState.flipped=[];
+          if(memState.matched.size===memState.cards.length){
+            memState.done=true; markScreenComplete("memory"); confettiBurst(60);
+          }
+        } else {
+          setTimeout(()=>{
+            [a,b].forEach(idx=>{
+              const c=document.querySelector(`.memcard[data-i="${idx}"]`);
+              if(c){ c.classList.remove("flip"); c.textContent="✨"; }
+            });
+            memState.flipped=[];
+          },700);
+        }
+      }
+    });
+    document.getElementById("mem-replay").addEventListener("click",()=>{ setupMemory(); render(); });
+  }
+
+  if(currentScreen==="listen"){
+    const playBtn=document.getElementById("listen-play");
+    if(playBtn){
+      const current=listenState.words[listenState.index];
+      playBtn.addEventListener("click",()=>speak(current.word));
+      setTimeout(()=>speak(current.word),400);
+      document.getElementById("listen-opts").addEventListener("click",(e)=>{
+        const opt=e.target.closest(".optcard"); if(!opt) return;
+        const correct = opt.dataset.id===current.id;
+        if(correct){ opt.classList.add("correctflash"); markCorrect(current.id); }
+        else{ opt.classList.add("wrongflash"); markWrong(current.id); }
+        setTimeout(()=>{ listenState.index++; render(); },700);
+      });
+    }
+    const replay=document.getElementById("listen-replay");
+    if(replay) replay.addEventListener("click",()=>{ setupListen(); render(); });
+    if(listenState.index>=listenState.words.length) markScreenComplete("listen");
+  }
+
+  if(currentScreen==="spelling"){
+    document.getElementById("spell-bank").addEventListener("click",(e)=>{
+      const btn=e.target.closest(".letterbtn"); if(!btn || btn.classList.contains("used")) return;
+      const emptyPos = spellState.filled.findIndex(f=>f===null);
+      if(emptyPos===-1) return;
+      spellState.filled[emptyPos]=btn.dataset.letter;
+      btn.classList.add("used");
+      const slot=document.querySelector(`.spellslot[data-pos="${emptyPos}"]`);
+      if(slot) slot.textContent=btn.dataset.letter.toUpperCase();
+      sfxClick();
+    });
+    document.getElementById("spell-check").addEventListener("click",()=>{
+      const attempt = spellState.word.split("").map((ch,i)=>{
+        const pos=spellState.missing.indexOf(i);
+        return pos>=0 ? (spellState.filled[pos]||"_") : ch;
+      }).join("");
+      if(attempt===spellState.word){
+        markCorrect(spellState.word);
+        alert("✅ Correct! "+encourage());
+        spellState.index++;
+        if(spellState.index<spellState.words.length) prepSpellWord();
+        render();
+      } else {
+        markWrong(spellState.word);
+        alert("Not quite — "+encourage());
+      }
+    });
+    if(spellState.index>=spellState.words.length) markScreenComplete("spelling");
+  }
+
+  if(currentScreen==="reading"){
+    document.getElementById("reading-listen").addEventListener("click",()=>speak(READING_PASSAGE));
+    document.getElementById("reading-questions").addEventListener("click",(e)=>{
+      const opt=e.target.closest(".optcard"); if(!opt) return;
+      const qi=parseInt(opt.dataset.qi,10);
+      const rq=READING_Q[qi];
+      const correct = opt.dataset.val===rq.correct;
+      if(correct){ opt.classList.add("correctflash"); markCorrect(); }
+      else{ opt.classList.add("wrongflash"); markWrong(); }
+      const block=opt.closest(".qblock");
+      block.querySelectorAll(".optcard").forEach(o=>o.style.pointerEvents="none");
+    });
+    markScreenComplete("reading");
+  }
+
+  if(currentScreen==="truefalse"){
+    document.getElementById("tf-list").addEventListener("click",(e)=>{
+      const btn=e.target.closest(".tfbtn"); if(!btn) return;
+      const i=parseInt(btn.dataset.i,10);
+      const item=tfOrder[i];
+      const chosen = btn.dataset.val==="true";
+      const row=btn.closest(".tfrow");
+      if(row.dataset.answered) return;
+      row.dataset.answered="1";
+      if(chosen===item.answer){ btn.classList.add("chosen-correct"); markCorrect(); }
+      else{ btn.classList.add("chosen-wrong"); markWrong(); }
+      row.querySelectorAll(".tfbtn").forEach(b=>b.disabled=true);
+    });
+    markScreenComplete("truefalse");
+  }
+
+  if(currentScreen==="mcq"){
+    document.getElementById("mcq-list").addEventListener("click",(e)=>{
+      const opt=e.target.closest(".optcard"); if(!opt) return;
+      const i=parseInt(opt.dataset.i,10);
+      const m=mcqOrder[i];
+      const block=opt.closest(".qblock");
+      if(block.dataset.answered) return;
+      block.dataset.answered="1";
+      const correct=opt.dataset.val===m.correct;
+      if(correct){ opt.classList.add("correctflash"); markCorrect(m.correct); }
+      else{ opt.classList.add("wrongflash"); markWrong(m.correct); }
+      block.querySelectorAll(".optcard").forEach(o=>o.style.pointerEvents="none");
+    });
+    markScreenComplete("mcq");
+  }
+
+  if(currentScreen==="buildsentence"){
+    const bank=document.getElementById("sent-bank");
+    if(bank){
+      bank.addEventListener("click",(e)=>{
+        const chip=e.target.closest(".wordchip"); if(!chip || chip.classList.contains("used")) return;
+        chip.classList.add("used");
+        sentState.placed.push(chip.dataset.w);
+        if(!sentState.usedIdx) sentState.usedIdx=new Set();
+        sentState.usedIdx.add(parseInt(chip.dataset.i,10));
+        render();
+      });
+      const resetBtn=document.getElementById("sent-reset");
+      if(resetBtn) resetBtn.addEventListener("click",()=>{ prepSentence(); sentState.usedIdx=new Set(); render(); });
+      const checkBtn=document.getElementById("sent-check");
+      if(checkBtn) checkBtn.addEventListener("click",()=>{
+        const item=sentState.order[sentState.index];
+        const attempt=sentState.placed.join(" ")+".";
+        const target=item.full;
+        if(attempt.toLowerCase()===target.toLowerCase()){
+          markCorrect(); alert("✅ Perfect! "+encourage());
+          sentState.index++;
+          if(sentState.index<sentState.order.length){ prepSentence(); sentState.usedIdx=new Set(); }
+          render();
+        } else {
+          markWrong(); alert("Almost! "+encourage());
+        }
+      });
+    }
+    if(sentState.index>=sentState.order.length) markScreenComplete("buildsentence");
+  }
+
+  if(currentScreen==="speaking"){
+    document.getElementById("speak-hear").addEventListener("click",()=>speak(SPEAKING_LINES[speakState.index % SPEAKING_LINES.length]));
+    const micBtn=document.getElementById("speak-mic");
+    const feedback=document.getElementById("speak-feedback");
+    micBtn.addEventListener("click",()=>{
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const line=SPEAKING_LINES[speakState.index % SPEAKING_LINES.length];
+      if(!SR){
+        feedback.textContent="Great effort saying it out loud! 🌟";
+        markCorrect();
+        return;
+      }
+      const rec=new SR();
+      rec.lang="en-US"; rec.interimResults=false; rec.maxAlternatives=1;
+      micBtn.classList.add("listening");
+      feedback.textContent="Listening...";
+      rec.start();
+      rec.onresult=(ev)=>{
+        const said=ev.results[0][0].transcript.toLowerCase();
+        const keywords=line.toLowerCase().replace(".","").split(" ").filter(w=>w.length>2);
+        const hitCount=keywords.filter(k=>said.includes(k)).length;
+        if(hitCount>=Math.ceil(keywords.length*0.5)){
+          feedback.textContent="🌟 Wonderful pronunciation, "+state.studentName+"!";
+          markCorrect();
+        } else {
+          feedback.textContent="Nice try! "+encourage();
+          markWrong();
+        }
+      };
+      rec.onerror=()=>{ feedback.textContent="Nice try! Let's practice again."; };
+      rec.onend=()=>{ micBtn.classList.remove("listening"); };
+    });
+    document.getElementById("speak-next").addEventListener("click",()=>{
+      speakState.index++; feedback.textContent=""; render();
+    });
+    markScreenComplete("speaking");
+  }
+
+  if(currentScreen==="conversation"){
+    const optsEl=document.getElementById("conv-opts");
+    if(optsEl){
+      optsEl.addEventListener("click",(e)=>{
+        const opt=e.target.closest(".optcard"); if(!opt) return;
+        const c=CONVERSATIONS[convState.index];
+        const correct=opt.dataset.val===c.answer;
+        document.getElementById("conv-blank").textContent=c.answer;
+        if(correct){ opt.classList.add("correctflash"); markCorrect(c.answer); }
+        else{ opt.classList.add("wrongflash"); markWrong(c.answer); }
+        optsEl.querySelectorAll(".optcard").forEach(o=>o.style.pointerEvents="none");
+        setTimeout(()=>{ convState.index++; render(); },900);
+      });
+    }
+    if(convState.index>=CONVERSATIONS.length) markScreenComplete("conversation");
+  }
+
+  if(currentScreen==="funquiz"){
+    const body=document.getElementById("funquiz-body");
+    if(body){
+      const item=funQuizState.pool[funQuizState.index];
+      const playBtn=document.getElementById("funquiz-play");
+      if(playBtn) playBtn.addEventListener("click",()=>speak(vb(item.word).word));
+      body.addEventListener("click",(e)=>{
+        const opt=e.target.closest(".optcard, .bigbtn[data-val]"); if(!opt) return;
+        let correct=false;
+        if(item.type==="mcq"||item.type==="read"){ correct = opt.dataset.val===item.correct; }
+        else if(item.type==="tf"){ correct = (opt.dataset.val==="true")===item.correct; }
+        else if(item.type==="listen"){ correct = opt.dataset.val===item.word; }
+        else if(item.type==="spellmcq"){ correct = opt.dataset.val===item.word; }
+        if(correct){ opt.classList.add("correctflash"); markCorrect(); funQuizState.correctInRound++; }
+        else{ opt.classList.add("wrongflash"); markWrong(); }
+        body.style.pointerEvents="none";
+        setTimeout(()=>{ funQuizState.index++; render(); },700);
+      });
+    }
+    const replay=document.getElementById("funquiz-replay");
+    if(replay) replay.addEventListener("click",()=>{ funQuizState={pool:buildFunQuizPool(),index:0,correctInRound:0}; render(); });
+    if(funQuizState.index>=funQuizState.pool.length) markScreenComplete("funquiz");
+  }
+
+  if(currentScreen==="final"){
+    document.getElementById("final-map").addEventListener("click",(e)=>{
+      const stop=e.target.closest(".mapstop"); if(!stop) return;
+      const i=parseInt(stop.dataset.i,10);
+      const s=finalState.stops[i];
+      if(s.found) return;
+      if(i>0 && !finalState.stops[i-1].found){ alert("Find the family member above first!"); return; }
+      const guess=prompt(s.q+"\n\nType one: "+s.opts.map(o=>vb(o).word).join(" / "));
+      if(!guess) return;
+      const norm=guess.trim().toLowerCase();
+      if(norm===vb(s.id).word.toLowerCase()){
+        s.found=true; finalState.foundCount++;
+        markCorrect(s.id); confettiBurst(40);
+        if(finalState.foundCount===finalState.stops.length){ unlockChampion(); markScreenComplete("final"); }
+        render();
+      } else {
+        markWrong(s.id);
+        alert("Not quite! "+encourage()+" Hint: it starts with '"+vb(s.id).word[0]+"'");
+      }
+    });
+  }
+
+  if(currentScreen==="report"){
+    checkBadges();
+    document.getElementById("report-print").addEventListener("click",()=>window.print());
+    document.getElementById("report-download").addEventListener("click",()=>{
+      const dateStr=new Date().toLocaleDateString();
+      const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificate</title>
+      <style>body{font-family:sans-serif;text-align:center;padding:60px;background:#FFF9F4;}
+      .cert{border:6px double #B39CF0;border-radius:20px;padding:40px;max-width:600px;margin:0 auto;background:linear-gradient(135deg,#fff,#FFF3B0);}
+      h1{color:#FF8FB1;}h2{font-size:1.8rem;}</style></head><body>
+      <div class="cert"><h1>🏆 Certificate of Achievement 🏆</h1><p>This certifies that</p>
+      <h2>${state.studentName}</h2><p>completed <b>LittleLume English — Family</b><br>Score: ${state.score} | Stars: ${state.stars} ⭐</p>
+      <p>${dateStr}</p></div></body></html>`;
+      const blob=new Blob([html],{type:"text/html"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url; a.download="LittleLume_Certificate_"+state.studentName.replace(/\s+/g,"_")+".html";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+    document.getElementById("report-restart").addEventListener("click",()=>{
+      document.getElementById("btn-restart").click();
+    });
+  }
+}
+
+/* ---- helper: re-render only matching columns to avoid losing selection flicker ---- */
+function renderMatchingInPlace(){ render(); }
+
+/* ---------- INIT ---------- */
+updateProgress();
+render();
+
+})();
+</script>
+</body>
+</html>

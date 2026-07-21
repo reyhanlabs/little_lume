@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BunRey English Course – Writing Grade 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7C3AED;
+      --purple-light: #EDE9FE;
+      --yellow: #F59E0B;
+      --yellow-light: #FFFBEB;
+      --green: #10B981;
+      --green-light: #D1FAE5;
+      --red: #EF4444;
+      --red-light: #FEE2E2;
+      --blue: #3B82F6;
+      --blue-light: #DBEAFE;
+      --teal: #14B8A6;
+      --teal-light: #CCFBF1;
+      --pink: #EC4899;
+      --pink-light: #FCE7F3;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-400: #9CA3AF;
+      --gray-600: #4B5563;
+      --gray-800: #1F2937;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #F0F4FF;
+      color: var(--gray-800);
+      min-height: 100vh;
+    }
+
+    /* ── VIEWS ── */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ══════════════════════════════
+       HOME
+    ══════════════════════════════ */
+    #home {
+      background: linear-gradient(160deg, #7C3AED 0%, #4F46E5 60%, #3B82F6 100%);
+      min-height: 100vh;
+    }
+
+    .home-hero {
+      text-align: center;
+      padding: 48px 24px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .home-hero::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -100px; right: -100px;
+    }
+    .home-hero::after {
+      content: '';
+      position: absolute;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      bottom: -60px; left: -60px;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 24px;
+      padding: 6px 22px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-emoji { font-size: 72px; display: block; margin-bottom: 12px; animation: bounce 2s infinite; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(36px, 8vw, 56px);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 10px 18px;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+    .stat-pill .num { color: #fff; font-size: 22px; font-weight: 900; display: block; }
+    .stat-pill .lbl { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 700; }
+
+    /* Lesson grid */
+    .lessons-section {
+      padding: 0 20px 32px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .section-label {
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .lesson-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+      border-left: 6px solid var(--card-color, #7C3AED);
+      position: relative;
+      overflow: hidden;
+    }
+    .lesson-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.2);
+    }
+    .lesson-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60px; height: 60px;
+      background: var(--card-bg, #EDE9FE);
+      border-radius: 0 0 0 60px;
+      opacity: 0.5;
+    }
+
+    .card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: var(--card-bg, #EDE9FE);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .card-title { font-size: 17px; font-weight: 900; color: var(--gray-800); line-height: 1.2; }
+    .card-sub { font-size: 13px; color: var(--gray-400); margin-top: 2px; font-weight: 600; }
+    .card-obj {
+      font-size: 12px;
+      color: var(--gray-600);
+      border-top: 1px solid var(--gray-100);
+      padding-top: 10px;
+      line-height: 1.5;
+    }
+    .card-btn {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .card-btn span {
+      background: var(--card-color, #7C3AED);
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .quiz-btn-wrap { text-align: center; margin-top: 20px; padding-bottom: 40px; }
+    .quiz-main-btn {
+      background: var(--yellow);
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 18px 44px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(245,158,11,0.45);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .quiz-main-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(245,158,11,0.5); }
+
+    /* ══════════════════════════════
+       LESSON
+    ══════════════════════════════ */
+    #lesson { min-height: 100vh; background: var(--gray-50); }
+
+    .lesson-header {
+      padding: 28px 24px 24px;
+      background: linear-gradient(135deg, var(--lcolor, #7C3AED), var(--lcolor2, #4F46E5));
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.22);
+      border: none;
+      border-radius: 20px;
+      padding: 7px 18px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      margin-bottom: 18px;
+      display: inline-block;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.35); }
+
+    .lheader-inner { display: flex; align-items: center; gap: 18px; }
+    .lheader-emoji { font-size: 52px; }
+    .lheader-num { color: rgba(255,255,255,0.75); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; }
+    .lheader-title { font-family: 'Fredoka One', cursive; font-size: 28px; color: #fff; margin: 4px 0 2px; }
+    .lheader-sub { color: rgba(255,255,255,0.82); font-size: 14px; font-weight: 600; }
+
+    .obj-banner {
+      background: var(--lbg, #EDE9FE);
+      border-bottom: 2px solid rgba(0,0,0,0.06);
+      padding: 12px 24px;
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+    .obj-banner strong { color: var(--lcolor, #7C3AED); }
+
+    .lesson-body { padding: 24px; max-width: 660px; margin: 0 auto; }
+
+    /* Content blocks */
+    .block { margin-bottom: 20px; }
+
+    .tip-block {
+      background: #FFFBE6;
+      border: 2.5px solid var(--yellow);
+      border-radius: 18px;
+      padding: 16px 20px;
+    }
+    .tip-label { font-size: 12px; font-weight: 800; color: #D97706; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+    .tip-text { color: var(--gray-600); font-size: 15px; line-height: 1.75; font-weight: 600; }
+
+    .practice-block {
+      background: #F0FFF8;
+      border: 2.5px dashed var(--green);
+      border-radius: 18px;
+      padding: 16px 20px;
+    }
+    .practice-label { font-size: 12px; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+    .practice-text { color: var(--gray-600); font-size: 15px; line-height: 1.75; font-weight: 600; }
+
+    .block-label { font-size: 15px; font-weight: 800; color: var(--gray-800); margin-bottom: 12px; }
+
+    /* Steps */
+    .step-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .step-num {
+      min-width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--lcolor, #7C3AED);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 13px;
+      flex-shrink: 0;
+    }
+    .step-text { color: var(--gray-600); font-size: 15px; padding-top: 4px; line-height: 1.6; font-weight: 600; }
+
+    /* Alphabet grid */
+    .alpha-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .alpha-tile {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: var(--lbg, #EDE9FE);
+      border: 2.5px solid var(--lcolor, #7C3AED);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 18px;
+      color: var(--lcolor, #7C3AED);
+    }
+
+    /* Examples */
+    .example-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 9px 14px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1.5px solid var(--gray-200);
+      margin-bottom: 8px;
+    }
+    .example-word { font-weight: 900; font-size: 17px; color: var(--lcolor, #7C3AED); }
+    .example-note { font-size: 13px; color: var(--gray-400); font-weight: 600; }
+
+    /* Letter pairs */
+    .pairs-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pair-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 16px;
+      background: #fff;
+      border-radius: 14px;
+      border: 2.5px solid var(--lcolor, #7C3AED);
+    }
+    .pair-cap { font-weight: 900; font-size: 22px; color: var(--lcolor, #7C3AED); }
+    .pair-arr { color: var(--gray-400); font-size: 14px; }
+    .pair-low { font-weight: 800; font-size: 22px; color: var(--gray-400); }
+
+    /* Word categories */
+    .word-cat { margin-bottom: 16px; }
+    .word-cat-name { font-size: 14px; font-weight: 800; color: var(--gray-800); margin-bottom: 8px; }
+    .word-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .word-chip {
+      padding: 6px 18px;
+      background: #fff;
+      border-radius: 22px;
+      border: 2.5px solid var(--lcolor, #7C3AED);
+      font-weight: 800; font-size: 15px;
+      color: var(--lcolor, #7C3AED);
+    }
+
+    /* Sentence parts */
+    .sent-parts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .sent-part {
+      padding: 10px 16px;
+      background: #fff;
+      border-radius: 12px;
+      border: 2.5px solid var(--spc, #10B981);
+    }
+    .sent-part-text { font-weight: 900; font-size: 16px; color: var(--spc, #10B981); }
+    .sent-part-role { font-size: 11px; color: var(--gray-400); margin-top: 3px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .sent-full {
+      padding: 12px 18px;
+      background: var(--gray-100);
+      border-radius: 12px;
+      border: 2px solid var(--gray-200);
+      font-weight: 800; font-size: 17px;
+      color: var(--gray-800);
+    }
+
+    /* Sentence list */
+    .sent-item {
+      padding: 10px 16px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1.5px solid var(--green-light);
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: var(--gray-600);
+      font-weight: 600;
+    }
+
+    /* Punctuation marks */
+    .punct-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 14px 18px;
+      background: #fff;
+      border-radius: 16px;
+      border: 2.5px solid var(--pc, #10B981);
+      margin-bottom: 12px;
+    }
+    .punct-sym { font-size: 40px; font-weight: 900; color: var(--pc, #10B981); min-width: 44px; text-align: center; line-height: 1; }
+    .punct-name { font-weight: 900; font-size: 16px; color: var(--gray-800); }
+    .punct-use { font-size: 13px; color: var(--gray-400); margin-top: 3px; font-weight: 600; }
+    .punct-ex {
+      margin-top: 8px;
+      padding: 7px 12px;
+      background: var(--gray-50);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--gray-600);
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    /* Punct exercise */
+    .punct-ex-block {
+      background: #FFF5F5;
+      border: 2.5px dashed var(--red);
+      border-radius: 18px;
+      padding: 16px 20px;
+    }
+    .punct-ex-label { font-size: 12px; font-weight: 800; color: #DC2626; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .punct-ex-text { color: var(--gray-600); font-size: 14px; margin-bottom: 12px; font-weight: 600; }
+    .punct-q {
+      padding: 10px 14px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1.5px solid #FECACA;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: var(--gray-600);
+      font-weight: 600;
+    }
+    .punct-ans { color: var(--red); font-weight: 900; margin-left: 8px; }
+    .punct-hint { font-size: 12px; color: var(--gray-400); margin-left: 10px; }
+
+    /* Trace words */
+    .trace-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .trace-chip {
+      padding: 8px 20px;
+      background: #fff;
+      border-radius: 22px;
+      border: 2px solid var(--green);
+      font-weight: 800; color: #059669; font-size: 16px;
+    }
+
+    /* Practice prompts */
+    .prompt-item {
+      margin-top: 8px;
+      padding: 9px 14px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1.5px solid var(--green-light);
+      color: var(--gray-600);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* Lesson nav */
+    .lesson-nav { display: flex; gap: 12px; margin-top: 28px; }
+    .nav-btn {
+      flex: 1;
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s;
+    }
+    .nav-btn:hover { transform: translateY(-2px); }
+    .nav-btn.prev { background: #fff; border: 2.5px solid var(--lcolor, #7C3AED); color: var(--lcolor, #7C3AED); }
+    .nav-btn.next { background: var(--lcolor, #7C3AED); color: #fff; }
+    .nav-btn.quiz-nav { background: var(--yellow); color: #fff; }
+
+    /* ══════════════════════════════
+       QUIZ
+    ══════════════════════════════ */
+    #quiz {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #7C3AED 0%, #4F46E5 60%, #3B82F6 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .quiz-wrap { width: 100%; max-width: 520px; }
+
+    .quiz-card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.22);
+    }
+
+    .quiz-toprow {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 18px;
+    }
+    .quiz-counter { font-weight: 800; color: var(--gray-400); font-size: 13px; }
+    .quiz-score-badge {
+      background: var(--gray-100);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-weight: 800;
+      color: var(--gray-600);
+      font-size: 13px;
+    }
+
+    .quiz-progress {
+      background: var(--gray-200);
+      border-radius: 8px;
+      height: 8px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      background: linear-gradient(90deg, #7C3AED, #4F46E5);
+      height: 8px;
+      border-radius: 8px;
+      transition: width 0.35s;
+    }
+
+    .quiz-q {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--gray-800);
+      margin-bottom: 22px;
+      line-height: 1.45;
+    }
+
+    .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-opt {
+      background: var(--gray-50);
+      border: 2.5px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--gray-600);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: #7C3AED; color: #7C3AED; background: #F5F3FF; }
+    .quiz-opt.correct { background: #D1FAE5; border-color: #10B981; color: #065F46; }
+    .quiz-opt.wrong { background: #FEE2E2; border-color: #EF4444; color: #991B1B; }
+    .quiz-opt:disabled { cursor: default; }
+
+    /* Result */
+    .result-card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.22);
+    }
+    .result-trophy { font-size: 72px; margin-bottom: 16px; display: block; animation: bounce 2s infinite; }
+    .result-title { font-family: 'Fredoka One', cursive; font-size: 30px; color: var(--gray-800); margin-bottom: 8px; }
+    .result-sub { color: var(--gray-400); font-size: 16px; margin-bottom: 24px; font-weight: 700; }
+    .result-score-box {
+      background: var(--gray-100);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 28px;
+    }
+    .result-score-label { font-size: 13px; font-weight: 800; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .result-pct { font-family: 'Fredoka One', cursive; font-size: 54px; }
+    .pct-green { color: var(--green); }
+    .pct-yellow { color: var(--yellow); }
+    .pct-red { color: var(--red); }
+
+    .result-btns { display: flex; gap: 12px; }
+    .result-btn {
+      flex: 1;
+      border: none;
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .result-btn:hover { transform: translateY(-2px); }
+    .result-btn.retry { background: #7C3AED; color: #fff; }
+    .result-btn.home { background: var(--gray-100); color: var(--gray-600); }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .lesson-grid { grid-template-columns: 1fr; }
+      .alpha-tile { width: 34px; height: 34px; font-size: 15px; }
+      .hero-title { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HOME ─────────────────────────────────── -->
+<div id="home" class="view active">
+  <div class="home-hero">
+    <div class="brand-badge">✨ BunRey English Course</div>
+    <span class="hero-emoji">✍️</span>
+    <h1 class="hero-title">Writing for<br>Grade 1</h1>
+    <p class="hero-sub">Fun lessons to start your writing journey!</p>
+    <div class="stats-row">
+      <div class="stat-pill"><span class="num">6</span><span class="lbl">Lessons</span></div>
+      <div class="stat-pill"><span class="num">5</span><span class="lbl">Quiz</span></div>
+      <div class="stat-pill"><span class="num">26</span><span class="lbl">Letters</span></div>
+      <div class="stat-pill"><span class="num">🏆</span><span class="lbl">Certificate</span></div>
+    </div>
+  </div>
+
+  <div class="lessons-section">
+    <div class="section-label">📚 Choose a Lesson</div>
+    <div class="lesson-grid" id="lesson-grid"></div>
+    <div class="quiz-btn-wrap">
+      <button class="quiz-main-btn" onclick="openQuiz()">🏆 Take the Quiz!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── LESSON ─────────────────────────────────── -->
+<div id="lesson" class="view">
+  <div class="lesson-header" id="lheader">
+    <button class="back-btn" onclick="showHome()">← Back</button>
+    <div class="lheader-inner">
+      <span class="lheader-emoji" id="l-emoji"></span>
+      <div>
+        <div class="lheader-num" id="l-num"></div>
+        <div class="lheader-title" id="l-title"></div>
+        <div class="lheader-sub" id="l-sub"></div>
+      </div>
+    </div>
+  </div>
+  <div class="obj-banner" id="l-obj"></div>
+  <div class="lesson-body">
+    <div id="lesson-content"></div>
+    <div class="lesson-nav" id="lesson-nav"></div>
+  </div>
+</div>
+
+<!-- ── QUIZ ─────────────────────────────────── -->
+<div id="quiz" class="view">
+  <div class="quiz-wrap">
+    <button class="back-btn" onclick="showHome(); resetQuiz();">← Back to Lessons</button>
+    <div id="quiz-q-card" class="quiz-card" style="display:none"></div>
+    <div id="quiz-result-card" class="result-card" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════
+const LESSONS = [
+  {
+    id: 1, icon: "✏️", color: "#FF6B6B", color2: "#FF4040", bg: "#FFF0F0",
+    title: "Holding a Pencil", sub: "Let's learn the right way!",
+    objective: "Students will learn the correct pencil grip for writing.",
+    content: [
+      { type:"tip", label:"The Tripod Grip",
+        text:"Hold your pencil with your thumb, index finger, and middle finger. Rest it on your ring finger. This is called the <strong>Tripod Grip</strong>!" },
+      { type:"steps", label:"How To Hold Your Pencil",
+        steps:["Pick up your pencil with your writing hand.","Pinch the pencil between your thumb and index finger.","Rest the pencil on your middle finger.","Keep your grip loose — not too tight!","Now you are ready to write! 🎉"] },
+      { type:"practice", label:"Let's Practice!",
+        text:"Trace these lines in your workbook: straight lines, wavy lines, and zigzag lines. This helps your hand get strong for writing!",
+        lines:["— — — — — — — —","~ ~ ~ ~ ~ ~ ~ ~","∧ ∧ ∧ ∧ ∧ ∧ ∧ ∧"] }
+    ]
+  },
+  {
+    id: 2, icon: "🔤", color: "#14B8A6", color2: "#0D9488", bg: "#CCFBF1",
+    title: "Capital Letters A–Z", sub: "BIG letters are so important!",
+    objective: "Students will recognize and write all 26 capital letters.",
+    content: [
+      { type:"tip", label:"When Do We Use Capital Letters?",
+        text:"We use capital letters at the <strong>START</strong> of a sentence, for <strong>NAMES</strong> of people and places, and for the word <strong>'I'</strong>." },
+      { type:"alphabet", label:"The Capital Alphabet", letters:"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("") },
+      { type:"examples", label:"Capital Letter Examples",
+        items:[{word:"Anna",note:"Name of a person"},{word:"Monday",note:"Name of a day"},{word:"I am happy.",note:"'I' is always capital"},{word:"The cat is cute.",note:"First word of sentence"}] },
+      { type:"practice", label:"Your Turn!",
+        text:"Write these capital letters 3 times each in your workbook: A, B, C, D, E. Say each letter out loud as you write it!" }
+    ]
+  },
+  {
+    id: 3, icon: "🔡", color: "#A855F7", color2: "#9333EA", bg: "#F3E8FF",
+    title: "Small Letters a–z", sub: "Little letters do big work!",
+    objective: "Students will recognize and write all 26 lowercase letters.",
+    content: [
+      { type:"tip", label:"Small Letters Are Everywhere!",
+        text:"Most of the letters in a sentence are <strong>SMALL</strong> (lowercase) letters. Only special letters are capital!" },
+      { type:"alphabet", label:"The Lowercase Alphabet", letters:"abcdefghijklmnopqrstuvwxyz".split("") },
+      { type:"pairs", label:"Capital & Small Letter Pairs",
+        pairs:[["A","a"],["B","b"],["C","c"],["D","d"],["E","e"],["F","f"],["G","g"],["H","h"],["I","i"],["J","j"]] },
+      { type:"practice", label:"Let's Write!",
+        text:"Write these words using small letters: cat, dog, sun, hat, big. Remember: start each word with a small letter (unless it begins a sentence)." }
+    ]
+  },
+  {
+    id: 4, icon: "💬", color: "#F59E0B", color2: "#D97706", bg: "#FEF3C7",
+    title: "Writing Words", sub: "Words are groups of letters!",
+    objective: "Students will write simple 3-letter CVC words correctly.",
+    content: [
+      { type:"tip", label:"What Is a Word?",
+        text:"A word is a group of letters that means something. Words have a beginning, middle, and end letter. We leave a <strong>space</strong> between each word." },
+      { type:"wordlist", label:"Simple Words to Practice",
+        categories:[
+          { name:"Animals 🐾", words:["cat","dog","hen","pig","ant","bee"] },
+          { name:"Things 🎒", words:["bag","cup","pen","hat","box","mat"] },
+          { name:"Actions 🏃", words:["run","sit","hop","dig","nap","eat"] }
+        ]},
+      { type:"practice", label:"Word Writing Practice",
+        text:"Write each word below TWO times. Then draw a small picture next to each word!",
+        traceWords:["cat","dog","hat","sun","run"] }
+    ]
+  },
+  {
+    id: 5, icon: "📝", color: "#10B981", color2: "#059669", bg: "#D1FAE5",
+    title: "Writing Sentences", sub: "A sentence is a complete thought!",
+    objective: "Students will write simple sentences with correct capitalization and punctuation.",
+    content: [
+      { type:"tip", label:"The 3 Rules of a Sentence",
+        text:"Every sentence has 3 rules: (1) Start with a <strong>CAPITAL</strong> letter. (2) Have a subject and an action. (3) End with a <strong>PERIOD (.)</strong>!" },
+      { type:"sentenceparts", label:"Parts of a Sentence",
+        parts:[
+          { part:"The cat", role:"WHO (subject)", color:"#10B981" },
+          { part:"sits", role:"DOES WHAT (verb)", color:"#F59E0B" },
+          { part:"on the mat.", role:"WHERE/WHEN", color:"#A855F7" }
+        ],
+        full:"The cat sits on the mat." },
+      { type:"sentences", label:"Example Sentences",
+        items:["The dog runs fast.","I like to read books.","She has a red bag.","My cat is big.","The sun is hot."] },
+      { type:"practice", label:"Write Your Own!",
+        text:"Write 3 sentences about YOUR favorite animal. Remember the 3 rules!",
+        prompts:["My favorite animal is ___.","It can ___.","I like it because ___."] }
+    ]
+  },
+  {
+    id: 6, icon: "❓", color: "#EF4444", color2: "#DC2626", bg: "#FEE2E2",
+    title: "Punctuation Marks", sub: "Little signs with big meaning!",
+    objective: "Students will learn and use periods, question marks, and exclamation points.",
+    content: [
+      { type:"punctmarks", label:"Three Important Marks",
+        marks:[
+          { sym:".", name:"Period", use:"Ends a telling sentence.", ex:"The bird can fly.", color:"#10B981" },
+          { sym:"?", name:"Question Mark", use:"Ends a question.", ex:"Can the bird fly?", color:"#14B8A6" },
+          { sym:"!", name:"Exclamation Point", use:"Shows strong feeling or excitement.", ex:"The bird flew away!", color:"#F59E0B" }
+        ]},
+      { type:"punctex", label:"Add the Right Punctuation!",
+        text:"Which mark goes at the end? Write the correct mark in your workbook.",
+        items:[
+          { q:"The cat is sleeping", a:"." },
+          { q:"Is that your bag", a:"?" },
+          { q:"I won the race", a:"!" },
+          { q:"Where is my pencil", a:"?" },
+          { q:"She has a new book", a:"." }
+        ]}
+    ]
+  }
+];
+
+const QUIZ = [
+  { q:"Where do we put a CAPITAL letter?", opts:["Middle of a sentence","At the START of a sentence","At the end of a word","Anywhere"], ans:1 },
+  { q:"Which mark ends a question?", opts:[".","!","?",","], ans:2 },
+  { q:"How many letters are in the alphabet?", opts:["24","25","26","27"], ans:2 },
+  { q:"Which of these is a complete sentence?", opts:["The big","Runs fast.","The dog runs fast.","cat sit"], ans:2 },
+  { q:"What is the correct pencil grip called?", opts:["Two-Finger Grip","Tripod Grip","Fist Grip","Palm Grip"], ans:1 }
+];
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let currentLesson = 0;
+let quizStep = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+// ═══════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showHome() { showView('home'); }
+function openQuiz() { resetQuiz(); showView('quiz'); renderQuizStep(); }
+
+// ═══════════════════════════════════════════════
+//  LESSON CARDS – HOME
+// ═══════════════════════════════════════════════
+function buildHomeCards() {
+  const grid = document.getElementById('lesson-grid');
+  LESSONS.forEach((l, i) => {
+    const card = document.createElement('div');
+    card.className = 'lesson-card';
+    card.style.setProperty('--card-color', l.color);
+    card.style.setProperty('--card-bg', l.bg);
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-icon">${l.icon}</div>
+        <div>
+          <div class="card-title">${l.title}</div>
+          <div class="card-sub">${l.sub}</div>
+        </div>
+      </div>
+      <div class="card-obj">🎯 ${l.objective}</div>
+      <div class="card-btn"><span>Start →</span></div>`;
+    card.onclick = () => openLesson(i);
+    grid.appendChild(card);
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  OPEN LESSON
+// ═══════════════════════════════════════════════
+function openLesson(idx) {
+  currentLesson = idx;
+  const l = LESSONS[idx];
+  // set CSS vars on header
+  const hdr = document.getElementById('lheader');
+  hdr.style.background = `linear-gradient(135deg, ${l.color}, ${l.color2})`;
+  document.getElementById('l-emoji').textContent = l.icon;
+  document.getElementById('l-num').textContent = `Lesson ${l.id} of ${LESSONS.length}`;
+  document.getElementById('l-title').textContent = l.title;
+  document.getElementById('l-sub').textContent = l.sub;
+
+  const obj = document.getElementById('l-obj');
+  obj.style.background = l.bg;
+  obj.innerHTML = `<strong style="color:${l.color}">🎯 Learning Goal:</strong> ${l.objective}`;
+
+  // Set CSS vars for content colors
+  const body = document.querySelector('.lesson-body');
+  body.style.setProperty('--lcolor', l.color);
+  body.style.setProperty('--lbg', l.bg);
+
+  // Render content
+  document.getElementById('lesson-content').innerHTML = l.content.map(renderBlock).join('');
+
+  // Nav
+  const nav = document.getElementById('lesson-nav');
+  nav.innerHTML = '';
+  if (idx > 0) {
+    const prev = document.createElement('button');
+    prev.className = 'nav-btn prev';
+    prev.style.setProperty('--lcolor', l.color);
+    prev.textContent = '← Previous';
+    prev.onclick = () => openLesson(idx - 1);
+    nav.appendChild(prev);
+  }
+  if (idx < LESSONS.length - 1) {
+    const next = document.createElement('button');
+    next.className = 'nav-btn next';
+    next.style.background = l.color;
+    next.textContent = 'Next Lesson →';
+    next.onclick = () => openLesson(idx + 1);
+    nav.appendChild(next);
+  } else {
+    const qbtn = document.createElement('button');
+    qbtn.className = 'nav-btn quiz-nav';
+    qbtn.textContent = '🏆 Take the Quiz!';
+    qbtn.onclick = openQuiz;
+    nav.appendChild(qbtn);
+  }
+
+  showView('lesson');
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER CONTENT BLOCKS
+// ═══════════════════════════════════════════════
+function renderBlock(b) {
+  if (b.type === 'tip') {
+    return `<div class="block tip-block">
+      <div class="tip-label">💡 ${b.label}</div>
+      <div class="tip-text">${b.text}</div>
+    </div>`;
+  }
+  if (b.type === 'steps') {
+    const steps = b.steps.map((s,i) => `
+      <div class="step-item">
+        <div class="step-num">${i+1}</div>
+        <div class="step-text">${s}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📋 ${b.label}</div>
+      ${steps}
+    </div>`;
+  }
+  if (b.type === 'practice') {
+    const lines = b.lines ? `<div style="margin-top:10px;">${b.lines.map(l=>`<div style="font-family:monospace;font-size:20px;color:#9CA3AF;letter-spacing:6px;margin-bottom:4px;">${l}</div>`).join('')}</div>` : '';
+    const words = b.traceWords ? `<div class="trace-chips">${b.traceWords.map(w=>`<div class="trace-chip">${w}</div>`).join('')}</div>` : '';
+    const prompts = b.prompts ? b.prompts.map(p=>`<div class="prompt-item">👉 ${p}</div>`).join('') : '';
+    return `<div class="block practice-block">
+      <div class="practice-label">✏️ ${b.label}</div>
+      <div class="practice-text">${b.text}</div>
+      ${lines}${words}${prompts}
+    </div>`;
+  }
+  if (b.type === 'alphabet') {
+    const tiles = b.letters.map(l=>`<div class="alpha-tile">${l}</div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🔤 ${b.label}</div>
+      <div class="alpha-grid">${tiles}</div>
+    </div>`;
+  }
+  if (b.type === 'examples') {
+    const rows = b.items.map(item=>`
+      <div class="example-row">
+        <span class="example-word">${item.word}</span>
+        <span class="example-note">— ${item.note}</span>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📌 ${b.label}</div>
+      ${rows}
+    </div>`;
+  }
+  if (b.type === 'pairs') {
+    const pairs = b.pairs.map(([c,l])=>`
+      <div class="pair-item">
+        <span class="pair-cap">${c}</span>
+        <span class="pair-arr">→</span>
+        <span class="pair-low">${l}</span>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🔗 ${b.label}</div>
+      <div class="pairs-grid">${pairs}</div>
+    </div>`;
+  }
+  if (b.type === 'wordlist') {
+    const cats = b.categories.map(cat=>`
+      <div class="word-cat">
+        <div class="word-cat-name">${cat.name}</div>
+        <div class="word-chips">${cat.words.map(w=>`<div class="word-chip">${w}</div>`).join('')}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">📖 ${b.label}</div>
+      ${cats}
+    </div>`;
+  }
+  if (b.type === 'sentenceparts') {
+    const parts = b.parts.map(p=>`
+      <div class="sent-part" style="--spc:${p.color}">
+        <div class="sent-part-text" style="color:${p.color}">${p.part}</div>
+        <div class="sent-part-role">${p.role}</div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">🔍 ${b.label}</div>
+      <div class="sent-parts">${parts}</div>
+      <div class="sent-full">➡️ ${b.full}</div>
+    </div>`;
+  }
+  if (b.type === 'sentences') {
+    const items = b.items.map(s=>`<div class="sent-item">📝 ${s}</div>`).join('');
+    return `<div class="block">
+      <div class="block-label">✅ ${b.label}</div>
+      ${items}
+    </div>`;
+  }
+  if (b.type === 'punctmarks') {
+    const marks = b.marks.map(m=>`
+      <div class="punct-card" style="--pc:${m.color}">
+        <div class="punct-sym" style="color:${m.color}">${m.sym}</div>
+        <div>
+          <div class="punct-name">${m.name}</div>
+          <div class="punct-use">${m.use}</div>
+          <div class="punct-ex">${m.ex}</div>
+        </div>
+      </div>`).join('');
+    return `<div class="block">
+      <div class="block-label">💡 ${b.label}</div>
+      ${marks}
+    </div>`;
+  }
+  if (b.type === 'punctex') {
+    const qs = b.items.map(item=>`
+      <div class="punct-q">
+        ${item.q} <span class="punct-ans">___</span>
+        <span class="punct-hint">(Answer: ${item.a})</span>
+      </div>`).join('');
+    return `<div class="block punct-ex-block">
+      <div class="punct-ex-label">✏️ ${b.label}</div>
+      <div class="punct-ex-text">${b.text}</div>
+      ${qs}
+    </div>`;
+  }
+  return '';
+}
+
+// ═══════════════════════════════════════════════
+//  QUIZ
+// ═══════════════════════════════════════════════
+function resetQuiz() {
+  quizStep = 0;
+  quizScore = 0;
+  quizAnswered = false;
+}
+
+function renderQuizStep() {
+  const qcard = document.getElementById('quiz-q-card');
+  const rcard = document.getElementById('quiz-result-card');
+
+  if (quizStep >= QUIZ.length) {
+    qcard.style.display = 'none';
+    rcard.style.display = 'block';
+    const pct = Math.round((quizScore / QUIZ.length) * 100);
+    const emoji = quizScore === QUIZ.length ? '🏆' : quizScore >= 3 ? '🌟' : '📚';
+    const title = quizScore === QUIZ.length ? 'Perfect Score!' : quizScore >= 3 ? 'Great Job!' : 'Keep Practicing!';
+    const pctClass = pct >= 80 ? 'pct-green' : pct >= 60 ? 'pct-yellow' : 'pct-red';
+    rcard.innerHTML = `
+      <span class="result-trophy">${emoji}</span>
+      <div class="result-title">${title}</div>
+      <div class="result-sub">You got <strong>${quizScore} out of ${QUIZ.length}</strong> correct!</div>
+      <div class="result-score-box">
+        <div class="result-score-label">Your Score</div>
+        <div class="result-pct ${pctClass}">${pct}%</div>
+      </div>
+      <div class="result-btns">
+        <button class="result-btn retry" onclick="resetQuiz(); renderQuizStep();">Try Again</button>
+        <button class="result-btn home" onclick="showHome(); resetQuiz();">Back Home</button>
+      </div>`;
+    return;
+  }
+
+  rcard.style.display = 'none';
+  qcard.style.display = 'block';
+  quizAnswered = false;
+
+  const q = QUIZ[quizStep];
+  const pct = (quizStep / QUIZ.length) * 100;
+  const opts = q.opts.map((o,i)=>`
+    <button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${['A','B','C','D'][i]}. ${o}</button>`).join('');
+
+  qcard.innerHTML = `
+    <div class="quiz-toprow">
+      <span class="quiz-counter">Question ${quizStep+1} of ${QUIZ.length}</span>
+      <span class="quiz-score-badge">Score: ${quizScore}</span>
+    </div>
+    <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${pct}%"></div></div>
+    <div class="quiz-q">🧠 ${q.q}</div>
+    <div class="quiz-options">${opts}</div>`;
+}
+
+function answerQuiz(i) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = QUIZ[quizStep];
+  if (i === q.ans) quizScore++;
+
+  document.querySelectorAll('.quiz-opt').forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === q.ans) btn.classList.add('correct');
+    else if (idx === i) btn.classList.add('wrong');
+  });
+
+  setTimeout(() => {
+    quizStep++;
+    renderQuizStep();
+  }, 950);
+}
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+buildHomeCards();
+</script>
+</body>
+</html>

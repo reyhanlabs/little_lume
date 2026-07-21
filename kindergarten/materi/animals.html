@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Lume English — Amazing Animals!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF9EC;
+    --jungle:#2D9C6F;
+    --jungle-dark:#1E6B4C;
+    --sun:#FFC93C;
+    --coral:#FF6F59;
+    --sky:#3EC1D3;
+    --plum:#3A2E39;
+    --white:#FFFFFF;
+    --paper: #FFFDF6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Quicksand', sans-serif;
+    background:
+      radial-gradient(circle at 10% 10%, #eafff2 0%, transparent 40%),
+      radial-gradient(circle at 90% 20%, #fff3d6 0%, transparent 40%),
+      var(--cream);
+    color:var(--plum);
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  h1,h2,h3, .display{ font-family:'Baloo 2', cursive; }
+  .handwrite{ font-family:'Patrick Hand', cursive; }
+
+  /* ===== HEADER ===== */
+  header{
+    position:relative;
+    padding:28px 20px 90px;
+    text-align:center;
+    background: linear-gradient(180deg, var(--jungle) 0%, var(--jungle-dark) 100%);
+    overflow:hidden;
+    border-bottom-left-radius:50% 40px;
+    border-bottom-right-radius:50% 40px;
+  }
+  header .leaf{
+    position:absolute; font-size:40px; opacity:.25; filter:drop-shadow(0 0 2px #000);
+  }
+  .brand{
+    display:inline-flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,.15);
+    padding:6px 18px; border-radius:999px;
+    color:var(--sun); font-family:'Baloo 2';
+    font-weight:700; font-size:15px; letter-spacing:.5px;
+    margin-bottom:10px;
+  }
+  header h1{
+    color:var(--white);
+    font-size:clamp(28px,6vw,48px);
+    margin:6px 0 6px;
+    text-shadow:2px 3px 0 rgba(0,0,0,.15);
+  }
+  header p{
+    color:#eafff0; font-size:18px; max-width:520px; margin:0 auto;
+  }
+  #lume{
+    position:absolute; bottom:-26px; left:50%; transform:translateX(-50%);
+    width:64px; height:64px; animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(255,201,60,.9));
+    cursor:pointer; z-index:5;
+  }
+  @keyframes float{ 0%,100%{transform:translate(-50%,0) rotate(-4deg);} 50%{transform:translate(-50%,-10px) rotate(4deg);} }
+
+  .starbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--sun); color:var(--plum); font-family:'Baloo 2'; font-weight:700;
+    padding:8px; font-size:16px; box-shadow:0 4px 10px rgba(0,0,0,.08);
+  }
+  .starbar span#starcount{ font-size:20px; color:var(--coral); }
+
+  /* ===== TRAIL NAV ===== */
+  nav.trail{
+    max-width:920px; margin:26px auto 10px; padding:0 16px;
+    display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;
+  }
+  .stone{
+    flex:1 1 100px; min-width:100px;
+    background:var(--white); border:3px solid var(--jungle);
+    border-radius:20px; padding:10px 6px; text-align:center;
+    cursor:pointer; transition:.2s transform, .2s box-shadow;
+    font-family:'Baloo 2'; font-weight:700; color:var(--jungle-dark); font-size:13px;
+    position:relative;
+  }
+  .stone .ic{ font-size:26px; display:block; margin-bottom:4px;}
+  .stone.active{ background:var(--jungle); color:var(--white); transform:translateY(-4px) scale(1.05); box-shadow:0 6px 14px rgba(45,156,111,.4); }
+  .stone.done::after{
+    content:"⭐"; position:absolute; top:-10px; right:-6px; font-size:18px;
+  }
+  .stone:hover{ transform:translateY(-3px); }
+
+  /* ===== SECTIONS ===== */
+  main{ max-width:920px; margin:20px auto; padding:0 16px; }
+  .section{ display:none; animation: pop .35s ease; }
+  .section.active{ display:block; }
+  @keyframes pop{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+  .card-panel{
+    background:var(--paper);
+    border:3px dashed var(--sun);
+    border-radius:26px;
+    padding:22px 20px 28px;
+    box-shadow:0 8px 0 rgba(0,0,0,.05);
+  }
+  .card-panel h2{
+    color:var(--coral); font-size:26px; margin-top:0; display:flex; align-items:center; gap:10px;
+  }
+  .instructions{
+    background:#fff3d6; border-radius:14px; padding:10px 16px; font-size:15px;
+    margin-bottom:16px; color:var(--plum);
+  }
+
+  /* Flashcards */
+  .flash-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px;
+  }
+  .flashcard{
+    background:var(--white); border-radius:18px; padding:14px 6px;
+    text-align:center; cursor:pointer; border:3px solid var(--sky);
+    transition:.15s transform;
+    user-select:none;
+  }
+  .flashcard:hover{ transform:translateY(-4px) rotate(-1deg); border-color:var(--coral); }
+  .flashcard .emo{ font-size:46px; display:block; }
+  .flashcard .wd{ font-family:'Baloo 2'; font-weight:700; color:var(--jungle-dark); margin-top:6px; font-size:14px; letter-spacing:1px;}
+  .flashcard .tap{ font-size:11px; color:#999; margin-top:2px; }
+
+  /* Buttons */
+  .btn{
+    font-family:'Baloo 2'; font-weight:700; border:none; cursor:pointer;
+    padding:12px 22px; border-radius:999px; font-size:16px; color:var(--white);
+    background:var(--coral); box-shadow:0 4px 0 #c94b3d;
+    transition:.1s transform;
+  }
+  .btn:active{ transform:translateY(3px); box-shadow:0 1px 0 #c94b3d; }
+  .btn.blue{ background:var(--sky); box-shadow:0 4px 0 #2a97a6; }
+  .btn.green{ background:var(--jungle); box-shadow:0 4px 0 #1a5c40; }
+  .btn.yellow{ background:var(--sun); color:var(--plum); box-shadow:0 4px 0 #d1a520; }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+  /* Listen game */
+  .listen-box{ text-align:center; }
+  .say-btn{ font-size:60px; background:none; border:none; cursor:pointer; animation:wiggle 2s infinite; }
+  @keyframes wiggle{ 0%,100%{transform:rotate(0);} 92%{transform:rotate(0);} 94%{transform:rotate(-8deg);} 96%{transform:rotate(8deg);} 98%{transform:rotate(-8deg);} }
+  .options-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    gap:14px; margin-top:20px;
+  }
+  .opt-emoji{
+    background:var(--white); border:3px solid var(--jungle); border-radius:16px;
+    font-size:44px; padding:16px 0; cursor:pointer; transition:.15s;
+  }
+  .opt-emoji:hover{ background:#eafff2; }
+  .opt-emoji.correct{ background:#c6f6d5!important; border-color:#2f855a; }
+  .opt-emoji.wrong{ background:#fed7d7!important; border-color:#c53030; }
+
+  /* Quiz */
+  .quiz-q{
+    background:var(--white); border-radius:18px; padding:16px 18px; margin-bottom:16px;
+    border-left:8px solid var(--sky);
+  }
+  .quiz-q p.qtext{ font-family:'Baloo 2'; font-size:17px; margin:0 0 10px; color:var(--plum); }
+  .quiz-opts{ display:flex; flex-wrap:wrap; gap:10px; }
+  .quiz-opt{
+    background:#f4f1ff; border:2px solid #d5d0f5; border-radius:12px;
+    padding:8px 16px; cursor:pointer; font-weight:600; font-size:14px;
+    transition:.15s;
+  }
+  .quiz-opt:hover{ background:#e6e1ff; }
+  .quiz-opt.correct{ background:#c6f6d5; border-color:#2f855a; }
+  .quiz-opt.wrong{ background:#fed7d7; border-color:#c53030; }
+  .quiz-opt.locked{ pointer-events:none; }
+
+  /* Spelling */
+  .spell-word{ text-align:center; }
+  .spell-emoji{ font-size:70px; }
+  .slots{ display:flex; justify-content:center; gap:8px; margin:16px 0; flex-wrap:wrap; }
+  .slot{
+    width:42px; height:48px; border-bottom:4px solid var(--coral);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Baloo 2'; font-size:24px; color:var(--jungle-dark);
+  }
+  .letters{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
+  .letter-btn{
+    width:44px; height:44px; border-radius:10px; border:none; background:var(--sky);
+    color:white; font-family:'Baloo 2'; font-size:20px; cursor:pointer;
+  }
+  .letter-btn:disabled{ opacity:.25; }
+
+  /* Counting */
+  .scene{
+    font-size:40px; letter-spacing:6px; text-align:center; background:#eafff2;
+    border-radius:16px; padding:20px 10px; margin-bottom:16px; line-height:1.6;
+  }
+  .count-opts{ display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
+  .count-opt{
+    background:var(--sun); border:none; border-radius:14px; width:56px; height:56px;
+    font-family:'Baloo 2'; font-size:22px; cursor:pointer; box-shadow:0 3px 0 #d1a520;
+  }
+  .count-opt.correct{ background:#68d391; box-shadow:0 3px 0 #2f855a; }
+  .count-opt.wrong{ background:#fc8181; box-shadow:0 3px 0 #c53030; }
+
+  /* Memory game */
+  .memory-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:520px; margin:0 auto;
+  }
+  .mem-card{
+    aspect-ratio:1/1; background:var(--jungle); border-radius:14px; display:flex;
+    align-items:center; justify-content:center; font-size:30px; cursor:pointer;
+    color:transparent; transition:.2s; user-select:none;
+  }
+  .mem-card.flipped, .mem-card.matched{ background:var(--white); color:var(--plum); border:3px solid var(--sun); }
+  .mem-card.matched{ background:#c6f6d5; border-color:#2f855a; cursor:default;}
+
+  /* Certificate */
+  .cert{
+    text-align:center; border:6px solid var(--sun); border-radius:20px; padding:30px 20px;
+    background: linear-gradient(180deg,#fffdf6,#fff6df);
+  }
+  .cert h2{ color:var(--jungle-dark); font-size:30px;}
+  .cert input{
+    font-family:'Patrick Hand', cursive; font-size:26px; text-align:center;
+    border:none; border-bottom:3px dashed var(--coral); background:transparent;
+    padding:6px; margin:12px 0; width:80%; max-width:340px; color:var(--plum);
+  }
+  .cert-stars{ font-size:34px; margin:14px 0; }
+
+  .progress-msg{ text-align:center; font-family:'Baloo 2'; color:var(--jungle-dark); margin-top:16px; font-size:15px;}
+  .footer-nav{ display:flex; justify-content:space-between; margin-top:20px; }
+
+  footer{ text-align:center; color:#8a8478; font-size:13px; margin-top:40px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none!important; transition:none!important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="starbar">🌟 Your Stars: <span id="starcount">0</span> / <span id="starmax">0</span></div>
+
+<header>
+  <span class="leaf" style="top:10px;left:6%;">🌿</span>
+  <span class="leaf" style="top:40px;right:8%;">🍃</span>
+  <span class="leaf" style="top:70px;left:20%;">🌴</span>
+  <div class="brand">✨ Little Lume English</div>
+  <h1>Amazing Animals!</h1>
+  <p>A jungle full of fun for Grade 1 explorers. Tap, play, and learn animal words in English!</p>
+  <div id="lume" title="Hi! I'm Lume! Tap me!" onclick="lumeSpeak()">
+    <svg viewBox="0 0 64 64" width="64" height="64">
+      <ellipse cx="32" cy="36" rx="16" ry="18" fill="#FFC93C"/>
+      <ellipse cx="32" cy="36" rx="16" ry="18" fill="url(#g)" opacity="0.6"/>
+      <circle cx="26" cy="32" r="3" fill="#3A2E39"/>
+      <circle cx="38" cy="32" r="3" fill="#3A2E39"/>
+      <path d="M24 44 Q32 50 40 44" stroke="#3A2E39" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="14" cy="20" rx="10" ry="6" fill="#ffffff" opacity="0.7" transform="rotate(-20 14 20)"/>
+      <ellipse cx="50" cy="20" rx="10" ry="6" fill="#ffffff" opacity="0.7" transform="rotate(20 50 20)"/>
+      <defs><radialGradient id="g"><stop offset="0%" stop-color="#fff6c9"/><stop offset="100%" stop-color="#FFC93C"/></radialGradient></defs>
+    </svg>
+  </div>
+</header>
+
+<nav class="trail" id="trail">
+  <div class="stone active" data-target="s1"><span class="ic">🔤</span>Words</div>
+  <div class="stone" data-target="s2"><span class="ic">👂</span>Listen</div>
+  <div class="stone" data-target="s3"><span class="ic">❓</span>Quiz</div>
+  <div class="stone" data-target="s4"><span class="ic">🔡</span>Spelling</div>
+  <div class="stone" data-target="s5"><span class="ic">🔢</span>Counting</div>
+  <div class="stone" data-target="s6"><span class="ic">🧠</span>Memory</div>
+  <div class="stone" data-target="s7"><span class="ic">🏆</span>Certificate</div>
+</nav>
+
+<main>
+
+  <!-- SECTION 1: FLASHCARDS -->
+  <section class="section active" id="s1">
+    <div class="card-panel">
+      <h2>🔤 Meet the Animals</h2>
+      <div class="instructions">👉 Tap a card to hear the animal's name. Learn all 20 words!</div>
+      <div class="flash-grid" id="flashGrid"></div>
+      <div class="footer-nav"><span></span><button class="btn green" onclick="goTo('s2')">Next: Listening Game ➜</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: LISTEN & CLICK -->
+  <section class="section" id="s2">
+    <div class="card-panel listen-box">
+      <h2>👂 Listen &amp; Click</h2>
+      <div class="instructions">👉 Press the speaker, listen carefully, then click the correct animal!</div>
+      <button class="say-btn" onclick="playCurrentListen()">🔊</button>
+      <div class="options-grid" id="listenOptions"></div>
+      <p class="progress-msg" id="listenProgress"></p>
+      <div class="footer-nav"><button class="btn blue" onclick="goTo('s1')">⟵ Back</button><button class="btn green" onclick="goTo('s3')">Next: Quiz Time ➜</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: QUIZ -->
+  <section class="section" id="s3">
+    <div class="card-panel">
+      <h2>❓ Quiz Time</h2>
+      <div class="instructions">👉 Choose the best answer for each question. Good luck, explorer!</div>
+      <div id="quizList"></div>
+      <div class="footer-nav"><button class="btn blue" onclick="goTo('s2')">⟵ Back</button><button class="btn green" onclick="goTo('s4')">Next: Spelling Safari ➜</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: SPELLING -->
+  <section class="section" id="s4">
+    <div class="card-panel spell-word">
+      <h2>🔡 Spelling Safari</h2>
+      <div class="instructions">👉 Look at the animal, then tap the letters in the right order to spell its name!</div>
+      <div class="spell-emoji" id="spellEmoji"></div>
+      <div class="slots" id="spellSlots"></div>
+      <div class="letters" id="spellLetters"></div>
+      <button class="btn yellow" onclick="checkSpelling()">✅ Check</button>
+      <button class="btn blue" onclick="clearSpelling()">🔄 Clear</button>
+      <p class="progress-msg" id="spellMsg"></p>
+      <p class="progress-msg" id="spellProgress"></p>
+      <div class="footer-nav"><button class="btn blue" onclick="goTo('s3')">⟵ Back</button><button class="btn green" onclick="goTo('s5')">Next: Counting Camp ➜</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: COUNTING -->
+  <section class="section" id="s5">
+    <div class="card-panel" style="text-align:center;">
+      <h2>🔢 Counting Camp</h2>
+      <div class="instructions">👉 Count the animals in the picture, then click the correct number!</div>
+      <div class="scene" id="countScene"></div>
+      <p class="qtext" id="countQuestion" style="font-family:'Baloo 2'; font-size:18px;"></p>
+      <div class="count-opts" id="countOptions"></div>
+      <p class="progress-msg" id="countProgress"></p>
+      <div class="footer-nav"><button class="btn blue" onclick="goTo('s4')">⟵ Back</button><button class="btn green" onclick="goTo('s6')">Next: Memory Match ➜</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: MEMORY -->
+  <section class="section" id="s6">
+    <div class="card-panel" style="text-align:center;">
+      <h2>🧠 Memory Match: Animal Sounds</h2>
+      <div class="instructions">👉 Flip two cards. Match the animal with the sound it makes!</div>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <p class="progress-msg" id="memoryMsg"></p>
+      <div class="footer-nav"><button class="btn blue" onclick="goTo('s5')">⟵ Back</button><button class="btn green" onclick="goTo('s7')">Next: Get Your Certificate 🏆</button></div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: CERTIFICATE -->
+  <section class="section" id="s7">
+    <div class="card-panel cert">
+      <h2>🏆 You Did It!</h2>
+      <p class="handwrite" style="font-size:20px;">This certifies that</p>
+      <input type="text" id="certName" placeholder="Type your name here" />
+      <p class="handwrite" style="font-size:20px;">is an Amazing Animal Explorer at Little Lume English!</p>
+      <div class="cert-stars">🌟 Total Stars: <span id="certStars">0</span> / <span id="certMax">0</span></div>
+      <button class="btn yellow" onclick="window.print()">🖨️ Print Certificate</button>
+      <div class="footer-nav"><button class="btn blue" onclick="goTo('s6')">⟵ Back</button><span></span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Made with 💛 by Little Lume English — Grade 1 Animals Unit</footer>
+
+<script>
+/* ============ GLOBAL STATE ============ */
+let stars = 0;
+let starMax = 0;
+function addStar(n){ stars += n; document.getElementById('starcount').textContent = stars; document.getElementById('certStars').textContent = stars; }
+function addMax(n){ starMax += n; document.getElementById('starmax').textContent = starMax; document.getElementById('certMax').textContent = starMax; }
+function markDone(id){ document.querySelector('.stone[data-target="'+id+'"]').classList.add('done'); }
+
+function speak(text, rate){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = rate || 0.85; u.pitch = 1.15; u.lang='en-US';
+  window.speechSynthesis.speak(u);
+}
+function lumeSpeak(){ speak("Hi! I'm Lume! Let's learn animal words together!"); }
+
+/* ============ NAV ============ */
+function goTo(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.stone').forEach(s=>s.classList.remove('active'));
+  document.querySelector('.stone[data-target="'+id+'"]').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.querySelectorAll('.stone').forEach(st=>{
+  st.addEventListener('click',()=>goTo(st.dataset.target));
+});
+
+/* ============ ANIMAL DATA ============ */
+const animals = [
+  {e:'🐶',w:'DOG'},{e:'🐱',w:'CAT'},{e:'🐮',w:'COW'},{e:'🦆',w:'DUCK'},
+  {e:'🦁',w:'LION'},{e:'🐘',w:'ELEPHANT'},{e:'🐒',w:'MONKEY'},{e:'🐟',w:'FISH'},
+  {e:'🐦',w:'BIRD'},{e:'🐰',w:'RABBIT'},{e:'🐯',w:'TIGER'},{e:'🐸',w:'FROG'},
+  {e:'🐷',w:'PIG'},{e:'🐑',w:'SHEEP'},{e:'🐴',w:'HORSE'},{e:'🐻',w:'BEAR'},
+  {e:'🐍',w:'SNAKE'},{e:'🦉',w:'OWL'},{e:'🐝',w:'BEE'},{e:'🐔',w:'CHICKEN'}
+];
+
+/* ============ SECTION 1: FLASHCARDS ============ */
+const flashGrid = document.getElementById('flashGrid');
+animals.forEach(a=>{
+  const div = document.createElement('div');
+  div.className='flashcard';
+  div.innerHTML = `<span class="emo">${a.e}</span><div class="wd">${a.w}</div><div class="tap">🔊 tap me</div>`;
+  div.onclick = ()=> speak(a.w);
+  flashGrid.appendChild(div);
+});
+
+/* ============ SECTION 2: LISTEN & CLICK ============ */
+const listenPool = animals.slice(0,12);
+let listenRound = 0;
+const listenTotal = 8;
+let listenCurrent = null;
+addMax(listenTotal);
+
+function shuffle(arr){ return arr.slice().sort(()=>Math.random()-0.5); }
+
+function newListenRound(){
+  if(listenRound >= listenTotal){
+    document.getElementById('listenOptions').innerHTML = '';
+    document.getElementById('listenProgress').textContent = "🎉 Great listening! Round complete!";
+    markDone('s2');
+    return;
+  }
+  const correct = listenPool[Math.floor(Math.random()*listenPool.length)];
+  listenCurrent = correct;
+  let distractors = shuffle(listenPool.filter(a=>a.w!==correct.w)).slice(0,3);
+  let opts = shuffle([correct, ...distractors]);
+  const box = document.getElementById('listenOptions');
+  box.innerHTML='';
+  opts.forEach(o=>{
+    const btn = document.createElement('div');
+    btn.className='opt-emoji';
+    btn.textContent = o.e;
+    btn.onclick = ()=> checkListen(o, correct, btn, box);
+    box.appendChild(btn);
+  });
+  document.getElementById('listenProgress').textContent = `Round ${listenRound+1} of ${listenTotal}`;
+  playCurrentListen();
+}
+function playCurrentListen(){ if(listenCurrent) speak(listenCurrent.w); }
+function checkListen(chosen, correct, btn, box){
+  const allBtns = box.querySelectorAll('.opt-emoji');
+  allBtns.forEach(b=>b.style.pointerEvents='none');
+  if(chosen.w === correct.w){
+    btn.classList.add('correct');
+    addStar(1);
+  } else {
+    btn.classList.add('wrong');
+    box.querySelectorAll('.opt-emoji').forEach(b=>{ if(b.textContent===correct.e) b.classList.add('correct'); });
+  }
+  listenRound++;
+  setTimeout(newListenRound, 1100);
+}
+newListenRound();
+
+/* ============ SECTION 3: QUIZ ============ */
+const quizData = [
+  {q:"Which animal says 'Moo'?", opts:["Cow","Dog","Bird"], a:"Cow"},
+  {q:"The ______ has a very long trunk.", opts:["Elephant","Duck","Rabbit"], a:"Elephant"},
+  {q:"True or False: A fish can swim.", opts:["True","False"], a:"True"},
+  {q:"True or False: A bird can bark like a dog.", opts:["True","False"], a:"False"},
+  {q:"Which animal lives in water?", opts:["Fish","Cat","Sheep"], a:"Fish"},
+  {q:"Which animal says 'Meow'?", opts:["Cat","Cow","Pig"], a:"Cat"},
+  {q:"How many legs does a bird have?", opts:["2","4","6"], a:"2"},
+  {q:"What do we call a baby dog?", opts:["Puppy","Kitten","Calf"], a:"Puppy"},
+  {q:"True or False: A tiger has stripes.", opts:["True","False"], a:"True"},
+  {q:"Which animal can fly?", opts:["Bird","Elephant","Cow"], a:"Bird"},
+  {q:"The ______ hops and lives near a pond.", opts:["Frog","Lion","Sheep"], a:"Frog"},
+  {q:"True or False: A snake has four legs.", opts:["True","False"], a:"False"},
+  {q:"Which animal gives us milk?", opts:["Cow","Lion","Snake"], a:"Cow"},
+  {q:"Which animal is known as 'King of the Jungle'?", opts:["Lion","Rabbit","Duck"], a:"Lion"},
+  {q:"True or False: Bees make honey.", opts:["True","False"], a:"True"},
+  {q:"Which animal says 'Quack'?", opts:["Duck","Horse","Bear"], a:"Duck"},
+  {q:"How many legs does a horse have?", opts:["2","4","8"], a:"4"},
+  {q:"Which animal loves to eat bananas?", opts:["Monkey","Snake","Owl"], a:"Monkey"}
+];
+addMax(quizData.length);
+const quizList = document.getElementById('quizList');
+quizData.forEach((item,i)=>{
+  const wrap = document.createElement('div');
+  wrap.className='quiz-q';
+  const optsHtml = shuffle(item.opts).map(o=>`<div class="quiz-opt" data-val="${o}">${o}</div>`).join('');
+  wrap.innerHTML = `<p class="qtext">${i+1}. ${item.q}</p><div class="quiz-opts">${optsHtml}</div>`;
+  quizList.appendChild(wrap);
+  wrap.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.onclick = ()=>{
+      const all = wrap.querySelectorAll('.quiz-opt');
+      if(all[0].classList.contains('locked')) return;
+      all.forEach(o=>o.classList.add('locked'));
+      if(opt.dataset.val === item.a){
+        opt.classList.add('correct');
+        addStar(1);
+      } else {
+        opt.classList.add('wrong');
+        all.forEach(o=>{ if(o.dataset.val===item.a) o.classList.add('correct'); });
+      }
+      if(i===quizData.length-1) markDone('s3');
+    };
+  });
+});
+
+/* ============ SECTION 4: SPELLING SAFARI ============ */
+const spellWords = [
+  {e:'🐱',w:'CAT'},{e:'🐶',w:'DOG'},{e:'🦁',w:'LION'},
+  {e:'🐟',w:'FISH'},{e:'🐦',w:'BIRD'},{e:'🐸',w:'FROG'}
+];
+let spellIndex = 0;
+let spellChosen = [];
+addMax(spellWords.length);
+
+function loadSpell(){
+  if(spellIndex >= spellWords.length){
+    document.getElementById('spellEmoji').textContent='🎉';
+    document.getElementById('spellSlots').innerHTML='';
+    document.getElementById('spellLetters').innerHTML='';
+    document.getElementById('spellMsg').textContent="Amazing! You spelled all the words!";
+    document.getElementById('spellProgress').textContent='';
+    markDone('s4');
+    return;
+  }
+  const item = spellWords[spellIndex];
+  spellChosen = [];
+  document.getElementById('spellEmoji').textContent = item.e;
+  document.getElementById('spellProgress').textContent = `Word ${spellIndex+1} of ${spellWords.length}`;
+  document.getElementById('spellMsg').textContent = '';
+  const slotsBox = document.getElementById('spellSlots');
+  slotsBox.innerHTML='';
+  for(let i=0;i<item.w.length;i++){
+    const s = document.createElement('div'); s.className='slot'; s.id='slot'+i;
+    slotsBox.appendChild(s);
+  }
+  const letters = shuffle(item.w.split(''));
+  const letBox = document.getElementById('spellLetters');
+  letBox.innerHTML='';
+  letters.forEach((ch,idx)=>{
+    const b = document.createElement('button');
+    b.className='letter-btn'; b.textContent = ch; b.dataset.idx = idx;
+    b.onclick = ()=>{
+      if(spellChosen.length >= item.w.length) return;
+      spellChosen.push(ch);
+      document.getElementById('slot'+(spellChosen.length-1)).textContent = ch;
+      b.disabled = true;
+    };
+    letBox.appendChild(b);
+  });
+}
+function clearSpelling(){ loadSpell(); }
+function checkSpelling(){
+  const item = spellWords[spellIndex];
+  const attempt = spellChosen.join('');
+  if(attempt === item.w){
+    document.getElementById('spellMsg').textContent = '✅ Correct! Great job!';
+    addStar(1);
+    spellIndex++;
+    setTimeout(loadSpell, 900);
+  } else {
+    document.getElementById('spellMsg').textContent = '❌ Try again!';
+  }
+}
+loadSpell();
+
+/* ============ SECTION 5: COUNTING CAMP ============ */
+const countData = [
+  {e:'🐰', n:4}, {e:'🐟', n:6}, {e:'🐝', n:3}, {e:'🐦', n:7}, {e:'🐸', n:5}
+];
+let countIndex = 0;
+addMax(countData.length);
+
+function loadCount(){
+  if(countIndex >= countData.length){
+    document.getElementById('countScene').textContent='🎉🎉🎉';
+    document.getElementById('countQuestion').textContent='You counted them all!';
+    document.getElementById('countOptions').innerHTML='';
+    document.getElementById('countProgress').textContent='';
+    markDone('s5');
+    return;
+  }
+  const item = countData[countIndex];
+  document.getElementById('countScene').textContent = (item.e+' ').repeat(item.n).trim();
+  document.getElementById('countQuestion').textContent = `How many ${item.e} do you see?`;
+  document.getElementById('countProgress').textContent = `Scene ${countIndex+1} of ${countData.length}`;
+  let opts = new Set([item.n]);
+  while(opts.size<4){ opts.add(Math.max(1, item.n + Math.floor(Math.random()*5)-2)); }
+  opts = shuffle([...opts]);
+  const box = document.getElementById('countOptions');
+  box.innerHTML='';
+  opts.forEach(n=>{
+    const b = document.createElement('button');
+    b.className='count-opt'; b.textContent = n;
+    b.onclick = ()=>{
+      box.querySelectorAll('.count-opt').forEach(o=>o.style.pointerEvents='none');
+      if(n === item.n){ b.classList.add('correct'); addStar(1); }
+      else {
+        b.classList.add('wrong');
+        box.querySelectorAll('.count-opt').forEach(o=>{ if(parseInt(o.textContent)===item.n) o.classList.add('correct'); });
+      }
+      countIndex++;
+      setTimeout(loadCount, 1000);
+    };
+    box.appendChild(b);
+  });
+}
+loadCount();
+
+/* ============ SECTION 6: MEMORY MATCH ============ */
+const soundPairs = [
+  {e:'🐶',s:'WOOF'},{e:'🐱',s:'MEOW'},{e:'🐮',s:'MOO'},
+  {e:'🦆',s:'QUACK'},{e:'🦁',s:'ROAR'},{e:'🐷',s:'OINK'}
+];
+addMax(1); // one star for finishing the whole memory game
+let memCards = [];
+soundPairs.forEach(p=>{
+  memCards.push({key:p.e+p.s, display:p.e, type:'emoji'});
+  memCards.push({key:p.e+p.s, display:p.s, type:'word'});
+});
+memCards = shuffle(memCards);
+let flipped = [];
+let matchedCount = 0;
+const memGrid = document.getElementById('memoryGrid');
+memCards.forEach((c,i)=>{
+  const div = document.createElement('div');
+  div.className='mem-card';
+  div.dataset.key = c.key;
+  div.dataset.idx = i;
+  div.textContent = c.display;
+  div.onclick = ()=> flipCard(div, c);
+  memGrid.appendChild(div);
+});
+function flipCard(div, c){
+  if(div.classList.contains('flipped') || div.classList.contains('matched') || flipped.length>=2) return;
+  div.classList.add('flipped');
+  flipped.push({div,c});
+  if(flipped.length===2){
+    const [a,b] = flipped;
+    if(a.c.key === b.c.key && a.div!==b.div){
+      setTimeout(()=>{
+        a.div.classList.add('matched'); b.div.classList.add('matched');
+        flipped = [];
+        matchedCount++;
+        if(matchedCount === soundPairs.length){
+          document.getElementById('memoryMsg').textContent = '🎉 You matched them all! Amazing memory!';
+          addStar(1);
+          markDone('s6');
+        }
+      }, 500);
+    } else {
+      setTimeout(()=>{
+        a.div.classList.remove('flipped'); b.div.classList.remove('flipped');
+        flipped = [];
+      }, 800);
+    }
+  }
+}
+
+/* init star display */
+document.getElementById('starmax').textContent = starMax;
+document.getElementById('certMax').textContent = starMax;
+</script>
+</body>
+</html>

@@ -31,6 +31,7 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
             /* Grade Colors */
+            --gradek: linear-gradient(135deg, #FF8C42 0%, #FFC08A 100%);
             --grade1: linear-gradient(135deg, #FF6B9D 0%, #FEC8D8 100%);
             --grade2: linear-gradient(135deg, #FECA57 0%, #FFE66D 100%);
             --grade3: linear-gradient(135deg, #48DBFB 0%, #00D2D3 100%);
@@ -1032,6 +1033,10 @@
             box-shadow: var(--shadow-xl);
         }
 
+        .grade-card-k:hover {
+            box-shadow: 0 20px 40px rgba(255, 140, 66, 0.25);
+        }
+
         .grade-card-1:hover {
             box-shadow: 0 20px 40px rgba(255, 107, 157, 0.25);
         }
@@ -1104,6 +1109,21 @@
         }
 
         /* Grade Card Specific Colors */
+        .grade-card-k .course-header {
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.15) 0%, rgba(255, 192, 138, 0.15) 100%);
+        }
+
+        .grade-card-k .course-header h3 {
+            background: linear-gradient(135deg, #FF8C42 0%, #F97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grade-card-k .course-header::after {
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.2) 0%, transparent 70%);
+        }
+
         .grade-card-1 .course-header {
             background: linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(254, 200, 216, 0.15) 100%);
         }
@@ -2015,6 +2035,22 @@
         <h2 class="section-title">📚 Learning Courses</h2>
         <p class="section-subtitle">Select your grade level and begin your English learning journey with engaging lessons and interactive activities tailored just for you</p>
         <div class="course-grid">
+            <!-- Kindergarten -->
+            <a href="courses.html#kindergarten" class="course-card grade-card-k" style="text-decoration:none;color:inherit;">
+                <div class="course-header">
+                    <h3>🧸 Kindergarten</h3>
+                    <p class="course-meta">Early Learner Level • 24 Lessons</p>
+                </div>
+                <p class="course-preview-desc">Songs, picture words, and simple sounds for our youngest learners.</p>
+                <div class="course-footer">
+                    <div style="flex-grow: 1;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%; background: linear-gradient(90deg, #FF8C42 0%, #FFC08A 100%);"></div>
+                        </div>
+                    </div>
+                    <span style="margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary);">0%</span>
+                </div>
+            </a>
             <!-- Grade 1 -->
             <a href="courses.html#grade1" class="course-card grade-card-1" style="text-decoration:none;color:inherit;">
                 <div class="course-header">

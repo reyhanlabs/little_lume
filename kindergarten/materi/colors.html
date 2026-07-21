@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Colors | Grade 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;700;800&display=swap');
+
+  :root {
+    --red:#FF4D6D;--orange:#FF9500;--yellow:#FFD600;--green:#4CAF50;
+    --blue:#2196F3;--purple:#9C27B0;--pink:#FF69B4;--brown:#795548;
+    --bg:#FFF8F0;--card:#FFFFFF;--shadow:0 6px 24px rgba(0,0,0,0.10);--radius:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;background:var(--bg);color:#212121;overflow-x:hidden}
+
+  header{background:linear-gradient(135deg,#FF4D6D 0%,#FF9500 30%,#FFD600 55%,#4CAF50 75%,#2196F3 100%);padding:28px 20px 40px;text-align:center;position:relative;overflow:hidden}
+  header::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,0.18) 0%,transparent 60%)}
+  .logo{font-family:'Baloo 2',cursive;font-size:1rem;font-weight:800;color:rgba(255,255,255,0.92);letter-spacing:3px;text-transform:uppercase;position:relative}
+  .header-title{font-family:'Baloo 2',cursive;font-size:clamp(2.4rem,7vw,4rem);font-weight:800;color:#fff;text-shadow:0 4px 16px rgba(0,0,0,0.18);position:relative;line-height:1.1;margin:8px 0 4px}
+  .header-sub{color:rgba(255,255,255,0.92);font-size:1.1rem;font-weight:700;position:relative}
+  .bubbles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+  .bubble{position:absolute;border-radius:50%;opacity:0.18;animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.08)}}
+
+  .tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;background:#fff;padding:16px 12px;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:99}
+  .tab-btn{padding:10px 20px;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .2s;background:#F0F0F0;color:#555}
+  .tab-btn.active,.tab-btn:hover{color:#fff;transform:scale(1.06);box-shadow:0 4px 14px rgba(0,0,0,0.15)}
+  .tab-btn[data-tab="learn"].active,.tab-btn[data-tab="learn"]:hover{background:var(--blue)}
+  .tab-btn[data-tab="quiz"].active,.tab-btn[data-tab="quiz"]:hover{background:var(--purple)}
+  .tab-btn[data-tab="game"].active,.tab-btn[data-tab="game"]:hover{background:var(--green)}
+
+  .section{display:none;padding:32px 16px 60px;max-width:960px;margin:0 auto}
+  .section.active{display:block}
+
+  .section-heading{font-family:'Baloo 2',cursive;font-size:1.9rem;font-weight:800;text-align:center;margin-bottom:24px;color:#212121}
+  .color-intro{background:linear-gradient(135deg,#E3F2FD,#FFF9C4);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:32px;border:3px solid #E0E0E0}
+  .color-intro p{font-size:1.15rem;font-weight:600;line-height:1.7;color:#333}
+
+  .colors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;margin-bottom:40px}
+  .color-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .22s,box-shadow .22s;border:3px solid transparent}
+  .color-card:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 36px rgba(0,0,0,0.14)}
+  .color-swatch{height:130px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+  .color-swatch::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0.15),transparent)}
+  .color-info{padding:14px 12px 16px;text-align:center}
+  .color-name-en{font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;margin-bottom:2px}
+  .color-name-id{font-size:.85rem;font-weight:700;color:#888;margin-bottom:8px}
+  .color-example{font-size:.82rem;font-weight:600;color:#555;background:#F5F5F5;border-radius:8px;padding:4px 8px;display:inline-block}
+  .listen-btn{margin-top:8px;background:none;border:2px solid currentColor;border-radius:50px;padding:5px 14px;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s}
+  .listen-btn:hover{color:#fff!important}
+
+  .learn-sub{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;margin:36px 0 16px;color:#333}
+  .objects-section{background:#fff;border-radius:var(--radius);padding:24px;margin-bottom:32px;box-shadow:var(--shadow)}
+  .objects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-top:16px}
+  .object-card{border-radius:16px;padding:16px 12px;text-align:center;border:3px solid #eee;transition:transform .2s;cursor:pointer}
+  .object-card:hover{transform:scale(1.05)}
+  .object-emoji{font-size:2.4rem;margin-bottom:8px}
+  .object-text{font-size:.88rem;font-weight:700;color:#444}
+  .object-text span{font-weight:800}
+
+  .pattern-box{background:linear-gradient(135deg,#E8F5E9,#E3F2FD);border-radius:var(--radius);padding:24px;margin-bottom:32px;border-left:6px solid var(--green)}
+  .pattern-title{font-size:1rem;font-weight:800;color:#555;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+  .pattern-sentence{font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:700;color:#222;margin-bottom:8px}
+  .pattern-examples{font-size:.95rem;font-weight:600;color:#555;line-height:2}
+  .highlight{font-weight:800;padding:2px 8px;border-radius:6px;color:#fff}
+
+  /* QUIZ */
+  .quiz-container{max-width:640px;margin:0 auto}
+  .quiz-progress{text-align:center;margin-bottom:16px}
+  .progress-bar{background:#E0E0E0;border-radius:50px;height:12px;overflow:hidden;margin-top:8px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--pink));border-radius:50px;transition:width .5s ease}
+  .quiz-score-display{font-size:1rem;font-weight:800;color:var(--purple)}
+  .quiz-card{background:#fff;border-radius:var(--radius);padding:32px 24px;box-shadow:var(--shadow);text-align:center;margin-bottom:20px;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .quiz-question-num{font-size:.85rem;font-weight:800;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+  .quiz-question{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;color:#222;margin-bottom:24px}
+  .quiz-emoji-display{font-size:5rem;margin-bottom:16px}
+  .quiz-color-swatch{width:120px;height:120px;border-radius:50%;margin:0 auto 20px;border:5px solid #E0E0E0;box-shadow:0 4px 20px rgba(0,0,0,0.12)}
+  .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+  .quiz-option{padding:14px 10px;border:3px solid #E0E0E0;border-radius:16px;font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;cursor:pointer;background:#FAFAFA;transition:all .2s;color:#333}
+  .quiz-option:hover{border-color:var(--purple);background:#F3E5F5;transform:scale(1.03)}
+  .quiz-option.correct{background:#E8F5E9!important;border-color:var(--green)!important;color:var(--green)}
+  .quiz-option.wrong{background:#FFEBEE!important;border-color:var(--red)!important;color:var(--red)}
+  .quiz-option.disabled{pointer-events:none}
+  .quiz-feedback{margin-top:16px;font-size:1.2rem;font-weight:800;padding:12px 24px;border-radius:50px;display:none}
+  .quiz-feedback.show{display:inline-block}
+  .quiz-feedback.correct{background:#E8F5E9;color:var(--green)}
+  .quiz-feedback.wrong{background:#FFEBEE;color:var(--red)}
+  .quiz-next-btn{margin-top:20px;padding:14px 36px;background:var(--purple);color:#fff;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:700;cursor:pointer;display:none;transition:all .2s}
+  .quiz-next-btn:hover{background:#7B1FA2;transform:scale(1.05)}
+  .quiz-next-btn.show{display:inline-block}
+  .quiz-result{text-align:center;padding:40px 24px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);display:none}
+  .quiz-result.show{display:block}
+  .result-emoji{font-size:5rem;margin-bottom:16px}
+  .result-title{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:800;margin-bottom:8px}
+  .result-score{font-size:1.2rem;font-weight:700;color:#555;margin-bottom:24px}
+  .result-stars{font-size:2.5rem;margin-bottom:20px;letter-spacing:4px}
+  .restart-btn{padding:14px 36px;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:1.1rem;font-weight:700;cursor:pointer;transition:all .2s}
+  .restart-btn:hover{transform:scale(1.05)}
+
+  /* GAME */
+  .game-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+  .game-tab-btn{padding:10px 22px;border:3px solid #E0E0E0;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;background:#fff;color:#555;transition:all .2s}
+  .game-tab-btn.active{background:var(--green);border-color:var(--green);color:#fff}
+  .game-panel{display:none}
+  .game-panel.active{display:block}
+
+  .match-game{max-width:640px;margin:0 auto}
+  .match-instructions{background:#E8F5E9;border-radius:16px;padding:14px 20px;font-size:.95rem;font-weight:700;color:#2E7D32;margin-bottom:20px;text-align:center}
+  .match-board{display:flex;gap:16px;justify-content:center}
+  .match-column{flex:1;display:flex;flex-direction:column;gap:12px}
+  .match-item{padding:14px 10px;border-radius:14px;border:3px solid #E0E0E0;text-align:center;cursor:pointer;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;background:#fff;transition:all .2s;user-select:none}
+  .match-item.selected{border-color:var(--blue);background:#E3F2FD;transform:scale(1.04)}
+  .match-item.matched{border-color:var(--green);background:#E8F5E9;color:var(--green);pointer-events:none;opacity:.8}
+  .match-item.wrong{border-color:var(--red);background:#FFEBEE;animation:shake .3s}
+  .match-swatch{width:100%;height:60px;border-radius:10px;display:block}
+  .match-score{text-align:center;margin-top:16px;font-size:1.1rem;font-weight:800;color:var(--green)}
+  .match-new-btn{display:block;margin:16px auto 0;padding:12px 30px;background:var(--green);color:#fff;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+  .match-new-btn:hover{background:#388E3C;transform:scale(1.04)}
+
+  .balloon-game-area{background:linear-gradient(180deg,#87CEEB 0%,#B0E0FF 100%);border-radius:var(--radius);height:400px;position:relative;overflow:hidden;cursor:crosshair;border:3px solid #90CAF9;margin-bottom:16px}
+  .balloon-hud{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+  .balloon-hud-item{background:rgba(255,255,255,0.88);border-radius:50px;padding:6px 16px;font-size:.95rem;font-weight:800;color:#333}
+  .balloon-target-display{position:absolute;top:60px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.95);border-radius:50px;padding:8px 24px;font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;white-space:nowrap;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,0.12)}
+  .balloon{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;animation:rise linear forwards;user-select:none;transition:transform .1s}
+  .balloon:hover{transform:scale(1.1)}
+  .balloon-body{width:64px;height:80px;border-radius:50% 50% 45% 45%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.25);box-shadow:inset -8px -10px 0 rgba(0,0,0,0.12),0 4px 16px rgba(0,0,0,0.15);font-family:'Nunito',sans-serif}
+  .balloon-string{width:2px;height:20px;background:rgba(100,100,100,0.5);border-radius:2px}
+  @keyframes rise{from{bottom:-120px}to{bottom:110%}}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .balloon-start-overlay{position:absolute;inset:0;background:rgba(255,255,255,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:var(--radius);gap:12px}
+  .balloon-start-overlay h3{font-family:'Baloo 2',cursive;font-size:1.8rem;font-weight:800}
+  .balloon-start-overlay p{font-size:1rem;font-weight:600;color:#555;text-align:center;padding:0 20px}
+  .start-game-btn{padding:14px 40px;background:var(--green);color:#fff;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:700;cursor:pointer;transition:all .2s}
+  .start-game-btn:hover{background:#388E3C;transform:scale(1.05)}
+
+  .paint-game{max-width:680px;margin:0 auto}
+  .paint-instruction{background:#FFF9C4;border-radius:16px;padding:14px 20px;font-size:.95rem;font-weight:700;color:#F57F17;margin-bottom:20px;text-align:center;border-left:5px solid var(--orange)}
+  .paint-scene{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+  .paint-scene-title{font-family:'Baloo 2',cursive;font-size:1.2rem;font-weight:800;text-align:center;margin-bottom:16px;color:#333}
+  .paint-parts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:20px}
+  .paint-part{border:3px dashed #ccc;border-radius:14px;padding:14px 18px;text-align:center;cursor:pointer;transition:all .2s;min-width:100px;font-weight:700;font-size:.9rem;color:#666}
+  .paint-part:hover{border-color:var(--orange)}
+  .paint-part .part-emoji{font-size:2.2rem;display:block;margin-bottom:6px}
+  .paint-part.colored{border-style:solid}
+  .paint-palette{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .palette-color{width:44px;height:44px;border-radius:50%;border:3px solid rgba(0,0,0,0.12);cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative}
+  .palette-color:hover{transform:scale(1.2);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+  .palette-color.selected::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,0.3)}
+  .paint-check-btn{display:block;margin:16px auto 0;padding:12px 32px;background:var(--orange);color:#fff;border:none;border-radius:50px;font-family:'Baloo 2',cursive;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+  .paint-check-btn:hover{background:#E65100;transform:scale(1.04)}
+  .paint-result{text-align:center;margin-top:12px;font-size:1.1rem;font-weight:800;min-height:28px}
+
+  footer{text-align:center;padding:20px;color:#aaa;font-size:.82rem;font-weight:600}
+
+  @media(max-width:480px){
+    .colors-grid{grid-template-columns:repeat(2,1fr)}
+    .quiz-options{grid-template-columns:1fr}
+    .match-board{flex-direction:column}
+    .match-column{flex-direction:row;flex-wrap:wrap}
+    .match-item{flex:1;min-width:80px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bubbles">
+    <div class="bubble" style="width:80px;height:80px;background:#FF4D6D;top:10%;left:5%;animation-delay:0s;animation-duration:7s"></div>
+    <div class="bubble" style="width:50px;height:50px;background:#FFD600;top:60%;left:12%;animation-delay:1s;animation-duration:5s"></div>
+    <div class="bubble" style="width:70px;height:70px;background:#2196F3;top:20%;right:8%;animation-delay:2s;animation-duration:6s"></div>
+    <div class="bubble" style="width:40px;height:40px;background:#4CAF50;top:70%;right:5%;animation-delay:.5s;animation-duration:8s"></div>
+    <div class="bubble" style="width:60px;height:60px;background:#9C27B0;top:40%;right:20%;animation-delay:1.5s;animation-duration:6.5s"></div>
+  </div>
+  <div class="logo">✨ LittleLume English</div>
+  <div class="header-title">🌈 Colors!</div>
+  <div class="header-sub">Grade 1 · Let's learn about colors together!</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="learn">📚 Learn</button>
+  <button class="tab-btn" data-tab="quiz">📝 Quiz</button>
+  <button class="tab-btn" data-tab="game">🎮 Games</button>
+</nav>
+
+<!-- LEARN -->
+<section class="section active" id="section-learn">
+  <h2 class="section-heading">🌈 What Are Colors?</h2>
+  <div class="color-intro">
+    <p>Colors are everywhere! 👀 We can see colors in the sky, in flowers, in animals, and in everyday things. Let's learn the names of colors in English! 🎨</p>
+  </div>
+  <div class="colors-grid" id="colorsGrid"></div>
+
+  <h3 class="learn-sub">📖 How to use colors in sentences</h3>
+  <div class="pattern-box">
+    <div class="pattern-title">🔤 Sentence Pattern 1</div>
+    <div class="pattern-sentence">The [object] is [color].</div>
+    <div class="pattern-examples">
+      🌸 The flower is <span class="highlight" style="background:#FF69B4">pink</span>.<br>
+      🍎 The apple is <span class="highlight" style="background:#FF4D6D">red</span>.<br>
+      🍋 The lemon is <span class="highlight" style="background:#FFD600;color:#333">yellow</span>.<br>
+      🌿 The leaf is <span class="highlight" style="background:#4CAF50">green</span>.
+    </div>
+  </div>
+  <div class="pattern-box" style="border-left-color:#2196F3;background:linear-gradient(135deg,#E3F2FD,#EDE7F6)">
+    <div class="pattern-title">🔤 Sentence Pattern 2</div>
+    <div class="pattern-sentence">I see a [color] [object]!</div>
+    <div class="pattern-examples">
+      🦋 I see a <span class="highlight" style="background:#2196F3">blue</span> butterfly!<br>
+      🐦 I see an <span class="highlight" style="background:#FF9500">orange</span> bird!<br>
+      🐱 I see a <span class="highlight" style="background:#333">black</span> cat!<br>
+      🐇 I see a <span class="highlight" style="background:#9E9E9E">white</span> rabbit!
+    </div>
+  </div>
+  <div class="pattern-box" style="border-left-color:#9C27B0;background:linear-gradient(135deg,#EDE7F6,#FCE4EC)">
+    <div class="pattern-title">🔤 Sentence Pattern 3</div>
+    <div class="pattern-sentence">My favorite color is [color]!</div>
+    <div class="pattern-examples">
+      💜 My favorite color is <span class="highlight" style="background:#9C27B0">purple</span>!<br>
+      ❤️ My favorite color is <span class="highlight" style="background:#FF4D6D">red</span>!<br>
+      💙 My favorite color is <span class="highlight" style="background:#2196F3">blue</span>!
+    </div>
+  </div>
+
+  <h3 class="learn-sub">🌍 Colors in the world around us</h3>
+  <div class="objects-section">
+    <p style="font-weight:700;color:#555;margin-bottom:4px;">Click on any object to hear the sentence! 👇</p>
+    <div class="objects-grid" id="objectsGrid"></div>
+  </div>
+
+  <h3 class="learn-sub">🌈 The Rainbow Colors</h3>
+  <div style="background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);text-align:center">
+    <p style="font-size:.95rem;font-weight:700;color:#555;margin-bottom:16px">The rainbow has 7 colors. Remember with:</p>
+    <div style="font-family:'Baloo 2',cursive;font-size:1.4rem;font-weight:800;margin-bottom:16px;line-height:1.8">
+      <span style="color:#FF4D6D">R</span><span style="color:#FF9500">O</span><span style="color:#FFD600">Y</span> <span style="color:#4CAF50">G</span> <span style="color:#2196F3">B</span><span style="color:#3F51B5">I</span><span style="color:#9C27B0">V</span>
+    </div>
+    <div style="display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+      <div style="background:#FF4D6D;color:#fff;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🔴 Red</div>
+      <div style="background:#FF9500;color:#fff;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🟠 Orange</div>
+      <div style="background:#FFD600;color:#333;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🟡 Yellow</div>
+      <div style="background:#4CAF50;color:#fff;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🟢 Green</div>
+      <div style="background:#2196F3;color:#fff;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🔵 Blue</div>
+      <div style="background:#3F51B5;color:#fff;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🔷 Indigo</div>
+      <div style="background:#9C27B0;color:#fff;padding:8px 14px;border-radius:50px;font-weight:800;font-size:.85rem">🟣 Violet</div>
+    </div>
+    <p style="font-size:1rem;font-weight:700;color:#555;font-style:italic">"Richard Of York Gave Battle In Vain"</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="section-quiz">
+  <h2 class="section-heading">📝 Color Quiz</h2>
+  <div class="quiz-container">
+    <div class="quiz-progress">
+      <div class="quiz-score-display">⭐ Score: <span id="quizScore">0</span> / <span id="quizTotal">10</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-question-num" id="qNum">Question 1 of 10</div>
+      <div id="quizVisual"></div>
+      <div class="quiz-question" id="quizQuestion">Loading…</div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <button class="quiz-next-btn" id="quizNextBtn" onclick="nextQuestion()">Next ➜</button>
+    </div>
+    <div class="quiz-result" id="quizResult">
+      <div class="result-emoji" id="resultEmoji">🎉</div>
+      <div class="result-title" id="resultTitle">Amazing!</div>
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-stars" id="resultStars"></div>
+      <button class="restart-btn" onclick="startQuiz()">🔄 Try Again!</button>
+    </div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section class="section" id="section-game">
+  <h2 class="section-heading">🎮 Color Games</h2>
+  <div class="game-tabs">
+    <button class="game-tab-btn active" onclick="switchGame(this,'match')">🔗 Color Match</button>
+    <button class="game-tab-btn" onclick="switchGame(this,'balloon')">🎈 Balloon Pop</button>
+    <button class="game-tab-btn" onclick="switchGame(this,'paint')">🎨 Paint It!</button>
+  </div>
+
+  <div class="game-panel active" id="game-match">
+    <div class="match-game">
+      <div class="match-instructions">🖱️ Click a color swatch, then click its matching color name!</div>
+      <div class="match-board">
+        <div class="match-column" id="matchSwatches"></div>
+        <div class="match-column" id="matchNames"></div>
+      </div>
+      <div class="match-score" id="matchScore"></div>
+      <button class="match-new-btn" onclick="setupMatchGame()">🔀 New Round</button>
+    </div>
+  </div>
+
+  <div class="game-panel" id="game-balloon">
+    <div class="balloon-game-area" id="balloonArea">
+      <div class="balloon-hud">
+        <div class="balloon-hud-item">⭐ <span id="balloonScore">0</span></div>
+        <div class="balloon-hud-item">❤️ <span id="balloonLives">3</span></div>
+        <div class="balloon-hud-item">⏱️ <span id="balloonTimer">30</span>s</div>
+      </div>
+      <div class="balloon-target-display" id="balloonTarget" style="display:none"></div>
+      <div class="balloon-start-overlay" id="balloonOverlay">
+        <div style="font-size:3rem">🎈</div>
+        <h3>Balloon Pop!</h3>
+        <p>Pop the balloon with the <strong>correct color</strong>! Wrong pops lose a life ❤️</p>
+        <button class="start-game-btn" onclick="startBalloonGame()">▶ Start Game!</button>
+      </div>
+    </div>
+    <div id="balloonEndMsg" style="display:none;text-align:center;padding:20px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div style="font-size:3rem;margin-bottom:8px" id="balloonEndEmoji">🎉</div>
+      <div style="font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;margin-bottom:8px" id="balloonEndTitle">Game Over!</div>
+      <div style="font-weight:700;color:#555;margin-bottom:16px" id="balloonEndScore"></div>
+      <button class="start-game-btn" onclick="resetBalloonGame()">🔄 Play Again</button>
+    </div>
+  </div>
+
+  <div class="game-panel" id="game-paint">
+    <div class="paint-game">
+      <div class="paint-instruction">🎨 Pick a color from the palette below, then click the object you want to paint!</div>
+      <div class="paint-scene">
+        <div class="paint-scene-title" id="paintSceneTitle">🌳 The Garden Scene</div>
+        <div class="paint-parts" id="paintParts"></div>
+        <div style="text-align:center;margin-bottom:12px;font-size:.9rem;font-weight:700;color:#888">Selected color: <span id="selectedColorName" style="font-weight:800;color:#333">None</span></div>
+        <div class="paint-palette" id="paintPalette"></div>
+        <button class="paint-check-btn" onclick="checkPainting()">✅ Check My Painting!</button>
+        <div class="paint-result" id="paintResult"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>🌈 LittleLume English · Colors · Grade 1 · Made with ❤️ for young learners</p></footer>
+
+<script>
+const COLORS=[
+  {en:'Red',    id:'Merah',      hex:'#FF4D6D',emoji:'🔴',example:'🍎 apple, 🌹 rose'},
+  {en:'Orange', id:'Oranye',     hex:'#FF9500',emoji:'🟠',example:'🍊 orange, 🦊 fox'},
+  {en:'Yellow', id:'Kuning',     hex:'#FFD600',emoji:'🟡',example:'🌻 sunflower, 🍌 banana'},
+  {en:'Green',  id:'Hijau',      hex:'#4CAF50',emoji:'🟢',example:'🌿 leaf, 🐢 turtle'},
+  {en:'Blue',   id:'Biru',       hex:'#2196F3',emoji:'🔵',example:'🌊 ocean, 🦋 butterfly'},
+  {en:'Purple', id:'Ungu',       hex:'#9C27B0',emoji:'🟣',example:'🍇 grapes, 🌸 lavender'},
+  {en:'Pink',   id:'Merah Muda', hex:'#FF69B4',emoji:'🩷',example:'🌷 tulip, 🐷 pig'},
+  {en:'Brown',  id:'Coklat',     hex:'#795548',emoji:'🟤',example:'🍫 chocolate, 🐻 bear'},
+  {en:'Black',  id:'Hitam',      hex:'#212121',emoji:'⚫',example:'🐱 cat, 🦇 bat'},
+  {en:'White',  id:'Putih',      hex:'#F5F5F5',emoji:'⚪',example:'☁️ cloud, 🐑 sheep'},
+];
+const OBJECTS=[
+  {emoji:'🍎',name:'Apple',    color:'Red',   colorHex:'#FF4D6D'},
+  {emoji:'🍊',name:'Orange',   color:'Orange',colorHex:'#FF9500'},
+  {emoji:'🍋',name:'Lemon',    color:'Yellow',colorHex:'#FFD600'},
+  {emoji:'🥦',name:'Broccoli', color:'Green', colorHex:'#4CAF50'},
+  {emoji:'🫐',name:'Blueberry',color:'Blue',  colorHex:'#2196F3'},
+  {emoji:'🍇',name:'Grapes',   color:'Purple',colorHex:'#9C27B0'},
+  {emoji:'🌷',name:'Tulip',    color:'Pink',  colorHex:'#FF69B4'},
+  {emoji:'🍫',name:'Chocolate',color:'Brown', colorHex:'#795548'},
+  {emoji:'🐱',name:'Black Cat',color:'Black', colorHex:'#212121'},
+  {emoji:'☁️',name:'Cloud',    color:'White', colorHex:'#9E9E9E'},
+  {emoji:'🌻',name:'Sunflower',color:'Yellow',colorHex:'#FFD600'},
+  {emoji:'🌊',name:'Ocean',    color:'Blue',  colorHex:'#2196F3'},
+];
+
+// TABS
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('section-'+btn.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// LEARN
+function buildColorCards(){
+  const grid=document.getElementById('colorsGrid');
+  COLORS.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='color-card';
+    el.style.borderColor=c.hex;
+    el.innerHTML=`<div class="color-swatch" style="background:${c.hex}"><span>${c.emoji}</span></div>
+    <div class="color-info">
+      <div class="color-name-en" style="color:${c.hex==='#F5F5F5'?'#9E9E9E':c.hex}">${c.en}</div>
+      <div class="color-name-id">${c.id}</div>
+      <div class="color-example">${c.example}</div>
+      <button class="listen-btn" style="color:${c.hex==='#F5F5F5'?'#9E9E9E':c.hex}" onclick="speak('${c.en}')">🔊 Listen</button>
+    </div>`;
+    grid.appendChild(el);
+  });
+}
+function buildObjectCards(){
+  const grid=document.getElementById('objectsGrid');
+  OBJECTS.forEach(o=>{
+    const el=document.createElement('div');
+    el.className='object-card';
+    el.style.borderColor=o.colorHex;
+    el.style.background=o.colorHex+'22';
+    el.innerHTML=`<div class="object-emoji">${o.emoji}</div><div class="object-text"><span>${o.name}</span><br>is <span style="color:${o.colorHex}">${o.color}</span></div>`;
+    el.addEventListener('click',()=>speak(`The ${o.name} is ${o.color}`));
+    grid.appendChild(el);
+  });
+}
+function speak(text){
+  if('speechSynthesis'in window){
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US';u.rate=0.85;u.pitch=1.1;
+    window.speechSynthesis.speak(u);
+  }
+}
+
+// QUIZ
+let quizQuestions=[],qIndex=0,quizScore=0;
+function generateQuiz(){
+  const types=['nameTheColor','whatColorIs','whichIsColor','fillBlank'];
+  const qs=[];
+  const shuffled=[...COLORS].sort(()=>Math.random()-.5);
+  shuffled.slice(0,10).forEach((color,i)=>{
+    const type=types[i%types.length];
+    const wrong=COLORS.filter(c=>c.en!==color.en).sort(()=>Math.random()-.5).slice(0,3);
+    const options=[...wrong.map(c=>c.en),color.en].sort(()=>Math.random()-.5);
+    qs.push({type,color,options,answer:color.en});
+  });
+  return qs;
+}
+function startQuiz(){
+  quizQuestions=generateQuiz();qIndex=0;quizScore=0;
+  document.getElementById('quizScore').textContent=0;
+  document.getElementById('quizTotal').textContent=quizQuestions.length;
+  document.getElementById('progressFill').style.width='0%';
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizCard').style.display='flex';
+  renderQuestion();
+}
+function renderQuestion(){
+  const q=quizQuestions[qIndex];
+  document.getElementById('qNum').textContent=`Question ${qIndex+1} of ${quizQuestions.length}`;
+  document.getElementById('quizFeedback').className='quiz-feedback';
+  document.getElementById('quizNextBtn').className='quiz-next-btn';
+  let visual='',question='';
+  if(q.type==='nameTheColor'){
+    visual=`<div class="quiz-color-swatch" style="background:${q.color.hex}"></div>`;
+    question='What color is this?';
+  }else if(q.type==='whatColorIs'){
+    const obj=OBJECTS.find(o=>o.color===q.color.en)||{emoji:q.color.emoji,name:q.color.en};
+    visual=`<div class="quiz-emoji-display">${obj.emoji}</div>`;
+    question=`What color is the ${obj.name}?`;
+  }else if(q.type==='whichIsColor'){
+    visual=`<div class="quiz-emoji-display">${q.color.emoji}</div>`;
+    question=`Which word means "${q.color.id}" in English?`;
+  }else{
+    visual=`<div class="quiz-emoji-display">${q.color.emoji}</div>`;
+    question=`Complete: "My ${q.color.en.toLowerCase()} pencil is ___."`; 
+  }
+  document.getElementById('quizVisual').innerHTML=visual;
+  document.getElementById('quizQuestion').textContent=question;
+  const opts=document.getElementById('quizOptions');
+  opts.innerHTML='';
+  q.options.forEach(opt=>{
+    const btn=document.createElement('button');
+    btn.className='quiz-option';
+    const c=COLORS.find(x=>x.en===opt);
+    btn.innerHTML=`${c?c.emoji:''} ${opt}`;
+    btn.onclick=()=>checkAnswer(opt,q.answer,btn);
+    opts.appendChild(btn);
+  });
+}
+function checkAnswer(chosen,correct,btn){
+  document.querySelectorAll('.quiz-option').forEach(b=>b.classList.add('disabled'));
+  const fb=document.getElementById('quizFeedback');
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.textContent='✅ Correct! Well done! 🎉';
+    fb.className='quiz-feedback show correct';
+    quizScore++;
+    document.getElementById('quizScore').textContent=quizScore;
+    speak(correct);
+  }else{
+    btn.classList.add('wrong');
+    document.querySelectorAll('.quiz-option').forEach(b=>{if(b.textContent.trim().includes(correct))b.classList.add('correct');});
+    fb.textContent=`❌ The answer is: ${correct}`;
+    fb.className='quiz-feedback show wrong';
+  }
+  document.getElementById('progressFill').style.width=`${((qIndex+1)/quizQuestions.length)*100}%`;
+  document.getElementById('quizNextBtn').className='quiz-next-btn show';
+}
+function nextQuestion(){qIndex++;if(qIndex>=quizQuestions.length){showResult();return;}renderQuestion();}
+function showResult(){
+  document.getElementById('quizCard').style.display='none';
+  const res=document.getElementById('quizResult');res.classList.add('show');
+  const pct=quizScore/quizQuestions.length;
+  let emoji='😊',title='Good job!',stars='⭐⭐⭐';
+  if(pct===1){emoji='🏆';title='Perfect Score! Amazing!';stars='⭐⭐⭐⭐⭐';}
+  else if(pct>=.8){emoji='🎉';title='Great job! Almost perfect!';stars='⭐⭐⭐⭐';}
+  else if(pct>=.6){emoji='😊';title='Good try! Keep learning!';stars='⭐⭐⭐';}
+  else if(pct>=.4){emoji='💪';title='Keep practicing!';stars='⭐⭐';}
+  else{emoji='📚';title="Let's review colors again!";stars='⭐';}
+  document.getElementById('resultEmoji').textContent=emoji;
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultScore').textContent=`You got ${quizScore} out of ${quizQuestions.length} correct!`;
+  document.getElementById('resultStars').textContent=stars;
+}
+
+// GAME TABS
+function switchGame(btn,id){
+  document.querySelectorAll('.game-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.game-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('game-'+id).classList.add('active');
+}
+
+// MATCH GAME
+let matchSelected=null,matchPairs=0,matchTotal=0;
+function setupMatchGame(){
+  const picked=[...COLORS].sort(()=>Math.random()-.5).slice(0,6);
+  matchTotal=picked.length;matchPairs=0;matchSelected=null;
+  document.getElementById('matchScore').textContent='';
+  const sc=document.getElementById('matchSwatches'),nc=document.getElementById('matchNames');
+  sc.innerHTML='';nc.innerHTML='';
+  const ss=[...picked].sort(()=>Math.random()-.5);
+  const sn=[...picked].sort(()=>Math.random()-.5);
+  ss.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='match-item';el.dataset.color=c.en;el.dataset.side='swatch';
+    el.innerHTML=`<span class="match-swatch" style="background:${c.hex}"></span>`;
+    el.addEventListener('click',()=>handleMatchClick(el));sc.appendChild(el);
+  });
+  sn.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='match-item';el.dataset.color=c.en;el.dataset.side='name';
+    el.textContent=c.en;el.style.color=c.hex;
+    el.addEventListener('click',()=>handleMatchClick(el));nc.appendChild(el);
+  });
+}
+function handleMatchClick(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  if(matchSelected===el){el.classList.remove('selected');matchSelected=null;return;}
+  if(!matchSelected){el.classList.add('selected');matchSelected=el;return;}
+  const prev=matchSelected;
+  if(prev.dataset.color===el.dataset.color&&prev.dataset.side!==el.dataset.side){
+    prev.classList.remove('selected');prev.classList.add('matched');el.classList.add('matched');
+    matchPairs++;speak(el.dataset.color);
+    document.getElementById('matchScore').textContent=matchPairs===matchTotal?'🎉 Perfect! You matched all colors!':'✅ '+matchPairs+'/'+matchTotal+' matched!';
+  }else{
+    prev.classList.remove('selected');prev.classList.add('wrong');el.classList.add('wrong');
+    setTimeout(()=>{prev.classList.remove('wrong');el.classList.remove('wrong');},600);
+  }
+  matchSelected=null;
+}
+
+// BALLOON GAME
+let balloonInterval=null,balloonTimerInterval=null,bScore=0,bLives=3,bTimeLeft=30,bTargetColor=null,bActive=false;
+function startBalloonGame(){
+  document.getElementById('balloonOverlay').style.display='none';
+  document.getElementById('balloonEndMsg').style.display='none';
+  bScore=0;bLives=3;bTimeLeft=30;bActive=true;
+  updateBalloonHUD();pickNewTarget();
+  balloonInterval=setInterval(spawnBalloon,1200);
+  balloonTimerInterval=setInterval(()=>{bTimeLeft--;document.getElementById('balloonTimer').textContent=bTimeLeft;if(bTimeLeft<=0)endBalloonGame();},1000);
+}
+function pickNewTarget(){
+  bTargetColor=COLORS[Math.floor(Math.random()*COLORS.length)];
+  const t=document.getElementById('balloonTarget');
+  t.style.display='block';
+  t.innerHTML=`Pop the <strong style="color:${bTargetColor.hex}">${bTargetColor.en}</strong> balloon! ${bTargetColor.emoji}`;
+}
+function spawnBalloon(){
+  if(!bActive)return;
+  const area=document.getElementById('balloonArea');
+  const isTarget=Math.random()<.45;
+  const pool=isTarget?[bTargetColor]:COLORS.filter(c=>c.en!==bTargetColor.en);
+  const color=pool[Math.floor(Math.random()*pool.length)];
+  const el=document.createElement('div');
+  el.className='balloon';
+  el.style.left=(10+Math.random()*75)+'%';
+  el.style.animationDuration=(3.5+Math.random()*2.5)+'s';
+  el.innerHTML=`<div class="balloon-body" style="background:${color.hex}">${color.en[0]}</div><div class="balloon-string"></div>`;
+  el.addEventListener('click',()=>{
+    if(!bActive)return;
+    if(color.en===bTargetColor.en){bScore+=10;speak(color.en);showPopEffect(el,'+10 ✅');pickNewTarget();}
+    else{bLives--;showPopEffect(el,'❌');if(bLives<=0){endBalloonGame();return;}}
+    el.remove();updateBalloonHUD();
+  });
+  el.addEventListener('animationend',()=>el.remove());
+  area.appendChild(el);
+}
+function showPopEffect(el,txt){
+  const pop=document.createElement('div');
+  pop.textContent=txt;
+  pop.style.cssText=`position:absolute;font-size:1.3rem;font-weight:800;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3);pointer-events:none;animation:rise .8s forwards;left:${el.style.left};bottom:30%;z-index:10`;
+  document.getElementById('balloonArea').appendChild(pop);
+  setTimeout(()=>pop.remove(),800);el.remove();
+}
+function updateBalloonHUD(){
+  document.getElementById('balloonScore').textContent=bScore;
+  document.getElementById('balloonLives').textContent='❤️'.repeat(Math.max(0,bLives));
+}
+function endBalloonGame(){
+  bActive=false;clearInterval(balloonInterval);clearInterval(balloonTimerInterval);
+  document.querySelectorAll('.balloon').forEach(b=>b.remove());
+  document.getElementById('balloonTarget').style.display='none';
+  document.getElementById('balloonEndMsg').style.display='block';
+  const e=bScore>=80?'🏆':bScore>=40?'🎉':'💪';
+  document.getElementById('balloonEndEmoji').textContent=e;
+  document.getElementById('balloonEndTitle').textContent=bScore>=80?'Color Expert!':bScore>=40?'Great job!':'Keep trying!';
+  document.getElementById('balloonEndScore').textContent=`Your score: ${bScore} points 🌟`;
+}
+function resetBalloonGame(){
+  document.getElementById('balloonEndMsg').style.display='none';
+  document.getElementById('balloonOverlay').style.display='flex';
+  document.getElementById('balloonScore').textContent='0';
+  document.getElementById('balloonLives').textContent='❤️❤️❤️';
+  document.getElementById('balloonTimer').textContent='30';
+}
+
+// PAINT GAME
+const PAINT_SCENES=[
+  {title:'🌳 The Garden Scene',parts:[
+    {emoji:'🌳',name:'Tree',   label:'Tree',      correct:'Green'},
+    {emoji:'☀️',name:'Sun',    label:'Sun',       correct:'Yellow'},
+    {emoji:'🌹',name:'Flower', label:'Flower',    correct:'Red'},
+    {emoji:'☁️',name:'Cloud',  label:'Cloud',     correct:'White'},
+    {emoji:'🦋',name:'Butterfly',label:'Butterfly',correct:'Blue'},
+  ]},
+  {title:'🌊 The Ocean Scene',parts:[
+    {emoji:'🌊',name:'Ocean',   label:'Ocean',    correct:'Blue'},
+    {emoji:'🐠',name:'Fish',    label:'Fish',     correct:'Orange'},
+    {emoji:'🐚',name:'Shell',   label:'Shell',    correct:'Pink'},
+    {emoji:'⭐',name:'Starfish',label:'Starfish', correct:'Orange'},
+    {emoji:'🦀',name:'Crab',    label:'Crab',     correct:'Red'},
+  ]},
+];
+let paintScene=0,selectedPaintColor=null,paintChoices={};
+function setupPaintGame(){
+  const scene=PAINT_SCENES[paintScene%PAINT_SCENES.length];
+  paintChoices={};selectedPaintColor=null;
+  document.getElementById('selectedColorName').textContent='None';
+  document.getElementById('selectedColorName').style.color='#333';
+  document.getElementById('paintResult').textContent='';
+  document.getElementById('paintSceneTitle').textContent=scene.title;
+  const pd=document.getElementById('paintParts');pd.innerHTML='';
+  scene.parts.forEach(p=>{
+    const el=document.createElement('div');
+    el.className='paint-part';el.id='part-'+p.name;
+    el.innerHTML=`<span class="part-emoji">${p.emoji}</span>${p.label}`;
+    el.addEventListener('click',()=>{
+      if(!selectedPaintColor){return;}
+      paintChoices[p.name]=selectedPaintColor;
+      const c=COLORS.find(x=>x.en===selectedPaintColor);
+      el.style.background=c?c.hex+'33':'';
+      el.style.borderColor=c?c.hex:'#ccc';
+      el.style.borderStyle='solid';
+      el.style.color=c?c.hex:'';
+      el.classList.add('colored');
+    });
+    pd.appendChild(el);
+  });
+  const pal=document.getElementById('paintPalette');pal.innerHTML='';
+  COLORS.forEach(c=>{
+    const el=document.createElement('div');
+    el.className='palette-color';el.style.background=c.hex;el.title=c.en;
+    el.addEventListener('click',()=>{
+      document.querySelectorAll('.palette-color').forEach(p=>p.classList.remove('selected'));
+      el.classList.add('selected');selectedPaintColor=c.en;
+      const nm=document.getElementById('selectedColorName');
+      nm.textContent=c.en;nm.style.color=c.hex;
+    });
+    pal.appendChild(el);
+  });
+}
+function checkPainting(){
+  const scene=PAINT_SCENES[paintScene%PAINT_SCENES.length];
+  let correct=0;
+  scene.parts.forEach(p=>{if(paintChoices[p.name]===p.correct)correct++;});
+  const total=scene.parts.length,res=document.getElementById('paintResult');
+  if(correct===total){
+    res.innerHTML='🎨 <span style="color:var(--green)">Perfect painting! All colors correct! 🏆</span>';
+    speak('Perfect! Well done!');
+    setTimeout(()=>{paintScene++;setupPaintGame();},2500);
+  }else{
+    res.innerHTML=`✅ ${correct}/${total} correct! <span style="color:var(--orange)">Try fixing the wrong ones!</span>`;
+  }
+}
+
+// INIT
+buildColorCards();buildObjectCards();startQuiz();setupMatchGame();setupPaintGame();
+</script>
+</body>
+</html>

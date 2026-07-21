@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Alphabet (Grade 1)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #FF6B6B;
+    --sun: #FFD93D;
+    --mint: #6BCB77;
+    --sky: #4D96FF;
+    --lavender: #C77DFF;
+    --peach: #FFB347;
+    --rose: #FF8FAB;
+    --teal: #2EC4B6;
+    --cream: #FFFBF2;
+    --dark: #2B2B2B;
+    --shadow: 0 6px 24px rgba(0,0,0,0.10);
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFD93D 35%, #6BCB77 65%, #4D96FF 100%);
+    padding: 20px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 40px 40px;
+  }
+  .floating-letters {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .floating-letters span {
+    position: absolute;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem;
+    color: rgba(255,255,255,0.15);
+    animation: floatLetter 6s ease-in-out infinite;
+  }
+  .floating-letters span:nth-child(1) { top: 8%; left: 4%; animation-delay: 0s; }
+  .floating-letters span:nth-child(2) { top: 12%; right: 6%; animation-delay: 1s; }
+  .floating-letters span:nth-child(3) { bottom: 15%; left: 5%; animation-delay: 2s; }
+  .floating-letters span:nth-child(4) { bottom: 10%; right: 4%; animation-delay: 0.5s; }
+  .floating-letters span:nth-child(5) { top: 45%; left: 2%; animation-delay: 1.5s; }
+  .floating-letters span:nth-child(6) { top: 40%; right: 3%; animation-delay: 2.5s; }
+  .floating-letters span:nth-child(7) { top: 25%; left: 50%; animation-delay: 3s; }
+  @keyframes floatLetter {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+  .header-brand {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+  }
+  .header-brand span { color: var(--dark); }
+  .header-tag {
+    display: inline-block;
+    background: var(--dark);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding: 4px 18px;
+    border-radius: 999px;
+    margin-top: 6px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .header-title {
+    margin-top: 10px;
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+    color: #fff;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+  }
+  .header-sub {
+    margin-top: 4px;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 18px 14px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav button {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+    color: #fff;
+  }
+  nav button:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(0,0,0,0.18); }
+  nav button.active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.18); }
+  .tn1 { background: var(--coral); }
+  .tn2 { background: var(--sky); }
+  .tn3 { background: var(--mint); }
+  .tn4 { background: var(--lavender); }
+  .tn5 { background: var(--peach); }
+
+  /* ── MAIN ── */
+  main { max-width: 960px; margin: 0 auto; padding: 22px 14px 70px; }
+  .sec { display: none; }
+  .sec.active { display: block; animation: fadeUp 0.35s ease; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+    border: 2px solid #f0ecf5;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--coral), var(--sun), var(--mint), var(--sky), var(--lavender));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .tip-box {
+    background: #fffbe6;
+    border-left: 5px solid var(--sun);
+    border-radius: 0 14px 14px 0;
+    padding: 12px 16px;
+    font-size: 0.94rem;
+    margin-top: 12px;
+    line-height: 1.7;
+  }
+  .tip-box strong { color: var(--sky); }
+
+  /* ── BUTTONS ── */
+  .btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+    transition: transform 0.12s;
+    margin-top: 10px;
+    margin-right: 7px;
+    display: inline-block;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-check { background: var(--lavender); color: #fff; }
+  .btn-next { background: var(--mint); color: #fff; }
+  .btn-reset { background: var(--peach); color: #fff; }
+  .btn-sky { background: var(--sky); color: #fff; }
+  .btn-coral { background: var(--coral); color: #fff; }
+  .btn-sun { background: var(--sun); color: var(--dark); }
+  .feedback {
+    font-weight: 800;
+    margin-top: 10px;
+    min-height: 24px;
+    font-size: 1rem;
+  }
+  .fb-ok { color: var(--mint); }
+  .fb-no { color: var(--coral); }
+
+  /* ═══════════════════════════════════════════════════
+     SECTION 1: LEARN — ALPHABET
+     ═══════════════════════════════════════════════════ */
+
+  .alphabet-intro {
+    background: linear-gradient(135deg, #f3e8ff, #e0f4ff);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    border: 3px dashed var(--lavender);
+    margin-bottom: 18px;
+  }
+  .alphabet-intro h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem;
+    color: var(--dark);
+  }
+  .alphabet-intro .big-emoji { font-size: 3.5rem; display: block; margin-bottom: 6px; }
+  .alphabet-intro .examples {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .alphabet-intro .ex-tag {
+    background: #fff;
+    border-radius: 12px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  }
+
+  /* Alphabet grid */
+  .alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .letter-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 3px solid transparent;
+  }
+  .letter-card:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 24px rgba(0,0,0,0.13); }
+  .letter-card .letter {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    display: block;
+    line-height: 1;
+  }
+  .letter-card .word {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #888;
+    margin-top: 4px;
+  }
+  .letter-card .emoji { font-size: 1.2rem; display: block; margin-top: 2px; }
+
+  /* Letter detail popup */
+  .letter-detail {
+    background: linear-gradient(135deg, #e8f4ff, #f5e8ff);
+    border-radius: 16px;
+    padding: 18px 20px;
+    border: 2px dashed var(--sky);
+    text-align: center;
+    display: none;
+    margin-bottom: 14px;
+  }
+  .letter-detail.show { display: block; animation: fadeUp 0.3s ease; }
+  .ld-letter {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    display: block;
+    line-height: 1;
+  }
+  .ld-word {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    margin-top: 4px;
+  }
+  .ld-emoji { font-size: 2.5rem; display: block; margin-top: 4px; }
+  .ld-sentence {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  /* Vowels & Consonants */
+  .vc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .vc-box {
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+  }
+  .vc-box h4 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+  .vc-box .letters {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+  }
+  .vc-vowels { background: #fff0f6; border: 3px solid var(--rose); }
+  .vc-vowels h4 { color: var(--rose); }
+  .vc-consonants { background: #f0f7ff; border: 3px solid var(--sky); }
+  .vc-consonants h4 { color: var(--sky); }
+
+  /* ═══════════════════════════════════════════════════
+     SECTION 2: PRACTICE — MATCHING GAME
+     ═══════════════════════════════════════════════════ */
+  .match-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .match-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .match-item {
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: transform 0.12s, border-color 0.12s;
+    border: 3px solid transparent;
+    user-select: none;
+    background: #fff;
+  }
+  .match-item:hover { transform: scale(1.04); }
+  .match-item.selected { border-color: var(--coral); transform: scale(1.06); }
+  .match-item.matched {
+    opacity: 0.55;
+    pointer-events: none;
+    border-color: var(--mint);
+    background: #d4f7dc;
+  }
+  .match-item.wrong-flash {
+    animation: wFlash 0.35s ease;
+  }
+  @keyframes wFlash {
+    0%, 100% { background: inherit; }
+    50% { background: #ffd6d6; }
+  }
+  .match-status {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 12px;
+    min-height: 28px;
+    color: var(--lavender);
+  }
+
+  /* ═══════════════════════════════════════════════════
+     SECTION 3: GAMES
+     ═══════════════════════════════════════════════════ */
+  .game-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .gtab {
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+    transition: transform 0.12s;
+    color: #fff;
+  }
+  .gtab:hover { transform: translateY(-2px); }
+  .gtab.active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+  .gt1 { background: var(--coral); }
+  .gt2 { background: var(--mint); }
+  .gt3 { background: var(--sky); }
+  .gt4 { background: var(--peach); }
+  .game-panel { display: none; }
+  .game-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+  /* ── GAME: BALLOON POP ── */
+  .balloon-arena {
+    min-height: 280px;
+    background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 60%, #90EE90 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .balloon-task {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 10px;
+    background: rgba(255,255,255,0.85);
+    border-bottom: 2px solid rgba(0,0,0,0.06);
+  }
+  .balloon {
+    position: absolute;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    animation: rise 4.5s linear forwards;
+  }
+  .balloon-body { font-size: 3.2rem; display: block; filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2)); }
+  .balloon-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  }
+  .balloon-string { font-size: 1rem; display: block; margin-top: -4px; color: #888; }
+  @keyframes rise {
+    from { bottom: -120px; opacity: 1; }
+    to { bottom: 110%; opacity: 0.8; }
+  }
+  .balloon.popped { animation: pop 0.3s ease forwards; }
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(0); opacity: 0; }
+  }
+  .balloon-score {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    text-align: center;
+    color: var(--sky);
+    margin-bottom: 8px;
+  }
+
+  /* ── GAME: SPIN WHEEL ── */
+  .wheel-wrap { text-align: center; }
+  canvas#alphabetWheel {
+    display: block;
+    margin: 0 auto;
+    max-width: 270px;
+    max-height: 270px;
+  }
+  .spin-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    padding: 12px 34px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--coral), var(--peach));
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+    margin-top: 14px;
+    transition: transform 0.12s;
+  }
+  .spin-btn:hover { transform: translateY(-2px); }
+  .spin-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+  .spin-result {
+    margin-top: 14px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    color: var(--lavender);
+    min-height: 44px;
+    line-height: 1.5;
+  }
+
+  /* ── GAME: MEMORY MATCH ── */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 480px) {
+    .memory-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .mem-card {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--lavender), var(--sky));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+    transition: transform 0.15s;
+    user-select: none;
+  }
+  .mem-card.flipped {
+    background: #fff;
+    color: var(--dark);
+    border: 3px solid var(--sky);
+    box-shadow: 0 4px 0 #d8c9f0;
+  }
+  .mem-card.matched {
+    background: var(--mint);
+    color: #fff;
+    box-shadow: 0 4px 0 #1B7A4D;
+    cursor: default;
+    opacity: 0.85;
+    pointer-events: none;
+  }
+  .mem-card:active { transform: scale(0.95); }
+  .mem-status {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    text-align: center;
+    color: var(--lavender);
+    min-height: 28px;
+  }
+
+  /* ── GAME: WORD SCRAMBLE ── */
+  .scramble-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: 24px 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 2px solid var(--lavender);
+  }
+  .scramble-emoji { font-size: 3.5rem; display: block; margin-bottom: 6px; }
+  .scramble-hint {
+    font-size: 0.95rem;
+    color: #666;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .scramble-letters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .scramble-tile {
+    width: 48px;
+    height: 48px;
+    background: var(--sun);
+    border-radius: 12px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #d4aa00;
+    transition: transform 0.12s;
+    user-select: none;
+  }
+  .scramble-tile:hover { transform: translateY(-3px); }
+  .scramble-tile.used { opacity: 0.3; pointer-events: none; }
+  .scramble-answer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .answer-slot {
+    width: 48px;
+    height: 48px;
+    background: #f3f4f6;
+    border-radius: 12px;
+    border: 2.5px dashed #d1d5db;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .answer-slot.filled { background: var(--sky); border-color: var(--sky); color: #fff; }
+  .answer-slot.correct-slot { background: var(--mint); border-color: var(--mint); color: #fff; }
+  .scramble-feedback {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    min-height: 30px;
+    margin-bottom: 10px;
+  }
+  .scramble-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .scramble-btn {
+    padding: 10px 24px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #fff;
+    transition: transform 0.12s;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+  }
+  .scramble-btn:hover { transform: translateY(-2px); }
+  .scramble-btn.check { background: var(--mint); box-shadow: 0 4px 0 #3d8b4a; }
+  .scramble-btn.clear { background: #9ca3af; box-shadow: 0 4px 0 #6b7280; }
+  .scramble-btn.next { background: var(--coral); box-shadow: 0 4px 0 #b84b4b; display: none; }
+
+  /* ═══════════════════════════════════════════════════
+     SECTION 4: QUIZ
+     ═══════════════════════════════════════════════════ */
+  .quiz-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .quiz-score {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    color: var(--lavender);
+  }
+  .progress-bar {
+    background: #ede0ff;
+    border-radius: 999px;
+    height: 11px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--lavender), var(--sky));
+    transition: width 0.4s ease;
+  }
+  .quiz-qcard {
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 14px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    background: linear-gradient(135deg, #e8f5e9, #e0f4ff);
+  }
+  .qcard-emoji { font-size: 2.8rem; display: block; margin-bottom: 4px; }
+  .qopts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .qopt {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    padding: 14px 10px;
+    border: 3px solid transparent;
+    border-radius: 14px;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.14s, border-color 0.14s;
+    text-align: center;
+  }
+  .qopt:hover { transform: scale(1.04); border-color: var(--lavender); }
+  .qopt.correct { background: #d4f7dc; border-color: var(--mint); }
+  .qopt.wrong { background: #ffd6d6; border-color: var(--coral); }
+  .qopt:disabled { cursor: default; transform: none; }
+  .quiz-fb {
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    min-height: 28px;
+  }
+  .quiz-fb.ok { color: var(--mint); }
+  .quiz-fb.no { color: var(--coral); }
+  .quiz-result {
+    text-align: center;
+    padding: 26px 14px;
+    display: none;
+  }
+  .quiz-result.show { display: block; animation: fadeUp 0.4s ease; }
+  .res-emoji { font-size: 4rem; display: block; margin-bottom: 8px; }
+  .res-score {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.2rem;
+    color: var(--coral);
+  }
+  .res-msg { font-size: 1rem; color: #555; margin-top: 6px; }
+  .stars-row { font-size: 2rem; margin: 10px 0; }
+
+  /* ── DOWNLOAD ── */
+  .download-wrap {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--sun);
+  }
+  .download-wrap p {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+  .download-wrap .btn { font-size: 1.1rem; padding: 14px 36px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .match-wrap { grid-template-columns: 1fr; }
+    .qopts { grid-template-columns: 1fr; }
+    .vc-grid { grid-template-columns: 1fr; }
+    .alphabet-grid { grid-template-columns: repeat(6, 1fr); }
+    .memory-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .alphabet-grid { grid-template-columns: repeat(4, 1fr); }
+    .memory-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: #bbb;
+    font-size: 0.84rem;
+  }
+  footer span { color: var(--coral); }
+
+  /* ── CONFETTI ── */
+  .confetti-piece {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    z-index: 999;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0.3; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="floating-letters">
+    <span>A</span><span>B</span><span>C</span>
+    <span>D</span><span>E</span><span>F</span>
+    <span>G</span>
+  </div>
+  <div class="header-brand">Little<span>Lume</span> English ✨</div>
+  <div><span class="header-tag">⭐ GRADE 1 ⭐</span></div>
+  <div class="header-title">🔤 The Alphabet!</div>
+  <div class="header-sub">A · B · C · Let's Learn Together! 🎉</div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="tn1 active" onclick="showSec('learn', this)">📖 Learn</button>
+  <button class="tn2" onclick="showSec('practice', this)">🔗 Practice</button>
+  <button class="tn3" onclick="showSec('games', this)">🎮 Games</button>
+  <button class="tn4" onclick="showSec('quiz', this)">❓ Quiz</button>
+</nav>
+
+<main>
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 1: LEARN
+     ════════════════════════════════════════════════════════ -->
+<div id="learn" class="sec active">
+
+  <!-- What is the alphabet? -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#f3e8ff;">🔤</div>
+      What is the Alphabet?
+    </div>
+    <div class="alphabet-intro">
+      <span class="big-emoji">📚</span>
+      <h3>The alphabet has <strong style="color:var(--coral);">26 letters</strong>!</h3>
+      <p style="margin-top:6px; font-size:0.95rem;">We use letters to make words and sentences!</p>
+      <div class="examples">
+        <span class="ex-tag">🔤 A is for <strong>Apple</strong> 🍎</span>
+        <span class="ex-tag">🔤 B is for <strong>Ball</strong> ⚽</span>
+        <span class="ex-tag">🔤 C is for <strong>Cat</strong> 🐱</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>Did you know?</strong> There are <strong>26 letters</strong> in the English alphabet! <strong>5 are vowels</strong> (A, E, I, O, U) and <strong>21 are consonants</strong>!
+    </div>
+  </div>
+
+  <!-- Alphabet Grid -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#d0e8ff;">📋</div>
+      The Alphabet — A to Z
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:12px;">👆 Tap any letter to learn a word!</p>
+    <div class="alphabet-grid" id="alphabetGrid"></div>
+    <div class="letter-detail" id="letterDetail"></div>
+  </div>
+
+  <!-- Vowels & Consonants -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#fff0b3;">🔊</div>
+      Vowels &amp; Consonants
+    </div>
+    <div class="vc-grid">
+      <div class="vc-box vc-vowels">
+        <h4>🔴 VOWELS</h4>
+        <p style="font-size:0.85rem; color:#888;">The special letters that make open sounds!</p>
+        <div class="letters">A · E · I · O · U</div>
+        <p style="font-size:0.8rem; margin-top:4px; color:#888;">(and sometimes Y)</p>
+      </div>
+      <div class="vc-box vc-consonants">
+        <h4>🔵 CONSONANTS</h4>
+        <p style="font-size:0.85rem; color:#888;">All the other letters!</p>
+        <div class="letters">B · C · D · F · G · H · J · K · L · M · N · P · Q · R · S · T · V · W · X · Y · Z</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>Remember:</strong> Vowels are the <strong>sound-makers</strong>! Every word needs at least one vowel to make a sound. Try saying "A-E-I-O-U" — it's like singing! 🎵
+    </div>
+  </div>
+
+  <!-- Alphabet Song -->
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#ffd6d6;">🎵</div>
+      Alphabet Song!
+    </div>
+    <div style="background:linear-gradient(135deg, #fff0f6, #f0f7ff); border-radius:16px; padding:16px; text-align:center; border:2px solid var(--lavender);">
+      <p style="font-family:'Fredoka One',cursive; font-size:1.1rem; color:var(--lavender);">🎶 Sing along! 🎶</p>
+      <div style="font-size:0.95rem; line-height:2; font-weight:700;">
+        <span style="color:var(--coral);">A</span> <span style="color:var(--peach);">B</span> <span style="color:var(--sun);">C</span> <span style="color:var(--mint);">D</span> <span style="color:var(--sky);">E</span> <span style="color:var(--lavender);">F</span> <span style="color:var(--coral);">G</span><br>
+        <span style="color:var(--peach);">H</span> <span style="color:var(--sun);">I</span> <span style="color:var(--mint);">J</span> <span style="color:var(--sky);">K</span> <span style="color:var(--lavender);">L</span> <span style="color:var(--coral);">M</span> <span style="color:var(--peach);">N</span> <span style="color:var(--sun);">O</span> <span style="color:var(--mint);">P</span><br>
+        <span style="color:var(--sky);">Q</span> <span style="color:var(--lavender);">R</span> <span style="color:var(--coral);">S</span> <span style="color:var(--peach);">T</span> <span style="color:var(--sun);">U</span> <span style="color:var(--mint);">V</span><br>
+        <span style="color:var(--sky);">W</span> <span style="color:var(--lavender);">X</span> <span style="color:var(--coral);">Y</span> <span style="color:var(--peach);">Z</span>
+      </div>
+      <button class="btn btn-sky" style="margin-top:10px;" onclick="speak('A B C D E F G H I J K L M N O P Q R S T U V W X Y Z. Now I know my ABCs!')">🔊 Listen to the Alphabet!</button>
+    </div>
+  </div>
+
+</div><!-- /learn -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 2: PRACTICE — MATCHING GAME
+     ════════════════════════════════════════════════════════ -->
+<div id="practice" class="sec">
+
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#f3e8ff;">🔗</div>
+      Match the Letter to the Picture!
+    </div>
+    <p style="color:#666; font-size:0.92rem; margin-bottom:12px;">
+      Tap a letter on the left, then tap its matching picture on the right! 🎯
+    </p>
+
+    <div class="match-wrap">
+      <div class="match-col" id="matchLeft"></div>
+      <div class="match-col" id="matchRight"></div>
+    </div>
+    <div class="match-status" id="matchStatus">Tap a letter on the left to start! 👈</div>
+    <button class="btn btn-reset" style="margin-top:10px;" onclick="initMatch()">🔄 New Game</button>
+  </div>
+
+</div><!-- /practice -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 3: GAMES
+     ════════════════════════════════════════════════════════ -->
+<div id="games" class="sec">
+
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#d0e8ff;">🎮</div>
+      Alphabet Games!
+    </div>
+
+    <div class="game-tabs">
+      <button class="gtab gt1 active" onclick="showGtab('g-balloon', this)">🎈 Balloon Pop</button>
+      <button class="gtab gt2" onclick="showGtab('g-spin', this)">🎡 Spin & Say</button>
+      <button class="gtab gt3" onclick="showGtab('g-memory', this)">🃏 Memory Match</button>
+      <button class="gtab gt4" onclick="showGtab('g-scramble', this)">🔀 Word Scramble</button>
+    </div>
+
+    <!-- GAME 1: BALLOON POP -->
+    <div id="g-balloon" class="game-panel active">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Pop the balloon that shows the correct letter! 🎈</p>
+      <div class="balloon-score" id="balloonScore">Score: 0 🎈</div>
+      <div class="balloon-arena" id="balloonArena">
+        <div class="balloon-task" id="balloonTask">Find the letter: <strong id="balloonTarget">?</strong></div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-sky" onclick="startBalloons()">🎈 Start Game!</button>
+        <button class="btn btn-reset" onclick="resetBalloons()">🔄 Reset</button>
+      </div>
+    </div>
+
+    <!-- GAME 2: SPIN WHEEL -->
+    <div id="g-spin" class="game-panel">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Spin the wheel and say the letter and its word! 🎡</p>
+      <div class="wheel-wrap">
+        <canvas id="alphabetWheel" width="270" height="270"></canvas>
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 SPIN!</button>
+        <div class="spin-result" id="spinResult"></div>
+      </div>
+    </div>
+
+    <!-- GAME 3: MEMORY MATCH -->
+    <div id="g-memory" class="game-panel">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Match the letter with its picture! 🧠</p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="mem-status" id="memStatus">Tap any card to start! 🃏</div>
+      <button class="btn btn-reset" onclick="initMemory()">🔄 New Game</button>
+    </div>
+
+    <!-- GAME 4: WORD SCRAMBLE -->
+    <div id="g-scramble" class="game-panel">
+      <p style="color:#666; font-size:0.92rem; margin-bottom:10px;">Unscramble the letters to spell the word! 🧩</p>
+      <div class="scramble-card">
+        <span class="scramble-emoji" id="scrEmoji">🍎</span>
+        <div class="scramble-hint" id="scrHint">Hint: It starts with A!</div>
+        <div class="scramble-letters" id="scrTiles"></div>
+        <div class="scramble-answer" id="scrAnswer"></div>
+        <div class="scramble-feedback" id="scrFeedback"></div>
+        <div class="scramble-btns">
+          <button class="scramble-btn clear" onclick="clearScramble()">🗑️ Clear</button>
+          <button class="scramble-btn check" onclick="checkScramble()">✅ Check</button>
+          <button class="scramble-btn next" id="scrNext" onclick="nextScramble()">Next ➜</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /games -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SECTION 4: QUIZ
+     ════════════════════════════════════════════════════════ -->
+<div id="quiz" class="sec">
+
+  <div class="card">
+    <div class="card-title">
+      <div class="badge" style="background:#ffd6d6;">❓</div>
+      Alphabet Quiz!
+    </div>
+
+    <div class="quiz-hdr">
+      <div class="quiz-score" id="qScore">Score: 0 / 12</div>
+      <div style="font-size:0.83rem; color:#bbb;" id="qNum">Question 1 / 12</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="qFill" style="width:0%;"></div></div>
+
+    <div id="quizBody">
+      <div class="quiz-qcard" id="quizQ">Loading...</div>
+      <div class="qopts" id="quizOpts"></div>
+      <div class="quiz-fb" id="quizFb"></div>
+    </div>
+
+    <div class="quiz-result" id="quizResult">
+      <span class="res-emoji" id="resEmoji">🏆</span>
+      <div class="stars-row" id="starsRow">⭐⭐⭐</div>
+      <div class="res-score" id="resScore">0/12</div>
+      <div class="res-msg" id="resMsg"></div>
+      <button class="btn btn-sky" style="margin-top:16px;" onclick="startQuiz()">🔄 Try Again!</button>
+    </div>
+  </div>
+
+</div><!-- /quiz -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     DOWNLOAD BUTTON
+     ════════════════════════════════════════════════════════ -->
+<div class="download-wrap">
+  <p>💾 Save this Alphabet lesson to your computer!</p>
+  <button class="btn btn-sun" onclick="downloadHTML()">⬇️ Download HTML File</button>
+</div>
+
+</main>
+
+<footer>Made with ❤️ by <span>LittleLume English</span> • Grade 1 • Alphabet</footer>
+
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════════════════════ */
+function showSec(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'quiz') startQuiz();
+  if (id === 'practice') initMatch();
+  if (id === 'games') { initMemory(); startBalloons(); initWheel(); initScramble(); }
+}
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.8;
+  u.pitch = 1.1;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function showGtab(id, btn) {
+  document.querySelectorAll('.game-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'g-balloon') startBalloons();
+  if (id === 'g-spin') initWheel();
+  if (id === 'g-memory') initMemory();
+  if (id === 'g-scramble') initScramble();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DOWNLOAD
+   ═══════════════════════════════════════════════════════════ */
+function downloadHTML() {
+  const htmlContent = document.documentElement.outerHTML;
+  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'LittleLume-Alphabet-Grade1.html';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  setTimeout(() => URL.revokeObjectURL(link.href), 100);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════════════════════ */
+
+const ALPHABET_DATA = [
+  { letter: 'A', word: 'Apple', emoji: '🍎', color: '#FF6B6B', sentence: 'A is for Apple. I eat a red apple!' },
+  { letter: 'B', word: 'Ball', emoji: '⚽', color: '#FF8C42', sentence: 'B is for Ball. I play with a ball!' },
+  { letter: 'C', word: 'Cat', emoji: '🐱', color: '#FFD93D', sentence: 'C is for Cat. The cat is fluffy!' },
+  { letter: 'D', word: 'Dog', emoji: '🐶', color: '#6BCB77', sentence: 'D is for Dog. My dog is my best friend!' },
+  { letter: 'E', word: 'Elephant', emoji: '🐘', color: '#4D96FF', sentence: 'E is for Elephant. Elephants are very big!' },
+  { letter: 'F', word: 'Fish', emoji: '🐟', color: '#C77DFF', sentence: 'F is for Fish. Fish swim in the water!' },
+  { letter: 'G', word: 'Giraffe', emoji: '🦒', color: '#FFB347', sentence: 'G is for Giraffe. Giraffes have long necks!' },
+  { letter: 'H', word: 'House', emoji: '🏠', color: '#2EC4B6', sentence: 'H is for House. I live in a house!' },
+  { letter: 'I', word: 'Ice cream', emoji: '🍦', color: '#FF6B6B', sentence: 'I is for Ice cream. I love ice cream!' },
+  { letter: 'J', word: 'Juice', emoji: '🧃', color: '#FF8C42', sentence: 'J is for Juice. I drink orange juice!' },
+  { letter: 'K', word: 'Kite', emoji: '🪁', color: '#FFD93D', sentence: 'K is for Kite. I fly a kite in the sky!' },
+  { letter: 'L', word: 'Lion', emoji: '🦁', color: '#6BCB77', sentence: 'L is for Lion. The lion is the king!' },
+  { letter: 'M', word: 'Monkey', emoji: '🐒', color: '#4D96FF', sentence: 'M is for Monkey. Monkeys are very funny!' },
+  { letter: 'N', word: 'Nest', emoji: '🪹', color: '#C77DFF', sentence: 'N is for Nest. Birds live in a nest!' },
+  { letter: 'O', word: 'Orange', emoji: '🍊', color: '#FFB347', sentence: 'O is for Orange. Oranges are sweet!' },
+  { letter: 'P', word: 'Panda', emoji: '🐼', color: '#2EC4B6', sentence: 'P is for Panda. Pandas are black and white!' },
+  { letter: 'Q', word: 'Queen', emoji: '👑', color: '#FF6B6B', sentence: 'Q is for Queen. The queen is very kind!' },
+  { letter: 'R', word: 'Rabbit', emoji: '🐰', color: '#FF8C42', sentence: 'R is for Rabbit. Rabbits have long ears!' },
+  { letter: 'S', word: 'Sun', emoji: '☀️', color: '#FFD93D', sentence: 'S is for Sun. The sun is so bright!' },
+  { letter: 'T', word: 'Tiger', emoji: '🐯', color: '#6BCB77', sentence: 'T is for Tiger. Tigers are very strong!' },
+  { letter: 'U', word: 'Umbrella', emoji: '☂️', color: '#4D96FF', sentence: 'U is for Umbrella. I use an umbrella in the rain!' },
+  { letter: 'V', word: 'Violin', emoji: '🎻', color: '#C77DFF', sentence: 'V is for Violin. I play the violin!' },
+  { letter: 'W', word: 'Watermelon', emoji: '🍉', color: '#FFB347', sentence: 'W is for Watermelon. Watermelon is so juicy!' },
+  { letter: 'X', word: 'Xylophone', emoji: '🎹', color: '#2EC4B6', sentence: 'X is for Xylophone. I play the xylophone!' },
+  { letter: 'Y', word: 'Yak', emoji: '🐃', color: '#FF6B6B', sentence: 'Y is for Yak. Yaks have long fur!' },
+  { letter: 'Z', word: 'Zebra', emoji: '🦓', color: '#FF8C42', sentence: 'Z is for Zebra. Zebras have black and white stripes!' },
+];
+
+const MATCH_PAIRS = [
+  { letter: 'A', emoji: '🍎', word: 'Apple' },
+  { letter: 'B', emoji: '⚽', word: 'Ball' },
+  { letter: 'C', emoji: '🐱', word: 'Cat' },
+  { letter: 'D', emoji: '🐶', word: 'Dog' },
+  { letter: 'E', emoji: '🐘', word: 'Elephant' },
+  { letter: 'F', emoji: '🐟', word: 'Fish' },
+  { letter: 'G', emoji: '🦒', word: 'Giraffe' },
+  { letter: 'H', emoji: '🏠', word: 'House' },
+  { letter: 'I', emoji: '🍦', word: 'Ice cream' },
+  { letter: 'J', emoji: '🧃', word: 'Juice' },
+  { letter: 'K', emoji: '🪁', word: 'Kite' },
+  { letter: 'L', emoji: '🦁', word: 'Lion' },
+];
+
+const SCRAMBLE_WORDS = [
+  { word: 'APPLE', emoji: '🍎', hint: 'It starts with A and is red!' },
+  { word: 'BALL', emoji: '⚽', hint: 'You play with it!' },
+  { word: 'CAT', emoji: '🐱', hint: 'It says meow!' },
+  { word: 'DOG', emoji: '🐶', hint: 'It says woof!' },
+  { word: 'FISH', emoji: '🐟', hint: 'It swims in water!' },
+  { word: 'SUN', emoji: '☀️', hint: 'It is bright in the sky!' },
+  { word: 'LION', emoji: '🦁', hint: 'The king of animals!' },
+  { word: 'BIRD', emoji: '🐦', hint: 'It can fly!' },
+];
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 1: LEARN — Alphabet Grid
+   ═══════════════════════════════════════════════════════════ */
+
+const alphabetGrid = document.getElementById('alphabetGrid');
+const LETTER_COLORS = ['#FF6B6B','#FF8C42','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#2EC4B6'];
+
+ALPHABET_DATA.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'letter-card';
+  const color = LETTER_COLORS[i % LETTER_COLORS.length];
+  card.style.borderColor = color;
+  card.style.background = color + '22';
+  card.innerHTML = `
+    <span class="letter" style="color:${color};">${item.letter}</span>
+    <span class="emoji">${item.emoji}</span>
+    <span class="word">${item.word}</span>
+  `;
+  card.onclick = () => showLetterDetail(item, card);
+  alphabetGrid.appendChild(card);
+});
+
+function showLetterDetail(item, el) {
+  document.querySelectorAll('.letter-card').forEach(c => c.classList.remove('active-cat'));
+  el.classList.add('active-cat');
+
+  const panel = document.getElementById('letterDetail');
+  panel.innerHTML = `
+    <span class="ld-letter" style="color:${item.color};">${item.letter}</span>
+    <span class="ld-emoji">${item.emoji}</span>
+    <div class="ld-word">${item.word}</div>
+    <div class="ld-sentence">${item.sentence}</div>
+    <button class="btn btn-sky" style="margin-top:10px;" onclick="speak('${item.letter}. ${item.word}. ${item.sentence}')">🔊 Listen</button>
+  `;
+  panel.classList.add('show');
+  speak(`${item.letter}. ${item.word}. ${item.sentence}`);
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 2: PRACTICE — MATCHING GAME
+   ═══════════════════════════════════════════════════════════ */
+
+const CAT_LABELS_MATCH = { letter: '🔤 Letter', emoji: '🖼️ Picture' };
+let matchSelectedLeft = null;
+let matchMatchedCount = 0;
+
+function initMatch() {
+  matchSelectedLeft = null;
+  matchMatchedCount = 0;
+  document.getElementById('matchStatus').textContent = 'Tap a letter on the left to start! 👈';
+
+  const shuffledLeft = [...MATCH_PAIRS].sort(() => Math.random() - 0.5);
+  const shuffledRight = [...MATCH_PAIRS].sort(() => Math.random() - 0.5);
+
+  const lCol = document.getElementById('matchLeft');
+  const rCol = document.getElementById('matchRight');
+  lCol.innerHTML = '';
+  rCol.innerHTML = '';
+
+  shuffledLeft.forEach((p, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'match-item';
+    btn.dataset.id = p.letter;
+    btn.dataset.word = p.word;
+    btn.style.background = '#f8f4ff';
+    btn.style.borderColor = '#ddd';
+    btn.textContent = p.letter;
+    btn.style.fontSize = '2rem';
+    btn.onclick = () => selectMatchLeft(btn, p.letter);
+    lCol.appendChild(btn);
+  });
+
+  shuffledRight.forEach(p => {
+    const btn = document.createElement('div');
+    btn.className = 'match-item';
+    btn.dataset.id = p.letter;
+    btn.dataset.word = p.word;
+    btn.style.background = '#fffbe6';
+    btn.style.borderColor = '#ddd';
+    btn.textContent = `${p.emoji} ${p.word}`;
+    btn.onclick = () => selectMatchRight(btn, p.letter);
+    rCol.appendChild(btn);
+  });
+}
+
+function selectMatchLeft(btn, id) {
+  if (btn.classList.contains('matched')) return;
+  document.querySelectorAll('#matchLeft .match-item').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  matchSelectedLeft = { btn, id };
+}
+
+function selectMatchRight(btn, id) {
+  if (btn.classList.contains('matched')) return;
+  if (!matchSelectedLeft) {
+    document.getElementById('matchStatus').textContent = '👆 First, tap a letter on the left!';
+    return;
+  }
+
+  if (matchSelectedLeft.id === id) {
+    matchSelectedLeft.btn.classList.remove('selected');
+    matchSelectedLeft.btn.classList.add('matched');
+    btn.classList.add('matched');
+    matchMatchedCount++;
+    speak('Match!');
+    if (matchMatchedCount === MATCH_PAIRS.length) {
+      document.getElementById('matchStatus').textContent = '🎉 All matched! Amazing! ⭐';
+    } else {
+      document.getElementById('matchStatus').textContent =
+        `✅ Match! ${MATCH_PAIRS.length - matchMatchedCount} left!`;
+    }
+    matchSelectedLeft = null;
+  } else {
+    const leftBtn = matchSelectedLeft.btn;
+    leftBtn.classList.add('wrong-flash');
+    btn.classList.add('wrong-flash');
+    document.getElementById('matchStatus').textContent = '❌ Not a match! Try again!';
+    setTimeout(() => {
+      leftBtn.classList.remove('wrong-flash', 'selected');
+      btn.classList.remove('wrong-flash');
+    }, 500);
+    matchSelectedLeft = null;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 1: BALLOON POP
+   ═══════════════════════════════════════════════════════════ */
+
+const BALLOON_EMOJIS = ['🔴','🟠','🟡','🟢','🔵','🟣','🩷','🤍'];
+let balloonScore = 0;
+let balloonRunning = false;
+let balloonInterval = null;
+let balloonTarget = '';
+
+function startBalloons() {
+  resetBalloons();
+  balloonRunning = true;
+  balloonScore = 0;
+  document.getElementById('balloonScore').textContent = 'Score: 0 🎈';
+  setBalloonTarget();
+  balloonInterval = setInterval(() => { if (balloonRunning) spawnBalloon(); }, 1200);
+  spawnBalloon();
+  spawnBalloon();
+}
+
+function resetBalloons() {
+  clearInterval(balloonInterval);
+  balloonRunning = false;
+  document.getElementById('balloonScore').textContent = 'Score: 0 🎈';
+  const arena = document.getElementById('balloonArena');
+  Array.from(arena.querySelectorAll('.balloon')).forEach(b => b.remove());
+}
+
+function setBalloonTarget() {
+  const item = ALPHABET_DATA[Math.floor(Math.random() * ALPHABET_DATA.length)];
+  balloonTarget = item.letter;
+  document.getElementById('balloonTarget').textContent = `${balloonTarget} (${item.word})`;
+  speak(`Find letter ${balloonTarget}!`);
+}
+
+function spawnBalloon() {
+  if (!balloonRunning) return;
+  const arena = document.getElementById('balloonArena');
+  const item = ALPHABET_DATA[Math.floor(Math.random() * ALPHABET_DATA.length)];
+  const emoji = BALLOON_EMOJIS[Math.floor(Math.random() * BALLOON_EMOJIS.length)];
+  const b = document.createElement('div');
+  b.className = 'balloon';
+  const left = 10 + Math.random() * 75;
+  b.style.cssText = `left:${left}%;bottom:-120px;`;
+  b.dataset.letter = item.letter;
+  b.innerHTML = `
+    <span class="balloon-body">${emoji}</span>
+    <span class="balloon-letter">${item.letter}</span>
+    <span class="balloon-string">|</span>
+  `;
+  b.onclick = () => {
+    if (!balloonRunning) return;
+    if (item.letter === balloonTarget) {
+      b.classList.add('popped');
+      balloonScore++;
+      document.getElementById('balloonScore').textContent = `Score: ${balloonScore} 🎈`;
+      speak('Found it!');
+      launchConfetti(8);
+      setTimeout(() => { b.remove(); setBalloonTarget(); }, 300);
+    } else {
+      b.style.filter = 'brightness(0.6)';
+      speak('Wrong letter!');
+      setTimeout(() => b.style.filter = '', 500);
+    }
+  };
+  arena.appendChild(b);
+  setTimeout(() => { if (b.parentNode) b.remove(); }, 5000);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 2: SPIN WHEEL
+   ═══════════════════════════════════════════════════════════ */
+
+const WHEEL_ITEMS = ALPHABET_DATA.slice(0, 12);
+const WHEEL_COLORS = ['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#C77DFF','#FFB347','#2EC4B6','#FF8FAB','#FF8C42','#2D6A4F','#795548','#9E9E9E'];
+let wAngle = 0;
+let wSpinning = false;
+
+function initWheel() { drawWheel(wAngle); }
+
+function drawWheel(rot) {
+  const cv = document.getElementById('alphabetWheel');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const cx = cv.width/2, cy = cv.height/2, r = cx - 8;
+  const arc = (2 * Math.PI) / WHEEL_ITEMS.length;
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  WHEEL_ITEMS.forEach((item, i) => {
+    const s = rot + i * arc;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, r, s, s + arc);
+    ctx.fillStyle = WHEEL_COLORS[i % WHEEL_COLORS.length];
+    ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(s + arc/2);
+    ctx.textAlign = 'right'; ctx.fillStyle = '#fff';
+    ctx.font = 'bold 12px Nunito, sans-serif';
+    ctx.fillText(item.letter + ' ' + item.emoji, r - 10, 5);
+    ctx.restore();
+  });
+  ctx.beginPath(); ctx.moveTo(cx + 13, cy - r - 4); ctx.lineTo(cx - 13, cy - r - 4); ctx.lineTo(cx, cy - r + 18);
+  ctx.fillStyle = '#222'; ctx.fill();
+  ctx.beginPath(); ctx.arc(cx, cy, 13, 0, 2 * Math.PI);
+  ctx.fillStyle = '#fff'; ctx.fill(); ctx.strokeStyle = '#ddd'; ctx.lineWidth = 2; ctx.stroke();
+}
+
+function spinWheel() {
+  if (wSpinning) return;
+  wSpinning = true;
+  document.getElementById('spinBtn').disabled = true;
+  document.getElementById('spinResult').textContent = '';
+  const extra = (Math.floor(Math.random() * 5) + 5) * 2 * Math.PI;
+  const target = wAngle + extra + Math.random() * 2 * Math.PI;
+  const dur = 3200;
+  const t0 = performance.now();
+  function anim(now) {
+    const el = now - t0;
+    const t = Math.min(el / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 4);
+    drawWheel(wAngle + (target - wAngle) * ease);
+    if (t < 1) { requestAnimationFrame(anim); return; }
+    wAngle = target % (2 * Math.PI);
+    wSpinning = false;
+    document.getElementById('spinBtn').disabled = false;
+    const arc2 = (2 * Math.PI) / WHEEL_ITEMS.length;
+    const rel = ((-Math.PI/2 - wAngle) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+    const idx = Math.floor(rel / arc2) % WHEEL_ITEMS.length;
+    const item = WHEEL_ITEMS[idx];
+    const tasks = [
+      `Say: "${item.letter} is for ${item.word}"`,
+      `Spell "${item.word}" out loud!`,
+      `What sound does ${item.letter} make?`,
+      `Make a sentence with "${item.word}"!`,
+    ];
+    const task = tasks[Math.floor(Math.random() * tasks.length)];
+    document.getElementById('spinResult').innerHTML =
+      `<strong style="font-size:1.8rem;">${item.letter}</strong><br>
+       <span style="font-size:1rem; color:#555;">${item.emoji} ${item.word}</span><br>
+       <span style="font-size:0.85rem; color:#888;">${task}</span>`;
+    speak(`${item.letter}. ${item.word}. ${task.replace(/[""]/g, '')}`);
+  }
+  requestAnimationFrame(anim);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 3: MEMORY MATCH
+   ═══════════════════════════════════════════════════════════ */
+
+const MEM_PAIRS = ALPHABET_DATA.slice(0, 8);
+let memCards = [];
+let memFlipped = [];
+let memMatched = 0;
+let memLocked = false;
+
+function initMemory() {
+  memFlipped = [];
+  memMatched = 0;
+  memLocked = false;
+  document.getElementById('memStatus').textContent = 'Tap any card to start! 🃏';
+  const all = [];
+  MEM_PAIRS.forEach((p, i) => {
+    all.push({ id: i, type: 'letter', label: p.letter, match: p.letter, emoji: p.emoji });
+    all.push({ id: i, type: 'emoji', label: p.emoji, match: p.letter, emoji: p.emoji });
+  });
+  all.sort(() => Math.random() - 0.5);
+  const g = document.getElementById('memoryGrid');
+  g.innerHTML = '';
+  all.forEach(item => {
+    const c = document.createElement('div');
+    c.className = 'mem-card';
+    c.dataset.id = item.id;
+    c.dataset.type = item.type;
+    c.dataset.match = item.match;
+    c.textContent = '❓';
+    c.onclick = () => handleMemory(c);
+    g.appendChild(c);
+  });
+}
+
+function handleMemory(card) {
+  if (memLocked || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  const item = MEM_PAIRS.find(p => p.letter === card.dataset.match);
+  card.textContent = card.dataset.type === 'letter' ? item.letter : item.emoji;
+  memFlipped.push(card);
+  if (memFlipped.length === 2) {
+    memLocked = true;
+    const [a, b] = memFlipped;
+    if (a.dataset.id === b.dataset.id && a.dataset.type !== b.dataset.type) {
+      a.classList.add('matched');
+      b.classList.add('matched');
+      memFlipped = [];
+      memLocked = false;
+      memMatched++;
+      speak('Match!');
+      if (memMatched === MEM_PAIRS.length) {
+        document.getElementById('memStatus').textContent = '🎉 All matched! Amazing! ⭐';
+        launchConfetti(20);
+      } else {
+        document.getElementById('memStatus').textContent =
+          `✅ Match! ${MEM_PAIRS.length - memMatched} pairs left!`;
+      }
+    } else {
+      setTimeout(() => {
+        a.classList.remove('flipped');
+        b.classList.remove('flipped');
+        a.textContent = '❓';
+        b.textContent = '❓';
+        memFlipped = [];
+        memLocked = false;
+      }, 900);
+      document.getElementById('memStatus').textContent = '❌ Not a match! Try again!';
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GAME 4: WORD SCRAMBLE
+   ═══════════════════════════════════════════════════════════ */
+
+let scrIdx = 0;
+let scrOrder = [];
+let userScramble = [];
+
+function initScramble() {
+  scrIdx = 0;
+  scrOrder = [...SCRAMBLE_WORDS].sort(() => Math.random() - 0.5);
+  loadScramble();
+}
+
+function loadScramble() {
+  const item = scrOrder[scrIdx % scrOrder.length];
+  document.getElementById('scrEmoji').textContent = item.emoji;
+  document.getElementById('scrHint').textContent = '💡 Hint: ' + item.hint;
+  document.getElementById('scrFeedback').textContent = '';
+  document.getElementById('scrFeedback').style.color = '';
+  document.getElementById('scrNext').style.display = 'none';
+
+  const letters = item.word.split('').sort(() => Math.random() - 0.5);
+  const tilesDiv = document.getElementById('scrTiles');
+  const ansDiv = document.getElementById('scrAnswer');
+  tilesDiv.innerHTML = '';
+  ansDiv.innerHTML = '';
+  userScramble = Array(item.word.length).fill('');
+
+  letters.forEach((l, i) => {
+    const tile = document.createElement('div');
+    tile.className = 'scramble-tile';
+    tile.textContent = l;
+    tile.dataset.idx = i;
+    tile.onclick = () => addScrambleLetter(tile, l);
+    tilesDiv.appendChild(tile);
+  });
+
+  item.word.split('').forEach((_, i) => {
+    const slot = document.createElement('div');
+    slot.className = 'answer-slot';
+    slot.dataset.pos = i;
+    slot.onclick = () => removeScrambleLetter(slot);
+    ansDiv.appendChild(slot);
+  });
+}
+
+function addScrambleLetter(tile, letter) {
+  if (tile.classList.contains('used')) return;
+  const slots = document.querySelectorAll('.answer-slot');
+  const empty = [...slots].find(s => !s.classList.contains('filled'));
+  if (!empty) return;
+  empty.textContent = letter;
+  empty.classList.add('filled');
+  empty.dataset.tileIdx = tile.dataset.idx;
+  tile.classList.add('used');
+  const pos = parseInt(empty.dataset.pos);
+  userScramble[pos] = letter;
+}
+
+function removeScrambleLetter(slot) {
+  if (!slot.classList.contains('filled')) return;
+  const tileIdx = slot.dataset.tileIdx;
+  const pos = parseInt(slot.dataset.pos);
+  document.querySelector(`.scramble-tile[data-idx="${tileIdx}"]`).classList.remove('used');
+  slot.textContent = '';
+  slot.classList.remove('filled', 'correct-slot');
+  slot.removeAttribute('data-tile-idx');
+  userScramble[pos] = '';
+}
+
+function clearScramble() {
+  document.querySelectorAll('.answer-slot').forEach(s => {
+    s.textContent = '';
+    s.classList.remove('filled', 'correct-slot');
+    s.removeAttribute('data-tile-idx');
+  });
+  document.querySelectorAll('.scramble-tile').forEach(t => t.classList.remove('used'));
+  document.getElementById('scrFeedback').textContent = '';
+  document.getElementById('scrNext').style.display = 'none';
+  userScramble = Array(scrOrder[scrIdx % scrOrder.length].word.length).fill('');
+}
+
+function checkScramble() {
+  const item = scrOrder[scrIdx % scrOrder.length];
+  const guess = userScramble.join('');
+  if (guess.length < item.word.length) {
+    document.getElementById('scrFeedback').textContent = '⚠️ Fill all the letters first!';
+    document.getElementById('scrFeedback').style.color = '#F59E0B';
+    return;
+  }
+  if (guess === item.word) {
+    document.getElementById('scrFeedback').textContent = '🎉 Correct! ' + item.emoji;
+    document.getElementById('scrFeedback').style.color = '#155724';
+    document.querySelectorAll('.answer-slot').forEach(s => s.classList.add('correct-slot'));
+    document.getElementById('scrNext').style.display = 'inline-block';
+    launchConfetti(12);
+    speak('Correct!');
+  } else {
+    document.getElementById('scrFeedback').textContent = '❌ Try again! You can do it!';
+    document.getElementById('scrFeedback').style.color = '#721C24';
+    speak('Try again!');
+  }
+}
+
+function nextScramble() {
+  scrIdx++;
+  loadScramble();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   QUIZ (12 SOAL)
+   ═══════════════════════════════════════════════════════════ */
+
+const QUIZ_DATA = [
+  { q: 'What letter comes after A?', opts: ['B', 'C', 'D', 'E'], ans: 0, emoji: '🔤', explain: 'A → B → C! The letter after A is B!' },
+  { q: 'Which letter starts the word "Cat"?', opts: ['A', 'B', 'C', 'D'], ans: 2, emoji: '🐱', explain: '"Cat" starts with C!' },
+  { q: 'How many letters are in the alphabet?', opts: ['20', '24', '26', '28'], ans: 2, emoji: '📚', explain: 'There are 26 letters in the English alphabet!' },
+  { q: 'Which letter is a VOWEL?', opts: ['B', 'C', 'A', 'D'], ans: 2, emoji: '🔊', explain: 'A, E, I, O, U are vowels! A is a vowel!' },
+  { q: 'What letter comes before C?', opts: ['A', 'B', 'D', 'E'], ans: 1, emoji: '🔤', explain: 'A → B → C! The letter before C is B!' },
+  { q: 'Which letter starts the word "Dog"?', opts: ['B', 'C', 'D', 'E'], ans: 2, emoji: '🐶', explain: '"Dog" starts with D!' },
+  { q: 'Which of these is a CONSONANT?', opts: ['A', 'E', 'I', 'B'], ans: 3, emoji: '🔊', explain: 'B is a consonant! Vowels are A, E, I, O, U.' },
+  { q: 'What is the first letter of the alphabet?', opts: ['A', 'B', 'C', 'D'], ans: 0, emoji: '🔤', explain: 'A is the first letter of the alphabet!' },
+  { q: 'Which letter starts the word "Fish"?', opts: ['A', 'B', 'C', 'F'], ans: 3, emoji: '🐟', explain: '"Fish" starts with F!' },
+  { q: 'What is the last letter of the alphabet?', opts: ['X', 'Y', 'Z', 'W'], ans: 2, emoji: '🔤', explain: 'Z is the last letter of the alphabet!' },
+  { q: 'Which letter is a VOWEL?', opts: ['M', 'N', 'O', 'P'], ans: 2, emoji: '🔊', explain: 'A, E, I, O, U are vowels! O is a vowel!' },
+  { q: 'Which letter starts the word "Apple"?', opts: ['A', 'B', 'C', 'D'], ans: 0, emoji: '🍎', explain: '"Apple" starts with A!' },
+];
+
+let qIdx = 0;
+let qScore = 0;
+let qAnswered = false;
+
+function startQuiz() {
+  qIdx = 0;
+  qScore = 0;
+  qAnswered = false;
+  document.getElementById('quizResult').classList.remove('show');
+  document.getElementById('quizBody').style.display = 'block';
+  loadQuizQuestion();
+}
+
+function loadQuizQuestion() {
+  qAnswered = false;
+  const q = QUIZ_DATA[qIdx];
+  document.getElementById('qFill').style.width = ((qIdx / QUIZ_DATA.length) * 100) + '%';
+  document.getElementById('qScore').textContent = `Score: ${qScore} / ${QUIZ_DATA.length}`;
+  document.getElementById('qNum').textContent = `Question ${qIdx + 1} / ${QUIZ_DATA.length}`;
+  document.getElementById('quizFb').textContent = '';
+  document.getElementById('quizFb').className = 'quiz-fb';
+
+  document.getElementById('quizQ').innerHTML = `
+    <span class="qcard-emoji">${q.emoji}</span>
+    ${q.q}
+  `;
+
+  const opts = document.getElementById('quizOpts');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'qopt';
+    btn.textContent = o;
+    btn.onclick = () => answerQuizQ(i, btn, q.ans);
+    opts.appendChild(btn);
+  });
+}
+
+function answerQuizQ(i, btn, correct) {
+  if (qAnswered) return;
+  qAnswered = true;
+
+  const allBtns = document.querySelectorAll('.qopt');
+  allBtns.forEach(b => b.disabled = true);
+  allBtns[correct].classList.add('correct');
+
+  const fb = document.getElementById('quizFb');
+  const q = QUIZ_DATA[qIdx];
+
+  if (i === correct) {
+    qScore++;
+    fb.className = 'quiz-fb ok';
+    fb.textContent = `🎉 ${['Awesome!', 'Perfect!', 'Great job!', 'Well done!'][Math.floor(Math.random() * 4)]} ${q.explain}`;
+    speak('Correct!');
+    launchConfetti(8);
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'quiz-fb no';
+    fb.textContent = `❌ ${q.explain}`;
+    speak('Try again next time!');
+  }
+
+  document.getElementById('qScore').textContent = `Score: ${qScore} / ${QUIZ_DATA.length}`;
+
+  setTimeout(() => {
+    qIdx++;
+    if (qIdx < QUIZ_DATA.length) {
+      loadQuizQuestion();
+    } else {
+      showQuizResult();
+    }
+  }, 2000);
+}
+
+function showQuizResult() {
+  document.getElementById('quizBody').style.display = 'none';
+  document.getElementById('qFill').style.width = '100%';
+
+  const res = document.getElementById('quizResult');
+  res.classList.add('show');
+
+  const pct = (qScore / QUIZ_DATA.length) * 100;
+  let emoji, stars, msg;
+  if (pct === 100) {
+    emoji = '🏆';
+    stars = '⭐⭐⭐';
+    msg = 'PERFECT! You are an ALPHABET MASTER! 🎊';
+  } else if (pct >= 70) {
+    emoji = '🌟';
+    stars = '⭐⭐⭐';
+    msg = 'Amazing work! You really know the alphabet! 🔤';
+  } else if (pct >= 50) {
+    emoji = '😊';
+    stars = '⭐⭐';
+    msg = 'Good job! Keep learning and you\'ll be a pro! 💪';
+  } else {
+    emoji = '💪';
+    stars = '⭐';
+    msg = 'Don\'t give up! Review the alphabet and try again! 📖';
+  }
+
+  document.getElementById('resEmoji').textContent = emoji;
+  document.getElementById('starsRow').textContent = stars;
+  document.getElementById('resScore').textContent = `${qScore} / ${QUIZ_DATA.length}`;
+  document.getElementById('resMsg').textContent = msg;
+
+  speak(`You scored ${qScore} out of ${QUIZ_DATA.length}. ${msg}`);
+  if (pct >= 70) launchConfetti(30);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONFETTI
+   ═══════════════════════════════════════════════════════════ */
+
+function launchConfetti(count) {
+  const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#C77DFF', '#FFB347', '#FF8FAB', '#2EC4B6'];
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      width: ${Math.random() * 10 + 6}px;
+      height: ${Math.random() * 10 + 6}px;
+      animation-duration: ${Math.random() * 1.5 + 1.5}s;
+      animation-delay: ${Math.random() * 0.5}s;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 3500);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+
+initMatch();
+initMemory();
+initWheel();
+initScramble();
+startBalloons();
+</script>
+</body>
+</html>
