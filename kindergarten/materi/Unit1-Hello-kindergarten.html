@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>LittleLume English — Unit 1: Hello!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mint:#BFEBDD;
+  --blue:#AFD8F2;
+  --yellow:#FFE9A8;
+  --peach:#FFCDAE;
+  --lavender:#D9CBFA;
+  --cream:#FFF8EC;
+  --ink:#4A4458;
+  --ink-soft:#7A7290;
+  --white:#ffffff;
+  --shadow: 0 8px 24px rgba(74,68,88,.12);
+  --shadow-lg: 0 16px 40px rgba(74,68,88,.18);
+  --radius: 28px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;height:100%;}
+body{
+  font-family:'Quicksand',sans-serif;
+  background: radial-gradient(circle at 15% 10%, var(--mint) 0%, var(--cream) 45%, var(--lavender) 100%);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+h1,h2,h3, .display{ font-family:'Fredoka',sans-serif; font-weight:600; margin:0; }
+button{ font-family:'Quicksand',sans-serif; cursor:pointer; border:none; }
+.app{
+  max-width:900px;
+  margin:0 auto;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding: 18px 18px 110px;
+  position:relative;
+}
+
+/* ---------- Firefly trail progress ---------- */
+.trail{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  overflow-x:auto;
+  padding:10px 6px 18px;
+  scrollbar-width:none;
+}
+.trail::-webkit-scrollbar{display:none;}
+.trail-dot{
+  flex:0 0 auto;
+  width:14px;height:14px;border-radius:50%;
+  background: #fff;
+  border:2px solid var(--ink-soft);
+  opacity:.35;
+  position:relative;
+  transition: all .3s ease;
+  cursor:pointer;
+}
+.trail-line{ flex:0 0 auto; width:16px; height:2px; background:var(--ink-soft); opacity:.25; border-radius:2px;}
+.trail-dot.done{ background: radial-gradient(circle, #FFF4C2 0%, var(--yellow) 60%); border-color: var(--yellow); opacity:1; box-shadow:0 0 10px 2px rgba(255,233,168,.8);}
+.trail-dot.current{
+  opacity:1;
+  border-color: var(--peach);
+  background: radial-gradient(circle, #fff 0%, var(--peach) 70%);
+  box-shadow:0 0 0 4px rgba(255,205,174,.35), 0 0 16px 4px rgba(255,205,174,.9);
+  transform:scale(1.5);
+}
+.trail-dot::after{
+  content:'';
+  position:absolute; inset:-6px;
+  border-radius:50%;
+}
+
+/* ---------- Header ---------- */
+.topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.brand{ display:flex; align-items:center; gap:10px; }
+.brand-badge{
+  width:44px;height:44px;border-radius:50%;
+  background: linear-gradient(135deg, var(--yellow), var(--peach));
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow: var(--shadow);
+}
+.brand-name{ font-size:1.05rem; line-height:1.1; }
+.brand-tag{ font-size:.72rem; color:var(--ink-soft); letter-spacing:.04em; }
+.stars-counter{
+  display:flex; align-items:center; gap:6px;
+  background:var(--white); padding:8px 14px; border-radius:999px; box-shadow:var(--shadow);
+  font-family:'Fredoka',sans-serif; font-size:.95rem;
+}
+
+/* ---------- Card / screen ---------- */
+.stage{ flex:1; display:flex; flex-direction:column; margin-top:8px; }
+.card{
+  background:var(--white);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-lg);
+  padding:28px 24px;
+  position:relative;
+  animation: cardIn .45s ease;
+}
+@keyframes cardIn{ from{ opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+.eyebrow{ font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); font-weight:700; margin-bottom:6px;}
+.title{ font-size:1.6rem; margin-bottom:6px; }
+.subtitle{ color:var(--ink-soft); font-size:1rem; margin-bottom:18px; }
+
+/* speech bubble / mascot line */
+.mascot-row{ display:flex; gap:14px; align-items:flex-start; margin-bottom:20px; }
+.avatar{
+  flex:0 0 auto; width:58px; height:58px; border-radius:50%;
+  display:flex;align-items:center;justify-content:center; font-size:28px;
+  box-shadow: var(--shadow);
+}
+.avatar.lumi{ background: linear-gradient(135deg,#FFE9A8,#FFCDAE); }
+.avatar.benny{ background: linear-gradient(135deg,#D9CBFA,#AFD8F2); }
+.avatar.coco{ background: linear-gradient(135deg,#FFCDAE,#FFE9A8); }
+.avatar.ollie{ background: linear-gradient(135deg,#BFEBDD,#AFD8F2); }
+.bubble{
+  background: var(--cream);
+  border-radius: 18px 18px 18px 4px;
+  padding:14px 18px;
+  font-size:1.05rem;
+  font-weight:600;
+  position:relative;
+  flex:1;
+}
+
+/* buttons */
+.btn{
+  font-family:'Fredoka',sans-serif;
+  border-radius: 999px;
+  padding: 14px 26px;
+  font-size:1.05rem;
+  font-weight:600;
+  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: var(--shadow);
+}
+.btn:active{ transform:scale(.96); }
+.btn-primary{ background: linear-gradient(135deg, var(--peach), var(--yellow)); color:var(--ink); }
+.btn-secondary{ background:var(--white); color:var(--ink); border:2px solid var(--mint); }
+.btn-ghost{ background:transparent; color:var(--ink-soft); box-shadow:none; }
+.btn-lg{ padding:18px 40px; font-size:1.25rem; }
+.btn:hover{ box-shadow: var(--shadow-lg); }
+.btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+/* nav footer */
+.footer-nav{
+  position:fixed; left:0; right:0; bottom:0;
+  display:flex; justify-content:center; gap:14px;
+  padding:14px 18px calc(14px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(255,248,236,.98), rgba(255,248,236,.85) 70%, transparent);
+  z-index:20;
+}
+.footer-nav .btn{ min-width:130px; }
+
+/* speak button */
+.speak-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--blue); color:var(--ink);
+  border-radius:999px; padding:10px 18px; font-family:'Fredoka',sans-serif; font-weight:600;
+  box-shadow:var(--shadow);
+}
+.speak-btn:active{ transform:scale(.95); }
+
+/* Vocabulary card carousel */
+.vocab-wrap{ display:flex; flex-direction:column; align-items:center; gap:16px; }
+.vocab-illustration{
+  width:150px;height:150px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:70px;
+  background: linear-gradient(135deg, var(--mint), var(--blue));
+  box-shadow: var(--shadow);
+}
+.vocab-word{ font-size:2rem; }
+.vocab-sentence{ color:var(--ink-soft); font-size:1.1rem; text-align:center; }
+.dots-row{ display:flex; gap:8px; }
+.mini-dot{ width:9px;height:9px;border-radius:50%; background:var(--ink-soft); opacity:.25; }
+.mini-dot.active{ background:var(--peach); opacity:1; }
+
+/* choice grid (dialogue / quizzes) */
+.choice-grid{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px; }
+@media(min-width:520px){ .choice-grid.cols-2{ grid-template-columns:1fr 1fr; } }
+.choice{
+  background:var(--cream); border:2px solid transparent; border-radius:18px;
+  padding:16px 18px; font-size:1.1rem; font-weight:600; text-align:left;
+  transition: all .15s ease;
+}
+.choice:hover{ border-color:var(--mint); }
+.choice.correct{ background:#DFF3E5; border-color:#7FCF9D; }
+.choice.wrong{ background:#FBDFE0; border-color:#F0A2A6; }
+.feedback{
+  margin-top:14px; padding:14px 16px; border-radius:16px; font-weight:700; font-family:'Fredoka',sans-serif;
+  display:none;
+}
+.feedback.show{ display:block; animation: pop .3s ease; }
+.feedback.good{ background:#DFF3E5; color:#2F7A4C; }
+.feedback.bad{ background:#FBDFE0; color:#B0454A; }
+@keyframes pop{ from{ transform:scale(.9); opacity:0;} to{transform:scale(1); opacity:1;} }
+
+/* name builder */
+.letter-bank{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:14px 0; }
+.letter-tile{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--lavender); display:flex;align-items:center;justify-content:center;
+  font-family:'Fredoka',sans-serif; font-size:1.4rem; font-weight:700; box-shadow:var(--shadow);
+}
+.letter-tile:active{ transform:scale(.92); }
+.name-slot-row{ display:flex; gap:10px; justify-content:center; min-height:64px; margin-bottom:8px; flex-wrap:wrap; }
+.name-slot{
+  width:52px;height:52px;border-radius:14px; border:2px dashed var(--ink-soft);
+  display:flex;align-items:center;justify-content:center; font-family:'Fredoka',sans-serif; font-size:1.4rem; font-weight:700;
+  background:var(--white);
+}
+
+/* alphabet + drag drop */
+.dragdrop-row{ display:flex; justify-content:space-around; gap:20px; flex-wrap:wrap; margin-top:10px;}
+.dd-col{ display:flex; flex-direction:column; gap:12px; align-items:center; }
+.dd-col-title{ font-weight:700; color:var(--ink-soft); font-size:.85rem; text-transform:uppercase; letter-spacing:.05em;}
+.dd-item{
+  width:64px;height:64px;border-radius:16px; background:var(--yellow);
+  display:flex;align-items:center;justify-content:center; font-family:'Fredoka',sans-serif; font-size:1.6rem; font-weight:700;
+  box-shadow:var(--shadow); cursor:pointer; transition: all .15s ease;
+}
+.dd-item.over{ background:var(--peach); transform:scale(1.1); box-shadow:0 0 0 4px rgba(255,205,174,.5), var(--shadow); }
+.dd-item:active{ transform:scale(.94); }
+.dd-target{
+  width:64px;height:64px;border-radius:16px; border:3px dashed var(--ink-soft);
+  display:flex;align-items:center;justify-content:center; font-family:'Fredoka',sans-serif; font-size:1.6rem; font-weight:700;
+  background:rgba(255,255,255,.6);
+}
+.dd-target.filled{ border-style:solid; border-color:#7FCF9D; background:#DFF3E5; }
+.dd-target.over{ border-color:var(--peach); }
+
+/* balloon pop */
+.balloon-field{ display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:10px; }
+.balloon{
+  width:78px;height:96px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  display:flex;align-items:center;justify-content:center; font-size:2rem;
+  box-shadow: var(--shadow); transition: transform .2s ease, opacity .2s ease;
+  position:relative;
+}
+.balloon:active{ transform:scale(.9); }
+.balloon.gone{ opacity:0; transform:scale(0) translateY(-40px); }
+.balloon:nth-child(1){background:var(--peach);}
+.balloon:nth-child(2){background:var(--blue);}
+.balloon:nth-child(3){background:var(--mint);}
+.balloon:nth-child(4){background:var(--lavender);}
+
+/* memory match */
+.memory-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:10px; }
+@media(min-width:520px){ .memory-grid{ grid-template-columns:repeat(4,1fr);} }
+.mem-card{
+  aspect-ratio:1/1; border-radius:14px; background:linear-gradient(135deg,var(--lavender),var(--blue));
+  display:flex;align-items:center;justify-content:center; font-size:1.8rem; box-shadow:var(--shadow);
+  transition: transform .3s ease;
+}
+.mem-card.flipped, .mem-card.matched{ background:var(--white); }
+.mem-card.matched{ opacity:.5; }
+
+/* story */
+.story-scene{ text-align:center; }
+.story-emoji{ font-size:5rem; margin:6px 0; }
+.story-text{ font-size:1.2rem; font-weight:600; margin:10px 0; }
+.story-question{ background:var(--cream); border-radius:16px; padding:14px; margin-top:14px; }
+
+/* mic practice */
+.mic-btn{
+  width:96px;height:96px;border-radius:50%;
+  background: linear-gradient(135deg, var(--peach), var(--yellow));
+  display:flex;align-items:center;justify-content:center;font-size:2.6rem;
+  box-shadow: var(--shadow-lg); margin:14px auto; transition: transform .2s ease;
+}
+.mic-btn.listening{ animation: pulse 1s infinite; }
+@keyframes pulse{ 0%{transform:scale(1);} 50%{transform:scale(1.12);} 100%{transform:scale(1);} }
+
+/* celebration */
+.celebrate-wrap{ text-align:center; }
+.badge-circle{
+  width:150px;height:150px;border-radius:50%; margin:10px auto 18px;
+  background: radial-gradient(circle at 35% 30%, #fff, var(--yellow) 60%, var(--peach) 100%);
+  display:flex;align-items:center;justify-content:center;font-size:5rem;
+  box-shadow: var(--shadow-lg);
+  animation: badgeSpin 1.2s ease;
+}
+@keyframes badgeSpin{ from{transform:rotate(-20deg) scale(.5); opacity:0;} to{transform:rotate(0) scale(1); opacity:1;} }
+.confetti-layer{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:5;}
+.confetti-piece{ position:absolute; top:-20px; font-size:1.4rem; animation: fall linear forwards; }
+@keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); opacity:.9; } }
+
+/* welcome screen */
+.welcome{ text-align:center; padding:20px 6px 6px; }
+.welcome-chars{ display:flex; justify-content:center; gap:14px; margin: 18px 0 10px; }
+.welcome-chars .avatar{ width:70px;height:70px; font-size:34px; animation: wave 2.4s ease-in-out infinite; }
+.welcome-chars .avatar:nth-child(2){ animation-delay:.2s; }
+.welcome-chars .avatar:nth-child(3){ animation-delay:.4s; }
+.welcome-chars .avatar:nth-child(4){ animation-delay:.6s; }
+@keyframes wave{ 0%,100%{transform:rotate(0);} 25%{transform:rotate(-8deg);} 75%{transform:rotate(8deg);} }
+.welcome-title{ font-size:2.2rem; background:linear-gradient(135deg,#E7A94C,#F0888C); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.welcome-tag{ color:var(--ink-soft); font-size:1.05rem; margin-top:6px; }
+
+.hidden{ display:none !important; }
+.small-note{ font-size:.85rem; color:var(--ink-soft); margin-top:10px; }
+.lyrics-line{ padding:6px 0; font-size:1.1rem; }
+.lyrics-action{ color:var(--ink-soft); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-badge">🪲</div>
+      <div>
+        <div class="brand-name display">LittleLume English</div>
+        <div class="brand-tag">Learn • Play • Shine</div>
+      </div>
+    </div>
+    <div class="stars-counter">⭐ <span id="starCount">0</span></div>
+  </div>
+
+  <div class="trail" id="trail"></div>
+
+  <div class="stage" id="stage"></div>
+
+</div>
+
+<div class="footer-nav">
+  <button class="btn btn-secondary" id="backBtn">← Back</button>
+  <button class="btn btn-primary" id="nextBtn">Next →</button>
+</div>
+
+<div class="confetti-layer" id="confetti"></div>
+
+<script>
+/* ============ DATA ============ */
+const VOCAB = [
+  {word:"Hello", emoji:"👋", sentence:"Hello, friend!"},
+  {word:"Hi", emoji:"🙌", sentence:"Hi, Lumi!"},
+  {word:"Good morning", emoji:"🌞", sentence:"Good morning, teacher!"},
+  {word:"Good afternoon", emoji:"🌤️", sentence:"Good afternoon, friends!"},
+  {word:"Goodbye", emoji:"🌙", sentence:"Goodbye, see you soon!"},
+  {word:"Bye", emoji:"👋", sentence:"Bye, Benny!"},
+  {word:"Teacher", emoji:"🧑‍🏫", sentence:"My teacher is kind."},
+  {word:"Friend", emoji:"🧑‍🤝‍🧑", sentence:"You are my friend."},
+  {word:"Name", emoji:"🏷️", sentence:"My name is Coco."},
+  {word:"Please", emoji:"🙏", sentence:"A cookie, please."},
+  {word:"Thank you", emoji:"💛", sentence:"Thank you, Ollie!"},
+  {word:"You're welcome", emoji:"😊", sentence:"You're welcome, friend!"},
+  {word:"Yes", emoji:"✅", sentence:"Yes, I am happy!"},
+  {word:"No", emoji:"❌", sentence:"No, thank you."},
+  {word:"Sorry", emoji:"🥺", sentence:"Sorry, friend!"},
+  {word:"Happy", emoji:"😄", sentence:"I am happy today."},
+  {word:"Welcome", emoji:"🎉", sentence:"Welcome to LittleLume!"},
+];
+
+const DIALOGUE = [
+  {line:"Hello!", options:["Hello!","Bye!","Thank you!"], correct:0, avatar:"lumi"},
+  {line:"What is your name?", options:["Good morning!","My name is Coco.","You're welcome."], correct:1, avatar:"benny"},
+  {line:"Thank you!", options:["You're welcome!","Goodbye!","Sorry!"], correct:0, avatar:"coco"},
+  {line:"Good morning!", options:["Good morning!","Bye!","No."], correct:0, avatar:"ollie"},
+  {line:"See you next week!", options:["Nice to meet you.","Bye bye!","Please."], correct:1, avatar:"lumi"},
+];
+
+const SPEAKING_LINES = ["Hello!","Hi!","My name is...","Good morning!","Nice to meet you!"];
+
+const PHONICS = [
+  {sound:"a", say:"aaa, apple", options:[{e:"🍎",correct:true},{e:"🐝",correct:false},{e:"⚽",correct:false}]},
+  {sound:"a", say:"aaa, ant", options:[{e:"🐜",correct:true},{e:"🐻",correct:false},{e:"🎈",correct:false}]},
+  {sound:"b", say:"buh, ball", options:[{e:"⚽",correct:true},{e:"🍎",correct:false},{e:"🦉",correct:false}]},
+  {sound:"b", say:"buh, bee", options:[{e:"🐝",correct:true},{e:"🐜",correct:false},{e:"🐻",correct:false}]},
+];
+
+const EXPRESSIONS = [
+  {prompt:"Thank you.", options:["You're welcome.","Goodbye.","Sorry."], correct:0},
+  {prompt:"Hello!", options:["Bye!","Hello!","Please."], correct:1},
+  {prompt:"Good morning!", options:["Good morning!","Yes.","No."], correct:0},
+  {prompt:"What is your name?", options:["Thank you.","Sorry.","My name is Benny."], correct:2},
+];
+
+const STORY = [
+  {emoji:"🧵🪆", text:"Once upon a time, a little puppet woke up in the classroom.", question:null},
+  {emoji:"👋", text:"The puppet looked around and said, \"Hello, friends!\"", question:{q:"What did the puppet say?", options:["Hello, friends!","Goodbye!"], correct:0}},
+  {emoji:"🧑‍🤝‍🧑", text:"Lumi the Firefly flew close and said, \"Hi! What is your name?\"", question:null},
+  {emoji:"🪆💬", text:"\"My name is Pip!\" said the little puppet, smiling wide.", question:{q:"What is the puppet's name?", options:["Pip","Benny"], correct:0}},
+  {emoji:"🎉", text:"All the LittleLume friends said, \"Nice to meet you, Pip!\" and everyone was happy.", question:null},
+];
+
+const REVIEW = [
+  {type:"choice", prompt:"Someone says \"Hello!\" You say...", options:["Hello!","Sorry."], correct:0},
+  {type:"choice", prompt:"Which word starts with the /b/ sound?", options:["Apple","Ball"], correct:1},
+  {type:"choice", prompt:"Someone says \"Thank you.\" You say...", options:["You're welcome.","Goodbye."], correct:0},
+  {type:"tf", prompt:"True or False: \"Bye\" means hello.", options:["True","False"], correct:1},
+  {type:"choice", prompt:"Which greeting fits the morning?", options:["Good morning!","Good night!"], correct:0},
+];
+
+const MASCOTS = ["lumi","benny","coco","ollie"];
+const MASCOT_EMOJI = {lumi:"🪲", benny:"🐻", coco:"🐱", ollie:"🦉"};
+const MASCOT_NAME = {lumi:"Lumi", benny:"Benny", coco:"Coco", ollie:"Ollie"};
+
+/* ============ SCREEN LIST ============ */
+const SCREENS = [
+  "welcome","song","vocab","dialogue","speaking","namebuilder",
+  "alphabet1","alphabet2","phonics","expressions","story",
+  "gamesmemory","gamesballoon","review","celebration"
+];
+
+let current = 0;
+let stars = 0;
+let vocabIndex = 0;
+let dialogueIndex = 0;
+let dialogueAnswered = false;
+let speakingIndex = 0;
+let phonicsIndex = 0;
+let phonicsAnswered = false;
+let expressionsIndex = 0;
+let expressionsAnswered = false;
+let storyIndex = 0;
+let storyAnswered = false;
+let reviewIndex = 0;
+let reviewAnswered = false;
+let reviewScore = 0;
+let nameLetters = [];
+let nameTarget = "";
+
+function addStar(n){ stars += n; document.getElementById('starCount').textContent = stars; }
+
+function speak(text){
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.85; u.pitch = 1.15;
+    window.speechSynthesis.speak(u);
+  }catch(e){ /* speech not supported, fail quietly */ }
+}
+
+/* ============ TRAIL RENDER ============ */
+function renderTrail(){
+  const t = document.getElementById('trail');
+  t.innerHTML = '';
+  SCREENS.forEach((s,i)=>{
+    const dot = document.createElement('div');
+    dot.className = 'trail-dot' + (i < current ? ' done' : '') + (i===current ? ' current' : '');
+    dot.title = s;
+    dot.addEventListener('click', ()=>{ if(i<=current){ current=i; render(); } });
+    t.appendChild(dot);
+    if(i < SCREENS.length-1){
+      const line = document.createElement('div');
+      line.className = 'trail-line';
+      t.appendChild(line);
+    }
+  });
+}
+
+/* ============ MASCOT BUBBLE HELPER ============ */
+function mascotRow(who, text, extraBtn){
+  return `<div class="mascot-row">
+    <div class="avatar ${who}">${MASCOT_EMOJI[who]}</div>
+    <div class="bubble">${text} ${extraBtn||''}</div>
+  </div>`;
+}
+
+/* ============ RENDER SCREENS ============ */
+function render(){
+  renderTrail();
+  const stage = document.getElementById('stage');
+  const screen = SCREENS[current];
+  document.getElementById('backBtn').style.visibility = current===0 ? 'hidden' : 'visible';
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.textContent = current===SCREENS.length-1 ? 'Restart 🔁' : 'Next →';
+  nextBtn.style.visibility = 'visible';
+
+  let html = '';
+
+  if(screen==="welcome"){
+    html = `<div class="card welcome">
+      <div class="eyebrow">Unit 1 · Hello · Kindergarten Pre-A1</div>
+      <div class="welcome-title display">Welcome to LittleLume!</div>
+      <div class="welcome-tag">Say hello and meet your new friends 🌟</div>
+      <div class="welcome-chars">
+        ${MASCOTS.map(m=>`<div class="avatar ${m}">${MASCOT_EMOJI[m]}</div>`).join('')}
+      </div>
+      <p class="subtitle">Lumi, Benny, Coco and Ollie can't wait to say hello with you!</p>
+      <button class="btn btn-primary btn-lg" onclick="speak('Hello! Welcome to LittleLume English. Let us learn, play, and shine together!')">▶️ Meet the friends</button>
+    </div>`;
+  }
+
+  else if(screen==="song"){
+    html = `<div class="card">
+      <div class="eyebrow">Warm-Up Chant</div>
+      <h2 class="title">The Hello Chant 🎶</h2>
+      ${mascotRow('lumi','Stand up and chant with me! Ready?')}
+      <div class="lyrics-line">👋 Hello, hello, hello, my friend! <span class="lyrics-action">(wave both hands)</span></div>
+      <div class="lyrics-line">🙋 Hello, hello, what is your name? <span class="lyrics-action">(point to a friend)</span></div>
+      <div class="lyrics-line">😊 My name is ___, nice to meet you again! <span class="lyrics-action">(shake hands)</span></div>
+      <div class="lyrics-line">🌟 Hello, hello, shine your light! <span class="lyrics-action">(reach hands up high)</span></div>
+      <div class="lyrics-line" style="opacity:.7">— repeat once more, a little faster! —</div>
+      <button class="speak-btn" onclick="speak('Hello, hello, hello my friend! Hello, hello, what is your name? My name is Lumi, nice to meet you again! Hello, hello, shine your light!')">🔊 Play the chant</button>
+    </div>`;
+  }
+
+  else if(screen==="vocab"){
+    const v = VOCAB[vocabIndex];
+    html = `<div class="card">
+      <div class="eyebrow">Vocabulary Adventure · ${vocabIndex+1} / ${VOCAB.length}</div>
+      <div class="vocab-wrap">
+        <div class="vocab-illustration">${v.emoji}</div>
+        <div class="vocab-word display">${v.word}</div>
+        <button class="speak-btn" onclick="speak('${v.word}')">🔊 Listen</button>
+        <div class="vocab-sentence">"${v.sentence}"</div>
+        <button class="btn btn-secondary" onclick="speak('${v.sentence}')">🔁 Repeat after me</button>
+        <div class="dots-row">${VOCAB.map((x,i)=>`<div class="mini-dot ${i===vocabIndex?'active':''}"></div>`).join('')}</div>
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="vocabIndex=Math.max(0,vocabIndex-1); render();">◀ Prev word</button>
+          <button class="btn btn-secondary" onclick="vocabIndex=Math.min(${VOCAB.length-1},vocabIndex+1); render();">Next word ▶</button>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  else if(screen==="dialogue"){
+    const d = DIALOGUE[dialogueIndex];
+    html = `<div class="card">
+      <div class="eyebrow">Interactive Dialogue · ${dialogueIndex+1} / ${DIALOGUE.length}</div>
+      ${mascotRow(d.avatar, d.line, `<button class="speak-btn" style="margin-left:8px" onclick="speak('${d.line}')">🔊</button>`)}
+      <div class="choice-grid">
+        ${d.options.map((o,i)=>`<button class="choice" id="dch${i}" onclick="answerDialogue(${i})">${o}</button>`).join('')}
+      </div>
+      <div class="feedback" id="dfeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="speaking"){
+    const line = SPEAKING_LINES[speakingIndex];
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Speaking Practice · ${speakingIndex+1} / ${SPEAKING_LINES.length}</div>
+      <h2 class="title">Say it out loud!</h2>
+      <p class="subtitle">Tap the microphone, then say:</p>
+      <div class="vocab-word display" style="margin-bottom:6px;">"${line}"</div>
+      <button class="speak-btn" onclick="speak('${line}')">🔊 Hear Lumi say it</button>
+      <div class="mic-btn" id="micBtn" onclick="tryMic()">🎤</div>
+      <div class="feedback" id="micFeedback"></div>
+      <div class="btn-row" style="justify-content:center;">
+        <button class="btn btn-secondary" onclick="speakingIndex=Math.max(0,speakingIndex-1); render();">◀ Prev</button>
+        <button class="btn btn-secondary" onclick="speakingIndex=Math.min(${SPEAKING_LINES.length-1},speakingIndex+1); render();">Next ▶</button>
+      </div>
+    </div>`;
+  }
+
+  else if(screen==="namebuilder"){
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Name Builder</div>
+      <h2 class="title">Build your name!</h2>
+      ${mascotRow('coco','Type your name, then tap each letter to build it below!')}
+      <input id="nameInput" maxlength="10" placeholder="Type your name" style="font-family:'Fredoka',sans-serif;font-size:1.2rem;padding:12px 16px;border-radius:14px;border:2px solid var(--mint);width:100%;max-width:280px;text-align:center;" oninput="setupNameBuilder(this.value)">
+      <div class="name-slot-row" id="nameSlots"></div>
+      <div class="letter-bank" id="letterBank"></div>
+      <div class="feedback" id="nameFeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="alphabet1"){
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Alphabet Adventure · Letter A &amp; B</div>
+      <h2 class="title">Tap the matching letters!</h2>
+      ${mascotRow('ollie','Tap a capital letter, then tap its lowercase friend to match them!')}
+      <div class="dragdrop-row">
+        <div class="dd-col">
+          <div class="dd-col-title">Uppercase</div>
+          <div class="dd-item" id="ddA" onclick="selectLetter('A', this)">A</div>
+          <div class="dd-item" id="ddB" onclick="selectLetter('B', this)">B</div>
+        </div>
+        <div class="dd-col">
+          <div class="dd-col-title">Lowercase</div>
+          <div class="dd-target" id="target-a" onclick="matchLetter('a', this)">a</div>
+          <div class="dd-target" id="target-b" onclick="matchLetter('b', this)">b</div>
+        </div>
+      </div>
+      <div class="feedback" id="ddFeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="alphabet2"){
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Alphabet Adventure · Pop the letter!</div>
+      <h2 class="title">Pop every letter <b>B</b>!</h2>
+      ${mascotRow('benny','Tap only the balloons with the letter B. Watch out for A!')}
+      <div class="balloon-field" id="balloonField"></div>
+      <div class="feedback" id="balloonFeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="phonics"){
+    const p = PHONICS[phonicsIndex];
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Phonics Game · ${phonicsIndex+1} / ${PHONICS.length}</div>
+      <h2 class="title">Listen and choose!</h2>
+      <button class="speak-btn" onclick="speak('${p.say}')">🔊 Play the sound /${p.sound}/</button>
+      <div class="choice-grid cols-2" style="margin-top:16px;">
+        ${p.options.map((o,i)=>`<button class="choice" style="font-size:2.2rem;text-align:center;" id="pch${i}" onclick="answerPhonics(${i})">${o.e}</button>`).join('')}
+      </div>
+      <div class="feedback" id="pfeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="expressions"){
+    const e = EXPRESSIONS[expressionsIndex];
+    html = `<div class="card">
+      <div class="eyebrow">Classroom Expressions · ${expressionsIndex+1} / ${EXPRESSIONS.length}</div>
+      ${mascotRow('lumi', 'The teacher says: "'+e.prompt+'" — what do you say back?', `<button class="speak-btn" style="margin-left:8px" onclick="speak('${e.prompt}')">🔊</button>`)}
+      <div class="choice-grid">
+        ${e.options.map((o,i)=>`<button class="choice" id="ech${i}" onclick="answerExpression(${i})">${o}</button>`).join('')}
+      </div>
+      <div class="feedback" id="efeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="story"){
+    const s = STORY[storyIndex];
+    html = `<div class="card story-scene">
+      <div class="eyebrow">Mini Story Time · "Hello, Friend!" &amp; The Little Puppet Says Hi</div>
+      <div class="story-emoji">${s.emoji}</div>
+      <div class="story-text">${s.text}</div>
+      <button class="speak-btn" onclick="speak('${s.text.replace(/"/g,'')}')">🔊 Read aloud</button>
+      ${s.question ? `<div class="story-question">
+        <b>${s.question.q}</b>
+        <div class="choice-grid" style="margin-top:10px;">
+          ${s.question.options.map((o,i)=>`<button class="choice" id="sch${i}" onclick="answerStory(${i})">${o}</button>`).join('')}
+        </div>
+        <div class="feedback" id="sfeedback"></div>
+      </div>` : `<button class="btn btn-primary" style="margin-top:14px;" onclick="nextStoryPage()">Tap to continue ▶</button>`}
+    </div>`;
+  }
+
+  else if(screen==="gamesmemory"){
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Fun Games · Memory Match</div>
+      <h2 class="title">Find the matching pairs!</h2>
+      ${mascotRow('coco','Flip two cards. If they match, they stay open!')}
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="feedback" id="memFeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="gamesballoon"){
+    html = `<div class="card" style="text-align:center;">
+      <div class="eyebrow">Fun Games · Balloon Pop</div>
+      <h2 class="title">Pop the greeting that fits!</h2>
+      ${mascotRow('ollie','It is morning time. Which balloon says the right greeting?')}
+      <div class="balloon-field" id="balloonField2"></div>
+      <div class="feedback" id="balloon2Feedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="review"){
+    const r = REVIEW[reviewIndex];
+    html = `<div class="card">
+      <div class="eyebrow">Review Challenge · ${reviewIndex+1} / ${REVIEW.length}</div>
+      <h2 class="title">${r.prompt}</h2>
+      <div class="choice-grid">
+        ${r.options.map((o,i)=>`<button class="choice" id="rch${i}" onclick="answerReview(${i})">${o}</button>`).join('')}
+      </div>
+      <div class="feedback" id="rfeedback"></div>
+    </div>`;
+  }
+
+  else if(screen==="celebration"){
+    html = `<div class="card celebrate-wrap">
+      <div class="badge-circle">🏅</div>
+      <h2 class="title display">Great Job! ⭐</h2>
+      <p class="subtitle">You earned the <b>LittleLume Hello Explorer</b> badge!</p>
+      <div class="welcome-chars">${MASCOTS.map(m=>`<div class="avatar ${m}">${MASCOT_EMOJI[m]}</div>`).join('')}</div>
+      <p class="subtitle">You collected <b>${stars}</b> stars today. All the friends are dancing for you! 🎉</p>
+      <button class="btn btn-primary btn-lg" onclick="speak('Great job! You are a LittleLume Hello Explorer. See you next week!')">▶️ Hear the celebration</button>
+      <p class="small-note">See you next week, friend! 👋</p>
+    </div>`;
+    launchConfetti();
+  }
+
+  stage.innerHTML = html;
+
+  // screen-specific setup
+  if(screen==="namebuilder") setupNameBuilder('');
+  if(screen==="alphabet2") setupBalloonPop();
+  if(screen==="gamesmemory") setupMemory();
+  if(screen==="gamesballoon") setupBalloonPop2();
+}
+
+/* ============ NAV ============ */
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  if(current===SCREENS.length-1){
+    current=0; stars=0; document.getElementById('starCount').textContent=0;
+    vocabIndex=0; dialogueIndex=0; speakingIndex=0; phonicsIndex=0; expressionsIndex=0;
+    storyIndex=0; reviewIndex=0; reviewScore=0;
+    render(); return;
+  }
+  current = Math.min(SCREENS.length-1, current+1);
+  render();
+});
+document.getElementById('backBtn').addEventListener('click', ()=>{
+  current = Math.max(0, current-1);
+  render();
+});
+
+/* ============ DIALOGUE LOGIC ============ */
+function answerDialogue(i){
+  const d = DIALOGUE[dialogueIndex];
+  const fb = document.getElementById('dfeedback');
+  for(let j=0;j<d.options.length;j++){
+    document.getElementById('dch'+j).classList.remove('correct','wrong');
+  }
+  if(i===d.correct){
+    document.getElementById('dch'+i).classList.add('correct');
+    fb.className='feedback show good'; fb.textContent="Yes! Great answer! ⭐"; addStar(1);
+  } else {
+    document.getElementById('dch'+i).classList.add('wrong');
+    document.getElementById('dch'+d.correct).classList.add('correct');
+    fb.className='feedback show bad'; fb.textContent="Almost! Here's the right answer.";
+  }
+  setTimeout(()=>{
+    if(dialogueIndex < DIALOGUE.length-1){ dialogueIndex++; render(); document.getElementById('stage').scrollIntoView({behavior:'smooth'}); }
+  }, 1300);
+}
+
+/* ============ MIC PRACTICE ============ */
+function tryMic(){
+  const mic = document.getElementById('micBtn');
+  const fb = document.getElementById('micFeedback');
+  mic.classList.add('listening');
+  setTimeout(()=>{
+    mic.classList.remove('listening');
+    fb.className='feedback show good';
+    const msgs = ["Wonderful speaking! ⭐","Great voice, friend!","Super! You sound amazing!","Nice try, superstar!"];
+    fb.textContent = msgs[Math.floor(Math.random()*msgs.length)];
+    addStar(1);
+  }, 1400);
+}
+
+/* ============ NAME BUILDER ============ */
+function setupNameBuilder(val){
+  nameTarget = (val||'').toUpperCase().replace(/[^A-Z]/g,'');
+  const slotsEl = document.getElementById('nameSlots');
+  const bankEl = document.getElementById('letterBank');
+  if(!slotsEl) return;
+  nameLetters = new Array(nameTarget.length).fill(null);
+  slotsEl.innerHTML = nameTarget.length ? nameTarget.split('').map((_,i)=>`<div class="name-slot" id="slot${i}"></div>`).join('') : '<span class="small-note">Type your name above to begin ✨</span>';
+  const shuffled = nameTarget.split('').map((c,i)=>({c,i})).sort(()=>Math.random()-0.5);
+  bankEl.innerHTML = shuffled.map(o=>`<div class="letter-tile" onclick="placeLetter('${o.c}', this)">${o.c}</div>`).join('');
+  document.getElementById('nameFeedback').className='feedback';
+}
+function placeLetter(c, el){
+  const idx = nameLetters.findIndex((x,i)=>x===null && nameTarget[i]===c);
+  if(idx===-1) return;
+  nameLetters[idx]=c;
+  document.getElementById('slot'+idx).textContent=c;
+  document.getElementById('slot'+idx).style.background = '#DFF3E5';
+  el.style.visibility='hidden';
+  if(nameLetters.every(x=>x!==null) && nameTarget.length>0){
+    const fb = document.getElementById('nameFeedback');
+    fb.className='feedback show good';
+    fb.textContent = `Yay! You built your name, ${nameTarget[0]+nameTarget.slice(1).toLowerCase()}! ⭐⭐`;
+    addStar(2);
+    speak('Great job building your name!');
+  }
+}
+
+/* ============ TAP-TO-MATCH ALPHABET ============ */
+let selectedLetter = null;
+let selectedLetterEl = null;
+function selectLetter(letter, el){
+  if(el.style.visibility === 'hidden') return;
+  if(selectedLetterEl) selectedLetterEl.classList.remove('over');
+  selectedLetter = letter;
+  selectedLetterEl = el;
+  el.classList.add('over');
+}
+function matchLetter(targetLower, targetEl){
+  const fb = document.getElementById('ddFeedback');
+  if(!selectedLetter){
+    fb.className='feedback show bad'; fb.textContent="Tap a capital letter first!";
+    return;
+  }
+  if(selectedLetter.toLowerCase()===targetLower){
+    targetEl.classList.remove('over');
+    targetEl.classList.add('filled');
+    targetEl.textContent = targetLower+' '+selectedLetter;
+    selectedLetterEl.style.visibility='hidden';
+    fb.className='feedback show good'; fb.textContent="Perfect match! ⭐"; addStar(1);
+  } else {
+    selectedLetterEl.classList.remove('over');
+    fb.className='feedback show bad'; fb.textContent="Try again, friend!";
+  }
+  selectedLetter = null; selectedLetterEl = null;
+}
+
+/* ============ BALLOON POP (Alphabet screen: pop B) ============ */
+function setupBalloonPop(){
+  const field = document.getElementById('balloonField');
+  if(!field) return;
+  const letters = ['A','B','B','A','B'];
+  field.innerHTML = letters.map((l,i)=>`<div class="balloon" id="bal${i}" onclick="popBalloon(${i}, '${l}')">${l}</div>`).join('');
+}
+function popBalloon(i, letter){
+  const el = document.getElementById('bal'+i);
+  const fb = document.getElementById('balloonFeedback');
+  if(letter==='B'){
+    el.classList.add('gone');
+    fb.className='feedback show good'; fb.textContent="Pop! That's a B! ⭐"; addStar(1);
+  } else {
+    fb.className='feedback show bad'; fb.textContent="That's an A — look for B!";
+  }
+}
+
+/* ============ PHONICS LOGIC ============ */
+function answerPhonics(i){
+  const p = PHONICS[phonicsIndex];
+  const fb = document.getElementById('pfeedback');
+  p.options.forEach((o,j)=>document.getElementById('pch'+j).classList.remove('correct','wrong'));
+  if(p.options[i].correct){
+    document.getElementById('pch'+i).classList.add('correct');
+    fb.className='feedback show good'; fb.textContent="Yes! Great listening! ⭐"; addStar(1);
+  } else {
+    document.getElementById('pch'+i).classList.add('wrong');
+    p.options.forEach((o,j)=>{ if(o.correct) document.getElementById('pch'+j).classList.add('correct'); });
+    fb.className='feedback show bad'; fb.textContent="Listen again next time!";
+  }
+  setTimeout(()=>{ if(phonicsIndex<PHONICS.length-1){ phonicsIndex++; render(); } }, 1300);
+}
+
+/* ============ EXPRESSIONS LOGIC ============ */
+function answerExpression(i){
+  const e = EXPRESSIONS[expressionsIndex];
+  const fb = document.getElementById('efeedback');
+  e.options.forEach((o,j)=>document.getElementById('ech'+j).classList.remove('correct','wrong'));
+  if(i===e.correct){
+    document.getElementById('ech'+i).classList.add('correct');
+    fb.className='feedback show good'; fb.textContent="That's right! ⭐"; addStar(1);
+  } else {
+    document.getElementById('ech'+i).classList.add('wrong');
+    document.getElementById('ech'+e.correct).classList.add('correct');
+    fb.className='feedback show bad'; fb.textContent="Here's a good reply!";
+  }
+  setTimeout(()=>{ if(expressionsIndex<EXPRESSIONS.length-1){ expressionsIndex++; render(); } }, 1300);
+}
+
+/* ============ STORY LOGIC ============ */
+function nextStoryPage(){
+  if(storyIndex<STORY.length-1){ storyIndex++; render(); }
+}
+function answerStory(i){
+  const s = STORY[storyIndex];
+  const fb = document.getElementById('sfeedback');
+  s.question.options.forEach((o,j)=>document.getElementById('sch'+j).classList.remove('correct','wrong'));
+  if(i===s.question.correct){
+    document.getElementById('sch'+i).classList.add('correct');
+    fb.className='feedback show good'; fb.textContent="Great reading! ⭐"; addStar(1);
+  } else {
+    document.getElementById('sch'+i).classList.add('wrong');
+    document.getElementById('sch'+s.question.correct).classList.add('correct');
+    fb.className='feedback show bad'; fb.textContent="Let's remember together!";
+  }
+  setTimeout(()=>{ if(storyIndex<STORY.length-1){ storyIndex++; render(); } }, 1400);
+}
+
+/* ============ MEMORY MATCH ============ */
+let memCards = [];
+let memFlipped = [];
+let memMatched = [];
+let memLock = false;
+function setupMemory(){
+  const pairs = [{k:'hello',v:'👋'},{k:'bye',v:'🌙'},{k:'thankyou',v:'💛'},{k:'friend',v:'🧑‍🤝‍🧑'}];
+  let deck = [];
+  pairs.forEach(p=>{ deck.push({key:p.k, face:p.k, isWord:true}); deck.push({key:p.k, face:p.v, isWord:false}); });
+  deck = deck.sort(()=>Math.random()-0.5);
+  memCards = deck; memFlipped=[]; memMatched=[]; memLock=false;
+  renderMemory();
+}
+function renderMemory(){
+  const grid = document.getElementById('memoryGrid');
+  if(!grid) return;
+  grid.innerHTML = memCards.map((c,i)=>{
+    const shown = memFlipped.includes(i) || memMatched.includes(i);
+    return `<div class="mem-card ${memMatched.includes(i)?'matched':(shown?'flipped':'')}" onclick="flipMem(${i})">${shown ? (c.isWord? c.key : c.face) : '✨'}</div>`;
+  }).join('');
+}
+function flipMem(i){
+  if(memLock || memFlipped.includes(i) || memMatched.includes(i)) return;
+  memFlipped.push(i);
+  renderMemory();
+  if(memFlipped.length===2){
+    memLock = true;
+    const [a,b] = memFlipped;
+    const fb = document.getElementById('memFeedback');
+    if(memCards[a].key === memCards[b].key){
+      setTimeout(()=>{
+        memMatched.push(a,b); memFlipped=[]; memLock=false;
+        fb.className='feedback show good'; fb.textContent='Match found! ⭐'; addStar(1);
+        renderMemory();
+        if(memMatched.length===memCards.length){ fb.textContent='All matched! Amazing! ⭐⭐'; addStar(2); }
+      }, 500);
+    } else {
+      setTimeout(()=>{
+        memFlipped=[]; memLock=false;
+        fb.className='feedback show bad'; fb.textContent='Not quite — try again!';
+        renderMemory();
+      }, 800);
+    }
+  }
+}
+
+/* ============ BALLOON POP 2 (greeting choice) ============ */
+function setupBalloonPop2(){
+  const field = document.getElementById('balloonField2');
+  if(!field) return;
+  const options = [{t:'Good morning!',ok:true},{t:'Good night!',ok:false},{t:'Goodbye!',ok:false},{t:'Good morning!',ok:true}];
+  field.innerHTML = options.map((o,i)=>`<div class="balloon" style="width:110px;font-size:.95rem;" id="b2-${i}" onclick="popBalloon2(${i}, ${o.ok})">${o.t}</div>`).join('');
+}
+function popBalloon2(i, ok){
+  const el = document.getElementById('b2-'+i);
+  const fb = document.getElementById('balloon2Feedback');
+  if(ok){
+    el.classList.add('gone');
+    fb.className='feedback show good'; fb.textContent="Yes! Good morning! ⭐"; addStar(1);
+  } else {
+    fb.className='feedback show bad'; fb.textContent="Not for morning time — try another!";
+  }
+}
+
+/* ============ REVIEW LOGIC ============ */
+function answerReview(i){
+  const r = REVIEW[reviewIndex];
+  const fb = document.getElementById('rfeedback');
+  r.options.forEach((o,j)=>document.getElementById('rch'+j).classList.remove('correct','wrong'));
+  if(i===r.correct){
+    document.getElementById('rch'+i).classList.add('correct');
+    fb.className='feedback show good'; fb.textContent="Correct! ⭐"; addStar(1); reviewScore++;
+  } else {
+    document.getElementById('rch'+i).classList.add('wrong');
+    document.getElementById('rch'+r.correct).classList.add('correct');
+    fb.className='feedback show bad'; fb.textContent="Good try — here's the answer!";
+  }
+  setTimeout(()=>{ if(reviewIndex<REVIEW.length-1){ reviewIndex++; render(); } }, 1300);
+}
+
+/* ============ CONFETTI ============ */
+function launchConfetti(){
+  const layer = document.getElementById('confetti');
+  layer.innerHTML='';
+  const emojis = ['⭐','🎉','🎈','✨','🏅'];
+  for(let i=0;i<28;i++){
+    const p = document.createElement('div');
+    p.className='confetti-piece';
+    p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left = Math.random()*100+'vw';
+    p.style.animationDuration = (2.5+Math.random()*2)+'s';
+    p.style.animationDelay = (Math.random()*0.6)+'s';
+    layer.appendChild(p);
+  }
+  setTimeout(()=>{ layer.innerHTML=''; }, 5000);
+}
+
+/* ============ INIT ============ */
+render();
+</script>
+</body>
+</html>
