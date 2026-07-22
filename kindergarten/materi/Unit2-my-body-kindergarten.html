@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Unit 2: My Body</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6ED;
+  --sky:#AEE3F5;
+  --sun:#FFE9A8;
+  --pink:#FFC7DA;
+  --green:#BFEAB8;
+  --plum:#4A3B5C;
+  --plum-soft:#7A6B93;
+  --coral:#FF9E7A;
+  --white:#FFFFFF;
+  --purple:#6C63FF;
+  --mint:#00E5C3;
+  --radius-lg:28px;
+  --radius-md:18px;
+  --radius-sm:12px;
+  --shadow:0 10px 30px rgba(74,59,92,0.12);
+  --shadow-sm:0 4px 14px rgba(74,59,92,0.10);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'Nunito',sans-serif;
+  background:var(--cream);
+  color:var(--plum);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Baloo 2',sans-serif;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;}
+.section{
+  max-width:960px;
+  margin:0 auto;
+  padding:56px 20px;
+  scroll-margin-top:80px;
+}
+.section-title{
+  font-size:clamp(26px,4vw,38px);
+  font-weight:800;
+  color:var(--plum);
+  margin:0 0 6px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.section-sub{
+  color:var(--plum-soft);
+  font-size:16px;
+  margin:0 0 28px;
+  font-weight:700;
+}
+.badge-emoji{font-size:1.1em;}
+.card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 28px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:16px;
+  transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow:var(--shadow-sm);
+}
+.btn:active{transform:scale(.96);}
+.btn-primary{background:var(--coral);color:var(--white);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-soft{background:var(--white);color:var(--plum);border:2px solid var(--sky);}
+.btn-sm{padding:10px 18px;font-size:14px;}
+.pill{
+  display:inline-block;padding:6px 16px;border-radius:999px;
+  font-weight:800;font-size:13px;background:var(--sun);color:var(--plum);
+}
+
+/* Nav */
+.topnav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,246,237,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(74,59,92,0.08);
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+}
+.topnav .logo{display:flex;align-items:center;gap:8px;font-family:'Baloo 2';font-weight:800;color:var(--purple);font-size:18px;}
+.topnav .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--mint);}
+.progress-wrap{flex:1;max-width:320px;height:10px;background:#EFE7DC;border-radius:999px;overflow:hidden;}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--purple),var(--mint));width:0%;transition:width .4s ease;}
+.star-count{display:flex;align-items:center;gap:6px;font-weight:800;color:var(--plum);background:var(--sun);padding:6px 14px;border-radius:999px;font-size:14px;white-space:nowrap;}
+
+/* Mascot */
+#lumi{
+  position:fixed;right:18px;bottom:18px;z-index:60;
+  width:74px;height:74px;cursor:pointer;
+  filter:drop-shadow(0 6px 14px rgba(74,59,92,0.25));
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+#lumi.cheer{animation:cheer .6s ease;}
+@keyframes cheer{0%{transform:scale(1) rotate(0);}30%{transform:scale(1.25) rotate(-8deg);}60%{transform:scale(1.25) rotate(8deg);}100%{transform:scale(1) rotate(0);}}
+#lumi-bubble{
+  position:fixed;right:100px;bottom:34px;z-index:60;
+  background:var(--white);border-radius:16px 16px 4px 16px;
+  padding:10px 16px;box-shadow:var(--shadow);font-weight:800;font-size:14px;
+  max-width:220px;opacity:0;transform:translateY(6px);transition:all .25s ease;pointer-events:none;
+}
+#lumi-bubble.show{opacity:1;transform:translateY(0);}
+
+/* Hero */
+.hero{
+  min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:40px 20px;position:relative;overflow:hidden;
+  background:radial-gradient(circle at 20% 20%,var(--sky) 0%,transparent 45%),
+             radial-gradient(circle at 85% 15%,var(--pink) 0%,transparent 40%),
+             radial-gradient(circle at 50% 90%,var(--sun) 0%,transparent 45%),
+             var(--cream);
+}
+.hero .eyebrow{color:var(--purple);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:13px;margin-bottom:10px;}
+.hero h1{font-size:clamp(34px,7vw,64px);margin:0 0 8px;color:var(--plum);}
+.hero .tagline{font-size:18px;font-weight:700;color:var(--plum-soft);margin-bottom:6px;}
+.hero .unit-title{font-size:clamp(20px,3vw,26px);font-weight:800;color:var(--coral);margin:18px 0 30px;}
+.hero-mascot{width:min(220px,42vw);margin:10px auto 30px;animation:float 4s ease-in-out infinite;}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:30px;}
+
+/* Objectives */
+.obj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.obj-card{background:var(--white);border-radius:var(--radius-md);padding:18px 20px;box-shadow:var(--shadow-sm);display:flex;gap:12px;align-items:flex-start;border:2px solid transparent;transition:.2s;}
+.obj-card.done{border-color:var(--green);background:#F3FCF1;}
+.obj-check{width:26px;height:26px;border-radius:50%;border:2px solid var(--green);flex:none;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--green);font-weight:800;cursor:pointer;}
+.obj-card.done .obj-check{background:var(--green);color:#fff;}
+
+/* Warmup */
+.warm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.warm-card{background:var(--white);border-radius:var(--radius-md);padding:20px;box-shadow:var(--shadow-sm);}
+.warm-card .icon{font-size:32px;margin-bottom:8px;}
+.warm-card h3{margin:0 0 6px;font-size:18px;}
+.warm-card p{margin:0;font-size:14px;color:var(--plum-soft);line-height:1.5;}
+.mark-btn{margin-top:12px;}
+
+@keyframes wiggleKF{0%,100%{transform:rotate(0) scale(1);}25%{transform:rotate(-10deg) scale(1.12);}75%{transform:rotate(10deg) scale(1.12);}}
+.wiggle{animation:wiggleKF .5s ease;}
+@keyframes popIn{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.15);opacity:1;}100%{transform:scale(1);}}
+.level-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:999px;font-weight:800;font-size:12px;margin-bottom:12px;}
+.level-pill.l1{background:var(--sky);color:var(--plum);}
+.level-pill.l2{background:linear-gradient(90deg,var(--coral),var(--pink));color:#fff;}
+.challenge-btn{background:linear-gradient(90deg,#6C63FF,#00E5C3);color:#fff;}
+
+@media(max-width:600px){
+  .section{padding:40px 16px;}
+  #lumi-bubble{max-width:160px;right:90px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="logo"><span class="dot"></span> LittleLume <span style="color:var(--mint);font-weight:600;font-size:13px;">English</span></div>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <select onchange="scrollToSection(this.value)" style="border-radius:999px;border:2px solid var(--sky);padding:6px 10px;font-weight:800;font-size:13px;color:var(--plum);background:var(--white);display:none;" id="jumpNav" class="jump-nav">
+    <option value="welcome">Welcome</option>
+    <option value="objectives">Objectives</option>
+    <option value="warmup">Warm-Up</option>
+    <option value="vocabulary">Vocabulary</option>
+    <option value="expressions">Expressions</option>
+    <option value="patterns">Sentence Patterns</option>
+    <option value="grammar">Grammar</option>
+    <option value="alphabet">Alphabet C&D</option>
+    <option value="phonics">Phonics</option>
+    <option value="story">Story Time</option>
+    <option value="chants">Chants</option>
+    <option value="games">Vocabulary Games</option>
+    <option value="speaking">Speaking</option>
+    <option value="pair">Pair Activities</option>
+    <option value="tpr">TPR Games</option>
+    <option value="crafts">Arts & Crafts</option>
+    <option value="sensory">Sensory</option>
+    <option value="digital">More Activities</option>
+    <option value="review">Unit Review</option>
+    <option value="quiz">Final Quiz</option>
+    <option value="teacher">Teacher Notes</option>
+  </select>
+  <div class="star-count">⭐ <span id="starCount">0</span></div>
+</div>
+<style>@media(min-width:700px){.jump-nav{display:inline-block !important;}}</style>
+
+<img id="lumi" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 61,38 96,38 68,59 79,92 50,72 21,92 32,59 4,38 39,38' fill='%23FFE9A8' stroke='%236C63FF' stroke-width='3' stroke-linejoin='round'/><circle cx='40' cy='45' r='4' fill='%234A3B5C'/><circle cx='62' cy='45' r='4' fill='%234A3B5C'/><path d='M38 58 Q50 68 64 58' stroke='%234A3B5C' stroke-width='3' fill='none' stroke-linecap='round'/></svg>" alt="Lumi the star mascot" onclick="lumiSay('You are doing great! ⭐')">
+<div id="lumi-bubble"></div>
+
+<!-- WELCOME -->
+<section class="section hero" id="welcome">
+  <div class="eyebrow">LittleLume English · Pre-K / TK Track</div>
+  <img class="hero-mascot" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 61,38 96,38 68,59 79,92 50,72 21,92 32,59 4,38 39,38' fill='%23FFC7DA' stroke='%236C63FF' stroke-width='3' stroke-linejoin='round'/><circle cx='40' cy='45' r='4' fill='%234A3B5C'/><circle cx='62' cy='45' r='4' fill='%234A3B5C'/><path d='M38 58 Q50 68 64 58' stroke='%234A3B5C' stroke-width='3' fill='none' stroke-linecap='round'/></svg>" alt="">
+  <h1>My Body</h1>
+  <div class="tagline">Learn • Play • Shine</div>
+  <div class="unit-title">Unit 2 — Semester 1 — Meetings 3 &amp; 4</div>
+  <div class="hero-meta">
+    <span class="pill">🔤 Letters C &amp; D</span>
+    <span class="pill">🧠 Age 4–6</span>
+    <span class="pill">⏱ 60–90 min</span>
+  </div>
+  <button class="btn btn-primary" onclick="scrollToSection('objectives')">Let's Start! 🚀</button>
+</section>
+
+<!-- OBJECTIVES -->
+<section class="section" id="objectives">
+  <h2 class="section-title"><span class="badge-emoji">🎯</span> What We Will Learn</h2>
+  <p class="section-sub">Tap a goal when you feel ready for it!</p>
+  <div class="obj-grid" id="objGrid">
+    <div class="obj-card" data-obj="1"><div class="obj-check" onclick="toggleObj(this)">✓</div><div>Name my body parts</div></div>
+    <div class="obj-card" data-obj="2"><div class="obj-check" onclick="toggleObj(this)">✓</div><div>Say "This is my..." and "I have two..."</div></div>
+    <div class="obj-card" data-obj="3"><div class="obj-check" onclick="toggleObj(this)">✓</div><div>Follow "Touch your..." instructions</div></div>
+    <div class="obj-card" data-obj="4"><div class="obj-check" onclick="toggleObj(this)">✓</div><div>Recognize letters C and D</div></div>
+    <div class="obj-card" data-obj="5"><div class="obj-check" onclick="toggleObj(this)">✓</div><div>Hear the /c/ and /d/ sounds</div></div>
+  </div>
+</section>
+
+<!-- WARM UP -->
+<section class="section" id="warmup">
+  <h2 class="section-title"><span class="badge-emoji">🔥</span> Warm-Up</h2>
+  <p class="section-sub">Teacher-led circle time — 5–8 minutes</p>
+  <div class="warm-grid">
+    <div class="warm-card"><div class="icon">👋</div><h3>Greeting Circle</h3><p>Sit in a circle. Sing hello to each friend by name. "Hello, hello, how are you?"</p></div>
+    <div class="warm-card"><div class="icon">🕺</div><h3>Body Movement Chant</h3><p>Stand up and shake arms, legs, and heads while chanting simple body words.</p></div>
+    <div class="warm-card"><div class="icon">🪞</div><h3>Mirror Movement</h3><p>Teacher moves a body part, children copy like a mirror. Switch leader after a while.</p></div>
+    <div class="warm-card"><div class="icon">🎧</div><h3>Teacher Says</h3><p>Only follow instructions that start with "Teacher says..." — a warm-up version of Simon Says.</p></div>
+    <div class="warm-card"><div class="icon">❓</div><h3>Guess the Body Part</h3><p>Teacher describes a body part ("I help you smell flowers") — children guess and point.</p></div>
+    <div class="warm-card"><div class="icon">🖼️</div><h3>Poster Discussion</h3><p>Show the big body poster. Ask "What do you see?" and let children point and name freely.</p></div>
+  </div>
+</section>
+<!-- VOCABULARY -->
+<section class="section" id="vocabulary">
+  <h2 class="section-title"><span class="badge-emoji">📚</span> Vocabulary: My Body</h2>
+  <p class="section-sub">Tap to hear it, then repeat after Lumi!</p>
+  <div class="card" style="text-align:center;">
+    <div id="vocEmoji" style="font-size:90px;margin-bottom:6px;">👤</div>
+    <div id="vocWord" style="font-family:'Baloo 2';font-size:34px;font-weight:800;color:var(--plum);">body</div>
+    <div id="vocSentence" style="color:var(--plum-soft);font-weight:700;margin:8px 0 18px;">"This is my body."</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="speak(vocab[vocIdx].word);wiggle(document.getElementById('vocEmoji'))">🔊 Listen</button>
+      <button class="btn btn-soft" onclick="repeatAfterMe()">🔁 Repeat After Me</button>
+    </div>
+    <div style="margin-top:22px;display:flex;justify-content:space-between;align-items:center;">
+      <button class="btn btn-soft btn-sm" onclick="vocNav(-1)">⬅ Back</button>
+      <span id="vocPos" style="font-weight:800;color:var(--plum-soft);font-size:13px;">1 / 17</span>
+      <button class="btn btn-soft btn-sm" onclick="vocNav(1)">Next ➡</button>
+    </div>
+  </div>
+</section>
+
+<!-- EXPRESSIONS -->
+<section class="section" id="expressions">
+  <h2 class="section-title"><span class="badge-emoji">💬</span> Useful Expressions</h2>
+  <p class="section-sub">Words we use during class</p>
+  <div class="warm-grid">
+    <div class="warm-card"><div class="icon">👉</div><h3>Touch your...</h3><p>"Touch your nose!" — used to give TPR instructions.</p><button class="btn btn-soft btn-sm" onclick="speak('Touch your nose!')">🔊 Listen</button></div>
+    <div class="warm-card"><div class="icon">🙌</div><h3>Show me your...</h3><p>"Show me your hands!" — asking children to point or lift.</p><button class="btn btn-soft btn-sm" onclick="speak('Show me your hands!')">🔊 Listen</button></div>
+    <div class="warm-card"><div class="icon">😣</div><h3>Ouch!</h3><p>Used when something hurts a little — a fun reaction word.</p><button class="btn btn-soft btn-sm" onclick="speak('Ouch!')">🔊 Listen</button></div>
+    <div class="warm-card"><div class="icon">👋</div><h3>Let's wiggle our fingers!</h3><p>An invitation to start a movement activity together.</p><button class="btn btn-soft btn-sm" onclick="speak('Let us wiggle our fingers!')">🔊 Listen</button></div>
+  </div>
+</section>
+
+<!-- SENTENCE PATTERNS -->
+<section class="section" id="patterns">
+  <h2 class="section-title"><span class="badge-emoji">🧩</span> Let's Make Sentences</h2>
+  <p class="section-sub">Tap the correct word to finish the sentence</p>
+  <div class="card">
+    <div style="text-align:center;"><span class="level-pill l1" id="patternLevelPill">🌱 Level 1</span></div>
+    <div id="patternSentence" style="font-family:'Baloo 2';font-size:24px;font-weight:700;text-align:center;margin-bottom:20px;">This is my ___.</div>
+    <div id="patternChoices" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"></div>
+    <div id="patternFeedback" style="text-align:center;margin-top:16px;font-weight:800;min-height:24px;"></div>
+    <div style="text-align:center;margin-top:10px;">
+      <button class="btn btn-soft btn-sm" onclick="nextPattern()">Next Sentence ➡</button>
+    </div>
+  </div>
+</section>
+
+<!-- GRAMMAR FOCUS -->
+<section class="section" id="grammar">
+  <h2 class="section-title"><span class="badge-emoji">🌈</span> Grammar Focus</h2>
+  <p class="section-sub">Simple patterns, explained with color</p>
+  <div class="warm-grid">
+    <div class="warm-card">
+      <h3>"This is my..." <span style="color:var(--plum-soft);font-weight:600;font-size:13px;">(one thing)</span></h3>
+      <p><span style="background:var(--sky);padding:2px 8px;border-radius:8px;font-weight:800;">This is my</span> <span style="background:var(--sun);padding:2px 8px;border-radius:8px;font-weight:800;">nose</span>.</p>
+    </div>
+    <div class="warm-card">
+      <h3>"I have two..." <span style="color:var(--plum-soft);font-weight:600;font-size:13px;">(more than one)</span></h3>
+      <p><span style="background:var(--pink);padding:2px 8px;border-radius:8px;font-weight:800;">I have two</span> <span style="background:var(--green);padding:2px 8px;border-radius:8px;font-weight:800;">hands</span>.</p>
+    </div>
+    <div class="warm-card">
+      <h3>Singular vs Plural</h3>
+      <p>one nose, one mouth <br>→ <b>two eyes</b>, <b>two ears</b>, <b>ten fingers</b></p>
+    </div>
+    <div class="warm-card">
+      <h3>Possessive: my</h3>
+      <p>"My" shows it belongs to <b>me</b>. "This is <u>my</u> head."</p>
+    </div>
+  </div>
+</section>
+<!-- ALPHABET -->
+<section class="section" id="alphabet">
+  <h2 class="section-title"><span class="badge-emoji">🔤</span> Alphabet: C &amp; D</h2>
+  <p class="section-sub">Trace with your finger or mouse, then say the sound!</p>
+  <div class="warm-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
+    <div class="card" style="text-align:center;">
+      <div style="font-family:'Baloo 2';font-size:64px;font-weight:800;color:var(--coral);">C c</div>
+      <div style="font-weight:800;color:var(--plum-soft);margin-bottom:10px;">sounds like /c/ as in...</div>
+      <canvas id="traceC" width="220" height="140" style="border:3px dashed var(--sky);border-radius:16px;touch-action:none;cursor:crosshair;"></canvas>
+      <div><button class="btn btn-soft btn-sm" onclick="clearTrace('traceC')" style="margin-top:10px;">Clear &amp; Retry</button></div>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
+        <span class="pill" onclick="speak('cat')" style="cursor:pointer;">🐱 cat</span>
+        <span class="pill" onclick="speak('car')" style="cursor:pointer;">🚗 car</span>
+        <span class="pill" onclick="speak('cup')" style="cursor:pointer;">☕ cup</span>
+        <span class="pill" onclick="speak('cake')" style="cursor:pointer;">🎂 cake</span>
+      </div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-family:'Baloo 2';font-size:64px;font-weight:800;color:var(--purple);">D d</div>
+      <div style="font-weight:800;color:var(--plum-soft);margin-bottom:10px;">sounds like /d/ as in...</div>
+      <canvas id="traceD" width="220" height="140" style="border:3px dashed var(--pink);border-radius:16px;touch-action:none;cursor:crosshair;"></canvas>
+      <div><button class="btn btn-soft btn-sm" onclick="clearTrace('traceD')" style="margin-top:10px;">Clear &amp; Retry</button></div>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
+        <span class="pill" onclick="speak('dog')" style="cursor:pointer;">🐶 dog</span>
+        <span class="pill" onclick="speak('duck')" style="cursor:pointer;">🦆 duck</span>
+        <span class="pill" onclick="speak('door')" style="cursor:pointer;">🚪 door</span>
+        <span class="pill" onclick="speak('drum')" style="cursor:pointer;">🥁 drum</span>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px;">
+    <h3 style="margin-top:0;">🕵️ Letter Hunt &amp; Sort</h3>
+    <p class="section-sub" style="margin-bottom:14px;">Tap each picture, then drop it under C or D!</p>
+    <div id="letterHuntPool" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:18px;"></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:140px;background:#FFF1E9;border-radius:16px;padding:14px;text-align:center;">
+        <div style="font-weight:800;font-size:20px;color:var(--coral);">C</div>
+        <div id="dropC" style="min-height:60px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;"></div>
+      </div>
+      <div style="flex:1;min-width:140px;background:#F1EEFF;border-radius:16px;padding:14px;text-align:center;">
+        <div style="font-weight:800;font-size:20px;color:var(--purple);">D</div>
+        <div id="dropD" style="min-height:60px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;"></div>
+      </div>
+    </div>
+    <div id="huntFeedback" style="text-align:center;margin-top:12px;font-weight:800;min-height:22px;"></div>
+  </div>
+</section>
+
+<!-- PHONICS -->
+<section class="section" id="phonics">
+  <h2 class="section-title"><span class="badge-emoji">🔊</span> Phonics Challenge</h2>
+  <p class="section-sub">Listen to the word, then choose the letter it starts with</p>
+  <div class="card" style="text-align:center;">
+    <span class="level-pill l1" id="phonicsLevelPill">🌱 Level 1</span><br>
+    <button class="btn btn-primary" id="phonicsPlayBtn" onclick="playPhonics()">🔊 Play Word</button>
+    <div style="display:flex;gap:20px;justify-content:center;margin-top:22px;">
+      <button class="btn btn-soft" style="font-size:28px;font-family:'Baloo 2';width:80px;" onclick="choosePhonics('C')">C</button>
+      <button class="btn btn-soft" style="font-size:28px;font-family:'Baloo 2';width:80px;" onclick="choosePhonics('D')">D</button>
+    </div>
+    <div id="phonicsFeedback" style="margin-top:16px;font-weight:800;min-height:24px;"></div>
+    <div style="margin-top:8px;color:var(--plum-soft);font-weight:700;font-size:13px;" id="phonicsScore">Score: 0 / 0</div>
+  </div>
+</section>
+<!-- STORY TIME -->
+<section class="section" id="story">
+  <h2 class="section-title"><span class="badge-emoji">📖</span> Story Time: "My Amazing Body"</h2>
+  <p class="section-sub">Tap the correct picture to answer Mia's question!</p>
+  <div class="card" style="text-align:center;">
+    <div id="storyEmoji" style="font-size:80px;"></div>
+    <div id="storyText" style="font-family:'Baloo 2';font-size:22px;font-weight:700;margin:14px 0;"></div>
+    <div id="storyQuestion" style="color:var(--coral);font-weight:800;margin-bottom:14px;min-height:22px;"></div>
+    <div id="storyChoices" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;min-height:60px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px;">
+      <button class="btn btn-soft btn-sm" onclick="storyNav(-1)">⬅ Back</button>
+      <span id="storyPos" style="font-weight:800;color:var(--plum-soft);font-size:13px;">Page 1 / 9</span>
+      <button class="btn btn-soft btn-sm" onclick="storyNav(1)">Next ➡</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHANTS -->
+<section class="section" id="chants">
+  <h2 class="section-title"><span class="badge-emoji">🎵</span> Chants</h2>
+  <p class="section-sub">Say it with rhythm and actions — no singing needed!</p>
+  <div class="warm-grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
+    <div class="card">
+      <h3 style="margin-top:0;">Chant 1 — Head, Shoulders, Knees and Toes</h3>
+      <div id="chant1Lines" style="line-height:2;font-weight:700;"></div>
+      <button class="btn btn-soft btn-sm" onclick="playChant('chant1')">▶ Play Line by Line</button>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Chant 2 — Where Is Your Nose?</h3>
+      <div id="chant2Lines" style="line-height:2;font-weight:700;"></div>
+      <button class="btn btn-soft btn-sm" onclick="playChant('chant2')">▶ Play Line by Line</button>
+    </div>
+  </div>
+</section>
+<!-- VOCABULARY GAMES -->
+<section class="section" id="games">
+  <h2 class="section-title"><span class="badge-emoji">🎮</span> Vocabulary Games</h2>
+  <p class="section-sub">Three fun ways to practice the words you learned</p>
+
+  <div class="card" style="margin-bottom:18px;">
+    <h3 style="margin-top:0;">✨ Magic Vocabulary Box</h3>
+    <p class="section-sub" style="margin-bottom:14px;">Tap the box to reveal a mystery body part — say it out loud!</p>
+    <div style="text-align:center;">
+      <div id="magicBox" onclick="openMagicBox()" style="width:120px;height:120px;background:linear-gradient(135deg,var(--sun),var(--pink));border-radius:24px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:48px;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s;">🎁</div>
+      <div id="magicReveal" style="margin-top:14px;font-family:'Baloo 2';font-size:22px;font-weight:800;min-height:30px;"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;">
+    <h3 style="margin-top:0;">🧠 Memory Matching</h3>
+    <p class="section-sub" style="margin-bottom:14px;">Flip two cards. Find the picture and its word!</p>
+    <div style="text-align:center;"><span class="level-pill l1" id="memoryLevelPill">🌱 Level 1 · 4 pairs</span></div>
+    <div id="memoryGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:420px;margin:0 auto;"></div>
+    <div id="memoryFeedback" style="text-align:center;margin-top:12px;font-weight:800;min-height:22px;"></div>
+    <div id="memoryChallengeBtnWrap" style="text-align:center;margin-top:10px;"></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">👆 Find My Body Part</h3>
+    <p class="section-sub" style="margin-bottom:14px;">Lumi will call out a body part. Tap it on the picture!</p>
+    <div style="text-align:center;"><span class="level-pill l1" id="findLevelPill">🌱 Level 1</span></div>
+    <div style="text-align:center;font-weight:800;color:var(--coral);margin-bottom:6px;" id="findPrompt">Tap "Start" to begin</div>
+    <div style="text-align:center;font-weight:800;color:var(--purple);margin-bottom:10px;min-height:20px;" id="findTimer"></div>
+    <div style="position:relative;width:220px;margin:0 auto;">
+      <div style="font-size:160px;text-align:center;line-height:1;">🧍</div>
+      <button class="hotspot" data-part="head" onclick="checkFind('head',this)" style="position:absolute;top:2%;left:38%;width:34px;height:34px;border-radius:50%;background:rgba(174,227,245,.6);border:2px solid var(--sky);"></button>
+      <button class="hotspot" data-part="hands" onclick="checkFind('hands',this)" style="position:absolute;top:45%;left:5%;width:30px;height:30px;border-radius:50%;background:rgba(255,199,218,.6);border:2px solid var(--pink);"></button>
+      <button class="hotspot" data-part="hands2" onclick="checkFind('hands',this)" style="position:absolute;top:45%;right:5%;width:30px;height:30px;border-radius:50%;background:rgba(255,199,218,.6);border:2px solid var(--pink);"></button>
+      <button class="hotspot" data-part="feet" onclick="checkFind('feet',this)" style="position:absolute;bottom:0%;left:28%;width:30px;height:30px;border-radius:50%;background:rgba(191,234,184,.6);border:2px solid var(--green);"></button>
+      <button class="hotspot" data-part="tummy" onclick="checkFind('tummy',this)" style="position:absolute;top:55%;left:42%;width:34px;height:34px;border-radius:50%;background:rgba(255,233,168,.6);border:2px solid var(--sun);"></button>
+    </div>
+    <div style="text-align:center;margin-top:12px;"><button class="btn btn-soft btn-sm" onclick="startFindGame()">▶ Start</button></div>
+  </div>
+</section>
+<!-- SPEAKING ACTIVITIES -->
+<section class="section" id="speaking">
+  <h2 class="section-title"><span class="badge-emoji">🎤</span> Speaking Activities</h2>
+  <div class="card" style="margin-bottom:18px;text-align:center;">
+    <h3 style="margin-top:0;">🎡 Spin &amp; Speak</h3>
+    <p class="section-sub">Spin the wheel and say the sentence out loud!</p>
+    <div id="wheelWord" style="font-family:'Baloo 2';font-size:26px;font-weight:800;color:var(--purple);margin:14px 0;">tap spin!</div>
+    <button class="btn btn-primary" onclick="spinWheel()">🎡 Spin</button>
+  </div>
+  <div class="warm-grid">
+    <div class="warm-card"><div class="icon">🙋</div><h3>Show and Tell</h3><p>Click a body part card above, then say one full sentence about it to your teacher or friend.</p></div>
+    <div class="warm-card"><div class="icon">🪞</div><h3>Mirror Talk</h3><p>Stand in front of a real or pretend mirror. Point to yourself and say each sentence with confidence.</p></div>
+  </div>
+</section>
+
+<!-- PAIR ACTIVITIES -->
+<section class="section" id="pair">
+  <h2 class="section-title"><span class="badge-emoji">🤝</span> Pair Activities</h2>
+  <p class="section-sub">Practice with a friend (in class or with family at home)</p>
+  <div class="warm-grid">
+    <div class="warm-card"><div class="icon">🗣️</div><h3>Ask &amp; Answer</h3><p>Friend A: "Show me your nose." Friend B points and says: "This is my nose."</p></div>
+    <div class="warm-card"><div class="icon">🖼️</div><h3>Picture Matching</h3><p>Each pair gets picture cards. Take turns naming the body part on the card.</p></div>
+    <div class="warm-card"><div class="icon">🏁</div><h3>Body-Part Race</h3><p>Teacher calls a body part — the first pair to touch it together wins a point!</p></div>
+  </div>
+</section>
+
+<!-- TPR MOVEMENT GAMES -->
+<section class="section" id="tpr">
+  <h2 class="section-title"><span class="badge-emoji">🏃</span> TPR Movement Games</h2>
+  <div class="card" style="margin-bottom:18px;text-align:center;">
+    <h3 style="margin-top:0;">🎯 Simon Says Generator</h3>
+    <p class="section-sub">Tap Generate, then act it out!</p>
+    <div id="simonCmd" style="font-family:'Baloo 2';font-size:24px;font-weight:800;color:var(--coral);min-height:34px;margin:10px 0;">Ready?</div>
+    <button class="btn btn-primary" onclick="generateSimon()">🎲 Generate Command</button>
+  </div>
+  <div class="warm-grid">
+    <div class="warm-card"><div class="icon">💃</div><h3>Body Dance</h3><p>Play music, freely dance and name each body part as you move it.</p></div>
+    <div class="warm-card"><div class="icon">🤸</div><h3>Touch and Jump</h3><p>Touch the named body part, then jump once. Repeat with different parts.</p></div>
+    <div class="warm-card"><div class="icon">🧊</div><h3>Freeze Dance</h3><p>Dance until the music stops, then freeze and hold the last body part touched.</p></div>
+    <div class="warm-card"><div class="icon">🔤</div><h3>Alphabet Adventure</h3><p>Move like a cat when you hear "C", move like a duck when you hear "D".</p></div>
+    <div class="warm-card"><div class="icon">🚧</div><h3>Body Part Obstacle Challenge</h3><p>Set up simple stations: crawl (hands+knees), hop (feet), reach (arms) — name the part at each station.</p></div>
+  </div>
+</section>
+<!-- ARTS & CRAFTS -->
+<section class="section" id="crafts">
+  <h2 class="section-title"><span class="badge-emoji">🎨</span> Arts &amp; Crafts: Build-a-Person</h2>
+  <p class="section-sub">Drag each part onto the body outline to build your character!</p>
+  <div class="card">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+      <div style="position:relative;width:200px;height:260px;background:#FBF7F1;border-radius:20px;border:2px dashed var(--sky);">
+        <div class="dropzone" data-need="head" style="position:absolute;top:6%;left:35%;width:60px;height:60px;border:2px dashed var(--plum-soft);border-radius:50%;"></div>
+        <div class="dropzone" data-need="tummy" style="position:absolute;top:38%;left:30%;width:70px;height:70px;border:2px dashed var(--plum-soft);border-radius:16px;"></div>
+        <div class="dropzone" data-need="arms" style="position:absolute;top:40%;left:2%;width:26px;height:70px;border:2px dashed var(--plum-soft);border-radius:12px;"></div>
+        <div class="dropzone" data-need="legs" style="position:absolute;bottom:2%;left:32%;width:60px;height:60px;border:2px dashed var(--plum-soft);border-radius:12px;"></div>
+      </div>
+      <div id="craftPieces" style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+        <div class="craft-piece" draggable="true" data-part="head" style="font-size:38px;cursor:grab;">😀</div>
+        <div class="craft-piece" draggable="true" data-part="tummy" style="font-size:38px;cursor:grab;">🟨</div>
+        <div class="craft-piece" draggable="true" data-part="arms" style="font-size:38px;cursor:grab;">💪</div>
+        <div class="craft-piece" draggable="true" data-part="legs" style="font-size:38px;cursor:grab;">🦵</div>
+      </div>
+    </div>
+    <div id="craftFeedback" style="text-align:center;margin-top:14px;font-weight:800;min-height:22px;"></div>
+    <p style="text-align:center;color:var(--plum-soft);font-size:13px;font-weight:700;">📱 On touch devices, tap a piece then tap its dashed spot.</p>
+  </div>
+</section>
+
+<!-- SENSORY -->
+<section class="section" id="sensory">
+  <h2 class="section-title"><span class="badge-emoji">✋</span> Sensory Activities</h2>
+  <p class="section-sub">Hands-on classroom activities (best done in person)</p>
+  <div class="warm-grid">
+    <div class="warm-card"><div class="icon">🧵</div><h3>Texture Matching</h3><p>Match soft and hard objects to the body parts they remind you of (soft = hair, hard = teeth).</p></div>
+    <div class="warm-card"><div class="icon">🖐️</div><h3>Playdough Body Parts</h3><p>Shape playdough into eyes, nose, and mouth on a paper-plate face.</p></div>
+    <div class="warm-card"><div class="icon">🎧</div><h3>Listen and Point</h3><p>Close eyes, listen to a body-part word, then point to it on yourself.</p></div>
+  </div>
+</section>
+<!-- INTERACTIVE DIGITAL ACTIVITIES -->
+<section class="section" id="digital">
+  <h2 class="section-title"><span class="badge-emoji">💻</span> More Interactive Activities</h2>
+  <p class="section-sub">Word-picture matching, listening, and alphabet games are already covered above (Vocabulary Games, Phonics, Alphabet). Here are two more!</p>
+
+  <div class="card" style="margin-bottom:18px;">
+    <h3 style="margin-top:0;">🔍 Spot the Difference</h3>
+    <p class="section-sub" style="margin-bottom:14px;">Two friends look almost the same. Find 3 differences and tap them!</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <div style="position:relative;font-size:100px;">🙂<span class="diff-dot" data-id="1" onclick="foundDiff(this)" style="position:absolute;top:5px;right:10px;width:22px;height:22px;border-radius:50%;background:transparent;cursor:pointer;"></span></div>
+      <div style="position:relative;font-size:100px;">😊<span class="diff-dot" data-id="2" onclick="foundDiff(this)" style="position:absolute;bottom:10px;left:15px;width:22px;height:22px;border-radius:50%;background:transparent;cursor:pointer;"></span></div>
+    </div>
+    <div style="text-align:center;margin-top:10px;color:var(--plum-soft);font-weight:700;font-size:13px;">Hint: eyes and mouth look a little different 👀</div>
+    <div id="diffFeedback" style="text-align:center;margin-top:8px;font-weight:800;min-height:20px;"></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">🧭 Body Part Maze</h3>
+    <p class="section-sub" style="margin-bottom:14px;">Help Lumi reach the ⭐ by tapping the arrows!</p>
+    <div style="text-align:center;">
+      <div id="mazeGrid" style="display:inline-grid;grid-template-columns:repeat(4,44px);grid-template-rows:repeat(4,44px);gap:4px;"></div>
+      <div style="margin-top:12px;">
+        <button class="btn btn-soft btn-sm" onclick="mazeMove(0,-1)">⬆</button><br>
+        <button class="btn btn-soft btn-sm" onclick="mazeMove(-1,0)">⬅</button>
+        <button class="btn btn-soft btn-sm" onclick="mazeMove(1,0)">➡</button><br>
+        <button class="btn btn-soft btn-sm" onclick="mazeMove(0,1)">⬇</button>
+      </div>
+      <div id="mazeFeedback" style="margin-top:10px;font-weight:800;min-height:22px;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- UNIT REVIEW -->
+<section class="section" id="review">
+  <h2 class="section-title"><span class="badge-emoji">🔁</span> Unit Review</h2>
+  <p class="section-sub">Everything we covered in Unit 2</p>
+  <div class="obj-grid">
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Vocabulary — 17 body words</div></div>
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Grammar — "This is my...", "I have two..."</div></div>
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Alphabet — Letters C &amp; D</div></div>
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Phonics — /c/ and /d/ sounds</div></div>
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Speaking — sentences about my body</div></div>
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Listening — following instructions</div></div>
+    <div class="obj-card done"><div class="obj-check">✓</div><div>Movement — TPR games</div></div>
+  </div>
+</section>
+<!-- FINAL QUIZ -->
+<section class="section" id="quiz">
+  <h2 class="section-title"><span class="badge-emoji">🏆</span> Final Quiz</h2>
+  <p class="section-sub">20 questions — do your best!</p>
+  <div class="card" id="quizCard">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <span class="pill" id="quizPos">Question 1 / 20</span>
+      <span class="pill" id="quizScorePill">Score: 0</span>
+    </div>
+    <div id="quizPromptEmoji" style="font-size:60px;text-align:center;"></div>
+    <div id="quizPrompt" style="font-family:'Baloo 2';font-size:22px;font-weight:800;text-align:center;margin:10px 0 18px;"></div>
+    <div id="quizChoices" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;"></div>
+    <div id="quizFeedback" style="text-align:center;margin-top:14px;font-weight:800;min-height:24px;"></div>
+  </div>
+</section>
+
+<!-- REWARD -->
+<section class="section" id="reward" style="display:none;text-align:center;">
+  <div class="card" style="max-width:600px;margin:0 auto;">
+    <div id="starsRow" style="font-size:44px;margin-bottom:10px;">⭐⭐⭐⭐⭐</div>
+    <h2 style="margin:6px 0;">Excellent Job!</h2>
+    <div style="font-size:60px;margin:14px 0;">🏅</div>
+    <div style="border:3px dashed var(--sun);border-radius:20px;padding:24px;background:#FFFBF2;">
+      <div style="font-family:'Baloo 2';font-size:14px;letter-spacing:.1em;color:var(--plum-soft);text-transform:uppercase;">Certificate of Achievement</div>
+      <div style="font-family:'Baloo 2';font-size:26px;font-weight:800;margin:12px 0;">"I Can Talk About My Body!"</div>
+      <input id="certName" placeholder="Type your name" style="text-align:center;font-family:'Baloo 2';font-size:18px;padding:10px 16px;border-radius:12px;border:2px solid var(--sky);margin-bottom:10px;width:70%;max-width:280px;">
+      <div style="color:var(--plum-soft);font-weight:700;font-size:13px;">LittleLume English · Unit 2 · My Body</div>
+    </div>
+    <button class="btn btn-primary" style="margin-top:20px;" onclick="fireConfetti()">🎉 Celebrate!</button>
+  </div>
+
+  <div class="card" style="max-width:600px;margin:24px auto 0;text-align:left;">
+    <h3 style="margin-top:0;text-align:center;">🧑‍🏫 Teacher Mini Assessment</h3>
+    <p class="section-sub" style="text-align:center;margin-bottom:16px;">Auto-generated from this session — use as a quick reference, not a formal score.</p>
+    <div id="assessmentBox" style="display:grid;gap:10px;"></div>
+  </div>
+
+  <div id="confettiLayer" style="position:fixed;inset:0;pointer-events:none;z-index:70;"></div>
+</section>
+
+<!-- TEACHER NOTES -->
+<section class="section" id="teacher">
+  <h2 class="section-title"><span class="badge-emoji">🧑‍🏫</span> Teacher Notes</h2>
+  <div class="warm-grid">
+    <div class="warm-card"><h3>Preparation</h3><p>Review vocabulary flow, test audio/speaker volume, prepare open floor space for TPR games.</p></div>
+    <div class="warm-card"><h3>Materials</h3><p>Device/projector, speaker, optional printed flashcards, playdough, paper plates for sensory activity.</p></div>
+    <div class="warm-card"><h3>Classroom Management</h3><p>Keep TPR games under 3 minutes each. Use a calm-down chant to transition back to sitting.</p></div>
+    <div class="warm-card"><h3>Differentiation</h3><p>Fast finishers: let them lead Simon Says or Show &amp; Tell. Struggling learners: pair with a buddy, allow pointing before speaking.</p></div>
+    <div class="warm-card"><h3>Home Practice</h3><p>Ask families to play "Touch your..." at home during bath time or getting dressed.</p></div>
+  </div>
+</section>
+
+<script>
+/* ================= DATA ================= */
+const vocab = [
+  {word:"head",emoji:"🗣️",sentence:"This is my head."},
+  {word:"hair",emoji:"💇",sentence:"This is my hair."},
+  {word:"eyes",emoji:"👀",sentence:"I have two eyes."},
+  {word:"ears",emoji:"👂",sentence:"I have two ears."},
+  {word:"nose",emoji:"👃",sentence:"This is my nose."},
+  {word:"mouth",emoji:"👄",sentence:"This is my mouth."},
+  {word:"teeth",emoji:"🦷",sentence:"These are my teeth."},
+  {word:"hands",emoji:"✋",sentence:"I have two hands."},
+  {word:"fingers",emoji:"🖐️",sentence:"I have ten fingers."},
+  {word:"arms",emoji:"💪",sentence:"I have two arms."},
+  {word:"legs",emoji:"🦵",sentence:"I have two legs."},
+  {word:"feet",emoji:"🦶",sentence:"I have two feet."},
+  {word:"toes",emoji:"🦶",sentence:"I have ten toes."},
+  {word:"tummy",emoji:"🫃",sentence:"This is my tummy."},
+  {word:"shoulders",emoji:"🤷",sentence:"I have two shoulders."},
+  {word:"knees",emoji:"🦵",sentence:"I have two knees."},
+  {word:"face",emoji:"😊",sentence:"This is my face."},
+];
+let vocIdx=0;
+
+const patterns=[
+  {sentence:"This is my ___.",choices:["nose","cat","car"],answer:"nose"},
+  {sentence:"I have two ___.",choices:["hands","hand","nose"],answer:"hands"},
+  {sentence:"Touch your ___.",choices:["ears","car","duck"],answer:"ears"},
+  {sentence:"This is my ___.",choices:["tummy","cake","door"],answer:"tummy"},
+  {sentence:"I have ten ___.",choices:["fingers","finger","face"],answer:"fingers"},
+];
+const patternsChallenge=[
+  {sentence:"I have two ___, not one.",choices:["shoulders","shoulder","shoulders and shoulder"],answer:"shoulders"},
+  {sentence:"This is my ___, not my hand.",choices:["elbow? No — arm","arm","legs"],answer:"arm"},
+  {sentence:"___ your knees, please.",choices:["Touch","Touches","Touching"],answer:"Touch"},
+  {sentence:"I have two eyes and two ___.",choices:["ears","ear","nose"],answer:"ears"},
+  {sentence:"This is ___ face (not yours).",choices:["my","I","me"],answer:"my"},
+];
+let patternIdx=0;
+let patternRound=0;
+
+const letterHuntItems=[
+  {word:"cat",emoji:"🐱",letter:"C"},{word:"dog",emoji:"🐶",letter:"D"},
+  {word:"car",emoji:"🚗",letter:"C"},{word:"duck",emoji:"🦆",letter:"D"},
+  {word:"cup",emoji:"☕",letter:"C"},{word:"drum",emoji:"🥁",letter:"D"},
+];
+let huntSorted=0;
+
+const phonicsItems=[
+  {word:"cat",letter:"C"},{word:"dog",letter:"D"},{word:"cake",letter:"C"},
+  {word:"duck",letter:"D"},{word:"cup",letter:"C"},{word:"door",letter:"D"},
+];
+const phonicsChallenge=[
+  {word:"crab",letter:"C"},{word:"drum",letter:"D"},{word:"clock",letter:"C"},
+  {word:"dress",letter:"D"},{word:"crayon",letter:"C"},{word:"dolphin",letter:"D"},
+];
+let phonicsScore=0, phonicsTotal=0, phonicsCurrent=null;
+
+const story=[
+  {emoji:"🙋‍♀️",text:'Meet Mia. Mia has an amazing body!',question:""},
+  {emoji:"👀",text:'"Where is Mia\'s nose?" asked her friend.',question:"Tap the nose!",choices:[{e:"👃",correct:true},{e:"👂",correct:false}]},
+  {emoji:"😊",text:'"Here is my nose!" said Mia.',question:""},
+  {emoji:"🙋",text:'"Where are Mia\'s hands?" asked her friend.',question:"Tap the hands!",choices:[{e:"✋",correct:true},{e:"🦶",correct:false}]},
+  {emoji:"👋",text:'"Here are my hands!" said Mia, waving.',question:""},
+  {emoji:"🦶",text:'"Where are Mia\'s feet?" asked her friend.',question:"Tap the feet!",choices:[{e:"🦶",correct:true},{e:"👁️",correct:false}]},
+  {emoji:"🕺",text:'"Here are my feet! I can jump and dance!" said Mia.',question:""},
+  {emoji:"🥰",text:'Mia loves her amazing body, and so do we!',question:""},
+  {emoji:"⭐",text:'The End. Great job reading with Mia!',question:""},
+];
+let storyIdx=0;
+
+const chant1=["Head, shoulders, knees and toes! (touch each part)","Knees and toes! (touch knees, then toes)","Head, shoulders, knees and toes!","Eyes and ears and mouth and nose!","Head, shoulders, knees and toes!","Hooray! 🎉 (jump and cheer)"];
+const chant2=["Teacher: Where is your nose?","Children: Here is my nose! (point to nose)","Teacher: Where are your eyes?","Children: Here are my eyes! (point to eyes)","Teacher: Where are your ears?","Children: Here are my ears! (point to ears)","Teacher: Where is your mouth?","Children: Here is my mouth! (point to mouth)","Teacher: Where are your hands?","Children: Here are my hands! (show hands)","Teacher: Where are your feet?","Children: Here are my feet! (stomp feet)","Teacher: Great job! 🎉"];
+
+const memoryWords=["nose","eyes","hands","feet"];
+const memoryWordsChallenge=["nose","eyes","hands","feet","arms","mouth"];
+const memoryEmojiMap={nose:"👃",eyes:"👀",hands:"✋",feet:"🦶",arms:"💪",mouth:"👄"};
+
+const findParts=["head","hands","feet","tummy"];
+let findTarget=null;
+
+const wheelSentences=[
+  ["nose","This is my nose."],["hands","I have two hands."],["ears","This is my ear."],
+  ["feet","I have two feet."],["eyes","I have two eyes."],["knees","I have two knees."]
+];
+
+const simonCommands=[
+  "Touch your head!","Touch your toes!","Wiggle your fingers!","Touch your ears!",
+  "Jump like a duck! (letter D)","Stretch like a cat! (letter C)","Touch your tummy!","Show me your hands!"
+];
+
+const quizData=[
+  {type:"mc",emoji:"👃",prompt:"What is this?",choices:["nose","ear","hand"],answer:"nose"},
+  {type:"mc",emoji:"👀",prompt:"What is this?",choices:["eyes","feet","hair"],answer:"eyes"},
+  {type:"mc",emoji:"✋",prompt:"What is this?",choices:["hands","legs","teeth"],answer:"hands"},
+  {type:"mc",emoji:"🦶",prompt:"What is this?",choices:["feet","face","arms"],answer:"feet"},
+  {type:"sentence",emoji:"👄",prompt:"This is my ___.",choices:["mouth","car","duck"],answer:"mouth"},
+  {type:"sentence",emoji:"🦷",prompt:"These are my ___.",choices:["teeth","dog","cup"],answer:"teeth"},
+  {type:"sentence",emoji:"🖐️",prompt:"I have ten ___.",choices:["fingers","finger","toe"],answer:"fingers"},
+  {type:"mc",emoji:"💪",prompt:"What is this?",choices:["arms","knees","hair"],answer:"arms"},
+  {type:"mc",emoji:"😊",prompt:"What is this?",choices:["face","cake","cat"],answer:"face"},
+  {type:"mc",emoji:"🫃",prompt:"What is this?",choices:["tummy","shoulders","ears"],answer:"tummy"},
+  {type:"listen",emoji:"🔊",prompt:"Listen and choose the word",speak:"nose",choices:["nose","dog","cup"],answer:"nose"},
+  {type:"listen",emoji:"🔊",prompt:"Listen and choose the word",speak:"hands",choices:["hands","cat","door"],answer:"hands"},
+  {type:"alphabet",emoji:"🐱",prompt:"Cat starts with letter...",choices:["C","D"],answer:"C"},
+  {type:"alphabet",emoji:"🐶",prompt:"Dog starts with letter...",choices:["C","D"],answer:"D"},
+  {type:"alphabet",emoji:"🥁",prompt:"Drum starts with letter...",choices:["C","D"],answer:"D"},
+  {type:"alphabet",emoji:"🎂",prompt:"Cake starts with letter...",choices:["C","D"],answer:"C"},
+  {type:"sentence",emoji:"👂",prompt:"Touch your ___.",choices:["ears","cake","car"],answer:"ears"},
+  {type:"mc",emoji:"🦵",prompt:"What is this?",choices:["legs","head","hair"],answer:"legs"},
+  {type:"sentence",emoji:"🗣️",prompt:"This is my ___.",choices:["head","duck","door"],answer:"head"},
+  {type:"mc",emoji:"🤷",prompt:"What is this?",choices:["shoulders","toes","nose"],answer:"shoulders"},
+];
+let quizIdx=0, quizScore=0;
+
+/* ================= STATE / HELPERS ================= */
+let stars=0;
+function addStar(n=1){stars+=n;document.getElementById('starCount').textContent=stars;const l=document.getElementById('lumi');l.classList.remove('cheer');void l.offsetWidth;l.classList.add('cheer');}
+
+/* Animation helpers */
+function starBurst(el){
+  if(!el||!el.getBoundingClientRect)return;
+  const rect=el.getBoundingClientRect();
+  const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+  for(let i=0;i<9;i++){
+    const s=document.createElement('div');
+    s.textContent=Math.random()>0.7?'✨':'⭐';
+    s.style.cssText='position:fixed;left:'+cx+'px;top:'+cy+'px;font-size:'+(12+Math.random()*12)+'px;pointer-events:none;z-index:90;';
+    document.body.appendChild(s);
+    const angle=Math.random()*Math.PI*2;
+    const dist=36+Math.random()*46;
+    const dx=Math.cos(angle)*dist, dy=Math.sin(angle)*dist-20;
+    const anim=s.animate([
+      {transform:'translate(0,0) scale(0.4) rotate(0deg)',opacity:1},
+      {transform:'translate('+dx+'px,'+dy+'px) scale(1) rotate(180deg)',opacity:1,offset:0.5},
+      {transform:'translate('+(dx*1.4)+'px,'+(dy*1.4+30)+'px) scale(0.3) rotate(360deg)',opacity:0}
+    ],{duration:750+Math.random()*350,easing:'ease-out'});
+    anim.onfinish=()=>s.remove();
+  }
+}
+function wiggle(el){
+  if(!el)return;
+  el.classList.remove('wiggle');void el.offsetWidth;el.classList.add('wiggle');
+}
+
+/* Assessment tracking */
+let learnedWords=new Set();
+let speakingActions=0;
+let tracingCount=0;
+let quizByType={mc:{c:0,t:0},sentence:{c:0,t:0},listen:{c:0,t:0},alphabet:{c:0,t:0}};
+function learnWord(w){if(w)learnedWords.add(w);}
+function speak(text){
+  if(!('speechSynthesis' in window))return;
+  const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=0.85;u.pitch=1.1;
+  window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+}
+function lumiSay(msg){
+  const b=document.getElementById('lumi-bubble');b.textContent=msg;b.classList.add('show');
+  clearTimeout(window._lumiT);window._lumiT=setTimeout(()=>b.classList.remove('show'),2200);
+}
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function updateProgress(){
+  const sections=document.querySelectorAll('.section');
+  let done=0;sections.forEach(s=>{const r=s.getBoundingClientRect();if(r.top<window.innerHeight*0.4)done++;});
+  document.getElementById('progressBar').style.width=Math.min(100,(done/sections.length)*100)+'%';
+}
+window.addEventListener('scroll',updateProgress);
+
+/* Objectives */
+function toggleObj(el){el.parentElement.classList.toggle('done');if(el.parentElement.classList.contains('done')){addStar(1);lumiSay("Nice goal! ⭐");}}
+
+/* Vocabulary */
+function renderVoc(){
+  const v=vocab[vocIdx];
+  document.getElementById('vocEmoji').textContent=v.emoji;
+  document.getElementById('vocWord').textContent=v.word;
+  document.getElementById('vocSentence').textContent='"'+v.sentence+'"';
+  document.getElementById('vocPos').textContent=(vocIdx+1)+' / '+vocab.length;
+}
+function vocNav(d){vocIdx=(vocIdx+d+vocab.length)%vocab.length;renderVoc();}
+function repeatAfterMe(){
+  speak(vocab[vocIdx].word);wiggle(document.getElementById('vocEmoji'));speakingActions++;
+  setTimeout(()=>{addStar(1);learnWord(vocab[vocIdx].word);starBurst(document.getElementById('vocEmoji'));lumiSay("Great pronunciation!");},900);
+}
+renderVoc();
+
+/* Sentence Patterns (with difficulty levels) */
+function currentPatternSet(){return patternRound>=1?patternsChallenge:patterns;}
+function renderPattern(){
+  const set=currentPatternSet();
+  const p=set[patternIdx];
+  const pill=document.getElementById('patternLevelPill');
+  if(patternRound>=1){pill.textContent='🌟 Level 2 · Challenge';pill.className='level-pill l2';}
+  else{pill.textContent='🌱 Level 1';pill.className='level-pill l1';}
+  document.getElementById('patternSentence').textContent=p.sentence;
+  const box=document.getElementById('patternChoices');box.innerHTML='';
+  document.getElementById('patternFeedback').textContent='';
+  p.choices.forEach(c=>{
+    const b=document.createElement('button');b.className='btn btn-soft';b.textContent=c;
+    b.onclick=()=>{
+      if(c===p.answer){
+        document.getElementById('patternFeedback').innerHTML='✅ Great! '+p.sentence.replace('___',c);
+        addStar(1);learnWord(p.answer.split(' ').pop());starBurst(b);wiggle(b);lumiSay("Correct! ⭐");
+      }else{
+        document.getElementById('patternFeedback').innerHTML='🤔 Try again!';wiggle(b);
+      }
+    };
+    box.appendChild(b);
+  });
+}
+function nextPattern(){
+  const set=currentPatternSet();
+  patternIdx++;
+  if(patternIdx>=set.length){
+    patternIdx=0;
+    if(patternRound===0){patternRound=1;lumiSay("Level up! Challenge time! 🌟");}
+  }
+  renderPattern();
+}
+renderPattern();
+
+/* Alphabet tracing (simple canvas draw) */
+['traceC','traceD'].forEach(id=>{
+  const c=document.getElementById(id);const ctx=c.getContext('2d');
+  ctx.lineWidth=6;ctx.lineCap='round';ctx.strokeStyle= id==='traceC' ? '#FF9E7A':'#6C63FF';
+  ctx.font='90px Baloo 2, sans-serif';ctx.fillStyle='rgba(74,59,92,0.15)';
+  ctx.fillText(id==='traceC'?'C':'D', id==='traceC'?55:60,105);
+  let drawing=false;
+  function pos(e){const r=c.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top};}
+  function start(e){drawing=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);e.preventDefault();}
+  function move(e){if(!drawing)return;const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();e.preventDefault();}
+  function end(){if(drawing){drawing=false;addStar(1);tracingCount++;starBurst(c);wiggle(c);lumiSay("Nice tracing!");}}
+  c.addEventListener('mousedown',start);c.addEventListener('mousemove',move);window.addEventListener('mouseup',end);
+  c.addEventListener('touchstart',start);c.addEventListener('touchmove',move);c.addEventListener('touchend',end);
+});
+function clearTrace(id){
+  const c=document.getElementById(id);const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);
+  ctx.font='90px Baloo 2, sans-serif';ctx.fillStyle='rgba(74,59,92,0.15)';
+  ctx.fillText(id==='traceC'?'C':'D', id==='traceC'?55:60,105);
+}
+
+/* Letter Hunt & Sort */
+function renderHunt(){
+  const pool=document.getElementById('letterHuntPool');pool.innerHTML='';
+  letterHuntItems.forEach((it,i)=>{
+    const d=document.createElement('div');d.className='hunt-item';d.draggable=true;d.dataset.i=i;
+    d.style.cssText='font-size:38px;cursor:grab;padding:8px;background:#FBF7F1;border-radius:12px;';
+    d.textContent=it.emoji;
+    d.addEventListener('dragstart',e=>e.dataTransfer.setData('text/plain',i));
+    d.addEventListener('click',()=>{window._selectedHunt=i;lumiSay('Now tap C or D box!');});
+    pool.appendChild(d);
+  });
+}
+renderHunt();
+['dropC','dropD'].forEach(zoneId=>{
+  const zone=document.getElementById(zoneId);
+  zone.addEventListener('dragover',e=>e.preventDefault());
+  zone.addEventListener('drop',e=>{e.preventDefault();const i=e.dataTransfer.getData('text/plain');handleHuntDrop(i,zoneId);});
+  zone.addEventListener('click',()=>{if(window._selectedHunt!==undefined){handleHuntDrop(window._selectedHunt,zoneId);window._selectedHunt=undefined;}});
+});
+function handleHuntDrop(i,zoneId){
+  const item=letterHuntItems[i];if(!item||item.done)return;
+  const wantLetter=zoneId==='dropC'?'C':'D';
+  const fb=document.getElementById('huntFeedback');
+  const zoneEl=document.getElementById(zoneId);
+  if(item.letter===wantLetter){
+    item.done=true;huntSorted++;learnWord(item.word);
+    zoneEl.innerHTML+='<span style="font-size:26px;">'+item.emoji+'</span>';
+    renderHunt();
+    fb.textContent='✅ Correct! '+item.word+' starts with '+wantLetter;
+    addStar(1);starBurst(zoneEl);wiggle(zoneEl);lumiSay("Sorted correctly!");
+    if(huntSorted===letterHuntItems.length){fb.textContent='🎉 All sorted! Great job!';}
+  }else{
+    fb.textContent='🤔 Not quite — try the other box!';wiggle(zoneEl);
+  }
+}
+
+/* Phonics (with difficulty levels) */
+function playPhonics(){
+  const pool=phonicsTotal>=6?phonicsChallenge:phonicsItems;
+  const pill=document.getElementById('phonicsLevelPill');
+  if(phonicsTotal>=6){pill.textContent='🌟 Level 2 · Challenge';pill.className='level-pill l2';}
+  else{pill.textContent='🌱 Level 1';pill.className='level-pill l1';}
+  phonicsCurrent=pool[Math.floor(Math.random()*pool.length)];
+  speak(phonicsCurrent.word);
+  document.getElementById('phonicsFeedback').textContent='';
+}
+function choosePhonics(letter){
+  if(!phonicsCurrent){document.getElementById('phonicsFeedback').textContent='Tap "Play Word" first!';return;}
+  phonicsTotal++;
+  const fb=document.getElementById('phonicsFeedback');
+  if(letter===phonicsCurrent.letter){
+    phonicsScore++;learnWord(phonicsCurrent.word);
+    fb.textContent='✅ Correct! "'+phonicsCurrent.word+'" starts with '+letter;
+    addStar(1);starBurst(document.getElementById('phonicsPlayBtn'));lumiSay("Great ears! 👂");
+    if(phonicsTotal===6)lumiSay("Level up! Trickier words now! 🌟");
+  }else{
+    fb.textContent='🤔 It was "'+phonicsCurrent.letter+'" — try again next word!';wiggle(fb);
+  }
+  document.getElementById('phonicsScore').textContent='Score: '+phonicsScore+' / '+phonicsTotal;
+  phonicsCurrent=null;
+}
+
+/* Story */
+function renderStory(){
+  const s=story[storyIdx];
+  document.getElementById('storyEmoji').textContent=s.emoji;
+  document.getElementById('storyText').textContent=s.text;
+  document.getElementById('storyQuestion').textContent=s.question||'';
+  document.getElementById('storyPos').textContent='Page '+(storyIdx+1)+' / '+story.length;
+  const box=document.getElementById('storyChoices');box.innerHTML='';
+  if(s.choices){
+    s.choices.forEach(c=>{
+      const b=document.createElement('button');b.className='btn btn-soft';b.style.fontSize='36px';b.textContent=c.e;
+      b.onclick=()=>{
+        if(c.correct){b.style.background='var(--green)';addStar(1);starBurst(b);wiggle(b);lumiSay("Yes! Well done!");setTimeout(()=>storyNav(1),700);}
+        else{b.style.background='var(--pink)';wiggle(b);setTimeout(()=>{b.style.background='';},500);}
+      };
+      box.appendChild(b);
+    });
+  }
+}
+function storyNav(d){storyIdx=Math.min(story.length-1,Math.max(0,storyIdx+d));renderStory();}
+renderStory();
+
+/* Chants */
+document.getElementById('chant1Lines').innerHTML=chant1.map((l,i)=>'<div id="c1l'+i+'">'+l+'</div>').join('');
+document.getElementById('chant2Lines').innerHTML=chant2.map((l,i)=>'<div id="c2l'+i+'">'+l+'</div>').join('');
+function playChant(which){
+  const lines=which==='chant1'?chant1:chant2;const prefix=which==='chant1'?'c1l':'c2l';
+  lines.forEach((l,i)=>document.getElementById(prefix+i).style.background='transparent');
+  let i=0;
+  function step(){
+    if(i>0)document.getElementById(prefix+(i-1)).style.background='transparent';
+    if(i>=lines.length){addStar(1);lumiSay("Awesome chanting!");return;}
+    document.getElementById(prefix+i).style.background='var(--sun)';
+    speak(lines[i].replace(/Teacher:|Children:/g,'').replace(/\(.*?\)/g,''));
+    i++;setTimeout(step,1600);
+  }
+  step();
+}
+
+/* Magic Box */
+function openMagicBox(){
+  const v=vocab[Math.floor(Math.random()*vocab.length)];
+  const box=document.getElementById('magicBox');
+  document.getElementById('magicReveal').textContent=v.emoji+' '+v.word;
+  speak(v.word);addStar(1);learnWord(v.word);wiggle(box);starBurst(box);lumiSay("Magic reveal!");
+}
+
+/* Memory Matching (with difficulty levels) */
+let memoryState={flipped:[],matched:0,cards:[]};
+let memoryLevel=1;
+function buildMemory(level){
+  memoryLevel=level||1;
+  const words=memoryLevel===2?memoryWordsChallenge:memoryWords;
+  const pill=document.getElementById('memoryLevelPill');
+  pill.textContent=memoryLevel===2?'🌟 Level 2 · 6 pairs':'🌱 Level 1 · 4 pairs';
+  pill.className=memoryLevel===2?'level-pill l2':'level-pill l1';
+  document.getElementById('memoryGrid').style.gridTemplateColumns=memoryLevel===2?'repeat(4,1fr)':'repeat(4,1fr)';
+  document.getElementById('memoryChallengeBtnWrap').innerHTML='';
+  let cards=[];
+  words.forEach(w=>{cards.push({key:w,type:'word',label:w});cards.push({key:w,type:'emoji',label:memoryEmojiMap[w]});});
+  cards.sort(()=>Math.random()-0.5);
+  memoryState={flipped:[],matched:0,cards};
+  const grid=document.getElementById('memoryGrid');grid.innerHTML='';
+  cards.forEach((c,i)=>{
+    const d=document.createElement('div');
+    d.style.cssText='height:70px;background:var(--sky);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;cursor:pointer;';
+    d.textContent='❓';d.dataset.i=i;
+    d.onclick=()=>flipMemory(i,d);
+    grid.appendChild(d);
+  });
+}
+function flipMemory(i,el){
+  if(memoryState.flipped.length>=2||el.classList.contains('matched')||memoryState.flipped.find(f=>f.i===i))return;
+  el.textContent=memoryState.cards[i].label;el.style.background='var(--white)';wiggle(el);
+  memoryState.flipped.push({i,el});
+  if(memoryState.flipped.length===2){
+    const[a,b]=memoryState.flipped;
+    if(memoryState.cards[a.i].key===memoryState.cards[b.i].key){
+      a.el.classList.add('matched');b.el.classList.add('matched');
+      a.el.style.background='var(--green)';b.el.style.background='var(--green)';
+      memoryState.flipped=[];memoryState.matched++;addStar(1);learnWord(memoryState.cards[a.i].key);
+      starBurst(b.el);
+      document.getElementById('memoryFeedback').textContent='✅ Match found!';
+      lumiSay("Matched! 🎉");
+      const words=memoryLevel===2?memoryWordsChallenge:memoryWords;
+      if(memoryState.matched===words.length){
+        if(memoryLevel===1){
+          document.getElementById('memoryFeedback').textContent='🏆 All matched! Ready for a bigger challenge?';
+          document.getElementById('memoryChallengeBtnWrap').innerHTML='<button class="btn challenge-btn" onclick="buildMemory(2)">🌟 Play Challenge (6 pairs)</button>';
+        }else{
+          document.getElementById('memoryFeedback').textContent='🏆 Amazing! You mastered the challenge level!';
+        }
+      }
+    }else{
+      setTimeout(()=>{a.el.textContent='❓';b.el.textContent='❓';a.el.style.background='var(--sky)';b.el.style.background='var(--sky)';memoryState.flipped=[];},800);
+    }
+  }
+}
+buildMemory(1);
+
+/* Find My Body Part (with timed challenge level) */
+let findRoundCorrect=0, findLevel=1, findTimerInt=null, findTimeLeft=0;
+function startFindGame(){findRoundCorrect=0;findLevel=1;updateFindPill();nextFindTarget();}
+function updateFindPill(){
+  const pill=document.getElementById('findLevelPill');
+  pill.textContent=findLevel===2?'🌟 Level 2 · Beat the Clock':'🌱 Level 1';
+  pill.className=findLevel===2?'level-pill l2':'level-pill l1';
+}
+function nextFindTarget(){
+  findTarget=findParts[Math.floor(Math.random()*findParts.length)];
+  document.getElementById('findPrompt').textContent='Find: '+findTarget+' 👆';
+  speak('Touch your '+findTarget);
+  clearInterval(findTimerInt);
+  if(findLevel===2){
+    findTimeLeft=5;
+    document.getElementById('findTimer').textContent='⏱ '+findTimeLeft+'s';
+    findTimerInt=setInterval(()=>{
+      findTimeLeft--;
+      document.getElementById('findTimer').textContent='⏱ '+findTimeLeft+'s';
+      if(findTimeLeft<=0){clearInterval(findTimerInt);lumiSay("So close! Try the next one!");nextFindTarget();}
+    },1000);
+  }else{
+    document.getElementById('findTimer').textContent='';
+  }
+}
+function checkFind(part,el){
+  if(!findTarget)return;
+  if(part===findTarget){
+    el.style.background='var(--green)';wiggle(el);starBurst(el);addStar(1);learnWord(findTarget);
+    findRoundCorrect++;
+    lumiSay("Found it!");
+    if(findRoundCorrect===findParts.length&&findLevel===1){
+      findLevel=2;findRoundCorrect=0;updateFindPill();lumiSay("Level up! Beat the clock now! ⏱");
+    }
+    clearInterval(findTimerInt);
+    setTimeout(()=>{el.style.background='';nextFindTarget();},600);
+  }else{
+    el.style.background='var(--coral)';wiggle(el);setTimeout(()=>{el.style.background='';},400);
+  }
+}
+
+/* Spin & Speak */
+function spinWheel(){
+  const pick=wheelSentences[Math.floor(Math.random()*wheelSentences.length)];
+  const el=document.getElementById('wheelWord');
+  el.textContent='This is my '+pick[0]+'.';
+  speak(pick[1]);addStar(1);speakingActions++;learnWord(pick[0]);wiggle(el);starBurst(el);lumiSay("Say it loud! 🎤");
+}
+
+/* Simon Says */
+function generateSimon(){
+  const cmd=simonCommands[Math.floor(Math.random()*simonCommands.length)];
+  const el=document.getElementById('simonCmd');
+  el.textContent=cmd;speak(cmd);addStar(1);wiggle(el);
+}
+
+/* Build-a-Person craft (drag & drop + tap fallback) */
+let selectedPiece=null;
+document.querySelectorAll('.craft-piece').forEach(p=>{
+  p.addEventListener('dragstart',e=>e.dataTransfer.setData('text/plain',p.dataset.part));
+  p.addEventListener('click',()=>{selectedPiece=p.dataset.part;lumiSay('Now tap the dashed spot!');});
+});
+document.querySelectorAll('.dropzone').forEach(z=>{
+  z.addEventListener('dragover',e=>e.preventDefault());
+  z.addEventListener('drop',e=>{e.preventDefault();placeCraft(e.dataTransfer.getData('text/plain'),z);});
+  z.addEventListener('click',()=>{if(selectedPiece){placeCraft(selectedPiece,z);selectedPiece=null;}});
+});
+function placeCraft(part,zone){
+  if(zone.dataset.need!==part){document.getElementById('craftFeedback').textContent='🤔 Try a different spot!';wiggle(zone);return;}
+  const emojiMap={head:'😀',tummy:'🟨',arms:'💪',legs:'🦵'};
+  zone.innerHTML='<div style="font-size:32px;">'+emojiMap[part]+'</div>';
+  zone.style.border='2px solid var(--green)';
+  document.getElementById('craftFeedback').textContent='✅ Nice placement!';
+  addStar(1);wiggle(zone);starBurst(zone);
+  const allDone=[...document.querySelectorAll('.dropzone')].every(z=>z.style.border.includes('green'));
+  if(allDone){document.getElementById('craftFeedback').textContent='🎉 You built your character!';lumiSay("Beautiful creation!");}
+}
+
+/* Spot the Difference */
+let diffFound=0;
+function foundDiff(el){
+  if(el.dataset.done)return;el.dataset.done='1';el.style.background='rgba(191,234,184,0.8)';el.style.border='2px solid var(--green)';
+  diffFound++;addStar(1);wiggle(el);starBurst(el);
+  document.getElementById('diffFeedback').textContent=diffFound>=2?'🎉 You found the differences!':'✅ Found '+diffFound+'!';
+}
+
+/* Maze */
+const mazeSize=4;
+let mazePos={x:0,y:0};const mazeGoal={x:3,y:3};
+function renderMaze(){
+  const grid=document.getElementById('mazeGrid');grid.innerHTML='';
+  for(let y=0;y<mazeSize;y++)for(let x=0;x<mazeSize;x++){
+    const cell=document.createElement('div');
+    cell.style.cssText='background:#FBF7F1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;';
+    if(x===mazePos.x&&y===mazePos.y)cell.textContent='⭐'===undefined?'':'🌟';
+    if(x===mazePos.x&&y===mazePos.y)cell.textContent='🧑';
+    else if(x===mazeGoal.x&&y===mazeGoal.y)cell.textContent='⭐';
+    grid.appendChild(cell);
+  }
+}
+function mazeMove(dx,dy){
+  const nx=mazePos.x+dx,ny=mazePos.y+dy;
+  if(nx<0||ny<0||nx>=mazeSize||ny>=mazeSize)return;
+  mazePos={x:nx,y:ny};renderMaze();
+  if(nx===mazeGoal.x&&ny===mazeGoal.y){document.getElementById('mazeFeedback').textContent='🎉 Lumi made it! Great guiding!';addStar(2);starBurst(document.getElementById('mazeGrid'));lumiSay("We made it!");}
+  else{document.getElementById('mazeFeedback').textContent='';}
+}
+renderMaze();
+
+/* Quiz */
+function renderQuiz(){
+  if(quizIdx>=quizData.length){finishQuiz();return;}
+  const q=quizData[quizIdx];
+  document.getElementById('quizPos').textContent='Question '+(quizIdx+1)+' / '+quizData.length;
+  document.getElementById('quizScorePill').textContent='Score: '+quizScore;
+  document.getElementById('quizPromptEmoji').textContent=q.emoji;
+  document.getElementById('quizPrompt').textContent=q.prompt;
+  document.getElementById('quizFeedback').textContent='';
+  const box=document.getElementById('quizChoices');box.innerHTML='';
+  const choices=[...q.choices].sort(()=>Math.random()-0.5);
+  choices.forEach(c=>{
+    const b=document.createElement('button');b.className='btn btn-soft';b.textContent=c;
+    b.onclick=()=>answerQuiz(c,q,b);
+    box.appendChild(b);
+  });
+  if(q.type==='listen')speak(q.speak);
+}
+function answerQuiz(choice,q,btn){
+  if(btn.disabled)return;
+  [...document.getElementById('quizChoices').children].forEach(b=>b.disabled=true);
+  if(!quizByType[q.type])quizByType[q.type]={c:0,t:0};
+  quizByType[q.type].t++;
+  if(choice===q.answer){
+    btn.style.background='var(--green)';quizScore++;quizByType[q.type].c++;
+    document.getElementById('quizFeedback').textContent='✅ Correct!';
+    addStar(1);wiggle(btn);starBurst(btn);learnWord(q.answer);lumiSay("Yes! ⭐");
+  }else{
+    btn.style.background='var(--coral)';wiggle(btn);
+    document.getElementById('quizFeedback').textContent='The answer was "'+q.answer+'"';
+  }
+  setTimeout(()=>{quizIdx++;renderQuiz();},1100);
+}
+function pctLabel(pct){
+  if(pct===null)return{text:'Not attempted',color:'var(--plum-soft)'};
+  if(pct>=0.85)return{text:'Excellent',color:'var(--green)'};
+  if(pct>=0.6)return{text:'Good',color:'var(--sun)'};
+  return{text:'Needs Practice',color:'var(--pink)'};
+}
+function renderAssessment(){
+  const box=document.getElementById('assessmentBox');
+  // Vocabulary
+  const vocabCount=Math.min(learnedWords.size,vocab.length);
+  const vocabPct=vocabCount/vocab.length;
+  const vocabLbl=pctLabel(vocabPct);
+  // Listening = phonics + quiz "listen" type
+  const listenT=(phonicsTotal)+(quizByType.listen.t);
+  const listenC=(phonicsScore)+(quizByType.listen.c);
+  const listenPct=listenT>0?listenC/listenT:null;
+  const listenLbl=pctLabel(listenPct);
+  // Speaking = engagement count (repeat after me + spin wheel)
+  const speakPct=speakingActions>=10?1:speakingActions>=5?0.75:speakingActions>0?0.4:null;
+  const speakLbl=pctLabel(speakPct);
+  // Alphabet = letter hunt + quiz alphabet type + tracing
+  const alphaT=letterHuntItems.length+(quizByType.alphabet.t)+2;
+  const alphaC=huntSorted+(quizByType.alphabet.c)+Math.min(tracingCount,2);
+  const alphaPct=alphaC/alphaT;
+  const alphaLbl=pctLabel(alphaPct);
+
+  const rows=[
+    ['📚 Vocabulary',vocabCount+' / '+vocab.length+' words',vocabLbl],
+    ['🎧 Listening',listenT>0?(listenC+' / '+listenT):'—',listenLbl],
+    ['🎤 Speaking',speakingActions+' practice attempts',speakLbl],
+    ['🔤 Alphabet C–D',alphaC+' / '+alphaT,alphaLbl],
+  ];
+  box.innerHTML=rows.map(r=>
+    '<div style="display:flex;justify-content:space-between;align-items:center;background:#FBF7F1;border-radius:12px;padding:10px 14px;">'+
+    '<div><div style="font-weight:800;">'+r[0]+'</div><div style="font-size:12px;color:var(--plum-soft);font-weight:700;">'+r[1]+'</div></div>'+
+    '<span class="pill" style="background:'+r[2].color+';">'+r[2].text+'</span>'+
+    '</div>'
+  ).join('');
+}
+function finishQuiz(){
+  document.getElementById('quizCard').innerHTML='<div style="text-align:center;"><div style="font-size:50px;">🎉</div><h3>Quiz Complete!</h3><div style="font-family:\'Baloo 2\';font-size:22px;font-weight:800;">Score: '+quizScore+' / '+quizData.length+'</div></div>';
+  document.getElementById('reward').style.display='block';
+  const pct=quizScore/quizData.length;
+  const starN=pct>=0.9?5:pct>=0.7?4:pct>=0.5?3:pct>=0.3?2:1;
+  document.getElementById('starsRow').textContent='⭐'.repeat(starN);
+  renderAssessment();
+  scrollToSection('reward');
+}
+renderQuiz();
+
+/* Confetti */
+function fireConfetti(){
+  const layer=document.getElementById('confettiLayer');layer.innerHTML='';
+  const colors=['#FF9E7A','#AEE3F5','#FFE9A8','#FFC7DA','#BFEAB8','#6C63FF'];
+  for(let i=0;i<60;i++){
+    const p=document.createElement('div');
+    p.style.cssText='position:absolute;width:8px;height:14px;top:-20px;border-radius:2px;';
+    p.style.left=Math.random()*100+'%';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.transform='rotate('+(Math.random()*360)+'deg)';
+    p.style.animation='confettiFall '+(2+Math.random()*1.5)+'s ease-in forwards';
+    layer.appendChild(p);
+  }
+  setTimeout(()=>layer.innerHTML='',3600);
+}
+const styleTag=document.createElement('style');
+styleTag.textContent='@keyframes confettiFall{to{transform:translateY(100vh) rotate(360deg);opacity:0.3;}}';
+document.head.appendChild(styleTag);
+
+lumiSay("Hi! I'm Lumi. Let's learn together! 👋");
+</script>
+</body>
+</html>
