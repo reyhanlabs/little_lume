@@ -532,13 +532,28 @@ button{font-family:inherit;cursor:pointer;border:none;}
 
   <div class="card" style="margin-bottom:18px;">
     <h3 style="margin-top:0;">🔍 Spot the Difference</h3>
-    <p class="section-sub" style="margin-bottom:14px;">Two friends look almost the same. Find 3 differences and tap them!</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <div style="position:relative;font-size:100px;">🙂<span class="diff-dot" data-id="1" onclick="foundDiff(this)" style="position:absolute;top:5px;right:10px;width:22px;height:22px;border-radius:50%;background:transparent;cursor:pointer;"></span></div>
-      <div style="position:relative;font-size:100px;">😊<span class="diff-dot" data-id="2" onclick="foundDiff(this)" style="position:absolute;bottom:10px;left:15px;width:22px;height:22px;border-radius:50%;background:transparent;cursor:pointer;"></span></div>
+    <p class="section-sub" style="margin-bottom:14px;">The picture on the right has 3 differences. Tap them when you find them!</p>
+    <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;align-items:flex-start;">
+      <svg viewBox="0 0 140 140" width="150" height="150" style="background:#FBF7F1;border-radius:20px;">
+        <circle cx="70" cy="70" r="58" fill="#FFE9A8" stroke="#4A3B5C" stroke-width="3"/>
+        <circle cx="50" cy="60" r="8" fill="#4A3B5C"/>
+        <circle cx="90" cy="60" r="8" fill="#4A3B5C"/>
+        <path d="M45 90 Q70 110 95 90" stroke="#4A3B5C" stroke-width="5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <svg viewBox="0 0 140 140" width="150" height="150" style="background:#FBF7F1;border-radius:20px;">
+        <circle cx="70" cy="70" r="58" fill="#FFE9A8" stroke="#4A3B5C" stroke-width="3"/>
+        <circle cx="50" cy="60" r="8" fill="#4A3B5C"/>
+        <path d="M84 60 L96 60" stroke="#4A3B5C" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="40" cy="80" r="4" fill="#FF9E7A"/>
+        <path d="M45 88 Q70 118 95 88" stroke="#4A3B5C" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <polygon points="70,18 74,28 85,28 76,35 79,46 70,39 61,46 64,35 55,28 66,28" fill="#FFD966" stroke="#4A3B5C" stroke-width="1.5"/>
+        <circle class="diff-dot" data-id="1" onclick="foundDiff(this)" cx="90" cy="60" r="16" fill="transparent" style="cursor:pointer;"/>
+        <circle class="diff-dot" data-id="2" onclick="foundDiff(this)" cx="40" cy="80" r="14" fill="transparent" style="cursor:pointer;"/>
+        <circle class="diff-dot" data-id="3" onclick="foundDiff(this)" cx="70" cy="30" r="18" fill="transparent" style="cursor:pointer;"/>
+      </svg>
     </div>
-    <div style="text-align:center;margin-top:10px;color:var(--plum-soft);font-weight:700;font-size:13px;">Hint: eyes and mouth look a little different 👀</div>
-    <div id="diffFeedback" style="text-align:center;margin-top:8px;font-weight:800;min-height:20px;"></div>
+    <div style="text-align:center;margin-top:10px;color:var(--plum-soft);font-weight:700;font-size:13px;">Hint: look at the eyes, cheek, and above the head 👀</div>
+    <div id="diffFeedback" style="text-align:center;margin-top:8px;font-weight:800;min-height:20px;">Found 0 / 3</div>
   </div>
 
   <div class="card">
@@ -1106,9 +1121,12 @@ function placeCraft(part,zone){
 /* Spot the Difference */
 let diffFound=0;
 function foundDiff(el){
-  if(el.dataset.done)return;el.dataset.done='1';el.style.background='rgba(191,234,184,0.8)';el.style.border='2px solid var(--green)';
+  if(el.dataset.done)return;el.dataset.done='1';
+  el.setAttribute('fill','rgba(191,234,184,0.85)');
+  el.setAttribute('stroke','#4A3B5C');el.setAttribute('stroke-width','2');
   diffFound++;addStar(1);wiggle(el);starBurst(el);
-  document.getElementById('diffFeedback').textContent=diffFound>=2?'🎉 You found the differences!':'✅ Found '+diffFound+'!';
+  document.getElementById('diffFeedback').textContent=diffFound>=3?'🎉 You found all 3 differences!':'✅ Found '+diffFound+' / 3';
+  if(diffFound>=3)lumiSay("Sharp eyes! 👀");
 }
 
 /* Maze */
