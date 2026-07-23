@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Hello, LittleLume! | LittleLume English</title>
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     Palette: pastel blue / mint / cream / peach / lavender / soft yellow
+     ============================================================ */
+  :root{
+    --blue:#CFE9FF;
+    --blue-deep:#8FC6F2;
+    --mint:#C9F3E1;
+    --mint-deep:#7FDDB6;
+    --cream:#FFFBF2;
+    --peach:#FFD9BE;
+    --peach-deep:#FFB183;
+    --lavender:#E7DEFF;
+    --lavender-deep:#C3AEFF;
+    --yellow:#FFEEA6;
+    --yellow-deep:#FFDD57;
+    --ink:#3B3555;
+    --ink-soft:#6B6483;
+    --success:#4FC97D;
+    --error:#FF7373;
+    --white:#FFFFFF;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow-soft:0 10px 30px rgba(120,100,160,0.16);
+    --shadow-pop:0 6px 0 rgba(0,0,0,0.08);
+    --font-display: "Segoe UI Rounded","SF Pro Rounded","Baloo 2",Verdana,"Trebuchet MS",sans-serif;
+    --font-body:"Segoe UI","SF Pro Text",Verdana,Tahoma,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;padding:0;height:100%;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,221,87,0.35), transparent 40%),
+      radial-gradient(circle at 90% 15%, rgba(195,174,255,0.35), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(127,221,182,0.30), transparent 50%),
+      var(--cream);
+    min-height:100%;
+    overflow-x:hidden;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  button:focus-visible, [tabindex]:focus-visible{outline:3px solid var(--blue-deep);outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ============================================================
+     APP SHELL
+     ============================================================ */
+  #app{
+    max-width:920px;
+    margin:0 auto;
+    min-height:100vh;
+    padding:14px 14px 120px;
+    position:relative;
+  }
+
+  /* ---- HUD ---- */
+  .hud{
+    display:flex;align-items:center;gap:12px;
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(6px);
+    border-radius:999px;
+    padding:8px 14px;
+    box-shadow:var(--shadow-soft);
+    position:sticky; top:10px; z-index:50;
+  }
+  .brand{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:15px;
+    color:var(--ink);
+    display:flex;align-items:center;gap:6px;
+    white-space:nowrap;
+  }
+  .brand .dot{color:var(--peach-deep);}
+  .hud-progress{
+    flex:1;
+    display:flex;gap:5px;
+  }
+  .hud-progress .seg{
+    flex:1;height:10px;border-radius:8px;background:#EFE9FB;
+    overflow:hidden; position:relative;
+  }
+  .hud-progress .seg .fill{
+    position:absolute;inset:0;background:linear-gradient(90deg,var(--mint-deep),var(--blue-deep));
+    transform:scaleX(0); transform-origin:left; transition:transform .6s ease;
+    border-radius:8px;
+  }
+  .hud-progress .seg.done .fill{transform:scaleX(1);}
+  .hud-stars{
+    display:flex;align-items:center;gap:4px;
+    font-family:var(--font-display); font-weight:800; font-size:14px;
+    background:var(--yellow); padding:6px 10px; border-radius:999px;
+    box-shadow:var(--shadow-pop);
+    white-space:nowrap;
+  }
+  .hud-btns{display:flex;gap:6px;}
+  .icon-btn{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--white); box-shadow:var(--shadow-pop);
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+    transition:transform .15s ease;
+  }
+  .icon-btn:active{transform:scale(0.9);}
+  .icon-btn.off{opacity:0.4;}
+
+  /* ---- STAGE ---- */
+  #stage{
+    margin-top:16px;
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);
+    padding:26px 22px 30px;
+    position:relative;
+    overflow:hidden;
+    min-height:420px;
+  }
+  #stage::before{
+    content:"";
+    position:absolute; inset:0 0 auto 0; height:120px;
+    background:var(--room-color, var(--blue));
+    opacity:0.55; z-index:0;
+    border-radius: var(--radius-lg) var(--radius-lg) 60% 60% / var(--radius-lg) var(--radius-lg) 40px 40px;
+  }
+  .screen{display:none;position:relative;z-index:1;animation:fadeSlide .5s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeSlide{from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);}}
+
+  .room-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-display); font-weight:800; font-size:13px;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--ink-soft);
+    background:rgba(255,255,255,0.7); padding:6px 14px; border-radius:999px;
+    margin-bottom:10px;
+  }
+  h1.title{
+    font-family:var(--font-display); font-weight:800;
+    font-size:clamp(22px,4vw,32px); margin:4px 0 6px; color:var(--ink);
+  }
+  p.sub{color:var(--ink-soft); margin:0 0 18px; font-size:15px; line-height:1.5;}
+
+  /* ---- MASCOT / DIALOGUE ---- */
+  .lumi-row{display:flex; align-items:flex-end; gap:12px; margin:18px 0 22px;}
+  .lumi-svg{width:64px;height:64px;flex:none; filter:drop-shadow(0 6px 10px rgba(255,221,87,.5));}
+  .speech-bubble{
+    background:var(--lavender); border-radius:20px 20px 20px 4px;
+    padding:12px 16px; font-size:15px; line-height:1.45; font-weight:600;
+    color:var(--ink); max-width:560px; box-shadow:var(--shadow-pop);
+  }
+
+  /* ---- BUTTONS ---- */
+  .btn{
+    font-family:var(--font-display); font-weight:800; font-size:15px;
+    padding:14px 26px; border-radius:999px; color:var(--ink);
+    background:var(--white); box-shadow: 0 5px 0 rgba(0,0,0,0.08), var(--shadow-soft);
+    transition:transform .12s ease, box-shadow .12s ease;
+    min-height:52px; display:inline-flex; align-items:center; gap:8px; justify-content:center;
+  }
+  .btn:active{transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,0.08);}
+  .btn-primary{background:linear-gradient(135deg,var(--mint-deep),var(--blue-deep)); color:#fff;}
+  .btn-peach{background:linear-gradient(135deg,var(--peach-deep),var(--yellow-deep)); color:#5b3d1f;}
+  .btn-ghost{background:rgba(255,255,255,0.6);}
+  .btn[disabled]{opacity:0.4; pointer-events:none;}
+  .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px;}
+
+  /* ---- GENERIC CARD GRIDS ---- */
+  .grid{display:grid; gap:14px;}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));}
+  .grid-4{grid-template-columns:repeat(auto-fit,minmax(110px,1fr));}
+
+  .tile{
+    background:var(--cream); border-radius:var(--radius-md);
+    padding:16px 10px; text-align:center; box-shadow:var(--shadow-pop);
+    border:3px solid transparent;
+    transition:transform .15s ease, border-color .15s ease, background .2s ease;
+    font-weight:700; font-size:15px;
+  }
+  .tile:active{transform:scale(0.95);}
+  .tile .emoji{font-size:36px; display:block; margin-bottom:6px;}
+  .tile.correct{border-color:var(--success); background:#E9FBEF;}
+  .tile.wrong{border-color:var(--error); background:#FFEEEE; animation:shake .35s;}
+  .tile.done{opacity:0.55; pointer-events:none;}
+  .tile.selected{border-color:var(--blue-deep); background:var(--blue);}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);}
+  }
+  @keyframes pop{0%{transform:scale(1);}50%{transform:scale(1.12);}100%{transform:scale(1);}}
+  .pop{animation:pop .4s ease;}
+
+  /* word bank / sentence builder */
+  .sentence-slot-row{display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;}
+  .slot{
+    min-width:70px; min-height:46px; border-radius:12px;
+    background:#F1EEFC; border:2px dashed var(--lavender-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:16px; padding:6px 10px;
+  }
+  .slot.filled{border-style:solid; background:var(--lavender);}
+  .word-bank{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
+  .word-tile{
+    background:var(--white); border-radius:12px; padding:10px 16px;
+    font-weight:800; font-size:16px; box-shadow:var(--shadow-pop);
+  }
+  .word-tile:active{transform:scale(0.92);}
+  .word-tile.used{opacity:0.25; pointer-events:none;}
+
+  /* timer bar */
+  .timer-wrap{height:10px; background:#EFE9FB; border-radius:8px; overflow:hidden; margin:14px 0 18px;}
+  .timer-fill{height:100%; background:linear-gradient(90deg,var(--yellow-deep),var(--peach-deep)); width:100%;}
+
+  /* speech bubble for classmates */
+  .classmate-card{
+    display:flex; gap:14px; align-items:flex-start; margin-bottom:16px;
+  }
+  .avatar{width:70px;height:70px;flex:none;}
+
+  /* confetti */
+  .confetti-piece{
+    position:fixed; top:-20px; width:9px; height:14px; z-index:999;
+    border-radius:2px; pointer-events:none;
+    animation:confetti-fall linear forwards;
+  }
+  @keyframes confetti-fall{
+    to{ transform:translateY(110vh) rotate(540deg); opacity:0.9; }
+  }
+
+  /* badges */
+  .badge-row{display:flex; gap:14px; flex-wrap:wrap; margin:14px 0;}
+  .badge-pill{
+    background:var(--white); border-radius:16px; padding:10px 14px;
+    box-shadow:var(--shadow-pop); font-weight:800; font-size:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+
+  /* certificate */
+  .certificate{
+    border:6px solid var(--yellow-deep); border-radius:20px;
+    padding:26px; text-align:center; background:
+      radial-gradient(circle at 20% 20%, rgba(255,221,87,0.25), transparent 55%),
+      radial-gradient(circle at 80% 80%, rgba(127,221,182,0.25), transparent 55%),
+      var(--white);
+    margin:18px 0;
+  }
+  .certificate .cert-title{font-family:var(--font-display); font-size:14px; letter-spacing:.15em; color:var(--ink-soft); text-transform:uppercase;}
+  .certificate .cert-name{font-family:var(--font-display); font-size:clamp(24px,5vw,34px); font-weight:800; color:var(--peach-deep); margin:8px 0;}
+  .certificate .cert-sub{font-size:14px; color:var(--ink-soft); margin-bottom:6px;}
+
+  /* start screen name input */
+  .name-input-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;}
+  input[type="text"]{
+    font-family:inherit; font-size:16px; padding:12px 16px; border-radius:14px;
+    border:2px solid var(--lavender-deep); min-width:200px; background:var(--cream);
+  }
+  input[type="text"]:focus-visible{outline:3px solid var(--blue-deep);}
+
+  .mic-btn{
+    width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(135deg,var(--peach-deep),var(--yellow-deep));
+    box-shadow:var(--shadow-pop); font-size:22px; display:flex; align-items:center; justify-content:center;
+    color:#5b3d1f;
+  }
+  .mic-btn.listening{animation:pulseMic 1s infinite;}
+  @keyframes pulseMic{0%{box-shadow:0 0 0 0 rgba(255,177,131,0.7);}70%{box-shadow:0 0 0 16px rgba(255,177,131,0);}100%{box-shadow:0 0 0 0 rgba(255,177,131,0);}}
+
+  .feedback-tag{
+    display:inline-block; font-family:var(--font-display); font-weight:800; font-size:13px;
+    padding:5px 12px; border-radius:999px; margin-top:8px;
+  }
+  .feedback-tag.good{background:#E9FBEF; color:var(--success);}
+  .feedback-tag.bad{background:#FFEEEE; color:var(--error);}
+
+  footer.hint{
+    text-align:center; color:var(--ink-soft); font-size:12px; margin-top:18px;
+  }
+
+  @media (max-width:520px){
+    .brand span.txt{display:none;}
+    #stage{padding:20px 14px 26px;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ============================================================
+       HUD: brand, level progress, star count, sound/music toggles
+       ============================================================ -->
+  <div class="hud">
+    <div class="brand"><span>✨</span><span class="txt">LittleLume<span class="dot">•</span>English</span></div>
+    <div class="hud-progress" id="hudProgress" aria-label="Level progress"></div>
+    <div class="hud-stars"><span>⭐</span><span id="starCount">0</span></div>
+    <div class="hud-btns">
+      <button class="icon-btn" id="soundToggle" aria-label="Toggle sound">🔊</button>
+      <button class="icon-btn off" id="musicToggle" aria-label="Toggle music">🎵</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       STAGE: all screens live here, only one .active at a time
+       ============================================================ -->
+  <div id="stage">
+
+    <!-- ---------- START SCREEN ---------- -->
+    <section class="screen active" id="screen-start">
+      <div class="room-badge">🏫 First Day at LittleLume School</div>
+      <h1 class="title">Hello, LittleLume!</h1>
+      <p class="sub">Meet Lumi the firefly and go on your very first English adventure!</p>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiSvgStart"></svg>
+        <div class="speech-bubble">Hello! I'm Lumi! Welcome to LittleLume School. Today is your first day &mdash; can you help me make new friends? First, tell me your name!</div>
+      </div>
+
+      <div class="name-input-row">
+        <input type="text" id="nameInput" placeholder="Type your name..." maxlength="16">
+        <button class="btn btn-primary" id="startBtn">Start Adventure 🚀</button>
+      </div>
+      <footer class="hint">6 rooms to explore &middot; collect a star in each &middot; earn your certificate!</footer>
+    </section>
+
+    <!-- ---------- LEVEL 1: SCHOOL GATE ---------- -->
+    <section class="screen" id="screen-1">
+      <div class="room-badge">🏫 Level 1 &middot; School Gate</div>
+      <h1 class="title">Learn to Greet!</h1>
+      <p class="sub">Tap every card to hear how we greet people at LittleLume.</p>
+      <div class="grid grid-3" id="l1grid"></div>
+      <div class="btn-row"><button class="btn btn-primary" id="l1continue" disabled>Continue &rarr;</button></div>
+    </section>
+
+    <!-- ---------- LEVEL 2: MEET THE TEACHER ---------- -->
+    <section class="screen" id="screen-2">
+      <div class="room-badge">📚 Level 2 &middot; Meet the Teacher</div>
+      <h1 class="title">What Do You Say?</h1>
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lilySvg2"></svg>
+        <div class="speech-bubble" id="l2question">Loading...</div>
+      </div>
+      <div class="grid grid-3" id="l2options"></div>
+      <div id="l2feedback"></div>
+      <div class="btn-row"><button class="btn btn-primary" id="l2continue" style="display:none;">Continue &rarr;</button></div>
+    </section>
+
+    <!-- ---------- LEVEL 3: MY NAME ---------- -->
+    <section class="screen" id="screen-3">
+      <div class="room-badge">🎒 Level 3 &middot; My Name</div>
+      <h1 class="title">Introduce Yourself</h1>
+      <div id="l3step"></div>
+      <div class="btn-row"><button class="btn btn-primary" id="l3continue" style="display:none;">Continue &rarr;</button></div>
+    </section>
+
+    <!-- ---------- LEVEL 4: CLASSROOM ADVENTURE (TPR) ---------- -->
+    <section class="screen" id="screen-4">
+      <div class="room-badge">👩‍🏫 Level 4 &middot; Classroom Adventure</div>
+      <h1 class="title">Listen and Do!</h1>
+      <p class="sub" id="l4round">Round 1 of 6</p>
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lilySvg4"></svg>
+        <div class="speech-bubble" id="l4command">Get ready...</div>
+      </div>
+      <div class="timer-wrap"><div class="timer-fill" id="l4timer"></div></div>
+      <div class="grid grid-4" id="l4options"></div>
+      <div class="btn-row"><button class="btn btn-primary" id="l4continue" style="display:none;">Continue &rarr;</button></div>
+    </section>
+
+    <!-- ---------- LEVEL 5: ALPHABET MISSION ---------- -->
+    <section class="screen" id="screen-5">
+      <div class="room-badge">⭐ Level 5 &middot; Alphabet Mission</div>
+      <h1 class="title" id="l5title">Letters A&ndash;M</h1>
+      <p class="sub" id="l5sub">Tap each letter to see, hear, and learn it!</p>
+      <div class="grid grid-4" id="l5grid"></div>
+      <div class="btn-row"><button class="btn btn-primary" id="l5continue" disabled>Continue &rarr;</button></div>
+    </section>
+
+    <!-- ---------- LEVEL 6: FRIENDSHIP CHALLENGE ---------- -->
+    <section class="screen" id="screen-6">
+      <div class="room-badge">🎉 Level 6 &middot; Friendship Hall</div>
+      <h1 class="title">Make New Friends!</h1>
+      <div id="l6content"></div>
+      <div class="btn-row"><button class="btn btn-primary" id="l6continue" style="display:none;">Continue &rarr;</button></div>
+    </section>
+
+    <!-- ---------- CELEBRATION / CERTIFICATE ---------- -->
+    <section class="screen" id="screen-end">
+      <div class="room-badge">🎉 Celebration Stage</div>
+      <h1 class="title">You Did It!</h1>
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiSvgEnd"></svg>
+        <div class="speech-bubble">Today you learned how to greet new friends! Everyone at LittleLume is proud of you!</div>
+      </div>
+      <p class="sub" id="endStars">You collected 0 of 6 stars.</p>
+      <div class="badge-row" id="endBadges"></div>
+      <div class="certificate">
+        <div class="cert-title">Certificate of Star Learner</div>
+        <div class="cert-name" id="certName">Star Learner</div>
+        <div class="cert-sub">has completed <strong>Unit 1: Greetings &amp; Classroom English</strong></div>
+        <div class="cert-sub" id="certDate"></div>
+        <div style="font-size:28px;">🌟🦋🌟</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-peach" id="playAgainBtn">Play Again 🔁</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   HELLO, LITTLELUME! — Interactive Lesson Engine
+   Vanilla JS, no external libraries, works fully offline.
+   ================================================================ */
+(function(){
+  "use strict";
+
+  /* ----------------------------------------------------------
+     STATE
+     ---------------------------------------------------------- */
+  const state = {
+    playerName: "",
+    stars: [false,false,false,false,false,false], // one per level
+    soundOn: true,
+    musicOn: false,
+    level1: { viewed: new Set() },
+    level2: { index: 0, correctCount: 0 },
+    level3: { step: 0, name: "" }, // 0 pick name, 1 sentence1, 2 sentence2, 3 done
+    level4: { round: 0, timerId: null, timeoutId: null },
+    level5: { viewed: new Set(), matched: new Set(), selectedLetter: null, pairs: [] },
+    level6: { round: 0, phase: 0, badges: [] } // phase: 0 greet,1 howareyou,2 done
+  };
+
+  const LEVEL_ROOM_COLORS = ["", "#CFE9FF", "#FFD9BE", "#E7DEFF", "#C9F3E1", "#FFEEA6", "#FFD9BE"];
+
+  /* ----------------------------------------------------------
+     AUDIO: synthesized sound effects (no external files)
+     ---------------------------------------------------------- */
+  let audioCtx = null;
+  function ensureAudio(){
+    if(!audioCtx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(AC) audioCtx = new AC();
+    }
+    return audioCtx;
+  }
+  function tone(freq, duration, type, vol){
+    if(!state.soundOn) return;
+    const ctx = ensureAudio();
+    if(!ctx) return;
+    try{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || "sine";
+      osc.frequency.value = freq;
+      gain.gain.value = vol || 0.12;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.stop(ctx.currentTime + duration + 0.02);
+    }catch(e){}
+  }
+  function sfx(name){
+    if(name === "click") tone(600, 0.07, "sine", 0.08);
+    else if(name === "correct"){ tone(880,0.12,"sine",0.14); setTimeout(()=>tone(1175,0.16,"sine",0.14),100); }
+    else if(name === "wrong"){ tone(180,0.22,"sawtooth",0.09); }
+    else if(name === "star"){ tone(1046,0.10,"sine",0.14); setTimeout(()=>tone(1318,0.16,"sine",0.14),90); }
+    else if(name === "unlock"){ tone(523,0.10,"triangle",0.12); setTimeout(()=>tone(659,0.10,"triangle",0.12),110); setTimeout(()=>tone(784,0.22,"triangle",0.12),220); }
+    else if(name === "celebrate"){ [523,659,784,1046,1318].forEach((f,i)=>setTimeout(()=>tone(f,0.22,"sine",0.13), i*130)); }
+  }
+
+  // gentle looping ambient pad for background "music"
+  let musicNodes = null;
+  function startMusic(){
+    const ctx = ensureAudio();
+    if(!ctx || musicNodes) return;
+    const notes = [261.6, 329.6, 392.0];
+    const gain = ctx.createGain();
+    gain.gain.value = 0.02;
+    gain.connect(ctx.destination);
+    const oscs = notes.map(f=>{
+      const o = ctx.createOscillator();
+      o.type = "sine"; o.frequency.value = f;
+      o.connect(gain); o.start();
+      return o;
+    });
+    musicNodes = { oscs, gain };
+  }
+  function stopMusic(){
+    if(!musicNodes) return;
+    musicNodes.oscs.forEach(o=>{ try{o.stop();}catch(e){} });
+    musicNodes = null;
+  }
+
+  function speak(text){
+    if(!state.soundOn) return;
+    if(!("speechSynthesis" in window)) return;
+    try{
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.88; u.pitch = 1.15;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  /* ----------------------------------------------------------
+     CONFETTI
+     ---------------------------------------------------------- */
+  const CONFETTI_COLORS = ["#8FC6F2","#7FDDB6","#FFB183","#C3AEFF","#FFDD57"];
+  function confettiBurst(count){
+    count = count || 26;
+    for(let i=0;i<count;i++){
+      const el = document.createElement("div");
+      el.className = "confetti-piece";
+      el.style.left = (Math.random()*100) + "vw";
+      el.style.background = CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)];
+      el.style.animationDuration = (1.4 + Math.random()*1.2) + "s";
+      el.style.opacity = String(0.7 + Math.random()*0.3);
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(), 2800);
+    }
+  }
+
+  /* ----------------------------------------------------------
+     MASCOT SVGs (Lumi the firefly + friends), pure inline SVG
+     ---------------------------------------------------------- */
+  function lumiSVG(){
+    return `
+      <g>
+        <ellipse cx="50" cy="60" rx="26" ry="22" fill="#FFDD57"/>
+        <ellipse cx="50" cy="60" rx="26" ry="22" fill="none" stroke="#FFB183" stroke-width="2"/>
+        <circle cx="50" cy="35" r="16" fill="#3B3555"/>
+        <circle cx="44" cy="33" r="3.4" fill="#fff"/>
+        <circle cx="56" cy="33" r="3.4" fill="#fff"/>
+        <circle cx="44" cy="33" r="1.6" fill="#3B3555"/>
+        <circle cx="56" cy="33" r="1.6" fill="#3B3555"/>
+        <path d="M44 41 Q50 46 56 41" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="26" cy="48" rx="14" ry="10" fill="#CFE9FF" opacity="0.85" transform="rotate(-18 26 48)"/>
+        <ellipse cx="74" cy="48" rx="14" ry="10" fill="#CFE9FF" opacity="0.85" transform="rotate(18 74 48)"/>
+        <circle cx="50" cy="82" r="6" fill="#FFB183"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+      </g>`;
+  }
+  function lilySVG(){
+    return `
+      <g>
+        <circle cx="50" cy="38" r="18" fill="#FFDABF"/>
+        <path d="M32 30 Q50 8 68 30 L68 38 Q50 26 32 38 Z" fill="#8B5E3C"/>
+        <circle cx="43" cy="38" r="2.6" fill="#3B3555"/>
+        <circle cx="57" cy="38" r="2.6" fill="#3B3555"/>
+        <path d="M43 46 Q50 51 57 46" stroke="#3B3555" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M28 92 Q50 60 72 92 Z" fill="#C3AEFF"/>
+        <rect x="30" y="80" width="40" height="14" fill="#8FC6F2" rx="4"/>
+      </g>`;
+  }
+  function kidSVG(hair, shirt){
+    return `
+      <g>
+        <circle cx="50" cy="40" r="17" fill="#FFDABF"/>
+        <path d="${hair}" fill="#5A3E2B"/>
+        <circle cx="44" cy="40" r="2.4" fill="#3B3555"/>
+        <circle cx="56" cy="40" r="2.4" fill="#3B3555"/>
+        <path d="M44 47 Q50 52 56 47" stroke="#3B3555" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M28 92 Q50 62 72 92 Z" fill="${shirt}"/>
+      </g>`;
+  }
+  const BEN_SVG  = kidSVG("M31 32 Q50 10 69 32 L69 26 Q50 18 31 26 Z", "#7FDDB6");
+  const EMMA_SVG = kidSVG("M28 30 Q50 6 72 30 Q70 46 66 34 Q50 44 34 34 Q30 46 28 30 Z", "#FFB183");
+  const LEO_SVG  = kidSVG("M30 34 Q36 8 50 16 Q64 8 70 34 Z", "#C3AEFF");
+
+  function paintSvg(id, markup, viewBoxOverride){
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = markup;
+  }
+
+  /* ----------------------------------------------------------
+     SCREEN / PROGRESS MANAGEMENT
+     ---------------------------------------------------------- */
+  const LEVEL_IDS = ["screen-start","screen-1","screen-2","screen-3","screen-4","screen-5","screen-6","screen-end"];
+
+  function showScreen(id){
+    LEVEL_IDS.forEach(s=>{
+      document.getElementById(s).classList.toggle("active", s === id);
+    });
+    document.getElementById("stage").style.setProperty("--room-color", roomColorFor(id));
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  function roomColorFor(id){
+    const map = {
+      "screen-start": "#CFE9FF", "screen-1":"#CFE9FF", "screen-2":"#FFD9BE",
+      "screen-3":"#E7DEFF", "screen-4":"#C9F3E1", "screen-5":"#FFEEA6",
+      "screen-6":"#FFD9BE", "screen-end":"#C9F3E1"
+    };
+    return map[id] || "#CFE9FF";
+  }
+
+  function renderHudProgress(){
+    const wrap = document.getElementById("hudProgress");
+    wrap.innerHTML = "";
+    for(let i=0;i<6;i++){
+      const seg = document.createElement("div");
+      seg.className = "seg" + (state.stars[i] ? " done" : "");
+      seg.innerHTML = '<div class="fill"></div>';
+      wrap.appendChild(seg);
+    }
+  }
+  function updateStarCount(){
+    const total = state.stars.filter(Boolean).length;
+    document.getElementById("starCount").textContent = total;
+    renderHudProgress();
+  }
+  function awardStar(levelIndex){
+    if(state.stars[levelIndex]) return;
+    state.stars[levelIndex] = true;
+    updateStarCount();
+    sfx("star");
+    confettiBurst(18);
+  }
+
+  /* ----------------------------------------------------------
+     SOUND / MUSIC TOGGLES
+     ---------------------------------------------------------- */
+  document.getElementById("soundToggle").addEventListener("click", function(){
+    state.soundOn = !state.soundOn;
+    this.textContent = state.soundOn ? "🔊" : "🔇";
+    this.classList.toggle("off", !state.soundOn);
+    if(!state.soundOn && "speechSynthesis" in window) window.speechSynthesis.cancel();
+  });
+  document.getElementById("musicToggle").addEventListener("click", function(){
+    state.musicOn = !state.musicOn;
+    this.classList.toggle("off", !state.musicOn);
+    if(state.musicOn) startMusic(); else stopMusic();
+  });
+
+  /* ============================================================
+     START SCREEN
+     ============================================================ */
+  paintSvg("lumiSvgStart", lumiSVG());
+  document.getElementById("startBtn").addEventListener("click", function(){
+    sfx("click");
+    const val = document.getElementById("nameInput").value.trim();
+    state.playerName = val || "Star Learner";
+    state.level3.name = state.playerName;
+    goToLevel(1);
+  });
+
+  function goToLevel(n){
+    if(n === 1) renderLevel1();
+    else if(n === 2) renderLevel2();
+    else if(n === 3) renderLevel3();
+    else if(n === 4) renderLevel4();
+    else if(n === 5) renderLevel5();
+    else if(n === 6) renderLevel6();
+    else if(n === 7) renderEnd();
+  }
+
+  /* ============================================================
+     LEVEL 1 — SCHOOL GATE: Greeting cards
+     ============================================================ */
+  const GREETINGS = [
+    {word:"Hello!", emoji:"👋", say:"Hello!"},
+    {word:"Hi!", emoji:"🙌", say:"Hi!"},
+    {word:"Good morning!", emoji:"🌞", say:"Good morning!"},
+    {word:"Good afternoon!", emoji:"☀️", say:"Good afternoon!"},
+    {word:"Goodbye!", emoji:"💫", say:"Goodbye!"}
+  ];
+  function renderLevel1(){
+    showScreen("screen-1");
+    const grid = document.getElementById("l1grid");
+    grid.innerHTML = "";
+    GREETINGS.forEach((g, i)=>{
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.innerHTML = `<span class="emoji">${g.emoji}</span>${g.word}`;
+      tile.addEventListener("click", function(){
+        sfx("click");
+        speak(g.say);
+        tile.classList.add("pop");
+        setTimeout(()=>tile.classList.remove("pop"), 400);
+        state.level1.viewed.add(i);
+        tile.classList.add("done");
+        if(state.level1.viewed.size === GREETINGS.length){
+          document.getElementById("l1continue").disabled = false;
+        }
+      });
+      grid.appendChild(tile);
+    });
+    document.getElementById("l1continue").disabled = true;
+    state.level1.viewed = new Set();
+  }
+  document.getElementById("l1continue").addEventListener("click", function(){
+    sfx("unlock");
+    awardStar(0);
+    goToLevel(2);
+  });
+
+  /* ============================================================
+     LEVEL 2 — MEET THE TEACHER: scenario multiple choice
+     ============================================================ */
+  const L2_QUESTIONS = [
+    { q:"It's early morning and you see Miss Lily. What do you say?", options:["Good morning!","Goodbye!","Good afternoon!"], correct:0 },
+    { q:"It's the middle of the day. What do you say to a friend?", options:["Good morning!","Goodbye!","Good afternoon!"], correct:2 },
+    { q:"School is finished and you are leaving. What do you say?", options:["Hello!","Goodbye!","Good morning!"], correct:1 }
+  ];
+  function renderLevel2(){
+    showScreen("screen-2");
+    paintSvg("lilySvg2", lilySVG());
+    state.level2 = {index:0, correctCount:0};
+    document.getElementById("l2continue").style.display = "none";
+    loadL2Question();
+  }
+  function loadL2Question(){
+    const q = L2_QUESTIONS[state.level2.index];
+    document.getElementById("l2question").textContent = q.q;
+    speak(q.q);
+    const wrap = document.getElementById("l2options");
+    wrap.innerHTML = "";
+    document.getElementById("l2feedback").innerHTML = "";
+    q.options.forEach((opt, i)=>{
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.textContent = opt;
+      tile.addEventListener("click", function(){
+        if(i === q.correct){
+          sfx("correct");
+          tile.classList.add("correct","pop");
+          document.getElementById("l2feedback").innerHTML = '<span class="feedback-tag good">Great Job! 🎉</span>';
+          state.level2.correctCount++;
+          Array.from(wrap.children).forEach(c=>c.setAttribute("disabled","true"));
+          setTimeout(()=>{
+            state.level2.index++;
+            if(state.level2.index < L2_QUESTIONS.length){
+              loadL2Question();
+            }else{
+              document.getElementById("l2question").textContent = "Wonderful! You know just what to say!";
+              document.getElementById("l2continue").style.display = "inline-flex";
+            }
+          }, 900);
+        }else{
+          sfx("wrong");
+          tile.classList.add("wrong");
+          document.getElementById("l2feedback").innerHTML = '<span class="feedback-tag bad">Try again!</span>';
+          setTimeout(()=>tile.classList.remove("wrong"), 400);
+        }
+      });
+      wrap.appendChild(tile);
+    });
+  }
+  document.getElementById("l2continue").addEventListener("click", function(){
+    sfx("unlock");
+    awardStar(1);
+    goToLevel(3);
+  });
+
+  /* ============================================================
+     LEVEL 3 — MY NAME: sentence building
+     ============================================================ */
+  function renderLevel3(){
+    showScreen("screen-3");
+    state.level3.step = 0;
+    document.getElementById("l3continue").style.display = "none";
+    renderL3Step();
+  }
+  const L3_NAMES = ["Lily","Ben","Emma","Leo"];
+  function renderL3Step(){
+    const container = document.getElementById("l3step");
+    const step = state.level3.step;
+    if(step === 0){
+      container.innerHTML = `
+        <p class="sub">Choose a name to be your LittleLume friend, or type your own!</p>
+        <div class="grid grid-4" id="l3names"></div>
+        <div class="name-input-row" style="margin-top:14px;">
+          <input type="text" id="l3ownName" placeholder="Or type your own name..." maxlength="16">
+          <button class="btn btn-ghost" id="l3useOwn">Use this name</button>
+        </div>`;
+      const grid = document.getElementById("l3names");
+      L3_NAMES.forEach(n=>{
+        const tile = document.createElement("button");
+        tile.className = "tile";
+        tile.innerHTML = `<span class="emoji">🧑</span>${n}`;
+        tile.addEventListener("click", ()=>{
+          sfx("click");
+          state.level3.name = n;
+          state.level3.step = 1;
+          renderL3Step();
+        });
+        grid.appendChild(tile);
+      });
+      document.getElementById("l3useOwn").addEventListener("click", ()=>{
+        const val = document.getElementById("l3ownName").value.trim();
+        if(!val) return;
+        sfx("click");
+        state.level3.name = val;
+        state.level3.step = 1;
+        renderL3Step();
+      });
+    } else if(step === 1){
+      buildSentenceStep(container, ["I","am",state.level3.name+"."], "Build the sentence: I am " + state.level3.name + ".", 2);
+    } else if(step === 2){
+      buildSentenceStep(container, ["My","name","is",state.level3.name+"."], "Now build: My name is " + state.level3.name + ".", 3);
+    } else {
+      container.innerHTML = `<p class="sub">Amazing! You can introduce yourself in English! 🎉</p>`;
+      document.getElementById("l3continue").style.display = "inline-flex";
+    }
+  }
+  function buildSentenceStep(container, words, promptText, nextStep){
+    container.innerHTML = `
+      <p class="sub">${promptText}</p>
+      <div class="sentence-slot-row" id="l3slots"></div>
+      <div class="word-bank" id="l3bank"></div>`;
+    const slotsWrap = document.getElementById("l3slots");
+    const bankWrap = document.getElementById("l3bank");
+    words.forEach(()=>{
+      const slot = document.createElement("div");
+      slot.className = "slot";
+      slotsWrap.appendChild(slot);
+    });
+    const shuffled = words.map((w,i)=>({w,i})).sort(()=>Math.random()-0.5);
+    let nextIndex = 0;
+    shuffled.forEach(item=>{
+      const tile = document.createElement("button");
+      tile.className = "word-tile";
+      tile.textContent = item.w;
+      tile.addEventListener("click", function(){
+        if(item.i !== nextIndex) {
+          sfx("wrong");
+          tile.classList.add("wrong");
+          setTimeout(()=>tile.classList.remove("wrong"), 350);
+          return;
+        }
+        sfx("click");
+        tile.classList.add("used");
+        const slotEl = slotsWrap.children[nextIndex];
+        slotEl.textContent = item.w;
+        slotEl.classList.add("filled");
+        nextIndex++;
+        if(nextIndex === words.length){
+          sfx("correct");
+          confettiBurst(12);
+          speak(words.join(" ").replace(".", ""));
+          setTimeout(()=>{
+            state.level3.step = nextStep;
+            renderL3Step();
+          }, 900);
+        }
+      });
+      bankWrap.appendChild(tile);
+    });
+  }
+  document.getElementById("l3continue").addEventListener("click", function(){
+    sfx("unlock");
+    awardStar(2);
+    goToLevel(4);
+  });
+
+  /* ============================================================
+     LEVEL 4 — CLASSROOM ADVENTURE (TPR game with timer)
+     ============================================================ */
+  const TPR_COMMANDS = [
+    {id:"stand", label:"Stand up!", icon:"🧍"},
+    {id:"sit", label:"Sit down!", icon:"🪑"},
+    {id:"listen", label:"Listen!", icon:"👂"},
+    {id:"look", label:"Look!", icon:"👀"},
+    {id:"openbook", label:"Open your book!", icon:"📖"},
+    {id:"closebook", label:"Close your book!", icon:"📕"}
+  ];
+  function renderLevel4(){
+    showScreen("screen-4");
+    paintSvg("lilySvg4", lilySVG());
+    state.level4 = {round:0, timerId:null, timeoutId:null};
+    document.getElementById("l4continue").style.display = "none";
+    state.level4.order = TPR_COMMANDS.slice().sort(()=>Math.random()-0.5);
+    loadL4Round();
+  }
+  function loadL4Round(){
+    clearInterval(state.level4.timerId);
+    clearTimeout(state.level4.timeoutId);
+    const round = state.level4.round;
+    if(round >= state.level4.order.length){
+      document.getElementById("l4round").textContent = "All done!";
+      document.getElementById("l4command").textContent = "You followed every command like a superstar!";
+      document.getElementById("l4options").innerHTML = "";
+      document.getElementById("l4timer").style.width = "0%";
+      document.getElementById("l4continue").style.display = "inline-flex";
+      return;
+    }
+    document.getElementById("l4round").textContent = "Round " + (round+1) + " of " + state.level4.order.length;
+    const command = state.level4.order[round];
+    document.getElementById("l4command").textContent = command.label;
+    speak(command.label);
+
+    let options = [command];
+    const distractors = TPR_COMMANDS.filter(c=>c.id !== command.id).sort(()=>Math.random()-0.5).slice(0,3);
+    options = options.concat(distractors).sort(()=>Math.random()-0.5);
+
+    const wrap = document.getElementById("l4options");
+    wrap.innerHTML = "";
+    options.forEach(opt=>{
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.innerHTML = `<span class="emoji">${opt.icon}</span>${opt.label.replace("!","")}`;
+      tile.addEventListener("click", function(){
+        clearInterval(state.level4.timerId);
+        clearTimeout(state.level4.timeoutId);
+        if(opt.id === command.id){
+          sfx("correct");
+          tile.classList.add("correct","pop");
+        }else{
+          sfx("wrong");
+          tile.classList.add("wrong");
+        }
+        Array.from(wrap.children).forEach(c=>c.setAttribute("disabled","true"));
+        setTimeout(()=>{
+          state.level4.round++;
+          loadL4Round();
+        }, 700);
+      });
+      wrap.appendChild(tile);
+    });
+
+    // 8 second timer bar
+    const timerFill = document.getElementById("l4timer");
+    let timeLeft = 100;
+    timerFill.style.width = "100%";
+    state.level4.timerId = setInterval(()=>{
+      timeLeft -= 2;
+      timerFill.style.width = Math.max(timeLeft,0) + "%";
+      if(timeLeft <= 0){
+        clearInterval(state.level4.timerId);
+      }
+    }, 160);
+    state.level4.timeoutId = setTimeout(()=>{
+      sfx("wrong");
+      Array.from(wrap.children).forEach(c=>c.setAttribute("disabled","true"));
+      state.level4.round++;
+      loadL4Round();
+    }, 8000);
+  }
+  document.getElementById("l4continue").addEventListener("click", function(){
+    sfx("unlock");
+    awardStar(3);
+    goToLevel(5);
+  });
+
+  /* ============================================================
+     LEVEL 5 — ALPHABET MISSION (A-M): learn then match
+     ============================================================ */
+  const LETTERS = [
+    {l:"A", word:"Apple", emoji:"🍎"}, {l:"B", word:"Ball", emoji:"⚽"},
+    {l:"C", word:"Cat", emoji:"🐱"}, {l:"D", word:"Dog", emoji:"🐶"},
+    {l:"E", word:"Elephant", emoji:"🐘"}, {l:"F", word:"Fish", emoji:"🐟"},
+    {l:"G", word:"Goat", emoji:"🐐"}, {l:"H", word:"Hat", emoji:"🎩"},
+    {l:"I", word:"Ice cream", emoji:"🍦"}, {l:"J", word:"Jam", emoji:"🍯"},
+    {l:"K", word:"Kite", emoji:"🪁"}, {l:"L", word:"Lion", emoji:"🦁"},
+    {l:"M", word:"Map", emoji:"🗺️"}
+  ];
+  function renderLevel5(){
+    showScreen("screen-5");
+    state.level5 = {viewed:new Set(), matched:new Set(), selectedLetter:null};
+    document.getElementById("l5title").textContent = "Letters A–M";
+    document.getElementById("l5sub").textContent = "Tap each letter to see, hear, and learn it!";
+    document.getElementById("l5continue").disabled = true;
+    const grid = document.getElementById("l5grid");
+    grid.innerHTML = "";
+    LETTERS.forEach((item, i)=>{
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.innerHTML = `<span class="emoji">${item.l}</span><span style="font-size:12px;">tap me</span>`;
+      tile.addEventListener("click", function(){
+        sfx("click");
+        speak(item.l + ". " + item.word + ".");
+        tile.innerHTML = `<span class="emoji">${item.emoji}</span>${item.l} — ${item.word}`;
+        tile.classList.add("pop","done");
+        setTimeout(()=>tile.classList.remove("pop"), 400);
+        state.level5.viewed.add(i);
+        if(state.level5.viewed.size === LETTERS.length){
+          setTimeout(startL5Matching, 500);
+        }
+      });
+      grid.appendChild(tile);
+    });
+  }
+  function startL5Matching(){
+    document.getElementById("l5title").textContent = "Match the Letters!";
+    document.getElementById("l5sub").textContent = "Tap a letter, then tap its matching picture.";
+    const chosen = LETTERS.slice().sort(()=>Math.random()-0.5).slice(0,6);
+    state.level5.pairs = chosen;
+    state.level5.matched = new Set();
+    state.level5.selectedLetter = null;
+    const grid = document.getElementById("l5grid");
+    grid.innerHTML = "";
+
+    const letterCol = document.createElement("div");
+    letterCol.className = "grid grid-3";
+    letterCol.style.marginBottom = "10px";
+    const pictureCol = document.createElement("div");
+    pictureCol.className = "grid grid-3";
+
+    const shuffledLetters = chosen.slice().sort(()=>Math.random()-0.5);
+    const shuffledPics = chosen.slice().sort(()=>Math.random()-0.5);
+
+    shuffledLetters.forEach(item=>{
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.textContent = item.l;
+      tile.dataset.letter = item.l;
+      tile.addEventListener("click", function(){
+        if(tile.classList.contains("done")) return;
+        sfx("click");
+        Array.from(letterCol.children).forEach(c=>c.classList.remove("selected"));
+        tile.classList.add("selected");
+        state.level5.selectedLetter = {letter:item.l, el:tile};
+      });
+      letterCol.appendChild(tile);
+    });
+    shuffledPics.forEach(item=>{
+      const tile = document.createElement("button");
+      tile.className = "tile";
+      tile.innerHTML = `<span class="emoji">${item.emoji}</span>${item.word}`;
+      tile.dataset.letter = item.l;
+      tile.addEventListener("click", function(){
+        if(tile.classList.contains("done")) return;
+        const sel = state.level5.selectedLetter;
+        if(!sel){
+          sfx("wrong");
+          tile.classList.add("wrong");
+          setTimeout(()=>tile.classList.remove("wrong"), 350);
+          return;
+        }
+        if(sel.letter === item.l){
+          sfx("correct");
+          tile.classList.add("correct","done");
+          sel.el.classList.add("correct","done");
+          state.level5.matched.add(item.l);
+          state.level5.selectedLetter = null;
+          if(state.level5.matched.size === chosen.length){
+            document.getElementById("l5continue").disabled = false;
+          }
+        }else{
+          sfx("wrong");
+          tile.classList.add("wrong");
+          sel.el.classList.add("wrong");
+          setTimeout(()=>{ tile.classList.remove("wrong"); sel.el.classList.remove("wrong"); }, 400);
+        }
+      });
+      pictureCol.appendChild(tile);
+    });
+
+    grid.appendChild(letterCol);
+    grid.appendChild(pictureCol);
+  }
+  document.getElementById("l5continue").addEventListener("click", function(){
+    sfx("unlock");
+    awardStar(4);
+    goToLevel(6);
+  });
+
+  /* ============================================================
+     LEVEL 6 — FRIENDSHIP CHALLENGE
+     ============================================================ */
+  const CLASSMATES = [
+    {name:"Ben", svg:BEN_SVG, greeting:"Hi! I'm Ben.", options:["Hi!","Goodbye!","Sorry!"], correct:0},
+    {name:"Emma", svg:EMMA_SVG, greeting:"Good morning! I'm Emma.", options:["Goodbye!","Good morning!","Thank you!"], correct:1},
+    {name:"Leo", svg:LEO_SVG, greeting:"Hello! I'm Leo.", options:["Hello!","Good afternoon!","No!"], correct:0}
+  ];
+  function renderLevel6(){
+    showScreen("screen-6");
+    state.level6 = {round:0, phase:0, badges:[]};
+    document.getElementById("l6continue").style.display = "none";
+    loadL6Round();
+  }
+  function loadL6Round(){
+    const round = state.level6.round;
+    const container = document.getElementById("l6content");
+    if(round >= CLASSMATES.length){
+      renderL6Speaking();
+      return;
+    }
+    const mate = CLASSMATES[round];
+    if(state.level6.phase === 0){
+      container.innerHTML = `
+        <div class="classmate-card">
+          <svg class="avatar" viewBox="0 0 100 100">${mate.svg}</svg>
+          <div class="speech-bubble">${mate.greeting}</div>
+        </div>
+        <p class="sub">How do you greet ${mate.name} back?</p>
+        <div class="grid grid-3" id="l6opts"></div>`;
+      speak(mate.greeting);
+      const wrap = document.getElementById("l6opts");
+      mate.options.forEach((opt,i)=>{
+        const tile = document.createElement("button");
+        tile.className = "tile";
+        tile.textContent = opt;
+        tile.addEventListener("click", ()=>{
+          if(i === mate.correct){
+            sfx("correct");
+            tile.classList.add("correct","pop");
+            speak(opt);
+            setTimeout(()=>{ state.level6.phase = 1; loadL6Round(); }, 800);
+          }else{
+            sfx("wrong");
+            tile.classList.add("wrong");
+            setTimeout(()=>tile.classList.remove("wrong"), 350);
+          }
+        });
+        wrap.appendChild(tile);
+      });
+    } else if(state.level6.phase === 1){
+      container.innerHTML = `
+        <div class="classmate-card">
+          <svg class="avatar" viewBox="0 0 100 100">${mate.svg}</svg>
+          <div class="speech-bubble">How are you, ${state.level3.name || "friend"}?</div>
+        </div>
+        <div class="grid grid-3" id="l6opts2"></div>`;
+      speak("How are you?");
+      const answers = [
+        {t:"I am fine, thank you!", correct:true},
+        {t:"I am a book.", correct:false},
+        {t:"Goodbye!", correct:false}
+      ];
+      const wrap = document.getElementById("l6opts2");
+      answers.forEach(a=>{
+        const tile = document.createElement("button");
+        tile.className = "tile";
+        tile.textContent = a.t;
+        tile.addEventListener("click", ()=>{
+          if(a.correct){
+            sfx("correct"); tile.classList.add("correct","pop"); speak(a.t);
+            setTimeout(()=>{ state.level6.phase = 2; loadL6Round(); }, 800);
+          }else{
+            sfx("wrong"); tile.classList.add("wrong");
+            setTimeout(()=>tile.classList.remove("wrong"), 350);
+          }
+        });
+        wrap.appendChild(tile);
+      });
+    } else {
+      state.level6.badges.push(mate.name);
+      container.innerHTML = `
+        <div class="classmate-card">
+          <svg class="avatar" viewBox="0 0 100 100">${mate.svg}</svg>
+          <div class="speech-bubble">Nice to meet you, ${state.level3.name || "friend"}! Let's be friends! 🌟</div>
+        </div>
+        <div class="badge-row" id="l6badgePop"></div>`;
+      speak("Nice to meet you!");
+      confettiBurst(14);
+      sfx("star");
+      const pop = document.getElementById("l6badgePop");
+      const pill = document.createElement("div");
+      pill.className = "badge-pill";
+      pill.innerHTML = `🏅 Friend badge: ${mate.name}`;
+      pop.appendChild(pill);
+      setTimeout(()=>{
+        state.level6.round++;
+        state.level6.phase = 0;
+        loadL6Round();
+      }, 1400);
+    }
+  }
+  function renderL6Speaking(){
+    const container = document.getElementById("l6content");
+    const phrase = "Hello! My name is " + (state.level3.name || "friend") + ". I am fine. Goodbye!";
+    const hasRecognition = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+    container.innerHTML = `
+      <h2 style="font-family:var(--font-display); font-size:18px;">Speaking Practice 🎤</h2>
+      <p class="sub">Try saying this out loud:</p>
+      <p style="font-weight:800; font-size:17px;">"${phrase}"</p>
+      <div style="display:flex; align-items:center; gap:14px; margin-top:10px;">
+        <button class="mic-btn" id="l6mic">🎤</button>
+        <button class="btn btn-ghost" id="l6hear">🔊 Hear it</button>
+      </div>
+      <p id="l6speechResult" style="margin-top:10px; font-weight:700;"></p>
+      <div class="badge-row">${state.level6.badges.map(n=>`<div class="badge-pill">🏅 ${n}</div>`).join("")}</div>
+    `;
+    document.getElementById("l6hear").addEventListener("click", ()=>{ sfx("click"); speak(phrase); });
+    const micBtn = document.getElementById("l6mic");
+    micBtn.addEventListener("click", function(){
+      sfx("click");
+      const resultEl = document.getElementById("l6speechResult");
+      if(!hasRecognition){
+        resultEl.innerHTML = '<span class="feedback-tag good">Great try! Repeat after Lumi as many times as you like. ⭐</span>';
+        return;
+      }
+      const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const rec = new Rec();
+      rec.lang = "en-US";
+      rec.interimResults = false;
+      micBtn.classList.add("listening");
+      resultEl.textContent = "Listening...";
+      rec.onresult = function(e){
+        const said = e.results[0][0].transcript.toLowerCase();
+        const target = phrase.toLowerCase();
+        const keyWords = ["hello","my name is","fine","goodbye"];
+        const hits = keyWords.filter(k=>said.includes(k)).length;
+        if(hits >= 2){
+          sfx("correct");
+          resultEl.innerHTML = '<span class="feedback-tag good">Awesome speaking! 🎉</span>';
+        }else{
+          sfx("wrong");
+          resultEl.innerHTML = '<span class="feedback-tag bad">Nice try! Listen again and repeat. 💪</span>';
+        }
+      };
+      rec.onerror = function(){
+        resultEl.innerHTML = '<span class="feedback-tag good">Great try! Keep practicing. ⭐</span>';
+      };
+      rec.onend = function(){ micBtn.classList.remove("listening"); };
+      try{ rec.start(); }catch(e){ resultEl.textContent = "Microphone not available."; micBtn.classList.remove("listening"); }
+    });
+    document.getElementById("l6continue").style.display = "inline-flex";
+  }
+  document.getElementById("l6continue").addEventListener("click", function(){
+    sfx("unlock");
+    awardStar(5);
+    goToLevel(7);
+  });
+
+  /* ============================================================
+     CELEBRATION / CERTIFICATE
+     ============================================================ */
+  function renderEnd(){
+    showScreen("screen-end");
+    paintSvg("lumiSvgEnd", lumiSVG());
+    sfx("celebrate");
+    confettiBurst(46);
+    const total = state.stars.filter(Boolean).length;
+    document.getElementById("endStars").textContent = "You collected " + total + " of 6 stars!";
+    document.getElementById("certName").textContent = state.playerName || "Star Learner";
+    document.getElementById("certDate").textContent = new Date().toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
+    const badgeWrap = document.getElementById("endBadges");
+    const badgeNames = ["School Gate","Meet the Teacher","My Name","Classroom Star","Alphabet Explorer","Friendship Champion"];
+    badgeWrap.innerHTML = state.stars.map((got,i)=> got ? `<div class="badge-pill">🏅 ${badgeNames[i]}</div>` : "").join("");
+  }
+  document.getElementById("playAgainBtn").addEventListener("click", function(){
+    sfx("click");
+    state.stars = [false,false,false,false,false,false];
+    state.playerName = "";
+    document.getElementById("nameInput").value = "";
+    updateStarCount();
+    showScreen("screen-start");
+  });
+
+  /* ----------------------------------------------------------
+     INIT
+     ---------------------------------------------------------- */
+  updateStarCount();
+  showScreen("screen-start");
+
+})();
+</script>
+</body>
+</html>

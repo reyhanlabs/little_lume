@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — My Schedule &amp; Timetable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --mint:#CFF7E3; --mint-deep:#7FE0B8;
+    --blue:#DCEBFF; --blue-deep:#8FB8F0;
+    --yellow:#FFF3C4; --yellow-deep:#FFDE7A;
+    --peach:#FFE0CE; --peach-deep:#FFB98C;
+    --lav:#EADEFB; --lav-deep:#C8A9F2;
+    --ink:#362E4D; --ink-soft:#6b6280;
+    --coral:#FF8CA3; --coral-deep:#FF6688;
+    --white:#FFFFFF;
+    --shadow: 0 10px 30px rgba(54,46,77,0.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 8% 15%, var(--mint) 0%, transparent 40%),
+      radial-gradient(circle at 92% 10%, var(--blue) 0%, transparent 40%),
+      radial-gradient(circle at 15% 90%, var(--peach) 0%, transparent 40%),
+      radial-gradient(circle at 88% 85%, var(--lav) 0%, transparent 40%),
+      #FBFAFF;
+    min-height:100vh;
+  }
+  h1,h2,h3,.display{font-family:'Baloo 2', sans-serif;}
+  button{font-family:'Nunito',sans-serif; cursor:pointer;}
+  ::selection{background:var(--yellow-deep);}
+
+  /* ---------- Top brand bar ---------- */
+  .brandbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 22px; background:rgba(255,255,255,0.75); backdrop-filter: blur(6px);
+    position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(54,46,77,0.06);
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-badge{
+    width:38px;height:38px;border-radius:12px;
+    background:linear-gradient(135deg,var(--coral),var(--yellow-deep));
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+    box-shadow: var(--shadow);
+  }
+  .brand-name{font-weight:800;font-size:19px;line-height:1;}
+  .brand-tag{font-size:11px;color:var(--ink-soft);font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+  .star-tally{display:flex;align-items:center;gap:6px;font-weight:800;background:var(--yellow);padding:6px 14px;border-radius:999px;font-size:14px;box-shadow:var(--shadow);}
+
+  /* ---------- Trail / progress ---------- */
+  .trail-wrap{padding:16px 22px 4px; overflow-x:auto;}
+  .trail{display:flex; align-items:center; gap:6px; min-width:820px; position:relative;}
+  .trail-line{position:absolute; top:19px; left:20px; right:20px; height:4px; background:rgba(54,46,77,0.12); border-radius:4px; z-index:0;}
+  .trail-line-fill{position:absolute; top:19px; left:20px; height:4px; background:linear-gradient(90deg,var(--coral),var(--yellow-deep)); border-radius:4px; z-index:1; transition:width .4s ease;}
+  .stone{
+    position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:4px;
+    background:none; border:none; padding:0; width:76px; flex-shrink:0;
+  }
+  .stone-dot{
+    width:40px;height:40px;border-radius:50%; background:var(--white); border:3px solid var(--blue-deep);
+    display:flex;align-items:center;justify-content:center; font-size:18px; box-shadow:var(--shadow);
+    transition:transform .2s;
+  }
+  .stone.done .stone-dot{background:var(--mint-deep); border-color:var(--mint-deep);}
+  .stone.active .stone-dot{border-color:var(--coral-deep); transform:scale(1.15); background:var(--coral); }
+  .stone-label{font-size:10.5px; font-weight:700; color:var(--ink-soft); text-align:center;}
+  .stone.active .stone-label{color:var(--coral-deep);}
+  .stone:hover .stone-dot{transform:scale(1.08);}
+
+  /* ---------- Stage ---------- */
+  .stage-outer{max-width:920px;margin:0 auto;padding:10px 18px 60px;}
+  .stage{display:none;}
+  .stage.active{display:block; animation:fadein .35s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .card{
+    background:var(--white); border-radius:26px; padding:28px 26px; box-shadow:var(--shadow);
+    margin-bottom:18px; border:1px solid rgba(54,46,77,0.05);
+  }
+  .stage-title{font-size:26px; font-weight:800; margin:6px 0 4px;}
+  .stage-sub{color:var(--ink-soft); font-weight:600; margin-bottom:18px;}
+  .pill{display:inline-block; background:var(--lav); color:#5b3fa0; font-weight:800; font-size:12px; padding:5px 12px; border-radius:999px; letter-spacing:.04em; text-transform:uppercase;}
+
+  .btn{
+    border:none; border-radius:16px; padding:12px 20px; font-weight:800; font-size:15px;
+    background:var(--coral); color:white; box-shadow:0 6px 0 var(--coral-deep); transition:transform .1s;
+  }
+  .btn:active{transform:translateY(4px); box-shadow:0 2px 0 var(--coral-deep);}
+  .btn.secondary{background:var(--blue); color:var(--ink); box-shadow:0 6px 0 var(--blue-deep);}
+  .btn.ghost{background:var(--white); color:var(--ink); box-shadow:0 0 0 2px var(--blue-deep) inset;}
+  .btn:disabled{opacity:.4; cursor:not-allowed; box-shadow:none;}
+  .nav-row{display:flex; justify-content:space-between; margin-top:20px; gap:10px;}
+
+  .grid{display:grid; gap:14px;}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+
+  .voc-card{
+    background:var(--mint); border-radius:20px; padding:16px; text-align:center; cursor:pointer;
+    transition:transform .15s; border:2px solid transparent; position:relative; min-height:130px;
+  }
+  .voc-card:hover{transform:translateY(-3px);}
+  .voc-card.flipped{background:var(--white); border-color:var(--mint-deep);}
+  .voc-emoji{font-size:38px;}
+  .voc-word{font-weight:800; margin-top:6px;}
+  .voc-meaning{font-size:12.5px; color:var(--ink-soft); margin-top:4px; display:none; font-weight:700;}
+  .voc-card.flipped .voc-meaning{display:block;}
+  .speak-btn{
+    position:absolute; top:8px; right:8px; background:var(--white); border:none; border-radius:50%;
+    width:28px;height:28px; box-shadow:var(--shadow); font-size:13px;
+  }
+
+  .opt-btn{
+    display:block; width:100%; text-align:left; background:var(--blue); border:2px solid transparent;
+    border-radius:14px; padding:12px 16px; margin-bottom:9px; font-weight:700; font-size:15px; color:var(--ink);
+  }
+  .opt-btn:hover:not(:disabled){border-color:var(--blue-deep);}
+  .opt-btn.correct{background:var(--mint-deep); color:white;}
+  .opt-btn.wrong{background:var(--coral); color:white;}
+  .quiz-progress{font-size:12px; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px;}
+  .quiz-question{font-size:18px; font-weight:700; margin:0 0 14px;}
+  .quiz-feedback{margin-top:10px; font-weight:800; min-height:20px;}
+  .quiz-feedback.good{color:#1a9c66;}
+  .quiz-feedback.bad{color:var(--coral-deep);}
+  .quiz-timer{float:right; background:var(--yellow); font-weight:800; padding:3px 12px; border-radius:999px; font-size:13px;}
+
+  .chip{display:inline-block; background:var(--lav); border:none; border-radius:12px; padding:9px 14px; margin:4px; font-weight:800; font-size:14.5px;}
+  .chip.used{opacity:.35;}
+  .chip-slot-row{min-height:52px; background:var(--yellow); border-radius:14px; padding:8px; margin:10px 0; display:flex; flex-wrap:wrap; align-items:center;}
+
+  table.tt{width:100%; border-collapse:collapse; margin-top:10px;}
+  table.tt th, table.tt td{padding:9px 8px; text-align:left; font-size:14px; border-bottom:1px solid rgba(54,46,77,0.08);}
+  table.tt th{font-family:'Baloo 2'; font-weight:700; color:var(--ink-soft); font-size:12px; text-transform:uppercase;}
+  .tt-slot{background:var(--peach); border-radius:10px; padding:4px 10px; font-weight:800; cursor:pointer; display:inline-block; min-width:80px;}
+  .tt-slot.filled{background:var(--mint-deep); color:white;}
+  .tt-slot.wrong-shake{animation:shake .3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);}}
+
+  textarea, input[type=text]{
+    width:100%; border:2px solid var(--blue-deep); border-radius:12px; padding:11px 14px; font-family:'Nunito';
+    font-size:15px; font-weight:600; color:var(--ink); background:var(--white);
+  }
+  textarea{min-height:120px; resize:vertical;}
+  label.field-label{font-weight:800; font-size:13px; color:var(--ink-soft); display:block; margin:12px 0 4px;}
+
+  .badge-row{display:flex; gap:10px; margin-top:8px; flex-wrap:wrap;}
+  .mini-badge{background:var(--yellow); padding:6px 12px; border-radius:999px; font-weight:800; font-size:13px;}
+
+  .memcard{
+    aspect-ratio:1/1; background:var(--blue-deep); border-radius:16px; display:flex; align-items:center; justify-content:center;
+    font-size:26px; cursor:pointer; color:white; user-select:none;
+  }
+  .memcard.open{background:var(--white); color:var(--ink); border:2px solid var(--mint-deep);}
+  .memcard.matched{background:var(--mint-deep); color:white; opacity:.7;}
+
+  .conf-piece{position:fixed; top:-20px; font-size:22px; z-index:999; animation:fall linear forwards;}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg); opacity:0.2;}}
+
+  .certificate{
+    border:6px double var(--coral-deep); border-radius:22px; padding:36px 28px; text-align:center;
+    background:linear-gradient(160deg, #fff 0%, var(--yellow) 120%);
+  }
+  .certificate h2{font-size:30px; margin:6px 0;}
+  .cert-name{font-family:'Baloo 2'; font-size:28px; color:var(--coral-deep); border-bottom:3px solid var(--coral-deep); display:inline-block; padding:0 10px;}
+
+  .dialogue-line{padding:10px 14px; border-radius:14px; margin-bottom:8px; font-weight:700; max-width:80%;}
+  .dialogue-line.a{background:var(--blue); }
+  .dialogue-line.b{background:var(--lav); margin-left:auto; text-align:right;}
+
+  @media(max-width:600px){
+    .stage-title{font-size:21px;}
+    .card{padding:20px 16px; border-radius:20px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="brandbar">
+  <div class="brand">
+    <div class="brand-badge">✨</div>
+    <div>
+      <div class="brand-name">LittleLume English</div>
+      <div class="brand-tag">Learn • Play • Shine</div>
+    </div>
+  </div>
+  <div class="star-tally">⭐ <span id="starCount">0</span> stars</div>
+</div>
+
+<div class="trail-wrap">
+  <div class="trail" id="trail">
+    <div class="trail-line"></div>
+    <div class="trail-line-fill" id="trailFill" style="width:0px;"></div>
+  </div>
+</div>
+
+<div class="stage-outer" id="stageOuter"></div>
+
+<script>
+/* ========================================================================
+   DATA
+======================================================================== */
+const STAGES = [
+  {key:'welcome',   label:'Start',      icon:'✨'},
+  {key:'warmup',    label:'Warm-up',    icon:'🎲'},
+  {key:'vocab',     label:'Words',      icon:'📚'},
+  {key:'grammar',   label:'Grammar',    icon:'🧩'},
+  {key:'timetable', label:'Timetable',  icon:'🗓️'},
+  {key:'listening', label:'Listen',     icon:'🎧'},
+  {key:'reading',   label:'Read',       icon:'📖'},
+  {key:'speaking',  label:'Speak',      icon:'🎤'},
+  {key:'games',     label:'Games',      icon:'🎮'},
+  {key:'writing',   label:'Write',      icon:'✍️'},
+  {key:'final',     label:'Shine!',     icon:'🏆'},
+];
+
+const SUBJECTS = [
+  {word:'English', emoji:'📖', meaning:'The subject where you read, write and speak English.', example:'I have English on Monday.'},
+  {word:'Mathematics', emoji:'➗', meaning:'The subject where you learn numbers and problem solving.', example:'She has Mathematics every morning.'},
+  {word:'Science', emoji:'🔬', meaning:'The subject where you explore how things work.', example:'We do experiments in Science.'},
+  {word:'Social Studies', emoji:'🌍', meaning:'The subject about people, places and the world.', example:'He studies Social Studies on Tuesday.'},
+  {word:'Indonesian', emoji:'🗣️', meaning:'The subject where you study the Indonesian language.', example:'I have Indonesian after lunch.'},
+  {word:'PE', emoji:'🏃', meaning:'Physical Education — the subject where you play sports and exercise.', example:'We have PE in the afternoon.'},
+  {word:'Art', emoji:'🎨', meaning:'The subject where you draw, paint and make things.', example:'I always enjoy Art class.'},
+  {word:'Computer', emoji:'💻', meaning:'The subject where you learn about computers and typing.', example:'We use Computer class on Tuesday.'},
+  {word:'Religion', emoji:'🙏', meaning:'The subject where you learn about faith and values.', example:'He has Religion at noon.'},
+];
+
+const SCHEDULE_WORDS = [
+  {word:'timetable', meaning:'A chart that shows what class you have and when.'},
+  {word:'schedule', meaning:'A plan of what happens and when, like your school day.'},
+  {word:'subject', meaning:'A topic you study at school, like Science or Art.'},
+  {word:'homework', meaning:'School work you do at home.'},
+  {word:'break', meaning:'A short rest time between classes.'},
+  {word:'lunch', meaning:'The meal you eat in the middle of the school day.'},
+  {word:'first period', meaning:'The very first class of the school day.'},
+  {word:'classroom', meaning:'The room where a class takes place.'},
+];
+
+const MONDAY = [
+  {time:'7:30', subject:'English'},
+  {time:'8:30', subject:'Mathematics'},
+  {time:'9:30', subject:'Science'},
+  {time:'10:30', subject:'Break'},
+  {time:'11:00', subject:'Art'},
+  {time:'12:00', subject:'Indonesian'},
+];
+const TUESDAY = [
+  {time:'7:30', subject:'Mathematics'},
+  {time:'8:30', subject:'Social Studies'},
+  {time:'9:30', subject:'Computer'},
+  {time:'11:00', subject:'PE'},
+  {time:'12:00', subject:'Religion'},
+];
+
+/* ========================================================================
+   STATE
+======================================================================== */
+const results = {
+  vocabMemory:false, vocabQuiz:null, grammarQuiz:null, timetableQuiz:null,
+  listeningQuiz:null, readingQuiz:null,
+  sentenceBuilder:null, frequencyRace:null, timeMatch:null, correctIncorrect:null, speedQuiz:null,
+  writing1:false, writing2:false, writing3:false,
+};
+let currentStage = 0;
+let starTotal = 0;
+
+function addStars(n){ starTotal += n; document.getElementById('starCount').textContent = starTotal; }
+function speak(text){
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.92; u.pitch = 1.05;
+    window.speechSynthesis.speak(u);
+  }catch(e){ /* speech not supported */ }
+}
+function markDone(stageIndex){ document.querySelectorAll('.stone')[stageIndex].classList.add('done'); }
+
+/* ========================================================================
+   GENERIC QUIZ ENGINE
+   questions: [{q, options:[...], answer:index, explain}]
+======================================================================== */
+function buildQuiz(container, questions, opts){
+  opts = opts || {};
+  let idx = 0, score = 0, timer = null;
+  function clearTimer(){ if(timer){ clearInterval(timer); timer = null; } }
+  function renderQ(){
+    clearTimer();
+    if(idx >= questions.length){
+      container.innerHTML =
+        '<div class="quiz-progress">Complete!</div>' +
+        '<p class="quiz-question">You scored ' + score + ' / ' + questions.length + ' 🎉</p>';
+      if(opts.onFinish) opts.onFinish(score, questions.length);
+      return;
+    }
+    const item = questions[idx];
+    let timeLeft = opts.seconds || 12;
+    container.innerHTML =
+      '<div class="quiz-progress">Question ' + (idx+1) + ' / ' + questions.length +
+        (opts.timed ? '<span class="quiz-timer" id="qTimer">⏱ ' + timeLeft + 's</span>' : '') +
+      '</div>' +
+      '<p class="quiz-question">' + item.q + '</p>' +
+      '<div class="quiz-options">' +
+        item.options.map((o,i)=>'<button class="opt-btn" data-i="'+i+'">'+o+'</button>').join('') +
+      '</div>' +
+      '<div class="quiz-feedback" id="quizFeedback"></div>';
+
+    const optBtns = container.querySelectorAll('.opt-btn');
+    function lockAndReveal(pickedIndex){
+      clearTimer();
+      optBtns.forEach(b=>b.disabled = true);
+      const fb = document.getElementById('quizFeedback');
+      if(pickedIndex === item.answer){
+        if(pickedIndex >= 0) optBtns[pickedIndex].classList.add('correct');
+        score++;
+        fb.textContent = '🎉 Correct! ' + (item.explain||'');
+        fb.className = 'quiz-feedback good';
+      } else {
+        if(pickedIndex >= 0) optBtns[pickedIndex].classList.add('wrong');
+        optBtns[item.answer].classList.add('correct');
+        fb.textContent = (pickedIndex===-1 ? "Time's up! " : 'Not quite. ') + (item.explain||'');
+        fb.className = 'quiz-feedback bad';
+      }
+      setTimeout(()=>{ idx++; renderQ(); }, 1300);
+    }
+    optBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=> lockAndReveal(+btn.dataset.i));
+    });
+    if(opts.timed){
+      timer = setInterval(()=>{
+        timeLeft--;
+        const t = document.getElementById('qTimer');
+        if(t) t.textContent = '⏱ ' + timeLeft + 's';
+        if(timeLeft <= 0){ lockAndReveal(-1); }
+      },1000);
+    }
+  }
+  renderQ();
+}
+
+/* ========================================================================
+   STAGE RENDERERS
+======================================================================== */
+const renderers = {};
+
+renderers.welcome = function(el){
+  el.innerHTML = `
+    <div class="card" style="text-align:center;">
+      <span class="pill">Grade 4 · A1 English</span>
+      <h1 class="stage-title">My Schedule &amp; Timetable 🗓️</h1>
+      <p class="stage-sub">Get ready to play, learn subject words, and build your very own weekly timetable!</p>
+      <div style="font-size:56px; margin:10px 0;">📖➗🔬🎨🏃</div>
+      <p style="font-weight:700;">In this lesson you will:</p>
+      <div class="grid grid-3" style="text-align:left; margin-top:10px;">
+        <div class="voc-card" style="cursor:default;">🎲<div class="voc-word">Play games</div></div>
+        <div class="voc-card" style="cursor:default;">🧩<div class="voc-word">Learn grammar</div></div>
+        <div class="voc-card" style="cursor:default;">✍️<div class="voc-word">Write &amp; speak</div></div>
+      </div>
+      <div class="nav-row" style="justify-content:center;">
+        <button class="btn" onclick="goTo(1)">Let's start! 🚀</button>
+      </div>
+    </div>`;
+};
+
+/* ---- 1. Warm-up: Guess the Subject ---- */
+renderers.warmup = function(el){
+  const qs = [
+    {q:'🔬 + goggles + experiment... What subject is this?', options:['Art','Science','PE','Religion'], answer:1, explain:'Science is about experiments!'},
+    {q:'🎨 + paintbrush + colors... What subject is this?', options:['Art','Mathematics','Computer','English'], answer:0, explain:'Art is about drawing and painting.'},
+    {q:'➗ + numbers + counting... What subject is this?', options:['Social Studies','Mathematics','PE','Indonesian'], answer:1, explain:'Mathematics is about numbers.'},
+    {q:'🏃 + ball + running... What subject is this?', options:['PE','Computer','English','Religion'], answer:0, explain:'PE means Physical Education.'},
+    {q:'💻 + keyboard + typing... What subject is this?', options:['Science','Art','Computer','Mathematics'], answer:2, explain:'Computer class teaches technology skills.'},
+  ];
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Warm-up Game</span>
+      <h2 class="stage-title">Guess the Subject 🎲</h2>
+      <p class="stage-sub">Look at the clues and guess the school subject!</p>
+      <div id="warmupQuiz"></div>
+      <div class="nav-row"><button class="btn ghost" onclick="goTo(0)">Back</button><button class="btn secondary" id="warmupNext" style="display:none;" onclick="goTo(2)">Next: Vocabulary →</button></div>
+    </div>`;
+  buildQuiz(document.getElementById('warmupQuiz'), qs, {onFinish:(s,t)=>{
+    addStars(s); markDone(1); document.getElementById('warmupNext').style.display='inline-block';
+  }});
+};
+
+/* ---- 2. Vocabulary Explorer ---- */
+renderers.vocab = function(el){
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Vocabulary Explorer</span>
+      <h2 class="stage-title">School Subjects 📚</h2>
+      <p class="stage-sub">Tap a card to reveal its meaning. Tap 🔊 to hear it!</p>
+      <div class="grid grid-3" id="vocabGrid"></div>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Schedule Words</h3>
+      <div class="grid grid-2" id="scheduleWordsGrid"></div>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Memory Match 🧠</h3>
+      <p class="stage-sub">Flip two cards to find matching subject pairs.</p>
+      <div class="grid grid-3" id="memoryGrid" style="max-width:520px;"></div>
+      <p id="memoryStatus" style="font-weight:800; color:#1a9c66; margin-top:10px;"></p>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Quick Vocabulary Quiz ✅</h3>
+      <div id="vocabQuiz"></div>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(1)">Back</button><button class="btn secondary" id="vocabNext" style="display:none;" onclick="goTo(3)">Next: Grammar →</button></div>
+  `;
+  const grid = document.getElementById('vocabGrid');
+  SUBJECTS.forEach(s=>{
+    const card = document.createElement('div');
+    card.className = 'voc-card';
+    card.innerHTML = `<button class="speak-btn" onclick="event.stopPropagation(); speak('${s.word}')">🔊</button>
+      <div class="voc-emoji">${s.emoji}</div><div class="voc-word">${s.word}</div>
+      <div class="voc-meaning">${s.meaning}<br><em>"${s.example}"</em></div>`;
+    card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+    grid.appendChild(card);
+  });
+  const swGrid = document.getElementById('scheduleWordsGrid');
+  SCHEDULE_WORDS.forEach(s=>{
+    const card = document.createElement('div');
+    card.className = 'voc-card';
+    card.style.background = 'var(--blue)';
+    card.innerHTML = `<button class="speak-btn" onclick="event.stopPropagation(); speak('${s.word}')">🔊</button>
+      <div class="voc-word" style="font-size:16px;">${s.word}</div>
+      <div class="voc-meaning">${s.meaning}</div>`;
+    card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+    swGrid.appendChild(card);
+  });
+
+  // Memory match
+  const memPairsSource = SUBJECTS.slice(0,6);
+  let memCards = [];
+  memPairsSource.forEach((s,i)=>{
+    memCards.push({id:i, type:'emoji', display:s.emoji, word:s.word});
+    memCards.push({id:i, type:'word', display:s.word, word:s.word});
+  });
+  memCards = memCards.sort(()=>Math.random()-0.5);
+  const memGrid = document.getElementById('memoryGrid');
+  let openCards = [], matchedCount = 0, lock = false;
+  memCards.forEach((c, idx)=>{
+    const div = document.createElement('div');
+    div.className = 'memcard';
+    div.dataset.idx = idx;
+    div.textContent = '❔';
+    div.addEventListener('click', ()=>{
+      if(lock || div.classList.contains('open') || div.classList.contains('matched')) return;
+      div.classList.add('open'); div.textContent = c.display;
+      openCards.push({div, c});
+      if(openCards.length === 2){
+        lock = true;
+        const [a,b] = openCards;
+        if(a.c.id === b.c.id && a.c.type !== b.c.type){
+          setTimeout(()=>{
+            a.div.classList.add('matched'); b.div.classList.add('matched');
+            openCards = []; lock = false; matchedCount++;
+            if(matchedCount === memPairsSource.length){
+              document.getElementById('memoryStatus').textContent = '🎉 All matched! Great memory!';
+              if(!results.vocabMemory){ results.vocabMemory = true; addStars(3); }
+            }
+          },400);
+        } else {
+          setTimeout(()=>{
+            a.div.classList.remove('open'); a.div.textContent='❔';
+            b.div.classList.remove('open'); b.div.textContent='❔';
+            openCards = []; lock = false;
+          },700);
+        }
+      }
+    });
+    memGrid.appendChild(div);
+  });
+
+  // Vocab quiz
+  const vq = [
+    {q:'Which subject uses a paintbrush?', options:['Art','Science','Mathematics'], answer:0},
+    {q:'Which subject is about numbers?', options:['Religion','Mathematics','Computer'], answer:1},
+    {q:'"PE" is short for...', options:['Personal English','Physical Education','Play Everyday'], answer:1},
+    {q:'A short rest time between classes is called a...', options:['break','homework','timetable'], answer:0},
+    {q:'A chart that shows your classes and times is called a...', options:['classroom','timetable','subject'], answer:1},
+  ];
+  buildQuiz(document.getElementById('vocabQuiz'), vq, {onFinish:(s,t)=>{
+    results.vocabQuiz = s/t; addStars(s); markDone(2);
+    document.getElementById('vocabNext').style.display='inline-block';
+  }});
+};
+
+/* ---- 3. Grammar Lesson ---- */
+renderers.grammar = function(el){
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Grammar Lesson</span>
+      <h2 class="stage-title">Talking About Your Schedule 🧩</h2>
+      <div class="grid grid-2">
+        <div class="voc-card" style="text-align:left; background:var(--blue);">
+          <h3 style="margin:2px 0;">Simple Present</h3>
+          <p>I <b>have</b> English on Monday.<br>She <b>has</b> Science on Tuesday.<br>We <b>study</b> Mathematics every morning.</p>
+        </div>
+        <div class="voc-card" style="text-align:left; background:var(--lav);">
+          <h3 style="margin:2px 0;">Frequency Adverbs</h3>
+          <p><b>always</b> → 100%<br><b>usually</b> → most of the time<br><b>often</b> → many times<br><b>sometimes</b> → not often<br><b>never</b> → 0%</p>
+        </div>
+        <div class="voc-card" style="text-align:left; background:var(--peach); grid-column: span 2;">
+          <h3 style="margin:2px 0;">Time Expressions</h3>
+          <p>English <b>starts at</b> 7:30. &nbsp;•&nbsp; PE is <b>from</b> 9:00 <b>to</b> 10:00. &nbsp;•&nbsp; Science is <b>after</b> Mathematics, and Mathematics is <b>before</b> Science.</p>
+        </div>
+      </div>
+      <h3 style="margin-top:22px;">Example sentences</h3>
+      <ul style="line-height:1.8; font-weight:700;">
+        <li>I <u>always</u> have English on Monday.</li>
+        <li>We <u>usually</u> study Science in the morning.</li>
+        <li>He <u>sometimes</u> has Art after lunch.</li>
+      </ul>
+      <h3 style="margin-top:18px;">Grammar Quiz ✅</h3>
+      <div id="grammarQuiz"></div>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(2)">Back</button><button class="btn secondary" id="grammarNext" style="display:none;" onclick="goTo(4)">Next: Timetable →</button></div>
+  `;
+  const gq = [
+    {q:'"He ___ Science on Tuesday." Choose the correct verb.', options:['have','has','having'], answer:1, explain:'Use "has" with he/she/it.'},
+    {q:'Which word means 100% of the time?', options:['sometimes','always','never'], answer:1},
+    {q:'"PE is ___ 9:00 ___ 10:00." Fill the blanks.', options:['from / to','at / on','before / after'], answer:0},
+    {q:'"Mathematics is ___ Science." (Mathematics comes first)', options:['after','before','never'], answer:1},
+    {q:'Choose the correct sentence.', options:['I always has English.','I always have English.','I always having English.'], answer:1},
+  ];
+  buildQuiz(document.getElementById('grammarQuiz'), gq, {onFinish:(s,t)=>{
+    results.grammarQuiz = s/t; addStars(s); markDone(3);
+    document.getElementById('grammarNext').style.display='inline-block';
+  }});
+};
+
+/* ---- 4. Interactive Timetable ---- */
+renderers.timetable = function(el){
+  function renderTable(day, rows, hideIndexes){
+    hideIndexes = hideIndexes || [];
+    let rowsHtml = rows.map((r,i)=>{
+      const hidden = hideIndexes.includes(i);
+      return `<tr><td>${r.time}</td><td>${hidden ? `<span class="tt-slot" data-day="${day}" data-i="${i}">?</span>` : r.subject}</td></tr>`;
+    }).join('');
+    return `<table class="tt"><thead><tr><th>Time</th><th>Subject</th></tr></thead><tbody>${rowsHtml}</tbody></table>`;
+  }
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Interactive Timetable</span>
+      <h2 class="stage-title">Read the Timetable 🗓️</h2>
+      <div class="grid grid-2">
+        <div><h3>Monday</h3>${renderTable('mon', MONDAY)}</div>
+        <div><h3>Tuesday</h3>${renderTable('tue', TUESDAY)}</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Complete the Missing Timetable 🧩</h3>
+      <p class="stage-sub">Tap a word below, then tap the <span class="tt-slot" style="cursor:default;">?</span> slot to fill it in.</p>
+      <div id="wordBank"></div>
+      <div class="grid grid-2">
+        <div><h4>Monday</h4><div id="monTable"></div></div>
+        <div><h4>Tuesday</h4><div id="tueTable"></div></div>
+      </div>
+      <p id="fillStatus" style="font-weight:800; color:#1a9c66;"></p>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Timetable Questions ✅</h3>
+      <div id="timetableQuiz"></div>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(3)">Back</button><button class="btn secondary" id="ttNext" style="display:none;" onclick="goTo(5)">Next: Listening →</button></div>
+  `;
+
+  // Fill-in exercise: hide subject at index 2 (Monday) and index 1 (Tuesday)
+  const monHidden = [2], tueHidden = [1];
+  document.getElementById('monTable').innerHTML = renderTable('mon', MONDAY, monHidden);
+  document.getElementById('tueTable').innerHTML = renderTable('tue', TUESDAY, tueHidden);
+  const bank = ['Science','Mathematics','Social Studies','English','Art'].sort(()=>Math.random()-0.5);
+  const bankEl = document.getElementById('wordBank');
+  let selectedWord = null, filledCount = 0;
+  const totalToFill = monHidden.length + tueHidden.length;
+  bank.forEach(w=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip'; chip.textContent = w;
+    chip.addEventListener('click', ()=>{
+      if(chip.classList.contains('used')) return;
+      document.querySelectorAll('#wordBank .chip').forEach(c=>c.style.outline='none');
+      selectedWord = w; chip.style.outline = '3px solid var(--coral-deep)';
+    });
+    bankEl.appendChild(chip);
+  });
+  document.querySelectorAll('.tt-slot').forEach(slot=>{
+    slot.addEventListener('click', ()=>{
+      if(slot.classList.contains('filled') || !selectedWord) return;
+      const day = slot.dataset.day, i = +slot.dataset.i;
+      const correct = day==='mon' ? MONDAY[i].subject : TUESDAY[i].subject;
+      if(selectedWord === correct){
+        slot.textContent = selectedWord; slot.classList.add('filled');
+        document.querySelectorAll('#wordBank .chip').forEach(c=>{ if(c.textContent===selectedWord){ c.classList.add('used'); c.style.outline='none'; } });
+        selectedWord = null; filledCount++;
+        if(filledCount === totalToFill){
+          document.getElementById('fillStatus').textContent = '🎉 Timetable complete!';
+          addStars(2);
+        }
+      } else {
+        slot.classList.add('wrong-shake');
+        setTimeout(()=>slot.classList.remove('wrong-shake'), 300);
+      }
+    });
+  });
+
+  const tq = [
+    {q:'What subject is before Science on Monday?', options:['English','Mathematics','Break'], answer:1},
+    {q:'What subject is after Mathematics on Monday?', options:['Science','Art','Indonesian'], answer:0},
+    {q:'What time does PE start on Tuesday?', options:['9:30','11:00','12:00'], answer:1},
+    {q:'What subject is at 9:30 on Tuesday?', options:['Computer','Science','Religion'], answer:0},
+    {q:'What subject comes right after Break on Monday?', options:['Art','Indonesian','English'], answer:0},
+  ];
+  buildQuiz(document.getElementById('timetableQuiz'), tq, {onFinish:(s,t)=>{
+    results.timetableQuiz = s/t; addStars(s); markDone(4);
+    document.getElementById('ttNext').style.display='inline-block';
+  }});
+};
+
+/* ---- 5. Listening Practice ---- */
+renderers.listening = function(el){
+  const script = "Hello! I'm Ben. On Wednesday, I have Science at eight o'clock. After Science, I have Mathematics. I usually have lunch at twelve o'clock. On Thursday, I have Art in the morning, and I often have PE after lunch. I always finish my homework in the evening.";
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Listening Practice</span>
+      <h2 class="stage-title">Ben's Weekly Timetable 🎧</h2>
+      <p class="stage-sub">Press play and listen carefully. You can listen more than once!</p>
+      <button class="btn" onclick="speak(\`${script}\`)">▶️ Play Audio</button>
+      <div style="margin-top:14px;"><em id="scriptToggle" style="color:var(--ink-soft); font-weight:700; cursor:pointer; text-decoration:underline;" onclick="document.getElementById('scriptText').style.display=document.getElementById('scriptText').style.display==='block'?'none':'block'">Show/hide script (for teacher)</em>
+      <p id="scriptText" style="display:none; background:var(--blue); padding:12px; border-radius:12px; margin-top:8px;">${script}</p></div>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Listening Questions ✅</h3>
+      <div id="listenQuiz"></div>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Arrange Wednesday's Schedule 🔢</h3>
+      <p class="stage-sub">Tap the subjects in the order Ben has them on Wednesday.</p>
+      <div id="arrangeBank"></div>
+      <div class="chip-slot-row" id="arrangeSlots"></div>
+      <p id="arrangeStatus" style="font-weight:800; color:#1a9c66;"></p>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(4)">Back</button><button class="btn secondary" id="listenNext" style="display:none;" onclick="goTo(6)">Next: Reading →</button></div>
+  `;
+  const lq = [
+    {q:'What subject does Ben have first on Wednesday?', options:['Mathematics','Science','Art'], answer:1},
+    {q:'What subject does Ben have after Science?', options:['Mathematics','PE','Homework'], answer:0},
+    {q:'True or False: Ben has PE before lunch on Thursday.', options:['True','False'], answer:1, explain:'He has PE after lunch.'},
+    {q:'When does Ben finish his homework?', options:['In the morning','In the evening','At lunch'], answer:1},
+  ];
+  buildQuiz(document.getElementById('listenQuiz'), lq, {onFinish:(s,t)=>{
+    results.listeningQuiz = s/t; addStars(s); markDone(5);
+    checkListenDone();
+  }});
+
+  // Arrange exercise
+  const correctOrder = ['Science','Mathematics'];
+  const bankWords = [...correctOrder].sort(()=>Math.random()-0.5);
+  const bankEl = document.getElementById('arrangeBank');
+  const slotsEl = document.getElementById('arrangeSlots');
+  let chosen = [];
+  function refreshBank(){
+    bankEl.innerHTML = '';
+    bankWords.forEach(w=>{
+      if(chosen.includes(w)) return;
+      const chip = document.createElement('button');
+      chip.className='chip'; chip.textContent=w;
+      chip.onclick = ()=>{
+        chosen.push(w); refreshBank(); refreshSlots();
+        if(chosen.length === correctOrder.length){
+          const ok = chosen.every((w,i)=>w===correctOrder[i]);
+          document.getElementById('arrangeStatus').textContent = ok ? '🎉 Correct order!' : '❌ Not quite — try again!';
+          if(ok){ addStars(2); }
+          else { setTimeout(()=>{ chosen=[]; refreshBank(); refreshSlots(); document.getElementById('arrangeStatus').textContent=''; },1200); }
+        }
+      };
+      bankEl.appendChild(chip);
+    });
+  }
+  function refreshSlots(){
+    slotsEl.innerHTML = chosen.map(w=>`<span class="chip" style="background:var(--mint-deep); color:white;">${w}</span>`).join('') || '<span style="color:var(--ink-soft); font-weight:700;">Tap words above in order…</span>';
+  }
+  refreshBank(); refreshSlots();
+
+  function checkListenDone(){
+    if(results.listeningQuiz !== null){
+      document.getElementById('listenNext').style.display='inline-block';
+    }
+  }
+};
+
+/* ---- 6. Reading ---- */
+renderers.reading = function(el){
+  const passage = "Hi! My name is Maya. I am a Grade 4 student, and I love my school timetable. On Monday, I always have English at seven thirty, and after that, I have Mathematics. I usually have Science before break, so I feel very awake for the experiment! After break, I often have Art, and I always enjoy painting new pictures. On Tuesday, my day starts with Mathematics again, then Social Studies and Computer class. I sometimes have PE in the late morning, and I never forget my sports shoes! My favorite subject is Science because we do fun experiments. After school, I always do my homework before dinner. I think a good timetable helps me learn every subject and still have time to play. Learn, play, shine — that's my motto every single day!";
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Reading</span>
+      <h2 class="stage-title">My School Week 📖</h2>
+      <p style="line-height:1.8; font-size:15.5px; background:var(--yellow); padding:16px; border-radius:16px;">${passage}</p>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Comprehension: Multiple Choice &amp; True/False ✅</h3>
+      <div id="readingMCQ"></div>
+    </div>
+    <div class="card" id="readingShortWrap">
+      <h3 class="stage-title" style="font-size:20px;">Find the Information</h3>
+      <label class="field-label">What time does Maya have English on Monday?</label>
+      <input type="text" id="findInfo" placeholder="Type your answer...">
+      <button class="btn secondary" style="margin-top:10px;" onclick="checkFindInfo()">Check</button>
+      <p id="findInfoFb" style="font-weight:800; margin-top:8px;"></p>
+      <label class="field-label">WH Question: What does Maya do after school?</label>
+      <input type="text" id="whAnswer" placeholder="Type your answer...">
+      <button class="btn secondary" style="margin-top:10px;" onclick="checkWH()">Check</button>
+      <p id="whFb" style="font-weight:800; margin-top:8px;"></p>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(5)">Back</button><button class="btn secondary" id="readingNext" style="display:none;" onclick="goTo(7)">Next: Speaking →</button></div>
+  `;
+  const rq = [
+    {q:"What is Maya's favorite subject?", options:['Art','Science','PE','Computer'], answer:1},
+    {q:'True or False: Maya has Mathematics on Monday.', options:['True','False'], answer:0},
+    {q:'True or False: Maya never does her homework.', options:['True','False'], answer:1, explain:'She always does her homework!'},
+    {q:'What does Maya have right after break on Monday?', options:['Art','Science','Indonesian'], answer:0},
+  ];
+  buildQuiz(document.getElementById('readingMCQ'), rq, {onFinish:(s,t)=>{
+    results.readingQuiz = s/t; addStars(s); checkReadingDone();
+  }});
+  window.checkFindInfo = function(){
+    const v = document.getElementById('findInfo').value.toLowerCase();
+    const fb = document.getElementById('findInfoFb');
+    if(v.includes('7:30') || v.includes('seven thirty') || v.includes('7.30')){
+      fb.textContent = '🎉 Correct! English starts at 7:30.'; fb.style.color = '#1a9c66'; addStars(1);
+    } else {
+      fb.textContent = 'Try again — look for the time near "English" in the text.'; fb.style.color = 'var(--coral-deep)';
+    }
+    checkReadingDone(true);
+  };
+  window.checkWH = function(){
+    const v = document.getElementById('whAnswer').value.toLowerCase();
+    const fb = document.getElementById('whFb');
+    if(v.includes('homework')){
+      fb.textContent = '🎉 Correct! She always does her homework before dinner.'; fb.style.color = '#1a9c66'; addStars(1);
+    } else {
+      fb.textContent = 'Hint: look at the sentence about "after school".'; fb.style.color = 'var(--coral-deep)';
+    }
+    checkReadingDone(true);
+  };
+  let shortDone = false;
+  function checkReadingDone(fromShort){
+    if(fromShort) shortDone = true;
+    if(results.readingQuiz !== null){
+      markDone(6);
+      document.getElementById('readingNext').style.display='inline-block';
+    }
+  }
+};
+
+/* ---- 7. Speaking Practice ---- */
+renderers.speaking = function(el){
+  const lines = [
+    {who:'a', text:"What subject do you have on Thursday?"},
+    {who:'b', text:"I have Science."},
+    {who:'a', text:"What time does Science start?"},
+    {who:'b', text:"It starts at eight o'clock."},
+  ];
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Speaking Practice</span>
+      <h2 class="stage-title">Talk About Your Schedule 🎤</h2>
+      <p class="stage-sub">Listen to speaker A, then practice saying B's part out loud.</p>
+      <div id="dialogue"></div>
+      <button class="btn" onclick="playDialogue()">▶️ Listen to Speaker A</button>
+    </div>
+    <div class="card">
+      <h3 class="stage-title" style="font-size:20px;">Now It's Your Turn!</h3>
+      <p class="stage-sub">Answer the questions about YOUR real schedule. Say it aloud, then type it below.</p>
+      <label class="field-label">What subject do you have today?</label>
+      <input type="text" id="speak1" placeholder="I have ...">
+      <label class="field-label">What time does your favorite class start?</label>
+      <input type="text" id="speak2" placeholder="It starts at ...">
+      <button class="btn secondary" style="margin-top:12px;" onclick="finishSpeaking()">I practiced speaking! ✅</button>
+      <p id="speakFb" style="font-weight:800; margin-top:8px; color:#1a9c66;"></p>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(6)">Back</button><button class="btn secondary" id="speakingNext" style="display:none;" onclick="goTo(8)">Next: Grammar Games →</button></div>
+  `;
+  const dEl = document.getElementById('dialogue');
+  dEl.innerHTML = lines.map(l=>`<div class="dialogue-line ${l.who}"><b>${l.who.toUpperCase()}:</b> ${l.text}</div>`).join('');
+  window.playDialogue = function(){
+    let i = 0;
+    function next(){
+      if(i >= lines.length) return;
+      const l = lines[i];
+      if(l.who === 'a'){ speak(l.text); }
+      i++;
+      setTimeout(next, l.who==='a' ? 2600 : 800);
+    }
+    next();
+  };
+  window.finishSpeaking = function(){
+    const v1 = document.getElementById('speak1').value.trim();
+    const v2 = document.getElementById('speak2').value.trim();
+    const fb = document.getElementById('speakFb');
+    if(v1 && v2){
+      fb.textContent = '🎉 Great speaking practice!'; addStars(2);
+      markDone(7); document.getElementById('speakingNext').style.display='inline-block';
+    } else {
+      fb.textContent = 'Please answer both questions first.'; fb.style.color='var(--coral-deep)';
+    }
+  };
+};
+
+/* ---- 8. Grammar Games ---- */
+renderers.games = function(el){
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Grammar Games</span>
+      <h2 class="stage-title">Five Fun Games 🎮</h2>
+      <p class="stage-sub">Play all five games to earn your Games badge!</p>
+    </div>
+
+    <div class="card">
+      <h3 class="stage-title" style="font-size:19px;">1. Sentence Builder 🧱</h3>
+      <p class="stage-sub" id="sbInstructions">Tap the words in the correct order to build the sentence: <b>I / always / have / English / on Monday.</b></p>
+      <div id="sbBank"></div>
+      <div class="chip-slot-row" id="sbSlots"></div>
+      <p id="sbStatus" style="font-weight:800;"></p>
+    </div>
+
+    <div class="card">
+      <h3 class="stage-title" style="font-size:19px;">2. Frequency Race ⏱️</h3>
+      <p class="stage-sub">Pick the correct frequency adverb before time runs out!</p>
+      <div id="freqRace"></div>
+    </div>
+
+    <div class="card">
+      <h3 class="stage-title" style="font-size:19px;">3. Time Match 🔗</h3>
+      <p class="stage-sub">Tap a subject, then tap its matching time from Monday's timetable.</p>
+      <div class="grid grid-2">
+        <div id="timeMatchLeft"></div>
+        <div id="timeMatchRight"></div>
+      </div>
+      <p id="timeMatchStatus" style="font-weight:800; color:#1a9c66;"></p>
+    </div>
+
+    <div class="card">
+      <h3 class="stage-title" style="font-size:19px;">4. Correct or Incorrect? 👍👎</h3>
+      <div id="correctIncorrect"></div>
+    </div>
+
+    <div class="card">
+      <h3 class="stage-title" style="font-size:19px;">5. Speed Quiz ⚡</h3>
+      <div id="speedQuiz"></div>
+    </div>
+
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(7)">Back</button><button class="btn secondary" id="gamesNext" style="display:none;" onclick="goTo(9)">Next: Writing →</button></div>
+  `;
+
+  /* --- Sentence Builder --- */
+  const sbWords = ['I','always','have','English','on Monday'].sort(()=>Math.random()-0.5);
+  const sbCorrect = ['I','always','have','English','on Monday'];
+  let sbChosen = [];
+  const sbBankEl = document.getElementById('sbBank');
+  const sbSlotsEl = document.getElementById('sbSlots');
+  function sbRefreshBank(){
+    sbBankEl.innerHTML='';
+    sbWords.forEach((w,i)=>{
+      if(sbChosen.includes(i)) return;
+      const chip = document.createElement('button');
+      chip.className='chip'; chip.textContent=w;
+      chip.onclick=()=>{ sbChosen.push(i); sbRefreshBank(); sbRefreshSlots(); sbCheck(); };
+      sbBankEl.appendChild(chip);
+    });
+  }
+  function sbRefreshSlots(){
+    sbSlotsEl.innerHTML = sbChosen.map(i=>`<span class="chip" style="background:var(--mint-deep); color:white;">${sbWords[i]}</span>`).join('') || '<span style="color:var(--ink-soft); font-weight:700;">Build your sentence here…</span>';
+  }
+  function sbCheck(){
+    if(sbChosen.length === sbWords.length){
+      const built = sbChosen.map(i=>sbWords[i]);
+      const ok = built.join(' ') === sbCorrect.join(' ');
+      const st = document.getElementById('sbStatus');
+      if(ok){ st.textContent='🎉 Perfect sentence!'; st.style.color='#1a9c66'; results.sentenceBuilder=true; addStars(2); gamesCheckDone(); }
+      else { st.textContent='❌ Not quite the right order — try again!'; st.style.color='var(--coral-deep)';
+        setTimeout(()=>{ sbChosen=[]; sbRefreshBank(); sbRefreshSlots(); st.textContent=''; },1300);
+      }
+    }
+  }
+  sbRefreshBank(); sbRefreshSlots();
+
+  /* --- Frequency Race --- */
+  const freqQs = [
+    {q:'"I ___ have English on Monday." (100% of the time)', options:['never','always','sometimes'], answer:1},
+    {q:'"We ___ study Science in the morning." (most of the time)', options:['usually','never','rarely'], answer:0},
+    {q:'"He ___ has Art after lunch." (not often)', options:['always','sometimes','often'], answer:1},
+    {q:'"I ___ forget my homework." (0% of the time)', options:['never','always','usually'], answer:0},
+  ];
+  buildQuiz(document.getElementById('freqRace'), freqQs, {timed:true, seconds:10, onFinish:(s,t)=>{
+    results.frequencyRace = s/t; addStars(s); gamesCheckDone();
+  }});
+
+  /* --- Time Match --- */
+  const pairs = [
+    {subject:'English', time:'7:30'},
+    {subject:'Mathematics', time:'8:30'},
+    {subject:'Science', time:'9:30'},
+    {subject:'Art', time:'11:00'},
+  ];
+  const leftEl = document.getElementById('timeMatchLeft');
+  const rightEl = document.getElementById('timeMatchRight');
+  const shuffledTimes = pairs.map(p=>p.time).sort(()=>Math.random()-0.5);
+  let selSubject=null, selTime=null, tmMatched=0;
+  pairs.forEach(p=>{
+    const b = document.createElement('button'); b.className='chip'; b.style.display='block'; b.style.width='100%'; b.style.textAlign='left';
+    b.textContent = p.subject; b.dataset.subject=p.subject;
+    b.onclick=()=>{ if(b.classList.contains('used')) return; document.querySelectorAll('#timeMatchLeft .chip').forEach(x=>x.style.outline='none'); selSubject=p.subject; b.style.outline='3px solid var(--coral-deep)'; tmTryMatch(); };
+    leftEl.appendChild(b);
+  });
+  shuffledTimes.forEach(t=>{
+    const b = document.createElement('button'); b.className='chip'; b.style.display='block'; b.style.width='100%'; b.style.textAlign='left'; b.style.background='var(--peach)';
+    b.textContent = t; b.dataset.time=t;
+    b.onclick=()=>{ if(b.classList.contains('used')) return; document.querySelectorAll('#timeMatchRight .chip').forEach(x=>x.style.outline='none'); selTime=t; b.style.outline='3px solid var(--coral-deep)'; tmTryMatch(); };
+    rightEl.appendChild(b);
+  });
+  function tmTryMatch(){
+    if(!selSubject || !selTime) return;
+    const correctPair = pairs.find(p=>p.subject===selSubject);
+    const st = document.getElementById('timeMatchStatus');
+    if(correctPair.time === selTime){
+      document.querySelectorAll('#timeMatchLeft .chip').forEach(x=>{ if(x.dataset.subject===selSubject){ x.classList.add('used'); x.style.background='var(--mint-deep)'; x.style.color='white'; x.style.outline='none';} });
+      document.querySelectorAll('#timeMatchRight .chip').forEach(x=>{ if(x.dataset.time===selTime){ x.classList.add('used'); x.style.background='var(--mint-deep)'; x.style.color='white'; x.style.outline='none';} });
+      tmMatched++;
+      selSubject=null; selTime=null;
+      if(tmMatched === pairs.length){ st.textContent='🎉 All matched!'; results.timeMatch=true; addStars(2); gamesCheckDone(); }
+    } else {
+      st.textContent = 'Try again!'; st.style.color='var(--coral-deep)';
+      setTimeout(()=>{ document.querySelectorAll('.chip').forEach(x=>x.style.outline='none'); selSubject=null; selTime=null; st.textContent=''; },700);
+    }
+  }
+
+  /* --- Correct or Incorrect --- */
+  const ciQs = [
+    {q:'"She have Science on Tuesday."', options:['Correct','Incorrect'], answer:1, explain:'It should be "She has Science."'},
+    {q:'"I always have English on Monday."', options:['Correct','Incorrect'], answer:0},
+    {q:'"PE is from 9:00 at 10:00."', options:['Correct','Incorrect'], answer:1, explain:'It should be "from 9:00 to 10:00."'},
+    {q:'"We usually study Science in the morning."', options:['Correct','Incorrect'], answer:0},
+  ];
+  buildQuiz(document.getElementById('correctIncorrect'), ciQs, {onFinish:(s,t)=>{
+    results.correctIncorrect = s/t; addStars(s); gamesCheckDone();
+  }});
+
+  /* --- Speed Quiz --- */
+  const speedQs = [
+    {q:'Which subject comes after Mathematics on Monday?', options:['Science','Art','Break'], answer:0},
+    {q:'"He ___ has Art after lunch." (sometimes)', options:['sometimes','always',"doesn't"], answer:0},
+    {q:'What time does English start on Monday?', options:['8:30','7:30','9:30'], answer:1},
+    {q:'Choose the correct sentence.', options:['She has Science.','She have Science.','She having Science.'], answer:0},
+  ];
+  buildQuiz(document.getElementById('speedQuiz'), speedQs, {timed:true, seconds:8, onFinish:(s,t)=>{
+    results.speedQuiz = s/t; addStars(s); gamesCheckDone();
+  }});
+
+  function gamesCheckDone(){
+    if(results.sentenceBuilder && results.frequencyRace!==null && results.timeMatch && results.correctIncorrect!==null && results.speedQuiz!==null){
+      markDone(8);
+      document.getElementById('gamesNext').style.display='inline-block';
+    }
+  }
+};
+
+/* ---- 9. Writing ---- */
+renderers.writing = function(el){
+  el.innerHTML = `
+    <div class="card">
+      <span class="pill">Writing Activities</span>
+      <h2 class="stage-title">Show What You Know ✍️</h2>
+      <h3 style="font-size:18px;">Activity 1: Complete the sentences</h3>
+      <label class="field-label">I have __________ on Monday.</label>
+      <input type="text" id="w1a">
+      <label class="field-label">My English class starts at __________.</label>
+      <input type="text" id="w1b">
+      <label class="field-label">I usually have __________ after break.</label>
+      <input type="text" id="w1c">
+      <button class="btn secondary" style="margin-top:12px;" onclick="checkWriting1()">Check my sentences ✅</button>
+      <p id="w1fb" style="font-weight:800; color:#1a9c66;"></p>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:18px;">Activity 2: My Weekly Timetable</h3>
+      <p class="stage-sub">Type your own subjects and times for each day.</p>
+      <table class="tt" id="myTimetable">
+        <thead><tr><th>Day</th><th>Subject</th><th>Time</th></tr></thead>
+        <tbody>
+          ${['Monday','Tuesday','Wednesday','Thursday','Friday'].map(d=>`
+            <tr><td><b>${d}</b></td><td><input type="text" class="mt-subject" placeholder="Subject"></td><td><input type="text" class="mt-time" placeholder="e.g. 7:30"></td></tr>
+          `).join('')}
+        </tbody>
+      </table>
+      <button class="btn secondary" style="margin-top:12px;" onclick="checkWriting2()">Save my timetable ✅</button>
+      <p id="w2fb" style="font-weight:800; color:#1a9c66;"></p>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:18px;">Activity 3: Write About Your School Timetable</h3>
+      <p class="stage-sub">Write 6–8 sentences. Use Simple Present, frequency adverbs, and time expressions.</p>
+      <p style="font-size:13px; color:var(--ink-soft); font-weight:700;">Guiding questions: What subjects do you have? What is your favorite subject? When do you have English? What time does school start? Which subject do you have after break?</p>
+      <textarea id="w3text" placeholder="I have... My favorite subject is... I always/usually/sometimes..."></textarea>
+      <p id="w3count" style="font-size:13px; color:var(--ink-soft); font-weight:700; margin-top:4px;">0 sentences written (aim for 6–8)</p>
+      <button class="btn secondary" onclick="checkWriting3()">Finish my writing ✅</button>
+      <p id="w3fb" style="font-weight:800; color:#1a9c66;"></p>
+    </div>
+
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(8)">Back</button><button class="btn secondary" id="writingNext" style="display:none;" onclick="goTo(10)">Next: Final Challenge →</button></div>
+  `;
+  document.getElementById('w3text').addEventListener('input', (e)=>{
+    const n = (e.target.value.match(/[.!?]+/g)||[]).length;
+    document.getElementById('w3count').textContent = n + ' sentences written (aim for 6–8)';
+  });
+  window.checkWriting1 = function(){
+    const a=document.getElementById('w1a').value.trim(), b=document.getElementById('w1b').value.trim(), c=document.getElementById('w1c').value.trim();
+    const fb = document.getElementById('w1fb');
+    if(a && b && c){ fb.textContent='🎉 Nice sentences!'; results.writing1=true; addStars(1); writingCheckDone(); }
+    else{ fb.textContent='Please fill in all three blanks.'; fb.style.color='var(--coral-deep)'; }
+  };
+  window.checkWriting2 = function(){
+    const subs = [...document.querySelectorAll('.mt-subject')].map(i=>i.value.trim());
+    const times = [...document.querySelectorAll('.mt-time')].map(i=>i.value.trim());
+    const filled = subs.filter(s=>s).length;
+    const fb = document.getElementById('w2fb');
+    if(filled >= 3){ fb.textContent='🎉 Great timetable, saved!'; results.writing2=true; addStars(2); writingCheckDone(); }
+    else{ fb.textContent='Please fill in at least 3 days.'; fb.style.color='var(--coral-deep)'; }
+  };
+  window.checkWriting3 = function(){
+    const text = document.getElementById('w3text').value.trim();
+    const n = (text.match(/[.!?]+/g)||[]).length;
+    const fb = document.getElementById('w3fb');
+    if(n >= 6){ fb.textContent='🎉 Wonderful writing! You used ' + n + ' sentences.'; results.writing3=true; addStars(3); writingCheckDone(); }
+    else{ fb.textContent='Try to write at least 6 sentences. You have ' + n + ' so far.'; fb.style.color='var(--coral-deep)'; }
+  };
+  function writingCheckDone(){
+    if(results.writing1 && results.writing2 && results.writing3){
+      markDone(9);
+      document.getElementById('writingNext').style.display='inline-block';
+    }
+  }
+};
+
+/* ---- 10. Final Challenge / Certificate ---- */
+renderers.final = function(el){
+  const quizFractions = [results.vocabQuiz, results.grammarQuiz, results.timetableQuiz, results.listeningQuiz, results.readingQuiz,
+    results.frequencyRace, results.correctIncorrect, results.speedQuiz].filter(v=>v!==null);
+  const avg = quizFractions.length ? quizFractions.reduce((a,b)=>a+b,0)/quizFractions.length : 0;
+  let tier = 'Bronze', stars = 1;
+  if(avg >= 0.85){ tier='Gold'; stars=3; } else if(avg >= 0.6){ tier='Silver'; stars=2; }
+  el.innerHTML = `
+    <div class="card" style="text-align:center;">
+      <span class="pill">Final Challenge</span>
+      <h2 class="stage-title">School Timetable Adventure 🏆</h2>
+      <p class="stage-sub">You finished every activity! Here is your result.</p>
+      <div style="font-size:52px;">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <h3 style="font-size:24px; margin:6px 0;">${tier} Student</h3>
+      <p style="font-weight:700;">Total stars collected in this lesson: <span id="finalStarCount">${starTotal}</span> ⭐</p>
+      <button class="btn" onclick="launchConfetti()">🎉 Celebrate!</button>
+    </div>
+    <div class="card">
+      <label class="field-label">Type your name for your certificate:</label>
+      <input type="text" id="certName" placeholder="Your name">
+      <button class="btn secondary" style="margin-top:10px;" onclick="renderCertificate()">Generate my certificate 🎓</button>
+      <div id="certArea" style="margin-top:18px;"></div>
+    </div>
+    <div class="nav-row"><button class="btn ghost" onclick="goTo(9)">Back</button><button class="btn secondary" onclick="goTo(0)">Restart Lesson ↺</button></div>
+  `;
+  markDone(10);
+  window.launchConfetti = function(){
+    const emojis = ['🎉','⭐','✨','🎈','🏆'];
+    for(let i=0;i<28;i++){
+      const p = document.createElement('div');
+      p.className='conf-piece';
+      p.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      p.style.left = Math.random()*100+'vw';
+      p.style.animationDuration = (2+Math.random()*1.5)+'s';
+      document.body.appendChild(p);
+      setTimeout(()=>p.remove(), 3600);
+    }
+  };
+  window.renderCertificate = function(){
+    const name = document.getElementById('certName').value.trim() || 'Amazing Student';
+    document.getElementById('certArea').innerHTML = `
+      <div class="certificate">
+        <div style="font-size:34px;">✨🏆✨</div>
+        <p style="font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); font-size:13px;">LittleLume English — Certificate of Achievement</p>
+        <h2>Great job,</h2>
+        <div class="cert-name">${name}</div>
+        <p style="margin-top:16px; font-weight:700;">has completed the <b>My Schedule &amp; Timetable</b> lesson<br>and earned <b>${tier} Student</b> status with ${'⭐'.repeat(stars)}</p>
+        <p style="margin-top:10px; color:var(--ink-soft); font-weight:700;">Learn • Play • Shine</p>
+      </div>`;
+    launchConfetti();
+  };
+};
+
+/* ========================================================================
+   NAVIGATION
+======================================================================== */
+function buildTrail(){
+  const trail = document.getElementById('trail');
+  STAGES.forEach((s,i)=>{
+    const b = document.createElement('button');
+    b.className = 'stone';
+    b.innerHTML = `<div class="stone-dot">${s.icon}</div><div class="stone-label">${s.label}</div>`;
+    b.addEventListener('click', ()=> goTo(i));
+    trail.appendChild(b);
+  });
+}
+function updateTrailFill(){
+  const stones = document.querySelectorAll('.stone');
+  stones.forEach((s,i)=>{
+    s.classList.toggle('active', i===currentStage);
+  });
+  const totalWidth = (STAGES.length-1) * 82;
+  const fillWidth = currentStage * 82;
+  document.getElementById('trailFill').style.width = Math.min(fillWidth, totalWidth) + 'px';
+}
+function goTo(i){
+  currentStage = i;
+  const outer = document.getElementById('stageOuter');
+  outer.innerHTML = `<div class="stage active" id="stageContent"></div>`;
+  const content = document.getElementById('stageContent');
+  renderers[STAGES[i].key](content);
+  updateTrailFill();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+buildTrail();
+goTo(0);
+</script>
+</body>
+</html>
