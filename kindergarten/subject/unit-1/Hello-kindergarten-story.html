@@ -385,11 +385,11 @@ const EXPRESSIONS = [
 ];
 
 const STORY = [
-  {emoji:"🧵🪆", text:"Once upon a time, a little puppet woke up in the classroom.", question:null},
+  {emoji:"🧵🪆", text:"Now let's read the story of today. A little new puppet woke up in the classroom, feeling shy.", question:null},
   {emoji:"👋", text:"The puppet looked around and said, \"Hello, friends!\"", question:{q:"What did the puppet say?", options:["Hello, friends!","Goodbye!"], correct:0}},
   {emoji:"🧑‍🤝‍🧑", text:"Lumi the Firefly flew close and said, \"Hi! What is your name?\"", question:null},
   {emoji:"🪆💬", text:"\"My name is Pip!\" said the little puppet, smiling wide.", question:{q:"What is the puppet's name?", options:["Pip","Benny"], correct:0}},
-  {emoji:"🎉", text:"All the LittleLume friends said, \"Nice to meet you, Pip!\" and everyone was happy.", question:null},
+  {emoji:"🎉", text:"All the LittleLume friends said, \"Nice to meet you, Pip!\" — thanks to everything YOU taught Pip today, and everyone was happy.", question:null},
 ];
 
 const REVIEW = [
@@ -480,22 +480,22 @@ function render(){
 
   if(screen==="welcome"){
     html = `<div class="card welcome">
-      <div class="eyebrow">Unit 1 · Hello · Kindergarten Pre-A1</div>
+      <div class="eyebrow">Unit 1 · Hello · Kindergarten Pre-A1 · Our Story Begins</div>
       <div class="welcome-title display">Welcome to LittleLume!</div>
-      <div class="welcome-tag">Say hello and meet your new friends 🌟</div>
+      <div class="welcome-tag">A new friend named Pip just arrived — and Pip feels a little shy 🧵🪆</div>
       <div class="welcome-chars">
         ${MASCOTS.map(m=>`<div class="avatar ${m}">${MASCOT_EMOJI[m]}</div>`).join('')}
       </div>
-      <p class="subtitle">Lumi, Benny, Coco and Ollie can't wait to say hello with you!</p>
-      <button class="btn btn-primary btn-lg" onclick="speak('Hello! Welcome to LittleLume English. Let us learn, play, and shine together!')">▶️ Meet the friends</button>
+      <p class="subtitle">Lumi, Benny, Coco and Ollie need YOUR help today. Pip the puppet is new at school and doesn't know how to say hello yet. Will you help Pip make friends?</p>
+      <button class="btn btn-primary btn-lg" onclick="speak('Hello! Welcome to LittleLume English. A new friend named Pip just arrived and feels a little shy. Let us help Pip learn, play, and shine together!')">▶️ Meet the friends & meet Pip</button>
     </div>`;
   }
 
   else if(screen==="song"){
     html = `<div class="card">
-      <div class="eyebrow">Warm-Up Chant</div>
-      <h2 class="title">The Hello Chant 🎶</h2>
-      ${mascotRow('lumi','Stand up and chant with me! Ready?')}
+      <div class="eyebrow">Chapter 1 · Warm-Up Chant</div>
+      <h2 class="title">A Chant to Welcome Pip 🎶</h2>
+      ${mascotRow('lumi','Pip is watching from the door. Let us stand up and chant together so Pip feels welcome!')}
       <div class="lyrics-line">👋 Hello, hello, hello, my friend! <span class="lyrics-action">(wave both hands)</span></div>
       <div class="lyrics-line">🙋 Hello, hello, what is your name? <span class="lyrics-action">(point to a friend)</span></div>
       <div class="lyrics-line">😊 My name is ___, nice to meet you again! <span class="lyrics-action">(shake hands)</span></div>
@@ -508,8 +508,9 @@ function render(){
   else if(screen==="vocab"){
     const v = VOCAB[vocabIndex];
     html = `<div class="card">
-      <div class="eyebrow">Vocabulary Adventure · ${vocabIndex+1} / ${VOCAB.length}</div>
+      <div class="eyebrow">Chapter 2 · Teach Pip a New Word · ${vocabIndex+1} / ${VOCAB.length}</div>
       <div class="vocab-wrap">
+        <p class="subtitle" style="margin-bottom:0;">Pip is listening closely. Say each word so Pip can learn it too!</p>
         <div class="vocab-illustration">${v.emoji}</div>
         <div class="vocab-word display">${v.word}</div>
         <button class="speak-btn" onclick="speak('${v.word}')">🔊 Listen</button>
@@ -527,8 +528,9 @@ function render(){
   else if(screen==="dialogue"){
     const d = DIALOGUE[dialogueIndex];
     html = `<div class="card">
-      <div class="eyebrow">Interactive Dialogue · ${dialogueIndex+1} / ${DIALOGUE.length}</div>
+      <div class="eyebrow">Chapter 3 · Practice With Pip's New Friends · ${dialogueIndex+1} / ${DIALOGUE.length}</div>
       ${mascotRow(d.avatar, d.line, `<button class="speak-btn" style="margin-left:8px" onclick="speak('${d.line}')">🔊</button>`)}
+      <p class="subtitle" style="margin-top:-10px;">Show Pip what to say back!</p>
       <div class="choice-grid">
         ${d.options.map((o,i)=>`<button class="choice" id="dch${i}" onclick="answerDialogue(${i})">${o}</button>`).join('')}
       </div>
@@ -539,9 +541,9 @@ function render(){
   else if(screen==="speaking"){
     const line = SPEAKING_LINES[speakingIndex];
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Speaking Practice · ${speakingIndex+1} / ${SPEAKING_LINES.length}</div>
+      <div class="eyebrow">Chapter 4 · Give Pip a Brave Voice · ${speakingIndex+1} / ${SPEAKING_LINES.length}</div>
       <h2 class="title">Say it out loud!</h2>
-      <p class="subtitle">Tap the microphone, then say:</p>
+      <p class="subtitle">Pip is still a little shy about speaking. Tap the microphone and say the words bravely, so Pip can learn from you:</p>
       <div class="vocab-word display" style="margin-bottom:6px;">"${line}"</div>
       <button class="speak-btn" onclick="speak('${line}')">🔊 Hear Lumi say it</button>
       <div class="mic-btn" id="micBtn" onclick="tryMic()">🎤</div>
@@ -555,9 +557,9 @@ function render(){
 
   else if(screen==="namebuilder"){
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Name Builder</div>
+      <div class="eyebrow">Chapter 5 · Make a Name Tag for Pip</div>
       <h2 class="title">Build your name!</h2>
-      ${mascotRow('coco','Type your name, then tap each letter to build it below!')}
+      ${mascotRow('coco','Pip wants to know YOUR name! Type it, then tap each letter to build your very own name tag.')}
       <input id="nameInput" maxlength="10" placeholder="Type your name" style="font-family:'Fredoka',sans-serif;font-size:1.2rem;padding:12px 16px;border-radius:14px;border:2px solid var(--mint);width:100%;max-width:280px;text-align:center;" oninput="setupNameBuilder(this.value)">
       <div class="name-slot-row" id="nameSlots"></div>
       <div class="letter-bank" id="letterBank"></div>
@@ -567,9 +569,9 @@ function render(){
 
   else if(screen==="alphabet1"){
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Alphabet Adventure · Letter A &amp; B</div>
+      <div class="eyebrow">Chapter 6 · Read the Classroom Letter Wall · Letter A &amp; B</div>
       <h2 class="title">Tap the matching letters!</h2>
-      ${mascotRow('ollie','Tap a capital letter, then tap its lowercase friend to match them!')}
+      ${mascotRow('ollie','Pip is looking at the letter wall and feels confused. Tap a capital letter, then tap its lowercase friend to help Pip match them!')}
       <div class="dragdrop-row">
         <div class="dd-col">
           <div class="dd-col-title">Uppercase</div>
@@ -588,9 +590,9 @@ function render(){
 
   else if(screen==="alphabet2"){
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Alphabet Adventure · Pop the letter!</div>
+      <div class="eyebrow">Chapter 6 · Recess Time With Pip · Pop the letter!</div>
       <h2 class="title">Pop every letter <b>B</b>!</h2>
-      ${mascotRow('benny','Tap only the balloons with the letter B. Watch out for A!')}
+      ${mascotRow('benny','It is recess! Pip wants to play a balloon game — tap only the balloons with the letter B. Watch out for A!')}
       <div class="balloon-field" id="balloonField"></div>
       <div class="feedback" id="balloonFeedback"></div>
     </div>`;
@@ -599,8 +601,9 @@ function render(){
   else if(screen==="phonics"){
     const p = PHONICS[phonicsIndex];
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Phonics Game · ${phonicsIndex+1} / ${PHONICS.length}</div>
+      <div class="eyebrow">Chapter 7 · Sound Practice for Pip · ${phonicsIndex+1} / ${PHONICS.length}</div>
       <h2 class="title">Listen and choose!</h2>
+      <p class="subtitle">Pip loves listening to sounds. Help Pip find the right picture!</p>
       <button class="speak-btn" onclick="speak('${p.say}')">🔊 Play the sound /${p.sound}/</button>
       <div class="choice-grid cols-2" style="margin-top:16px;">
         ${p.options.map((o,i)=>`<button class="choice" style="font-size:2.2rem;text-align:center;" id="pch${i}" onclick="answerPhonics(${i})">${o.e}</button>`).join('')}
@@ -612,8 +615,8 @@ function render(){
   else if(screen==="expressions"){
     const e = EXPRESSIONS[expressionsIndex];
     html = `<div class="card">
-      <div class="eyebrow">Classroom Expressions · ${expressionsIndex+1} / ${EXPRESSIONS.length}</div>
-      ${mascotRow('lumi', 'The teacher says: "'+e.prompt+'" — what do you say back?', `<button class="speak-btn" style="margin-left:8px" onclick="speak('${e.prompt}')">🔊</button>`)}
+      <div class="eyebrow">Chapter 8 · Show Pip Good Manners · ${expressionsIndex+1} / ${EXPRESSIONS.length}</div>
+      ${mascotRow('lumi', 'Pip is standing right next to you in class. The teacher says: "'+e.prompt+'" — what do you say back, so Pip can learn from you?', `<button class="speak-btn" style="margin-left:8px" onclick="speak('${e.prompt}')">🔊</button>`)}
       <div class="choice-grid">
         ${e.options.map((o,i)=>`<button class="choice" id="ech${i}" onclick="answerExpression(${i})">${o}</button>`).join('')}
       </div>
@@ -624,7 +627,7 @@ function render(){
   else if(screen==="story"){
     const s = STORY[storyIndex];
     html = `<div class="card story-scene">
-      <div class="eyebrow">Mini Story Time · "Hello, Friend!" &amp; The Little Puppet Says Hi</div>
+      <div class="eyebrow">Chapter 9 · The Big Moment · "Hello, Friend!" — Pip's Story</div>
       <div class="story-emoji">${s.emoji}</div>
       <div class="story-text">${s.text}</div>
       <button class="speak-btn" onclick="speak('${s.text.replace(/"/g,'')}')">🔊 Read aloud</button>
@@ -640,9 +643,9 @@ function render(){
 
   else if(screen==="gamesmemory"){
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Fun Games · Memory Match</div>
+      <div class="eyebrow">Chapter 10 · Welcome Party for Pip · Memory Match</div>
       <h2 class="title">Find the matching pairs!</h2>
-      ${mascotRow('coco','Flip two cards. If they match, they stay open!')}
+      ${mascotRow('coco','Pip is so happy now! Let us celebrate with a game. Flip two cards — if they match, they stay open!')}
       <div class="memory-grid" id="memoryGrid"></div>
       <div class="feedback" id="memFeedback"></div>
     </div>`;
@@ -650,9 +653,9 @@ function render(){
 
   else if(screen==="gamesballoon"){
     html = `<div class="card" style="text-align:center;">
-      <div class="eyebrow">Fun Games · Balloon Pop</div>
+      <div class="eyebrow">Chapter 10 · Welcome Party for Pip · Balloon Pop</div>
       <h2 class="title">Pop the greeting that fits!</h2>
-      ${mascotRow('ollie','It is morning time. Which balloon says the right greeting?')}
+      ${mascotRow('ollie','One more party game for Pip! It is morning time. Which balloon says the right greeting?')}
       <div class="balloon-field" id="balloonField2"></div>
       <div class="feedback" id="balloon2Feedback"></div>
     </div>`;
@@ -661,7 +664,7 @@ function render(){
   else if(screen==="review"){
     const r = REVIEW[reviewIndex];
     html = `<div class="card">
-      <div class="eyebrow">Review Challenge · ${reviewIndex+1} / ${REVIEW.length}</div>
+      <div class="eyebrow">Chapter 11 · Help Pip Remember Everything · ${reviewIndex+1} / ${REVIEW.length}</div>
       <h2 class="title">${r.prompt}</h2>
       <div class="choice-grid">
         ${r.options.map((o,i)=>`<button class="choice" id="rch${i}" onclick="answerReview(${i})">${o}</button>`).join('')}
@@ -672,13 +675,14 @@ function render(){
 
   else if(screen==="celebration"){
     html = `<div class="card celebrate-wrap">
+      <div class="eyebrow">The End · Pip's First Day Is Complete!</div>
       <div class="badge-circle">🏅</div>
       <h2 class="title display">Great Job! ⭐</h2>
-      <p class="subtitle">You earned the <b>LittleLume Hello Explorer</b> badge!</p>
-      <div class="welcome-chars">${MASCOTS.map(m=>`<div class="avatar ${m}">${MASCOT_EMOJI[m]}</div>`).join('')}</div>
-      <p class="subtitle">You collected <b>${stars}</b> stars today. All the friends are dancing for you! 🎉</p>
-      <button class="btn btn-primary btn-lg" onclick="speak('Great job! You are a LittleLume Hello Explorer. See you next week!')">▶️ Hear the celebration</button>
-      <p class="small-note">See you next week, friend! 👋</p>
+      <p class="subtitle">Because of you, Pip is no longer shy — Pip is now an official LittleLume friend! You earned the <b>LittleLume Hello Explorer</b> badge!</p>
+      <div class="welcome-chars">${MASCOTS.map(m=>`<div class="avatar ${m}">${MASCOT_EMOJI[m]}</div>`).join('')}<div class="avatar" style="background:linear-gradient(135deg,#FFCDAE,#D9CBFA);">🧵</div></div>
+      <p class="subtitle">You collected <b>${stars}</b> stars today, and Pip has a new home at LittleLume. All the friends — and Pip — are dancing for you! 🎉</p>
+      <button class="btn btn-primary btn-lg" onclick="speak('Great job! Pip is not shy anymore, and Pip is now a LittleLume friend, thanks to you. You are a LittleLume Hello Explorer. See you next week!')">▶️ Hear the celebration</button>
+      <p class="small-note">See you next week, friend — and so will Pip! 👋</p>
     </div>`;
     launchConfetti();
   }
