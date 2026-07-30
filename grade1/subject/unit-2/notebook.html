@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LittleLume Picture Dictionary — Unit 2: This Is My School!</title>
+<style>
+/* ============================================================
+   LITTLELUME ENGLISH — DESIGN TOKENS (matches Part 1 & Part 2)
+   ============================================================ */
+:root{
+  --sky:#BFE7F7; --mint:#BEEFD9; --sun:#FFE49C; --peach:#FFD2AE;
+  --bubble:#FFC7DE; --grape:#DCC8F7; --ink:#33405C; --ink-soft:#5A6690;
+  --cloud:#FFFDF9; --coin:#FFC94D; --star:#FFD23F; --heart:#FF6B8B;
+  --good:#5FCB8B; --shadow: 0 10px 24px rgba(51,64,92,.18);
+  --radius: 26px;
+  --font: 'Trebuchet MS','Segoe UI Rounded','Comic Sans MS',system-ui,sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--font);
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, #fff 0%, transparent 40%),
+    radial-gradient(circle at 90% 85%, var(--grape) 0%, transparent 45%),
+    linear-gradient(160deg, var(--sky) 0%, var(--mint) 55%, var(--sun) 100%);
+  min-height:100vh;
+  -webkit-tap-highlight-color:transparent;
+}
+#app{max-width:980px; margin:0 auto; padding:16px 14px 60px;}
+
+header.hero{
+  background:var(--cloud); border-radius:var(--radius); padding:22px 20px;
+  box-shadow:var(--shadow); text-align:center; margin-bottom:18px;
+}
+header.hero .mascot{font-size:52px; line-height:1;}
+header.hero h1{margin:6px 0 2px; font-size:24px; color:var(--ink);}
+header.hero .tagline{font-weight:700; color:var(--ink-soft); font-size:14px; margin-bottom:10px;}
+header.hero p.blurb{font-weight:600; font-size:14px; max-width:520px; margin:0 auto;}
+
+#unlockBanner{
+  background:linear-gradient(90deg,#FFD23F,#FF9A45); color:#fff; font-weight:900;
+  text-align:center; padding:12px 16px; border-radius:18px; margin-bottom:14px;
+  box-shadow:var(--shadow); font-size:14.5px;
+}
+.directNote{font-size:12px; color:var(--ink-soft); font-weight:600; margin-top:8px;}
+
+/* ---------- TOPIC NAV ---------- */
+#topicNav{
+  display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+  margin:16px 0; position:sticky; top:0; z-index:20; padding:8px 0;
+}
+.navBtn{
+  background:#fff; color:var(--ink); font-weight:800; font-size:13px;
+  padding:9px 14px; border-radius:16px; border:2px solid transparent;
+  box-shadow:0 4px 0 rgba(51,64,92,.12); cursor:pointer; font-family:var(--font);
+}
+.navBtn.active{background:var(--good); color:#fff; box-shadow:0 4px 0 #3fa869;}
+
+/* ---------- SECTIONS ---------- */
+section.topic{
+  background:var(--cloud); border-radius:var(--radius); padding:20px;
+  box-shadow:var(--shadow); margin-bottom:20px; scroll-margin-top:70px;
+}
+section.topic h2{margin:0 0 2px; font-size:19px;}
+section.topic .partTag{
+  display:inline-block; font-size:11px; font-weight:900; color:#fff;
+  padding:3px 10px; border-radius:10px; margin-bottom:10px;
+}
+.partTag.p1{background:#5FA8DE;}
+.partTag.p2{background:#FF9A45;}
+
+.wordGrid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
+@media (max-width:640px){.wordGrid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:420px){.wordGrid{grid-template-columns:repeat(2,1fr);}}
+
+.wCard{
+  background:#fff; border-radius:16px; padding:10px 8px 12px; text-align:center;
+  box-shadow:0 4px 10px rgba(51,64,92,.1); border:3px solid transparent;
+  cursor:pointer; transition:.15s;
+}
+.wCard:hover{transform:translateY(-3px); border-color:var(--sun);}
+.wCard:active{transform:translateY(0);}
+.wCard .icon{font-size:44px; line-height:1;}
+.wCard .icon svg{width:44px; height:44px;}
+.wCard .word{font-weight:800; font-size:13px; margin-top:6px; color:var(--ink);}
+.wCard .sentence{font-size:10.5px; color:var(--ink-soft); font-weight:600; margin-top:2px; min-height:24px;}
+.wCard .speakerIcon{font-size:13px; margin-top:4px;}
+
+/* ---------- PRINT BUTTON BAR ---------- */
+#actionBar{
+  position:fixed; right:16px; bottom:16px; display:flex; flex-direction:column; gap:10px; z-index:30;
+}
+.fab{
+  background:linear-gradient(180deg,#7FD8A6,var(--good)); color:#fff; font-weight:800;
+  border:none; border-radius:50%; width:56px; height:56px; font-size:22px;
+  box-shadow:0 5px 0 #3fa869, var(--shadow); cursor:pointer;
+}
+.fab.top{background:linear-gradient(180deg,#8FCBEF,#5FA8DE); box-shadow:0 5px 0 #3a7cb0, var(--shadow);}
+
+footer{text-align:center; font-size:12px; color:var(--ink-soft); font-weight:700; margin-top:10px; padding-bottom:20px;}
+
+/* ---------- PRINT STYLES ---------- */
+@media print{
+  #topicNav, #actionBar, #unlockBanner{display:none !important;}
+  body{background:#fff !important;}
+  section.topic{box-shadow:none; break-inside:avoid; border:1px solid #ddd;}
+  .wCard{box-shadow:none; border:1px solid #eee;}
+  header.hero{box-shadow:none; border:1px solid #ddd;}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div id="unlockBanner" style="display:none;"></div>
+
+  <header class="hero">
+    <div class="mascot">🐝</div>
+    <h1>LittleLume Picture Dictionary</h1>
+    <div class="tagline">Unit 2 · This Is My School! (Part 1 &amp; Part 2)</div>
+    <p class="blurb">Every word Lumi taught us, all in one place! Tap any card to hear it, or print this page to study offline. 🔊📖</p>
+    <p class="directNote" id="directNote"></p>
+  </header>
+
+  <nav id="topicNav"></nav>
+
+  <div id="topics"></div>
+
+</div>
+
+<div id="actionBar">
+  <button class="fab top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">⬆️</button>
+  <button class="fab" onclick="window.print()" title="Print">🖨️</button>
+</div>
+
+<script>
+/* ============================================================
+   LITTLELUME PICTURE DICTIONARY
+   A standalone reference notebook combining vocabulary taught
+   in Unit 2 Part 1 ("This Is My School!") and Part 2
+   ("Let's Count & Listen!"). Tap any card to hear it spoken.
+   ============================================================ */
+
+/* ---------------------- ICON LIBRARY (clear emoji icons) ---------------------- */
+function badge(bg, inner){ return `<svg viewBox="0 0 100 100" width="100%" height="100%"><rect x="4" y="4" width="92" height="92" rx="22" fill="${bg}"/>${inner}</svg>`; }
+const ICONS = {
+  school: '🏫', classroom: badge('#FFE49C', `<rect x="14" y="18" width="72" height="54" rx="6" fill="#fff" stroke="#F2C879" stroke-width="3"/><rect x="24" y="26" width="34" height="20" rx="3" fill="#2E5C4A"/><path d="M30 34 h10 M30 40 h18" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><rect x="64" y="30" width="14" height="12" rx="2" fill="#8FCBEF"/><rect x="24" y="54" width="16" height="12" rx="2" fill="#FF9A45"/><rect x="46" y="54" width="16" height="12" rx="2" fill="#FF9A45"/>`),
+  teacher: '🧑\u200d🏫', principal: '🧑\u200d💼',
+  friend: '🧑\u200d🤝\u200d🧑', desk: '🗄️', chair: '🪑', board: badge('#DCEEF9', `<rect x="14" y="16" width="72" height="48" rx="6" fill="#fff" stroke="#5FA8DE" stroke-width="4"/><path d="M24 30 h24 M24 40 h34 M24 50 h20" stroke="#33405C" stroke-width="3" stroke-linecap="round"/><rect x="30" y="64" width="40" height="8" rx="3" fill="#C08A54"/><circle cx="38" cy="68" r="3" fill="#FF6B8B"/><circle cx="50" cy="68" r="3" fill="#5FA8DE"/><circle cx="62" cy="68" r="3" fill="#5FCB8B"/>`),
+  bag: '🎒', book: '📘', pencil: '✏️', crayon: '🖍️', ruler: '📏',
+  scissors: '✂️', glue: '🧴', playground: '🛝', library: '📚',
+  canteen: '🍽️', toilet: '🚻', bell: '🔔', map: '🗺️', star: '⭐',
+  coin: '🪙', heart: '❤️', net: '🥅', owl: '🦉', pen: '🖊️',
+  queen: '👑', run: '🏃', sun: '☀️', top: '🔝', umbrella: '☂️',
+  van: '🚐', web: '🕸️', box: '📦', yoyo: '🪀', zip: '🤐',
+  lumi: '🐝', mouth: '👄', seal: '🏅',
+  standup: '🧍', sitdown: '🪑', listen: '👂', look: '👀',
+  openbook: '📖', closebook: '📕', lineup: '🚶', quiet: '🤫', raisehand: '✋',
+  dio: '🧒',
+  one: '1️⃣', two: '2️⃣', three: '3️⃣', four: '4️⃣', five: '5️⃣',
+  six: '6️⃣', seven: '7️⃣', eight: '8️⃣', nine: '9️⃣', ten: '🔟',
+};
+function ic(key,size=44){
+  const val = ICONS[key]||ICONS.star;
+  if(typeof val==='string' && val.trim().startsWith('<')){
+    return `<div style="width:${size}px;height:${size}px;margin:0 auto;">${val}</div>`;
+  }
+  return `<span style="font-size:${size}px;line-height:1;display:inline-block;">${val}</span>`;
+}
+
+/* ---------------------- VOCABULARY DATA (combined Part 1 + Part 2) ---------------------- */
+const TOPICS = [
+  { key:'people', title:'People & Places', part:1, items:[
+    {w:'school', i:'school', s:'This is my school.'},
+    {w:'classroom', i:'classroom', s:'This is my classroom.'},
+    {w:'teacher', i:'teacher', s:'This is my teacher.'},
+    {w:'principal', i:'principal', s:'This is my principal.'},
+    {w:'friend', i:'friend', s:'This is my friend.'},
+    {w:'playground', i:'playground', s:'This is the playground.'},
+    {w:'library', i:'library', s:'This is the library.'},
+    {w:'canteen', i:'canteen', s:'This is the canteen.'},
+  ]},
+  { key:'classroom', title:'Classroom Things', part:1, items:[
+    {w:'desk', i:'desk', s:'This is my desk.'},
+    {w:'chair', i:'chair', s:'This is my chair.'},
+    {w:'board', i:'board', s:'This is the board.'},
+    {w:'bag', i:'bag', s:'This is my bag.'},
+    {w:'book', i:'book', s:'This is my book.'},
+  ]},
+  { key:'supplies', title:'School Supplies', part:1, items:[
+    {w:'pencil', i:'pencil', s:'This is my pencil.'},
+    {w:'crayon', i:'crayon', s:'This is my crayon.'},
+    {w:'ruler', i:'ruler', s:'This is my ruler.'},
+    {w:'scissors', i:'scissors', s:'This is my scissors.'},
+    {w:'glue', i:'glue', s:'This is my glue.'},
+  ]},
+  { key:'commands', title:'Classroom Commands', part:2, items:[
+    {w:'stand up', i:'standup', s:'Stand up, please!'},
+    {w:'sit down', i:'sitdown', s:'Sit down, please!'},
+    {w:'listen', i:'listen', s:'Listen, please!'},
+    {w:'look', i:'look', s:'Look at me, please!'},
+    {w:'open your book', i:'openbook', s:'Open your book, please!'},
+    {w:'close your book', i:'closebook', s:'Close your book, please!'},
+    {w:'line up', i:'lineup', s:'Line up, please!'},
+    {w:'be quiet', i:'quiet', s:'Be quiet, please!'},
+    {w:'raise your hand', i:'raisehand', s:'Raise your hand, please!'},
+  ]},
+  { key:'numbers', title:'Numbers 1–10', part:2, items:[
+    {w:'one', i:'one', s:'This is number one.'},
+    {w:'two', i:'two', s:'This is number two.'},
+    {w:'three', i:'three', s:'This is number three.'},
+    {w:'four', i:'four', s:'This is number four.'},
+    {w:'five', i:'five', s:'This is number five.'},
+    {w:'six', i:'six', s:'This is number six.'},
+    {w:'seven', i:'seven', s:'This is number seven.'},
+    {w:'eight', i:'eight', s:'This is number eight.'},
+    {w:'nine', i:'nine', s:'This is number nine.'},
+    {w:'ten', i:'ten', s:'This is number ten.'},
+  ]},
+  { key:'counting', title:'Counting School Things', part:2, items:[
+    {w:'books', i:'book', s:'These are my books.'},
+    {w:'pencils', i:'pencil', s:'These are my pencils.'},
+    {w:'crayons', i:'crayon', s:'These are my crayons.'},
+    {w:'chairs', i:'chair', s:'These are my chairs.'},
+    {w:'bags', i:'bag', s:'These are my bags.'},
+  ]},
+];
+
+/* ---------------------- SPEECH ---------------------- */
+let voices=[];
+function loadVoices(){ voices = ('speechSynthesis' in window && speechSynthesis.getVoices) ? speechSynthesis.getVoices() : []; }
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.92; u.pitch = 1.15; u.lang = 'en-US';
+  const v = voices.find(v=>/en/i.test(v.lang));
+  if(v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+
+/* ---------------------- RENDER ---------------------- */
+const navEl = document.getElementById('topicNav');
+const topicsEl = document.getElementById('topics');
+
+TOPICS.forEach(t=>{
+  const btn = document.createElement('button');
+  btn.className = 'navBtn';
+  btn.textContent = t.title;
+  btn.onclick = ()=>document.getElementById('sec-'+t.key).scrollIntoView({behavior:'smooth', block:'start'});
+  navEl.appendChild(btn);
+
+  const sec = document.createElement('section');
+  sec.className = 'topic';
+  sec.id = 'sec-'+t.key;
+  sec.innerHTML = `
+    <span class="partTag p${t.part}">Part ${t.part}</span>
+    <h2>${t.title}</h2>
+    <div class="wordGrid">
+      ${t.items.map(item=>`
+        <div class="wCard" onclick="speak('${item.s.replace(/'/g,"\\'")}')">
+          ${ic(item.i,44)}
+          <div class="word">${item.w}</div>
+          <div class="sentence">${item.s}</div>
+          <div class="speakerIcon">🔊</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  topicsEl.appendChild(sec);
+});
+
+document.title = "LittleLume Picture Dictionary — Unit 2: This Is My School!";
+
+/* ---------------------- UNLOCK REWARD MOMENT ---------------------- */
+const params = new URLSearchParams(window.location.search);
+const cameFromReward = params.get('unlocked')==='1';
+const rewardName = params.get('name');
+if(cameFromReward){
+  const b = document.getElementById('unlockBanner');
+  b.style.display = 'block';
+  b.innerHTML = `🎉 Congratulations${rewardName? ', '+rewardName : ''}! You unlocked this notebook by finishing the whole LittleLume adventure! 🏆`;
+} else {
+  document.getElementById('directNote').textContent = "📖 This notebook is normally unlocked as a reward after finishing Part 2 — here it is anytime you need it for review!";
+}
+</script>
+
+<footer>LittleLume English · Learn • Play • Shine 💛 A companion notebook for Part 1 &amp; Part 2</footer>
+</body>
+</html>

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English – Reading Grade 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap');
+
+  :root {
+    --sky: #5BC8F5;
+    --sun: #FFD93D;
+    --grass: #6BCB77;
+    --coral: #FF6B6B;
+    --purple: #C77DFF;
+    --peach: #FFB347;
+    --mint: #A8EDEA;
+    --navy: #1A1A6E;
+    --white: #FFFFFF;
+    --cream: #FFFBF0;
+    --dark: #2D2D2D;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #E0F7FF 0%, #FFF5E0 50%, #F0FFE8 100%);
+    min-height: 100vh;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--sky), var(--purple));
+    padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem; color: white;
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo span { font-size: 2.2rem; }
+  .grade-badge {
+    background: var(--sun); color: var(--navy);
+    padding: 6px 18px; border-radius: 30px;
+    font-weight: 900; font-size: 1rem;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 48px 24px 32px;
+    position: relative;
+  }
+  .hero-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: var(--navy);
+    text-shadow: 4px 4px 0 rgba(91,200,245,0.35);
+    margin-bottom: 12px;
+    animation: bounce-in 0.8s cubic-bezier(.36,1.56,.64,1) both;
+  }
+  .hero-sub {
+    font-size: 1.15rem; color: #555; font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .stars-row { display: flex; justify-content: center; gap: 8px; font-size: 1.5rem; margin-bottom: 8px; }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center;
+    padding: 0 16px 32px;
+  }
+  .tab-btn {
+    background: white; border: 3px solid transparent;
+    border-radius: 50px; padding: 10px 22px;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+  }
+  .tab-btn:hover { transform: translateY(-3px); box-shadow: 0 7px 0 rgba(0,0,0,0.1); }
+  .tab-btn.active { color: white; border-color: transparent; transform: translateY(-3px); }
+  .tab-btn[data-tab="letters"] { border-color: var(--coral); color: var(--coral); }
+  .tab-btn[data-tab="letters"].active { background: var(--coral); color: white; }
+  .tab-btn[data-tab="phonics"] { border-color: var(--purple); color: var(--purple); }
+  .tab-btn[data-tab="phonics"].active { background: var(--purple); color: white; }
+  .tab-btn[data-tab="words"] { border-color: var(--grass); color: var(--grass); }
+  .tab-btn[data-tab="words"].active { background: var(--grass); color: white; }
+  .tab-btn[data-tab="sentences"] { border-color: var(--peach); color: var(--peach); }
+  .tab-btn[data-tab="sentences"].active { background: var(--peach); color: white; }
+  .tab-btn[data-tab="stories"] { border-color: var(--sky); color: #0096c7; }
+  .tab-btn[data-tab="stories"].active { background: var(--sky); color: white; }
+  .tab-btn[data-tab="quiz"] { border-color: var(--sun); color: #d4a200; }
+  .tab-btn[data-tab="quiz"].active { background: var(--sun); color: var(--navy); }
+  .tab-btn[data-tab="game"] { border-color: #FF6BB3; color: #FF6BB3; }
+  .tab-btn[data-tab="game"].active { background: #FF6BB3; color: white; }
+
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 0 16px 48px; max-width: 960px; margin: 0 auto; }
+  .section.active { display: block; animation: fade-up 0.4s ease both; }
+
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.9rem; text-align: center;
+    margin-bottom: 28px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: white; border-radius: 24px;
+    padding: 28px; margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+  .card-title {
+    font-weight: 800; font-size: 1.1rem; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* ── LETTERS GRID ── */
+  .letters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 14px;
+  }
+  .letter-card {
+    background: white; border-radius: 20px;
+    padding: 18px 10px; text-align: center;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1);
+    border: 3px solid transparent;
+    user-select: none;
+  }
+  .letter-card:hover, .letter-card:focus {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 0 rgba(0,0,0,0.1);
+  }
+  .letter-big { font-family: 'Fredoka One', cursive; font-size: 2.8rem; line-height: 1; display: block; }
+  .letter-small { font-size: 1.5rem; display: block; color: #888; font-weight: 700; }
+  .letter-word { font-size: 0.8rem; font-weight: 700; margin-top: 4px; color: #555; }
+  .letter-emoji { font-size: 1.6rem; }
+
+  /* Letter colors cycling */
+  .letter-card:nth-child(7n+1) { border-color: var(--coral); }
+  .letter-card:nth-child(7n+2) { border-color: var(--purple); }
+  .letter-card:nth-child(7n+3) { border-color: var(--grass); }
+  .letter-card:nth-child(7n+4) { border-color: var(--sky); }
+  .letter-card:nth-child(7n+5) { border-color: var(--peach); }
+  .letter-card:nth-child(7n+6) { border-color: var(--sun); }
+  .letter-card:nth-child(7n+0) { border-color: #FF6BB3; }
+
+  /* ── PHONICS ── */
+  .phonics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .phonics-card {
+    background: white; border-radius: 20px; padding: 20px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.08);
+    text-align: center; cursor: pointer; transition: all 0.2s;
+    border-left: 6px solid var(--purple);
+  }
+  .phonics-card:hover { transform: translateY(-4px); box-shadow: 0 10px 0 rgba(0,0,0,0.08); }
+  .phonics-sound { font-family: 'Fredoka One', cursive; font-size: 2.2rem; color: var(--purple); }
+  .phonics-desc { font-size: 0.85rem; color: #666; font-weight: 600; margin: 6px 0; }
+  .phonics-examples { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 8px; }
+  .phonics-ex {
+    background: #F0E6FF; color: var(--purple);
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 700;
+  }
+  .phonics-card:nth-child(2n) { border-left-color: var(--sky); }
+  .phonics-card:nth-child(2n) .phonics-sound { color: #0096c7; }
+  .phonics-card:nth-child(2n) .phonics-ex { background: #E0F7FF; color: #0096c7; }
+  .phonics-card:nth-child(3n) { border-left-color: var(--coral); }
+  .phonics-card:nth-child(3n) .phonics-sound { color: var(--coral); }
+  .phonics-card:nth-child(3n) .phonics-ex { background: #FFE8E8; color: var(--coral); }
+
+  /* ── SIGHT WORDS ── */
+  .words-group { margin-bottom: 28px; }
+  .words-group-title {
+    font-weight: 800; font-size: 1rem; color: #555;
+    margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .words-flex { display: flex; flex-wrap: wrap; gap: 10px; }
+  .word-chip {
+    padding: 10px 22px; border-radius: 50px;
+    font-weight: 800; font-size: 1.05rem;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    user-select: none;
+  }
+  .word-chip:hover { transform: translateY(-3px) scale(1.08); box-shadow: 0 8px 0 rgba(0,0,0,0.1); }
+  .word-chip.c1 { background: #FFE4E4; color: var(--coral); }
+  .word-chip.c2 { background: #F0E6FF; color: var(--purple); }
+  .word-chip.c3 { background: #E4FFE6; color: #3aa64a; }
+  .word-chip.c4 { background: #E0F7FF; color: #0096c7; }
+  .word-chip.c5 { background: #FFF4D4; color: #c48b00; }
+
+  /* ── SENTENCES ── */
+  .sentence-card {
+    background: white; border-radius: 20px; padding: 22px;
+    box-shadow: 0 5px 0 rgba(0,0,0,0.08); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 16px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .sentence-card:hover { transform: translateX(6px); }
+  .sentence-emoji { font-size: 2.8rem; flex-shrink: 0; }
+  .sentence-text { font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+  .sentence-tr { font-size: 0.9rem; color: #888; margin-top: 4px; font-weight: 600; }
+  .sentence-tag {
+    margin-left: auto; padding: 4px 12px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 800; flex-shrink: 0;
+  }
+  .tag-pattern { background: #FFF4D4; color: #c48b00; }
+  .tag-question { background: #E0F7FF; color: #0096c7; }
+  .tag-command { background: #FFE4E4; color: var(--coral); }
+
+  /* ── STORIES ── */
+  .story-card {
+    background: white; border-radius: 24px; padding: 28px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08); margin-bottom: 24px;
+  }
+  .story-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 18px;
+    padding-bottom: 16px; border-bottom: 2px dashed #eee;
+  }
+  .story-icon { font-size: 3.5rem; }
+  .story-meta h3 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: var(--navy); }
+  .story-meta p { font-size: 0.85rem; color: #888; font-weight: 600; }
+  .story-body { font-size: 1.05rem; line-height: 1.9; font-weight: 600; color: #333; }
+  .story-body .highlight { background: #FFF4D4; padding: 2px 6px; border-radius: 6px; font-weight: 800; }
+  .story-qs { margin-top: 20px; padding-top: 16px; border-top: 2px dashed #eee; }
+  .story-q { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .story-q .q-num {
+    background: var(--sky); color: white;
+    border-radius: 50%; width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 900; flex-shrink: 0;
+  }
+  .story-q .q-text { font-weight: 700; font-size: 0.95rem; padding-top: 4px; }
+
+  /* ── QUIZ ── */
+  .quiz-container { max-width: 680px; margin: 0 auto; }
+  .quiz-progress { display: flex; gap: 8px; margin-bottom: 24px; justify-content: center; }
+  .quiz-dot { width: 14px; height: 14px; border-radius: 50%; background: #ddd; transition: all 0.3s; }
+  .quiz-dot.done { background: var(--grass); }
+  .quiz-dot.current { background: var(--sun); transform: scale(1.3); }
+
+  .quiz-card {
+    background: white; border-radius: 24px; padding: 32px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center;
+  }
+  .quiz-num { font-size: 0.85rem; color: #999; font-weight: 700; margin-bottom: 8px; }
+  .quiz-q { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--navy); margin-bottom: 28px; }
+  .quiz-image { font-size: 5rem; margin-bottom: 16px; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .quiz-opt {
+    padding: 16px; border-radius: 16px; border: 3px solid #E8E8E8;
+    background: white; font-weight: 800; font-size: 1.05rem;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .quiz-opt:hover { border-color: var(--sky); background: #E0F7FF; transform: scale(1.03); }
+  .quiz-opt.correct { background: #E4FFE6; border-color: var(--grass); color: #2a7a34; }
+  .quiz-opt.wrong { background: #FFE4E4; border-color: var(--coral); color: var(--coral); }
+  .quiz-feedback { margin-top: 20px; padding: 16px; border-radius: 16px; font-weight: 800; font-size: 1rem; }
+  .quiz-feedback.correct { background: #E4FFE6; color: #2a7a34; }
+  .quiz-feedback.wrong { background: #FFE4E4; color: var(--coral); }
+  .quiz-next {
+    margin-top: 20px; padding: 14px 36px;
+    background: linear-gradient(135deg, var(--grass), #3aa64a);
+    color: white; border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+    cursor: pointer; box-shadow: 0 5px 0 #267a2e;
+    transition: all 0.2s; display: none;
+  }
+  .quiz-next:hover { transform: translateY(-3px); box-shadow: 0 8px 0 #267a2e; }
+  .quiz-score {
+    text-align: center; padding: 40px; background: white;
+    border-radius: 24px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    display: none;
+  }
+  .score-emoji { font-size: 5rem; margin-bottom: 12px; }
+  .score-title { font-family: 'Fredoka One', cursive; font-size: 2rem; color: var(--navy); margin-bottom: 8px; }
+  .score-num { font-size: 3.5rem; font-weight: 900; color: var(--grass); }
+  .score-msg { color: #666; font-weight: 700; font-size: 1rem; margin: 12px 0 24px; }
+  .quiz-restart {
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--sky), var(--purple));
+    color: white; border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+    cursor: pointer; box-shadow: 0 5px 0 #5a4db5;
+    transition: all 0.2s;
+  }
+  .quiz-restart:hover { transform: translateY(-3px); }
+
+  /* ── GAME (Word Match) ── */
+  .game-wrapper { max-width: 720px; margin: 0 auto; }
+  .game-score-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    background: white; border-radius: 20px; padding: 14px 22px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 24px;
+  }
+  .game-score-item { text-align: center; }
+  .game-score-item .label { font-size: 0.75rem; color: #999; font-weight: 700; text-transform: uppercase; }
+  .game-score-item .value { font-family: 'Fredoka One', cursive; font-size: 1.6rem; color: var(--navy); }
+  #timer-bar { width: 120px; height: 10px; background: #eee; border-radius: 10px; overflow: hidden; margin-top: 6px; }
+  #timer-fill { height: 100%; background: linear-gradient(90deg, var(--grass), var(--sun)); border-radius: 10px; width: 100%; transition: width 0.1s linear; }
+
+  .game-title { font-family: 'Fredoka One', cursive; font-size: 1.7rem; color: var(--navy); text-align: center; margin-bottom: 8px; }
+  .game-instruction { text-align: center; color: #666; font-weight: 700; font-size: 0.95rem; margin-bottom: 20px; }
+  .game-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .game-col-title { font-weight: 800; font-size: 0.9rem; color: #999; text-align: center; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .game-item {
+    padding: 14px 18px; background: white; border-radius: 16px;
+    border: 3px solid #E8E8E8; text-align: center;
+    cursor: pointer; transition: all 0.2s;
+    font-weight: 800; font-size: 1rem;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.07);
+  }
+  .game-item:hover { border-color: var(--sky); transform: scale(1.04); }
+  .game-item.selected { border-color: var(--purple); background: #F0E6FF; color: var(--purple); }
+  .game-item.matched { border-color: var(--grass); background: #E4FFE6; color: #2a7a34; pointer-events: none; }
+  .game-item.wrong-shake { animation: shake 0.4s ease; border-color: var(--coral); background: #FFE4E4; }
+  .game-item .item-emoji { font-size: 1.8rem; display: block; margin-bottom: 4px; }
+
+  .game-btn {
+    display: block; margin: 24px auto 0;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--peach), var(--coral));
+    color: white; border: none; border-radius: 50px;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+    cursor: pointer; box-shadow: 0 5px 0 #b84b00;
+    transition: all 0.2s;
+  }
+  .game-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 0 #b84b00; }
+
+  /* Fireworks */
+  .firework { position: fixed; pointer-events: none; z-index: 999; font-size: 2rem; animation: fly-up 1.2s ease-out forwards; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes bounce-in { 0% { opacity:0; transform: scale(0.5) translateY(30px); } 100% { opacity:1; transform: scale(1) translateY(0); } }
+  @keyframes fade-up { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+  @keyframes fly-up { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-180px) scale(0.3)} }
+  @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.25)} 100%{transform:scale(1)} }
+  .pop { animation: pop 0.3s ease; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--navy); color: white; padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; z-index: 500;
+    transition: transform 0.4s cubic-bezier(.36,1.56,.64,1);
+    white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 540px) {
+    .quiz-options { grid-template-columns: 1fr; }
+    .game-cols { grid-template-columns: 1fr 1fr; }
+    .letters-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo"><span>📚</span> LittleLume</div>
+  <div class="grade-badge">⭐ Grade 1 – Reading</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars-row">⭐🌟✨🌟⭐</div>
+  <h1 class="hero-title">Let's Learn to Read! 🎉</h1>
+  <p class="hero-sub">Letters · Phonics · Words · Sentences · Stories</p>
+</section>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <button class="tab-btn active" data-tab="letters">🔤 Letters</button>
+  <button class="tab-btn" data-tab="phonics">🎵 Phonics</button>
+  <button class="tab-btn" data-tab="words">💬 Sight Words</button>
+  <button class="tab-btn" data-tab="sentences">✏️ Sentences</button>
+  <button class="tab-btn" data-tab="stories">📖 Stories</button>
+  <button class="tab-btn" data-tab="quiz">🧩 Quiz</button>
+  <button class="tab-btn" data-tab="game">🎮 Word Match Game</button>
+</nav>
+
+<!-- ══════════════ SECTION: LETTERS ══════════════ -->
+<section id="letters" class="section active">
+  <h2 class="section-title" style="color:var(--coral)">🔤 The Alphabet – A to Z</h2>
+  <div class="card">
+    <p style="text-align:center;font-weight:700;color:#666;margin-bottom:20px;">👆 Tap a letter to hear its name and see an example word!</p>
+    <div class="letters-grid" id="letters-grid"></div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION: PHONICS ══════════════ -->
+<section id="phonics" class="section">
+  <h2 class="section-title" style="color:var(--purple)">🎵 Phonics – Letter Sounds</h2>
+  <div class="card" style="background:linear-gradient(135deg,#F0E6FF,#E0F7FF);border:none;">
+    <p style="text-align:center;font-weight:700;color:#555;margin-bottom:20px;">Every letter has a <strong>sound</strong>! Let's learn them. 👂</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--purple)">🔵 Short Vowel Sounds</div>
+    <div class="phonics-grid" id="phonics-vowels"></div>
+  </div>
+  <div class="card">
+    <div class="card-title" style="color:var(--coral)">🔴 Consonant Sounds</div>
+    <div class="phonics-grid" id="phonics-consonants"></div>
+  </div>
+  <div class="card">
+    <div class="card-title" style="color:var(--grass)">🟢 Blends & Digraphs</div>
+    <div class="phonics-grid" id="phonics-blends"></div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION: SIGHT WORDS ══════════════ -->
+<section id="words" class="section">
+  <h2 class="section-title" style="color:var(--grass)">💬 Sight Words</h2>
+  <div class="card" style="background:linear-gradient(135deg,#E4FFE6,#FFF4D4);border:none;">
+    <p style="text-align:center;font-weight:700;color:#555;">These words appear very often! Learn to read them quickly. 👁️</p>
+  </div>
+  <div class="card">
+    <div id="sight-words-container"></div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION: SENTENCES ══════════════ -->
+<section id="sentences" class="section">
+  <h2 class="section-title" style="color:var(--peach)">✏️ Reading Sentences</h2>
+  <div class="card" style="background:linear-gradient(135deg,#FFF4D4,#FFE4E4);border:none;">
+    <p style="text-align:center;font-weight:700;color:#555;">👆 Tap each sentence to practise reading it aloud!</p>
+  </div>
+  <div id="sentences-container"></div>
+</section>
+
+<!-- ══════════════ SECTION: STORIES ══════════════ -->
+<section id="stories" class="section">
+  <h2 class="section-title" style="color:#0096c7)">📖 Mini Stories</h2>
+  <div id="stories-container"></div>
+</section>
+
+<!-- ══════════════ SECTION: QUIZ ══════════════ -->
+<section id="quiz" class="section">
+  <h2 class="section-title" style="color:#c48b00">🧩 Reading Quiz</h2>
+  <div class="quiz-container">
+    <div class="quiz-progress" id="quiz-progress"></div>
+    <div class="quiz-card" id="quiz-card"></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION: GAME ══════════════ -->
+<section id="game" class="section">
+  <h2 class="section-title" style="color:#FF6BB3">🎮 Word Match Game</h2>
+  <div class="game-wrapper">
+    <div class="game-score-bar">
+      <div class="game-score-item"><div class="label">Score</div><div class="value" id="g-score">0</div></div>
+      <div class="game-score-item"><div class="label">Pairs Left</div><div class="value" id="g-pairs">8</div></div>
+      <div class="game-score-item"><div class="label">Time</div><div id="timer-bar"><div id="timer-fill"></div></div></div>
+      <div class="game-score-item"><div class="label">Streak 🔥</div><div class="value" id="g-streak">0</div></div>
+    </div>
+    <div class="game-title">Match the Word to the Picture!</div>
+    <div class="game-instruction">Tap a word, then tap the matching picture 🎯</div>
+    <div class="game-cols">
+      <div><div class="game-col-title">📝 Words</div><div id="game-words"></div></div>
+      <div><div class="game-col-title">🖼️ Pictures</div><div id="game-pics"></div></div>
+    </div>
+    <button class="game-btn" id="game-restart-btn">🔄 New Round</button>
+  </div>
+</section>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════ DATA ══════════════
+
+const ALPHABET = [
+  {U:'A',L:'a',w:'Apple',e:'🍎'},   {U:'B',L:'b',w:'Ball',e:'⚽'},
+  {U:'C',L:'c',w:'Cat',e:'🐱'},     {U:'D',L:'d',w:'Dog',e:'🐶'},
+  {U:'E',L:'e',w:'Elephant',e:'🐘'},{U:'F',L:'f',w:'Fish',e:'🐟'},
+  {U:'G',L:'g',w:'Goat',e:'🐐'},    {U:'H',L:'h',w:'House',e:'🏠'},
+  {U:'I',L:'i',w:'Ice cream',e:'🍦'},{U:'J',L:'j',w:'Juice',e:'🧃'},
+  {U:'K',L:'k',w:'Kite',e:'🪁'},    {U:'L',L:'l',w:'Lion',e:'🦁'},
+  {U:'M',L:'m',w:'Moon',e:'🌙'},    {U:'N',L:'n',w:'Nest',e:'🪺'},
+  {U:'O',L:'o',w:'Orange',e:'🍊'},  {U:'P',L:'p',w:'Pig',e:'🐷'},
+  {U:'Q',L:'q',w:'Queen',e:'👑'},   {U:'R',L:'r',w:'Rainbow',e:'🌈'},
+  {U:'S',L:'s',w:'Sun',e:'☀️'},     {U:'T',L:'t',w:'Tree',e:'🌳'},
+  {U:'U',L:'u',w:'Umbrella',e:'☂️'},{U:'V',L:'v',w:'Van',e:'🚐'},
+  {U:'W',L:'w',w:'Whale',e:'🐋'},   {U:'X',L:'x',w:'X-ray',e:'🩻'},
+  {U:'Y',L:'y',w:'Yak',e:'🦬'},     {U:'Z',L:'z',w:'Zebra',e:'🦓'},
+];
+
+const PHONICS_VOWELS = [
+  {sound:'/æ/', name:'Short A', desc:'as in "cat"', ex:['cat','hat','map','ran']},
+  {sound:'/ɛ/', name:'Short E', desc:'as in "bed"', ex:['bed','red','ten','set']},
+  {sound:'/ɪ/', name:'Short I', desc:'as in "sit"', ex:['sit','big','him','lip']},
+  {sound:'/ɒ/', name:'Short O', desc:'as in "hot"', ex:['hot','top','dog','box']},
+  {sound:'/ʌ/', name:'Short U', desc:'as in "cup"', ex:['cup','bug','run','fun']},
+];
+
+const PHONICS_CONSONANTS = [
+  {sound:'B', name:'B Sound', desc:'/b/ as in "ball"', ex:['bat','big','bus','boy']},
+  {sound:'C', name:'C Sound', desc:'/k/ as in "cat"', ex:['can','cap','cup','cut']},
+  {sound:'D', name:'D Sound', desc:'/d/ as in "dog"', ex:['dig','dot','dip','den']},
+  {sound:'F', name:'F Sound', desc:'/f/ as in "fan"', ex:['fat','fig','fog','fun']},
+  {sound:'G', name:'G Sound', desc:'/g/ as in "got"', ex:['gap','get','gig','gut']},
+  {sound:'H', name:'H Sound', desc:'/h/ as in "hat"', ex:['ham','hen','him','hot']},
+  {sound:'M', name:'M Sound', desc:'/m/ as in "map"', ex:['man','mad','met','mix']},
+  {sound:'S', name:'S Sound', desc:'/s/ as in "sun"', ex:['sat','set','sip','sob']},
+  {sound:'T', name:'T Sound', desc:'/t/ as in "top"', ex:['tan','ten','tip','top']},
+  {sound:'P', name:'P Sound', desc:'/p/ as in "pin"', ex:['pan','pet','pig','pot']},
+];
+
+const PHONICS_BLENDS = [
+  {sound:'CH', name:'CH Blend', desc:'/tʃ/ as in "chip"', ex:['chip','chat','chin','chop']},
+  {sound:'SH', name:'SH Blend', desc:'/ʃ/ as in "ship"', ex:['ship','shop','shed','shut']},
+  {sound:'TH', name:'TH Blend', desc:'/θ/ as in "thin"', ex:['thin','this','them','that']},
+  {sound:'CK', name:'CK Blend', desc:'/k/ as in "duck"', ex:['duck','kick','lock','sock']},
+  {sound:'ST', name:'ST Blend', desc:'/st/ as in "stop"', ex:['stop','step','star','stem']},
+  {sound:'TR', name:'TR Blend', desc:'/tr/ as in "tree"', ex:['tree','trip','true','trim']},
+];
+
+const SIGHT_WORDS = [
+  { group:'Dolch Pre-Primer (Must Know!)', color:'c1', words:['a','and','away','big','blue','can','come','down','find','for','funny','go','help','here','I','in','is','it','jump','little','look','make','me','my','not','one','play','red','run','said','see','the','three','to','two','up','we','where','you'] },
+  { group:'Dolch Primer', color:'c2', words:['all','am','are','at','ate','be','black','brown','but','came','did','do','eat','four','get','good','have','he','into','like','must','new','no','now','on','our','out','please','pretty','ran','ride','saw','say','she','so','soon','that','there','they','this','too','under','want','was','well','went','what','white','who','will','with','yes'] },
+  { group:'Color Words', color:'c3', words:['red','blue','green','yellow','orange','purple','pink','brown','black','white'] },
+  { group:'Number Words', color:'c4', words:['one','two','three','four','five','six','seven','eight','nine','ten'] },
+  { group:'Action Words', color:'c5', words:['run','jump','sit','stand','eat','drink','play','read','write','sleep'] },
+];
+
+const SENTENCES = [
+  {e:'🐱',t:'The cat is fat.',tr:'Kucing itu gemuk.',tag:'pattern'},
+  {e:'🌞',t:'I can see the sun.',tr:'Aku bisa melihat matahari.',tag:'pattern'},
+  {e:'🐶',t:'My dog is big.',tr:'Anjingku besar.',tag:'pattern'},
+  {e:'🍎',t:'Can I have an apple?',tr:'Bolehkah aku punya apel?',tag:'question'},
+  {e:'📚',t:'I like to read books.',tr:'Aku suka membaca buku.',tag:'pattern'},
+  {e:'🌳',t:'The tree is very tall.',tr:'Pohon itu sangat tinggi.',tag:'pattern'},
+  {e:'⚽',t:'We play ball every day.',tr:'Kami bermain bola setiap hari.',tag:'pattern'},
+  {e:'🎨',t:'She has a red pen.',tr:'Dia punya pulpen merah.',tag:'pattern'},
+  {e:'🐸',t:'Jump! Jump! Jump!',tr:'Lompat! Lompat! Lompat!',tag:'command'},
+  {e:'🚌',t:'Where is the school bus?',tr:'Di mana bus sekolah?',tag:'question'},
+  {e:'🌙',t:'The moon is up at night.',tr:'Bulan ada di atas pada malam hari.',tag:'pattern'},
+  {e:'🎁',t:'I have a big box.',tr:'Aku punya kotak besar.',tag:'pattern'},
+  {e:'🐦',t:'The bird can fly high.',tr:'Burung bisa terbang tinggi.',tag:'pattern'},
+  {e:'🏠',t:'This is my home.',tr:'Ini adalah rumahku.',tag:'pattern'},
+  {e:'💧',t:'Drink your water!',tr:'Minum air kamu!',tag:'command'},
+];
+
+const STORIES = [
+  {
+    icon:'🐱', title:'Sam the Cat', level:'Level 1 – Very Easy',
+    text:`<span class="highlight">Sam</span> is a cat. Sam is <span class="highlight">big</span> and <span class="highlight">fat</span>. Sam can <span class="highlight">run</span>. Sam can <span class="highlight">jump</span>. Sam likes to <span class="highlight">eat</span> fish. Sam is a <span class="highlight">happy</span> cat!`,
+    questions:[
+      'What is Sam?','Can Sam run?','What does Sam like to eat?','Is Sam a happy cat?'
+    ]
+  },
+  {
+    icon:'🌈', title:'A Rainy Day', level:'Level 2 – Easy',
+    text:`Today is a <span class="highlight">rainy</span> day. I can see the <span class="highlight">rain</span>. I have a <span class="highlight">red</span> umbrella. My mom has a <span class="highlight">blue</span> umbrella. We go <span class="highlight">inside</span>. We read a <span class="highlight">book</span>. I like rainy days!`,
+    questions:[
+      'What colour is the child\'s umbrella?','What colour is mom\'s umbrella?','What do they do inside?','Do they like rainy days?'
+    ]
+  },
+  {
+    icon:'🐶', title:'Ben and His Dog', level:'Level 2 – Easy',
+    text:`<span class="highlight">Ben</span> has a dog. The dog is <span class="highlight">small</span> and <span class="highlight">white</span>. The dog\'s name is <span class="highlight">Spot</span>. Ben and Spot like to <span class="highlight">play</span> in the park. Spot can <span class="highlight">sit</span> and <span class="highlight">shake</span>. Spot is Ben\'s best <span class="highlight">friend</span>!`,
+    questions:[
+      'What is the dog\'s name?','What colour is Spot?','Where do Ben and Spot play?','What can Spot do?'
+    ]
+  },
+  {
+    icon:'🏫', title:'My School Day', level:'Level 3 – Medium',
+    text:`I wake up early. I <span class="highlight">eat</span> my breakfast. I put on my <span class="highlight">school</span> bag. I get on the <span class="highlight">bus</span>. At school I see my <span class="highlight">friends</span>. We sit in class and <span class="highlight">read</span>. Our teacher is very <span class="highlight">kind</span>. I love going to school!`,
+    questions:[
+      'What does the child do first in the morning?','How does the child go to school?','Who is in the classroom?','Does the child like school?'
+    ]
+  },
+];
+
+const QUIZ_QUESTIONS = [
+  {q:'Which letter makes the /s/ sound?', img:'☀️', opts:['A','S','T','P'], ans:1},
+  {q:'What word matches this picture?', img:'🍎', opts:['Apple','Banana','Mango','Orange'], ans:0},
+  {q:'Which word rhymes with "cat"?', img:'🐱', opts:['dog','mat','sun','big'], ans:1},
+  {q:'What is the first letter of "Ball"?', img:'⚽', opts:['D','P','B','M'], ans:2},
+  {q:'Pick the correct sentence:', img:'📖', opts:['I can reads','I can read','I reads can','Can I reads'], ans:1},
+  {q:'What word matches this picture?', img:'🌙', opts:['Sun','Star','Moon','Cloud'], ans:2},
+  {q:'Which is a SHORT vowel sound?', img:'🔤', opts:['/æ/ in "cat"','/eɪ/ in "cake"','/iː/ in "tree"','/oʊ/ in "boat"'], ans:0},
+  {q:'What does "big" mean?', img:'🐘', opts:['Very small','Very fast','Very large','Very slow'], ans:2},
+  {q:'Complete: "The dog can ___."', img:'🐶', opts:['runs','run','running','ran'], ans:1},
+  {q:'How many syllables in "umbrella"?', img:'☂️', opts:['1','2','3','4'], ans:2},
+];
+
+const GAME_PAIRS = [
+  {word:'cat',pic:'🐱'},{word:'dog',pic:'🐶'},{word:'fish',pic:'🐟'},
+  {word:'tree',pic:'🌳'},{word:'sun',pic:'☀️'},{word:'ball',pic:'⚽'},
+  {word:'book',pic:'📚'},{word:'apple',pic:'🍎'},{word:'moon',pic:'🌙'},
+  {word:'star',pic:'⭐'},{word:'house',pic:'🏠'},{word:'bird',pic:'🐦'},
+];
+
+// ══════════════ BUILD LETTERS ══════════════
+const lg = document.getElementById('letters-grid');
+ALPHABET.forEach(a => {
+  const el = document.createElement('div');
+  el.className = 'letter-card';
+  el.tabIndex = 0;
+  el.innerHTML = `<span class="letter-big">${a.U}</span><span class="letter-small">${a.L}</span><div class="letter-emoji">${a.e}</div><div class="letter-word">${a.w}</div>`;
+  el.addEventListener('click', () => {
+    el.classList.add('pop');
+    setTimeout(()=>el.classList.remove('pop'),300);
+    showToast(`${a.U} ${a.L} — "${a.w}" ${a.e}`);
+    speak(`${a.U}. ${a.w}`);
+  });
+  lg.appendChild(el);
+});
+
+// ══════════════ BUILD PHONICS ══════════════
+function buildPhonics(arr, containerId) {
+  const c = document.getElementById(containerId);
+  arr.forEach(p => {
+    c.innerHTML += `<div class="phonics-card" onclick="speak('${p.sound.replace(/\//g,'')} ... ${p.ex.join(', ')}')">
+      <div class="phonics-sound">${p.sound}</div>
+      <div style="font-weight:800;font-size:0.95rem;color:#333">${p.name}</div>
+      <div class="phonics-desc">${p.desc}</div>
+      <div class="phonics-examples">${p.ex.map(w=>`<span class="phonics-ex">${w}</span>`).join('')}</div>
+    </div>`;
+  });
+}
+buildPhonics(PHONICS_VOWELS,'phonics-vowels');
+buildPhonics(PHONICS_CONSONANTS,'phonics-consonants');
+buildPhonics(PHONICS_BLENDS,'phonics-blends');
+
+// ══════════════ BUILD SIGHT WORDS ══════════════
+const swc = document.getElementById('sight-words-container');
+SIGHT_WORDS.forEach(g => {
+  swc.innerHTML += `<div class="words-group">
+    <div class="words-group-title">${g.group}</div>
+    <div class="words-flex">${g.words.map(w=>`<span class="word-chip ${g.color}" onclick="speak('${w}');showToast('${w}');this.classList.add('pop');setTimeout(()=>this.classList.remove('pop'),300)">${w}</span>`).join('')}</div>
+  </div>`;
+});
+
+// ══════════════ BUILD SENTENCES ══════════════
+const sc = document.getElementById('sentences-container');
+const tagLabel = {pattern:'📘 Pattern',question:'❓ Question',command:'📢 Command'};
+SENTENCES.forEach(s => {
+  sc.innerHTML += `<div class="sentence-card" onclick="speak('${s.t}');this.classList.add('pop');setTimeout(()=>this.classList.remove('pop'),300)">
+    <span class="sentence-emoji">${s.e}</span>
+    <div><div class="sentence-text">${s.t}</div><div class="sentence-tr">${s.tr}</div></div>
+    <span class="sentence-tag tag-${s.tag}">${tagLabel[s.tag]}</span>
+  </div>`;
+});
+
+// ══════════════ BUILD STORIES ══════════════
+const stc = document.getElementById('stories-container');
+STORIES.forEach(s => {
+  stc.innerHTML += `<div class="story-card">
+    <div class="story-header">
+      <div class="story-icon">${s.icon}</div>
+      <div class="story-meta"><h3>${s.title}</h3><p>${s.level}</p></div>
+      <button onclick="speak('${s.text.replace(/<[^>]+>/g,'')}')" style="margin-left:auto;background:var(--sky);color:white;border:none;padding:8px 18px;border-radius:20px;font-weight:800;cursor:pointer;font-size:0.9rem;">▶ Read Aloud</button>
+    </div>
+    <div class="story-body">${s.text}</div>
+    <div class="story-qs">
+      <div style="font-weight:800;color:#555;margin-bottom:10px;">💬 Comprehension Questions</div>
+      ${s.questions.map((q,i)=>`<div class="story-q"><div class="q-num">${i+1}</div><div class="q-text">${q}</div></div>`).join('')}
+    </div>
+  </div>`;
+});
+
+// ══════════════ QUIZ ══════════════
+let qIdx = 0, qScore = 0, qAnswered = false;
+const questions = [...QUIZ_QUESTIONS].sort(()=>Math.random()-0.5);
+const qProgress = document.getElementById('quiz-progress');
+const qCard = document.getElementById('quiz-card');
+const qScoreEl = document.getElementById('quiz-score');
+
+function buildQuizProgress() {
+  qProgress.innerHTML = questions.map((_, i) => `<div class="quiz-dot ${i<qIdx?'done':i===qIdx?'current':''}"></div>`).join('');
+}
+
+function showQuiz() {
+  if (qIdx >= questions.length) { showScore(); return; }
+  buildQuizProgress();
+  const q = questions[qIdx];
+  qAnswered = false;
+  qCard.innerHTML = `
+    <div class="quiz-num">Question ${qIdx+1} of ${questions.length}</div>
+    <div class="quiz-image">${q.img}</div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-options">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i},this)">${o}</button>`).join('')}</div>
+    <div class="quiz-feedback" id="qfb" style="display:none"></div>
+    <button class="quiz-next" id="qnext" onclick="nextQuestion()">Next ➡️</button>
+  `;
+}
+
+function answerQuiz(idx, btn) {
+  if (qAnswered) return;
+  qAnswered = true;
+  const q = questions[qIdx];
+  const fb = document.getElementById('qfb');
+  const nxt = document.getElementById('qnext');
+  const allBtns = document.querySelectorAll('.quiz-opt');
+  allBtns[q.ans].classList.add('correct');
+  if (idx === q.ans) {
+    btn.classList.add('correct');
+    qScore++;
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = '🎉 Great job! That\'s correct!';
+    spawnFireworks();
+  } else {
+    btn.classList.add('wrong');
+    fb.className = 'quiz-feedback wrong';
+    fb.textContent = `❌ Oops! The correct answer is: ${q.opts[q.ans]}`;
+  }
+  fb.style.display = 'block';
+  nxt.style.display = 'inline-block';
+}
+
+function nextQuestion() { qIdx++; showQuiz(); }
+
+function showScore() {
+  qCard.style.display = 'none';
+  qProgress.style.display = 'none';
+  const pct = Math.round(qScore/questions.length*100);
+  const emoji = pct>=80?'🏆':pct>=60?'⭐':'💪';
+  const msg = pct>=80?'Excellent! You are a reading star!':pct>=60?'Good job! Keep practising!':'Keep going! You can do it!';
+  qScoreEl.innerHTML = `<div class="score-emoji">${emoji}</div>
+    <div class="score-title">Quiz Complete!</div>
+    <div class="score-num">${qScore}/${questions.length}</div>
+    <div class="score-msg">${msg} (${pct}%)</div>
+    <button class="quiz-restart" onclick="restartQuiz()">🔄 Try Again</button>`;
+  qScoreEl.style.display = 'block';
+}
+
+function restartQuiz() {
+  qIdx=0; qScore=0; qAnswered=false;
+  questions.sort(()=>Math.random()-0.5);
+  qCard.style.display='block';
+  qProgress.style.display='flex';
+  qScoreEl.style.display='none';
+  showQuiz();
+}
+showQuiz();
+
+// ══════════════ GAME ══════════════
+let gScore=0, gStreak=0, gPairsLeft=0, gSelected=null, gSelectType=null;
+let gameTimer=null, gTimeLeft=60;
+let currentPairs=[];
+
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+
+function startGame() {
+  gScore=0; gStreak=0; gSelected=null; gSelectType=null;
+  document.getElementById('g-score').textContent=0;
+  document.getElementById('g-streak').textContent=0;
+  if(gameTimer) clearInterval(gameTimer);
+  gTimeLeft=60;
+  updateTimerBar();
+
+  const picked = shuffle(GAME_PAIRS).slice(0,6);
+  currentPairs=picked; gPairsLeft=picked.length;
+  document.getElementById('g-pairs').textContent=gPairsLeft;
+
+  const words = shuffle(picked);
+  const pics  = shuffle(picked);
+
+  const wEl = document.getElementById('game-words');
+  const pEl = document.getElementById('game-pics');
+  wEl.innerHTML=''; pEl.innerHTML='';
+
+  words.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='game-item'; d.dataset.key=p.word; d.dataset.type='word';
+    d.textContent=p.word; d.addEventListener('click',gameClick);
+    wEl.appendChild(d);
+  });
+  pics.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='game-item'; d.dataset.key=p.word; d.dataset.type='pic';
+    d.innerHTML=`<span class="item-emoji">${p.pic}</span>`;
+    d.addEventListener('click',gameClick);
+    pEl.appendChild(d);
+  });
+
+  gameTimer=setInterval(()=>{
+    gTimeLeft--;
+    updateTimerBar();
+    if(gTimeLeft<=0){ clearInterval(gameTimer); endGame(); }
+  },1000);
+}
+
+function updateTimerBar(){
+  document.getElementById('timer-fill').style.width=(gTimeLeft/60*100)+'%';
+  if(gTimeLeft<15) document.getElementById('timer-fill').style.background='linear-gradient(90deg,var(--coral),#ffa07a)';
+}
+
+function gameClick(){
+  if(this.classList.contains('matched')) return;
+  const type=this.dataset.type, key=this.dataset.key;
+
+  if(gSelected===null){
+    gSelected=this; gSelectType=type;
+    this.classList.add('selected');
+  } else {
+    if(this===gSelected){ this.classList.remove('selected'); gSelected=null; return; }
+    if(type===gSelectType){ gSelected.classList.remove('selected'); gSelected=this; return; }
+
+    if(gSelected.dataset.key===key){
+      // MATCH
+      gSelected.classList.remove('selected'); gSelected.classList.add('matched');
+      this.classList.add('matched');
+      gScore+=10+(gStreak*2); gStreak++;
+      gPairsLeft--;
+      document.getElementById('g-score').textContent=gScore;
+      document.getElementById('g-pairs').textContent=gPairsLeft;
+      document.getElementById('g-streak').textContent=gStreak;
+      showToast(`✅ Match! +${10+((gStreak-1)*2)} pts`);
+      spawnFireworks();
+      if(gPairsLeft===0){ clearInterval(gameTimer); setTimeout(()=>showToast(`🏆 Round complete! Score: ${gScore}`),600); }
+    } else {
+      // WRONG
+      gStreak=0; document.getElementById('g-streak').textContent=0;
+      gSelected.classList.remove('selected'); gSelected.classList.add('wrong-shake');
+      this.classList.add('wrong-shake');
+      const a=gSelected, b=this;
+      setTimeout(()=>{ a.classList.remove('wrong-shake'); b.classList.remove('wrong-shake'); },500);
+    }
+    gSelected=null; gSelectType=null;
+  }
+}
+
+function endGame(){
+  showToast(`⏰ Time's up! Final score: ${gScore}`);
+}
+
+document.getElementById('game-restart-btn').addEventListener('click',startGame);
+
+// ══════════════ TABS ══════════════
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='game' && !gameTimer) startGame();
+  });
+});
+
+// ══════════════ TTS ══════════════
+function speak(text){
+  if(!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US'; u.rate=0.85; u.pitch=1.1;
+  speechSynthesis.speak(u);
+}
+
+// ══════════════ TOAST ══════════════
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(t._to);
+  t._to=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+// ══════════════ FIREWORKS ══════════════
+function spawnFireworks(){
+  const emojis=['🎉','⭐','✨','🌟','🎊','💫'];
+  for(let i=0;i<5;i++){
+    const el=document.createElement('div');
+    el.className='firework';
+    el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left=Math.random()*90+'vw';
+    el.style.top=Math.random()*60+20+'vh';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),1300);
+  }
+}
+</script>
+</body>
+</html>

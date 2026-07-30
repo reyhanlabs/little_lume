@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Plurals Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #D4AF89;
+  --brand-dark: #B69170;
+  --teal:       #7BA89D;
+  --teal-light: #E8F1EF;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #B8A3D8;
+  --rose:       #D9B5A5;
+  --rose-lt:    #F0E8E1;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #4A5568;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #E8C8B8 0%, #D8B8A8 50%, #E8D8C8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .12; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-title span { color: var(--teal); }
+.header-sub { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.1)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--yellow) 0%, #E8C8A8 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'📚'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: #2C2014; }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.sing { background: var(--brand); color: #fff; }
+.fp.plur { background: var(--teal); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid var(--rose); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+.example-list { margin-top: 12px; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 12px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--brand-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.plural-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.plural-item { background: #f9f9f9; border: 2px solid #e8e8e8; border-radius: 8px; padding: 12px; text-align: center; }
+.plural-sing { color: var(--brand); font-weight: 700; margin-bottom: 4px; }
+.plural-arrow { color: var(--muted); font-size: 12px; }
+.plural-plur { color: var(--teal); font-weight: 700; }
+
+.dialogue-box { background: var(--white); border-radius: 14px; padding: 20px; border: 2px solid var(--teal); margin-top: 12px; }
+.dialogue-item { margin-bottom: 14px; font-size: 14px; }
+.dialogue-person { font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.dialogue-text { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; line-height: 1.6; }
+
+.qsection { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); }
+.qitem { border: 2px solid #e8e8e8; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.qnum { font-family:'Baloo 2',cursive; font-weight:700; font-size:13px; color:var(--brand); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.qtext { font-size:15px; font-weight:600; margin-bottom:14px; color:var(--ink); }
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opt { background:#f5f5f5; border:2px solid #ddd; padding:12px 14px; border-radius:8px; font-size:14px; text-align:left; cursor:pointer; transition:all .2s; font-weight:500; }
+.opt:hover { border-color:var(--brand); background:#fafafa; }
+.opt.correct { background:#d4edda; border-color:#6BBF96; color:#155724; font-weight:700; }
+.opt.wrong { background:#f8d7da; border-color:#c4a1a1; color:#721c24; }
+.qfb { font-size:13px; margin-top:10px; font-weight:600; display:none; padding:8px 12px; border-radius:6px; }
+.qfb.show { display:block; }
+.qfb.ok { background:#d4edda; color:#155724; }
+.qfb.no { background:#f8d7da; color:#721c24; }
+
+.score-section { background: linear-gradient(135deg, var(--yellow-lt) 0%, var(--rose-lt) 100%); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; }
+.score-label { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.score-num { font-family:'Baloo 2',cursive; font-size: 36px; font-weight: 800; color: var(--brand); }
+.stars { font-size: 24px; margin-top: 12px; }
+
+.reset-btn { background: var(--brand); color: #fff; border: none; padding: 12px 28px; border-radius: 20px; font-weight: 700; cursor: pointer; margin-top: 20px; font-size: 14px; transition: all .2s; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media(max-width:640px) { .compare { grid-template-columns: 1fr; } .header-inner { flex-direction: column; text-align: center; } .plural-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes">
+    <div class="hs hs1"></div>
+    <div class="hs hs2"></div>
+    <div class="hs hs3"></div>
+  </div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">Grade 1</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grammar Lesson</div>
+      <h1 class="header-title">Plurals <span>📚</span></h1>
+      <p class="header-sub">Learn to make words plural by adding -S!</p>
+    </div>
+    <div class="header-mascot">📚</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">📖 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', this)">🎯 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', this)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', this)">💡 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', this)">💬 Practice</button>
+    <button class="tab-btn" onclick="showTab('quiz', this)">🎓 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">📖 Introduction to Plurals <span class="pill">Starter</span></h2>
+  
+  <div class="concept-box">
+    <h3>What is a Plural?</h3>
+    <p>A <strong>plural</strong> is when we have <strong>MORE THAN ONE</strong> of something. We make words plural by adding <strong>-S</strong> to the end. For example: one cat becomes two <strong>cats</strong>!</p>
+  </div>
+
+  <div class="card">
+    <h3>Singular vs Plural</h3>
+    <p><strong>Singular</strong> means ONE thing. <strong>Plural</strong> means MORE THAN ONE (2, 3, 4, 5, etc.). In English, we usually add <strong>-S</strong> to make plurals!</p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Singular → Plural:</div>
+        <div class="ex-text">one cat → two <strong>cats</strong> | one book → three <strong>books</strong> | one apple → many <strong>apples</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>How Do We Make Plurals? 🎯</h3>
+    <p>For most nouns in Grade 1, we simply <strong>add -S</strong> to the end of the word!</p>
+    <p style="margin-top:10px;"><strong>Rule:</strong> Singular Noun + S = Plural Noun</p>
+  </div>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">🎯 Plural Concepts <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>The Basic Rule: Add -S</h3>
+    <p>The simplest and most common way to make a plural noun is to add <strong>-S</strong> to the end. This works for most Grade 1 nouns!</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp sing">SINGULAR</div>
+      <span style="color:var(--muted)">+ S</span>
+      <span style="color:var(--muted)">=</span>
+      <div class="fp plur">PLURAL</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:12px;">Add -S to make it multiple!</div>
+    </div>
+    <div class="formula-sub">This is the main rule for making plurals in Grade 1.</div>
+  </div>
+
+  <div class="card purple">
+    <h3>Simple Examples of Plurals</h3>
+    <p><strong>Singular (ONE):</strong> apple, book, cat, dog, ball, toy, flower, house</p>
+    <p style="margin-top:10px;"><strong>Plural (MORE THAN ONE):</strong> apples, books, cats, dogs, balls, toys, flowers, houses</p>
+  </div>
+
+  <div class="plural-grid" style="margin-top: 12px;">
+    <div class="plural-item">
+      <div class="plural-sing">1 cat</div>
+      <div class="plural-arrow">➜</div>
+      <div class="plural-plur">2 cats</div>
+    </div>
+    <div class="plural-item">
+      <div class="plural-sing">1 book</div>
+      <div class="plural-arrow">➜</div>
+      <div class="plural-plur">3 books</div>
+    </div>
+    <div class="plural-item">
+      <div class="plural-sing">1 apple</div>
+      <div class="plural-arrow">➜</div>
+      <div class="plural-plur">5 apples</div>
+    </div>
+    <div class="plural-item">
+      <div class="plural-sing">1 toy</div>
+      <div class="plural-arrow">➜</div>
+      <div class="plural-plur">10 toys</div>
+    </div>
+    <div class="plural-item">
+      <div class="plural-sing">1 dog</div>
+      <div class="plural-arrow">➜</div>
+      <div class="plural-plur">4 dogs</div>
+    </div>
+    <div class="plural-item">
+      <div class="plural-sing">1 flower</div>
+      <div class="plural-arrow">➜</div>
+      <div class="plural-plur">6 flowers</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>🟢 Correct Singular/Plural</h4>
+      <ul>
+        <li>I have <b>1 cat</b></li>
+        <li>He has <b>2 cats</b></li>
+        <li>She reads <b>1 book</b></li>
+        <li>They read <b>3 books</b></li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>🔴 Incorrect</h4>
+      <ul>
+        <li>I have 1 cats (wrong!)</li>
+        <li>He has 2 cat (wrong!)</li>
+        <li>She reads 1 books (wrong!)</li>
+        <li>They read 3 book (wrong!)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Plurals <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>When to Use Plurals</h3>
+    <p>Use the plural form when you are talking about <strong>TWO or MORE</strong> of something. Use singular when talking about ONE.</p>
+  </div>
+
+  <div class="card">
+    <h3>Singular vs Plural in Sentences</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">With Numbers:</div>
+        <div class="ex-text">I have <strong>1 apple</strong> (singular). I have <strong>5 apples</strong> (plural).</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">With "a" or "the":</div>
+        <div class="ex-text">I see <strong>a cat</strong> (singular). I see <strong>cats</strong> (plural, no "a").</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">With Verbs:</div>
+        <div class="ex-text">The <strong>cat is</strong> playing. The <strong>cats are</strong> playing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Rule: When to Add -S</h3>
+    <p><strong>Add -S to MOST nouns to make them plural:</strong></p>
+    <p style="margin-top:10px;">cat → cats | dog → dogs | book → books | toy → toys | apple → apples | flower → flowers</p>
+  </div>
+
+  <div class="card purple">
+    <h3>Important: Verbs Change Too!</h3>
+    <p>When a noun is plural, sometimes the verb changes:</p>
+    <p style="margin-top:10px;"><strong>One cat IS happy.</strong> | <strong>Two cats ARE happy.</strong> | <strong>One book IS big.</strong> | <strong>Three books ARE big.</strong></p>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">💡 Real Examples <span class="pill">Learning</span></h2>
+
+  <div class="card">
+    <h3>Plurals in Everyday Life</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">At Home:</div>
+        <div class="ex-text">1 cat, 2 cats | 1 bed, 3 beds | 1 chair, 4 chairs | 1 toy, 10 toys</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">At School:</div>
+        <div class="ex-text">1 teacher, 2 teachers | 1 pencil, 5 pencils | 1 book, 20 books | 1 student, 30 students</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">In Nature:</div>
+        <div class="ex-text">1 tree, 100 trees | 1 flower, 50 flowers | 1 bird, 10 birds | 1 fish, 8 fish</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">With Food:</div>
+        <div class="ex-text">1 apple, 6 apples | 1 banana, 3 bananas | 1 cookie, 12 cookies | 1 egg, 10 eggs</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>🎯 Complete Sentences with Plurals</h3>
+    <p><strong>1.</strong> I have <strong>two cats</strong> at home.</p>
+    <p><strong>2.</strong> She reads <strong>five books</strong> every week.</p>
+    <p><strong>3.</strong> He plays with <strong>three balls</strong> in the park.</p>
+    <p><strong>4.</strong> They pick <strong>beautiful flowers</strong> in the garden.</p>
+    <p><strong>5.</strong> I eat <strong>two apples</strong> every day.</p>
+  </div>
+
+  <div class="card rose">
+    <h3>🔍 Find the Plurals!</h3>
+    <p>Look at this sentence: <strong>"I have two cats. They sleep on three beds. I give them five toys."</strong></p>
+    <p style="margin-top:10px;"><strong>Plurals:</strong> cats, beds, toys</p>
+    <p style="margin-top:8px;"><strong>Not plurals:</strong> I (pronoun), have (verb), two (number), sleep (verb)</p>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Practice Dialogue <span class="pill">Interactive</span></h2>
+
+  <div class="concept-box">
+    <h3>Talking About Multiple Things</h3>
+    <p>Here's how we use plurals when we talk about having many things. Notice how the plural forms are used!</p>
+  </div>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Maya:</div>
+      <div class="dialogue-text">How many <strong>books</strong> do you have?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">I have <strong>ten books</strong>! They are on my <strong>shelves</strong>.</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Maya:</div>
+      <div class="dialogue-text">Wow! Do you have any <strong>toys</strong>?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">Yes! I have <strong>five toys</strong>. There are <strong>cars</strong>, <strong>balls</strong>, and <strong>dolls</strong>.</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Maya:</div>
+      <div class="dialogue-text">That's great! How many <strong>friends</strong> do you have?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">I have <strong>many friends</strong>! We play games together!</div>
+    </div>
+  </div>
+
+  <div class="card yellow" style="margin-top:18px;">
+    <h3>📢 Plural Counting</h3>
+    <p><strong>How many plurals are in the dialogue?</strong></p>
+    <p style="margin-top:12px;">books, shelves, toys, cars, balls, dolls, friends</p>
+    <p style="margin-top:8px;"><strong>Answer: 7 plural nouns!</strong></p>
+  </div>
+
+  <div class="card purple">
+    <h3>🎯 Let's Practice!</h3>
+    <p><strong>Change these singular nouns to plural:</strong></p>
+    <p style="margin-top:12px;">1. book → _____</p>
+    <p>2. cat → _____</p>
+    <p>3. apple → _____</p>
+    <p style="margin-top:12px;"><em>(Answers: 1. books, 2. cats, 3. apples)</em></p>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎓 Quiz Time! <span class="pill">Test</span></h2>
+
+  <div class="score-section">
+    <div class="score-label">Your Score</div>
+    <div class="score-num" id="scoreNum">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="qsection">
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Definition</div>
+      <div class="qtext">What is a plural?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">One thing</button>
+        <button class="opt" onclick="ans('q1',this,true)">More than one thing</button>
+        <button class="opt" onclick="ans('q1',this,false)">A describing word</button>
+        <button class="opt" onclick="ans('q1',this,false)">A verb</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — Making Plurals</div>
+      <div class="qtext">How do we make most nouns plural?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,true)">Add -S to the end</button>
+        <button class="opt" onclick="ans('q2',this,false)">Add -ed to the end</button>
+        <button class="opt" onclick="ans('q2',this,false)">Change the first letter</button>
+        <button class="opt" onclick="ans('q2',this,false)">Remove the last letter</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Plural of Cat</div>
+      <div class="qtext">What is the plural of "cat"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">cat</button>
+        <button class="opt" onclick="ans('q3',this,true)">cats</button>
+        <button class="opt" onclick="ans('q3',this,false)">cates</button>
+        <button class="opt" onclick="ans('q3',this,false)">catted</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Plural of Apple</div>
+      <div class="qtext">What is the plural of "apple"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">apple</button>
+        <button class="opt" onclick="ans('q4',this,false)">applea</button>
+        <button class="opt" onclick="ans('q4',this,true)">apples</button>
+        <button class="opt" onclick="ans('q4',this,false)">appless</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Singular vs Plural</div>
+      <div class="qtext">Which sentence is correct?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,false)">I have five book.</button>
+        <button class="opt" onclick="ans('q5',this,true)">I have five books.</button>
+        <button class="opt" onclick="ans('q5',this,false)">I have five books book.</button>
+        <button class="opt" onclick="ans('q5',this,false)">I have one books.</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Identifying Plural</div>
+      <div class="qtext">Which word is plural?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,false)">dog</button>
+        <button class="opt" onclick="ans('q6',this,false)">toy</button>
+        <button class="opt" onclick="ans('q6',this,true)">flowers</button>
+        <button class="opt" onclick="ans('q6',this,false)">tree</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Count Plurals</div>
+      <div class="qtext">How many plural nouns in: "I have two cats and three dogs"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">0</button>
+        <button class="opt" onclick="ans('q7',this,false)">1</button>
+        <button class="opt" onclick="ans('q7',this,true)">2</button>
+        <button class="opt" onclick="ans('q7',this,false)">3</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Plural Form</div>
+      <div class="qtext">What is the plural of "toy"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">toy</button>
+        <button class="opt" onclick="ans('q8',this,true)">toys</button>
+        <button class="opt" onclick="ans('q8',this,false)">toyes</button>
+        <button class="opt" onclick="ans('q8',this,false)">toies</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</section>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Excellent!', '✅ Perfect! Well done!', '✅ That\'s right! Smart!', '✅ Great job!'],
+  wrong:   ['❌ Not quite. Try again!', '❌ Keep trying!', '❌ Review the lesson above!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'⭐⭐⭐⭐':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>

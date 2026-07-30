@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Prepositions Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #C49B7B;
+  --brand-dark: #A67D63;
+  --teal:       #7BA89D;
+  --teal-light: #E8F1EF;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #B8A3D8;
+  --rose:       #D9B5A5;
+  --rose-lt:    #F0E8E1;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #4A5568;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #D8B8A8 0%, #C8A898 50%, #D8C8B8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .12; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.1)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--brand) 0%, #C49B7B 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'📍'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.categ { background: var(--brand); color: #fff; }
+.fp.example { background: var(--teal); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid var(--rose); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+.example-list { margin-top: 12px; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 12px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--brand-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--white); border-radius: 14px; padding: 20px; border: 2px solid var(--teal); margin-top: 12px; }
+.dialogue-item { margin-bottom: 14px; font-size: 14px; }
+.dialogue-person { font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.dialogue-text { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; line-height: 1.6; }
+
+.position-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 12px; }
+.position-item { text-align: center; padding: 16px; background: #f5f5f5; border-radius: 12px; border: 2px solid #e8e8e8; }
+.position-item .icon { font-size: 36px; margin-bottom: 8px; }
+.position-item .label { font-weight: 700; color: var(--brand); margin-bottom: 6px; font-size: 14px; }
+.position-item .example { font-size: 12px; color: #555; }
+
+.qsection { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); }
+.qitem { border: 2px solid #e8e8e8; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.qnum { font-family:'Baloo 2',cursive; font-weight:700; font-size:13px; color:var(--brand); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.qtext { font-size:15px; font-weight:600; margin-bottom:14px; color:var(--ink); }
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opt { background:#f5f5f5; border:2px solid #ddd; padding:12px 14px; border-radius:8px; font-size:14px; text-align:left; cursor:pointer; transition:all .2s; font-weight:500; }
+.opt:hover { border-color:var(--brand); background:#fafafa; }
+.opt.correct { background:#d4edda; border-color:#6BBF96; color:#155724; font-weight:700; }
+.opt.wrong { background:#f8d7da; border-color:#c4a1a1; color:#721c24; }
+.qfb { font-size:13px; margin-top:10px; font-weight:600; display:none; padding:8px 12px; border-radius:6px; }
+.qfb.show { display:block; }
+.qfb.ok { background:#d4edda; color:#155724; }
+.qfb.no { background:#f8d7da; color:#721c24; }
+
+.score-section { background: linear-gradient(135deg, var(--yellow-lt) 0%, var(--rose-lt) 100%); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; }
+.score-label { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.score-num { font-family:'Baloo 2',cursive; font-size: 36px; font-weight: 800; color: var(--brand); }
+.stars { font-size: 24px; margin-top: 12px; }
+
+.reset-btn { background: var(--brand); color: #fff; border: none; padding: 12px 28px; border-radius: 20px; font-weight: 700; cursor: pointer; margin-top: 20px; font-size: 14px; transition: all .2s; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media(max-width:640px) { .compare { grid-template-columns: 1fr; } .header-inner { flex-direction: column; text-align: center; } .position-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes">
+    <div class="hs hs1"></div>
+    <div class="hs hs2"></div>
+    <div class="hs hs3"></div>
+  </div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">Grade 1</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grammar Lesson</div>
+      <h1 class="header-title">Prepositions <span>📍</span></h1>
+      <p class="header-sub">Learn words that show position and location!</p>
+    </div>
+    <div class="header-mascot">📍</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">📖 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', this)">🎯 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', this)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', this)">💡 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', this)">💬 Practice</button>
+    <button class="tab-btn" onclick="showTab('quiz', this)">🎓 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">📖 Introduction to Prepositions <span class="pill">Starter</span></h2>
+  
+  <div class="concept-box">
+    <h3>What is a Preposition?</h3>
+    <p>A <strong>preposition</strong> is a word that shows <strong>LOCATION</strong> or <strong>POSITION</strong>. Prepositions tell us WHERE something is. Common prepositions are: <strong>in</strong>, <strong>on</strong>, <strong>under</strong>, <strong>above</strong>, and <strong>between</strong>.</p>
+  </div>
+
+  <div class="card">
+    <h3>Why Do We Need Prepositions?</h3>
+    <p>Prepositions help us describe WHERE things are located. They are important for giving directions and explaining positions!</p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">❌ Without Prepositions:</div>
+        <div class="ex-text">"The cat the box." (doesn't make sense)</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">✅ With Prepositions:</div>
+        <div class="ex-text">"The cat is in the box." (clear and complete)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Five Main Prepositions 📍</h3>
+    <p>In Grade 1, we learn five important prepositions:</p>
+    <p style="margin-top:10px;"><strong>In</strong> | <strong>On</strong> | <strong>Under</strong> | <strong>Above</strong> | <strong>Between</strong></p>
+  </div>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">🎯 Preposition Concepts <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>The Five Prepositions of Position</h3>
+    <p>Each preposition shows a different location. Learning what each means helps us understand WHERE something is!</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">IN</div>
+      <span style="color:var(--muted)">|</span>
+      <div class="fp example">ON</div>
+      <span style="color:var(--muted)">|</span>
+      <div class="fp categ">UNDER</div>
+      <span style="color:var(--muted)">|</span>
+      <div class="fp example">ABOVE</div>
+      <span style="color:var(--muted)">|</span>
+      <div class="fp categ">BETWEEN</div>
+    </div>
+    <div class="formula-sub">Prepositions describe WHERE something is located.</div>
+  </div>
+
+  <div class="card purple">
+    <h3>1. In - Inside 📦</h3>
+    <p><strong>Use "in" when something is INSIDE something else.</strong> It shows that something is contained within.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> in the box, in the house, in the bag, in the school, in the classroom</p>
+  </div>
+
+  <div class="card teal">
+    <h3>2. On - On Top Of 🪑</h3>
+    <p><strong>Use "on" when something is ON TOP of something.</strong> It shows that something is resting on the surface.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> on the table, on the chair, on the floor, on the desk, on the roof</p>
+  </div>
+
+  <div class="card rose">
+    <h3>3. Under - Below 👇</h3>
+    <p><strong>Use "under" when something is BELOW something.</strong> It shows that something is beneath or underneath.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> under the table, under the bed, under the bridge, under the tree, under the water</p>
+  </div>
+
+  <div class="card yellow">
+    <h3>4. Above - Over 👆</h3>
+    <p><strong>Use "above" when something is OVER something (but not touching).</strong> It shows height and elevation.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> above the clouds, above the ground, above the door, above the water, above the roof</p>
+  </div>
+
+  <div class="card">
+    <h3>5. Between - In the Middle 🔄</h3>
+    <p><strong>Use "between" when something is in the MIDDLE of two things.</strong> It shows something is separating two objects.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> between the houses, between the trees, between the chairs, between two friends</p>
+  </div>
+
+  <div class="position-grid" style="margin-top: 18px;">
+    <div class="position-item">
+      <div class="icon">📦</div>
+      <div class="label">IN</div>
+      <div class="example">Inside: in the box</div>
+    </div>
+    <div class="position-item">
+      <div class="icon">🪑</div>
+      <div class="label">ON</div>
+      <div class="example">On top: on the chair</div>
+    </div>
+    <div class="position-item">
+      <div class="icon">👇</div>
+      <div class="label">UNDER</div>
+      <div class="example">Below: under the table</div>
+    </div>
+    <div class="position-item">
+      <div class="icon">👆</div>
+      <div class="label">ABOVE</div>
+      <div class="example">Over: above the ground</div>
+    </div>
+    <div class="position-item">
+      <div class="icon">🔄</div>
+      <div class="label">BETWEEN</div>
+      <div class="example">Middle: between two things</div>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Prepositions <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Position of Prepositions in Sentences</h3>
+    <p>Prepositions come AFTER the verb or noun they describe. They usually come with a noun or pronoun after them.</p>
+  </div>
+
+  <div class="card">
+    <h3>Where Prepositions Go</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Preposition + Noun:</div>
+        <div class="ex-text"><strong>in</strong> the box | <strong>on</strong> the table | <strong>under</strong> the chair | <strong>above</strong> the door | <strong>between</strong> the trees</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Verb + Preposition + Noun:</div>
+        <div class="ex-text">The ball is <strong>in</strong> the box. | I sit <strong>on</strong> the chair. | The cat hides <strong>under</strong> the bed.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Complete Sentences:</div>
+        <div class="ex-text">The toy is <strong>in</strong> the bag. | The book is <strong>on</strong> the desk. | I sleep <strong>under</strong> the blanket.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Simple Pattern: Subject + Is + Preposition + Noun</h3>
+    <p><strong>The ball</strong> is <strong>in</strong> the box. | <strong>The cat</strong> is <strong>under</strong> the table. | <strong>The book</strong> is <strong>on</strong> the shelf.</p>
+  </div>
+
+  <div class="card purple">
+    <h3>Important Rule!</h3>
+    <p>A preposition is ALWAYS followed by a noun or pronoun. Never use a preposition alone!</p>
+    <p style="margin-top:10px;"><strong>❌ Wrong:</strong> "The cat is in." | <strong>✅ Correct:</strong> "The cat is in the house."</p>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">💡 Real Examples <span class="pill">Learning</span></h2>
+
+  <div class="card">
+    <h3>Prepositions in Everyday Life</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">IN Examples:</div>
+        <div class="ex-text">I live in a house. The pen is in the bag. The book is in the classroom.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">ON Examples:</div>
+        <div class="ex-text">The picture is on the wall. The cup is on the table. The toy is on the shelf.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">UNDER Examples:</div>
+        <div class="ex-text">The ball is under the bed. The cat is under the chair. The keys are under the mat.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">ABOVE Examples:</div>
+        <div class="ex-text">The light is above the desk. The bird flies above the trees. The sign is above the door.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">BETWEEN Examples:</div>
+        <div class="ex-text">Tom sits between Sarah and John. The park is between the school and the library. The bridge is between the two towns.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>🎯 Sentences with Prepositions</h3>
+    <p><strong>1.</strong> The toy is <strong>in</strong> the box.</p>
+    <p><strong>2.</strong> The cat sits <strong>on</strong> the window.</p>
+    <p><strong>3.</strong> The ball rolls <strong>under</strong> the door.</p>
+    <p><strong>4.</strong> The plane flies <strong>above</strong> the clouds.</p>
+    <p><strong>5.</strong> I stand <strong>between</strong> my two friends.</p>
+  </div>
+
+  <div class="card rose">
+    <h3>🔍 Find the Prepositions!</h3>
+    <p>Look at this sentence: <strong>"The book is on the table. The pen is under the book. The light is above the table."</strong></p>
+    <p style="margin-top:10px;"><strong>Prepositions:</strong> on, under, above</p>
+    <p style="margin-top:8px;"><strong>Not prepositions:</strong> the (article), book (noun), is (verb), table (noun)</p>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Practice Dialogue <span class="pill">Interactive</span></h2>
+
+  <div class="concept-box">
+    <h3>Using Prepositions to Describe Locations</h3>
+    <p>Here's how we use prepositions when we talk about where things are. Prepositions help us understand location!</p>
+  </div>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Luna:</div>
+      <div class="dialogue-text">Where is my toy? I cannot find it!</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">Is it <strong>in</strong> your room?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Luna:</div>
+      <div class="dialogue-text">No, I looked <strong>in</strong> my room. Is it <strong>under</strong> the sofa?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">Yes! I see it! It is <strong>under</strong> the sofa! And there is also a ball <strong>between</strong> the sofa and the chair!</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Luna:</div>
+      <div class="dialogue-text">Thank you! <strong>Above</strong> the sofa, <strong>on</strong> the shelf, is my favorite book!</div>
+    </div>
+  </div>
+
+  <div class="card yellow" style="margin-top:18px;">
+    <h3>📢 Preposition Counting</h3>
+    <p><strong>How many prepositions are in the dialogue?</strong></p>
+    <p style="margin-top:12px;">in, in, under, under, between, Above, on</p>
+    <p style="margin-top:8px;"><strong>Answer: 7 prepositions!</strong> Can you identify what noun comes after each one?</p>
+  </div>
+
+  <div class="card purple">
+    <h3>🎯 Let's Practice!</h3>
+    <p><strong>Fill in the correct preposition (in, on, under, above, between):</strong></p>
+    <p style="margin-top:12px;">1. The pen is _____ the desk.</p>
+    <p>2. The cat sleeps _____ the bed.</p>
+    <p>3. I put my bag _____ the two chairs.</p>
+    <p style="margin-top:12px;"><em>(Answers: 1. on, 2. under, 3. between)</em></p>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎓 Quiz Time! <span class="pill">Test</span></h2>
+
+  <div class="score-section">
+    <div class="score-label">Your Score</div>
+    <div class="score-num" id="scoreNum">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="qsection">
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Definition</div>
+      <div class="qtext">What is a preposition?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">A word that describes</button>
+        <button class="opt" onclick="ans('q1',this,true)">A word that shows location</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that shows action</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that replaces a noun</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — In Preposition</div>
+      <div class="qtext">What does "in" mean?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,true)">Inside</button>
+        <button class="opt" onclick="ans('q2',this,false)">On top of</button>
+        <button class="opt" onclick="ans('q2',this,false)">Below</button>
+        <button class="opt" onclick="ans('q2',this,false)">Between</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — On Preposition</div>
+      <div class="qtext">Which sentence uses "on" correctly?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">The cat is on the box.</button>
+        <button class="opt" onclick="ans('q3',this,true)">The book is on the table.</button>
+        <button class="opt" onclick="ans('q3',this,false)">The ball is on the floor under the bed.</button>
+        <button class="opt" onclick="ans('q3',this,false)">I sleep on bed.</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Under Preposition</div>
+      <div class="qtext">What does "under" mean?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">Inside</button>
+        <button class="opt" onclick="ans('q4',this,false)">On top of</button>
+        <button class="opt" onclick="ans('q4',this,true)">Below</button>
+        <button class="opt" onclick="ans('q4',this,false)">In the middle</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Above Preposition</div>
+      <div class="qtext">What does "above" mean?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,false)">Inside</button>
+        <button class="opt" onclick="ans('q5',this,true)">Over (not touching)</button>
+        <button class="opt" onclick="ans('q5',this,false)">Touching the top</button>
+        <button class="opt" onclick="ans('q5',this,false)">In the middle</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Between Preposition</div>
+      <div class="qtext">What does "between" mean?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,false)">Below</button>
+        <button class="opt" onclick="ans('q6',this,false)">On top of</button>
+        <button class="opt" onclick="ans('q6',this,true)">In the middle of two things</button>
+        <button class="opt" onclick="ans('q6',this,false)">Inside</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Identify Preposition</div>
+      <div class="qtext">In "The ball is under the table," which is the preposition?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">ball</button>
+        <button class="opt" onclick="ans('q7',this,true)">under</button>
+        <button class="opt" onclick="ans('q7',this,false)">table</button>
+        <button class="opt" onclick="ans('q7',this,false)">is</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Preposition Usage</div>
+      <div class="qtext">Which sentence is correct?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">The pen is in.</button>
+        <button class="opt" onclick="ans('q8',this,true)">The pen is in the bag.</button>
+        <button class="opt" onclick="ans('q8',this,false)">The pen is in bag.</button>
+        <button class="opt" onclick="ans('q8',this,false)">In the bag the pen is.</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</section>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Excellent!', '✅ Perfect! Well done!', '✅ That\'s right! Smart!', '✅ Great job!'],
+  wrong:   ['❌ Not quite. Try again!', '❌ Keep trying!', '❌ Review the lesson above!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'⭐⭐⭐⭐':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>

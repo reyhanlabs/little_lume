@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Lumi's Notebook | Unit 1 - Greetings | LittleLume English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Patrick+Hand&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS
+     Reused from LittleLume core palette for brand consistency,
+     extended with a "notebook / scrapbook" signature layer.
+     ============================================================ */
+  :root{
+    --blue:#CFE9FF;      --blue-deep:#8FC6F2;
+    --mint:#C9F3E1;       --mint-deep:#7FDDB6;
+    --cream:#FFFBF2;      --peach:#FFD9BE;      --peach-deep:#FFB183;
+    --lavender:#E7DEFF;   --lavender-deep:#C3AEFF;
+    --yellow:#FFEEA6;     --yellow-deep:#FFDD57;
+    --ink:#3B3555;        --ink-soft:#6B6483;
+    --success:#4FC97D;    --error:#FF7373;
+    --white:#FFFFFF;
+    --radius-lg:28px; --radius-md:18px; --radius-sm:12px;
+    --shadow-soft:0 10px 30px rgba(120,100,160,0.16);
+    --shadow-pop:0 6px 0 rgba(0,0,0,0.08);
+    --font-display:"Baloo 2","Segoe UI Rounded",sans-serif;
+    --font-body:"Segoe UI","SF Pro Text",Verdana,sans-serif;
+    --font-hand:"Patrick Hand",cursive;
+    --font-script:"Caveat",cursive;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;min-height:100%;font-family:var(--font-body);color:var(--ink);}
+  body{
+    background:
+      radial-gradient(circle at 10% 5%, rgba(255,221,87,0.30), transparent 40%),
+      radial-gradient(circle at 92% 10%, rgba(195,174,255,0.30), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(127,221,182,0.25), transparent 50%),
+      var(--cream);
+    overflow-x:hidden;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  button:focus-visible{outline:3px solid var(--blue-deep);outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---- APP SHELL ---- */
+  #app{max-width:760px;margin:0 auto;min-height:100vh;padding:14px 14px 60px;}
+
+  .hud{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:rgba(255,255,255,0.75); backdrop-filter:blur(6px);
+    border-radius:999px; padding:8px 16px; box-shadow:var(--shadow-soft);
+    position:sticky; top:10px; z-index:80;
+  }
+  .brand{font-family:var(--font-display);font-weight:800;font-size:14px;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+  .brand .dot{color:var(--peach-deep);}
+  .page-dots{display:flex;gap:5px;flex:1;justify-content:center;}
+  .page-dots .d{width:8px;height:8px;border-radius:50%;background:#EFE9FB;transition:background .3s, transform .3s;}
+  .page-dots .d.active{background:var(--blue-deep);transform:scale(1.3);}
+  .page-dots .d.done{background:var(--mint-deep);}
+  .icon-btn{width:32px;height:32px;border-radius:50%;background:var(--white);box-shadow:var(--shadow-pop);display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .icon-btn:active{transform:scale(0.9);}
+
+  /* ---- NOTEBOOK PAGE ---- */
+  .notebook{
+    position:relative; margin-top:18px;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 35px, rgba(143,198,242,0.14) 35px 36px),
+      var(--white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);
+    padding:30px 26px 34px 46px;
+    min-height:520px;
+    border-left:10px solid var(--page-color, var(--lavender));
+    transition:border-color .4s ease;
+  }
+  .notebook::before{ /* spiral binding dots */
+    content:"";
+    position:absolute; left:-10px; top:26px; bottom:26px; width:10px;
+    background-image:radial-gradient(circle, var(--ink-soft) 2.5px, transparent 2.6px);
+    background-size:100% 22px; background-repeat:repeat-y; opacity:0.35;
+  }
+  .page{display:none;animation:pageIn .45s ease;}
+  .page.active{display:block;}
+  @keyframes pageIn{from{opacity:0;transform:translateY(10px) rotate(-.4deg);}to{opacity:1;transform:translateY(0) rotate(0);}}
+
+  .washi{
+    position:absolute; height:26px; width:110px; opacity:0.85; border-radius:2px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.08);
+  }
+  .washi.blue{background:repeating-linear-gradient(45deg,var(--blue),var(--blue) 8px,var(--blue-deep) 8px,var(--blue-deep) 16px);}
+  .washi.peach{background:repeating-linear-gradient(45deg,var(--peach),var(--peach) 8px,var(--peach-deep) 8px,var(--peach-deep) 16px);}
+  .washi.mint{background:repeating-linear-gradient(45deg,var(--mint),var(--mint) 8px,var(--mint-deep) 8px,var(--mint-deep) 16px);}
+
+  .page-eyebrow{
+    display:inline-flex;align-items:center;gap:6px; font-family:var(--font-hand); font-weight:400;
+    font-size:14px; color:var(--ink-soft); background:var(--cream); padding:4px 12px;
+    border-radius:999px; border:1.5px dashed var(--lavender-deep); margin-bottom:8px;
+  }
+  h1.page-title{
+    font-family:var(--font-display); font-weight:800; font-size:clamp(22px,5vw,30px);
+    margin:2px 0 14px; color:var(--ink); display:flex; align-items:center; gap:10px;
+  }
+
+  /* ---- LUMI DIARY NOTE ---- */
+  .lumi-row{display:flex;align-items:flex-end;gap:12px;margin:14px 0 20px;}
+  .lumi-svg{width:58px;height:58px;flex:none;filter:drop-shadow(0 6px 8px rgba(255,221,87,.5));}
+  .diary-bubble{
+    font-family:var(--font-hand); font-size:17px; line-height:1.5;
+    background:var(--lavender); border-radius:18px 18px 18px 4px;
+    padding:12px 16px; box-shadow:var(--shadow-pop); max-width:560px; color:var(--ink);
+  }
+
+  /* ---- SECTION LABELS ---- */
+  .sec-label{
+    font-family:var(--font-display); font-weight:800; font-size:13px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--ink-soft); margin:20px 0 10px; display:flex; align-items:center; gap:6px;
+  }
+
+  /* ---- STICKER VOCAB GRID ---- */
+  .sticker-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:12px;}
+  .sticker{
+    background:var(--cream); border-radius:var(--radius-md); padding:14px 8px;
+    text-align:center; box-shadow:var(--shadow-pop); border:2.5px solid transparent;
+    transform:rotate(var(--rot,0deg)); transition:transform .18s ease, border-color .18s ease;
+    font-family:var(--font-hand); font-size:15px; font-weight:400;
+  }
+  .sticker:active{transform:rotate(0) scale(0.94);}
+  .sticker .emoji{font-size:30px;display:block;margin-bottom:4px;}
+  .sticker.revealed{border-color:var(--mint-deep); background:#EEFBF4;}
+
+  /* ---- STICKY NOTE (tap to reveal) ---- */
+  .sticky-note{
+    background:var(--yellow); border-radius:6px 6px 6px 0; padding:14px 16px;
+    box-shadow:var(--shadow-pop); font-family:var(--font-hand); font-size:16px;
+    position:relative; cursor:pointer; transform:rotate(-1.2deg); transition:transform .2s ease;
+    min-height:52px; display:flex; align-items:center; gap:10px;
+  }
+  .sticky-note:active{transform:rotate(0) scale(0.98);}
+  .sticky-note .hint{color:var(--ink-soft); font-size:13px;}
+  .sticky-note.open{background:var(--mint);}
+
+  /* ---- FLIP CARD (alphabet) ---- */
+  .flip-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px;}
+  .flip-card{perspective:600px; height:92px;}
+  .flip-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:var(--shadow-pop); font-family:var(--font-display);
+  }
+  .flip-front{background:var(--lavender); font-size:28px; font-weight:800; color:var(--ink);}
+  .flip-back{background:var(--white); transform:rotateY(180deg); font-size:12px; font-weight:700;}
+  .flip-back .emoji{font-size:24px;}
+
+  /* ---- DIALOG / SPEECH PRACTICE ---- */
+  .chat-line{display:flex; gap:10px; align-items:flex-end; margin-bottom:12px;}
+  .chat-line.me{flex-direction:row-reverse;}
+  .chat-avatar{width:34px;height:34px;flex:none;border-radius:50%;background:var(--peach);display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .chat-bubble{
+    font-family:var(--font-hand); font-size:16px; padding:10px 14px; border-radius:16px;
+    background:var(--blue); box-shadow:var(--shadow-pop); max-width:75%;
+  }
+  .chat-line.me .chat-bubble{background:var(--mint); border-radius:16px 16px 4px 16px;}
+  .chat-line:not(.me) .chat-bubble{border-radius:16px 16px 16px 4px;}
+  .chat-bubble.hidden-text{filter:blur(5px); user-select:none; cursor:pointer;}
+
+  /* ---- CHOICE TILES ---- */
+  .choice-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+  .choice-tile{
+    font-family:var(--font-hand); font-size:15px; background:var(--white); padding:10px 16px;
+    border-radius:14px; box-shadow:var(--shadow-pop); border:2.5px solid transparent;
+  }
+  .choice-tile:active{transform:scale(0.95);}
+  .choice-tile.correct{border-color:var(--success); background:#E9FBEF;}
+  .choice-tile.wrong{border-color:var(--error); background:#FFEEEE; animation:shake .3s;}
+  @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+  /* ---- REMEMBER / CHALLENGE BOXES ---- */
+  .box{border-radius:16px; padding:14px 16px; margin-top:16px; box-shadow:var(--shadow-pop); font-size:14.5px; line-height:1.5;}
+  .box-remember{background:var(--peach); border:2px dashed var(--peach-deep);}
+  .box-challenge{background:var(--mint); border:2px dashed var(--mint-deep);}
+  .box-title{font-family:var(--font-display); font-weight:800; font-size:13px; margin-bottom:4px; display:flex; align-items:center; gap:6px;}
+
+  /* ---- TIPS (small, collapsible) ---- */
+  .tip-row{display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;}
+  .tip-chip{
+    font-size:11.5px; font-family:var(--font-body); font-weight:600; color:var(--ink-soft);
+    background:rgba(255,255,255,0.7); border:1px solid #E4DEF7; border-radius:999px; padding:5px 10px;
+    display:flex; align-items:center; gap:5px;
+  }
+
+  /* ---- SIGN OFF ---- */
+  .signoff{font-family:var(--font-script); font-size:24px; text-align:right; margin-top:22px; color:var(--peach-deep);}
+
+  /* ---- NAV ---- */
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px;}
+  .btn{
+    font-family:var(--font-display); font-weight:800; font-size:14.5px; padding:12px 22px;
+    border-radius:999px; color:var(--ink); background:var(--white);
+    box-shadow:0 5px 0 rgba(0,0,0,0.08), var(--shadow-soft);
+    display:inline-flex; align-items:center; gap:6px; min-height:46px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,0.08);}
+  .btn-primary{background:linear-gradient(135deg,var(--mint-deep),var(--blue-deep)); color:#fff;}
+  .btn[disabled]{opacity:0.35;pointer-events:none;}
+
+  /* ---- CHECKLIST (ending) ---- */
+  .checklist{display:flex; flex-direction:column; gap:10px; margin-top:12px;}
+  .check-item{
+    display:flex; align-items:center; gap:12px; background:var(--cream); border-radius:14px;
+    padding:12px 14px; box-shadow:var(--shadow-pop); font-family:var(--font-hand); font-size:16px;
+  }
+  .check-box{width:26px;height:26px;border-radius:8px;border:2.5px solid var(--lavender-deep);flex:none;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .check-item.checked .check-box{background:var(--success);border-color:var(--success);color:#fff;}
+  .check-item.checked{opacity:0.75;}
+
+  .certificate{
+    border:5px solid var(--yellow-deep); border-radius:20px; padding:22px; text-align:center; margin-top:18px;
+    background:radial-gradient(circle at 20% 20%, rgba(255,221,87,0.25), transparent 55%),
+               radial-gradient(circle at 80% 80%, rgba(127,221,182,0.25), transparent 55%), var(--white);
+  }
+  .cert-eyebrow{font-family:var(--font-display); font-size:12px; letter-spacing:.15em; color:var(--ink-soft); text-transform:uppercase;}
+  .cert-name{font-family:var(--font-script); font-size:clamp(26px,6vw,36px); color:var(--peach-deep); margin:6px 0;}
+
+  footer.hint{text-align:center; color:var(--ink-soft); font-size:11.5px; margin-top:16px;}
+
+  @media (max-width:520px){
+    .notebook{padding:24px 16px 26px 34px;}
+    .brand span.txt{display:none;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="brand"><span>📖</span><span class="txt">Lumi's<span class="dot">•</span>Notebook</span></div>
+    <div class="page-dots" id="pageDots"></div>
+    <button class="icon-btn" id="soundToggle" aria-label="Toggle sound">🔊</button>
+  </div>
+
+  <!-- NOTEBOOK -->
+  <div class="notebook" id="notebook">
+
+    <!-- ================= COVER ================= -->
+    <section class="page active" id="page-0" data-color="#E7DEFF">
+      <div class="washi lavender" style="left:20px; top:-4px; transform:rotate(-6deg); background:repeating-linear-gradient(45deg,var(--lavender),var(--lavender) 8px,var(--lavender-deep) 8px,var(--lavender-deep) 16px);"></div>
+      <span class="page-eyebrow">🌟 Unit 1 &middot; Grade 1</span>
+      <h1 class="page-title">📖 Lumi's Notebook</h1>
+      <p style="font-family:var(--font-script); font-size:22px; color:var(--ink-soft); margin-top:-8px;">My Little English Adventure</p>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiCover"></svg>
+        <div class="diary-bubble">Hi friend! I wrote everything I learned in my very first week at LittleLume School. Want to read my notebook with me? Let's go! 💫</div>
+      </div>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ What's inside</div>
+        Hello &amp; Goodbye &middot; My Name &middot; Listen and Do &middot; Alphabet &middot; Making Friends &middot; Kind Words
+      </div>
+
+      <div class="nav-row">
+        <span></span>
+        <button class="btn btn-primary" id="coverStart">Open the Notebook 📖</button>
+      </div>
+      <footer class="hint">Tap the stickers, notes, and cards on every page &middot; 8 pages to explore</footer>
+    </section>
+
+    <!-- ================= PAGE 1: HELLO & GOODBYE ================= -->
+    <section class="page" id="page-1" data-color="#8FC6F2">
+      <div class="washi blue" style="right:24px; top:-6px; transform:rotate(5deg);"></div>
+      <span class="page-eyebrow">Page 1 of 6</span>
+      <h1 class="page-title">👋 Hello &amp; Goodbye</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP1"></svg>
+        <div class="diary-bubble">Today I met so many new friends at the School Gate! I learned five ways to say hi and bye. Everyone smiled at me! 😊</div>
+      </div>
+
+      <div class="sec-label">📚 New Words &middot; tap a sticker to hear it</div>
+      <div class="sticker-grid" id="p1stickers"></div>
+
+      <div class="sec-label">💬 Let's Practice</div>
+      <div class="sticky-note" id="p1note" data-said="false">
+        <span>📌</span>
+        <span id="p1noteText">Lift the note to see what Lumi says at school every morning...</span>
+      </div>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ Remember!</div>
+        We say <b>Good morning</b> ☀️ early, <b>Good afternoon</b> 🌤 at midday, and <b>Goodbye</b> 💫 when we leave.
+      </div>
+
+      <div class="box box-challenge">
+        <div class="box-title">🎯 Mini Challenge</div>
+        Can you say "Hello!" to someone today?
+      </div>
+
+      <div class="tip-row">
+        <span class="tip-chip">👩‍🏫 Teacher tip: model the greeting with a smile so kids copy the tone, not just the word.</span>
+        <span class="tip-chip">👪 Parent tip: practice "Good morning" and "Goodbye" at real moments during the day.</span>
+      </div>
+
+      <div class="signoff">Love, Lumi ✨</div>
+      <div class="nav-row">
+        <button class="btn" id="p1back">&larr; Back</button>
+        <button class="btn btn-primary" id="p1next">Next Page &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 2: MY NAME ================= -->
+    <section class="page" id="page-2" data-color="#C3AEFF">
+      <div class="washi peach" style="left:30px; top:-6px; transform:rotate(-4deg);"></div>
+      <span class="page-eyebrow">Page 2 of 6</span>
+      <h1 class="page-title">🎒 My Name</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP2"></svg>
+        <div class="diary-bubble">Guess what? I can introduce myself in English now! I am Lumi. It felt so good to say it out loud! ✨</div>
+      </div>
+
+      <div class="sec-label">💬 Example</div>
+      <p style="font-family:var(--font-hand); font-size:17px;">"<b>I am</b> Lumi." &nbsp; "<b>My name is</b> Lumi." &nbsp; "<b>I am a</b> student."</p>
+
+      <div class="sec-label">✏️ Complete the sentence &middot; tap the correct word</div>
+      <p style="font-family:var(--font-hand); font-size:17px;">I ___ a student.</p>
+      <div class="choice-row" id="p2choices"></div>
+      <p id="p2feedback" style="font-family:var(--font-hand); min-height:20px;"></p>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ Remember!</div>
+        Use <b>I am...</b> to talk about yourself. "I am Lumi." "I am happy."
+      </div>
+
+      <div class="box box-challenge">
+        <div class="box-title">🎯 Mini Challenge</div>
+        Say out loud: "My name is ___." (say your own name!)
+      </div>
+
+      <div class="tip-row">
+        <span class="tip-chip">👩‍🏫 Teacher tip: let each child stand up and say the sentence with their real name.</span>
+        <span class="tip-chip">👪 Parent tip: ask "What is your name?" and let your child answer in English.</span>
+      </div>
+
+      <div class="signoff">Love, Lumi ✨</div>
+      <div class="nav-row">
+        <button class="btn" id="p2back">&larr; Back</button>
+        <button class="btn btn-primary" id="p2next">Next Page &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 3: LISTEN AND DO ================= -->
+    <section class="page" id="page-3" data-color="#7FDDB6">
+      <div class="washi mint" style="right:20px; top:-6px; transform:rotate(4deg);"></div>
+      <span class="page-eyebrow">Page 3 of 6</span>
+      <h1 class="page-title">👂 Listen and Do!</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP3"></svg>
+        <div class="diary-bubble">Miss Lily gave commands and I had to listen fast! Stand up, sit down, look, listen... it was so much fun! 🏃</div>
+      </div>
+
+      <div class="sec-label">📚 New Words &middot; tap a sticker to hear it</div>
+      <div class="sticker-grid" id="p3stickers"></div>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ Remember!</div>
+        These are action words. When Miss Lily says them, we DO them right away!
+      </div>
+
+      <div class="box box-challenge">
+        <div class="box-title">🎯 Mini Challenge</div>
+        Ask a friend or family member to say a command. Can you do it fast?
+      </div>
+
+      <div class="tip-row">
+        <span class="tip-chip">👩‍🏫 Teacher tip: play a quick Simon Says round to reinforce listening.</span>
+        <span class="tip-chip">👪 Parent tip: give one command at a time in English during daily routines.</span>
+      </div>
+
+      <div class="signoff">Love, Lumi ✨</div>
+      <div class="nav-row">
+        <button class="btn" id="p3back">&larr; Back</button>
+        <button class="btn btn-primary" id="p3next">Next Page &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 4: ALPHABET ADVENTURE ================= -->
+    <section class="page" id="page-4" data-color="#FFDD57">
+      <div class="washi blue" style="left:24px; top:-6px; transform:rotate(-5deg);"></div>
+      <span class="page-eyebrow">Page 4 of 6</span>
+      <h1 class="page-title">🔤 Alphabet Adventure</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP4"></svg>
+        <div class="diary-bubble">I found letter cards from A to M! Every letter has a picture friend. Flip a card and see! ⭐</div>
+      </div>
+
+      <div class="sec-label">🎴 Flip the Cards</div>
+      <div class="flip-grid" id="p4flip"></div>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ Remember!</div>
+        Every letter has a sound and a picture to help us remember it. A is for Apple!
+      </div>
+
+      <div class="box box-challenge">
+        <div class="box-title">🎯 Mini Challenge</div>
+        Can you find something at home that starts with the letter B?
+      </div>
+
+      <div class="tip-row">
+        <span class="tip-chip">👩‍🏫 Teacher tip: pair each letter with its picture word before moving to letter order.</span>
+        <span class="tip-chip">👪 Parent tip: point at objects at home and ask which letter they start with.</span>
+      </div>
+
+      <div class="signoff">Love, Lumi ✨</div>
+      <div class="nav-row">
+        <button class="btn" id="p4back">&larr; Back</button>
+        <button class="btn btn-primary" id="p4next">Next Page &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 5: MAKING FRIENDS ================= -->
+    <section class="page" id="page-5" data-color="#FFB183">
+      <div class="washi peach" style="right:26px; top:-6px; transform:rotate(3deg);"></div>
+      <span class="page-eyebrow">Page 5 of 6</span>
+      <h1 class="page-title">🤝 Making Friends</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP5"></svg>
+        <div class="diary-bubble">I met Ben, Emma, and Leo today! We asked "How are you?" and became friends. It felt so warm inside! 🌟</div>
+      </div>
+
+      <div class="sec-label">💬 Tap the blurry bubbles to reveal</div>
+      <div id="p5chat"></div>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ Remember!</div>
+        "How are you?" &rarr; "<b>I am fine, thank you!</b>" is the friendly answer.
+      </div>
+
+      <div class="box box-challenge">
+        <div class="box-title">🎯 Mini Challenge</div>
+        Ask someone "How are you?" today and listen to their answer.
+      </div>
+
+      <div class="tip-row">
+        <span class="tip-chip">👩‍🏫 Teacher tip: pair students to practice the greet-and-respond exchange out loud.</span>
+        <span class="tip-chip">👪 Parent tip: greet your child in English each morning and wait for their reply.</span>
+      </div>
+
+      <div class="signoff">Love, Lumi ✨</div>
+      <div class="nav-row">
+        <button class="btn" id="p5back">&larr; Back</button>
+        <button class="btn btn-primary" id="p5next">Next Page &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ================= PAGE 6: KIND WORDS ================= -->
+    <section class="page" id="page-6" data-color="#4FC97D">
+      <div class="washi mint" style="left:26px; top:-6px; transform:rotate(-3deg);"></div>
+      <span class="page-eyebrow">Page 6 of 6</span>
+      <h1 class="page-title">💖 Kind Words</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP6"></svg>
+        <div class="diary-bubble">I bumped into my friend's puzzle tower by accident. I said sorry, and we built it together again. Kind words fix everything! 🌈</div>
+      </div>
+
+      <div class="sec-label">🌈 What Would You Say? &middot; tap the kind choice</div>
+      <div id="p6scenario"></div>
+
+      <div class="box box-remember">
+        <div class="box-title">⭐ Remember!</div>
+        <b>Sorry</b>, <b>Excuse me</b>, <b>Thank you</b>, and <b>Please</b> are magic kind words. 💫
+      </div>
+
+      <div class="box box-challenge">
+        <div class="box-title">🎯 Mini Challenge</div>
+        Use one kind word today and see your friend smile!
+      </div>
+
+      <div class="tip-row">
+        <span class="tip-chip">👩‍🏫 Teacher tip: role-play the four scenarios so kind words become automatic responses.</span>
+        <span class="tip-chip">👪 Parent tip: praise your child specifically when they use a kind word unprompted.</span>
+      </div>
+
+      <div class="signoff">Love, Lumi ✨</div>
+      <div class="nav-row">
+        <button class="btn" id="p6back">&larr; Back</button>
+        <button class="btn btn-primary" id="p6next">Finish My Notebook 🌟</button>
+      </div>
+    </section>
+
+    <!-- ================= ENDING PAGE ================= -->
+    <section class="page" id="page-7" data-color="#FFB183">
+      <span class="page-eyebrow">🌟 The End</span>
+      <h1 class="page-title">Today I Learned</h1>
+
+      <div class="checklist" id="endChecklist"></div>
+
+      <div class="certificate">
+        <div class="cert-eyebrow">LittleLume &middot; Certificate of Adventure</div>
+        <div class="cert-name" id="certName">Little Star</div>
+        <p style="font-size:13px;color:var(--ink-soft);">completed Unit 1 &middot; Greetings</p>
+      </div>
+
+      <div class="diary-bubble" style="max-width:100%;margin-top:18px;">Dear Friend, thank you for reading my notebook with me today! I can't wait for our next adventure. See you soon! 💫</div>
+      <div class="signoff">Love, Lumi ✨</div>
+
+      <div class="nav-row">
+        <button class="btn" id="endBack">&larr; Back</button>
+        <button class="btn btn-primary" id="endRestart">Read Again 📖</button>
+      </div>
+      <footer class="hint">This notebook is a recap &middot; head back to your LittleLume dashboard to continue your adventure</footer>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ----------------------------------------------------------
+     STATE
+     ---------------------------------------------------------- */
+  const PAGE_IDS = ["page-0","page-1","page-2","page-3","page-4","page-5","page-6","page-7"];
+  let current = 0;
+  let soundOn = true;
+  const visited = new Set([0]);
+
+  /* ----------------------------------------------------------
+     TTS helper (uses browser speech synthesis, same pattern
+     as the LittleLume lesson games)
+     ---------------------------------------------------------- */
+  function speak(text){
+    if(!soundOn || !("speechSynthesis" in window)) return;
+    try{
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.9; u.pitch = 1.1;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  /* ----------------------------------------------------------
+     MASCOT SVG (Lumi the firefly) - reused across pages
+     ---------------------------------------------------------- */
+  function lumiSVG(){
+    return `<g>
+      <ellipse cx="50" cy="60" rx="26" ry="22" fill="#FFDD57"/>
+      <ellipse cx="50" cy="60" rx="26" ry="22" fill="none" stroke="#FFB183" stroke-width="2"/>
+      <circle cx="50" cy="35" r="16" fill="#3B3555"/>
+      <circle cx="44" cy="33" r="3.4" fill="#fff"/><circle cx="56" cy="33" r="3.4" fill="#fff"/>
+      <circle cx="44" cy="33" r="1.6" fill="#3B3555"/><circle cx="56" cy="33" r="1.6" fill="#3B3555"/>
+      <path d="M44 41 Q50 46 56 41" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="26" cy="48" rx="14" ry="10" fill="#CFE9FF" opacity="0.85" transform="rotate(-18 26 48)"/>
+      <ellipse cx="74" cy="48" rx="14" ry="10" fill="#CFE9FF" opacity="0.85" transform="rotate(18 74 48)"/>
+      <circle cx="50" cy="82" r="6" fill="#FFB183"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+    </g>`;
+  }
+  ["lumiCover","lumiP1","lumiP2","lumiP3","lumiP4","lumiP5","lumiP6"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = lumiSVG();
+  });
+
+  /* ----------------------------------------------------------
+     PAGE NAVIGATION
+     ---------------------------------------------------------- */
+  function renderDots(){
+    const wrap = document.getElementById("pageDots");
+    wrap.innerHTML = "";
+    PAGE_IDS.forEach((id,i)=>{
+      const d = document.createElement("div");
+      d.className = "d" + (i===current?" active":"") + (visited.has(i) && i!==current ? " done":"");
+      wrap.appendChild(d);
+    });
+  }
+  function goTo(index){
+    if(index < 0 || index >= PAGE_IDS.length) return;
+    PAGE_IDS.forEach((id,i)=> document.getElementById(id).classList.toggle("active", i===index));
+    document.getElementById("notebook").style.setProperty("--page-color", document.getElementById(PAGE_IDS[index]).dataset.color || "#E7DEFF");
+    current = index;
+    visited.add(index);
+    renderDots();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  renderDots();
+
+  document.getElementById("soundToggle").addEventListener("click", function(){
+    soundOn = !soundOn;
+    this.textContent = soundOn ? "🔊" : "🔇";
+    if(!soundOn && "speechSynthesis" in window) window.speechSynthesis.cancel();
+  });
+
+  document.getElementById("coverStart").addEventListener("click", ()=> goTo(1));
+  document.getElementById("p1back").addEventListener("click", ()=> goTo(0));
+  document.getElementById("p1next").addEventListener("click", ()=> goTo(2));
+  document.getElementById("p2back").addEventListener("click", ()=> goTo(1));
+  document.getElementById("p2next").addEventListener("click", ()=> goTo(3));
+  document.getElementById("p3back").addEventListener("click", ()=> goTo(2));
+  document.getElementById("p3next").addEventListener("click", ()=> goTo(4));
+  document.getElementById("p4back").addEventListener("click", ()=> goTo(3));
+  document.getElementById("p4next").addEventListener("click", ()=> goTo(5));
+  document.getElementById("p5back").addEventListener("click", ()=> goTo(4));
+  document.getElementById("p5next").addEventListener("click", ()=> goTo(6));
+  document.getElementById("p6back").addEventListener("click", ()=> goTo(5));
+  document.getElementById("p6next").addEventListener("click", ()=>{ goTo(7); renderEnding(); });
+  document.getElementById("endBack").addEventListener("click", ()=> goTo(6));
+  document.getElementById("endRestart").addEventListener("click", ()=> goTo(0));
+
+  /* ============================================================
+     PAGE 1 — HELLO & GOODBYE (source: Level 1 & Level 2)
+     ============================================================ */
+  const GREETINGS = [
+    {word:"Hello!", emoji:"👋"}, {word:"Hi!", emoji:"🙌"},
+    {word:"Good morning!", emoji:"🌞"}, {word:"Good afternoon!", emoji:"☀️"},
+    {word:"Goodbye!", emoji:"💫"}
+  ];
+  (function initP1(){
+    const grid = document.getElementById("p1stickers");
+    GREETINGS.forEach((g,i)=>{
+      const el = document.createElement("button");
+      el.className = "sticker";
+      el.style.setProperty("--rot", (i%2===0? -3:3)+"deg");
+      el.innerHTML = `<span class="emoji">${g.emoji}</span>${g.word}`;
+      el.addEventListener("click", ()=>{
+        speak(g.word);
+        el.classList.add("revealed");
+      });
+      grid.appendChild(el);
+    });
+    const note = document.getElementById("p1note");
+    note.addEventListener("click", ()=>{
+      if(note.dataset.said === "true") return;
+      note.dataset.said = "true";
+      note.classList.add("open");
+      document.getElementById("p1noteText").textContent = "\"Good morning, everyone!\" — that's what Miss Lily says every day! 🌞";
+      speak("Good morning, everyone!");
+    });
+  })();
+
+  /* ============================================================
+     PAGE 2 — MY NAME (source: Level 3 & Level 9)
+     ============================================================ */
+  (function initP2(){
+    const wrap = document.getElementById("p2choices");
+    const options = [{t:"am", ok:true}, {t:"is", ok:false}, {t:"are", ok:false}];
+    options.forEach(o=>{
+      const t = document.createElement("button");
+      t.className = "choice-tile";
+      t.textContent = o.t;
+      t.addEventListener("click", ()=>{
+        const fb = document.getElementById("p2feedback");
+        if(o.ok){
+          t.classList.add("correct");
+          fb.textContent = "Yes! \"I am a student.\" 🎉";
+          speak("I am a student.");
+          Array.from(wrap.children).forEach(c=>c.setAttribute("disabled","true"));
+        }else{
+          t.classList.add("wrong");
+          fb.textContent = "Try again!";
+          setTimeout(()=>t.classList.remove("wrong"), 350);
+        }
+      });
+      wrap.appendChild(t);
+    });
+  })();
+
+  /* ============================================================
+     PAGE 3 — LISTEN AND DO (source: Level 4)
+     ============================================================ */
+  const TPR = [
+    {label:"Stand up!", icon:"🧍"}, {label:"Sit down!", icon:"🪑"},
+    {label:"Listen!", icon:"👂"}, {label:"Look!", icon:"👀"},
+    {label:"Open your book!", icon:"📖"}, {label:"Close your book!", icon:"📕"}
+  ];
+  (function initP3(){
+    const grid = document.getElementById("p3stickers");
+    TPR.forEach((c,i)=>{
+      const el = document.createElement("button");
+      el.className = "sticker";
+      el.style.setProperty("--rot", (i%2===0? 2:-2)+"deg");
+      el.innerHTML = `<span class="emoji">${c.icon}</span>${c.label}`;
+      el.addEventListener("click", ()=>{
+        speak(c.label);
+        el.classList.add("revealed");
+      });
+      grid.appendChild(el);
+    });
+  })();
+
+  /* ============================================================
+     PAGE 4 — ALPHABET ADVENTURE (source: Level 5, letters A-M)
+     ============================================================ */
+  const LETTERS = [
+    {l:"A", word:"Apple", emoji:"🍎"}, {l:"B", word:"Ball", emoji:"⚽"},
+    {l:"C", word:"Cat", emoji:"🐱"}, {l:"D", word:"Dog", emoji:"🐶"},
+    {l:"E", word:"Elephant", emoji:"🐘"}, {l:"F", word:"Fish", emoji:"🐟"},
+    {l:"G", word:"Goat", emoji:"🐐"}, {l:"H", word:"Hat", emoji:"🎩"},
+    {l:"I", word:"Ice cream", emoji:"🍦"}, {l:"J", word:"Juice", emoji:"🧃"},
+    {l:"K", word:"Kite", emoji:"🪁"}, {l:"L", word:"Lion", emoji:"🦁"},
+    {l:"M", word:"Monkey", emoji:"🐵"}
+  ];
+  (function initP4(){
+    const grid = document.getElementById("p4flip");
+    LETTERS.forEach(item=>{
+      const card = document.createElement("div");
+      card.className = "flip-card";
+      card.innerHTML = `
+        <div class="flip-inner">
+          <div class="flip-face flip-front">${item.l}</div>
+          <div class="flip-face flip-back"><span class="emoji">${item.emoji}</span>${item.word}</div>
+        </div>`;
+      card.addEventListener("click", ()=>{
+        card.classList.toggle("flipped");
+        if(card.classList.contains("flipped")) speak(item.l + ". " + item.word);
+      });
+      grid.appendChild(card);
+    });
+  })();
+
+  /* ============================================================
+     PAGE 5 — MAKING FRIENDS (source: Level 6)
+     ============================================================ */
+  const CHAT = [
+    {who:"friend", avatar:"🧒", text:"Hello! I'm Ben."},
+    {who:"me", avatar:"🌟", text:"Hello!"},
+    {who:"friend", avatar:"🧒", text:"How are you?"},
+    {who:"me", avatar:"🌟", text:"I am fine, thank you!"},
+    {who:"friend", avatar:"🧒", text:"Nice to meet you! Let's be friends!"}
+  ];
+  (function initP5(){
+    const wrap = document.getElementById("p5chat");
+    CHAT.forEach(line=>{
+      const row = document.createElement("div");
+      row.className = "chat-line" + (line.who==="me" ? " me" : "");
+      row.innerHTML = `
+        <div class="chat-avatar">${line.avatar}</div>
+        <div class="chat-bubble hidden-text">${line.text}</div>`;
+      const bubble = row.querySelector(".chat-bubble");
+      bubble.addEventListener("click", ()=>{
+        bubble.classList.remove("hidden-text");
+        speak(line.text);
+      });
+      wrap.appendChild(row);
+    });
+  })();
+
+  /* ============================================================
+     PAGE 6 — KIND WORDS (source: Level 11)
+     ============================================================ */
+  const SCENARIOS = [
+    {scene:"🧩 You bumped into your friend's tower by accident.",
+     choices:[{t:"Sorry! Let's build it again.", ok:true},{t:"It wasn't my fault!", ok:false}]},
+    {scene:"🎨 You want the crayon your friend is using.",
+     choices:[{t:"Excuse me, may I use it please?", ok:true},{t:"Grab it right now!", ok:false}]},
+    {scene:"📖 Miss Lily helps you find a book.",
+     choices:[{t:"Thank you, Miss Lily!", ok:true},{t:"Walk away quietly.", ok:false}]}
+  ];
+  (function initP6(){
+    const wrap = document.getElementById("p6scenario");
+    let idx = 0;
+    function render(){
+      wrap.innerHTML = "";
+      if(idx >= SCENARIOS.length){
+        wrap.innerHTML = `<p style="font-family:var(--font-hand); font-size:17px;">You know all the kind words! 🌈</p>`;
+        return;
+      }
+      const s = SCENARIOS[idx];
+      const scene = document.createElement("p");
+      scene.style.fontFamily = "var(--font-hand)";
+      scene.style.fontSize = "16px";
+      scene.textContent = s.scene;
+      wrap.appendChild(scene);
+      const row = document.createElement("div");
+      row.className = "choice-row";
+      s.choices.forEach(c=>{
+        const tile = document.createElement("button");
+        tile.className = "choice-tile";
+        tile.textContent = c.t;
+        tile.addEventListener("click", ()=>{
+          if(c.ok){
+            tile.classList.add("correct");
+            speak(c.t);
+            Array.from(row.children).forEach(x=>x.setAttribute("disabled","true"));
+            setTimeout(()=>{ idx++; render(); }, 700);
+          }else{
+            tile.classList.add("wrong");
+            setTimeout(()=>tile.classList.remove("wrong"), 350);
+          }
+        });
+        row.appendChild(tile);
+      });
+      wrap.appendChild(row);
+    }
+    render();
+  })();
+
+  /* ============================================================
+     ENDING PAGE — CHECKLIST + CERTIFICATE
+     ============================================================ */
+  const CHECK_ITEMS = [
+    "I can say Hello and Goodbye.",
+    "I can say my name in English.",
+    "I can listen and follow a command.",
+    "I know letters A to M.",
+    "I can say \"How are you?\"",
+    "I can say kind words like Sorry and Thank you."
+  ];
+  let endingRendered = false;
+  function renderEnding(){
+    if(endingRendered) return;
+    endingRendered = true;
+    const wrap = document.getElementById("endChecklist");
+    CHECK_ITEMS.forEach(txt=>{
+      const item = document.createElement("div");
+      item.className = "check-item";
+      item.innerHTML = `<span class="check-box">✓</span><span>${txt}</span>`;
+      item.addEventListener("click", ()=> item.classList.toggle("checked"));
+      wrap.appendChild(item);
+    });
+    document.getElementById("certName").textContent = "Little Star";
+  }
+
+  /* ----------------------------------------------------------
+     INIT
+     ---------------------------------------------------------- */
+  goTo(0);
+
+})();
+</script>
+</body>
+</html>

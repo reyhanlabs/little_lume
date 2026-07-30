@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Nouns Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #8B9FA6;
+  --brand-dark: #6B7D8A;
+  --teal:       #7BA89D;
+  --teal-light: #E8F1EF;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #B8A3D8;
+  --rose:       #D9B5A5;
+  --rose-lt:    #F0E8E1;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #4A5568;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #A8D8D8 0%, #9BC4C8 50%, #C4B5D8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .12; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.1)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--teal) 0%, #6BBF96 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'📚'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.categ { background: var(--brand); color: #fff; }
+.fp.example { background: var(--teal); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid var(--rose); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+.example-list { margin-top: 12px; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 12px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--brand-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--white); border-radius: 14px; padding: 20px; border: 2px solid var(--teal); margin-top: 12px; }
+.dialogue-item { margin-bottom: 14px; font-size: 14px; }
+.dialogue-person { font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.dialogue-text { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; line-height: 1.6; }
+
+.qsection { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); }
+.qitem { border: 2px solid #e8e8e8; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.qnum { font-family:'Baloo 2',cursive; font-weight:700; font-size:13px; color:var(--brand); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.qtext { font-size:15px; font-weight:600; margin-bottom:14px; color:var(--ink); }
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opt { background:#f5f5f5; border:2px solid #ddd; padding:12px 14px; border-radius:8px; font-size:14px; text-align:left; cursor:pointer; transition:all .2s; font-weight:500; }
+.opt:hover { border-color:var(--brand); background:#fafafa; }
+.opt.correct { background:#d4edda; border-color:#6BBF96; color:#155724; font-weight:700; }
+.opt.wrong { background:#f8d7da; border-color:#c4a1a1; color:#721c24; }
+.qfb { font-size:13px; margin-top:10px; font-weight:600; display:none; padding:8px 12px; border-radius:6px; }
+.qfb.show { display:block; }
+.qfb.ok { background:#d4edda; color:#155724; }
+.qfb.no { background:#f8d7da; color:#721c24; }
+
+.score-section { background: linear-gradient(135deg, var(--yellow-lt) 0%, var(--rose-lt) 100%); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; }
+.score-label { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.score-num { font-family:'Baloo 2',cursive; font-size: 36px; font-weight: 800; color: var(--brand); }
+.stars { font-size: 24px; margin-top: 12px; }
+
+.reset-btn { background: var(--brand); color: #fff; border: none; padding: 12px 28px; border-radius: 20px; font-weight: 700; cursor: pointer; margin-top: 20px; font-size: 14px; transition: all .2s; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media(max-width:640px) { .compare { grid-template-columns: 1fr; } .header-inner { flex-direction: column; text-align: center; } }
+</style>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes">
+    <div class="hs hs1"></div>
+    <div class="hs hs2"></div>
+    <div class="hs hs3"></div>
+  </div>
+  <div class="header-inner">
+    <div class="header-text">
+      <div class="header-eyebrow">❓ Grammar Lesson</div>
+      <h1 class="header-title">Statements & Questions <span>❓</span></h1>
+      <p class="header-sub">Learn the difference between telling and asking!</p>
+    </div>
+    <div class="header-mascot">❓</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">📖 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', this)">🎯 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', this)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', this)">💡 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', this)">💬 Practice</button>
+    <button class="tab-btn" onclick="showTab('quiz', this)">🎓 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">📖 Introduction to Statements & Questions <span class="pill">Starter</span></h2>
+  
+  <div class="concept-box">
+    <h3>Two Ways to Communicate</h3>
+    <p>In English, we have two main types of sentences: <strong>statements</strong> (telling information) and <strong>questions</strong> (asking for information). They have different word orders and punctuation!</p>
+  </div>
+
+  <div class="card">
+    <h3>The Two Types</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Statements (.) </div>
+        <div class="ex-text">Tell us information - I like pizza.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Questions (?)</div>
+        <div class="ex-text">Ask for information - Do you like pizza?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Fun Fact! 🌟</h3>
+    <p><strong>The punctuation is different!</strong> Statements end with a period (.). Questions end with a question mark (?). This helps us understand if someone is telling us or asking us something!</p>
+  </div>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">🎯 Statements vs Questions <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>Different Word Order for Questions</h3>
+    <p>Statements and questions use DIFFERENT word orders. This is important!</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">STATEMENT</div>
+      <span style="color:var(--muted)">:</span>
+      <div class="fp example">Subject + Verb</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:12px;">I like pizza.</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">QUESTION</div>
+      <span style="color:var(--muted)">:</span>
+      <div class="fp example">Verb + Subject</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:12px;">Do you like pizza?</div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <h3>1. Statements (.) 📝</h3>
+    <p><strong>Statements tell us something.</strong> They follow normal Subject-Verb-Object word order and end with a period.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> I like pizza. She plays soccer. They have dogs.</p>
+  </div>
+
+  <div class="card teal">
+    <h3>2. Questions (?) ❓</h3>
+    <p><strong>Questions ask for information.</strong> They often start with a helper verb and end with a question mark.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> Do you like pizza? Does she play soccer? Do they have dogs?</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>📝 STATEMENTS</h4>
+      <ul>
+        <li>I am happy</li>
+        <li>She plays soccer</li>
+        <li>They like apples</li>
+        <li>It is big</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>❓ QUESTIONS</h4>
+      <ul>
+        <li>Are you happy?</li>
+        <li>Does she play soccer?</li>
+        <li>Do they like apples?</li>
+        <li>Is it big?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Form Questions <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Making Questions from Statements</h3>
+    <p>To make a question from a statement, we often move the helper verb to the beginning!</p>
+  </div>
+
+  <div class="card teal">
+    <h3>1. With "Be" Verbs (am, is, are) 🌟</h3>
+    <p><strong>Move "am/is/are" to the beginning!</strong></p>
+    <p style="margin-top:10px;"><strong>Statement:</strong> You are happy.<br><strong>Question:</strong> Are you happy?</p>
+  </div>
+
+  <div class="card purple">
+    <h3>2. With "Do/Does" ✅</h3>
+    <p><strong>Add "Do/Does" at the beginning!</strong></p>
+    <p style="margin-top:10px;"><strong>Statement:</strong> You like pizza.<br><strong>Question:</strong> Do you like pizza?</p>
+  </div>
+
+  <div class="card rose">
+    <h3>3. With Question Words ❓</h3>
+    <p><strong>Use What, Where, Who, When, Why, How at the beginning!</strong></p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> What do you like? Where do you live? Who are you?</p>
+  </div>
+
+  <div class="card yellow">
+    <h3>4. Punctuation Matters! 📍</h3>
+    <p><strong>Always end questions with a question mark (?)</strong> and statements with a period (.)</p>
+    <p style="margin-top:10px;"><strong>Statement:</strong> You like pizza. (period)<br><strong>Question:</strong> Do you like pizza? (question mark)</p>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">💡 Real Examples <span class="pill">Learn</span></h2>
+
+  <div class="card">
+    <h3>With "To Be" Verbs 🌟</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Statement</div>
+        <div class="ex-text">I am happy.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Question</div>
+        <div class="ex-text">Am I happy?</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Statement</div>
+        <div class="ex-text">She is smart.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Question</div>
+        <div class="ex-text">Is she smart?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card purple">
+    <h3>With Regular Verbs (Do/Does) ✅</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Statement</div>
+        <div class="ex-text">You like pizza.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Question</div>
+        <div class="ex-text">Do you like pizza?</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Statement</div>
+        <div class="ex-text">They play soccer.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Question</div>
+        <div class="ex-text">Do they play soccer?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>With Question Words 🤔</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">What question</div>
+        <div class="ex-text">What do you like?</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Where question</div>
+        <div class="ex-text">Where do you live?</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Who question</div>
+        <div class="ex-text">Who is your friend?</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">When question</div>
+        <div class="ex-text">When do you eat lunch?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card rose">
+    <h3>Short Answers ✓</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Question</div>
+        <div class="ex-text">Do you like pizza?</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Short Answer (Yes)</div>
+        <div class="ex-text">Yes, I do.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Short Answer (No)</div>
+        <div class="ex-text">No, I don't.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Dialogue Practice <span class="pill">Speaking</span></h2>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">Hello! What is your name?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Sophie:</div>
+      <div class="dialogue-text">My name is Sophie. Where are you from?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">I am from London. Do you like school?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Sophie:</div>
+      <div class="dialogue-text">Yes, I do! I like school very much. Do you like sports?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Alex:</div>
+      <div class="dialogue-text">Yes! I play soccer and tennis. What do you like?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Sophie:</div>
+      <div class="dialogue-text">I like reading books and playing games!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Turn Statements into Questions!</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Statement:</div>
+        <div class="ex-text">You like apples. → Make a question!</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Statement:</div>
+        <div class="ex-text">She plays soccer. → Make a question!</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Statement:</div>
+        <div class="ex-text">They are happy. → Make a question!</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Statement:</div>
+        <div class="ex-text">He has a dog. → Make a question!</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Statement:</div>
+        <div class="ex-text">It is big. → Make a question!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎓 Quiz Time <span class="pill">Test</span></h2>
+
+  <div class="score-section">
+    <div class="score-label">YOUR SCORE</div>
+    <div class="score-num" id="score">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="stars" id="stars">🌑🌑🌑🌑🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="qsection">
+    <div class="qitem">
+      <div class="qnum">Question 1</div>
+      <div class="qtext">Which is a statement?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(1, this, true)">I like pizza.</button>
+        <button class="opt" onclick="ans(1, this, false)">Do you like pizza?</button>
+        <button class="opt" onclick="ans(1, this, false)">What do you like?</button>
+      </div>
+      <div class="qfb" id="qfb1"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 2</div>
+      <div class="qtext">Which is a question?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(2, this, false)">She plays soccer.</button>
+        <button class="opt" onclick="ans(2, this, true)">Does she play soccer?</button>
+        <button class="opt" onclick="ans(2, this, false)">I play soccer.</button>
+      </div>
+      <div class="qfb" id="qfb2"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 3</div>
+      <div class="qtext">Statement: You are happy. Question: ___</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(3, this, true)">Are you happy?</button>
+        <button class="opt" onclick="ans(3, this, false)">You are happy?</button>
+        <button class="opt" onclick="ans(3, this, false)">Happy you are?</button>
+      </div>
+      <div class="qfb" id="qfb3"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 4</div>
+      <div class="qtext">Statement: They like apples. Question: ___</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(4, this, true)">Do they like apples?</button>
+        <button class="opt" onclick="ans(4, this, false)">They like apples?</button>
+        <button class="opt" onclick="ans(4, this, false)">Like they apples?</button>
+      </div>
+      <div class="qfb" id="qfb4"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 5</div>
+      <div class="qtext">What punctuation ends a question?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(5, this, false)">Period (.)</button>
+        <button class="opt" onclick="ans(5, this, true)">Question mark (?)</button>
+        <button class="opt" onclick="ans(5, this, false)">Exclamation (!)</button>
+      </div>
+      <div class="qfb" id="qfb5"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 6</div>
+      <div class="qtext">What punctuation ends a statement?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(6, this, true)">Period (.)</button>
+        <button class="opt" onclick="ans(6, this, false)">Question mark (?)</button>
+        <button class="opt" onclick="ans(6, this, false)">Comma (,)</button>
+      </div>
+      <div class="qfb" id="qfb6"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 7</div>
+      <div class="qtext">Which is correct?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(7, this, false)">What you like?</button>
+        <button class="opt" onclick="ans(7, this, true)">What do you like?</button>
+        <button class="opt" onclick="ans(7, this, false)">You like what?</button>
+      </div>
+      <div class="qfb" id="qfb7"></div>
+    </div>
+
+    <div class="qitem">
+      <div class="qnum">Question 8</div>
+      <div class="qtext">Answer: Yes, I do. What was the question?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans(8, this, true)">Do you like pizza?</button>
+        <button class="opt" onclick="ans(8, this, false)">You like pizza?</button>
+        <button class="opt" onclick="ans(8, this, false)">Do you likes pizza?</button>
+      </div>
+      <div class="qfb" id="qfb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
+</section>
+
+</main>
+
+<footer style="background:var(--ink);color:white;text-align:center;padding:20px;margin-top:40px;font-size:0.9rem;">
+LittleLume English Course • Grade 1 • Sentence Structure
+</footer>
+
+<script>
+let quizScore = 0;
+
+function showTab(id, btn) {
+  const sections = document.querySelectorAll('.section');
+  sections.forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  
+  const buttons = document.querySelectorAll('.tab-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function ans(qId, btn, correct) {
+  const fb = document.getElementById('qfb' + qId);
+  const opts = btn.parentElement.querySelectorAll('.opt');
+  opts.forEach(o => o.disabled = true);
+  
+  if(correct) {
+    btn.classList.add('correct');
+    fb.textContent = '✓ Correct! Great job!';
+    fb.classList.add('show', 'ok');
+    quizScore++;
+    updateStars();
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = '✗ Try again!';
+    fb.classList.add('show', 'no');
+  }
+  
+  document.getElementById('score').textContent = quizScore;
+}
+
+function updateStars() {
+  let stars = '';
+  for(let i=0; i<8; i++) {
+    stars += i < quizScore ? '⭐' : '🌑';
+  }
+  document.getElementById('stars').textContent = stars;
+}
+
+function resetQuiz() {
+  quizScore = 0;
+  document.getElementById('score').textContent = '0';
+  updateStars();
+  document.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct', 'wrong');
+    o.disabled = false;
+  });
+  document.querySelectorAll('.qfb').forEach(f => {
+    f.classList.remove('show', 'ok', 'no');
+  });
+}
+</script>
+
+</body>
+</html>

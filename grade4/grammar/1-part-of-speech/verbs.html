@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Verbs Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #7BA89D;
+  --brand-dark: #638F86;
+  --teal:       #6BBF96;
+  --teal-light: #E8F5ED;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #B8A3D8;
+  --rose:       #D9B5A5;
+  --rose-lt:    #F0E8E1;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #4A5568;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #A8D8C8 0%, #8BC4B8 50%, #B8C8D8 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .12; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.1)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--teal) 0%, #6BBF96 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'⚡'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: var(--yellow); }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.categ { background: var(--brand); color: #fff; }
+.fp.example { background: var(--teal); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid var(--rose); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+.example-list { margin-top: 12px; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 12px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--brand-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--white); border-radius: 14px; padding: 20px; border: 2px solid var(--teal); margin-top: 12px; }
+.dialogue-item { margin-bottom: 14px; font-size: 14px; }
+.dialogue-person { font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.dialogue-text { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; line-height: 1.6; }
+
+.qsection { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); }
+.qitem { border: 2px solid #e8e8e8; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.qnum { font-family:'Baloo 2',cursive; font-weight:700; font-size:13px; color:var(--brand); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.qtext { font-size:15px; font-weight:600; margin-bottom:14px; color:var(--ink); }
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opt { background:#f5f5f5; border:2px solid #ddd; padding:12px 14px; border-radius:8px; font-size:14px; text-align:left; cursor:pointer; transition:all .2s; font-weight:500; }
+.opt:hover { border-color:var(--brand); background:#fafafa; }
+.opt.correct { background:#d4edda; border-color:#6BBF96; color:#155724; font-weight:700; }
+.opt.wrong { background:#f8d7da; border-color:#c4a1a1; color:#721c24; }
+.qfb { font-size:13px; margin-top:10px; font-weight:600; display:none; padding:8px 12px; border-radius:6px; }
+.qfb.show { display:block; }
+.qfb.ok { background:#d4edda; color:#155724; }
+.qfb.no { background:#f8d7da; color:#721c24; }
+
+.score-section { background: linear-gradient(135deg, var(--yellow-lt) 0%, var(--rose-lt) 100%); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; }
+.score-label { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.score-num { font-family:'Baloo 2',cursive; font-size: 36px; font-weight: 800; color: var(--brand); }
+.stars { font-size: 24px; margin-top: 12px; }
+
+.reset-btn { background: var(--brand); color: #fff; border: none; padding: 12px 28px; border-radius: 20px; font-weight: 700; cursor: pointer; margin-top: 20px; font-size: 14px; transition: all .2s; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media(max-width:640px) { .compare { grid-template-columns: 1fr; } .header-inner { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes">
+    <div class="hs hs1"></div>
+    <div class="hs hs2"></div>
+    <div class="hs hs3"></div>
+  </div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">Grade 1</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grammar Lesson</div>
+      <h1 class="header-title">Verbs <span>⚡</span></h1>
+      <p class="header-sub">Learn action words that show what we do!</p>
+    </div>
+    <div class="header-mascot">⚡</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">📖 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', this)">🎯 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', this)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', this)">💡 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', this)">💬 Practice</button>
+    <button class="tab-btn" onclick="showTab('quiz', this)">🎓 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">📖 Introduction to Verbs <span class="pill">Starter</span></h2>
+  
+  <div class="concept-box">
+    <h3>What is a Verb?</h3>
+    <p>A <strong>verb</strong> is an <strong>ACTION WORD</strong> that shows what someone or something is <strong>DOING</strong>. Verbs are all about movement, action, and doing things! Without verbs, our sentences would have no action!</p>
+  </div>
+
+  <div class="card">
+    <h3>Why Do We Need Verbs?</h3>
+    <p>Verbs help us describe what's happening right now or what people do. They make our sentences exciting and meaningful! Without verbs, we can only name things, but with verbs, we can tell what they do!</p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">🏃 Movement:</div>
+        <div class="ex-text">run, walk, jump, skip, hop, climb, swim, fly</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🍽️ Daily Activities:</div>
+        <div class="ex-text">eat, drink, play, read, sleep, sing, dance, laugh</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">👀 Looking & Noticing:</div>
+        <div class="ex-text">see, look, watch, hear, listen, feel, smell</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">💭 Thinking & Feeling:</div>
+        <div class="ex-text">think, like, love, want, need, wish, hope</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Test Yourself! 🎯</h3>
+    <p>Can you <strong>"do"</strong> these words? If yes, they're probably verbs!</p>
+    <p style="margin-top:10px;">✅ Run - Yes, I can run! (verb)</p>
+    <p>✅ Eat - Yes, I can eat! (verb)</p>
+    <p>❌ Table - No, I cannot table! (not a verb)</p>
+  </div>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">🎯 Verb Concepts <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>The Three Types of Verbs for Grade 1</h3>
+    <p>In Grade 1, we learn three main types of action verbs that help us describe what people, animals, and things do every day.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">MOVEMENT</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp example">DAILY ACTIONS</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp categ">FEELINGS</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:12px;">= Complete Verb Groups</div>
+    </div>
+    <div class="formula-sub">Every action verb falls into one of these categories.</div>
+  </div>
+
+  <div class="card purple">
+    <h3>1. Movement Verbs 🏃</h3>
+    <p><strong>Verbs about moving from place to place.</strong> These verbs show us going, running, jumping, and traveling.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> run, walk, jump, skip, hop, climb, crawl, swim, fly, slide, roll, dance</p>
+  </div>
+
+  <div class="card teal">
+    <h3>2. Daily Action Verbs 🍽️</h3>
+    <p><strong>Verbs about everyday activities.</strong> These are things we do at home, school, and play.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> eat, drink, play, read, write, sing, draw, paint, build, sleep, wake, sit, stand, talk</p>
+  </div>
+
+  <div class="card rose">
+    <h3>3. Feeling & Thinking Verbs 💭</h3>
+    <p><strong>Verbs about emotions and thoughts.</strong> These describe what we feel and think.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> like, love, want, need, see, hear, listen, watch, think, feel, laugh, smile, cry</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>🟢 Correct (Verbs)</h4>
+      <ul>
+        <li>I <b>run</b> fast.</li>
+        <li>She <b>eats</b> an apple.</li>
+        <li>He <b>plays</b> games.</li>
+        <li>They <b>love</b> music.</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>🔴 Not Verbs</h4>
+      <ul>
+        <li><b>Fast</b> (adjective)</li>
+        <li><b>Apple</b> (noun)</li>
+        <li><b>Games</b> (noun)</li>
+        <li><b>Music</b> (noun)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Verbs <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Verbs in Sentences</h3>
+    <p>Verbs usually come after the subject (the person or thing doing the action). They tell us <strong>WHAT IS HAPPENING</strong> in the sentence.</p>
+  </div>
+
+  <div class="card">
+    <h3>Position of Verbs</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Simple Pattern:</div>
+        <div class="ex-text"><strong>Subject</strong> + <strong>Verb</strong> = I run. She plays. The dog eats.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">With Objects:</div>
+        <div class="ex-text"><strong>Subject</strong> + <strong>Verb</strong> + <strong>Object</strong> = I eat an apple. She reads a book.</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">With Locations:</div>
+        <div class="ex-text">I play <strong>in the park</strong>. He runs <strong>at school</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Verb Changes with Different People</h3>
+    <p>Some verbs change depending on who is doing the action:</p>
+    <p style="margin-top:10px;">I <strong>play</strong> | You <strong>play</strong> | He/She <strong>plays</strong> (add -s)</p>
+  </div>
+
+  <div class="card purple">
+    <h3>Simple Present Tense for Verbs</h3>
+    <p>For Grade 1, we use verbs in the <strong>simple present tense</strong>. This means the action is happening now or happens regularly.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> I play, you eat, he runs, she sings, the dog barks</p>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">💡 Real Examples <span class="pill">Learning</span></h2>
+
+  <div class="card">
+    <h3>Verbs in Everyday Life</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">🏃 At Play:</div>
+        <div class="ex-text">run, jump, skip, hop, climb, slide, swing, play, throw, catch, kick</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🏠 At Home:</div>
+        <div class="ex-text">eat, drink, sleep, wake, sit, stand, watch, read, draw, play, help</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🏫 At School:</div>
+        <div class="ex-text">read, write, listen, draw, sing, dance, paint, count, sit, stand, learn</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">❤️ Feelings:</div>
+        <div class="ex-text">laugh, smile, cry, like, love, want, feel, think, wish</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>🎯 Sentences with Verbs</h3>
+    <p><strong>1.</strong> Sarah <strong>runs</strong> in the park.</p>
+    <p><strong>2.</strong> The dog <strong>eats</strong> his food.</p>
+    <p><strong>3.</strong> I <strong>read</strong> my favorite book.</p>
+    <p><strong>4.</strong> We <strong>play</strong> games at school.</p>
+    <p><strong>5.</strong> He <strong>likes</strong> chocolate ice cream.</p>
+  </div>
+
+  <div class="card rose">
+    <h3>🔍 Find the Verbs!</h3>
+    <p>Look at this sentence: <strong>"The girl sings a beautiful song."</strong></p>
+    <p style="margin-top:10px;"><strong>Verb:</strong> sings</p>
+    <p style="margin-top:8px;"><strong>Not verbs:</strong> the (article), girl (noun), a (article), beautiful (adjective), song (noun)</p>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Practice Dialogue <span class="pill">Interactive</span></h2>
+
+  <div class="concept-box">
+    <h3>Real Conversations Using Verbs</h3>
+    <p>Here are some conversations where verbs help us understand what people are doing. Can you find all the verbs?</p>
+  </div>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Emma:</div>
+      <div class="dialogue-text">What are you doing this afternoon?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Tom:</div>
+      <div class="dialogue-text">I want to <strong>play</strong> football! Do you want to <strong>come</strong>?</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Emma:</div>
+      <div class="dialogue-text">Yes! I <strong>love</strong> to <strong>play</strong> football! Let's <strong>run</strong> and <strong>kick</strong> the ball!</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Tom:</div>
+      <div class="dialogue-text">Great! After we <strong>play</strong>, we can <strong>eat</strong> ice cream.</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Emma:</div>
+      <div class="dialogue-text">Perfect! I <strong>like</strong> chocolate ice cream!</div>
+    </div>
+  </div>
+
+  <div class="card yellow" style="margin-top:18px;">
+    <h3>📢 Verb Counting Exercise</h3>
+    <p><strong>How many verbs are in the dialogue above?</strong></p>
+    <p style="margin-top:12px;">play, want, come, love, run, kick, eat, like</p>
+    <p style="margin-top:8px;"><strong>Answer: 8 verbs!</strong> Can you identify each one?</p>
+  </div>
+
+  <div class="card purple">
+    <h3>🎯 Let's Practice!</h3>
+    <p><strong>Complete these sentences with action verbs:</strong></p>
+    <p style="margin-top:12px;">1. I _____ at school every day.</p>
+    <p>2. The bird _____ in the sky.</p>
+    <p>3. She _____ her homework after school.</p>
+    <p style="margin-top:12px;"><em>(Answers: 1. study, 2. flies, 3. does)</em></p>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎓 Quiz Time! <span class="pill">Test</span></h2>
+
+  <div class="score-section">
+    <div class="score-label">Your Score</div>
+    <div class="score-num" id="scoreNum">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="qsection">
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Definition</div>
+      <div class="qtext">What is a verb?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">A word that names something</button>
+        <button class="opt" onclick="ans('q1',this,true)">A word that shows an action or doing</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that describes something</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that shows location</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — Movement Verbs</div>
+      <div class="qtext">Which word is a MOVEMENT verb?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,false)">book</button>
+        <button class="opt" onclick="ans('q2',this,true)">run</button>
+        <button class="opt" onclick="ans('q2',this,false)">happy</button>
+        <button class="opt" onclick="ans('q2',this,false)">school</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Daily Action Verbs</div>
+      <div class="qtext">Which word is a DAILY ACTION verb?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">flower</button>
+        <button class="opt" onclick="ans('q3',this,true)">eat</button>
+        <button class="opt" onclick="ans('q3',this,false)">blue</button>
+        <button class="opt" onclick="ans('q3',this,false)">friend</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Feeling Verbs</div>
+      <div class="qtext">Which word shows a FEELING or emotion?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">walk</button>
+        <button class="opt" onclick="ans('q4',this,false)">table</button>
+        <button class="opt" onclick="ans('q4',this,true)">love</button>
+        <button class="opt" onclick="ans('q4',this,false)">park</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Identify the Verb</div>
+      <div class="qtext">In the sentence "The dog <em>barks</em> loudly," which word is the verb?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,false)">the</button>
+        <button class="opt" onclick="ans('q5',this,false)">dog</button>
+        <button class="opt" onclick="ans('q5',this,true)">barks</button>
+        <button class="opt" onclick="ans('q5',this,false)">loudly</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Verb or Not?</div>
+      <div class="qtext">Which word is NOT a verb?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,false)">play</button>
+        <button class="opt" onclick="ans('q6',this,false)">jump</button>
+        <button class="opt" onclick="ans('q6',this,true)">color</button>
+        <button class="opt" onclick="ans('q6',this,false)">sing</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Count the Verbs</div>
+      <div class="qtext">How many verbs are in: "I eat breakfast and play outside"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">1</button>
+        <button class="opt" onclick="ans('q7',this,true)">2</button>
+        <button class="opt" onclick="ans('q7',this,false)">3</button>
+        <button class="opt" onclick="ans('q7',this,false)">4</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Which Verb?</div>
+      <div class="qtext">Choose the sentence with a correct verb.</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">I am apple.</button>
+        <button class="opt" onclick="ans('q8',this,true)">I eat an apple.</button>
+        <button class="opt" onclick="ans('q8',this,false)">I apple eat.</button>
+        <button class="opt" onclick="ans('q8',this,false)">I eat happy.</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</section>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Excellent!', '✅ Perfect! Well done!', '✅ That\'s right! Smart!', '✅ Great job!'],
+  wrong:   ['❌ Not quite. Try again!', '❌ Keep trying!', '❌ Review the lesson above!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'⭐⭐⭐⭐':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>

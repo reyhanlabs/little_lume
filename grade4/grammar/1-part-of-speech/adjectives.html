@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BunRey English Course – Adjectives Grade 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brand:      #A89B7B;
+  --brand-dark: #8B7D6B;
+  --teal:       #7BA89D;
+  --teal-light: #E8F1EF;
+  --yellow:     #D4AF89;
+  --yellow-lt:  #FAF6F0;
+  --purple:     #B8A3D8;
+  --rose:       #D9B5A5;
+  --rose-lt:    #F0E8E1;
+  --bg:         #F9FAFB;
+  --white:      #FFFFFF;
+  --ink:        #4A5568;
+  --muted:      #8FA3AB;
+  --card-r:     18px;
+  --shadow-sm:  0 2px 10px rgba(0,0,0,.04);
+  --shadow-md:  0 6px 24px rgba(0,0,0,.07);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+
+.site-header { background: linear-gradient(135deg, #C8B8A8 0%, #B8A898 50%, #D0C0B0 100%); position: relative; overflow: hidden; }
+.header-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hs { position: absolute; border-radius: 50%; opacity: .12; background: #fff; }
+.hs1 { width:260px;height:260px; top:-80px; right:-60px; }
+.hs2 { width:140px;height:140px; bottom:-40px; left:10%; }
+.hs3 { width:80px;height:80px; top:30px; left:5%; }
+.header-inner { position: relative; max-width: 960px; margin: 0 auto; padding: 30px 20px 26px; display: flex; align-items: center; gap: 20px; }
+.brand-logo { background: var(--white); border-radius: 16px; padding: 10px 16px; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 16px rgba(0,0,0,.1); flex-shrink: 0; }
+.brand-logo .logo-main { font-family: 'Baloo 2', cursive; font-weight: 800; font-size: 28px; color: var(--brand); line-height: 1; }
+.brand-logo .logo-sub { font-size: 9px; font-weight: 700; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+.header-text { flex: 1; }
+.header-eyebrow { display: inline-block; background: rgba(255,255,255,.2); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.header-title { font-family: 'Baloo 2', cursive; font-size: clamp(26px,5vw,44px); font-weight: 800; color: #fff; line-height: 1.1; text-shadow: 2px 3px 0 rgba(0,0,0,.08); }
+.header-title span { color: var(--yellow); }
+.header-sub { color: rgba(255,255,255,.85); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.header-mascot { font-size: 60px; flex-shrink: 0; animation: bounce 2.2s ease-in-out infinite; filter: drop-shadow(2px 4px 6px rgba(0,0,0,.1)); }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+.nav-wrap { background: var(--white); box-shadow: 0 3px 14px rgba(0,0,0,.05); position: sticky; top: 0; z-index: 100; }
+.nav-tabs { max-width: 960px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; padding: 0 12px; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 14px 18px; border: none; background: transparent; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); cursor: pointer; transition: all .22s; border-bottom: 3px solid transparent; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
+.tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+.tab-btn:hover:not(.active) { color: var(--ink); }
+
+.main { max-width: 960px; margin: 0 auto; padding: 28px 16px 60px; }
+.section { display: none; animation: fadeUp .35s ease; }
+.section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.sec-title { font-family: 'Baloo 2', cursive; font-size: 24px; font-weight: 800; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+.sec-title .pill { font-size: 11px; font-weight: 700; padding: 3px 11px; border-radius: 20px; background: var(--brand); color: #fff; letter-spacing: .5px; }
+
+.card { background: var(--white); border-radius: var(--card-r); padding: 22px 24px; margin-bottom: 18px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--brand); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card.teal   { border-color: var(--teal); }
+.card.purple { border-color: var(--purple); }
+.card.rose   { border-color: var(--rose); }
+.card.yellow { border-color: var(--yellow); }
+.card-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); margin-bottom: 6px; }
+.card h3 { font-family: 'Baloo 2', cursive; font-size: 19px; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+.card p { font-size: 14px; line-height: 1.7; color: #555; }
+
+.concept-box { background: linear-gradient(135deg, var(--yellow) 0%, #D4AF89 100%); border-radius: var(--card-r); padding: 24px 26px; color: #fff; margin-bottom: 18px; position: relative; overflow: hidden; }
+.concept-box::after { content:'✨'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:70px; opacity:.12; }
+.concept-box h3 { font-family:'Baloo 2',cursive; font-size:20px; margin-bottom:8px; }
+.concept-box p { font-size:14px; line-height:1.7; opacity:.95; }
+.concept-box strong { color: #2C2014; }
+
+.formula-box { background: var(--yellow-lt); border: 2px dashed var(--yellow); border-radius: 14px; padding: 18px 22px; margin-top: 12px; text-align: center; }
+.formula-main { font-family:'Baloo 2',cursive; font-size: 17px; font-weight: 800; color: var(--ink); line-height: 2.2; }
+.formula-main .fp { display: inline-block; padding: 4px 12px; border-radius: 8px; margin: 2px; font-size: 14px; }
+.fp.categ { background: var(--brand); color: #fff; }
+.fp.example { background: var(--yellow); color: #fff; }
+.formula-sub { font-size: 12px; color: var(--muted); margin-top: 10px; font-weight: 600; }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+.compare-col { border-radius: 14px; padding: 16px; }
+.compare-col.left  { background: var(--rose-lt); border: 2px solid var(--rose); }
+.compare-col.right { background: var(--teal-light); border: 2px solid var(--teal); }
+.compare-col h4 { font-family:'Baloo 2',cursive; font-size:15px; font-weight:700; margin-bottom:10px; }
+.compare-col ul { list-style: none; }
+.compare-col li { font-size:13.5px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.08); line-height:1.5; }
+.compare-col li:last-child { border: none; }
+.compare-col li b { color: var(--brand-dark); }
+
+.example-list { margin-top: 12px; }
+.ex-item { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 12px 14px; border-radius: 8px; margin-bottom: 10px; font-size: 14px; }
+.ex-item .ex-label { font-weight: 700; color: var(--brand-dark); }
+.ex-item .ex-text { color: #555; margin-top: 4px; }
+
+.dialogue-box { background: var(--white); border-radius: 14px; padding: 20px; border: 2px solid var(--teal); margin-top: 12px; }
+.dialogue-item { margin-bottom: 14px; font-size: 14px; }
+.dialogue-person { font-weight: 700; color: var(--brand); margin-bottom: 4px; }
+.dialogue-text { padding: 10px 14px; background: var(--teal-light); border-radius: 8px; line-height: 1.6; }
+
+.qsection { background: #fff; border-radius: 16px; padding: 24px; box-shadow: var(--shadow-sm); }
+.qitem { border: 2px solid #e8e8e8; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.qnum { font-family:'Baloo 2',cursive; font-weight:700; font-size:13px; color:var(--brand); text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+.qtext { font-size:15px; font-weight:600; margin-bottom:14px; color:var(--ink); }
+.opts { display:flex; flex-direction:column; gap:8px; }
+.opt { background:#f5f5f5; border:2px solid #ddd; padding:12px 14px; border-radius:8px; font-size:14px; text-align:left; cursor:pointer; transition:all .2s; font-weight:500; }
+.opt:hover { border-color:var(--brand); background:#fafafa; }
+.opt.correct { background:#d4edda; border-color:#6BBF96; color:#155724; font-weight:700; }
+.opt.wrong { background:#f8d7da; border-color:#c4a1a1; color:#721c24; }
+.qfb { font-size:13px; margin-top:10px; font-weight:600; display:none; padding:8px 12px; border-radius:6px; }
+.qfb.show { display:block; }
+.qfb.ok { background:#d4edda; color:#155724; }
+.qfb.no { background:#f8d7da; color:#721c24; }
+
+.score-section { background: linear-gradient(135deg, var(--yellow-lt) 0%, var(--rose-lt) 100%); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 20px; }
+.score-label { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.score-num { font-family:'Baloo 2',cursive; font-size: 36px; font-weight: 800; color: var(--brand); }
+.stars { font-size: 24px; margin-top: 12px; }
+
+.reset-btn { background: var(--brand); color: #fff; border: none; padding: 12px 28px; border-radius: 20px; font-weight: 700; cursor: pointer; margin-top: 20px; font-size: 14px; transition: all .2s; }
+.reset-btn:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+@media(max-width:640px) { .compare { grid-template-columns: 1fr; } .header-inner { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-shapes">
+    <div class="hs hs1"></div>
+    <div class="hs hs2"></div>
+    <div class="hs hs3"></div>
+  </div>
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="logo-main">BunRey</div>
+      <div class="logo-sub">Grade 1</div>
+    </div>
+    <div class="header-text">
+      <div class="header-eyebrow">📚 Grammar Lesson</div>
+      <h1 class="header-title">Adjectives <span>✨</span></h1>
+      <p class="header-sub">Learn describing words that make sentences interesting!</p>
+    </div>
+    <div class="header-mascot">✨</div>
+  </div>
+</header>
+
+<nav class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('intro', this)">📖 Intro</button>
+    <button class="tab-btn" onclick="showTab('concept', this)">🎯 Concept</button>
+    <button class="tab-btn" onclick="showTab('usage', this)">✏️ Usage</button>
+    <button class="tab-btn" onclick="showTab('examples', this)">💡 Examples</button>
+    <button class="tab-btn" onclick="showTab('dialogue', this)">💬 Practice</button>
+    <button class="tab-btn" onclick="showTab('quiz', this)">🎓 Quiz</button>
+  </div>
+</nav>
+
+<main class="main">
+
+<section id="intro" class="section active">
+  <h2 class="sec-title">📖 Introduction to Adjectives <span class="pill">Starter</span></h2>
+  
+  <div class="concept-box">
+    <h3>What is an Adjective?</h3>
+    <p>An <strong>adjective</strong> is a word that <strong>DESCRIBES</strong> or tells us more about a noun. Adjectives answer questions like: What color? What size? What feeling? Adjectives make our descriptions colorful and interesting!</p>
+  </div>
+
+  <div class="card">
+    <h3>Why Do We Need Adjectives?</h3>
+    <p>Without adjectives, our sentences would be boring! Adjectives help us paint a picture with words. They tell us more information about the nouns in our sentences.</p>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">🎨 Colors:</div>
+        <div class="ex-text">red, blue, green, yellow, orange, purple, pink, brown, black, white</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">📏 Sizes:</div>
+        <div class="ex-text">big, small, tiny, huge, tall, short, long, wide, narrow, fat, thin</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">❤️ Feelings & Qualities:</div>
+        <div class="ex-text">happy, sad, angry, scared, tired, excited, beautiful, ugly, kind, mean</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">💭 Textures & Properties:</div>
+        <div class="ex-text">soft, hard, rough, smooth, wet, dry, hot, cold, sweet, sour</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Adjectives vs Nouns! 🎯</h3>
+    <p><strong>❌ Without adjectives:</strong> "I have a cat."</p>
+    <p><strong>✅ With adjectives:</strong> "I have a cute, orange cat."</p>
+    <p style="margin-top:10px;">See how adjectives (cute, orange) make the sentence more interesting?</p>
+  </div>
+</section>
+
+<section id="concept" class="section">
+  <h2 class="sec-title">🎯 Adjective Concepts <span class="pill">Structure</span></h2>
+
+  <div class="concept-box">
+    <h3>The Four Main Types of Adjectives</h3>
+    <p>In Grade 1, we learn four main types of adjectives that help us describe everything around us.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="formula-main">
+      <div class="fp categ">COLOR</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp example">SIZE</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp categ">FEELING</div>
+      <span style="color:var(--muted)">+</span>
+      <div class="fp example">QUALITY</div>
+      <div style="margin-top:12px;color:var(--muted);font-size:12px;">= Complete Describing Words</div>
+    </div>
+    <div class="formula-sub">Every adjective describes a noun in one of these ways.</div>
+  </div>
+
+  <div class="card purple">
+    <h3>1. Color Adjectives 🎨</h3>
+    <p><strong>Words that describe what color something is.</strong> These help us identify things by their colors.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> red, blue, green, yellow, orange, purple, pink, brown, black, white, gray</p>
+  </div>
+
+  <div class="card teal">
+    <h3>2. Size Adjectives 📏</h3>
+    <p><strong>Words that describe how big or small something is.</strong> Size adjectives help us understand measurements.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> big, small, tiny, huge, tall, short, long, wide, narrow, thick, thin</p>
+  </div>
+
+  <div class="card rose">
+    <h3>3. Feeling/Emotion Adjectives ❤️</h3>
+    <p><strong>Words that describe emotions and moods.</strong> These help us understand how people or things feel.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> happy, sad, angry, scared, tired, excited, bored, shy, proud, kind</p>
+  </div>
+
+  <div class="card yellow">
+    <h3>4. Quality Adjectives ✨</h3>
+    <p><strong>Words that describe how something feels, looks, or tastes.</strong> These describe special qualities.</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> soft, hard, rough, smooth, wet, dry, hot, cold, sweet, beautiful, ugly</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col left">
+      <h4>🟢 Correct (Adjectives)</h4>
+      <ul>
+        <li>A <b>big</b> house</li>
+        <li>The <b>red</b> ball</li>
+        <li>A <b>happy</b> child</li>
+        <li>The <b>soft</b> pillow</li>
+      </ul>
+    </div>
+    <div class="compare-col right">
+      <h4>🔴 Not Adjectives</h4>
+      <ul>
+        <li><b>House</b> (noun)</li>
+        <li><b>Ball</b> (noun)</li>
+        <li><b>Child</b> (noun)</li>
+        <li><b>Pillow</b> (noun)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="usage" class="section">
+  <h2 class="sec-title">✏️ How to Use Adjectives <span class="pill">Practice</span></h2>
+
+  <div class="concept-box">
+    <h3>Where Adjectives Go in Sentences</h3>
+    <p>Adjectives usually come <strong>BEFORE</strong> the noun they describe. They tell us more about the noun that follows them.</p>
+  </div>
+
+  <div class="card">
+    <h3>Position of Adjectives</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">Adjective + Noun:</div>
+        <div class="ex-text">a <strong>big</strong> dog | the <strong>red</strong> apple | a <strong>happy</strong> child</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">Multiple Adjectives:</div>
+        <div class="ex-text">a <strong>big, red</strong> ball | the <strong>happy, sweet</strong> girl | a <strong>tall, green</strong> tree</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">After Articles (a, an, the):</div>
+        <div class="ex-text">a <strong>soft</strong> blanket | the <strong>beautiful</strong> flower | an <strong>orange</strong> butterfly</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>Using "is" with Adjectives</h3>
+    <p>We can also use adjectives after verbs like "is" or "are" to describe something:</p>
+    <p style="margin-top:10px;"><strong>Examples:</strong> The cat is soft. The ball is red. The day is beautiful.</p>
+  </div>
+
+  <div class="card purple">
+    <h3>Adjective + Noun Pattern</h3>
+    <p><strong>ARTICLE + ADJECTIVE + NOUN</strong> is the basic pattern:</p>
+    <p style="margin-top:10px;">The + <strong>big</strong> + dog | A + <strong>red</strong> + apple | An + <strong>orange</strong> + ball</p>
+  </div>
+</section>
+
+<section id="examples" class="section">
+  <h2 class="sec-title">💡 Real Examples <span class="pill">Learning</span></h2>
+
+  <div class="card">
+    <h3>Describing Different Things</h3>
+    <div class="example-list">
+      <div class="ex-item">
+        <div class="ex-label">🏠 At Home:</div>
+        <div class="ex-text">soft pillow, big bed, red chair, cold water, hot food, sweet candy</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🏫 At School:</div>
+        <div class="ex-text">new pencil, clean desk, happy teacher, long book, small notebook</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">🌳 Outdoors:</div>
+        <div class="ex-text">green grass, blue sky, tall tree, beautiful flower, bright sun</div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-label">👥 People:</div>
+        <div class="ex-text">kind friend, happy child, shy boy, smart girl, strong person</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card teal">
+    <h3>🎯 Sentences with Adjectives</h3>
+    <p><strong>1.</strong> I have a <strong>big, red</strong> ball.</p>
+    <p><strong>2.</strong> She has a <strong>small</strong> kitten.</p>
+    <p><strong>3.</strong> The <strong>green</strong> tree is <strong>tall</strong>.</p>
+    <p><strong>4.</strong> I like <strong>sweet</strong> apples.</p>
+    <p><strong>5.</strong> He is a <strong>kind</strong> friend.</p>
+  </div>
+
+  <div class="card rose">
+    <h3>🔍 Find the Adjectives!</h3>
+    <p>Look at this sentence: <strong>"The cute, brown dog runs fast."</strong></p>
+    <p style="margin-top:10px;"><strong>Adjectives:</strong> cute, brown (fast is an adverb, not adjective)</p>
+    <p style="margin-top:8px;"><strong>Not adjectives:</strong> the (article), dog (noun), runs (verb)</p>
+  </div>
+</section>
+
+<section id="dialogue" class="section">
+  <h2 class="sec-title">💬 Practice Dialogue <span class="pill">Interactive</span></h2>
+
+  <div class="concept-box">
+    <h3>Describing Things in Conversations</h3>
+    <p>Here's how we use adjectives when we talk about things. Notice how many describing words are used!</p>
+  </div>
+
+  <div class="dialogue-box">
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Lisa:</div>
+      <div class="dialogue-text">Look at my new dress! It's so <strong>pretty</strong>!</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Mark:</div>
+      <div class="dialogue-text">It's <strong>beautiful</strong>! What <strong>bright</strong> colors! It's <strong>blue</strong> and <strong>yellow</strong>!</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👧 Lisa:</div>
+      <div class="dialogue-text">Thank you! I also have a <strong>soft</strong>, <strong>white</strong> scarf to go with it.</div>
+    </div>
+    <div class="dialogue-item">
+      <div class="dialogue-person">👦 Mark:</div>
+      <div class="dialogue-text">You look very <strong>nice</strong>! That <strong>long</strong> scarf is <strong>perfect</strong>!</div>
+    </div>
+  </div>
+
+  <div class="card yellow" style="margin-top:18px;">
+    <h3>📢 Counting Adjectives</h3>
+    <p><strong>How many adjectives are in the dialogue?</strong></p>
+    <p style="margin-top:12px;">pretty, beautiful, bright, blue, yellow, soft, white, nice, long, perfect</p>
+    <p style="margin-top:8px;"><strong>Answer: 10 adjectives!</strong> Can you identify what each one describes?</p>
+  </div>
+
+  <div class="card purple">
+    <h3>🎯 Let's Practice!</h3>
+    <p><strong>Describe these nouns with adjectives:</strong></p>
+    <p style="margin-top:12px;">1. A _____ dog (color & size)</p>
+    <p>2. A _____ room (feeling)</p>
+    <p>3. A _____ flower (quality)</p>
+    <p style="margin-top:12px;"><em>(Answers: 1. big, brown, 2. happy, 3. beautiful, soft)</em></p>
+  </div>
+</section>
+
+<section id="quiz" class="section">
+  <h2 class="sec-title">🎓 Quiz Time! <span class="pill">Test</span></h2>
+
+  <div class="score-section">
+    <div class="score-label">Your Score</div>
+    <div class="score-num" id="scoreNum">0</div>
+    <div class="score-label">out of 8</div>
+    <div class="stars" id="starDisplay">🌑🌑🌑🌑</div>
+  </div>
+
+  <div class="qsection">
+    <div class="qitem" id="q1">
+      <div class="qnum">Question 1 — Definition</div>
+      <div class="qtext">What is an adjective?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q1',this,false)">A word that shows action</button>
+        <button class="opt" onclick="ans('q1',this,true)">A word that describes a noun</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that names something</button>
+        <button class="opt" onclick="ans('q1',this,false)">A word that shows location</button>
+      </div>
+      <div class="qfb" id="fb1"></div>
+    </div>
+
+    <div class="qitem" id="q2">
+      <div class="qnum">Question 2 — Color Adjectives</div>
+      <div class="qtext">Which word is a COLOR adjective?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q2',this,false)">big</button>
+        <button class="opt" onclick="ans('q2',this,true)">red</button>
+        <button class="opt" onclick="ans('q2',this,false)">happy</button>
+        <button class="opt" onclick="ans('q2',this,false)">soft</button>
+      </div>
+      <div class="qfb" id="fb2"></div>
+    </div>
+
+    <div class="qitem" id="q3">
+      <div class="qnum">Question 3 — Size Adjectives</div>
+      <div class="qtext">Which word is a SIZE adjective?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q3',this,false)">orange</button>
+        <button class="opt" onclick="ans('q3',this,true)">tiny</button>
+        <button class="opt" onclick="ans('q3',this,false)">sweet</button>
+        <button class="opt" onclick="ans('q3',this,false)">sad</button>
+      </div>
+      <div class="qfb" id="fb3"></div>
+    </div>
+
+    <div class="qitem" id="q4">
+      <div class="qnum">Question 4 — Feeling Adjectives</div>
+      <div class="qtext">Which word is a FEELING adjective?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q4',this,false)">green</button>
+        <button class="opt" onclick="ans('q4',this,false)">long</button>
+        <button class="opt" onclick="ans('q4',this,true)">happy</button>
+        <button class="opt" onclick="ans('q4',this,false)">rough</button>
+      </div>
+      <div class="qfb" id="fb4"></div>
+    </div>
+
+    <div class="qitem" id="q5">
+      <div class="qnum">Question 5 — Where Adjectives Go</div>
+      <div class="qtext">Where does the adjective go in: "_____ ball"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q5',this,false)">After the noun</button>
+        <button class="opt" onclick="ans('q5',this,true)">Before the noun</button>
+        <button class="opt" onclick="ans('q5',this,false)">At the end of sentence</button>
+        <button class="opt" onclick="ans('q5',this,false)">It doesn't matter</button>
+      </div>
+      <div class="qfb" id="fb5"></div>
+    </div>
+
+    <div class="qitem" id="q6">
+      <div class="qnum">Question 6 — Identify the Adjective</div>
+      <div class="qtext">In "The red car," which word is the adjective?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q6',this,false)">the</button>
+        <button class="opt" onclick="ans('q6',this,true)">red</button>
+        <button class="opt" onclick="ans('q6',this,false)">car</button>
+        <button class="opt" onclick="ans('q6',this,false)">sentence</button>
+      </div>
+      <div class="qfb" id="fb6"></div>
+    </div>
+
+    <div class="qitem" id="q7">
+      <div class="qnum">Question 7 — Adjective or Not?</div>
+      <div class="qtext">Which is NOT an adjective?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q7',this,false)">blue</button>
+        <button class="opt" onclick="ans('q7',this,false)">beautiful</button>
+        <button class="opt" onclick="ans('q7',this,true)">running</button>
+        <button class="opt" onclick="ans('q7',this,false)">cold</button>
+      </div>
+      <div class="qfb" id="fb7"></div>
+    </div>
+
+    <div class="qitem" id="q8">
+      <div class="qnum">Question 8 — Multiple Adjectives</div>
+      <div class="qtext">How many adjectives in: "I have a big, soft blanket"?</div>
+      <div class="opts">
+        <button class="opt" onclick="ans('q8',this,false)">1</button>
+        <button class="opt" onclick="ans('q8',this,true)">2</button>
+        <button class="opt" onclick="ans('q8',this,false)">3</button>
+        <button class="opt" onclick="ans('q8',this,false)">4</button>
+      </div>
+      <div class="qfb" id="fb8"></div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetQuiz()">🔄 Try Again</button>
+</section>
+
+</main>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+let score = 0;
+const answered = {};
+const TOTAL = 8;
+
+const msgs = {
+  correct: ['✅ Correct! Excellent!', '✅ Perfect! Well done!', '✅ That\'s right! Smart!', '✅ Great job!'],
+  wrong:   ['❌ Not quite. Try again!', '❌ Keep trying!', '❌ Review the lesson above!']
+};
+const rand = arr => arr[Math.floor(Math.random()*arr.length)];
+
+function ans(qId, btn, correct) {
+  if (answered[qId]) return;
+  answered[qId] = true;
+  const n = qId.replace('q','');
+  const fb = document.getElementById('fb'+n);
+  btn.closest('.opts').querySelectorAll('.opt').forEach(o => o.style.pointerEvents='none');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = rand(msgs.correct);
+    fb.className = 'qfb show ok';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = rand(msgs.wrong);
+    fb.className = 'qfb show no';
+    btn.closest('.opts').querySelectorAll('.opt').forEach(o => {
+      if (o.onclick.toString().includes('true')) o.classList.add('correct');
+    });
+  }
+  document.getElementById('scoreNum').textContent = score;
+  const pct = score / TOTAL;
+  let stars = pct>=1?'⭐⭐⭐⭐':pct>=.75?'⭐⭐⭐🌑':pct>=.5?'⭐⭐🌑🌑':pct>=.25?'⭐🌑🌑🌑':'🌑🌑🌑🌑';
+  document.getElementById('starDisplay').textContent = stars;
+}
+
+function resetQuiz() {
+  score = 0;
+  Object.keys(answered).forEach(k => delete answered[k]);
+  document.getElementById('scoreNum').textContent = 0;
+  document.getElementById('starDisplay').textContent = '🌑🌑🌑🌑';
+  document.querySelectorAll('.opt').forEach(o => { o.classList.remove('correct','wrong'); o.style.pointerEvents='auto'; });
+  document.querySelectorAll('.qfb').forEach(fb => { fb.className='qfb'; fb.textContent=''; });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Lumi's Quick Challenges | Unit 1 - Greetings | LittleLume English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Patrick+Hand&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#CFE9FF;      --blue-deep:#8FC6F2;
+    --mint:#C9F3E1;       --mint-deep:#7FDDB6;
+    --cream:#FFFBF2;      --peach:#FFD9BE;      --peach-deep:#FFB183;
+    --lavender:#E7DEFF;   --lavender-deep:#C3AEFF;
+    --yellow:#FFEEA6;     --yellow-deep:#FFDD57;
+    --ink:#3B3555;        --ink-soft:#6B6483;
+    --success:#4FC97D;    --error:#FF7373; --pink:#FFC9DE; --pink-deep:#FF9FC4;
+    --white:#FFFFFF;
+    --radius-lg:28px; --radius-md:18px; --radius-sm:12px;
+    --shadow-soft:0 10px 30px rgba(120,100,160,0.16);
+    --shadow-pop:0 6px 0 rgba(0,0,0,0.08);
+    --font-display:"Baloo 2","Segoe UI Rounded",sans-serif;
+    --font-body:"Segoe UI","SF Pro Text",Verdana,sans-serif;
+    --font-hand:"Patrick Hand",cursive;
+    --font-script:"Caveat",cursive;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;min-height:100%;font-family:var(--font-body);color:var(--ink);}
+  body{
+    background:
+      radial-gradient(circle at 10% 5%, rgba(255,221,87,0.30), transparent 40%),
+      radial-gradient(circle at 92% 10%, rgba(195,174,255,0.30), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(127,221,182,0.25), transparent 50%),
+      var(--cream);
+    overflow-x:hidden;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  button:focus-visible{outline:3px solid var(--blue-deep);outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  #app{max-width:760px;margin:0 auto;min-height:100vh;padding:14px 14px 60px;}
+
+  .hud{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:rgba(255,255,255,0.75); backdrop-filter:blur(6px);
+    border-radius:999px; padding:8px 16px; box-shadow:var(--shadow-soft);
+    position:sticky; top:10px; z-index:80;
+  }
+  .brand{font-family:var(--font-display);font-weight:800;font-size:14px;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+  .brand .dot{color:var(--peach-deep);}
+  .page-dots{display:flex;gap:5px;flex:1;justify-content:center;}
+  .page-dots .d{width:8px;height:8px;border-radius:50%;background:#EFE9FB;transition:background .3s, transform .3s;}
+  .page-dots .d.active{background:var(--blue-deep);transform:scale(1.3);}
+  .page-dots .d.done{background:var(--mint-deep);}
+  .icon-btn{width:32px;height:32px;border-radius:50%;background:var(--white);box-shadow:var(--shadow-pop);display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .icon-btn:active{transform:scale(0.9);}
+
+  .notebook{
+    position:relative; margin-top:18px;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 35px, rgba(143,198,242,0.14) 35px 36px),
+      var(--white);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);
+    padding:30px 26px 34px 46px;
+    min-height:560px;
+    border-left:10px solid var(--page-color, var(--lavender));
+    transition:border-color .4s ease;
+    overflow:hidden;
+  }
+  .notebook::before{
+    content:"";
+    position:absolute; left:-10px; top:26px; bottom:26px; width:10px;
+    background-image:radial-gradient(circle, var(--ink-soft) 2.5px, transparent 2.6px);
+    background-size:100% 22px; background-repeat:repeat-y; opacity:0.35;
+  }
+  .page{display:none;animation:pageIn .45s ease; position:relative;}
+  .page.active{display:block;}
+  @keyframes pageIn{from{opacity:0;transform:translateY(10px) rotate(-.4deg);}to{opacity:1;transform:translateY(0) rotate(0);}}
+
+  .washi{position:absolute; height:26px; width:110px; opacity:0.85; border-radius:2px; box-shadow:0 2px 4px rgba(0,0,0,0.08); z-index:2;}
+  .washi.blue{background:repeating-linear-gradient(45deg,var(--blue),var(--blue) 8px,var(--blue-deep) 8px,var(--blue-deep) 16px);}
+  .washi.peach{background:repeating-linear-gradient(45deg,var(--peach),var(--peach) 8px,var(--peach-deep) 8px,var(--peach-deep) 16px);}
+  .washi.mint{background:repeating-linear-gradient(45deg,var(--mint),var(--mint) 8px,var(--mint-deep) 8px,var(--mint-deep) 16px);}
+  .washi.lavender{background:repeating-linear-gradient(45deg,var(--lavender),var(--lavender) 8px,var(--lavender-deep) 8px,var(--lavender-deep) 16px);}
+  .washi.pink{background:repeating-linear-gradient(45deg,var(--pink),var(--pink) 8px,var(--pink-deep) 8px,var(--pink-deep) 16px);}
+
+  .page-eyebrow{
+    display:inline-flex;align-items:center;gap:6px; font-family:var(--font-hand); font-weight:400;
+    font-size:14px; color:var(--ink-soft); background:var(--cream); padding:4px 12px;
+    border-radius:999px; border:1.5px dashed var(--lavender-deep); margin-bottom:8px;
+  }
+  h1.page-title{
+    font-family:var(--font-display); font-weight:800; font-size:clamp(22px,5vw,30px);
+    margin:2px 0 10px; color:var(--ink); display:flex; align-items:center; gap:10px;
+  }
+
+  .lumi-row{display:flex;align-items:flex-end;gap:12px;margin:12px 0 18px;}
+  .lumi-svg{width:56px;height:56px;flex:none;filter:drop-shadow(0 6px 8px rgba(255,221,87,.5));}
+  .lumi-svg.bounce{animation:bounce 1.1s ease infinite;}
+  @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  .diary-bubble{
+    font-family:var(--font-hand); font-size:16.5px; line-height:1.5;
+    background:var(--lavender); border-radius:18px 18px 18px 4px;
+    padding:11px 16px; box-shadow:var(--shadow-pop); max-width:560px; color:var(--ink);
+  }
+  .mission-bubble{background:var(--yellow);}
+  .mission-label{font-family:var(--font-display);font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:2px;}
+
+  .game-area{
+    position:relative; margin-top:6px; min-height:240px;
+    background:var(--cream); border-radius:var(--radius-md);
+    padding:20px 16px; box-shadow:inset 0 0 0 2px rgba(0,0,0,0.03);
+  }
+
+  /* success overlay */
+  .success-box{
+    display:none; margin-top:16px; text-align:center; border-radius:20px;
+    padding:18px 16px; background:linear-gradient(135deg,var(--mint),var(--blue));
+    box-shadow:var(--shadow-pop); position:relative; overflow:hidden;
+  }
+  .success-box.show{display:block; animation:popIn .4s ease;}
+  @keyframes popIn{from{opacity:0;transform:scale(.8);}to{opacity:1;transform:scale(1);}}
+  .success-title{font-family:var(--font-display);font-weight:800;font-size:22px;margin-bottom:6px;}
+  .success-diary{font-family:var(--font-hand);font-size:16px;}
+  .signoff-mini{font-family:var(--font-script); font-size:19px; margin-top:4px; color:var(--peach-deep);}
+
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px;}
+  .btn{
+    font-family:var(--font-display); font-weight:800; font-size:14.5px; padding:12px 22px;
+    border-radius:999px; color:var(--ink); background:var(--white);
+    box-shadow:0 5px 0 rgba(0,0,0,0.08), var(--shadow-soft);
+    display:inline-flex; align-items:center; gap:6px; min-height:46px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,0.08);}
+  .btn-primary{background:linear-gradient(135deg,var(--mint-deep),var(--blue-deep)); color:#fff;}
+  .btn[disabled]{opacity:0.35;pointer-events:none;}
+
+  footer.hint{text-align:center; color:var(--ink-soft); font-size:11.5px; margin-top:16px;}
+
+  /* confetti */
+  .confetti-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5;}
+  .confetti-piece{position:absolute;font-size:20px;top:40%;left:50%;animation:confettiFly 1s ease-out forwards;}
+  @keyframes confettiFly{
+    0%{transform:translate(-50%,-50%) scale(0.4) rotate(0deg);opacity:1;}
+    100%{transform:translate(var(--dx,0),var(--dy,-120px)) scale(1.1) rotate(var(--rot,180deg));opacity:0;}
+  }
+
+  /* ---------- GAME 1: Balloon Match ---------- */
+  .balloon-field{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:flex-end;min-height:220px;padding-top:10px;}
+  .balloon{
+    font-family:var(--font-hand); font-size:14px; text-align:center; width:96px;
+    display:flex;flex-direction:column;align-items:center;gap:2px;
+    animation:floaty 3.2s ease-in-out infinite;
+  }
+  .balloon:nth-child(2n){animation-delay:.4s;}
+  .balloon:nth-child(3n){animation-delay:.9s;}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  .balloon .bem{
+    width:70px;height:84px;border-radius:50% 50% 50% 50%/58% 58% 42% 42%;
+    display:flex;align-items:center;justify-content:center;font-size:30px;
+    box-shadow:var(--shadow-pop); position:relative; transition:transform .15s ease;
+  }
+  .balloon .bem::after{content:"";position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);
+    width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid inherit;}
+  .balloon:nth-child(5n+1) .bem{background:var(--blue);}
+  .balloon:nth-child(5n+2) .bem{background:var(--peach);}
+  .balloon:nth-child(5n+3) .bem{background:var(--mint);}
+  .balloon:nth-child(5n+4) .bem{background:var(--lavender);}
+  .balloon:nth-child(5n+5) .bem{background:var(--pink);}
+  .balloon:active .bem{transform:scale(0.92);}
+  .balloon.popped{animation:none;pointer-events:none;}
+  .balloon.popped .bem{transform:scale(0);transition:transform .3s ease;}
+  .balloon.shake .bem{animation:shakeB .35s ease;}
+  @keyframes shakeB{0%,100%{transform:translateX(0) rotate(0);}25%{transform:translateX(-4px) rotate(-4deg);}75%{transform:translateX(4px) rotate(4deg);}}
+  .progress-row{display:flex;gap:6px;justify-content:center;margin-top:10px;}
+  .progress-dot{width:14px;height:14px;border-radius:50%;background:#EFE9FB;box-shadow:var(--shadow-pop);}
+  .progress-dot.on{background:var(--success);}
+
+  /* ---------- GAME 2: Rainbow Words ---------- */
+  .sentence-line{font-family:var(--font-hand);font-size:22px;text-align:center;margin-bottom:22px;color:var(--ink);}
+  .blank-slot{
+    display:inline-flex;align-items:center;justify-content:center;min-width:70px;height:38px;
+    border-bottom:3px dashed var(--lavender-deep); vertical-align:middle; margin:0 4px; font-weight:700;
+    transition:all .3s ease;
+  }
+  .blank-slot.filled{border-bottom:3px solid var(--success); color:var(--success);}
+  .cloud-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .cloud{
+    font-family:var(--font-display); font-weight:800; font-size:17px; padding:14px 22px;
+    border-radius:999px; box-shadow:var(--shadow-pop); position:relative; transition:transform .35s ease, opacity .35s ease;
+  }
+  .cloud:nth-child(1){background:var(--peach);}
+  .cloud:nth-child(2){background:var(--mint);}
+  .cloud:nth-child(3){background:var(--blue);}
+  .cloud:active{transform:scale(0.94);}
+  .cloud.flyaway{transform:translateY(-90px) scale(0.4);opacity:0;}
+  .cloud.shakeC{animation:shakeB .35s ease;}
+
+  /* ---------- GAME 3: Lumi Says ---------- */
+  .command-banner{
+    text-align:center; font-family:var(--font-display); font-weight:800; font-size:20px;
+    background:var(--white); border-radius:16px; padding:14px; box-shadow:var(--shadow-pop); margin-bottom:16px;
+  }
+  .command-banner .cicon{font-size:34px;display:block;margin-bottom:2px;}
+  .options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+  .opt-tile{
+    background:var(--white); border-radius:16px; padding:16px 8px; text-align:center;
+    box-shadow:var(--shadow-pop); font-family:var(--font-hand); font-size:14px; border:2.5px solid transparent;
+  }
+  .opt-tile .emoji{font-size:30px;display:block;margin-bottom:4px;}
+  .opt-tile:active{transform:scale(0.95);}
+  .opt-tile.correct{border-color:var(--success); background:#E9FBEF;}
+  .opt-tile.wrong{animation:shakeB .35s ease; border-color:var(--error); background:#FFEEEE;}
+  .firefly-jar{display:flex;justify-content:center;gap:8px;margin-top:16px;}
+  .firefly-slot{width:28px;height:28px;border-radius:50%;background:#EFE9FB;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:var(--shadow-pop);}
+  .firefly-slot.lit{background:var(--yellow-deep);}
+
+  /* ---------- GAME 4: Memory Cards ---------- */
+  .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:400px;margin:0 auto;}
+  .mem-card{perspective:600px; height:92px;}
+  .mem-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+  .mem-card.flipped .mem-inner{transform:rotateY(180deg);}
+  .mem-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-pop);font-family:var(--font-display);font-size:28px;font-weight:800;}
+  .mem-front{background:var(--lavender);}
+  .mem-front::after{content:"?";color:var(--white);opacity:.7;}
+  .mem-back{background:var(--white); transform:rotateY(180deg);}
+  .mem-card.matched .mem-face{background:#E9FBEF; box-shadow:0 0 0 3px var(--success), var(--shadow-pop);}
+
+  /* ---------- GAME 5: Friendship Puzzle ---------- */
+  .built-sentence{
+    min-height:52px; display:flex; gap:8px; justify-content:center; align-items:center; flex-wrap:wrap;
+    background:var(--white); border-radius:16px; padding:12px; box-shadow:inset 0 0 0 2px rgba(0,0,0,0.04); margin-bottom:18px;
+  }
+  .built-slot{
+    font-family:var(--font-hand); font-size:18px; min-width:56px; text-align:center;
+    border-bottom:2px dashed var(--lavender-deep); padding:2px 4px;
+  }
+  .built-slot.filled{border-bottom:2px solid var(--success); color:var(--ink); font-weight:700;}
+  .word-bank{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .word-bubble{
+    font-family:var(--font-hand); font-size:18px; background:var(--blue); padding:10px 18px;
+    border-radius:14px; box-shadow:var(--shadow-pop); transition:transform .3s ease, opacity .3s ease;
+  }
+  .word-bubble:active{transform:scale(0.94);}
+  .word-bubble.used{opacity:0; transform:scale(0.3); pointer-events:none;}
+  .word-bubble.shakeW{animation:shakeB .3s ease;}
+
+  /* ---------- GAME 6: Kindness Hunt ---------- */
+  .scene-card{background:var(--white); border-radius:16px; padding:14px 16px; box-shadow:var(--shadow-pop); margin-bottom:14px; font-family:var(--font-hand); font-size:16.5px; text-align:center;}
+  .kind-choices{display:flex; flex-direction:column; gap:10px;}
+  .kind-tile{
+    font-family:var(--font-hand); font-size:16px; background:var(--white); padding:12px 16px;
+    border-radius:14px; box-shadow:var(--shadow-pop); border:2.5px solid transparent; text-align:left;
+  }
+  .kind-tile:active{transform:scale(0.97);}
+  .kind-tile.correct{border-color:var(--success); background:#E9FBEF;}
+  .kind-tile.wrong{animation:shakeB .35s ease; border-color:var(--error); background:#FFEEEE;}
+  .heart-meter{display:flex; gap:8px; justify-content:center; margin-top:16px;}
+  .heart-slot{font-size:24px; opacity:.25; transition:opacity .3s ease, transform .3s ease;}
+  .heart-slot.on{opacity:1; transform:scale(1.2);}
+
+  /* ---------- Ending badges ---------- */
+  .badge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;}
+  .badge{background:var(--cream);border-radius:16px;padding:14px 8px;text-align:center;box-shadow:var(--shadow-pop);font-family:var(--font-hand);font-size:12.5px;opacity:.3;transition:opacity .4s ease, transform .4s ease;}
+  .badge.earned{opacity:1;transform:scale(1.05);}
+  .badge .emoji{font-size:28px;display:block;margin-bottom:4px;}
+  .certificate{
+    border:5px solid var(--yellow-deep); border-radius:20px; padding:20px; text-align:center; margin-top:18px;
+    background:radial-gradient(circle at 20% 20%, rgba(255,221,87,0.25), transparent 55%),
+               radial-gradient(circle at 80% 80%, rgba(127,221,182,0.25), transparent 55%), var(--white);
+  }
+  .cert-eyebrow{font-family:var(--font-display); font-size:12px; letter-spacing:.15em; color:var(--ink-soft); text-transform:uppercase;}
+  .cert-name{font-family:var(--font-script); font-size:clamp(24px,6vw,32px); color:var(--peach-deep); margin:6px 0;}
+
+  @media (max-width:520px){
+    .notebook{padding:24px 16px 26px 34px;}
+    .brand span.txt{display:none;}
+    .memory-grid{grid-template-columns:repeat(4,1fr); gap:8px;}
+    .mem-card{height:74px;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div class="hud">
+    <div class="brand"><span>⭐</span><span class="txt">Quick<span class="dot">•</span>Challenges</span></div>
+    <div class="page-dots" id="pageDots"></div>
+    <button class="icon-btn" id="soundToggle" aria-label="Toggle sound">🔊</button>
+  </div>
+
+  <div class="notebook" id="notebook">
+
+    <!-- COVER -->
+    <section class="page active" id="page-0" data-color="#E7DEFF">
+      <div class="washi lavender" style="left:20px; top:-4px; transform:rotate(-6deg);"></div>
+      <span class="page-eyebrow">🌟 Unit 1 &middot; Grade 1</span>
+      <h1 class="page-title">⭐ Lumi's Quick Challenges</h1>
+      <p style="font-family:var(--font-script); font-size:22px; color:var(--ink-soft); margin-top:-8px;">6 tiny games, 6 big smiles!</p>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg bounce" viewBox="0 0 100 100" id="lumiCover"></svg>
+        <div class="diary-bubble">Hi friend! Let's play together! Every page has a super quick game — pop, match, drag, and tap your way to a star. Ready? 💫</div>
+      </div>
+
+      <div class="nav-row">
+        <span></span>
+        <button class="btn btn-primary" id="coverStart">Let's Play! 🎉</button>
+      </div>
+      <footer class="hint">Each game takes about a minute &middot; no wrong answers, just fun!</footer>
+    </section>
+
+    <!-- PAGE 1: BALLOON MATCH -->
+    <section class="page" id="page-1" data-color="#8FC6F2">
+      <div class="washi blue" style="right:24px; top:-6px; transform:rotate(5deg);"></div>
+      <span class="page-eyebrow">⭐ Quick Challenge &middot; 1 of 6</span>
+      <h1 class="page-title">🎈 Balloon Match</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP1"></svg>
+        <div class="diary-bubble mission-bubble"><span class="mission-label">🎯 Mission</span>Pop the hello balloons!</div>
+      </div>
+
+      <div class="game-area">
+        <div class="confetti-layer" id="confetti1"></div>
+        <div class="balloon-field" id="balloonField"></div>
+        <div class="progress-row" id="balloonProgress"></div>
+      </div>
+
+      <div class="success-box" id="success1">
+        <div class="success-title">🎈 You're a LittleLume Star!</div>
+        <div class="success-diary">"Pop pop pop — you know all my hellos! You made me smile today."</div>
+        <div class="signoff-mini">Love, Lumi ✨</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn" id="p1back">&larr; Back</button>
+        <button class="btn btn-primary" id="p1next" disabled>Next Challenge &rarr;</button>
+      </div>
+    </section>
+
+    <!-- PAGE 2: RAINBOW WORDS -->
+    <section class="page" id="page-2" data-color="#C3AEFF">
+      <div class="washi peach" style="left:30px; top:-6px; transform:rotate(-4deg);"></div>
+      <span class="page-eyebrow">⭐ Quick Challenge &middot; 2 of 6</span>
+      <h1 class="page-title">🌈 Rainbow Words</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP2"></svg>
+        <div class="diary-bubble mission-bubble"><span class="mission-label">🎯 Mission</span>Help Lumi finish her sentence!</div>
+      </div>
+
+      <div class="game-area">
+        <div class="confetti-layer" id="confetti2"></div>
+        <div class="sentence-line">I <span class="blank-slot" id="blank2">___</span> a student.</div>
+        <div class="cloud-row" id="cloudRow"></div>
+      </div>
+
+      <div class="success-box" id="success2">
+        <div class="success-title">🌈 You did it!</div>
+        <div class="success-diary">"That's exactly what I say every morning! You're becoming a great English explorer."</div>
+        <div class="signoff-mini">Love, Lumi ✨</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn" id="p2back">&larr; Back</button>
+        <button class="btn btn-primary" id="p2next" disabled>Next Challenge &rarr;</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3: LUMI SAYS -->
+    <section class="page" id="page-3" data-color="#7FDDB6">
+      <div class="washi mint" style="right:20px; top:-6px; transform:rotate(4deg);"></div>
+      <span class="page-eyebrow">⭐ Quick Challenge &middot; 3 of 6</span>
+      <h1 class="page-title">🎉 Lumi Says</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP3"></svg>
+        <div class="diary-bubble mission-bubble"><span class="mission-label">🎯 Mission</span>Listen and do it fast!</div>
+      </div>
+
+      <div class="game-area">
+        <div class="confetti-layer" id="confetti3"></div>
+        <div class="command-banner" id="commandBanner"></div>
+        <div class="options-grid" id="optionsGrid"></div>
+        <div class="firefly-jar" id="fireflyJar"></div>
+      </div>
+
+      <div class="success-box" id="success3">
+        <div class="success-title">✨ You're awesome!</div>
+        <div class="success-diary">"You listened so fast — just like at school! High five!"</div>
+        <div class="signoff-mini">Love, Lumi ✨</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn" id="p3back">&larr; Back</button>
+        <button class="btn btn-primary" id="p3next" disabled>Next Challenge &rarr;</button>
+      </div>
+    </section>
+
+    <!-- PAGE 4: MEMORY MATCH -->
+    <section class="page" id="page-4" data-color="#FFDD57">
+      <div class="washi blue" style="left:24px; top:-6px; transform:rotate(-5deg);"></div>
+      <span class="page-eyebrow">⭐ Quick Challenge &middot; 4 of 6</span>
+      <h1 class="page-title">🎨 Letter Friends Memory</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP4"></svg>
+        <div class="diary-bubble mission-bubble"><span class="mission-label">🎯 Mission</span>Match the letter to its friend!</div>
+      </div>
+
+      <div class="game-area">
+        <div class="confetti-layer" id="confetti4"></div>
+        <div class="memory-grid" id="memoryGrid"></div>
+      </div>
+
+      <div class="success-box" id="success4">
+        <div class="success-title">🌟 Fantastic!</div>
+        <div class="success-diary">"You matched every letter friend! I knew you could do it!"</div>
+        <div class="signoff-mini">Love, Lumi ✨</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn" id="p4back">&larr; Back</button>
+        <button class="btn btn-primary" id="p4next" disabled>Next Challenge &rarr;</button>
+      </div>
+    </section>
+
+    <!-- PAGE 5: FRIENDSHIP PUZZLE -->
+    <section class="page" id="page-5" data-color="#FFB183">
+      <div class="washi peach" style="right:26px; top:-6px; transform:rotate(3deg);"></div>
+      <span class="page-eyebrow">⭐ Quick Challenge &middot; 5 of 6</span>
+      <h1 class="page-title">🧩 Friendship Puzzle</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP5"></svg>
+        <div class="diary-bubble mission-bubble"><span class="mission-label">🎯 Mission</span>Put the words in order!</div>
+      </div>
+
+      <div class="game-area">
+        <div class="confetti-layer" id="confetti5"></div>
+        <div class="built-sentence" id="builtSentence"></div>
+        <div class="word-bank" id="wordBank"></div>
+      </div>
+
+      <div class="success-box" id="success5">
+        <div class="success-title">🎉 Amazing!</div>
+        <div class="success-diary">"Now you can ask any new friend how they are. Thank you for helping me!"</div>
+        <div class="signoff-mini">Love, Lumi ✨</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn" id="p5back">&larr; Back</button>
+        <button class="btn btn-primary" id="p5next" disabled>Next Challenge &rarr;</button>
+      </div>
+    </section>
+
+    <!-- PAGE 6: KINDNESS HUNT -->
+    <section class="page" id="page-6" data-color="#4FC97D">
+      <div class="washi mint" style="left:26px; top:-6px; transform:rotate(-3deg);"></div>
+      <span class="page-eyebrow">⭐ Quick Challenge &middot; 6 of 6</span>
+      <h1 class="page-title">💖 Kindness Hunt</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg" viewBox="0 0 100 100" id="lumiP6"></svg>
+        <div class="diary-bubble mission-bubble"><span class="mission-label">🎯 Mission</span>Find the kind words!</div>
+      </div>
+
+      <div class="game-area">
+        <div class="confetti-layer" id="confetti6"></div>
+        <div id="sceneWrap"></div>
+        <div class="heart-meter" id="heartMeter"></div>
+      </div>
+
+      <div class="success-box" id="success6">
+        <div class="success-title">🎈 You're a LittleLume Star!</div>
+        <div class="success-diary">"Kind words really do fix everything. I can't wait for our next adventure!"</div>
+        <div class="signoff-mini">Love, Lumi ✨</div>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn" id="p6back">&larr; Back</button>
+        <button class="btn btn-primary" id="p6next" disabled>Finish! 🌟</button>
+      </div>
+    </section>
+
+    <!-- ENDING -->
+    <section class="page" id="page-7" data-color="#FFB183">
+      <span class="page-eyebrow">🌟 The End</span>
+      <h1 class="page-title">You Played Them All!</h1>
+
+      <div class="lumi-row">
+        <svg class="lumi-svg bounce" viewBox="0 0 100 100" id="lumiEnd"></svg>
+        <div class="diary-bubble">Dear friend, thank you for playing every one of my Quick Challenges! Look at all the stars you collected! 💫</div>
+      </div>
+
+      <div class="badge-grid" id="badgeGrid"></div>
+
+      <div class="certificate">
+        <div class="cert-eyebrow">LittleLume &middot; Quick Challenge Champion</div>
+        <div class="cert-name">Little Star</div>
+        <p style="font-size:13px;color:var(--ink-soft);">completed all 6 Quick Challenges &middot; Unit 1</p>
+      </div>
+
+      <div class="signoff-mini" style="text-align:right;font-size:22px;">Love, Lumi ✨</div>
+
+      <div class="nav-row">
+        <button class="btn" id="endBack">&larr; Back</button>
+        <button class="btn btn-primary" id="endRestart">Play Again 🎮</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const PAGE_IDS = ["page-0","page-1","page-2","page-3","page-4","page-5","page-6","page-7"];
+  let current = 0;
+  let soundOn = true;
+  const visited = new Set([0]);
+  const completed = new Set();
+
+  function speak(text){
+    if(!soundOn || !("speechSynthesis" in window)) return;
+    try{
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.9; u.pitch = 1.1;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  function lumiSVG(){
+    return `<g>
+      <ellipse cx="50" cy="60" rx="26" ry="22" fill="#FFDD57"/>
+      <ellipse cx="50" cy="60" rx="26" ry="22" fill="none" stroke="#FFB183" stroke-width="2"/>
+      <circle cx="50" cy="35" r="16" fill="#3B3555"/>
+      <circle cx="44" cy="33" r="3.4" fill="#fff"/><circle cx="56" cy="33" r="3.4" fill="#fff"/>
+      <circle cx="44" cy="33" r="1.6" fill="#3B3555"/><circle cx="56" cy="33" r="1.6" fill="#3B3555"/>
+      <path d="M44 41 Q50 46 56 41" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="26" cy="48" rx="14" ry="10" fill="#CFE9FF" opacity="0.85" transform="rotate(-18 26 48)"/>
+      <ellipse cx="74" cy="48" rx="14" ry="10" fill="#CFE9FF" opacity="0.85" transform="rotate(18 74 48)"/>
+      <circle cx="50" cy="82" r="6" fill="#FFB183"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" repeatCount="indefinite"/></circle>
+    </g>`;
+  }
+  ["lumiCover","lumiP1","lumiP2","lumiP3","lumiP4","lumiP5","lumiP6","lumiEnd"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = lumiSVG();
+  });
+
+  function confettiBurst(containerId, emojis){
+    const layer = document.getElementById(containerId);
+    if(!layer) return;
+    emojis = emojis || ["✨","⭐","🎉","💫"];
+    for(let i=0;i<14;i++){
+      const s = document.createElement("span");
+      s.className = "confetti-piece";
+      s.textContent = emojis[i % emojis.length];
+      const dx = (Math.random()*220-110)+"px";
+      const dy = (-(80+Math.random()*120))+"px";
+      s.style.setProperty("--dx", dx);
+      s.style.setProperty("--dy", dy);
+      s.style.setProperty("--rot", (Math.random()*360)+"deg");
+      s.style.left = (40+Math.random()*20)+"%";
+      layer.appendChild(s);
+      setTimeout(()=> s.remove(), 1100);
+    }
+  }
+
+  function renderDots(){
+    const wrap = document.getElementById("pageDots");
+    wrap.innerHTML = "";
+    PAGE_IDS.forEach((id,i)=>{
+      const d = document.createElement("div");
+      d.className = "d" + (i===current?" active":"") + (visited.has(i) && i!==current ? " done":"");
+      wrap.appendChild(d);
+    });
+  }
+  function goTo(index){
+    if(index < 0 || index >= PAGE_IDS.length) return;
+    PAGE_IDS.forEach((id,i)=> document.getElementById(id).classList.toggle("active", i===index));
+    document.getElementById("notebook").style.setProperty("--page-color", document.getElementById(PAGE_IDS[index]).dataset.color || "#E7DEFF");
+    current = index;
+    visited.add(index);
+    renderDots();
+    if(index === 7) renderEnding();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  renderDots();
+
+  document.getElementById("soundToggle").addEventListener("click", function(){
+    soundOn = !soundOn;
+    this.textContent = soundOn ? "🔊" : "🔇";
+    if(!soundOn && "speechSynthesis" in window) window.speechSynthesis.cancel();
+  });
+
+  document.getElementById("coverStart").addEventListener("click", ()=> goTo(1));
+  document.getElementById("p1back").addEventListener("click", ()=> goTo(0));
+  document.getElementById("p1next").addEventListener("click", ()=> goTo(2));
+  document.getElementById("p2back").addEventListener("click", ()=> goTo(1));
+  document.getElementById("p2next").addEventListener("click", ()=> goTo(3));
+  document.getElementById("p3back").addEventListener("click", ()=> goTo(2));
+  document.getElementById("p3next").addEventListener("click", ()=> goTo(4));
+  document.getElementById("p4back").addEventListener("click", ()=> goTo(3));
+  document.getElementById("p4next").addEventListener("click", ()=> goTo(5));
+  document.getElementById("p5back").addEventListener("click", ()=> goTo(4));
+  document.getElementById("p5next").addEventListener("click", ()=> goTo(6));
+  document.getElementById("p6back").addEventListener("click", ()=> goTo(5));
+  document.getElementById("p6next").addEventListener("click", ()=> goTo(7));
+  document.getElementById("endBack").addEventListener("click", ()=> goTo(6));
+  document.getElementById("endRestart").addEventListener("click", ()=> goTo(0));
+
+  function markComplete(pageNum, successId, confettiId, nextBtnId, sayText){
+    completed.add(pageNum);
+    const box = document.getElementById(successId);
+    box.classList.add("show");
+    confettiBurst(confettiId);
+    document.getElementById(nextBtnId).removeAttribute("disabled");
+    if(sayText) speak(sayText);
+  }
+
+  /* ============================================================
+     GAME 1 — BALLOON MATCH
+     ============================================================ */
+  const BALLOONS = [
+    {word:"Hello!", emoji:"👋", good:true},
+    {word:"Hi!", emoji:"🙌", good:true},
+    {word:"Good morning!", emoji:"🌞", good:true},
+    {word:"Goodbye!", emoji:"💫", good:true},
+    {word:"Pizza!", emoji:"🍕", good:false}
+  ];
+  (function initP1(){
+    const field = document.getElementById("balloonField");
+    const progressWrap = document.getElementById("balloonProgress");
+    const totalGood = BALLOONS.filter(b=>b.good).length;
+    let popped = 0;
+    const order = [...BALLOONS].sort(()=>Math.random()-0.5);
+    for(let i=0;i<totalGood;i++){
+      const dot = document.createElement("div");
+      dot.className = "progress-dot";
+      progressWrap.appendChild(dot);
+    }
+    order.forEach(b=>{
+      const el = document.createElement("button");
+      el.className = "balloon";
+      el.innerHTML = `<div class="bem">${b.emoji}</div><span>${b.word}</span>`;
+      el.addEventListener("click", ()=>{
+        if(el.classList.contains("popped")) return;
+        if(b.good){
+          el.classList.add("popped");
+          speak(b.word);
+          popped++;
+          const dots = progressWrap.querySelectorAll(".progress-dot");
+          if(dots[popped-1]) dots[popped-1].classList.add("on");
+          confettiBurst("confetti1", ["🎈","✨"]);
+          if(popped === totalGood){
+            setTimeout(()=> markComplete(1,"success1","confetti1","p1next"), 300);
+          }
+        }else{
+          el.classList.add("shake");
+          setTimeout(()=> el.classList.remove("shake"), 350);
+        }
+      });
+      field.appendChild(el);
+    });
+  })();
+
+  /* ============================================================
+     GAME 2 — RAINBOW WORDS
+     ============================================================ */
+  (function initP2(){
+    const row = document.getElementById("cloudRow");
+    const blank = document.getElementById("blank2");
+    const options = [{t:"am", ok:true}, {t:"is", ok:false}, {t:"are", ok:false}].sort(()=>Math.random()-0.5);
+    options.forEach(o=>{
+      const c = document.createElement("button");
+      c.className = "cloud";
+      c.textContent = o.t;
+      c.addEventListener("click", ()=>{
+        if(o.ok){
+          blank.textContent = "am";
+          blank.classList.add("filled");
+          c.classList.add("flyaway");
+          speak("I am a student.");
+          Array.from(row.children).forEach(x=> x.setAttribute("disabled","true"));
+          setTimeout(()=> markComplete(2,"success2","confetti2","p2next"), 400);
+        }else{
+          c.classList.add("shakeC");
+          setTimeout(()=> c.classList.remove("shakeC"), 350);
+        }
+      });
+      row.appendChild(c);
+    });
+  })();
+
+  /* ============================================================
+     GAME 3 — LUMI SAYS
+     ============================================================ */
+  const TPR = [
+    {label:"Stand up!", icon:"🧍"}, {label:"Sit down!", icon:"🪑"},
+    {label:"Listen!", icon:"👂"}, {label:"Look!", icon:"👀"},
+    {label:"Open your book!", icon:"📖"}, {label:"Close your book!", icon:"📕"}
+  ];
+  (function initP3(){
+    const rounds = [...TPR].sort(()=>Math.random()-0.5).slice(0,3);
+    const banner = document.getElementById("commandBanner");
+    const grid = document.getElementById("optionsGrid");
+    const jar = document.getElementById("fireflyJar");
+    let roundIdx = 0;
+    for(let i=0;i<rounds.length;i++){
+      const slot = document.createElement("div");
+      slot.className = "firefly-slot";
+      slot.textContent = "🪰";
+      jar.appendChild(slot);
+    }
+    function renderRound(){
+      const cmd = rounds[roundIdx];
+      banner.innerHTML = `<span class="cicon">${cmd.icon}</span>Lumi says: "${cmd.label}"`;
+      speak(cmd.label);
+      const distractors = TPR.filter(t=>t.label!==cmd.label).sort(()=>Math.random()-0.5).slice(0,3);
+      const choices = [cmd, ...distractors].sort(()=>Math.random()-0.5);
+      grid.innerHTML = "";
+      choices.forEach(ch=>{
+        const tile = document.createElement("button");
+        tile.className = "opt-tile";
+        tile.innerHTML = `<span class="emoji">${ch.icon}</span>${ch.label}`;
+        tile.addEventListener("click", ()=>{
+          if(ch.label === cmd.label){
+            tile.classList.add("correct");
+            const slots = jar.querySelectorAll(".firefly-slot");
+            slots[roundIdx].classList.add("lit");
+            slots[roundIdx].textContent = "✨";
+            confettiBurst("confetti3", ["🪰","✨"]);
+            Array.from(grid.children).forEach(x=> x.setAttribute("disabled","true"));
+            roundIdx++;
+            if(roundIdx >= rounds.length){
+              setTimeout(()=> markComplete(3,"success3","confetti3","p3next"), 500);
+            }else{
+              setTimeout(renderRound, 700);
+            }
+          }else{
+            tile.classList.add("wrong");
+            setTimeout(()=> tile.classList.remove("wrong"), 350);
+          }
+        });
+        grid.appendChild(tile);
+      });
+    }
+    renderRound();
+  })();
+
+  /* ============================================================
+     GAME 4 — LETTER FRIENDS MEMORY
+     ============================================================ */
+  const LETTER_PAIRS = [
+    {l:"A", word:"Apple", emoji:"🍎"},
+    {l:"B", word:"Ball", emoji:"⚽"}
+  ];
+  (function initP4(){
+    const grid = document.getElementById("memoryGrid");
+    let cards = [];
+    LETTER_PAIRS.forEach((p,i)=>{
+      cards.push({pairId:i, type:"letter", display:p.l});
+      cards.push({pairId:i, type:"picture", display:`${p.emoji}<br><span style="font-size:12px;">${p.word}</span>`});
+    });
+    cards = cards.sort(()=>Math.random()-0.5);
+    let flipped = [];
+    let matchedCount = 0;
+    let lock = false;
+    cards.forEach((c, idx)=>{
+      const card = document.createElement("div");
+      card.className = "mem-card";
+      card.innerHTML = `<div class="mem-inner">
+        <div class="mem-face mem-front"></div>
+        <div class="mem-face mem-back">${c.display}</div>
+      </div>`;
+      card.addEventListener("click", ()=>{
+        if(lock || card.classList.contains("flipped") || card.classList.contains("matched")) return;
+        card.classList.add("flipped");
+        flipped.push({card, data:c});
+        if(flipped.length === 2){
+          lock = true;
+          const [a,b] = flipped;
+          if(a.data.pairId === b.data.pairId){
+            a.card.classList.add("matched");
+            b.card.classList.add("matched");
+            speak(LETTER_PAIRS[a.data.pairId].l + ". " + LETTER_PAIRS[a.data.pairId].word);
+            confettiBurst("confetti4", ["⭐","✨"]);
+            matchedCount++;
+            flipped = [];
+            lock = false;
+            if(matchedCount === LETTER_PAIRS.length){
+              setTimeout(()=> markComplete(4,"success4","confetti4","p4next"), 400);
+            }
+          }else{
+            setTimeout(()=>{
+              a.card.classList.remove("flipped");
+              b.card.classList.remove("flipped");
+              flipped = [];
+              lock = false;
+            }, 700);
+          }
+        }
+      });
+      grid.appendChild(card);
+    });
+  })();
+
+  /* ============================================================
+     GAME 5 — FRIENDSHIP PUZZLE
+     ============================================================ */
+  (function initP5(){
+    const target = ["How","are","you?"];
+    const built = document.getElementById("builtSentence");
+    const bank = document.getElementById("wordBank");
+    target.forEach(()=>{
+      const slot = document.createElement("span");
+      slot.className = "built-slot";
+      slot.textContent = "___";
+      built.appendChild(slot);
+    });
+    const shuffled = [...target].sort(()=>Math.random()-0.5);
+    let nextIdx = 0;
+    shuffled.forEach(word=>{
+      const b = document.createElement("button");
+      b.className = "word-bubble";
+      b.textContent = word;
+      b.addEventListener("click", ()=>{
+        if(b.classList.contains("used")) return;
+        if(word === target[nextIdx]){
+          const slot = built.children[nextIdx];
+          slot.textContent = word;
+          slot.classList.add("filled");
+          b.classList.add("used");
+          nextIdx++;
+          if(nextIdx === target.length){
+            speak("How are you?");
+            confettiBurst("confetti5", ["💬","✨"]);
+            setTimeout(()=> markComplete(5,"success5","confetti5","p5next"), 400);
+          }
+        }else{
+          b.classList.add("shakeW");
+          setTimeout(()=> b.classList.remove("shakeW"), 300);
+        }
+      });
+      bank.appendChild(b);
+    });
+  })();
+
+  /* ============================================================
+     GAME 6 — KINDNESS HUNT
+     ============================================================ */
+  const SCENARIOS = [
+    {scene:"🧩 You bumped into your friend's tower by accident.",
+     choices:[{t:"Sorry! Let's build it again.", ok:true},{t:"It wasn't my fault!", ok:false}]},
+    {scene:"🎨 You want the crayon your friend is using.",
+     choices:[{t:"Excuse me, may I use it please?", ok:true},{t:"Grab it right now!", ok:false}]},
+    {scene:"📖 Miss Lily helps you find a book.",
+     choices:[{t:"Thank you, Miss Lily!", ok:true},{t:"Walk away quietly.", ok:false}]}
+  ];
+  (function initP6(){
+    const wrap = document.getElementById("sceneWrap");
+    const meter = document.getElementById("heartMeter");
+    let idx = 0;
+    SCENARIOS.forEach(()=>{
+      const h = document.createElement("span");
+      h.className = "heart-slot";
+      h.textContent = "💗";
+      meter.appendChild(h);
+    });
+    function render(){
+      wrap.innerHTML = "";
+      const s = SCENARIOS[idx];
+      const scene = document.createElement("div");
+      scene.className = "scene-card";
+      scene.textContent = s.scene;
+      wrap.appendChild(scene);
+      const choicesWrap = document.createElement("div");
+      choicesWrap.className = "kind-choices";
+      const shuffled = [...s.choices].sort(()=>Math.random()-0.5);
+      shuffled.forEach(c=>{
+        const tile = document.createElement("button");
+        tile.className = "kind-tile";
+        tile.textContent = c.t;
+        tile.addEventListener("click", ()=>{
+          if(c.ok){
+            tile.classList.add("correct");
+            speak(c.t);
+            const hearts = meter.querySelectorAll(".heart-slot");
+            hearts[idx].classList.add("on");
+            confettiBurst("confetti6", ["💗","✨"]);
+            Array.from(choicesWrap.children).forEach(x=> x.setAttribute("disabled","true"));
+            idx++;
+            if(idx >= SCENARIOS.length){
+              setTimeout(()=> markComplete(6,"success6","confetti6","p6next"), 500);
+            }else{
+              setTimeout(render, 700);
+            }
+          }else{
+            tile.classList.add("wrong");
+            setTimeout(()=> tile.classList.remove("wrong"), 350);
+          }
+        });
+        choicesWrap.appendChild(tile);
+      });
+      wrap.appendChild(choicesWrap);
+    }
+    render();
+  })();
+
+  /* ============================================================
+     ENDING BADGES
+     ============================================================ */
+  const BADGE_DATA = [
+    {emoji:"🎈", label:"Balloon Match"},
+    {emoji:"🌈", label:"Rainbow Words"},
+    {emoji:"🎉", label:"Lumi Says"},
+    {emoji:"🎨", label:"Memory"},
+    {emoji:"🧩", label:"Friendship Puzzle"},
+    {emoji:"💖", label:"Kindness Hunt"}
+  ];
+  let endingRendered = false;
+  function renderEnding(){
+    if(endingRendered){
+      const badges = document.querySelectorAll("#badgeGrid .badge");
+      badges.forEach((b,i)=> b.classList.toggle("earned", completed.has(i+1)));
+      return;
+    }
+    endingRendered = true;
+    const grid = document.getElementById("badgeGrid");
+    BADGE_DATA.forEach((b,i)=>{
+      const el = document.createElement("div");
+      el.className = "badge" + (completed.has(i+1) ? " earned" : "");
+      el.innerHTML = `<span class="emoji">${b.emoji}</span>${b.label}`;
+      grid.appendChild(el);
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
