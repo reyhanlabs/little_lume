@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<!-- LittleLume English — My Body Explorer — Interactive Visual Notes (review, 1-page) -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Body Explorer — LittleLume English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#1B3A4E; --night-deep:#0F2233; --gold:#FFC857; --gold-soft:#FFE3A8;
+  --lavender:#B79FDB; --teal:#39C6BC; --teal-dark:#2C9990; --coral:#FF6F91;
+  --paper:#FFF9EE; --ink:#2A2140; --green:#4BC87A; --skin:#FFDCB0;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  margin:0; font-family:'Nunito',sans-serif; color:var(--ink);
+  background:
+    radial-gradient(ellipse 900px 600px at 20% -10%, rgba(57,198,188,.18), transparent),
+    radial-gradient(ellipse 800px 600px at 100% 0%, rgba(255,200,87,.12), transparent),
+    var(--night);
+  min-height:100vh;
+}
+h1,h2,h3,.title-font{font-family:'Baloo 2',sans-serif;}
+button{font-family:inherit; -webkit-tap-highlight-color:transparent;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+
+/* ---------- topbar ---------- */
+#topbar{position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; background:rgba(15,34,51,.65); backdrop-filter:blur(6px);}
+.top-left{display:flex; align-items:center; gap:8px;}
+.brand-mini{font-size:20px;}
+.brand-name{color:var(--gold-soft); font-weight:800; font-size:13px; font-family:'Baloo 2',sans-serif; letter-spacing:.5px;}
+#stickerCountWrap{display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.1); border-radius:20px; padding:5px 12px;}
+#stickerCount{color:var(--gold-soft); font-weight:800; font-size:13px;}
+
+/* ---------- container ---------- */
+.wrap{max-width:520px; margin:0 auto; padding:18px 16px 60px;}
+.card{background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:22px;
+  padding:22px 18px; margin-bottom:18px;}
+.section-tag{display:inline-flex; align-items:center; gap:6px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase;
+  font-weight:800; color:var(--night); background:var(--gold); padding:5px 14px; border-radius:20px; margin-bottom:12px;}
+.card h2{color:#fff; font-size:20px; margin:0 0 4px;}
+.card p.sub{color:rgba(255,255,255,.7); font-size:13.5px; margin:0 0 14px; line-height:1.5;}
+
+/* ---------- hero ---------- */
+.hero{text-align:center; padding-top:8px;}
+.hero-logo{font-size:15px; color:var(--gold-soft); font-weight:800; letter-spacing:1px; margin-bottom:4px;}
+.hero h1{color:#fff; font-size:clamp(26px,7vw,34px); margin:2px 0 4px;}
+.hero .tagline{color:rgba(255,255,255,.75); font-style:italic; font-size:15px; margin-bottom:14px;}
+#lumiHero{cursor:pointer; display:inline-block; animation:float 3.6s ease-in-out infinite; user-select:none;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.lumi-bubble{background:#fff; color:var(--ink); border-radius:16px; padding:10px 18px; font-size:14.5px; font-weight:700;
+  max-width:280px; margin:12px auto 0; box-shadow:0 8px 18px rgba(0,0,0,.25); opacity:0; transform:scale(.85) translateY(6px);
+  transition:opacity .25s, transform .25s; font-family:'Baloo 2',sans-serif;}
+.lumi-bubble.show{opacity:1; transform:scale(1) translateY(0);}
+.tap-hint{color:rgba(255,255,255,.45); font-size:12px; margin-top:6px;}
+
+/* ---------- interactive body ---------- */
+.body-stage{display:flex; justify-content:center; margin-bottom:6px;}
+#bodySvgWrap{position:relative; width:230px;}
+.bp{cursor:pointer;}
+.bp-fill{transition:fill .18s ease, filter .18s ease;}
+.bp.active .bp-fill{fill:var(--coral) !important; filter:drop-shadow(0 0 9px rgba(255,111,145,.85));}
+.bp:hover .bp-fill{filter:brightness(1.08);}
+.caption-box{min-height:64px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  margin-top:8px;}
+.caption-word{font-family:'Baloo 2',sans-serif; font-weight:800; color:var(--gold); font-size:19px;
+  opacity:0; transform:scale(.8); transition:opacity .22s, transform .22s;}
+.caption-sentence{color:#fff; font-size:14.5px; margin-top:2px; opacity:0; transition:opacity .22s;}
+.caption-word.show, .caption-sentence.show{opacity:1; transform:scale(1);}
+.body-progress{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+.body-progress .dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.22);}
+.body-progress .dot.done{background:var(--teal);}
+
+/* ---------- vocab ---------- */
+.vocab-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.vocab-card{background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.16); border-radius:16px;
+  padding:10px 4px 8px; cursor:pointer; transition:all .18s ease; text-align:center;}
+.vocab-card:active{transform:scale(.95);}
+.vocab-card.done{background:rgba(75,200,122,.22); border-color:var(--green);}
+.vc-icon{width:100%; height:44px; display:flex; align-items:center; justify-content:center;}
+.vc-word{font-family:'Baloo 2',sans-serif; font-weight:700; color:#fff; font-size:12.5px; margin-top:4px;}
+.vocab-sentence{grid-column:1/-1; min-height:20px; color:var(--gold-soft); font-weight:700; font-size:14px;
+  font-family:'Baloo 2',sans-serif; text-align:center; margin-top:4px; opacity:0; transition:opacity .2s;}
+.vocab-sentence.show{opacity:1;}
+@keyframes bump{0%,100%{transform:scale(1);}50%{transform:scale(1.22);}}
+.vc-icon.bump{animation:bump .4s ease;}
+
+/* ---------- buttons ---------- */
+.big-btn{font-family:'Baloo 2',sans-serif; font-weight:700; font-size:16px; color:var(--night-deep);
+  background:var(--gold); border:none; border-radius:50px; padding:13px 30px; cursor:pointer;
+  box-shadow:0 8px 20px rgba(255,200,87,.35); transition:transform .15s ease;}
+.big-btn:hover{transform:translateY(-2px);}
+.big-btn:active{transform:scale(.96);}
+.big-btn.teal{background:var(--teal); color:#fff; box-shadow:0 8px 20px rgba(57,198,188,.35);}
+.center{text-align:center;}
+
+/* ---------- practice ---------- */
+.practice-prompt{font-family:'Baloo 2',sans-serif; font-weight:800; color:#fff; font-size:19px;
+  min-height:60px; display:flex; align-items:center; justify-content:center; text-align:center; margin-bottom:10px;}
+.practice-dots{display:flex; gap:7px; justify-content:center; margin-bottom:14px;}
+.practice-feedback{font-family:'Baloo 2',sans-serif; font-weight:800; color:var(--green); font-size:18px;
+  min-height:26px; margin-top:8px; opacity:0; transition:opacity .2s;}
+.practice-feedback.show{opacity:1;}
+.practice-done{display:none; text-align:center;}
+.practice-done.show{display:block;}
+
+/* ---------- speak ---------- */
+.mic-btn{font-size:52px; background:none; border:none; cursor:pointer; display:block; margin:6px auto 4px;
+  filter:drop-shadow(0 0 14px rgba(255,200,87,.5)); transition:transform .15s;}
+.mic-btn:active{transform:scale(.88);}
+.mic-btn.listening{animation:mic-pulse .6s ease-in-out infinite;}
+@keyframes mic-pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.16);}}
+.speak-sentence{font-family:'Baloo 2',sans-serif; font-weight:800; color:#fff; font-size:18px; text-align:center; margin-bottom:6px;}
+.speak-feedback{font-family:'Baloo 2',sans-serif; font-weight:800; color:var(--gold); font-size:17px;
+  text-align:center; min-height:26px; opacity:0; transition:opacity .2s;}
+.speak-feedback.show{opacity:1;}
+
+/* ---------- grammar box ---------- */
+.grammar-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
+.grammar-chip{background:rgba(255,255,255,.08); border:2px solid var(--lavender); border-radius:16px;
+  padding:12px 14px; flex:1; min-width:130px;}
+.grammar-chip .g-pattern{font-family:'Baloo 2',sans-serif; font-weight:800; color:var(--gold-soft); font-size:14px; margin-bottom:6px;}
+.grammar-chip .g-ex{color:#fff; font-size:13.5px; line-height:1.6;}
+
+/* ---------- challenge ---------- */
+.challenge-body-stage{display:flex; justify-content:center; margin-bottom:8px;}
+.challenge-prompt{font-family:'Baloo 2',sans-serif; font-weight:800; color:#fff; font-size:19px;
+  text-align:center; margin-bottom:10px;}
+.challenge-dots{display:flex; gap:7px; justify-content:center; margin-bottom:10px;}
+.challenge-feedback{text-align:center; font-family:'Baloo 2',sans-serif; font-weight:800; font-size:16px;
+  min-height:24px; color:var(--green);}
+
+/* ---------- stickers ---------- */
+.sticker-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+.sticker-chip{border-radius:16px; padding:12px 10px; min-width:80px; text-align:center;
+  border:2px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); transition:all .3s;}
+.sticker-chip .sc-icon{font-size:28px; filter:grayscale(1) opacity(.35);}
+.sticker-chip .sc-label{color:rgba(255,255,255,.55); font-size:11px; font-weight:800; margin-top:4px; font-family:'Baloo 2',sans-serif;}
+.sticker-chip.earned{background:rgba(255,200,87,.18); border-color:var(--gold); animation:sticker-pop .5s ease;}
+.sticker-chip.earned .sc-icon{filter:none;}
+.sticker-chip.earned .sc-label{color:#fff;}
+@keyframes sticker-pop{0%{transform:scale(.5) rotate(-10deg);}60%{transform:scale(1.15) rotate(5deg);}100%{transform:scale(1) rotate(0);}}
+
+/* confetti */
+.confetti-piece{position:fixed; top:-10px; width:8px; height:8px; border-radius:2px; z-index:200; pointer-events:none;}
+@keyframes confetti-fall{to{transform:translateY(105vh) rotate(360deg); opacity:0;}}
+
+.replay-btn{background:var(--teal); color:#fff; border:none; border-radius:50%; width:38px; height:38px;
+  font-size:16px; cursor:pointer; margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="top-left">
+    <span class="brand-mini">🪔</span>
+    <span class="brand-name">LittleLume English</span>
+  </div>
+  <div id="stickerCountWrap">
+    <span>⭐</span><span id="stickerCount">0 / 5</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. HERO -->
+  <div class="hero">
+    <div class="hero-logo">🪔 LittleLume English</div>
+    <h1>My Body</h1>
+    <p class="tagline">Let's review together!</p>
+    <div id="lumiHero" onclick="lumiHeroTap()"></div>
+    <div class="lumi-bubble" id="lumiBubble">Hello! Let's review our body parts!</div>
+    <div class="tap-hint">👆 Tap Lumi to say hello</div>
+  </div>
+
+  <!-- 2. INTERACTIVE BODY -->
+  <div class="card">
+    <span class="section-tag">✨ Explore</span>
+    <h2>Touch a body part</h2>
+    <p class="sub">Tap the picture to hear the word and the sentence.</p>
+    <div class="body-stage">
+      <div id="bodySvgWrap"></div>
+    </div>
+    <div class="caption-box">
+      <div class="caption-word" id="capWord"></div>
+      <div class="caption-sentence" id="capSentence"></div>
+    </div>
+    <div class="body-progress" id="bodyProgress"></div>
+  </div>
+
+  <!-- 3. VOCABULARY CARDS -->
+  <div class="card">
+    <span class="section-tag">📖 Vocabulary</span>
+    <h2>Body words</h2>
+    <p class="sub">Tap a card to hear it and see an example sentence.</p>
+    <div class="vocab-grid" id="vocabGrid"></div>
+    <div class="vocab-sentence" id="vocabSentence"></div>
+  </div>
+
+  <!-- 4. MINI PRACTICE -->
+  <div class="card">
+    <span class="section-tag">🎲 Practice</span>
+    <h2>Mini practice</h2>
+    <p class="sub">Listen and touch the right body part on you!</p>
+    <div id="practiceIntro" class="center">
+      <button class="big-btn" onclick="startPractice()">🎲 Practice</button>
+    </div>
+    <div id="practiceGame" style="display:none;">
+      <div class="practice-dots" id="practiceDots"></div>
+      <div class="practice-prompt" id="practicePrompt"></div>
+      <div class="center">
+        <button class="replay-btn" onclick="replay(currentPracticeText)">🔊</button>
+      </div>
+      <div class="center">
+        <button class="big-btn teal" onclick="practiceAnswer()">✅ I did it!</button>
+      </div>
+      <div class="practice-feedback" id="practiceFeedback"></div>
+    </div>
+    <div class="practice-done" id="practiceDone">
+      <div style="font-size:38px;">🌟</div>
+      <p style="color:#fff; font-family:'Baloo 2',sans-serif; font-weight:700;">Great job practicing!</p>
+      <button class="big-btn" onclick="startPractice()">🔁 Practice again</button>
+    </div>
+  </div>
+
+  <!-- 5. SPEAK -->
+  <div class="card">
+    <span class="section-tag">🎤 Speak</span>
+    <h2>Say it with Lumi</h2>
+    <p class="sub">Listen to Lumi, then say the sentence out loud.</p>
+    <div class="speak-sentence" id="speakSentence">Tap the microphone to start.</div>
+    <button class="mic-btn" id="micBtn" onclick="speakActivity()">🎤</button>
+    <div class="speak-feedback" id="speakFeedback"></div>
+  </div>
+
+  <!-- 6. GRAMMAR BOX -->
+  <div class="card">
+    <span class="section-tag">⭐ Pattern</span>
+    <h2>Grammar box</h2>
+    <div class="grammar-row">
+      <div class="grammar-chip">
+        <div class="g-pattern">This is my...</div>
+        <div class="g-ex">This is my head.<br>This is my tummy.</div>
+      </div>
+      <div class="grammar-chip">
+        <div class="g-pattern">These are my...</div>
+        <div class="g-ex">These are my feet.<br>These are my toes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. LITTLE CHALLENGE -->
+  <div class="card">
+    <span class="section-tag">🔎 Challenge</span>
+    <h2>Little challenge</h2>
+    <p class="sub">Lumi will ask — can you find it on the picture?</p>
+    <div id="challengeIntro" class="center">
+      <button class="big-btn" onclick="startChallenge()">🔎 Start challenge</button>
+    </div>
+    <div id="challengeGame" style="display:none;">
+      <div class="challenge-dots" id="challengeDots"></div>
+      <div class="challenge-prompt" id="challengePrompt"></div>
+      <div class="challenge-body-stage"><div id="challengeSvgWrap"></div></div>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+    </div>
+    <div class="practice-done" id="challengeDone">
+      <div style="font-size:38px;">🏆</div>
+      <p style="color:#fff; font-family:'Baloo 2',sans-serif; font-weight:700;">You found them all!</p>
+      <button class="big-btn" onclick="startChallenge()">🔁 Play again</button>
+    </div>
+  </div>
+
+  <!-- 8. STICKER COLLECTION -->
+  <div class="card">
+    <span class="section-tag">🌟 Rewards</span>
+    <h2>Sticker collection</h2>
+    <p class="sub">Finish each activity to collect a sticker!</p>
+    <div class="sticker-row" id="stickerRow"></div>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   SPEECH
+============================================================ */
+let cachedVoices=[];
+function loadVoices(){ cachedVoices = ('speechSynthesis' in window) ? speechSynthesis.getVoices() : []; }
+if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged=loadVoices; loadVoices(); }
+function pickVoice(){
+  return cachedVoices.find(v=>/en-GB|en_GB/.test(v.lang)&&/Female|female/.test(v.name)) ||
+         cachedVoices.find(v=>/en/i.test(v.lang)) || null;
+}
+function speak(text, interrupt){
+  if(!('speechSynthesis' in window)) return;
+  if(interrupt!==false) speechSynthesis.cancel();
+  setTimeout(()=>{
+    const u=new SpeechSynthesisUtterance(text);
+    const v=pickVoice(); if(v) u.voice=v;
+    u.rate=0.88; u.pitch=1.1;
+    speechSynthesis.speak(u);
+  },50);
+}
+function replay(text){ if(text) speak(text,true); }
+
+/* ============================================================
+   LUMI MASCOT (simple SVG)
+============================================================ */
+function lumiSVG(size, mood){
+  size=size||110;
+  const face = mood==='wave'
+    ? `<path d="M -13 0 Q -8 -5 -3 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>
+       <path d="M 7 0 Q 12 -5 17 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>
+       <path d="M -9 13 Q 2 24 13 13" stroke="#2A2140" stroke-width="3.4" fill="none" stroke-linecap="round"/>`
+    : `<circle cx="-8" cy="0" r="4.5" fill="#2A2140"/><circle cx="12" cy="0" r="4.5" fill="#2A2140"/>
+       <path d="M -6 15 Q 2 20 10 15" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  return `
+  <svg width="${size}" height="${size*1.15}" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="halo1" cx="50%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="#FFE3A8" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#FFE3A8" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="bodyg1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#39C6BC"/><stop offset="100%" stop-color="#2C9990"/>
+      </linearGradient>
+      <radialGradient id="flameg1" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#FFFDF2"/><stop offset="60%" stop-color="#FFE3A8"/><stop offset="100%" stop-color="#FFC857"/>
+      </radialGradient>
+    </defs>
+    <circle cx="70" cy="42" r="70" fill="url(#halo1)"/>
+    <ellipse cx="70" cy="34" rx="17" ry="21" fill="url(#flameg1)"/>
+    <path d="M 100 76 Q 122 76 122 96 Q 122 114 104 112" stroke="url(#bodyg1)" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M 70 58 C 96 58 108 82 104 104 C 101 124 84 138 70 138 C 56 138 39 124 36 104 C 32 82 44 58 70 58 Z" fill="url(#bodyg1)"/>
+    <rect x="52" y="138" width="36" height="9" rx="4.5" fill="#2C9990"/>
+    <rect x="46" y="147" width="48" height="7" rx="3.5" fill="#2C9990"/>
+    <g transform="translate(70,98)">${face}
+      <circle cx="-24" cy="10" r="6" fill="#FFE3A8" opacity=".55"/>
+      <circle cx="24" cy="10" r="6" fill="#FFE3A8" opacity=".55"/>
+    </g>
+  </svg>`;
+}
+document.getElementById('lumiHero').innerHTML = lumiSVG(110,'happy');
+let lumiBubbleTimeout;
+function lumiHeroTap(){
+  document.getElementById('lumiHero').innerHTML = lumiSVG(110,'wave');
+  speak("Hello! Let's review our body parts!");
+  const b = document.getElementById('lumiBubble');
+  b.classList.add('show');
+  clearTimeout(lumiBubbleTimeout);
+  lumiBubbleTimeout = setTimeout(()=>{
+    b.classList.remove('show');
+    document.getElementById('lumiHero').innerHTML = lumiSVG(110,'happy');
+  }, 2600);
+}
+
+/* ============================================================
+   BODY PART DATA
+============================================================ */
+const PARTS = [
+  {key:'head',      word:'Head',      sentence:'This is my head.'},
+  {key:'shoulders', word:'Shoulders', sentence:'These are my shoulders.'},
+  {key:'arms',      word:'Arms',      sentence:'These are my arms.'},
+  {key:'tummy',     word:'Tummy',     sentence:'This is my tummy.'},
+  {key:'legs',      word:'Legs',      sentence:'These are my legs.'},
+  {key:'knees',     word:'Knees',     sentence:'These are my knees.'},
+  {key:'feet',      word:'Feet',      sentence:'These are my feet.'},
+  {key:'toes',      word:'Toes',      sentence:'These are my toes.'}
+];
+const partMap = {}; PARTS.forEach(p=>partMap[p.key]=p);
+
+/* ---------- big interactive body SVG (kid outline, all parts clickable) ---------- */
+function heroBodySVG(){
+  return `
+  <svg width="230" height="322" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+    <g class="bp" data-part="legs">
+      <path class="bp-fill" d="M 42 80 Q 38 100 38 120" stroke="#CFC3E8" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path class="bp-fill" d="M 58 80 Q 62 100 62 120" stroke="#CFC3E8" stroke-width="13" fill="none" stroke-linecap="round"/>
+    </g>
+    <g class="bp" data-part="knees">
+      <circle class="bp-fill" cx="39" cy="99" r="7.5" fill="#CFC3E8"/>
+      <circle class="bp-fill" cx="61" cy="99" r="7.5" fill="#CFC3E8"/>
+    </g>
+    <g class="bp" data-part="feet">
+      <ellipse class="bp-fill" cx="35" cy="123" rx="11" ry="7" fill="#CFC3E8"/>
+      <ellipse class="bp-fill" cx="65" cy="123" rx="11" ry="7" fill="#CFC3E8"/>
+    </g>
+    <g class="bp" data-part="toes">
+      <circle class="bp-fill" cx="27" cy="120" r="2.6" fill="#CFC3E8"/><circle class="bp-fill" cx="31" cy="117.3" r="2.6" fill="#CFC3E8"/><circle class="bp-fill" cx="35" cy="116.3" r="2.6" fill="#CFC3E8"/>
+      <circle class="bp-fill" cx="65" cy="116.3" r="2.6" fill="#CFC3E8"/><circle class="bp-fill" cx="69" cy="117.3" r="2.6" fill="#CFC3E8"/><circle class="bp-fill" cx="73" cy="120" r="2.6" fill="#CFC3E8"/>
+    </g>
+    <g class="bp" data-part="tummy">
+      <rect class="bp-fill" x="30" y="40" width="40" height="46" rx="20" ry="20" fill="#7FD8CE"/>
+    </g>
+    <g class="bp" data-part="shoulders">
+      <ellipse class="bp-fill" cx="50" cy="46" rx="21" ry="9" fill="#7FD8CE"/>
+    </g>
+    <g class="bp" data-part="arms">
+      <path class="bp-fill" d="M 34 47 Q 16 57 17 79" stroke="#CFC3E8" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path class="bp-fill" d="M 66 47 Q 84 57 83 79" stroke="#CFC3E8" stroke-width="13" fill="none" stroke-linecap="round"/>
+    </g>
+    <g class="bp" data-part="head">
+      <circle class="bp-fill" cx="50" cy="20" r="17" fill="#FFDCB0"/>
+      <circle cx="43" cy="19" r="2.2" fill="#2A2140"/><circle cx="57" cy="19" r="2.2" fill="#2A2140"/>
+      <path d="M 43 26 Q 50 30 57 26" stroke="#2A2140" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+  </svg>`;
+}
+document.getElementById('bodySvgWrap').innerHTML = heroBodySVG();
+
+/* progress dots for explore section */
+const exploredSet = new Set();
+function buildBodyProgress(){
+  const el = document.getElementById('bodyProgress');
+  el.innerHTML = '';
+  PARTS.forEach(p=>{
+    const d = document.createElement('div');
+    d.className = 'dot'; d.id = 'bdot-'+p.key;
+    el.appendChild(d);
+  });
+}
+buildBodyProgress();
+
+let capTimeout;
+document.getElementById('bodySvgWrap').addEventListener('click', (e)=>{
+  const g = e.target.closest('[data-part]');
+  if(!g) return;
+  const key = g.getAttribute('data-part');
+  const p = partMap[key];
+  document.querySelectorAll('#bodySvgWrap .bp').forEach(el=>el.classList.remove('active'));
+  g.classList.add('active');
+  speak(p.sentence);
+  const w = document.getElementById('capWord'), s = document.getElementById('capSentence');
+  w.textContent = '✨ ' + p.word; s.textContent = p.sentence;
+  w.classList.add('show'); s.classList.add('show');
+  exploredSet.add(key);
+  const dot = document.getElementById('bdot-'+key); if(dot) dot.classList.add('done');
+  maybeAwardSticker('explore', exploredSet.size >= PARTS.length);
+  clearTimeout(capTimeout);
+  capTimeout = setTimeout(()=>{
+    g.classList.remove('active');
+    w.classList.remove('show'); s.classList.remove('show');
+  }, 2200);
+});
+
+/* ============================================================
+   VOCABULARY CARDS
+============================================================ */
+function miniIcon(key){
+  const c = '#FF6F91';
+  const icons = {
+    head:`<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="20" fill="${c}"/><circle cx="23" cy="27" r="2.5" fill="#fff"/><circle cx="37" cy="27" r="2.5" fill="#fff"/><path d="M22 36 Q30 42 38 36" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`,
+    shoulders:`<svg viewBox="0 0 60 60"><ellipse cx="30" cy="32" rx="24" ry="10" fill="${c}"/><circle cx="30" cy="16" r="9" fill="#CFC3E8"/></svg>`,
+    arms:`<svg viewBox="0 0 60 60"><path d="M22 14 Q6 24 8 44" stroke="${c}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M38 14 Q54 24 52 44" stroke="${c}" stroke-width="9" fill="none" stroke-linecap="round"/></svg>`,
+    tummy:`<svg viewBox="0 0 60 60"><rect x="12" y="10" width="36" height="40" rx="18" fill="${c}"/><circle cx="30" cy="32" r="5" fill="#fff" opacity=".8"/></svg>`,
+    legs:`<svg viewBox="0 0 60 60"><path d="M22 8 Q18 32 18 50" stroke="${c}" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M38 8 Q42 32 42 50" stroke="${c}" stroke-width="9" fill="none" stroke-linecap="round"/></svg>`,
+    knees:`<svg viewBox="0 0 60 60"><circle cx="22" cy="30" r="9" fill="${c}"/><circle cx="38" cy="30" r="9" fill="${c}"/></svg>`,
+    feet:`<svg viewBox="0 0 60 60"><ellipse cx="18" cy="32" rx="12" ry="8" fill="${c}"/><ellipse cx="42" cy="32" rx="12" ry="8" fill="${c}"/></svg>`,
+    toes:`<svg viewBox="0 0 60 60"><circle cx="14" cy="30" r="4" fill="${c}"/><circle cx="24" cy="26" r="4" fill="${c}"/><circle cx="34" cy="26" r="4" fill="${c}"/><circle cx="44" cy="30" r="4" fill="${c}"/></svg>`
+  };
+  return icons[key] || '';
+}
+const vocabDoneSet = new Set();
+function buildVocabGrid(){
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = '';
+  PARTS.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'vocab-card'; card.id = 'vc-'+p.key;
+    card.innerHTML = `<div class="vc-icon" id="vci-${p.key}">${miniIcon(p.key)}</div><div class="vc-word">${p.word}</div>`;
+    card.onclick = ()=>{
+      speak(p.sentence);
+      document.getElementById('vci-'+p.key).classList.add('bump');
+      setTimeout(()=>document.getElementById('vci-'+p.key).classList.remove('bump'), 450);
+      card.classList.add('done');
+      const vs = document.getElementById('vocabSentence');
+      vs.textContent = p.sentence; vs.classList.add('show');
+      vocabDoneSet.add(p.key);
+      maybeAwardSticker('vocab', vocabDoneSet.size >= PARTS.length);
+    };
+    grid.appendChild(card);
+  });
+}
+buildVocabGrid();
+
+/* ============================================================
+   MINI PRACTICE (TPR, 5 rounds)
+============================================================ */
+const practicePool = [
+  {text:'Touch your knees!', key:'knees'},
+  {text:'Show me your shoulders!', key:'shoulders'},
+  {text:'Touch your tummy!', key:'tummy'},
+  {text:'Wiggle your toes!', key:'toes'},
+  {text:'Show me your arms!', key:'arms'},
+  {text:'Touch your feet!', key:'feet'},
+  {text:'Show me your legs!', key:'legs'},
+  {text:'Touch your head!', key:'head'}
+];
+let practiceOrder = [], practiceIdx = 0, currentPracticeText = '';
+function startPractice(){
+  practiceOrder = [...practicePool].sort(()=>Math.random()-0.5).slice(0,5);
+  practiceIdx = 0;
+  document.getElementById('practiceIntro').style.display='none';
+  document.getElementById('practiceDone').classList.remove('show');
+  document.getElementById('practiceGame').style.display='block';
+  const dotsEl = document.getElementById('practiceDots'); dotsEl.innerHTML='';
+  practiceOrder.forEach(()=>{ const d=document.createElement('div'); d.className='dot'; dotsEl.appendChild(d); });
+  renderPractice();
+}
+function renderPractice(){
+  const item = practiceOrder[practiceIdx];
+  currentPracticeText = item.text;
+  document.getElementById('practicePrompt').textContent = item.text;
+  document.getElementById('practiceFeedback').classList.remove('show');
+  speak(item.text);
+}
+function practiceAnswer(){
+  const fb = document.getElementById('practiceFeedback');
+  fb.textContent = '✅ Great!'; fb.classList.add('show');
+  document.getElementById('practiceDots').children[practiceIdx].classList.add('done');
+  setTimeout(()=>{
+    practiceIdx++;
+    if(practiceIdx < practiceOrder.length){ renderPractice(); }
+    else{
+      document.getElementById('practiceGame').style.display='none';
+      document.getElementById('practiceDone').classList.add('show');
+      speak('You did it! Great practicing!');
+      maybeAwardSticker('practice', true);
+    }
+  }, 900);
+}
+
+/* ============================================================
+   SPEAK ACTIVITY
+============================================================ */
+const speakSentences = ['This is my tummy.','I have two arms.','These are my knees.','Touch your toes.','This is my head.'];
+let speakUsed = false;
+function speakActivity(){
+  const sentence = speakSentences[Math.floor(Math.random()*speakSentences.length)];
+  document.getElementById('speakSentence').textContent = sentence;
+  const mic = document.getElementById('micBtn');
+  mic.classList.add('listening');
+  speak(sentence);
+  const fb = document.getElementById('speakFeedback');
+  fb.classList.remove('show');
+  setTimeout(()=>{
+    mic.classList.remove('listening');
+    fb.textContent = '🌟 Great speaking!';
+    fb.classList.add('show');
+    speakUsed = true;
+    maybeAwardSticker('speak', true);
+  }, 1800);
+}
+
+/* ============================================================
+   LITTLE CHALLENGE (find the part)
+============================================================ */
+let challengeOrder = [], challengeIdx = 0;
+function startChallenge(){
+  challengeOrder = [...PARTS].sort(()=>Math.random()-0.5).slice(0,5);
+  challengeIdx = 0;
+  document.getElementById('challengeIntro').style.display='none';
+  document.getElementById('challengeDone').classList.remove('show');
+  document.getElementById('challengeGame').style.display='block';
+  document.getElementById('challengeSvgWrap').innerHTML = heroBodySVG();
+  const dotsEl = document.getElementById('challengeDots'); dotsEl.innerHTML='';
+  challengeOrder.forEach(()=>{ const d=document.createElement('div'); d.className='dot'; dotsEl.appendChild(d); });
+  attachChallengeHandler();
+  renderChallenge();
+}
+function renderChallenge(){
+  const target = challengeOrder[challengeIdx];
+  document.getElementById('challengePrompt').textContent = 'Can you find: ' + target.word.toUpperCase() + '?';
+  document.getElementById('challengeFeedback').textContent = '';
+  speak('Can you find the ' + target.word.toLowerCase() + '?');
+  document.querySelectorAll('#challengeSvgWrap .bp').forEach(el=>el.classList.remove('active'));
+}
+function attachChallengeHandler(){
+  const wrap = document.getElementById('challengeSvgWrap');
+  wrap.onclick = (e)=>{
+    const g = e.target.closest('[data-part]');
+    if(!g) return;
+    const key = g.getAttribute('data-part');
+    const target = challengeOrder[challengeIdx];
+    const fb = document.getElementById('challengeFeedback');
+    if(key === target.key){
+      g.classList.add('active');
+      fb.textContent = '✅ Great!'; fb.style.color = 'var(--green)';
+      speak('Yes! ' + target.sentence, false);
+      document.getElementById('challengeDots').children[challengeIdx].classList.add('done');
+      setTimeout(()=>{
+        challengeIdx++;
+        if(challengeIdx < challengeOrder.length) renderChallenge();
+        else{
+          document.getElementById('challengeGame').style.display='none';
+          document.getElementById('challengeDone').classList.add('show');
+          launchConfetti();
+          speak('Amazing! You found them all!');
+          maybeAwardSticker('challenge', true);
+        }
+      }, 1300);
+    } else {
+      fb.textContent = 'Try again!'; fb.style.color = 'var(--coral)';
+    }
+  };
+}
+
+/* ============================================================
+   STICKERS + CONFETTI
+============================================================ */
+const stickerDefs = [
+  {id:'explore', icon:'🔍', label:'Explorer'},
+  {id:'vocab', icon:'📖', label:'Word Master'},
+  {id:'practice', icon:'🎲', label:'Practicer'},
+  {id:'speak', icon:'🎤', label:'Speaker'},
+  {id:'challenge', icon:'🏆', label:'Champion'}
+];
+const earnedStickers = new Set();
+function buildStickerRow(){
+  const row = document.getElementById('stickerRow');
+  row.innerHTML = '';
+  stickerDefs.forEach(s=>{
+    const chip = document.createElement('div');
+    chip.className = 'sticker-chip'; chip.id = 'sticker-'+s.id;
+    chip.innerHTML = `<div class="sc-icon">${s.icon}</div><div class="sc-label">${s.label}</div>`;
+    row.appendChild(chip);
+  });
+  updateStickerCount();
+}
+buildStickerRow();
+function updateStickerCount(){
+  document.getElementById('stickerCount').textContent = earnedStickers.size + ' / ' + stickerDefs.length;
+}
+function maybeAwardSticker(id, condition){
+  if(!condition || earnedStickers.has(id)) return;
+  earnedStickers.add(id);
+  const chip = document.getElementById('sticker-'+id);
+  if(chip) chip.classList.add('earned');
+  updateStickerCount();
+  launchConfetti();
+}
+function launchConfetti(){
+  const colors = ['#FFC857','#39C6BC','#FF6F91','#B79FDB','#4BC87A'];
+  for(let i=0;i<24;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.left = Math.random()*100+'vw';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.animation = 'confetti-fall ' + (1.2+Math.random()*0.8) + 's ease-out forwards';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 2200);
+  }
+}
+</script>
+</body>
+</html>

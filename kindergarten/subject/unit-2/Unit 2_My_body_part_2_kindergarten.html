@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<!-- LittleLume English — My Body Part 2 — v2.0 (shortened, story-driven) -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumi's Light Adventure — Play & Learn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  --night:#1B3A4E; --night-deep:#0F2233; --gold:#FFC857; --gold-soft:#FFE3A8;
+  --lavender:#B79FDB; --teal:#39C6BC; --coral:#FF6F91; --paper:#FFF9EE; --ink:#2A2140;
+  --green:#4BC87A; --sky:#5BB8FF; --shadow-purple:#4A3B6B;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  margin:0; font-family:'Nunito',sans-serif; color:var(--ink);
+  background:
+    radial-gradient(ellipse 900px 600px at 20% -10%, rgba(57,198,188,.18), transparent),
+    radial-gradient(ellipse 800px 600px at 100% 0%, rgba(255,200,87,.12), transparent),
+    var(--night);
+  min-height:100vh; overflow-x:hidden;
+}
+h1,h2,h3,.title-font{font-family:'Baloo 2',sans-serif;}
+button{font-family:inherit; -webkit-tap-highlight-color:transparent;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+
+/* ---------- topbar ---------- */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(15,34,51,.55);backdrop-filter:blur(6px);}
+#glowbar{width:120px;height:10px;border-radius:10px;background:rgba(255,255,255,.15);overflow:hidden;margin:0 10px;}
+#glowbar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .6s;}
+#starcount{color:var(--gold-soft);font-weight:800;font-size:14px;white-space:nowrap;}
+#homebtn,#infobtn,#mutebtn{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:50%;width:34px;height:34px;font-size:16px;cursor:pointer;}
+.top-left{display:flex;align-items:center;gap:8px;}
+.top-right{display:flex;align-items:center;gap:8px;}
+
+/* ---------- info modal ---------- */
+#infoModal{position:fixed;inset:0;background:rgba(15,34,51,.85);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+#infoModal.open{display:flex;}
+.info-box{background:var(--paper);border-radius:22px;padding:26px;max-width:420px;text-align:left;}
+.info-box h3{margin-top:0;color:var(--night);}
+.info-box p{line-height:1.5;font-size:14px;}
+
+/* ---------- scene ---------- */
+.scene{display:none;min-height:100vh;padding:90px 20px 60px;align-items:center;justify-content:center;flex-direction:column;text-align:center;}
+.scene.active{display:flex;}
+.scene-inner{max-width:560px;width:100%;}
+.eyebrow-tag{display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:var(--night);background:var(--teal);padding:5px 16px;border-radius:20px;margin-bottom:14px;}
+.scene h2{color:#fff;font-size:clamp(22px,5vw,32px);margin:0 0 6px;}
+.scene .setting{color:var(--gold-soft);font-style:italic;font-size:14px;margin-bottom:16px;}
+.scene p.lead{color:rgba(255,255,255,.8);font-size:16px;line-height:1.6;margin-bottom:22px;}
+
+/* ---------- buttons ---------- */
+.big-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:var(--night-deep);background:var(--gold);border:none;border-radius:50px;padding:16px 40px;cursor:pointer;box-shadow:0 10px 26px rgba(255,200,87,.4);transition:transform .15s ease;}
+.big-btn:hover{transform:translateY(-2px) scale(1.03);}
+.big-btn:active{transform:scale(.97);}
+.big-btn.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4);box-shadow:none;}
+.big-btn.teal{background:var(--teal);color:#fff;box-shadow:0 10px 26px rgba(57,198,188,.4);}
+.speak-btn{background:var(--teal);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:18px;cursor:pointer;margin-bottom:12px;}
+
+/* ---------- Lumi mascot wrap ---------- */
+.lumi-wrap{display:inline-block;cursor:pointer;user-select:none;animation:float 3.6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.speech-bubble{background:#fff;color:var(--ink);border-radius:18px;padding:14px 20px;font-size:16px;margin:16px auto;max-width:380px;box-shadow:0 8px 20px rgba(0,0,0,.25);}
+.tap-hint{color:rgba(255,255,255,.55);font-size:13px;margin-top:6px;}
+
+/* ---------- monster ---------- */
+.monster-wrap{display:inline-block;margin:6px 14px;animation:lurk 2.6s ease-in-out infinite;}
+@keyframes lurk{0%,100%{transform:translateX(0) rotate(-3deg);}50%{transform:translateX(6px) rotate(3deg);}}
+
+/* ---------- storybook ---------- */
+.book-page-counter{display:flex;gap:8px;justify-content:center;margin-bottom:14px;}
+.book-page-counter .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);}
+.book-page-counter .dot.active{background:var(--gold);transform:scale(1.3);}
+.book-card{background:#fff;border-radius:22px;padding:22px 20px 26px;box-shadow:0 20px 44px rgba(0,0,0,.3);max-width:340px;margin:0 auto;}
+.book-scene-visual{display:flex;align-items:center;justify-content:center;gap:6px;min-height:150px;}
+.book-line{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:var(--night);margin-top:6px;line-height:1.4;}
+.book-nav{display:flex;gap:14px;justify-content:center;margin-top:20px;}
+
+/* ---------- vocab ---------- */
+.vocab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;}
+.vocab-card{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:18px;padding:14px 10px 12px;cursor:pointer;transition:all .18s ease;}
+.vocab-card .vc-icon{font-size:38px;background:#fff;border-radius:14px;padding:6px 0;display:flex;align-items:center;justify-content:center;}
+.vocab-card .vc-word{font-family:'Baloo 2',sans-serif;font-weight:700;color:#fff;font-size:16px;margin-top:4px;}
+.vocab-card.done{background:rgba(75,200,122,.25);border-color:var(--green);}
+.vocab-progress{color:var(--gold-soft);font-size:14px;font-weight:800;margin-bottom:14px;}
+@keyframes animWave{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-14deg);}75%{transform:rotate(14deg);}}
+@keyframes animStamp{0%,100%{transform:translateY(0) scaleY(1);}30%{transform:translateY(7px) scaleY(.88);}60%{transform:translateY(-4px) scaleY(1.04);}}
+@keyframes animWiggle{0%,100%{transform:translateX(0);}25%{transform:translateX(-7px);}75%{transform:translateX(7px);}}
+@keyframes animJiggle{0%,100%{transform:scale(1,1);}30%{transform:scale(1.12,.88);}60%{transform:scale(.92,1.1);}}
+.vc-icon.anim-wave{animation:animWave .5s ease;}
+.vc-icon.anim-stamp{animation:animStamp .45s ease;}
+.vc-icon.anim-wiggle{animation:animWiggle .5s ease;}
+.vc-icon.anim-jiggle{animation:animJiggle .5s ease;}
+
+/* ---------- MCQ game ---------- */
+.game-stage{width:100%;}
+.prompt-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:22px;margin-bottom:20px;}
+.prompt-text{color:#fff;font-size:19px;font-weight:800;font-family:'Baloo 2',sans-serif;}
+.options-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+.opt-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:16px;min-width:110px;background:#fff;color:var(--night);border:3px solid var(--lavender);border-radius:18px;padding:10px 14px 12px;cursor:pointer;transition:all .18s ease;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.opt-btn .opt-icon{pointer-events:none;}
+.opt-btn:hover{transform:translateY(-2px);}
+.opt-btn.correct{background:#B9F5C8;border-color:#3CBB63;animation:pop .4s ease;}
+.opt-btn.wrong{background:#FFC9C9;border-color:#E85555;animation:shake .4s ease;}
+.dots-row{display:flex;gap:8px;justify-content:center;margin-top:22px;}
+.dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.25);}
+.dot.done{background:var(--gold);}
+@keyframes pop{0%{transform:scale(1);}50%{transform:scale(1.15);}100%{transform:scale(1);}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+
+/* ---------- memory match ---------- */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px;}
+.memory-card{aspect-ratio:1/1;background:linear-gradient(160deg,var(--teal),#2C9990);border:none;border-radius:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;transition:transform .15s;padding:4px;}
+.memory-card:active{transform:scale(.94);}
+.memory-card.revealed{background:#fff;color:var(--night);}
+.memory-card.revealed .mc-word{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:13px;}
+.memory-card.matched{background:rgba(75,200,122,.3);border:2px solid var(--green);}
+.memory-card.shake{animation:shake .4s ease;}
+
+/* ---------- balloon pop ---------- */
+.balloon-stage{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;min-height:150px;margin-bottom:6px;}
+.balloon-btn{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15px;color:var(--night);background:radial-gradient(circle at 35% 30%, #fff, var(--coral) 70%);border:none;border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;width:78px;height:92px;cursor:pointer;position:relative;animation:balloon-bob 2.4s ease-in-out infinite;box-shadow:0 8px 16px rgba(0,0,0,.25);}
+.balloon-btn:nth-child(2n){animation-delay:.4s;background:radial-gradient(circle at 35% 30%, #fff, var(--teal) 70%);}
+.balloon-btn:nth-child(3n){animation-delay:.8s;background:radial-gradient(circle at 35% 30%, #fff, var(--lavender) 70%);}
+.balloon-btn.popped{animation:balloon-pop .4s ease forwards;}
+.balloon-btn.miss{animation:shake .4s ease;}
+@keyframes balloon-bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes balloon-pop{0%{transform:scale(1);opacity:1;}100%{transform:scale(1.6);opacity:0;}}
+
+/* ---------- TPR ---------- */
+.tpr-command{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(22px,6vw,30px);color:#fff;margin:18px 0;min-height:80px;display:flex;align-items:center;justify-content:center;}
+.tpr-progress{display:flex;gap:8px;justify-content:center;margin-bottom:10px;}
+
+/* ---------- speaking ---------- */
+.mic-btn{font-size:58px;background:none;border:none;cursor:pointer;display:block;margin:12px auto;filter:drop-shadow(0 0 16px rgba(255,200,87,.5));transition:transform .15s;}
+.mic-btn:active{transform:scale(.9);}
+.mic-btn.listening{animation:mic-pulse .6s ease-in-out infinite;}
+@keyframes mic-pulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 16px rgba(255,200,87,.5));}50%{transform:scale(1.18);filter:drop-shadow(0 0 30px rgba(255,200,87,.9));}}
+.mic-wave{display:flex;gap:4px;justify-content:center;align-items:flex-end;height:30px;margin:4px auto 0;opacity:0;transition:opacity .2s;}
+.mic-wave.active{opacity:1;}
+.mic-wave span{display:block;width:5px;background:var(--teal);border-radius:3px;height:6px;animation:wave-bounce .9s ease-in-out infinite;}
+.mic-wave span:nth-child(1){animation-delay:0s;}
+.mic-wave span:nth-child(2){animation-delay:.12s;}
+.mic-wave span:nth-child(3){animation-delay:.24s;}
+.mic-wave span:nth-child(4){animation-delay:.36s;}
+.mic-wave span:nth-child(5){animation-delay:.48s;}
+@keyframes wave-bounce{0%,100%{height:6px;}50%{height:28px;}}
+.level-badge{display:inline-block;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;color:var(--night-deep);background:var(--gold-soft);padding:4px 14px;border-radius:14px;margin-bottom:6px;}
+.speak-feedback{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;color:var(--gold);min-height:30px;margin-top:6px;opacity:0;transform:scale(.7);transition:opacity .25s, transform .25s;}
+.speak-feedback.show{opacity:1;transform:scale(1);}
+
+/* ---------- badge collection ---------- */
+.badge-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:18px 0 4px;}
+.badge-chip{border-radius:16px;padding:12px 14px;min-width:96px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);}
+.badge-chip .bc-icon{font-size:30px;}
+.badge-chip .bc-label{color:#fff;font-size:12px;font-weight:800;margin-top:4px;font-family:'Baloo 2',sans-serif;}
+.badge-chip.earned{background:rgba(255,200,87,.18);border-color:var(--gold);}
+.badge-chip.locked{opacity:.35;}
+.badge-chip.locked .bc-label{color:rgba(255,255,255,.6);}
+
+/* ---------- reward ---------- */
+.reward-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:18px 0;}
+.reward-chip{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 16px;min-width:120px;}
+.reward-chip .rc-icon{font-size:34px;}
+.reward-chip .rc-label{color:#fff;font-size:13px;font-weight:800;margin-top:4px;font-family:'Baloo 2',sans-serif;}
+.chest{cursor:pointer;transition:transform .2s;}
+.chest:active{transform:scale(.95);}
+.glow-meter{width:220px;height:16px;border-radius:10px;background:rgba(255,255,255,.15);overflow:hidden;margin:10px auto;}
+.glow-meter-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width 1s ease;}
+.sticker-case{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+.sticker{font-size:30px;opacity:.15;transition:opacity .4s, transform .4s;}
+.sticker.earned{opacity:1;transform:scale(1.15);}
+.certificate{background:var(--paper);color:var(--ink);border-radius:18px;padding:20px;margin:20px auto 0;max-width:340px;box-shadow:0 14px 30px rgba(0,0,0,.3);}
+.certificate .cert-title{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:18px;}
+.cert-logo{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:4px;}
+.cert-logo .cert-logo-text{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;color:var(--night);text-transform:uppercase;}
+.cert-date{font-size:12px;color:#7a7190;margin-top:10px;}
+.cert-download-btn{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:14px;color:#fff;background:var(--teal);border:none;border-radius:14px;padding:9px 18px;cursor:pointer;margin-top:12px;}
+.cert-download-btn:active{transform:scale(.97);}
+
+/* ---------- confetti & balloons ---------- */
+#confettiLayer,#balloonLayer{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden;}
+.confetti-piece{position:absolute;top:-10px;border-radius:2px;animation:confetti-fall linear forwards;}
+@keyframes confetti-fall{to{transform:translateY(110vh) rotate(540deg);opacity:.9;}}
+.balloon-piece{position:absolute;bottom:-60px;font-size:40px;animation:balloon-rise ease-in forwards;}
+@keyframes balloon-rise{to{transform:translateY(-115vh);opacity:.9;}}
+
+/* ---------- win celebration burst ---------- */
+.praise-pop{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%) scale(.5);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(28px,8vw,44px);color:var(--gold);text-shadow:0 4px 14px rgba(0,0,0,.45);z-index:95;pointer-events:none;opacity:0;animation:praise-in 1s ease forwards;}
+@keyframes praise-in{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(-8deg);}30%{opacity:1;transform:translate(-50%,-50%) scale(1.15) rotate(3deg);}70%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0);}100%{opacity:0;transform:translate(-50%,-50%) scale(1) translateY(-30px);}}
+.mini-star{position:fixed;font-size:20px;pointer-events:none;z-index:94;animation:mini-star-burst .85s ease-out forwards;}
+@keyframes mini-star-burst{0%{transform:translate(0,0) scale(.4);opacity:1;}100%{transform:translate(var(--dx),var(--dy)) scale(1.1);opacity:0;}}
+
+/* ---------- reward sky-brighten overlay ---------- */
+#skyBrighten{position:fixed;inset:0;pointer-events:none;z-index:5;background:radial-gradient(ellipse 900px 700px at 50% 20%, rgba(255,227,168,0), rgba(255,227,168,0));transition:background 2.2s ease;}
+#skyBrighten.bright{background:radial-gradient(ellipse 1000px 800px at 50% 15%, rgba(255,227,168,.55), rgba(255,200,87,.08) 60%, rgba(255,227,168,0) 80%);}
+.badge-chip{transition:opacity .4s, transform .4s;}
+.badge-chip.pending{opacity:0;transform:scale(.6);}
+
+/* ---------- monster flee (reward cameo) ---------- */
+.monster-flee{animation:monster-flee 1.3s ease-in forwards;}
+@keyframes monster-flee{0%{transform:scale(1) translateX(0) rotate(0);opacity:1;}100%{transform:scale(.1) translateX(140px) rotate(30deg);opacity:0;}}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="top-left">
+    <button id="homebtn" onclick="goScene('start')">🏠</button>
+    <button id="infobtn" onclick="toggleInfo(true)">i</button>
+    <button id="mutebtn" onclick="toggleMusicMute()">🔊</button>
+  </div>
+  <div style="display:flex;align-items:center;">
+    <span id="starcount">🪔 Glow 0/5</span>
+    <div id="glowbar"><div id="glowbar-fill"></div></div>
+  </div>
+</div>
+
+<div id="infoModal">
+  <div class="info-box">
+    <h3>👩‍🏫 For the Teacher</h3>
+    <p>This is a shortened, story-driven <strong>My Body — Part 2</strong>. A little Shadow Monster steals Lumi's glow while she sleeps, and children help bring it back through seven quick steps: <strong>Story, Vocabulary, one Game, TPR movement, Speaking practice, a quick memory Review, and a Reward finale.</strong></p>
+    <p>Words covered: arms, legs, feet, toes, tummy, shoulders, knees, body. Pattern: <em>"This is my ___."</em> / <em>"I have ___."</em> Designed to run about 20–25 minutes.</p>
+    <button class="big-btn" onclick="toggleInfo(false)">Got it!</button>
+  </div>
+</div>
+
+<div id="skyBrighten"></div>
+<div id="confettiLayer"></div>
+<div id="balloonLayer"></div>
+
+<!-- ============ SCENE: START ============ -->
+<section class="scene active" id="scene-start">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">LittleLume English · Part 2</div>
+    <h2>Lumi's Light Adventure</h2>
+    <p class="lead" style="color:var(--gold-soft);">Something happened while Lumi was asleep...</p>
+    <div class="lumi-wrap" id="startLumi" onclick="greetLumi()"></div>
+    <div class="speech-bubble" id="startBubble" style="display:none;"></div>
+    <div style="margin-top:22px;">
+      <button class="big-btn" onclick="goScene('story'); initStory();">Find Out What Happened ✨</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENE: STORY ============ -->
+<section class="scene" id="scene-story">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">Story Time</div>
+    <h2>The Shadow Monster</h2>
+    <div class="setting">A LittleLume Picture Book</div>
+    <div class="book-page-counter" id="bookCounter"></div>
+    <div class="book-card">
+      <div class="book-scene-visual" id="bookVisual"></div>
+      <button class="speak-btn" onclick="replayCurrentPrompt()">🔊</button>
+      <div class="book-line" id="bookLine"></div>
+    </div>
+    <div class="book-nav">
+      <button class="big-btn secondary" id="bookPrevBtn" onclick="bookPrev()" style="display:none;">◀ Back</button>
+      <button class="big-btn teal" id="bookActionBtn" onclick="storyAction()" style="display:none;"></button>
+      <button class="big-btn" id="bookNextBtn" onclick="bookNext()">Next ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENE: VOCABULARY ============ -->
+<section class="scene" id="scene-vocab">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">Wake Up the Words</div>
+    <h2>Say the Body Words!</h2>
+    <p class="lead">Tap each word out loud — every word gives Lumi a little spark! ✨</p>
+    <div class="lumi-wrap" id="vocabLumi" style="margin-bottom:10px;" onclick="replayCurrentPrompt()"></div>
+    <div class="vocab-progress" id="vocabProgress">0 / 8 words woken up</div>
+    <div class="vocab-grid" id="vocabGrid"></div>
+    <button class="big-btn" id="vocabContinueBtn" style="display:none;" onclick="goScene('game'); initGame();">Continue ▶</button>
+  </div>
+</section>
+
+<!-- ============ SCENE: GAME ============ -->
+<section class="scene" id="scene-game">
+  <div class="scene-inner">
+    <div class="eyebrow-tag" id="gamePhaseTag">Game 1 of 3 · Listen &amp; Tap</div>
+    <h2 id="gameTitle">Follow Lumi's Voice!</h2>
+    <p class="lead" id="gameLead">Listen to the command and tap the matching word!</p>
+    <div class="lumi-wrap" id="gameLumi" style="margin-bottom:6px;"></div>
+
+    <!-- Phase 1: Listen & Tap (MCQ) -->
+    <div class="game-stage" id="stageMCQ">
+      <div class="prompt-card">
+        <button class="speak-btn" onclick="replayCurrentPrompt()">🔊</button>
+        <div class="prompt-text" id="gamePromptText"></div>
+      </div>
+      <div class="options-row" id="gameOptions"></div>
+      <div class="dots-row" id="gameDots"></div>
+    </div>
+
+    <!-- Phase 2: Memory Match -->
+    <div class="game-stage" id="stageMemory" style="display:none;">
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div class="dots-row" id="memoryDots"></div>
+    </div>
+
+    <!-- Phase 3: Balloon Pop -->
+    <div class="game-stage" id="stageBalloon" style="display:none;">
+      <div class="prompt-card">
+        <button class="speak-btn" onclick="replayCurrentPrompt()">🔊</button>
+        <div class="prompt-text" id="balloonPromptText"></div>
+      </div>
+      <div class="balloon-stage" id="balloonStage"></div>
+      <div class="dots-row" id="balloonDots"></div>
+    </div>
+
+    <div id="gameComplete" style="display:none;margin-top:16px;">
+      <div class="speech-bubble">"Sparks are flying! I can feel my glow coming back!"</div>
+      <button class="big-btn" onclick="goScene('tpr'); initTPR();">Continue ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENE: TPR ============ -->
+<section class="scene" id="scene-tpr">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">Move Like Lumi!</div>
+    <h2>Let's Get Moving!</h2>
+    <p class="lead">Do the action with Lumi, then tap "I did it!"</p>
+    <div class="lumi-wrap" id="tprLumi" onclick="replayCurrentPrompt()"></div>
+    <div class="tpr-progress" id="tprDots"></div>
+    <div class="tpr-command" id="tprCommand"></div>
+    <button class="big-btn teal" id="tprDoneBtn" onclick="tprNext()">I did it! ✅</button>
+    <div id="tprComplete" style="display:none;margin-top:16px;">
+      <div class="speech-bubble">"You moved so well! Now let's practice speaking!"</div>
+      <button class="big-btn" onclick="goScene('speaking'); initSpeaking();">Continue ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENE: SPEAKING ============ -->
+<section class="scene" id="scene-speaking">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">Speaking Time</div>
+    <h2>Repeat After Lumi!</h2>
+    <p class="lead">Listen, then say the whole sentence out loud!</p>
+    <div class="lumi-wrap" id="speakLumi" onclick="playSpeakLine()"></div>
+    <div style="color:rgba(255,255,255,.7);font-size:14px;margin:8px 0 4px;" id="speakHint">Tap Lumi to hear the sentence.</div>
+    <div class="level-badge" id="speakLevelBadge">Level 1</div>
+    <div style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(20px,5vw,26px);color:#fff;margin:10px 0;" id="speakLine"></div>
+    <button class="mic-btn" onclick="speakMyTurn()" id="speakMicBtn">🎤</button>
+    <div class="mic-wave" id="micWave"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="speak-feedback" id="speakFeedback"></div>
+    <div style="color:rgba(255,255,255,.7);font-size:14px;">Tap the microphone, then say it out loud!</div>
+    <div class="dots-row" id="speakDots"></div>
+    <div id="speakComplete" style="display:none;margin-top:16px;">
+      <div class="speech-bubble" id="speakCompleteMsg">"I can feel it — my light is almost all the way back!"</div>
+      <button class="big-btn" onclick="goScene('review'); initReview();">Continue ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENE: MINI REVIEW ============ -->
+<section class="scene" id="scene-review">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">Quick Check</div>
+    <h2>Can You Remember?</h2>
+    <p class="lead">Show Lumi the body part, then tap "Got it!"</p>
+    <div class="lumi-wrap" id="reviewLumi" onclick="replayCurrentPrompt()"></div>
+    <div class="tpr-progress" id="reviewDots"></div>
+    <div class="tpr-command" id="reviewCommand"></div>
+    <button class="big-btn teal" id="reviewDoneBtn" onclick="reviewNext()">Got it! ✅</button>
+    <div id="reviewComplete" style="display:none;margin-top:16px;">
+      <div class="speech-bubble">"You remembered everything! Let's celebrate!"</div>
+      <button class="big-btn" onclick="goScene('reward'); initReward();">Continue ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENE: REWARD ============ -->
+<section class="scene" id="scene-reward">
+  <div class="scene-inner">
+    <div class="eyebrow-tag">You Did It!</div>
+    <h2>Lumi Shines Again!</h2>
+    <div style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;">
+      <div class="lumi-wrap" id="rewardLumi"></div>
+      <div class="monster-wrap" id="rewardMonster" style="display:none;"></div>
+    </div>
+    <div class="speech-bubble" id="monsterBubble" style="display:none;background:#3A2E56;color:#fff;"></div>
+    <div class="speech-bubble" id="rewardSpeech" style="display:none;">"The Shadow Monster ran away — my glow is all yours to celebrate! Thank you for helping me!"</div>
+    <div class="glow-meter"><div class="glow-meter-fill" id="rewardGlowFill"></div></div>
+    <div style="color:var(--gold-soft);font-weight:800;font-size:14px;">Lumi Glow Level 5 / 5</div>
+    <div class="reward-row">
+      <div class="reward-chip"><div class="rc-icon">⭐</div><div class="rc-label">Sticker Unlocked</div></div>
+      <div class="reward-chip chest" id="chestChip" onclick="openChest()"><div class="rc-icon">🎁</div><div class="rc-label" id="chestLabel">Tap the Chest!</div></div>
+      <div class="reward-chip"><div class="rc-icon">🎉</div><div class="rc-label">Fireworks</div></div>
+      <div class="reward-chip"><div class="rc-icon">🎈</div><div class="rc-label">Balloon Party</div></div>
+    </div>
+    <div class="sticker-case" id="stickerCase"></div>
+    <p style="color:var(--gold-soft);font-weight:800;font-size:13px;margin:18px 0 0;">Your LittleLume Badge Collection</p>
+    <div class="badge-row">
+      <div class="badge-chip earned pending" id="badgeBodyHero"><div class="bc-icon">🏅</div><div class="bc-label">Body Hero</div></div>
+      <div class="badge-chip locked"><div class="bc-icon">🔤</div><div class="bc-label">Alphabet Star</div></div>
+      <div class="badge-chip locked"><div class="bc-icon">🐾</div><div class="bc-label">Animal Explorer</div></div>
+    </div>
+    <div class="certificate" id="certificateBox">
+      <div class="cert-logo"><span id="certLogoIcon"></span><span class="cert-logo-text">LittleLume English</span></div>
+      <div class="cert-title">🏆 Certificate of Glow-Power</div>
+      <div style="margin:12px 0 8px;" id="certNameInputWrap">
+        <input type="text" id="studentNameInput" placeholder="Type student's name here" maxlength="30"
+          style="font-family:'Nunito',sans-serif;font-weight:700;font-size:15px;padding:9px 14px;border-radius:12px;border:2px solid var(--lavender);width:80%;max-width:230px;text-align:center;"
+          oninput="updateCertName()">
+      </div>
+      <div id="certCongrats" style="font-family:'Baloo 2',sans-serif;font-weight:800;font-size:19px;color:var(--night);margin-bottom:6px;">Congratulations, Little Explorer!</div>
+      <p style="font-size:14px;margin:8px 0 0;">This certifies that <strong id="certNameSpan">Little Explorer</strong> helped Lumi find arms, legs, feet, toes, tummy, shoulders, knees, and body — and brought her light all the way back!</p>
+      <div class="cert-date" id="certDate"></div>
+    </div>
+    <button class="cert-download-btn" onclick="downloadCertificate()">⬇ Download Certificate</button>
+    <button class="big-btn" style="margin-top:20px;" onclick="restartAll()">Play Again 🔄</button>
+  </div>
+</section>
+
+<script>
+/* ===================================================
+   SPEECH
+=================================================== */
+let cachedVoices=[]; let currentSpeakText='';
+function loadVoices(){ cachedVoices = ('speechSynthesis' in window) ? speechSynthesis.getVoices() : []; }
+if('speechSynthesis' in window){ speechSynthesis.onvoiceschanged=loadVoices; loadVoices(); }
+function pickVoice(){
+  return cachedVoices.find(v=>/en-GB|en_GB/.test(v.lang)&&/Female|female/.test(v.name)) ||
+         cachedVoices.find(v=>/en/i.test(v.lang)) || null;
+}
+function speak(text, interrupt){
+  currentSpeakText=text;
+  if(!('speechSynthesis' in window)) return;
+  if(interrupt!==false) speechSynthesis.cancel();
+  function queue(){
+    const u=new SpeechSynthesisUtterance(text);
+    const v=pickVoice(); if(v) u.voice=v;
+    u.rate=0.88; u.pitch=1.1;
+    speechSynthesis.speak(u);
+  }
+  setTimeout(queue,60);
+}
+function replayCurrentPrompt(){ if(currentSpeakText) speak(currentSpeakText,true); }
+
+/* ===================================================
+   LUMI MASCOT — consistent SVG lamp character
+   glow: 0 (dim) .. 5 (max bright)  mood: sad|worried|hopeful|happy|excited|sleepy
+=================================================== */
+function lumiSVG(id, mood, glow, size){
+  size = size||140;
+  glow = Math.max(0, Math.min(5, glow));
+  const glowInt = Math.max(0, Math.min(5, Math.round(glow)));
+  const haloOpacity = 0.12 + glow*0.16;
+  const haloR = 46 + glow*7;
+  const flameColors = [
+    ['#6C7A89','#4A5A68'], // 0 dim grey
+    ['#8FD8CC','#3FA79A'], // 1
+    ['#B9E86A','#7CC13A'], // 2 (kept warm-teal blend below instead)
+    ['#FFE3A8','#FFC857'], // 3
+    ['#FFD98A','#FFB347'], // 4
+    ['#FFF3C4','#FFC857']  // 5 brightest
+  ];
+  const fc = flameColors[glowInt];
+  const bodyFill = glow<=1 ? '#7C8FA6' : '#39C6BC';
+  const bodyFillDark = glow<=1 ? '#5A6B80' : '#2C9990';
+
+  // face
+  let eyes='', mouth='', brows='';
+  if(mood==='sleepy'){
+    eyes = `<path d="M -14 2 Q -8 6 -2 2" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 6 2 Q 12 6 18 2" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    mouth = `<circle cx="2" cy="16" r="3" fill="#2A2140"/>`;
+  } else if(mood==='sad' || mood==='worried'){
+    eyes = `<circle cx="-8" cy="0" r="4" fill="#2A2140"/><circle cx="12" cy="0" r="4" fill="#2A2140"/>`;
+    brows = mood==='worried'
+      ? `<path d="M -16 -10 L -2 -6" stroke="#2A2140" stroke-width="3" stroke-linecap="round"/><path d="M 20 -10 L 6 -6" stroke="#2A2140" stroke-width="3" stroke-linecap="round"/>`
+      : `<path d="M -16 -8 L -2 -10" stroke="#2A2140" stroke-width="3" stroke-linecap="round"/><path d="M 20 -8 L 6 -10" stroke="#2A2140" stroke-width="3" stroke-linecap="round"/>`;
+    mouth = `<path d="M -8 18 Q 2 12 12 18" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  } else if(mood==='excited'){
+    eyes = `<circle cx="-8" cy="0" r="5" fill="#2A2140"/><circle cx="12" cy="0" r="5" fill="#2A2140"/>
+            <circle cx="-9.5" cy="-1.5" r="1.4" fill="#fff"/><circle cx="10.5" cy="-1.5" r="1.4" fill="#fff"/>`;
+    mouth = `<ellipse cx="2" cy="17" rx="8" ry="6" fill="#2A2140"/>`;
+  } else if(mood==='happy'){
+    eyes = `<path d="M -13 0 Q -8 -5 -3 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M 7 0 Q 12 -5 17 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    mouth = `<path d="M -9 13 Q 2 24 13 13" stroke="#2A2140" stroke-width="3.4" fill="none" stroke-linecap="round"/>`;
+  } else { // hopeful / neutral
+    eyes = `<circle cx="-8" cy="0" r="4.5" fill="#2A2140"/><circle cx="12" cy="0" r="4.5" fill="#2A2140"/>`;
+    mouth = `<path d="M -6 15 Q 2 20 10 15" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  }
+
+  return `
+  <svg width="${size}" height="${size*1.15}" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="halo-${id}" cx="50%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="${fc[0]}" stop-opacity="${haloOpacity+0.25}"/>
+        <stop offset="100%" stop-color="${fc[0]}" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="body-${id}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${bodyFill}"/>
+        <stop offset="100%" stop-color="${bodyFillDark}"/>
+      </linearGradient>
+      <radialGradient id="flame-${id}" cx="50%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="${fc[1] ? '#FFFDF2' : '#fff'}"/>
+        <stop offset="60%" stop-color="${fc[0]}"/>
+        <stop offset="100%" stop-color="${fc[1]}"/>
+      </radialGradient>
+    </defs>
+    <!-- halo glow -->
+    <circle cx="70" cy="42" r="${haloR}" fill="url(#halo-${id})"/>
+    <!-- flame / light orb -->
+    <ellipse cx="70" cy="34" rx="17" ry="21" fill="url(#flame-${id})"/>
+    <!-- lamp handle -->
+    <path d="M 100 76 Q 122 76 122 96 Q 122 114 104 112" stroke="url(#body-${id})" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <!-- lamp body (rounded bulb shape) -->
+    <path d="M 70 58
+             C 96 58 108 82 104 104
+             C 101 124 84 138 70 138
+             C 56 138 39 124 36 104
+             C 32 82 44 58 70 58 Z"
+          fill="url(#body-${id})"/>
+    <!-- little foot/base -->
+    <rect x="52" y="138" width="36" height="9" rx="4.5" fill="${bodyFillDark}"/>
+    <rect x="46" y="147" width="48" height="7" rx="3.5" fill="${bodyFillDark}"/>
+    <!-- face -->
+    <g transform="translate(70,98)">
+      ${brows}
+      ${eyes}
+      ${mouth}
+      <circle cx="-24" cy="10" r="6" fill="${fc[0]}" opacity=".55"/>
+      <circle cx="24" cy="10" r="6" fill="${fc[0]}" opacity=".55"/>
+    </g>
+  </svg>`;
+}
+function renderLumi(containerId, mood, glow, size){
+  const el=document.getElementById(containerId);
+  if(el) el.innerHTML = lumiSVG(containerId, mood, glow, size);
+}
+/* ---------- simple body-part illustration (kid outline + highlighted part) ---------- */
+function bodyPartSVG(part, size){
+  size = size || 64;
+  const base = '#CFC3E8'; // soft lavender - neutral parts
+  const hi = '#FF6F91';   // coral highlight (matches theme accent)
+  const skin = '#FFDCB0';
+  const ink = '#2A2140';
+  const c = (key)=> (part===key ? hi : base);
+  const bodyColor = (part==='body' || part==='tummy') ? hi : base;
+  return `
+  <svg width="${size}" height="${size*1.25}" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+    <!-- legs -->
+    <path d="M 42 80 Q 38 100 38 120" stroke="${c('legs')}" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <path d="M 58 80 Q 62 100 62 120" stroke="${c('legs')}" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <!-- knees -->
+    <circle cx="39" cy="99" r="7.5" fill="${c('knees')}"/>
+    <circle cx="61" cy="99" r="7.5" fill="${c('knees')}"/>
+    <!-- feet -->
+    <ellipse cx="35" cy="123" rx="11" ry="7" fill="${c('feet')}"/>
+    <ellipse cx="65" cy="123" rx="11" ry="7" fill="${c('feet')}"/>
+    <!-- toes -->
+    ${part==='toes' ? `
+      <circle cx="27" cy="120" r="2.6" fill="${hi}"/><circle cx="31" cy="117.3" r="2.6" fill="${hi}"/><circle cx="35" cy="116.3" r="2.6" fill="${hi}"/>
+      <circle cx="65" cy="116.3" r="2.6" fill="${hi}"/><circle cx="69" cy="117.3" r="2.6" fill="${hi}"/><circle cx="73" cy="120" r="2.6" fill="${hi}"/>
+    ` : ''}
+    <!-- torso (soft rounded blob) -->
+    <rect x="30" y="40" width="40" height="46" rx="20" ry="20" fill="${bodyColor}"/>
+    <!-- shoulders accent -->
+    <ellipse cx="50" cy="46" rx="21" ry="9" fill="${c('shoulders')}"/>
+    <!-- tummy -->
+    ${part==='tummy' ? `<circle cx="50" cy="67" r="11" fill="${hi}"/>` : ''}
+    <!-- arms -->
+    <path d="M 34 47 Q 16 57 17 79" stroke="${c('arms')}" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <path d="M 66 47 Q 84 57 83 79" stroke="${c('arms')}" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <!-- head -->
+    <circle cx="50" cy="20" r="17" fill="${skin}"/>
+    <circle cx="43" cy="19" r="2.2" fill="${ink}"/><circle cx="57" cy="19" r="2.2" fill="${ink}"/>
+    <path d="M 43 26 Q 50 30 57 26" stroke="${ink}" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+function monsterSVG(id, size){
+  size=size||90;
+  return `
+  <svg width="${size}" height="${size}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="mgrad-${id}" cx="50%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#6B5A94"/>
+        <stop offset="100%" stop-color="#3A2E56"/>
+      </radialGradient>
+    </defs>
+    <path d="M 50 10 C 74 10 90 30 90 54 C 90 66 84 72 78 76 L 82 90 L 70 82 L 62 90 L 54 82 L 46 90 L 38 82 L 26 90 L 30 76
+             C 18 70 10 62 10 50 C 10 28 26 10 50 10 Z" fill="url(#mgrad-${id})"/>
+    <circle cx="36" cy="46" r="7" fill="#FFE3A8"/>
+    <circle cx="64" cy="46" r="7" fill="#FFE3A8"/>
+    <circle cx="36" cy="46" r="3" fill="#2A2140"/>
+    <circle cx="64" cy="46" r="3" fill="#2A2140"/>
+    <path d="M 36 64 Q 50 56 64 64" stroke="#FFE3A8" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+
+/* ===================================================
+   GLOBAL PROGRESS / TOPBAR
+=================================================== */
+let lumiGlow = 0; // 0..5
+function setGlow(n){
+  lumiGlow = Math.max(lumiGlow, n);
+  document.getElementById('glowbar-fill').style.width = (lumiGlow/5*100)+'%';
+  document.getElementById('starcount').textContent = '🪔 Glow '+lumiGlow+'/5';
+}
+function toggleInfo(open){ document.getElementById('infoModal').classList.toggle('open', open); }
+
+/* ===================================================
+   BACKGROUND MUSIC — soft ambient pad / upbeat game loop
+   (fully synthesized, no external audio files)
+=================================================== */
+let audioCtx=null, musicGain=null, musicMuted=false, stopCurrentMusic=null, currentMusicMode=null;
+function ensureAudio(){
+  if(!audioCtx){
+    try{
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      musicGain = audioCtx.createGain();
+      musicGain.gain.value = musicMuted?0:0.16;
+      musicGain.connect(audioCtx.destination);
+    }catch(e){ audioCtx=null; }
+  }
+  if(audioCtx && audioCtx.state==='suspended') audioCtx.resume();
+}
+function toggleMusicMute(){
+  musicMuted=!musicMuted;
+  if(musicGain) musicGain.gain.value = musicMuted?0:0.16;
+  document.getElementById('mutebtn').textContent = musicMuted ? '🔇' : '🔊';
+}
+function stopMusic(){ if(stopCurrentMusic){ stopCurrentMusic(); stopCurrentMusic=null; } currentMusicMode=null; }
+function playVictoryChime(){
+  if(!audioCtx) return;
+  const notes=[523.25,659.25,783.99,1046.50];
+  notes.forEach((f,i)=>{
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type='triangle'; osc.frequency.value=f;
+    g.gain.value=0; osc.connect(g); g.connect(musicGain);
+    const t=audioCtx.currentTime + i*0.16;
+    g.gain.linearRampToValueAtTime(0.9,t+0.03);
+    g.gain.linearRampToValueAtTime(0,t+0.9);
+    osc.start(t); osc.stop(t+0.95);
+  });
+}
+function playCalmMusic(){
+  if(currentMusicMode==='calm' || !audioCtx) return;
+  stopMusic(); currentMusicMode='calm';
+  const notes=[261.63,329.63,392.00,329.63,349.23,293.66];
+  let idx=0, stopped=false, t1=null;
+  function scheduleNote(){
+    if(stopped) return;
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type='sine'; osc.frequency.value=notes[idx%notes.length];
+    g.gain.value=0; osc.connect(g); g.connect(musicGain);
+    const t=audioCtx.currentTime;
+    g.gain.linearRampToValueAtTime(0.9,t+1.4);
+    g.gain.linearRampToValueAtTime(0,t+3.8);
+    osc.start(t); osc.stop(t+3.9);
+    idx++;
+    t1=setTimeout(scheduleNote,1900);
+  }
+  scheduleNote();
+  stopCurrentMusic=()=>{ stopped=true; clearTimeout(t1); };
+}
+function playUpbeatMusic(){
+  if(currentMusicMode==='upbeat' || !audioCtx) return;
+  stopMusic(); currentMusicMode='upbeat';
+  const notes=[392.00,440.00,493.88,523.25,493.88,440.00,523.25,587.33];
+  let idx=0, stopped=false, t1=null;
+  function scheduleNote(){
+    if(stopped) return;
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type='triangle'; osc.frequency.value=notes[idx%notes.length];
+    g.gain.value=0; osc.connect(g); g.connect(musicGain);
+    const t=audioCtx.currentTime;
+    g.gain.linearRampToValueAtTime(0.85,t+0.04);
+    g.gain.linearRampToValueAtTime(0,t+0.3);
+    osc.start(t); osc.stop(t+0.32);
+    idx++;
+    t1=setTimeout(scheduleNote,240);
+  }
+  scheduleNote();
+  stopCurrentMusic=()=>{ stopped=true; clearTimeout(t1); };
+}
+document.addEventListener('click', function firstAudioUnlock(){
+  ensureAudio(); playCalmMusic();
+  document.removeEventListener('click', firstAudioUnlock);
+},{once:true});
+
+function goScene(id){
+  document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
+  document.getElementById('scene-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  ensureAudio();
+  if(['start','story','vocab','speaking','review'].includes(id)) playCalmMusic();
+  else if(['game','tpr','reward'].includes(id)) playUpbeatMusic();
+}
+
+/* ===================================================
+   SHADOW MONSTER — brief cameos throughout the adventure
+=================================================== */
+function monsterCameo(line, onDone){
+  const wrap=document.createElement('div');
+  wrap.style.cssText='position:fixed;left:50%;bottom:100px;transform:translateX(-50%);z-index:96;text-align:center;';
+  const uid='cameo'+Date.now();
+  wrap.innerHTML = `<div class="monster-wrap" id="${uid}"></div>
+    <div class="speech-bubble" style="background:#3A2E56;color:#fff;max-width:250px;">"${line}"</div>`;
+  document.body.appendChild(wrap);
+  document.getElementById(uid).innerHTML = monsterSVG(uid,64);
+  speak(line, true);
+  setTimeout(()=>{
+    document.getElementById(uid).classList.add('monster-flee');
+    setTimeout(()=>{ wrap.remove(); if(onDone) onDone(); },1200);
+  },1900);
+}
+/* ===================================================
+   WIN CELEBRATION — praise text + star burst
+=================================================== */
+const PRAISE_WORDS = ['Excellent!','Awesome!','Great job!','Fantastic!','You got it!','Super!'];
+const VOICE_REACTIONS = ['Wow!','You helped me!','My light is brighter!','Thank you!','Yay!','Amazing!'];
+let lastPraiseIdx=-1;
+function randomPraise(){
+  let i;
+  do{ i=Math.floor(Math.random()*PRAISE_WORDS.length); } while(i===lastPraiseIdx && PRAISE_WORDS.length>1);
+  lastPraiseIdx=i;
+  return PRAISE_WORDS[i];
+}
+function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function celebrate(anchorEl){
+  const p=document.createElement('div');
+  p.className='praise-pop';
+  p.textContent=randomPraise();
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),1000);
+  let cx=window.innerWidth/2, cy=window.innerHeight*0.45;
+  if(anchorEl){
+    const rect=anchorEl.getBoundingClientRect();
+    cx=rect.left+rect.width/2; cy=rect.top+rect.height/2;
+  }
+  for(let i=0;i<8;i++){
+    const s=document.createElement('div');
+    s.className='mini-star'; s.textContent='⭐';
+    const angle=Math.random()*Math.PI*2;
+    const dist=40+Math.random()*55;
+    s.style.setProperty('--dx',(Math.cos(angle)*dist)+'px');
+    s.style.setProperty('--dy',(Math.sin(angle)*dist)+'px');
+    s.style.left=cx+'px'; s.style.top=cy+'px';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),900);
+  }
+}
+
+function greetLumi(){
+  renderLumi('startLumi','sad',0,120);
+  const b=document.getElementById('startBubble');
+  b.style.display='block';
+  b.textContent="My light... it's all gone! A shadow took it while I was asleep. Can you help me?";
+  speak("My light is all gone! A shadow took it while I was asleep. Can you help me find it?");
+}
+renderLumi('startLumi','sleepy',0,120);
+
+/* ===================================================
+   VOCAB DATA (shared)
+=================================================== */
+const vocab2 = [
+  {w:'arms',      key:'arms',      s:'This is my arm. I have two arms.',   anim:'anim-wave'},
+  {w:'legs',      key:'legs',      s:'This is my leg. I have two legs.',   anim:'anim-stamp'},
+  {w:'feet',      key:'feet',      s:'These are my feet.',                 anim:'anim-stamp'},
+  {w:'toes',      key:'toes',      s:'I have ten toes.',                   anim:'anim-wiggle'},
+  {w:'tummy',     key:'tummy',     s:'This is my tummy.',                  anim:'anim-jiggle'},
+  {w:'shoulders', key:'shoulders', s:'These are my shoulders.',            anim:'anim-wiggle'},
+  {w:'knees',     key:'knees',     s:'These are my knees.',                anim:'anim-stamp'},
+  {w:'body',      key:'body',      s:'This is my whole body.',             anim:'anim-jiggle'}
+];
+const vocabSentence2 = {}; vocab2.forEach(v=>vocabSentence2[v.w]=v.s);
+
+/* ===================================================
+   STORY — The Shadow Monster steals Lumi's glow
+=================================================== */
+const storyPages = [
+  {mood:'sleepy', glow:0, monster:false,
+   line:`One quiet night, Lumi curled up and fell fast asleep in her lamp bed. Everything was calm... at first.`},
+  {mood:'sleepy', glow:0, monster:true,
+   line:`But a little Shadow Monster crept in! It gobbled up Lumi's glow, and slipped away into the dark.`},
+  {mood:'sad', glow:0, monster:false,
+   line:`In the morning, Lumi woke up cold and dim. My light is gone, she cried.`},
+  {mood:'worried', glow:0, monster:false,
+   line:`Lumi looked at you. Can you touch your tummy? Let's see if you remember your body!`,
+   interactive:{actionLabel:'Touch My Tummy! 🙌', response:'Yay! I felt that! I knew you could help me.'}},
+  {mood:'worried', glow:0, monster:false,
+   line:`Then Lumi remembered something: every time we say body words and move our bodies together, a little spark comes back!`},
+  {mood:'hopeful', glow:0, monster:false,
+   line:`Where are your knees? Show me, Little Explorer!`,
+   interactive:{actionLabel:'Show My Knees! 🙌', response:'There they are! You are already helping my glow come back!'}},
+  {mood:'happy', glow:0, monster:false,
+   line:`Will you help me wake up my glow, Little Explorer? asked Lumi. Let's start with the words!`}
+];
+let storyIdx=0;
+function initStory(){ storyIdx=0; renderStory(); }
+function renderStory(){
+  const p=storyPages[storyIdx];
+  renderLumi_inline('bookVisual', p);
+  document.getElementById('bookLine').textContent = p.line;
+  document.getElementById('bookPrevBtn').style.display = storyIdx>0 ? 'inline-block':'none';
+  const nextBtn=document.getElementById('bookNextBtn');
+  const actionBtn=document.getElementById('bookActionBtn');
+  if(p.interactive){
+    nextBtn.style.display='none';
+    actionBtn.style.display='inline-block';
+    actionBtn.textContent=p.interactive.actionLabel;
+    actionBtn.disabled=false;
+  } else {
+    nextBtn.style.display='inline-block';
+    actionBtn.style.display='none';
+    nextBtn.textContent = storyIdx===storyPages.length-1 ? "Let's Go! \u25B6" : 'Next \u25B6';
+  }
+  const dotsEl=document.getElementById('bookCounter'); dotsEl.innerHTML='';
+  storyPages.forEach((_,i)=>{ const d=document.createElement('span'); d.className='dot'+(i===storyIdx?' active':''); dotsEl.appendChild(d); });
+  speak(p.line, true);
+}
+function storyAction(){
+  const p=storyPages[storyIdx];
+  if(!p.interactive) return;
+  const actionBtn=document.getElementById('bookActionBtn');
+  actionBtn.disabled=true;
+  celebrate(actionBtn);
+  document.getElementById('bookLine').textContent = p.interactive.response;
+  speak(p.interactive.response,true);
+  setTimeout(()=>{
+    actionBtn.style.display='none';
+    const nextBtn=document.getElementById('bookNextBtn');
+    nextBtn.style.display='inline-block';
+    nextBtn.textContent = storyIdx===storyPages.length-1 ? "Let's Go! \u25B6" : 'Next \u25B6';
+  },1000);
+}
+function renderLumi_inline(containerId, p){
+  const el=document.getElementById(containerId);
+  el.innerHTML='';
+  const lumiHolder=document.createElement('div');
+  lumiHolder.id=containerId+'_lumi';
+  el.appendChild(lumiHolder);
+  if(p.monster){
+    const mHolder=document.createElement('div');
+    mHolder.className='monster-wrap';
+    mHolder.innerHTML=monsterSVG(containerId+'_m',80);
+    el.appendChild(mHolder);
+  }
+  renderLumi(containerId+'_lumi', p.mood, p.glow, 110);
+}
+function bookNext(){
+  if(storyIdx<storyPages.length-1){ storyIdx++; renderStory(); }
+  else { goScene('vocab'); initVocab(); }
+}
+function bookPrev(){ if(storyIdx>0){ storyIdx--; renderStory(); } }
+
+/* ===================================================
+   VOCABULARY SCENE
+=================================================== */
+const VOCAB_COMPLETE_LINES = [
+  'Wonderful! You woke up all the words! A spark is coming back!',
+  'Amazing! Every word is glowing now!',
+  'You did it! I can feel a little spark already!'
+];
+let vocabTapped=new Set();
+function initVocab(){
+  vocabTapped=new Set();
+  renderLumi('vocabLumi','hopeful',lumiGlow,100);
+  document.getElementById('vocabContinueBtn').style.display='none';
+  document.getElementById('vocabProgress').textContent='0 / '+vocab2.length+' words woken up';
+  const grid=document.getElementById('vocabGrid'); grid.innerHTML='';
+  const shuffledVocab=[...vocab2].sort(()=>Math.random()-0.5);
+  shuffledVocab.forEach(v=>{
+    const card=document.createElement('div');
+    card.className='vocab-card';
+    card.innerHTML=`<div class="vc-icon">${bodyPartSVG(v.key,56)}</div><div class="vc-word">${v.w}</div>`;
+    const iconEl=card.querySelector('.vc-icon');
+    card.onclick=()=>{
+      speak(v.s,true);
+      iconEl.classList.remove(v.anim); void iconEl.offsetWidth; iconEl.classList.add(v.anim);
+      if(!vocabTapped.has(v.w)){
+        vocabTapped.add(v.w);
+        card.classList.add('done');
+        document.getElementById('vocabProgress').textContent = vocabTapped.size+' / '+vocab2.length+' words woken up';
+        renderLumi('vocabLumi','hopeful', Math.min(1, vocabTapped.size/vocab2.length), 100);
+        if(vocabTapped.size===vocab2.length){
+          setGlow(1);
+          document.getElementById('vocabContinueBtn').style.display='inline-block';
+          speak(pickRandom(VOCAB_COMPLETE_LINES),false);
+        }
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+
+/* ===================================================
+   GAME — 3 mini-games in sequence: Listen&Tap, Memory Match, Balloon Pop
+=================================================== */
+const gameRounds = [
+  {speak:'Touch your shoulders!', opts:['shoulders','tummy','knees'], correct:'shoulders'},
+  {speak:'Shake your arms!',      opts:['arms','legs','face'],       correct:'arms'},
+  {speak:'Wiggle your toes!',     opts:['toes','feet','body'],       correct:'toes'}
+];
+let gameIdx=0;
+let gameRoundsShuffled=[...gameRounds];
+const GAME_COMPLETE_LINES = [
+  'Sparks are flying! I can feel my glow coming back!',
+  'Yes! My light is getting brighter and brighter!',
+  'You did it! I can almost shine again!'
+];
+function setGamePhase(n,total,label){
+  document.getElementById('gamePhaseTag').textContent='Game '+n+' of '+total+' · '+label;
+}
+function showStage(id){
+  ['stageMCQ','stageMemory','stageBalloon'].forEach(s=>{
+    document.getElementById(s).style.display = (s===id) ? 'block' : 'none';
+  });
+}
+function initGame(){
+  setGamePhase(1,3,'Listen & Tap');
+  document.getElementById('gameTitle').textContent="Follow Lumi's Voice!";
+  document.getElementById('gameLead').textContent='Listen to the command and tap the matching word!';
+  showStage('stageMCQ');
+  gameIdx=0;
+  gameRoundsShuffled=[...gameRounds].sort(()=>Math.random()-0.5);
+  renderLumi('gameLumi','hopeful',1,100);
+  document.getElementById('gameComplete').style.display='none';
+  const dotsEl=document.getElementById('gameDots'); dotsEl.innerHTML='';
+  gameRoundsShuffled.forEach(()=>{ const d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+  renderGameRound();
+}
+function renderGameRound(){
+  const r=gameRoundsShuffled[gameIdx];
+  document.getElementById('gamePromptText').textContent=r.speak;
+  speak(r.speak,true);
+  const optsEl=document.getElementById('gameOptions'); optsEl.innerHTML='';
+  const shuffled=[...r.opts].sort(()=>Math.random()-0.5);
+  shuffled.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='opt-btn';
+    b.innerHTML=`<span class="opt-icon">${bodyPartSVG(o,48)}</span><span class="opt-word">${o}</span>`;
+    b.onclick=()=>{
+      if(o===r.correct){
+        b.classList.add('correct');
+        speak(vocabSentence2[o]||o,false);
+        speak(pickRandom(VOICE_REACTIONS),false);
+        celebrate(document.getElementById('gameLumi'));
+        document.querySelectorAll('#gameDots .dot')[gameIdx].classList.add('done');
+        setGlow(1 + Math.min(1, (gameIdx+1)/gameRoundsShuffled.length));
+        renderLumi('gameLumi','happy', Math.min(2, 1+(gameIdx+1)/gameRoundsShuffled.length), 100);
+        setTimeout(()=>{
+          gameIdx++;
+          if(gameIdx<gameRoundsShuffled.length) renderGameRound();
+          else initMemory();
+        },700);
+      } else {
+        b.classList.add('wrong'); speak('Try again!');
+        setTimeout(()=>b.classList.remove('wrong'),450);
+      }
+    };
+    optsEl.appendChild(b);
+  });
+}
+
+/* ---- Phase 2: Memory Match ---- */
+const memoryWords = ['arms','tummy','knees','feet'];
+let memoryState = { first:null, second:null, matched:0, locked:false };
+function initMemory(){
+  setGamePhase(2,3,'Memory Match');
+  document.getElementById('gameTitle').textContent='Match the Pairs!';
+  document.getElementById('gameLead').textContent='Flip two cards to find a picture and its matching word!';
+  showStage('stageMemory');
+  speak("Now let's play Memory Match! Find the picture and its word.",true);
+  memoryState = { first:null, second:null, matched:0, locked:false };
+  const cards=[];
+  memoryWords.forEach(w=>{ cards.push({word:w, type:'icon'}); cards.push({word:w, type:'word'}); });
+  cards.sort(()=>Math.random()-0.5);
+  const grid=document.getElementById('memoryGrid'); grid.innerHTML='';
+  const dotsEl=document.getElementById('memoryDots'); dotsEl.innerHTML='';
+  memoryWords.forEach(()=>{ const d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+  cards.forEach((cd,i)=>{
+    const btn=document.createElement('button');
+    btn.className='memory-card';
+    btn.textContent='?';
+    btn.dataset.word=cd.word;
+    btn.dataset.type=cd.type;
+    btn.dataset.idx=i;
+    btn.onclick=()=>memoryFlip(btn,cd);
+    grid.appendChild(btn);
+  });
+}
+function memoryFlip(btn,cd){
+  if(memoryState.locked || btn.classList.contains('revealed') || btn.classList.contains('matched')) return;
+  btn.classList.add('revealed');
+  btn.innerHTML = cd.type==='icon' ? bodyPartSVG(cd.word,34) : `<span class="mc-word">${cd.word}</span>`;
+  speak(cd.word,true);
+  if(!memoryState.first){
+    memoryState.first={btn,cd};
+  } else {
+    memoryState.second={btn,cd};
+    memoryState.locked=true;
+    const match = memoryState.first.cd.word===memoryState.second.cd.word;
+    setTimeout(()=>{
+      if(match){
+        memoryState.first.btn.classList.add('matched');
+        memoryState.second.btn.classList.add('matched');
+        memoryState.matched++;
+        celebrate(memoryState.second.btn);
+        document.querySelectorAll('#memoryDots .dot')[memoryState.matched-1].classList.add('done');
+        if(memoryState.matched===memoryWords.length){
+          setGlow(1.6);
+          setTimeout(()=>{ initBalloon(); },900);
+        }
+      } else {
+        memoryState.first.btn.classList.add('shake');
+        memoryState.second.btn.classList.add('shake');
+        setTimeout(()=>{
+          memoryState.first.btn.classList.remove('revealed','shake');
+          memoryState.second.btn.classList.remove('revealed','shake');
+          memoryState.first.btn.textContent='?';
+          memoryState.second.btn.textContent='?';
+        },500);
+      }
+      memoryState.first=null; memoryState.second=null; memoryState.locked=false;
+    },700);
+  }
+}
+
+/* ---- Phase 3: Balloon Pop ---- */
+const balloonRounds = [
+  {target:'tummy', pool:['tummy','arms','feet','knees']},
+  {target:'feet',  pool:['feet','toes','shoulders','arms']},
+  {target:'knees', pool:['knees','tummy','legs','body']}
+];
+let balloonIdx=0;
+function initBalloon(){
+  setGamePhase(3,3,'Balloon Pop');
+  document.getElementById('gameTitle').textContent='Pop the Right Balloon!';
+  document.getElementById('gameLead').textContent='Listen for the word, then pop the matching balloon!';
+  showStage('stageBalloon');
+  balloonIdx=0;
+  const dotsEl=document.getElementById('balloonDots'); dotsEl.innerHTML='';
+  balloonRounds.forEach(()=>{ const d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+  renderBalloonRound();
+}
+function renderBalloonRound(){
+  const r=balloonRounds[balloonIdx];
+  document.getElementById('balloonPromptText').textContent='Pop the "'+r.target+'" balloon!';
+  speak('Pop the '+r.target+' balloon!',true);
+  const stage=document.getElementById('balloonStage'); stage.innerHTML='';
+  const shuffled=[...r.pool].sort(()=>Math.random()-0.5);
+  shuffled.forEach(w=>{
+    const b=document.createElement('button');
+    b.className='balloon-btn';
+    b.textContent=w;
+    b.onclick=()=>{
+      if(w===r.target){
+        b.classList.add('popped');
+        speak(pickRandom(VOICE_REACTIONS),false);
+        celebrate(b);
+        document.querySelectorAll('#balloonDots .dot')[balloonIdx].classList.add('done');
+        setGlow(1.6 + Math.min(0.4, (balloonIdx+1)/balloonRounds.length*0.4));
+        setTimeout(()=>{
+          balloonIdx++;
+          if(balloonIdx<balloonRounds.length) renderBalloonRound();
+          else finishAllGames();
+        },500);
+      } else {
+        b.classList.add('miss');
+        speak('Try again!');
+        setTimeout(()=>b.classList.remove('miss'),400);
+      }
+    };
+    stage.appendChild(b);
+  });
+}
+function finishAllGames(){
+  setGlow(2);
+  renderLumi('gameLumi','happy',2,100);
+  document.getElementById('gameComplete').style.display='block';
+  speak(pickRandom(GAME_COMPLETE_LINES),false);
+  setTimeout(()=>{ monsterCameo("Oh no... you're getting stronger!"); },1400);
+}
+
+/* ===================================================
+   TPR — Move Like Lumi
+=================================================== */
+const tprCommands = [
+  'Everybody stand up!',
+  'Touch your shoulders!',
+  'Point to your tummy!',
+  'Bend your knees!',
+  'Wiggle your toes!',
+  'Jump three times!'
+];
+const TPR_COMPLETE_LINES = [
+  "You moved so well! Now let's practice speaking!",
+  "Great moving! Let's practice speaking next!",
+  "Wonderful energy! Now for some speaking practice!"
+];
+let tprIdx=0;
+let tprCommandsShuffled=[...tprCommands];
+function initTPR(){
+  tprIdx=0;
+  const middle=tprCommands.slice(1,-1).sort(()=>Math.random()-0.5);
+  tprCommandsShuffled=[tprCommands[0], ...middle, tprCommands[tprCommands.length-1]];
+  renderLumi('tprLumi','happy',2,110);
+  document.getElementById('tprComplete').style.display='none';
+  document.getElementById('tprDoneBtn').style.display='inline-block';
+  const dotsEl=document.getElementById('tprDots'); dotsEl.innerHTML='';
+  tprCommandsShuffled.forEach(()=>{ const d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+  renderTPR();
+}
+function renderTPR(){
+  document.getElementById('tprCommand').textContent = tprCommandsShuffled[tprIdx];
+  speak(tprCommandsShuffled[tprIdx],true);
+}
+function tprNext(){
+  document.querySelectorAll('#tprDots .dot')[tprIdx].classList.add('done');
+  tprIdx++;
+  const g = 2 + Math.min(1, tprIdx/tprCommandsShuffled.length);
+  renderLumi('tprLumi','happy', g, 110);
+  if(tprIdx<tprCommandsShuffled.length){ renderTPR(); }
+  else {
+    setGlow(3);
+    document.getElementById('tprDoneBtn').style.display='none';
+    document.getElementById('tprCommand').textContent='All done — great moving!';
+    document.getElementById('tprComplete').style.display='block';
+    speak(pickRandom(TPR_COMPLETE_LINES),false);
+    setTimeout(()=>{ monsterCameo("Wait... my shadow is shrinking!"); },1400);
+  }
+}
+
+/* ===================================================
+   SPEAKING
+=================================================== */
+const speakWords2 = [
+  {word:'tummy', levels:['Tummy.','My tummy.','This is my tummy.']},
+  {word:'arms',  levels:['Arms.','My arms.','I have two arms.']},
+  {word:'knees', levels:['Knees.','My knees.','Touch your knees.']},
+  {word:'body',  levels:['Body.','My body.','This is my whole body.']}
+];
+let speakLines2 = [];
+let speakLevels2 = [];
+function buildSpeakQueue(){
+  speakLines2 = [];
+  speakLevels2 = [];
+  speakWords2.forEach(item=>{
+    item.levels.forEach((line,i)=>{ speakLines2.push(line); speakLevels2.push(i+1); });
+  });
+}
+const SPEAK_NEXT_LINES = ['Great! Next!','Nice! Keep going!','Perfect! Next one!'];
+const SPEAK_LEVELUP_LINES = ['Level up! Let\'s try a longer one!','Nice! Now a bigger sentence!','You\'re ready for more!'];
+const SPEAK_COMPLETE_LINES = [
+  'I can feel it — my light is almost all the way back!',
+  "You're amazing — my glow is almost fully back!",
+  'Just a little more and I will shine again!'
+];
+const SPEAK_FEEDBACK_LINES = ['🌟 Great speaking!','⭐ I heard you!','🎉 Awesome!'];
+let speakIdx2=0;
+function initSpeaking(){
+  speakIdx2=0;
+  buildSpeakQueue();
+  const fb=document.getElementById('speakFeedback'); fb.textContent=''; fb.classList.remove('show');
+  renderLumi('speakLumi','happy',3,110);
+  document.getElementById('speakComplete').style.display='none';
+  const dotsEl=document.getElementById('speakDots'); dotsEl.innerHTML='';
+  speakLines2.forEach(()=>{ const d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+  document.getElementById('speakLine').textContent=speakLines2[0];
+  document.getElementById('speakLevelBadge').textContent='Level '+speakLevels2[0];
+  document.getElementById('speakHint').textContent='Tap Lumi to hear the sentence.';
+}
+function playSpeakLine(){ speak(speakLines2[speakIdx2],true); }
+function speakMyTurn(){
+  const micBtn=document.getElementById('speakMicBtn');
+  const wave=document.getElementById('micWave');
+  micBtn.classList.add('listening');
+  wave.classList.add('active');
+  micBtn.disabled=true;
+  setTimeout(()=>{
+    micBtn.classList.remove('listening');
+    wave.classList.remove('active');
+    micBtn.disabled=false;
+    celebrate(micBtn);
+    const fb=document.getElementById('speakFeedback');
+    fb.textContent=pickRandom(SPEAK_FEEDBACK_LINES);
+    fb.classList.remove('show'); void fb.offsetWidth; fb.classList.add('show');
+    document.querySelectorAll('#speakDots .dot')[speakIdx2].classList.add('done');
+    speakIdx2++;
+    const g = 3 + Math.min(1, speakIdx2/speakLines2.length);
+    renderLumi('speakLumi','excited', g, 110);
+    if(speakIdx2<speakLines2.length){
+      document.getElementById('speakLine').textContent=speakLines2[speakIdx2];
+      document.getElementById('speakLevelBadge').textContent='Level '+speakLevels2[speakIdx2];
+      speak(speakLevels2[speakIdx2]>1 ? pickRandom(SPEAK_LEVELUP_LINES) : pickRandom(SPEAK_NEXT_LINES),false);
+    } else {
+      setGlow(4);
+      document.getElementById('speakLine').textContent='You did it!';
+      document.getElementById('speakComplete').style.display='block';
+      const line=pickRandom(SPEAK_COMPLETE_LINES);
+      document.getElementById('speakCompleteMsg').textContent='"'+line+'"';
+      speak(line,false);
+    }
+  },1100);
+}
+
+/* ===================================================
+   MINI REVIEW — quick recall before the reward
+=================================================== */
+const reviewPrompts = [
+  '👆 Touch your knees.',
+  '👆 Where is your tummy?',
+  '👆 Show me your toes.',
+  '👆 Point to your shoulders.'
+];
+const REVIEW_COMPLETE_LINES = [
+  'You remembered everything! Let\'s celebrate!',
+  'Wow, you know all the body words! Time to celebrate!',
+  'Amazing memory! Let\'s celebrate together!'
+];
+let reviewIdx=0;
+let reviewPromptsShuffled=[...reviewPrompts];
+function initReview(){
+  reviewIdx=0;
+  reviewPromptsShuffled=[...reviewPrompts].sort(()=>Math.random()-0.5).slice(0,4);
+  renderLumi('reviewLumi','happy',4,110);
+  document.getElementById('reviewComplete').style.display='none';
+  document.getElementById('reviewDoneBtn').style.display='inline-block';
+  const dotsEl=document.getElementById('reviewDots'); dotsEl.innerHTML='';
+  reviewPromptsShuffled.forEach(()=>{ const d=document.createElement('span'); d.className='dot'; dotsEl.appendChild(d); });
+  renderReview();
+}
+function renderReview(){
+  document.getElementById('reviewCommand').textContent = reviewPromptsShuffled[reviewIdx];
+  speak(reviewPromptsShuffled[reviewIdx].replace('👆',''),true);
+}
+function reviewNext(){
+  celebrate(document.getElementById('reviewDoneBtn'));
+  document.querySelectorAll('#reviewDots .dot')[reviewIdx].classList.add('done');
+  reviewIdx++;
+  if(reviewIdx<reviewPromptsShuffled.length){ renderReview(); }
+  else {
+    setGlow(4);
+    document.getElementById('reviewDoneBtn').style.display='none';
+    document.getElementById('reviewCommand').textContent='All remembered!';
+    document.getElementById('reviewComplete').style.display='block';
+    speak(pickRandom(REVIEW_COMPLETE_LINES),false);
+  }
+}
+
+/* ===================================================
+   REWARD
+=================================================== */
+function initReward(){
+  setGlow(5);
+  renderLumi('rewardLumi','excited',4,140);
+  document.getElementById('rewardGlowFill').style.width='0%';
+  document.getElementById('rewardSpeech').style.display='none';
+  document.getElementById('skyBrighten').classList.remove('bright');
+  document.getElementById('stickerCase').innerHTML =
+    ['📖','🔤','🎮','🏃','🎤'].map(e=>`<span class="sticker">${e}</span>`).join('');
+  document.getElementById('chestChip').classList.remove('opened');
+  document.getElementById('chestLabel').textContent='Tap the Chest!';
+  document.getElementById('badgeBodyHero').classList.add('pending');
+  updateCertName();
+  renderCertMeta();
+
+  // Shadow Monster cameo — startled by the light, then flees
+  const mEl=document.getElementById('rewardMonster');
+  const mBubble=document.getElementById('monsterBubble');
+  mEl.style.display='inline-block';
+  mEl.classList.remove('monster-flee');
+  mEl.innerHTML=monsterSVG('rewardMonster',70);
+  mBubble.style.display='block';
+  mBubble.textContent='"Oh no! Lumi is too bright!"';
+  speak('Oh no! Lumi is too bright!',true);
+
+  setTimeout(()=>{
+    mEl.classList.add('monster-flee');
+    mBubble.style.display='none';
+    // the sky begins to brighten as the monster flees
+    document.getElementById('skyBrighten').classList.add('bright');
+    renderLumi('rewardLumi','excited',5,140);
+  },1700);
+
+  setTimeout(()=>{
+    mEl.style.display='none';
+    document.getElementById('rewardSpeech').style.display='block';
+    document.getElementById('rewardGlowFill').style.width='100%';
+    playVictoryChime();
+    document.getElementById('badgeBodyHero').classList.remove('pending');
+    document.querySelectorAll('#stickerCase .sticker').forEach((s,i)=>{
+      setTimeout(()=>s.classList.add('earned'), 260 + i*220);
+    });
+    speak('The Shadow Monster ran away! My glow is all yours to celebrate. Thank you for helping me!',false);
+    launchConfetti();
+    launchBalloons();
+  },2900);
+}
+function updateCertName(){
+  const v=document.getElementById('studentNameInput').value.trim();
+  const name = v.length ? v : 'Little Explorer';
+  document.getElementById('certCongrats').textContent = 'Congratulations, '+name+'!';
+  document.getElementById('certNameSpan').textContent = name;
+}
+function renderCertMeta(){
+  const logoEl=document.getElementById('certLogoIcon');
+  if(logoEl) logoEl.innerHTML = lumiSVG('certLogoIcon','happy',4,22);
+  const dateEl=document.getElementById('certDate');
+  if(dateEl){
+    const today=new Date();
+    dateEl.textContent='Date: '+today.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+  }
+}
+function downloadCertificate(){
+  if(typeof html2canvas==='undefined'){
+    alert('Sorry, the download tool did not load. Please check your internet connection and try again.');
+    return;
+  }
+  const inputWrap=document.getElementById('certNameInputWrap');
+  inputWrap.style.visibility='hidden';
+  const box=document.getElementById('certificateBox');
+  html2canvas(box,{backgroundColor:'#FFF9EE',scale:2}).then(canvas=>{
+    inputWrap.style.visibility='visible';
+    const link=document.createElement('a');
+    const name=document.getElementById('certNameSpan').textContent.replace(/\s+/g,'_');
+    link.download='LittleLume_Certificate_'+name+'.png';
+    link.href=canvas.toDataURL('image/png');
+    link.click();
+  }).catch(()=>{
+    inputWrap.style.visibility='visible';
+    alert('Sorry, something went wrong creating the certificate image.');
+  });
+}
+function openChest(){
+  document.getElementById('chestLabel').textContent='You found 5 stickers!';
+  launchConfetti();
+}
+function launchConfetti(){
+  const layer=document.getElementById('confettiLayer');
+  const colors=['#FFC857','#39C6BC','#FF6F91','#B79FDB','#4BC87A'];
+  for(let i=0;i<40;i++){
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.left=Math.random()*100+'vw';
+    p.style.width=p.style.height=(6+Math.random()*6)+'px';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration=(2.2+Math.random()*1.6)+'s';
+    layer.appendChild(p);
+    setTimeout(()=>p.remove(),4200);
+  }
+}
+function launchBalloons(){
+  const layer=document.getElementById('balloonLayer');
+  const emojis=['🎈','🎈','🎈'];
+  for(let i=0;i<10;i++){
+    const b=document.createElement('div');
+    b.className='balloon-piece';
+    b.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    b.style.left=(5+Math.random()*90)+'vw';
+    b.style.animationDuration=(4+Math.random()*2)+'s';
+    layer.appendChild(b);
+    setTimeout(()=>b.remove(),6500);
+  }
+}
+function restartAll(){
+  lumiGlow=0;
+  document.getElementById('glowbar-fill').style.width='0%';
+  document.getElementById('starcount').textContent='🪔 Glow 0/5';
+  const nameInput=document.getElementById('studentNameInput');
+  if(nameInput) nameInput.value='';
+  document.getElementById('skyBrighten').classList.remove('bright');
+  goScene('start');
+  renderLumi('startLumi','sleepy',0,120);
+  document.getElementById('startBubble').style.display='none';
+}
+</script>
+</body>
+</html>

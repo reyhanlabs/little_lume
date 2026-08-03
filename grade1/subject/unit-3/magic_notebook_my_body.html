@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumi's Magic Notebook — LittleLume English (Grade 1)</title>
+<style>
+  :root{
+    --bg-1:#F6F3FF;
+    --bg-2:#EFF7FF;
+    --card:#FFFFFF;
+    --primary:#7C6FF0;
+    --primary-dark:#5B4FD1;
+    --orange:#FFAD60;
+    --pink:#FF8FAB;
+    --green:#5FC792;
+    --yellow:#FFD966;
+    --text:#362F59;
+    --text-soft:#786F98;
+    --shadow: 0 10px 30px rgba(124,111,240,0.16);
+    --radius: 26px;
+    --font: 'Trebuchet MS', 'Segoe UI Rounded', 'Verdana', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font);
+    color:var(--text);
+    background:
+      radial-gradient(circle at 15% 10%, #EAE4FF 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, #DFF3FF 0%, transparent 45%),
+      linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    min-height:100vh;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  button{font-family:inherit; cursor:pointer;}
+  button:focus-visible{ outline:3px solid var(--primary-dark); outline-offset:2px; }
+  input[type=text], textarea{font-family:inherit;}
+
+  #topbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    padding:12px 18px;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom:2px solid #EDE8FF;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; color:var(--primary-dark);}
+  .brand .logo-lamp{width:36px; height:36px;}
+  .brand small{display:block; font-weight:600; color:var(--text-soft); font-size:11px; letter-spacing:.5px;}
+  #progressWrap{flex:1; min-width:140px; display:flex; align-items:center; gap:10px;}
+  #progressBarOuter{flex:1; height:14px; background:#EDE8FF; border-radius:20px; overflow:hidden; box-shadow:inset 0 2px 4px rgba(0,0,0,0.06);}
+  #progressFill{height:100%; width:0%; background:linear-gradient(90deg,var(--primary),var(--pink)); border-radius:20px; transition:width .5s ease;}
+  .stat{
+    display:flex; align-items:center; gap:6px;
+    background:#fff; border:2px solid #EDE8FF; border-radius:20px;
+    padding:6px 12px; font-weight:800; font-size:13px; white-space:nowrap;
+  }
+
+  #app{max-width:920px; margin:0 auto; padding:24px 16px 70px;}
+
+  .cover{
+    background:linear-gradient(160deg,#FFFDF5,#FFF6E5);
+    border:4px solid var(--yellow); border-radius:28px;
+    padding:34px 24px; text-align:center; box-shadow:var(--shadow); margin-bottom:22px;
+  }
+  .cover h1{margin:8px 0 4px; color:var(--primary-dark); font-size:30px;}
+  .cover p{margin:0; color:var(--text-soft); font-size:16px;}
+  .float{animation:floaty 3.5s ease-in-out infinite;}
+  @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  .pulseGlow{animation:pulseGlow 2.4s ease-in-out infinite;}
+  @keyframes pulseGlow{0%,100%{filter:drop-shadow(0 0 2px rgba(255,217,102,.6));}50%{filter:drop-shadow(0 0 14px rgba(255,217,102,.9));}}
+
+  .stickerAlbum{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+  .stickerSlot{
+    width:38px; height:38px; border-radius:50%; background:#fff; border:2px dashed #E6E1FF;
+    display:flex; align-items:center; justify-content:center; font-size:19px;
+  }
+  .stickerSlot.filled{border-style:solid; border-color:var(--yellow); background:#FFFBEE;}
+
+  .tabRow{display:flex; gap:12px; justify-content:center; margin:18px 0; flex-wrap:wrap;}
+  .tabBtn{
+    background:#fff; border:3px solid #E6E1FF; border-radius:20px; padding:14px 22px;
+    font-weight:800; font-size:16px; color:var(--text-soft); min-height:52px;
+    transition:all .15s ease;
+  }
+  .tabBtn.active{border-color:var(--primary); background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff;}
+
+  .pageGrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:14px; margin:18px 0;}
+  .pageThumb{
+    position:relative;
+    background:#fff; border:3px solid #E6E1FF; border-radius:18px; padding:16px 10px; text-align:center;
+    box-shadow:0 6px 14px rgba(124,111,240,0.10);
+  }
+  .pageThumb .pnum{font-size:26px; display:block; margin-bottom:4px;}
+  .pageThumb .ptitle{font-weight:800; font-size:13px; color:var(--text); display:block; margin-bottom:6px; min-height:32px;}
+  .pageThumb .completedTag{font-size:11px; font-weight:800; color:var(--green);}
+  .pageThumb.current{border-color:var(--primary); background:#F4F1FF;}
+  .pageThumb .stickerCorner{
+    position:absolute; top:-8px; right:-8px; font-size:22px;
+    background:#fff; border-radius:50%; width:30px; height:30px;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 3px 8px rgba(0,0,0,.15);
+    transform:rotate(12deg);
+  }
+
+  .pageDetail{
+    position:relative;
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:26px; border:2px solid #F1EDFF; margin-top:8px;
+  }
+  .pageDetail h2{margin:0 0 4px; color:var(--primary-dark);}
+  .pageDetail .missionTag{
+    display:inline-block; background:var(--yellow); color:#6B4E00; font-weight:800;
+    padding:4px 12px; border-radius:20px; font-size:12px; margin-bottom:10px; letter-spacing:.5px;
+  }
+  .stickerStuck{
+    position:absolute; top:-16px; right:14px; font-size:46px;
+    transform:rotate(14deg); filter:drop-shadow(0 4px 6px rgba(0,0,0,.2));
+  }
+  .sectionLabel{font-weight:800; color:var(--text-soft); margin:14px 0 6px; font-size:14px;}
+  .tagRow{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    background:#F1EDFF; border-radius:14px; padding:8px 14px; font-size:14px; font-weight:700; color:var(--primary-dark);
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .tag.grammar{background:#EAF6FF; color:#2A6FA8;}
+  .tag.sentence{background:#FFF3E6; color:#B36A00;}
+  .tag button{
+    background:none; border:none; padding:0; font-size:14px; cursor:pointer; color:inherit; line-height:1;
+  }
+
+  .portfolioBox{
+    background:#F9F7FF; border-radius:18px; padding:16px; margin-top:16px; border:2px solid #F1EDFF;
+  }
+  .portfolioRow{display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap;}
+  .portfolioRow label{font-weight:800; font-size:14px; display:flex; align-items:center; gap:6px;}
+  .portfolioRow input[type=checkbox]{width:20px; height:20px; accent-color:var(--primary);}
+  .commentInput{
+    width:100%; border:2px solid #E6E1FF; border-radius:12px; padding:10px 12px; font-size:14px;
+    resize:vertical; min-height:44px;
+  }
+  .checklistItem{
+    display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; margin-bottom:6px;
+  }
+  .checklistItem input{width:20px; height:20px; accent-color:var(--green);}
+
+  .challengeBox{
+    background:linear-gradient(135deg,#FFF3E6,#FFEAF0); border-radius:18px; padding:16px; margin-top:16px;
+    border:2px dashed var(--orange);
+  }
+  .challengeBox h4{margin:0 0 8px; color:#B36A00;}
+
+  .navRow{display:flex; justify-content:space-between; align-items:center; margin-top:20px; gap:10px; flex-wrap:wrap;}
+  .btn{
+    background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+    color:#fff; border:none; padding:14px 22px; border-radius:16px;
+    font-size:15px; font-weight:800; box-shadow:0 8px 18px rgba(91,79,209,0.35);
+    min-height:48px;
+  }
+  .btn.secondary{background:#fff; color:var(--primary-dark); border:2px solid var(--primary); box-shadow:none;}
+  .btn.orange{background:linear-gradient(135deg,var(--orange),#FF8A3D); box-shadow:0 8px 18px rgba(255,138,61,0.35);}
+  .btn.pink{background:linear-gradient(135deg,var(--pink),#FF5C87); box-shadow:0 8px 18px rgba(255,92,135,0.35);}
+  .btn:disabled{opacity:.4; cursor:not-allowed;}
+
+  .celebrationCard{
+    text-align:center; background:linear-gradient(135deg,#FFFDF5,#FFF9E9);
+    border:4px dashed var(--yellow); border-radius:24px; padding:26px; margin-top:20px; display:none;
+  }
+  .celebrationCard.show{display:block;}
+
+  .confetti-piece{
+    position:fixed; top:-10px; width:10px; height:14px; z-index:300; border-radius:2px;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{ to{ transform: translateY(110vh) rotate(360deg); opacity:0.8;} }
+
+  .toast{
+    position:fixed; left:50%; top:18px; transform:translateX(-50%) translateY(-120%);
+    background:#fff; border:3px solid var(--green); color:#1E7A4B; font-weight:800;
+    padding:14px 22px; border-radius:20px; box-shadow:0 10px 24px rgba(0,0,0,.15);
+    z-index:200; transition:transform .4s ease; max-width:90%; text-align:center;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  footer.brandFooter{text-align:center; color:var(--text-soft); font-size:12px; margin-top:26px;}
+
+  @media print{
+    #topbar, .toast, footer.brandFooter, .tabRow, .navRow, .pageGrid, #printHint, .stickerAlbum{display:none !important;}
+    body{background:#fff !important;}
+    .cover{display:block !important;}
+    #printArea{display:block !important;}
+    .printPage{page-break-after:always; padding:20px 0;}
+  }
+  #printArea{display:none;}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="brand">
+    <svg class="logo-lamp" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#FFD966"/><path d="M18 40 Q32 20 46 40 Q32 52 18 40Z" fill="#7C6FF0"/><circle cx="32" cy="20" r="6" fill="#fff"/></svg>
+    <div>LittleLume English<small>Learn • Play • Shine · Grade 1</small></div>
+  </div>
+  <div id="progressWrap">
+    <div id="progressBarOuter"><div id="progressFill"></div></div>
+  </div>
+  <div class="stat">⭐ <span id="completedCount">0</span>/12 completed</div>
+  <button class="stat" onclick="window.print()" style="cursor:pointer; border-color:var(--yellow);">🖨️ Print</button>
+</div>
+
+<div id="app">
+
+  <div class="cover">
+    <svg width="110" height="110" viewBox="0 0 200 200" class="float">
+      <circle cx="100" cy="100" r="92" fill="#F4F1FF"/>
+      <path d="M55 130 Q100 60 145 130 Q100 165 55 130Z" fill="#7C6FF0"/>
+      <circle cx="100" cy="72" r="20" fill="#FFD966" class="pulseGlow"/>
+      <circle cx="90" cy="128" r="6" fill="#fff"/>
+      <circle cx="112" cy="128" r="6" fill="#fff"/>
+      <path d="M92 140 Q100 146 108 140" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+    <h1>📖 Lumi's Magic Notebook</h1>
+    <p>Your personal learning portfolio — words, sentences, comments, and stickers from every mission!</p>
+    <div class="stickerAlbum" id="stickerAlbum"></div>
+  </div>
+
+  <div class="tabRow" id="tabRow"></div>
+
+  <div class="pageGrid" id="pageGrid"></div>
+
+  <div class="pageDetail" id="pageDetail"></div>
+
+  <div class="navRow">
+    <button class="btn secondary" id="prevBtn">⬅ Previous Page</button>
+    <button class="btn secondary" id="nextBtn">Next Page ➜</button>
+  </div>
+
+  <div class="celebrationCard" id="celebrationCard">
+    <div style="font-size:38px;">🏆📖✨</div>
+    <h2 style="color:var(--primary-dark); margin:8px 0 4px;">Your Magic Notebook portfolio is complete!</h2>
+    <p style="color:var(--text-soft);">Every mission is marked complete, every sticker collected, every page yours to keep.</p>
+    <button class="btn orange" onclick="window.print()">🖨️ Print My Complete Notebook</button>
+  </div>
+
+  <p id="printHint" style="text-align:center; color:var(--text-soft); font-size:13px; margin-top:16px;">Tip: tap 🔊 to hear a word, tick the boxes as your child masters each skill, and tap "Mission Completed" to earn a sticker!</p>
+
+  <!-- Hidden full print layout -->
+  <div id="printArea"></div>
+</div>
+
+<footer class="brandFooter">LittleLume English · Lumi's Magic Notebook · Grade 1</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   NOTEBOOK DATA — Part 1 (My Body) + Part 2 (Healthy Forest)
+============================================================ */
+const notebook = {
+  part1: {
+    label:'📘 Part 1 · My Body',
+    pages: [
+      {num:1, mission:'Mission 1 · Warm-Up', title:'Head &amp; Hair', vocab:['head','hair'], grammar:['This is...'], sentence:['This is my head.','This is my hair.'], challenge:'🎤 Say "head" and "hair" out loud. 👆 Point to your head, then your hair.'},
+      {num:2, mission:'Mission 2 · Listening &amp; Speaking', title:'Eyes &amp; Ears', vocab:['eyes','ears'], grammar:['These are...','My / Your'], sentence:['These are my eyes.','These are my ears.','Your eyes are beautiful.'], challenge:'🎤 Say "These are my eyes." 👆 Point to your ears and say "These are my ears."'},
+      {num:3, mission:'Mission 3 · Phonics Adventure', title:'Nose, Mouth &amp; Short Vowels', vocab:['nose','mouth','hand','leg','neck','lip','chin'], grammar:['short a, e, i'], sentence:['hand = short a','leg / neck = short e','lip / chin = short i'], challenge:'✍️ Write one word with the short "i" sound (chin or lip). 🎤 Say all 5 phonics words.'},
+      {num:4, mission:'Mission 4 · Reading', title:'Hands &amp; Fingers', vocab:['hands','fingers','face'], grammar:['I have...'], sentence:['I have two hands.','My hands have fingers.','This is my face.'], challenge:'🎤 Say "I have two hands." ✍️ Write: I have ___ hands.'},
+      {num:5, mission:'Mission 5 · Writing', title:'Legs &amp; Complete Sentences', vocab:['legs','teeth','feet'], grammar:['These are my ___.'], sentence:['These are my legs.','Your eyes are beautiful.'], challenge:'🏃 Jump 5 times, then say "These are my legs!" ✍️ Write one sentence about your legs.'},
+      {num:6, mission:'Mission 6 · Celebration Games', title:'Whole Body Review', vocab:['shoulders','knees','toes','arms'], grammar:['Review: This is / These are'], sentence:['Touch your nose!','Head, shoulders, knees and toes!'], challenge:'🏃 Do "Head, Shoulders, Knees and Toes" once. 🎤 Say 5 body parts as fast as you can!'}
+    ]
+  },
+  part2: {
+    label:'📗 Part 2 · Healthy Forest',
+    pages: [
+      {num:1, mission:'Mission 1 · Warm-Up', title:'Moving &amp; Greeting', vocab:['shoulders','knees'], grammar:['I can + verb'], sentence:['I can jump.','I can clap.','These are my shoulders.'], challenge:'🏃 Jump 5 times and say "I can jump." 👆 Touch your shoulders and say the word.'},
+      {num:2, mission:'Mission 2 · Listening &amp; Speaking', title:'Talking About My Body', vocab:['toes','habits'], grammar:['I wash...','I can...'], sentence:['I wash my hands.','I have two knees.'], challenge:'🎤 Say "I wash my hands." 👆 Point to your knees.'},
+      {num:3, mission:'Mission 3 · Phonics Adventure', title:'Short Vowel Sounds', vocab:['hand','leg','neck','hip','chin'], grammar:['short a, e, i'], sentence:['hand = short a','leg / neck = short e','hip / chin = short i'], challenge:'✍️ Write one word: hand, leg, or chin. 🎤 Say all 5 phonics words out loud.'},
+      {num:4, mission:"Mission 4 · Reading", title:"Bobo's Healthy Journal", vocab:['wash','brush','clean','strong','smile','healthy'], grammar:['I am...'], sentence:['My legs are strong.','I am healthy!'], challenge:'🎤 Say two healthy habits. ✍️ Write: I am healthy!'},
+      {num:5, mission:'Mission 5 · Writing', title:'Describing My Face', vocab:['face','eyes','nose','beautiful'], grammar:['My ... is / are ...'], sentence:['My eyes are big.','My face is clean.'], challenge:'✍️ Write one sentence about your face. 🎤 Say it out loud.'},
+      {num:6, mission:'Mission 6 · Healthy Forest Missions', title:'Feet, Toes &amp; Directions', vocab:['feet','toes','left','right'], grammar:['These are...'], sentence:['These are my feet.','I can run and jump.'], challenge:'🏃 Jump, then say "I can run and jump." 👆 Point left, then right.'}
+    ]
+  }
+};
+
+const STICKER_PALETTE = ['🌟','💎','🦋','🌈','🐝','🍀','🔥','🎈','🌸','🐦','🎨','🏆'];
+
+const state = { part:'part1', pageIndex:0 };
+const progress = {}; // keyed by pageKey -> {completed, date, comment, canSay, canRead, canSpeak, challengeDone, sticker}
+
+function ensureProgress(key, globalIdx){
+  if(!progress[key]){
+    progress[key] = {
+      completed:false, date:null, comment:'',
+      canSay:false, canRead:false, canSpeak:false,
+      challengeDone:false, sticker:null,
+      globalIdx: globalIdx
+    };
+  }
+  return progress[key];
+}
+
+function speak(text){
+  try{
+    if('speechSynthesis' in window){
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.85; u.pitch = 1.15;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    } else { showToast('🔊 "'+text+'"'); }
+  }catch(e){ showToast('🔊 "'+text+'"'); }
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+function confettiBurst(count=30){
+  const colors=['#7C6FF0','#FFAD60','#FF8FAB','#5FC792','#FFD966'];
+  for(let i=0;i<count;i++){
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.left = Math.random()*100+'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration = (2+Math.random()*1.5)+'s';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 4000);
+  }
+}
+
+function pageKey(part, idx){ return part+'-'+idx; }
+function globalIndex(part, idx){ return part==='part1' ? idx : 6+idx; }
+function todayStr(){
+  const d = new Date();
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+}
+
+function renderTabs(){
+  const tr = document.getElementById('tabRow');
+  tr.innerHTML = '';
+  Object.keys(notebook).forEach(partKey=>{
+    const b = document.createElement('button');
+    b.className = 'tabBtn'+(state.part===partKey?' active':'');
+    b.textContent = notebook[partKey].label;
+    b.onclick = ()=>{ state.part = partKey; state.pageIndex = 0; renderAll(); };
+    tr.appendChild(b);
+  });
+}
+
+function renderGrid(){
+  const grid = document.getElementById('pageGrid');
+  grid.innerHTML = '';
+  notebook[state.part].pages.forEach((p, idx)=>{
+    const key = pageKey(state.part, idx);
+    const gi = globalIndex(state.part, idx);
+    const prog = ensureProgress(key, gi);
+    const btn = document.createElement('button');
+    btn.className = 'pageThumb'+(idx===state.pageIndex?' current':'');
+    btn.innerHTML =
+      (prog.sticker ? '<span class="stickerCorner">'+prog.sticker+'</span>' : '') +
+      '<span class="pnum">📖</span><span class="ptitle">Page '+p.num+'<br>'+p.title+'</span>'+
+      (prog.completed?'<span class="completedTag">⭐ Completed</span>':'');
+    btn.onclick = ()=>{ state.pageIndex = idx; renderAll(); };
+    grid.appendChild(btn);
+  });
+}
+
+function renderStickerAlbum(){
+  const album = document.getElementById('stickerAlbum');
+  album.innerHTML = '';
+  for(let i=0;i<12;i++){
+    const key = i<6 ? pageKey('part1', i) : pageKey('part2', i-6);
+    const prog = progress[key];
+    const slot = document.createElement('div');
+    slot.className = 'stickerSlot'+(prog && prog.sticker ? ' filled':'');
+    slot.textContent = (prog && prog.sticker) ? prog.sticker : '';
+    slot.title = 'Page '+(i+1);
+    album.appendChild(slot);
+  }
+}
+
+function tagButtons(list, cls){
+  return list.map(function(w){
+    const clean = w.replace(/<[^>]+>/g,'');
+    const escaped = clean.replace(/'/g, "\\'");
+    return '<span class="tag '+(cls||'')+'">'+w+'<button onclick="speak(\''+escaped+'\')" aria-label="Listen">🔊</button></span>';
+  }).join('');
+}
+
+function renderDetail(){
+  const p = notebook[state.part].pages[state.pageIndex];
+  const key = pageKey(state.part, state.pageIndex);
+  const gi = globalIndex(state.part, state.pageIndex);
+  const prog = ensureProgress(key, gi);
+  const detail = document.getElementById('pageDetail');
+
+  detail.innerHTML =
+    (prog.sticker ? '<div class="stickerStuck">'+prog.sticker+'</div>' : '') +
+    '<span class="missionTag">'+p.mission+'</span>'+
+    '<h2>📖 Page '+p.num+' — '+p.title+'</h2>'+
+
+    '<div class="sectionLabel">🗣️ Vocabulary</div>'+
+    '<div class="tagRow">'+tagButtons(p.vocab)+'</div>'+
+    '<div class="sectionLabel">📚 Grammar</div>'+
+    '<div class="tagRow">'+tagButtons(p.grammar,'grammar')+'</div>'+
+    '<div class="sectionLabel">✏️ Sentences</div>'+
+    '<div class="tagRow">'+tagButtons(p.sentence,'sentence')+'</div>'+
+
+    '<div class="portfolioBox">'+
+      '<div class="portfolioRow">'+
+        '<label><input type="checkbox" id="completedBox" '+(prog.completed?'checked':'')+'> ⭐ Mission Completed</label>'+
+      '</div>'+
+      '<div class="portfolioRow">📅 Date: <strong id="dateLabel">'+(prog.date || 'Not completed yet')+'</strong></div>'+
+      '<div class="sectionLabel">😊 Teacher / Parent Comment</div>'+
+      '<textarea class="commentInput" id="commentInput" placeholder="e.g. Great job saying the new words!">'+prog.comment+'</textarea>'+
+      '<div class="sectionLabel" style="margin-top:14px;">🎯 I Can...</div>'+
+      '<div class="checklistItem"><input type="checkbox" id="canSay" '+(prog.canSay?'checked':'')+'> I can say these words.</div>'+
+      '<div class="checklistItem"><input type="checkbox" id="canRead" '+(prog.canRead?'checked':'')+'> I can read these sentences.</div>'+
+      '<div class="checklistItem"><input type="checkbox" id="canSpeak" '+(prog.canSpeak?'checked':'')+'> I can use them in speaking.</div>'+
+    '</div>'+
+
+    '<div class="challengeBox">'+
+      '<h4>🎯 My Challenge</h4>'+
+      '<p style="margin:0 0 10px;">'+p.challenge+'</p>'+
+      '<button class="btn pink" id="challengeBtn" '+(prog.challengeDone?'disabled':'')+'>'+
+        (prog.challengeDone ? '✅ Challenge Done!' : 'I did it! ✅') +
+      '</button>'+
+    '</div>';
+
+  document.getElementById('completedBox').addEventListener('change', function(e){
+    prog.completed = e.target.checked;
+    if(prog.completed){
+      if(!prog.date) prog.date = todayStr();
+      if(!prog.sticker) prog.sticker = STICKER_PALETTE[gi % STICKER_PALETTE.length];
+      confettiBurst(20);
+      showToast('Mission Completed! You earned a sticker '+prog.sticker+'!');
+    }
+    renderAll();
+  });
+  document.getElementById('commentInput').addEventListener('input', function(e){ prog.comment = e.target.value; });
+  document.getElementById('canSay').addEventListener('change', function(e){ prog.canSay = e.target.checked; updateProgress(); });
+  document.getElementById('canRead').addEventListener('change', function(e){ prog.canRead = e.target.checked; updateProgress(); });
+  document.getElementById('canSpeak').addEventListener('change', function(e){ prog.canSpeak = e.target.checked; updateProgress(); });
+  document.getElementById('challengeBtn').addEventListener('click', function(){
+    prog.challengeDone = true;
+    confettiBurst(16);
+    showToast('Great job completing your challenge! 🎉');
+    renderDetail();
+    updateProgress();
+  });
+
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = notebook.part1.pages.length + notebook.part2.pages.length;
+  let completedCount = 0;
+  Object.values(progress).forEach(pr=>{ if(pr.completed) completedCount++; });
+  document.getElementById('completedCount').textContent = completedCount;
+  document.getElementById('progressFill').style.width = Math.round((completedCount/total)*100)+'%';
+  renderStickerAlbum();
+  const cc = document.getElementById('celebrationCard');
+  if(completedCount>=total){
+    if(!cc.classList.contains('show')){ confettiBurst(45); showToast('Your whole Magic Notebook portfolio is complete! 🏆'); }
+    cc.classList.add('show');
+  } else {
+    cc.classList.remove('show');
+  }
+}
+
+function renderNavButtons(){
+  const pages = notebook[state.part].pages;
+  document.getElementById('prevBtn').disabled = state.pageIndex<=0;
+  document.getElementById('nextBtn').textContent = (state.pageIndex>=pages.length-1) ? 'Next Part ➜' : 'Next Page ➜';
+}
+
+document.getElementById('prevBtn').onclick = function(){
+  if(state.pageIndex>0){ state.pageIndex--; renderAll(); }
+};
+document.getElementById('nextBtn').onclick = function(){
+  const pages = notebook[state.part].pages;
+  if(state.pageIndex < pages.length-1){ state.pageIndex++; renderAll(); }
+  else if(state.part==='part1'){ state.part='part2'; state.pageIndex=0; renderAll(); }
+};
+
+function renderPrintArea(){
+  const area = document.getElementById('printArea');
+  let html = '';
+  Object.keys(notebook).forEach(function(partKey){
+    html += '<div class="printPage"><h1>'+notebook[partKey].label+'</h1>';
+    notebook[partKey].pages.forEach(function(p, idx){
+      const key = pageKey(partKey, idx);
+      const prog = progress[key] || {};
+      html +=
+        '<div style="margin-bottom:18px; border-bottom:1px dashed #ccc; padding-bottom:12px;">'+
+          '<h3>Page '+p.num+' — '+p.title+' '+(prog.sticker||'')+' <span style="font-weight:400; color:#888; font-size:13px;">('+p.mission+')</span></h3>'+
+          '<p><strong>Vocabulary:</strong> '+p.vocab.join(', ')+'</p>'+
+          '<p><strong>Grammar:</strong> '+p.grammar.join(', ')+'</p>'+
+          '<p><strong>Sentences:</strong> '+p.sentence.join(' · ')+'</p>'+
+          '<p><strong>Mission Completed:</strong> '+(prog.completed?'Yes — '+prog.date:'Not yet')+'</p>'+
+          '<p><strong>I Can:</strong> Say words '+(prog.canSay?'✅':'⬜')+' &nbsp; Read sentences '+(prog.canRead?'✅':'⬜')+' &nbsp; Speak '+(prog.canSpeak?'✅':'⬜')+'</p>'+
+          '<p><strong>Teacher / Parent Comment:</strong> '+(prog.comment||'—')+'</p>'+
+        '</div>';
+    });
+    html += '</div>';
+  });
+  area.innerHTML = html;
+}
+
+function renderAll(){
+  renderTabs();
+  renderGrid();
+  renderDetail();
+  renderNavButtons();
+  renderPrintArea();
+}
+
+renderAll();
+</script>
+</body>
+</html>
