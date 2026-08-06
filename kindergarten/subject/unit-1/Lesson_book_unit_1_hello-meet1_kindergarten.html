@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Littlelume English — Hello & Greetings | Kindergarten Lesson Book</title>
+<style>
+/* ============================================================
+   LITTLELUME ENGLISH — KINDERGARTEN MAIN LESSON BOOK
+   Theme: Hello & Greetings (Pertemuan 1 — core vocabulary only)
+   Mascot: Mimi the Bunny accompanies the whole lesson
+   Palette: pastel pink + tosca/mint + sky blue + buttery yellow + lavender
+   ============================================================ */
+
+:root{
+  --pink:#FFD7E6;
+  --pink-deep:#FF9FC2;
+  --mint:#B8F3E6;
+  --mint-deep:#5FCFB2;
+  --sky:#CFE8FF;
+  --sky-deep:#7FB8F2;
+  --yellow:#FFF1B0;
+  --yellow-deep:#FFD34D;
+  --lav:#E6DBFF;
+  --lav-deep:#B79CF2;
+  --ink:#4A3B5C;
+  --ink-soft:#7A6B8C;
+  --white:#FFFFFF;
+  --shadow: 0 10px 30px rgba(122, 90, 160, 0.15);
+  --radius: 32px;
+  --font: 'Comic Sans MS', 'Chalkboard SE', 'Baloo 2', 'Trebuchet MS', 'Segoe UI Rounded', sans-serif;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+body{
+  font-family: var(--font);
+  background: linear-gradient(180deg, #FFFDF9 0%, #FFF9FB 100%);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.bg-decor{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;}
+.bg-decor span{ position:absolute; opacity:.5; animation: float 8s ease-in-out infinite;}
+.bg-decor span:nth-child(1){ top:6%; left:4%; font-size:38px; animation-delay:0s;}
+.bg-decor span:nth-child(2){ top:14%; right:6%; font-size:44px; animation-delay:1.2s;}
+.bg-decor span:nth-child(3){ bottom:10%; left:8%; font-size:34px; animation-delay:2.1s;}
+.bg-decor span:nth-child(4){ bottom:16%; right:10%; font-size:40px; animation-delay:.6s;}
+.bg-decor span:nth-child(5){ top:45%; left:2%; font-size:28px; animation-delay:1.8s;}
+.bg-decor span:nth-child(6){ top:50%; right:3%; font-size:30px; animation-delay:2.6s;}
+@keyframes float{
+  0%,100%{ transform: translateY(0) rotate(0deg);}
+  50%{ transform: translateY(-16px) rotate(8deg);}
+}
+
+.topbar{
+  position: sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; flex-wrap:wrap;
+  padding: 12px 20px;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(6px);
+  border-bottom: 3px dashed var(--pink-deep);
+}
+.brandmini{ display:flex; align-items:center; gap:8px; font-weight:800; color:var(--ink);}
+.brandmini .logo-dot{ width:14px; height:14px; border-radius:50%; background: var(--mint-deep); display:inline-block;}
+.controls{ display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+button.navbtn{
+  border:none; cursor:pointer; font-family:var(--font); font-weight:800;
+  padding:10px 18px; border-radius:999px; font-size:15px;
+  background: var(--sky-deep); color:#fff; box-shadow: var(--shadow);
+  transition: transform .15s ease;
+}
+button.navbtn:hover{ transform: translateY(-2px) scale(1.03);}
+button.navbtn:disabled{ opacity:.4; cursor:not-allowed; transform:none;}
+button.navbtn.alt{ background: var(--pink-deep);}
+button.navbtn.mint{ background: var(--mint-deep);}
+.pagecount{ font-weight:800; color:var(--ink-soft); font-size:14px; min-width:70px; text-align:center;}
+
+.stage{ position:relative; z-index:1; max-width:900px; margin:0 auto; padding: 28px 16px 80px;}
+.page{
+  display:none;
+  background:var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 42px 38px;
+  min-height: 560px;
+  position:relative;
+  overflow:hidden;
+  animation: pageIn .5s ease;
+}
+.page.active{ display:block;}
+@keyframes pageIn{
+  from{ opacity:0; transform: translateY(18px) scale(.98);}
+  to{ opacity:1; transform: translateY(0) scale(1);}
+}
+.corner-deco{ position:absolute; font-size:34px; opacity:.55;}
+.corner-deco.tl{ top:14px; left:18px;}
+.corner-deco.tr{ top:14px; right:18px;}
+
+.eyebrow{
+  display:inline-block; font-size:14px; font-weight:800; letter-spacing:.08em;
+  color: var(--mint-deep); background: #EAFCF7; padding:6px 16px; border-radius:999px;
+  margin-bottom: 14px;
+}
+h1.pagetitle{ font-size:44px; color:var(--ink); margin-bottom:6px; line-height:1.15;}
+p.body-text{ font-size:24px; line-height:1.6; color:var(--ink); margin-bottom:12px;}
+.big-emoji{ font-size:80px; text-align:center; margin: 10px 0;}
+
+.speak-btn{
+  border:none; cursor:pointer; background:var(--yellow); color:var(--ink);
+  font-weight:800; font-size:15px; padding:8px 16px; border-radius:999px;
+  box-shadow: var(--shadow); display:inline-flex; align-items:center; gap:6px;
+}
+.speak-btn:hover{ background:var(--yellow-deep);}
+.speak-btn:active{ transform: scale(.95);}
+
+.teacher-tip{
+  background: var(--lav); border-left:6px solid var(--lav-deep); border-radius:16px;
+  padding:14px 18px; margin-top:18px; font-size:16px; color:var(--ink);
+}
+.teacher-tip b{ color:#5B3FA0;}
+
+.dialogue{ display:flex; flex-direction:column; gap:14px; margin-top:18px;}
+.bubble-row{ display:flex; align-items:center; gap:12px;}
+.bubble-row.right{ flex-direction:row-reverse; text-align:right;}
+.avatar{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; flex-shrink:0; box-shadow:var(--shadow);}
+.avatar.a{ background:var(--sky);}
+.avatar.b{ background:var(--pink);}
+.bubble{
+  background:#F7F4FF; border:3px solid var(--lav-deep); border-radius:20px;
+  padding:12px 20px; font-size:22px; font-weight:700; max-width:70%;
+}
+
+.vocab-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-top:20px;}
+.vocab-card{
+  background: linear-gradient(160deg,#fff,#FFFBF3);
+  border:3px solid var(--yellow-deep); border-radius:24px; padding:18px;
+  text-align:center; box-shadow: var(--shadow);
+}
+.vocab-card .em{ font-size:54px;}
+.vocab-card .word{ font-size:26px; font-weight:800; margin-top:6px;}
+.vocab-card .ipa{ font-size:15px; color:var(--ink-soft); font-style:italic;}
+.vocab-card .meaning{ font-size:15px; margin-top:6px; color:var(--ink-soft);}
+.vocab-card .sentence{ font-size:16px; margin-top:8px; font-weight:700; color:#B15D2E;}
+
+.instr-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin-top:18px;}
+.instr-card{ background:var(--mint); border-radius:20px; padding:18px; text-align:center; font-weight:800; font-size:18px; box-shadow:var(--shadow);}
+.instr-card .em{ font-size:44px; display:block; margin-bottom:6px;}
+.instr-card.action{ background:var(--sky); cursor:pointer; transition:.15s;}
+.instr-card.action:hover{ transform:translateY(-3px);}
+
+.match-wrap{ display:flex; gap:30px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
+.match-col{ display:flex; flex-direction:column; gap:12px; min-width:150px;}
+.match-item{
+  border:3px solid var(--sky-deep); border-radius:16px; padding:12px 18px; text-align:center;
+  font-weight:800; font-size:20px; cursor:pointer; background:#fff; transition:.2s;
+}
+.match-item.selected{ background:var(--yellow); border-color:var(--yellow-deep);}
+.match-item.correct{ background:var(--mint); border-color:var(--mint-deep); cursor:default;}
+.match-item.wrong{ animation:shake .4s;}
+@keyframes shake{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);}}
+.game-score{ text-align:center; font-weight:800; font-size:20px; margin-top:16px; color:var(--mint-deep);}
+
+.checklist{ display:flex; flex-direction:column; gap:10px; margin-top:18px;}
+.checklist label{ display:flex; align-items:center; gap:12px; font-size:20px; font-weight:700; background:#FFF9EF; padding:10px 16px; border-radius:14px; cursor:pointer;}
+.checklist input{ width:24px; height:24px; accent-color: var(--mint-deep);}
+
+.cover{ text-align:center; padding-top: 40px;}
+.cover .logo{ font-size:52px; font-weight:900; color:var(--pink-deep); letter-spacing:1px;}
+.cover .tagline{ font-size:20px; font-weight:700; color:var(--mint-deep); letter-spacing:.15em; margin-top:4px;}
+.cover .theme-title{ font-size:56px; font-weight:900; margin-top:36px; color:var(--ink);
+  background: linear-gradient(90deg,var(--pink-deep),var(--lav-deep),var(--sky-deep));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+.cover .kids-scene{ font-size:100px; margin-top:30px;}
+.rainbow-bar{ height:14px; border-radius:99px; margin:26px auto; width:70%;
+  background: linear-gradient(90deg,#FF9FC2,#FFD34D,#B8F3E6,#7FB8F2,#B79CF2);}
+
+.progress-outer{ height:10px; background:#F1E9FF; border-radius:99px; overflow:hidden; margin: 0 auto 18px; max-width:900px;}
+.progress-inner{ height:100%; background: linear-gradient(90deg,var(--pink-deep),var(--sky-deep)); width:5%; transition: width .4s ease;}
+
+footer.pagefoot{ text-align:center; padding:16px; font-size:13px; color:var(--ink-soft);}
+
+/* feelings picker */
+.feel-grid{ display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-top:22px;}
+.feel-card{ background:#fff; border:4px solid var(--sky); border-radius:26px; padding:20px 26px; text-align:center; cursor:pointer; transition:.2s; box-shadow:var(--shadow); width:140px;}
+.feel-card:hover{ transform:translateY(-4px);}
+.feel-card.picked{ border-color:var(--pink-deep); background:var(--pink);}
+.feel-card .em{ font-size:56px; display:block;}
+.feel-card .lbl{ font-weight:800; margin-top:8px; font-size:18px;}
+
+/* Mimi mascot buddy */
+.mimi-buddy{
+  position:fixed; right:18px; bottom:18px; z-index:60;
+  display:flex; align-items:flex-end; gap:8px; max-width:260px;
+}
+.mimi-avatar{
+  font-size:44px; background:var(--yellow); border-radius:50%; width:64px; height:64px;
+  display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow); flex-shrink:0;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+.mimi-speech{
+  background:#fff; border:3px solid var(--yellow-deep); border-radius:18px 18px 4px 18px;
+  padding:10px 14px; font-size:14px; font-weight:800; color:var(--ink); box-shadow:var(--shadow);
+}
+
+/* next-lesson preview card */
+.preview-card{
+  margin-top:20px; background: var(--sky); border-radius:20px; padding:16px 20px;
+  font-weight:700; font-size:16px; box-shadow:var(--shadow);
+}
+
+@media print{
+  .topbar, .bg-decor, .progress-outer, footer.pagefoot, .speak-btn, .mimi-buddy{ display:none !important;}
+  .page{ display:block !important; box-shadow:none; page-break-after:always; border-radius:0; min-height:auto;}
+  body{ background:#fff;}
+}
+
+@media (max-width:640px){
+  .page{ padding:26px 20px;}
+  h1.pagetitle{ font-size:32px;}
+  .cover .theme-title{ font-size:38px;}
+  .bubble{ max-width:85%; font-size:18px;}
+  .mimi-buddy{ max-width:180px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-decor" aria-hidden="true">
+  <span>⭐</span><span>☁️</span><span>🌈</span><span>✨</span><span>🌸</span><span>⭐</span>
+</div>
+
+<div class="topbar">
+  <div class="brandmini"><span class="logo-dot"></span> Littlelume English — Hello &amp; Greetings (Meeting 1)</div>
+  <div class="controls">
+    <button class="navbtn alt" id="prevBtn" onclick="goPage(currentPage-1)">← Back</button>
+    <span class="pagecount" id="pageCount">1 / 21</span>
+    <button class="navbtn" id="nextBtn" onclick="goPage(currentPage+1)">Next →</button>
+    <button class="navbtn mint" onclick="window.print()">🖨️ Print</button>
+  </div>
+</div>
+<div class="progress-outer"><div class="progress-inner" id="progressBar"></div></div>
+
+<main class="stage" id="stage">
+
+<!-- PAGE 1 — COVER -->
+<section class="page active" data-title="Cover">
+  <div class="cover">
+    <div class="logo">🌟 Littlelume English</div>
+    <div class="tagline">LEARN • PLAY • SHINE</div>
+    <div class="rainbow-bar"></div>
+    <div class="theme-title">Hello &amp; Greetings</div>
+    <div class="kids-scene">🧒👋 🐰 👧👋</div>
+    <p class="body-text" style="margin-top:24px; font-weight:800; color:var(--ink-soft);">Kindergarten Main Lesson Book · Age 4–6 · Meeting 1</p>
+  </div>
+</section>
+
+<!-- PAGE 2 — WELCOME -->
+<section class="page" data-title="Welcome">
+  <span class="corner-deco tl">☁️</span><span class="corner-deco tr">🌈</span>
+  <div class="eyebrow">WELCOME</div>
+  <h1 class="pagetitle">Hello! 👋</h1>
+  <p class="body-text" style="font-size:30px; font-weight:800;">Welcome to English class!</p>
+  <p class="big-emoji">🐰</p>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar b">🐰</div><div class="bubble">Hi! My name is Mimi! I will learn with you today! <button class="speak-btn" onclick="speak('Hi! My name is Mimi. I will learn with you today!')">🔊</button></div></div>
+  </div>
+  <div class="teacher-tip"><b>Teacher Tip:</b> Introduce Mimi the bunny as the class's friendly guide — she will appear on every page to cheer the children on.</div>
+</section>
+
+<!-- PAGE 3 — LEARNING OBJECTIVES -->
+<section class="page" data-title="Learning Objectives">
+  <div class="eyebrow">TODAY I WILL LEARN</div>
+  <h1 class="pagetitle" style="font-size:36px;">Learning Objectives</h1>
+  <div class="instr-grid">
+    <div class="instr-card"><span class="em">👋</span>Greet others and say hello back</div>
+    <div class="instr-card"><span class="em">🙏</span>Say "please" politely</div>
+    <div class="instr-card"><span class="em">🙋</span>Say my name with "my name is..."</div>
+    <div class="instr-card"><span class="em">🧑‍🏫</span>Know "teacher" and "friend"</div>
+  </div>
+  <div class="preview-card">🔜 Coming in our next meeting: Letters A &amp; B, and fun classroom words!</div>
+</section>
+
+<!-- PAGE 4 — WARM-UP -->
+<section class="page" data-title="Warm-Up">
+  <div class="eyebrow">WARM-UP · 3–5 MIN</div>
+  <h1 class="pagetitle" style="font-size:38px;">Hello Song! 🎵</h1>
+  <p class="body-text">Stand up, clap, and sing with Mimi!</p>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar b">🐰</div><div class="bubble">Hello, hello, how are you? <button class="speak-btn" onclick="speak('Hello, hello, how are you?')">🔊</button></div></div>
+    <div class="bubble-row right"><div class="avatar a">🧒</div><div class="bubble">I am fine, thank you! <button class="speak-btn" onclick="speak('I am fine, thank you!')">🔊</button></div></div>
+  </div>
+  <div class="teacher-tip"><b>Teacher Tip:</b> Sing this to a simple tune (like "Twinkle Twinkle"), clapping on every "hello." Repeat 2–3 times to energize the class.</div>
+</section>
+
+<!-- PAGE 5 — WHAT ARE GREETINGS -->
+<section class="page" data-title="What are Greetings?">
+  <div class="eyebrow">LET'S LEARN</div>
+  <h1 class="pagetitle" style="font-size:38px;">What are Greetings?</h1>
+  <p class="body-text">Greetings are kind words. 💛</p>
+  <p class="body-text">We use greetings every day.</p>
+  <p class="body-text">We greet our teacher. 🧑‍🏫</p>
+  <p class="body-text">We greet our friends. 🧒🧒</p>
+</section>
+
+<!-- PAGE 6 — HELLO & HI -->
+<section class="page" data-title="Hello & Hi">
+  <div class="eyebrow">KEY VOCABULARY 1/9</div>
+  <h1 class="pagetitle" style="font-size:38px;">Hello &amp; Hi</h1>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="em">👋</div><div class="word">Hello</div><div class="ipa">/heh-LOH/</div>
+      <div class="meaning">We say this to greet anyone, any time.</div>
+      <div class="sentence">"Hello!"</div>
+      <button class="speak-btn" onclick="speak('Hello')">🔊 Listen</button>
+    </div>
+    <div class="vocab-card">
+      <div class="em">🙋</div><div class="word">Hi</div><div class="ipa">/hai/</div>
+      <div class="meaning">A short, friendly way to say hello.</div>
+      <div class="sentence">"Hi!"</div>
+      <button class="speak-btn" onclick="speak('Hi')">🔊 Listen</button>
+    </div>
+  </div>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">🧑‍🏫</div><div class="bubble">Hello!</div></div>
+    <div class="bubble-row right"><div class="avatar b">🧒</div><div class="bubble">Hello!</div></div>
+  </div>
+</section>
+
+<!-- PAGE 7 — GOOD MORNING -->
+<section class="page" data-title="Good Morning">
+  <div class="eyebrow">KEY VOCABULARY 3/9</div>
+  <h1 class="pagetitle" style="font-size:38px;">Good Morning ☀️</h1>
+  <div class="big-emoji">🌞</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="em">☀️</div><div class="word">Good morning</div><div class="ipa">/good MOR-ning/</div>
+      <div class="meaning">We say this when we wake up and go to school.</div>
+      <div class="sentence">"Good morning!"</div>
+      <button class="speak-btn" onclick="speak('Good morning')">🔊 Listen</button>
+    </div>
+  </div>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">🧑‍🏫</div><div class="bubble">Good morning, class!</div></div>
+    <div class="bubble-row right"><div class="avatar b">🧒</div><div class="bubble">Good morning, teacher!</div></div>
+  </div>
+</section>
+
+<!-- PAGE 8 — GOOD AFTERNOON -->
+<section class="page" data-title="Good Afternoon">
+  <div class="eyebrow">KEY VOCABULARY 4/9</div>
+  <h1 class="pagetitle" style="font-size:38px;">Good Afternoon 🌤️</h1>
+  <div class="big-emoji">🌤️</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="em">🌤️</div><div class="word">Good afternoon</div><div class="ipa">/good af-ter-NOON/</div>
+      <div class="meaning">We say this in the middle of the day.</div>
+      <div class="sentence">"Good afternoon!"</div>
+      <button class="speak-btn" onclick="speak('Good afternoon')">🔊 Listen</button>
+    </div>
+  </div>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">🧑‍🏫</div><div class="bubble">Good afternoon!</div></div>
+    <div class="bubble-row right"><div class="avatar b">🧒</div><div class="bubble">Good afternoon!</div></div>
+  </div>
+</section>
+
+<!-- PAGE 9 — GOODBYE & BYE -->
+<section class="page" data-title="Goodbye & Bye">
+  <div class="eyebrow">KEY VOCABULARY 5/9</div>
+  <h1 class="pagetitle" style="font-size:38px;">Goodbye &amp; Bye 👋</h1>
+  <p class="body-text">We say goodbye politely when we leave.</p>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="em">👋</div><div class="word">Goodbye</div><div class="ipa">/good-BAI/</div>
+      <div class="meaning">A polite way to say farewell.</div>
+      <div class="sentence">"Goodbye, teacher!"</div>
+      <button class="speak-btn" onclick="speak('Goodbye')">🔊 Listen</button>
+    </div>
+    <div class="vocab-card">
+      <div class="em">🙋‍♀️</div><div class="word">Bye</div><div class="ipa">/bai/</div>
+      <div class="meaning">A short, friendly way to say goodbye.</div>
+      <div class="sentence">"Bye, friends!"</div>
+      <button class="speak-btn" onclick="speak('Bye')">🔊 Listen</button>
+    </div>
+  </div>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">🧑‍🏫</div><div class="bubble">Goodbye, class!</div></div>
+    <div class="bubble-row right"><div class="avatar b">🧒</div><div class="bubble">Bye bye!</div></div>
+  </div>
+</section>
+
+<!-- PAGE 10 — PLEASE -->
+<section class="page" data-title="Please">
+  <div class="eyebrow">KEY VOCABULARY 7/9</div>
+  <h1 class="pagetitle" style="font-size:38px;">Please 🙏</h1>
+  <p class="body-text">We use <b>"please"</b> when we ask for something politely.</p>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="em">🙏</div><div class="word">Please</div><div class="ipa">/pleez/</div>
+      <div class="meaning">A polite word we add when asking.</div>
+      <div class="sentence">"Please sit down."</div>
+      <button class="speak-btn" onclick="speak('Please')">🔊 Listen</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 11 — TEACHER & FRIEND -->
+<section class="page" data-title="Teacher & Friend">
+  <div class="eyebrow">KEY VOCABULARY 8-9/9</div>
+  <h1 class="pagetitle" style="font-size:38px;">Teacher &amp; Friend</h1>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <div class="em">🧑‍🏫</div><div class="word">Teacher</div><div class="ipa">/TEE-cher/</div>
+      <div class="meaning">The person who helps us learn.</div>
+      <div class="sentence">"Hello, teacher!"</div>
+      <button class="speak-btn" onclick="speak('Teacher')">🔊 Listen</button>
+    </div>
+    <div class="vocab-card">
+      <div class="em">🧒</div><div class="word">Friend</div><div class="ipa">/frend/</div>
+      <div class="meaning">Someone we like to play and learn with.</div>
+      <div class="sentence">"Hello, friend!"</div>
+      <button class="speak-btn" onclick="speak('Friend')">🔊 Listen</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 12 — MY NAME (grammar) -->
+<section class="page" data-title="My Name">
+  <div class="eyebrow">GRAMMAR FOCUS</div>
+  <h1 class="pagetitle" style="font-size:38px;">My Name 🙋</h1>
+  <p class="body-text">We use <b>"Hello, my name is..."</b> to tell our name.</p>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">👧</div><div class="bubble">Hello, my name is Lily. <button class="speak-btn" onclick="speak('Hello, my name is Lily.')">🔊</button></div></div>
+  </div>
+  <p class="body-text" style="margin-top:16px; font-size:18px; color:var(--ink-soft);">A short way to say it: <b>"I am Lily."</b> <button class="speak-btn" onclick="speak('I am Lily.')">🔊</button></p>
+  <div class="teacher-tip"><b>Teacher Tip:</b> Focus practice time on "Hello, my name is..." — mention "I am..." briefly as a bonus, not a full drill.</div>
+</section>
+
+<!-- PAGE 13 — MEET NEW FRIENDS -->
+<section class="page" data-title="Meet New Friends">
+  <div class="eyebrow">LET'S PRACTICE</div>
+  <h1 class="pagetitle" style="font-size:38px;">Meet New Friends 🧑‍🤝‍🧑</h1>
+  <p class="body-text">Listen, then say it together, step by step:</p>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">👦</div><div class="bubble">Hello! <button class="speak-btn" onclick="speak('Hello!')">🔊</button></div></div>
+    <div class="bubble-row right"><div class="avatar b">👧</div><div class="bubble">Hello! <button class="speak-btn" onclick="speak('Hello!')">🔊</button></div></div>
+    <div class="bubble-row"><div class="avatar a">👦</div><div class="bubble">My name is Ben. <button class="speak-btn" onclick="speak('My name is Ben.')">🔊</button></div></div>
+    <div class="bubble-row right"><div class="avatar b">👧</div><div class="bubble">My name is Mia. <button class="speak-btn" onclick="speak('My name is Mia.')">🔊</button></div></div>
+  </div>
+</section>
+
+<!-- PAGE 14 — LET'S MOVE (TPR) -->
+<section class="page" data-title="Let's Move">
+  <div class="eyebrow">LET'S MOVE! · BRAIN BREAK</div>
+  <h1 class="pagetitle" style="font-size:38px;">Let's Move with Mimi! 🐰</h1>
+  <p class="body-text">Mimi says... you do! Tap each action to hear it, then act it out.</p>
+  <div class="instr-grid" id="moveGrid"></div>
+  <div class="teacher-tip"><b>Teacher Tip:</b> This is a movement break (TPR), not a vocabulary test — the goal is energy and fun before we practice speaking again.</div>
+</section>
+
+<!-- PAGE 15 — HOW DO I FEEL TODAY -->
+<section class="page" data-title="How Do I Feel Today?">
+  <div class="eyebrow">ABOUT ME</div>
+  <h1 class="pagetitle" style="font-size:38px;">How Do I Feel Today? 🙋</h1>
+  <p class="body-text">Tap the picture that shows how you feel!</p>
+  <div class="feel-grid" id="feelGrid"></div>
+  <p class="body-text" id="feelResult" style="text-align:center; margin-top:18px; font-weight:800; color:var(--mint-deep);"></p>
+</section>
+
+<!-- PAGE 16 — LISTEN & REPEAT -->
+<section class="page" data-title="Listen & Repeat">
+  <div class="eyebrow">LISTEN &amp; REPEAT</div>
+  <h1 class="pagetitle" style="font-size:38px;">Let's Say Together! 🔊</h1>
+  <p class="body-text">Teacher says it, then everyone repeats. Tap 🔊 to hear each word!</p>
+  <div class="instr-grid" id="repeatGrid"></div>
+</section>
+
+<!-- PAGE 17 — STORY TIME -->
+<section class="page" data-title="Story Time">
+  <div class="eyebrow">STORY TIME</div>
+  <h1 class="pagetitle" style="font-size:38px;">Mimi Says Hello! 🐰</h1>
+  <div class="big-emoji">🐰☀️🏫</div>
+  <p class="body-text">It is morning. Mimi goes to school.</p>
+  <p class="body-text">"Good morning!" says Mimi. 🐰</p>
+  <p class="body-text">"Good morning, Mimi!" says the teacher. 🧑‍🏫</p>
+  <p class="body-text">Mimi meets a new friend. "Hello! My name is Mimi." 👋</p>
+  <p class="body-text">"Hello, Mimi! My name is Coco." 🐿️</p>
+  <p class="body-text" style="font-weight:800; color:var(--mint-deep);">Now Mimi has a new friend! 💚</p>
+  <div class="teacher-tip"><b>Comprehension:</b> Ask — "What does Mimi say in the morning?" &nbsp;·&nbsp; "What is Mimi's new friend's name?"</div>
+</section>
+
+<!-- PAGE 18 — REVIEW VOCABULARY (matching) -->
+<section class="page" data-title="Review Vocabulary">
+  <div class="eyebrow">REVIEW</div>
+  <h1 class="pagetitle" style="font-size:38px;">Match the Picture! 🧩</h1>
+  <p class="body-text">Tap a picture, then tap its matching word.</p>
+  <div class="match-wrap">
+    <div class="match-col" id="matchPics"></div>
+    <div class="match-col" id="matchWords"></div>
+  </div>
+  <div class="game-score" id="matchScore">Matched: 0 / 9</div>
+</section>
+
+<!-- PAGE 19 — MINI CONVERSATION -->
+<section class="page" data-title="Mini Conversation">
+  <div class="eyebrow">SPEAKING PRACTICE</div>
+  <h1 class="pagetitle" style="font-size:38px;">Mini Conversation 💬</h1>
+  <div class="dialogue">
+    <div class="bubble-row"><div class="avatar a">👦</div><div class="bubble">Hello! <button class="speak-btn" onclick="speak('Hello!')">🔊</button></div></div>
+    <div class="bubble-row right"><div class="avatar b">👧</div><div class="bubble">Hello! <button class="speak-btn" onclick="speak('Hello!')">🔊</button></div></div>
+    <div class="bubble-row"><div class="avatar a">👦</div><div class="bubble">My name is Ben. <button class="speak-btn" onclick="speak('My name is Ben.')">🔊</button></div></div>
+    <div class="bubble-row right"><div class="avatar b">👧</div><div class="bubble">My name is Mia. <button class="speak-btn" onclick="speak('My name is Mia.')">🔊</button></div></div>
+    <div class="bubble-row"><div class="avatar a">👦</div><div class="bubble">Goodbye! <button class="speak-btn" onclick="speak('Goodbye!')">🔊</button></div></div>
+    <div class="bubble-row right"><div class="avatar b">👧</div><div class="bubble">Bye! <button class="speak-btn" onclick="speak('Bye!')">🔊</button></div></div>
+  </div>
+</section>
+
+<!-- PAGE 20 — REVIEW GAME -->
+<section class="page" data-title="Review Game">
+  <div class="eyebrow">REVIEW GAME</div>
+  <h1 class="pagetitle" style="font-size:38px;">Which Greeting? 🎮</h1>
+  <p class="body-text" id="gameQuestion">Loading...</p>
+  <div class="instr-grid" id="gameOptions"></div>
+  <div class="game-score" id="gameScore">Score: 0 / 5</div>
+</section>
+
+<!-- PAGE 21 — GREAT JOB -->
+<section class="page" data-title="Great Job">
+  <div class="cover">
+    <div class="big-emoji">🎉🐰🎉</div>
+    <div class="theme-title" style="font-size:44px;">Wonderful!</div>
+    <p class="body-text" style="font-size:28px; font-weight:800; margin-top:10px;">You can say hello!</p>
+    <p class="body-text" style="font-size:24px; font-weight:700; color:var(--mint-deep);">See you next lesson! 👋</p>
+    <div class="rainbow-bar"></div>
+    <div class="checklist" style="max-width:420px; margin:20px auto 0; text-align:left;">
+      <label><input type="checkbox"> I can say hello and goodbye</label>
+      <label><input type="checkbox"> I can say please</label>
+      <label><input type="checkbox"> I can say my name</label>
+      <label><input type="checkbox"> I know teacher and friend</label>
+    </div>
+    <div class="preview-card" style="max-width:420px; margin:18px auto 0;">🔜 Next meeting: Letters A &amp; B and fun classroom words (Stand up, Sit down, Listen, Look, Repeat)!</div>
+  </div>
+</section>
+
+</main>
+
+<div class="mimi-buddy" id="mimiBuddy">
+  <div class="mimi-speech" id="mimiSpeech">Hi! I'm Mimi! Let's learn together! 🐰</div>
+  <div class="mimi-avatar">🐰</div>
+</div>
+
+<footer class="pagefoot">Littlelume English · Learn · Play · Shine 🌟</footer>
+
+<script>
+/* ============ NAVIGATION ============ */
+const pages = document.querySelectorAll('.page');
+const totalPages = pages.length;
+let currentPage = 0;
+
+const mimiLines = [
+  "Hi! I'm Mimi! Let's learn together! 🐰",
+  "Yay, you're here! Let's start! 🎉",
+  "Here is what we'll learn today! 📝",
+  "Let's sing and move! 🎵",
+  "Greetings are kind words! 💛",
+  "Hello and Hi — easy peasy! 👋",
+  "Good morning, sunshine! ☀️",
+  "It's afternoon time! 🌤️",
+  "Bye bye, see you soon! 👋",
+  "Please is a magic word! 🙏",
+  "Teacher and friend — who do you see? 🧑‍🏫🧒",
+  "Hello, my name is Mimi! Your turn! 🙋",
+  "Let's meet a new friend! 🤝",
+  "Time to move your body! 🤸",
+  "How do YOU feel today? 🙋",
+  "Say it with me, loud and clear! 🔊",
+  "Story time! I love this part! 📖",
+  "Can you match them all? 🧩",
+  "Let's talk together! 💬",
+  "Let's play a quick game! 🎮",
+  "You did SO great today! 🎉"
+];
+
+function goPage(n){
+  if(n < 0 || n >= totalPages) return;
+  pages[currentPage].classList.remove('active');
+  currentPage = n;
+  pages[currentPage].classList.add('active');
+  document.getElementById('pageCount').textContent = (currentPage+1) + ' / ' + totalPages;
+  document.getElementById('prevBtn').disabled = currentPage === 0;
+  document.getElementById('nextBtn').disabled = currentPage === totalPages - 1;
+  document.getElementById('progressBar').style.width = (((currentPage+1)/totalPages)*100) + '%';
+  const speechEl = document.getElementById('mimiSpeech');
+  if(speechEl) speechEl.textContent = mimiLines[currentPage] || "You're doing great! 🐰";
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'ArrowRight') goPage(currentPage+1);
+  if(e.key === 'ArrowLeft') goPage(currentPage-1);
+});
+
+/* ============ TEXT TO SPEECH ============ */
+function speak(text){
+  try{
+    if(!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.85;
+    u.pitch = 1.15;
+    u.lang = 'en-US';
+    window.speechSynthesis.speak(u);
+  }catch(e){ console.warn('TTS unavailable', e); }
+}
+
+/* ============ CORE VOCAB (9 words for this meeting) ============ */
+const vocabData = [
+  {word:'Hello', em:'👋'},
+  {word:'Hi', em:'🙋'},
+  {word:'Good morning', em:'☀️'},
+  {word:'Good afternoon', em:'🌤️'},
+  {word:'Goodbye', em:'👋'},
+  {word:'Bye', em:'🙋‍♀️'},
+  {word:'Please', em:'🙏'},
+  {word:'Teacher', em:'🧑‍🏫'},
+  {word:'Friend', em:'🧒'},
+];
+
+/* Let's Move (TPR) data — physical action words, not formal vocab cards */
+const moveData = [
+  {word:'Stand up', em:'🧍'},
+  {word:'Sit down', em:'🪑'},
+  {word:'Wave', em:'👋'},
+  {word:'Clap', em:'👏'},
+  {word:'Smile', em:'😊'},
+  {word:'Jump', em:'🤸'},
+];
+const moveGrid = document.getElementById('moveGrid');
+moveData.forEach(v=>{
+  const div = document.createElement('div');
+  div.className = 'instr-card action';
+  div.innerHTML = `<span class="em">${v.em}</span>${v.word}`;
+  div.onclick = ()=> speak(v.word + "!");
+  moveGrid.appendChild(div);
+});
+
+/* Feelings picker */
+const feelData = [
+  {word:'Happy', em:'😊'},
+  {word:'Sleepy', em:'😴'},
+  {word:'Excited', em:'😄'},
+];
+const feelGrid = document.getElementById('feelGrid');
+feelData.forEach(f=>{
+  const card = document.createElement('div');
+  card.className = 'feel-card';
+  card.innerHTML = `<span class="em">${f.em}</span><div class="lbl">${f.word}</div>`;
+  card.onclick = ()=>{
+    document.querySelectorAll('.feel-card').forEach(c=>c.classList.remove('picked'));
+    card.classList.add('picked');
+    document.getElementById('feelResult').textContent = "I feel " + f.word + " today! " + f.em;
+    speak('I feel ' + f.word + ' today!');
+  };
+  feelGrid.appendChild(card);
+});
+
+/* Build Listen & Repeat grid */
+const repeatGrid = document.getElementById('repeatGrid');
+vocabData.forEach(v=>{
+  const div = document.createElement('div');
+  div.className = 'instr-card';
+  div.innerHTML = `<span class="em">${v.em}</span>${v.word}<br><button class="speak-btn" style="margin-top:8px;" onclick="speak('${v.word.replace("'","")}')">🔊</button>`;
+  repeatGrid.appendChild(div);
+});
+
+/* ============ MATCHING GAME ============ */
+let matchedCount = 0;
+let selectedPic = null, selectedWord = null;
+
+function shuffle(arr){ return arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]); }
+
+const picsShuffled = shuffle([...vocabData]);
+const wordsShuffled = shuffle([...vocabData]);
+const picsCol = document.getElementById('matchPics');
+const wordsCol = document.getElementById('matchWords');
+
+picsShuffled.forEach(v=>{
+  const el = document.createElement('div');
+  el.className = 'match-item';
+  el.textContent = v.em;
+  el.dataset.word = v.word;
+  el.onclick = ()=> pickMatch(el, 'pic');
+  picsCol.appendChild(el);
+});
+wordsShuffled.forEach(v=>{
+  const el = document.createElement('div');
+  el.className = 'match-item';
+  el.textContent = v.word;
+  el.dataset.word = v.word;
+  el.onclick = ()=> pickMatch(el, 'word');
+  wordsCol.appendChild(el);
+});
+
+function pickMatch(el, kind){
+  if(el.classList.contains('correct')) return;
+  if(kind === 'pic'){
+    if(selectedPic) selectedPic.classList.remove('selected');
+    selectedPic = el; el.classList.add('selected');
+  } else {
+    if(selectedWord) selectedWord.classList.remove('selected');
+    selectedWord = el; el.classList.add('selected');
+  }
+  if(selectedPic && selectedWord){
+    if(selectedPic.dataset.word === selectedWord.dataset.word){
+      selectedPic.classList.add('correct'); selectedPic.classList.remove('selected');
+      selectedWord.classList.add('correct'); selectedWord.classList.remove('selected');
+      matchedCount++;
+      document.getElementById('matchScore').textContent = 'Matched: ' + matchedCount + ' / ' + vocabData.length;
+      speak(selectedPic.dataset.word);
+      selectedPic = null; selectedWord = null;
+    } else {
+      selectedPic.classList.add('wrong'); selectedWord.classList.add('wrong');
+      setTimeout(()=>{
+        selectedPic.classList.remove('selected','wrong');
+        selectedWord.classList.remove('selected','wrong');
+        selectedPic = null; selectedWord = null;
+      }, 500);
+    }
+  }
+}
+
+/* ============ REVIEW GAME (quiz — core vocab only) ============ */
+const gameQuestions = [
+  {q:'It is early morning. What do you say?', options:['Good morning','Bye','Please'], answer:'Good morning'},
+  {q:'You meet someone new. What do you say first?', options:['Bye','Hello','Goodbye'], answer:'Hello'},
+  {q:'Class is finished. What do you say?', options:['Good afternoon','Goodbye','Hi'], answer:'Goodbye'},
+  {q:'You want to ask nicely. Which word helps?', options:['Please','Friend','Teacher'], answer:'Please'},
+  {q:'It is the middle of the day. What do you say?', options:['Good morning','Good afternoon','Bye'], answer:'Good afternoon'},
+];
+let gameIndex = 0, gameScore = 0;
+
+function loadGameQuestion(){
+  if(gameIndex >= gameQuestions.length){
+    document.getElementById('gameQuestion').textContent = "Great job! You finished the game! 🎉";
+    document.getElementById('gameOptions').innerHTML = '';
+    return;
+  }
+  const q = gameQuestions[gameIndex];
+  document.getElementById('gameQuestion').textContent = q.q;
+  const opts = document.getElementById('gameOptions');
+  opts.innerHTML = '';
+  shuffle([...q.options]).forEach(optText=>{
+    const card = document.createElement('div');
+    card.className = 'instr-card';
+    card.style.cursor = 'pointer';
+    card.textContent = optText;
+    card.onclick = ()=>{
+      if(optText === q.answer){
+        card.style.background = 'var(--mint-deep)'; card.style.color = '#fff';
+        gameScore++;
+        speak('Correct! Great job!');
+      } else {
+        card.style.background = 'var(--pink-deep)'; card.style.color = '#fff';
+        speak('Try again!');
+      }
+      document.getElementById('gameScore').textContent = 'Score: ' + gameScore + ' / ' + gameQuestions.length;
+      setTimeout(()=>{ gameIndex++; loadGameQuestion(); }, 900);
+    };
+    opts.appendChild(card);
+  });
+}
+loadGameQuestion();
+
+/* ============ INIT ============ */
+document.getElementById('prevBtn').disabled = true;
+document.getElementById('pageCount').textContent = '1 / ' + totalPages;
+document.getElementById('progressBar').style.width = (100/totalPages) + '%';
+</script>
+</body>
+</html>

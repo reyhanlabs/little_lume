@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English | Hello & Greetings – Meeting 2</title>
+<style>
+  :root{
+    --pink:#ffd6e8;
+    --pink-deep:#ff8fb3;
+    --tosca:#bdeee0;
+    --tosca-deep:#5ec9ab;
+    --yellow:#fff3b0;
+    --sky:#cdeeff;
+    --lavender:#e6d9ff;
+    --ink:#4a3f4d;
+    --white:#ffffff;
+    --shadow: 0 10px 24px rgba(90,60,90,0.12);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Comic Sans MS','Segoe UI Rounded','Trebuchet MS',sans-serif;
+    background:linear-gradient(180deg,#fff 0%, #fff9fc 100%);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{margin:0 0 .4em;}
+  .app{max-width:900px;margin:0 auto;padding:0 16px 40px;}
+
+  /* Top bar */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--pink);
+    padding:10px 16px;
+  }
+  .topbar-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+  .brand{font-weight:800;color:var(--pink-deep);font-size:1.05rem;white-space:nowrap;}
+  .brand span{color:var(--tosca-deep);}
+  .progress-track{flex:1;height:14px;background:var(--sky);border-radius:999px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--tosca-deep),var(--pink-deep));width:0%;transition:width .35s ease;}
+  .page-counter{font-size:.8rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .print-btn{
+    border:none;background:var(--lavender);color:var(--ink);font-weight:800;
+    padding:6px 12px;border-radius:999px;cursor:pointer;font-size:.75rem;
+  }
+
+  /* Pages */
+  .page{display:none;padding-top:22px;animation:fadeIn .4s ease;}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  .card{
+    background:var(--white);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    padding:28px 24px;
+    margin-bottom:20px;
+    border:3px solid rgba(255,182,213,0.5);
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--yellow);color:#7a5c00;font-weight:800;font-size:.75rem;
+    padding:6px 14px;border-radius:999px;margin-bottom:10px;
+  }
+  .title-xl{font-size:2rem;color:var(--pink-deep);font-weight:900;}
+  .title-lg{font-size:1.5rem;color:var(--tosca-deep);font-weight:900;}
+  .sub{font-size:1.05rem;color:var(--ink);opacity:.85;}
+
+  .mascot-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .mascot{
+    width:88px;height:88px;flex:none;
+    background:radial-gradient(circle at 35% 30%, #fff, var(--yellow) 60%);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:2.6rem;box-shadow:var(--shadow);
+    animation:bob 3s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-8px) rotate(3deg);}}
+  .speech-bubble{
+    background:var(--sky);border-radius:20px;padding:14px 18px;position:relative;
+    font-weight:700;font-size:1.05rem;flex:1;min-width:200px;
+  }
+
+  .pill-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;}
+  .pill{
+    background:var(--pink);border-radius:16px;padding:10px 16px;font-weight:800;
+    display:flex;align-items:center;gap:8px;font-size:1rem;
+  }
+
+  .review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:14px;}
+  .review-item{
+    background:var(--sky);border-radius:20px;padding:16px 10px;text-align:center;font-weight:800;
+    box-shadow:var(--shadow);
+  }
+  .review-item .emo{font-size:2.4rem;display:block;margin-bottom:6px;}
+
+  .grammar-box{background:var(--lavender);border-radius:20px;padding:18px 20px;margin-top:10px;}
+  .grammar-box.small{background:var(--tosca);padding:14px 18px;margin-top:16px;}
+  .grammar-box h3{color:var(--ink);}
+  .bubble-pair{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;}
+  .bubble{background:var(--white);border:2px dashed var(--pink-deep);border-radius:18px;padding:12px 16px;flex:1;min-width:180px;font-weight:700;}
+
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:14px;}
+  .vocab-card{
+    background:linear-gradient(160deg,var(--white),var(--pink) 140%);
+    border-radius:22px;padding:16px;box-shadow:var(--shadow);
+    border:2px solid rgba(255,143,179,.35);
+  }
+  .vocab-emo{font-size:2.6rem;text-align:center;}
+  .vocab-word{font-size:1.2rem;font-weight:900;text-align:center;color:var(--pink-deep);margin-top:4px;}
+  .vocab-pron{text-align:center;font-size:.85rem;color:var(--tosca-deep);font-weight:700;}
+  .vocab-meaning{font-size:.85rem;text-align:center;margin-top:6px;}
+  .vocab-sentence{font-size:.85rem;text-align:center;font-style:italic;margin-top:4px;color:#7a5c78;}
+  .say-btn{
+    display:block;margin:10px auto 0;border:none;background:var(--tosca-deep);color:#fff;
+    font-weight:800;padding:8px 14px;border-radius:999px;cursor:pointer;font-size:.8rem;
+  }
+  .say-btn:active{transform:scale(.95);}
+  .prompt-line{
+    margin-top:8px;font-size:.78rem;text-align:center;background:var(--yellow);
+    border-radius:10px;padding:6px;color:#7a5c00;font-weight:700;
+  }
+
+  .btn{
+    border:none;background:var(--pink-deep);color:#fff;font-weight:800;
+    padding:10px 18px;border-radius:999px;cursor:pointer;font-size:.9rem;
+  }
+  .btn.secondary{background:var(--tosca-deep);}
+  .btn:active{transform:scale(.96);}
+
+  .practice-item{background:var(--sky);border-radius:18px;padding:14px;margin-top:12px;}
+  .choice-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+  .choice{
+    background:var(--white);border:2px solid var(--tosca-deep);border-radius:14px;
+    padding:8px 16px;font-weight:800;cursor:pointer;font-size:.95rem;
+  }
+  .choice.correct{background:#c8f7d6;border-color:#3fae63;}
+  .choice.wrong{background:#ffd2d2;border-color:#e05c5c;}
+  .feedback{margin-top:8px;font-weight:800;font-size:.9rem;min-height:1.2em;}
+
+  .move-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:14px;}
+  .move-card{
+    background:var(--yellow);border-radius:20px;padding:18px 10px;text-align:center;font-weight:800;
+    cursor:pointer;box-shadow:var(--shadow);transition:transform .2s;
+  }
+  .move-card.done{background:var(--tosca);}
+  .move-card .icon{font-size:2.4rem;display:block;}
+  .move-card.bounced{animation:pop .5s ease;}
+  @keyframes pop{0%{transform:scale(1);}40%{transform:scale(1.25) rotate(6deg);}100%{transform:scale(1);}}
+
+  .feel-grid{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:16px;}
+  .feel-card{
+    background:var(--white);border:3px solid var(--sky);border-radius:20px;padding:16px;
+    text-align:center;font-weight:800;cursor:pointer;width:120px;
+  }
+  .feel-card.selected{border-color:var(--pink-deep);background:var(--pink);}
+  .feel-card .icon{font-size:2.6rem;display:block;}
+  #feelMsg{text-align:center;margin-top:14px;font-weight:800;font-size:1.05rem;color:var(--tosca-deep);min-height:1.4em;}
+
+  .instr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:14px;}
+  .instr-card{background:var(--lavender);border-radius:18px;padding:16px 10px;text-align:center;font-weight:800;}
+  .instr-card .icon{font-size:2.2rem;display:block;margin-bottom:6px;}
+
+  .letter-block{display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-top:14px;}
+  .letter-big{
+    font-size:5rem;font-weight:900;color:var(--pink-deep);
+    background:var(--sky);border-radius:24px;padding:6px 26px;box-shadow:var(--shadow);
+  }
+  .letter-words{display:flex;gap:12px;flex-wrap:wrap;}
+  .letter-word{background:var(--yellow);border-radius:14px;padding:10px 14px;font-weight:800;text-align:center;}
+  .letter-word .e{font-size:1.8rem;display:block;}
+
+  .story-box{background:var(--pink);border-radius:22px;padding:20px;margin-top:14px;font-size:1.05rem;font-weight:700;line-height:1.6;}
+  .comic{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+  .comic-line{display:flex;align-items:center;gap:10px;}
+  .comic-line .who{font-weight:900;width:70px;flex:none;color:var(--tosca-deep);}
+  .comic-line .say{background:var(--white);border:2px solid var(--pink-deep);border-radius:16px;padding:8px 14px;font-weight:700;flex:1;}
+  .comic-line.hidden{display:none;}
+
+  .checklist{list-style:none;padding:0;margin-top:14px;}
+  .checklist li{
+    display:flex;align-items:center;gap:10px;background:var(--sky);border-radius:14px;
+    padding:10px 14px;margin-bottom:8px;font-weight:800;cursor:pointer;
+  }
+  .checklist li.checked{background:var(--tosca);text-decoration:line-through;opacity:.8;}
+  .checklist li .box{width:22px;height:22px;border-radius:6px;border:3px solid var(--tosca-deep);flex:none;background:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:10px;}
+  .time-chip{font-size:.75rem;background:var(--yellow);padding:4px 10px;border-radius:999px;font-weight:800;color:#7a5c00;}
+
+  .dots{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px 0;}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--sky);cursor:pointer;}
+  .dot.active{background:var(--pink-deep);}
+  .dot.seen{background:var(--tosca-deep);}
+
+  /* Print */
+  @media print{
+    .topbar,.nav-row,.dots,.print-btn,.say-btn{display:none !important;}
+    .page{display:block !important;page-break-after:always;}
+    body{background:#fff;}
+  }
+  @media (max-width:520px){
+    .title-xl{font-size:1.5rem;}
+    .mascot{width:64px;height:64px;font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">LittleLume <span>English</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="page-counter" id="pageCounter">1/1</div>
+    <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+  </div>
+</div>
+
+<div class="app">
+  <div class="dots" id="dots"></div>
+  <div id="pages"></div>
+</div>
+
+<script>
+/* ============ CONTENT DATA ============ */
+const vocab = [
+  {word:"Thank you", pron:"thank yoo", emo:"🙏", meaning:"We say this when someone helps us.", sentence:"Thank you, Mom!", prompt:"Can you say Thank you?"},
+  {word:"You're welcome", pron:"yor wel-kuhm", emo:"😊", meaning:"We say this after someone says thank you.", sentence:"You're welcome, Ben!", prompt:"Can you say You're welcome?"},
+  {word:"Yes", pron:"yes", emo:"👍", meaning:"We say this to agree.", sentence:"Yes, I am happy!", prompt:"Can you say Yes?"},
+  {word:"No", pron:"noh", emo:"👎", meaning:"We say this to say not true.", sentence:"No, thank you.", prompt:"Can you say No?"},
+  {word:"Sorry", pron:"sor-ee", emo:"🥺", meaning:"We say this when we make a mistake.", sentence:"Sorry, Emma!", prompt:"Can you say Sorry?"},
+  {word:"Happy", pron:"hap-ee", emo:"😄", meaning:"This means we feel good and glad.", sentence:"I am happy today!", prompt:"Can you say Happy?"},
+  {word:"Welcome", pron:"wel-kuhm", emo:"🤗", meaning:"We say this to greet someone kindly.", sentence:"Welcome to school!", prompt:"Can you say Welcome?"},
+  {word:"I am... / You are...", pron:"ai am / yoo ar", emo:"🙋", meaning:"'I am' tells about me. 'You are' tells about a friend.", sentence:"I am Lumi. You are my friend.", prompt:"Point to yourself and say I am... then point to a friend and say You are..."}
+];
+
+const quizQ = [
+  {emo:"🎁", ask:"A friend gives you a gift. What do you say?", choices:["Thank you","Sorry"], correct:"Thank you"},
+  {emo:"👟", ask:"You step on a friend's foot. What do you say?", choices:["Happy","Sorry"], correct:"Sorry"},
+  {emo:"🙋", ask:"Someone says 'Thank you!' What do you say?", choices:["You're welcome","No"], correct:"You're welcome"},
+  {emo:"🍦", ask:"Do you like ice cream?", choices:["Yes","No"], correct:"Yes", note:"(both can be right — pick how you feel!)"},
+  {emo:"😄", ask:"You feel very good today. What word matches?", choices:["Happy","Sorry"], correct:"Happy"}
+];
+
+const reviewGame = [
+  {emo:"👋", ask:"What do we say?", answer:"Hello!", choices:["Hello!","Sorry!"]},
+  {emo:"🎁", ask:"What do we say?", answer:"Thank you!", choices:["No!","Thank you!"]},
+  {emo:"😄", ask:"How do we feel?", answer:"Happy!", choices:["Happy!","Sorry!"]},
+  {emo:"🅰️", ask:"What letter is this?", answer:"A", choices:["A","B"]},
+  {emo:"🐻", ask:"Bear starts with letter...", answer:"B", choices:["A","B"]}
+];
+
+/* ============ PAGE BUILDER ============ */
+const pages = [];
+function addPage(html, minutes){ pages.push({html, minutes}); }
+
+// 1. Welcome
+addPage(`
+<div class="card">
+  <span class="eyebrow">✨ Meeting 2</span>
+  <div class="mascot-row">
+    <div class="mascot">⭐</div>
+    <div class="speech-bubble">Hi friends! I'm Lumi! Let's learn together again today!</div>
+  </div>
+  <h1 class="title-xl">Hello & Greetings</h1>
+  <p class="sub">Meeting 2</p>
+  <div class="pill-grid">
+    <div class="pill">👋 Say hello</div>
+    <div class="pill">😊 Learn polite words</div>
+    <div class="pill">🙋 Say our names</div>
+    <div class="pill">🔤 Learn letters A and B</div>
+  </div>
+</div>`, 2);
+
+// 2. Warm-Up
+addPage(`
+<div class="card">
+  <span class="eyebrow">🎵 Warm-Up</span>
+  <div class="mascot-row">
+    <div class="mascot">⭐</div>
+    <div class="speech-bubble">Let's wake up our voices! Sing with me and do the actions!</div>
+  </div>
+  <h2 class="title-lg">The Hello Chant</h2>
+  <div class="story-box">
+    👋 Hello, hello, wave your hand! <br>
+    😊 Smile, smile, it feels so grand! <br>
+    🙏 Thank you, thank you, say it nice! <br>
+    🥺 Sorry, sorry, say it twice! <br>
+    🙋 That's my name, that's who I am — <br>
+    ⭐ Welcome, welcome, to Lumi Land!
+  </div>
+  <button class="say-btn" onclick="speak('Hello, hello, wave your hand. Smile, smile, it feels so grand. Thank you, thank you, say it nice. Sorry, sorry, say it twice. That is my name, that is who I am. Welcome, welcome, to Lumi Land.')">🔊 Listen & Sing Along</button>
+</div>`, 3);
+
+// 3. Quick Review
+addPage(`
+<div class="card">
+  <span class="eyebrow">🔁 Quick Review</span>
+  <h2 class="title-lg">Do You Remember?</h2>
+  <p class="sub">Teacher says. Students repeat!</p>
+  <div class="review-grid">
+    <div class="review-item"><span class="emo">👋</span>Hello</div>
+    <div class="review-item"><span class="emo">🙌</span>Hi</div>
+    <div class="review-item"><span class="emo">🌞</span>Good Morning</div>
+    <div class="review-item"><span class="emo">🌤️</span>Good Afternoon</div>
+    <div class="review-item"><span class="emo">👋</span>Goodbye</div>
+  </div>
+</div>`, 2);
+
+// 4. Grammar Focus
+addPage(`
+<div class="card">
+  <span class="eyebrow">📚 Grammar Focus</span>
+  <h2 class="title-lg">Let's Say It!</h2>
+  <div class="grammar-box">
+    <h3>Hello, my name is _____.</h3>
+    <p class="sub">We say this to tell a new friend our name!</p>
+    <div class="bubble-pair">
+      <div class="bubble">👧 Hello! My name is Emma.</div>
+      <div class="bubble">👦 Hello! My name is Ben.</div>
+    </div>
+  </div>
+  <div class="grammar-box small">
+    <h3>I am _____. <span style="font-weight:600;font-size:.85rem;">(a short way too!)</span></h3>
+    <div class="bubble-pair">
+      <div class="bubble">👧 I am Emma.</div>
+      <div class="bubble">👦 I am Ben.</div>
+    </div>
+  </div>
+</div>`, 3);
+
+// 5. Vocabulary
+let vocabHtml = `<div class="card"><span class="eyebrow">🗂️ Key Vocabulary</span><h2 class="title-lg">New Words</h2><div class="vocab-grid">`;
+vocab.forEach((v,i)=>{
+  vocabHtml += `<div class="vocab-card">
+    <div class="vocab-emo">${v.emo}</div>
+    <div class="vocab-word">${v.word}</div>
+    <div class="vocab-pron">${v.pron}</div>
+    <div class="vocab-meaning">${v.meaning}</div>
+    <div class="vocab-sentence">"${v.sentence}"</div>
+    <button class="say-btn" onclick="speak('${v.sentence.replace(/'/g, "\\'")}')">🔊 Listen</button>
+    <div class="prompt-line">${v.prompt}</div>
+  </div>`;
+});
+vocabHtml += `</div></div>`;
+addPage(vocabHtml, 5);
+
+// 6. Listen & Repeat
+addPage(`
+<div class="card">
+  <span class="eyebrow">👂 Listen & Repeat</span>
+  <div class="mascot-row">
+    <div class="mascot">⭐</div>
+    <div class="speech-bubble">Tap a word. Listen carefully. Then say it out loud three times!</div>
+  </div>
+  <div class="pill-grid" id="repeatRow"></div>
+</div>`, 4);
+
+// 7. Story Time
+addPage(`
+<div class="card">
+  <span class="eyebrow">📖 Story Time</span>
+  <h2 class="title-lg">Lumi's Happy Day</h2>
+  <div class="story-box">
+    ⭐ Lumi meets a new friend. <br>
+    👧 "Hello! My name is Emma," she says. <br>
+    ⭐ "Nice to meet you!" says Lumi. <br>
+    👧 Emma gives Lumi a flower. 🌸 <br>
+    ⭐ "Thank you!" says Lumi. <br>
+    👧 "You're welcome!" says Emma. <br>
+    ⭐ Lumi feels very happy! 😄
+  </div>
+  <button class="say-btn" onclick="speak('Lumi meets a new friend. Hello, my name is Emma, she says. Nice to meet you, says Lumi. Emma gives Lumi a flower. Thank you, says Lumi. You are welcome, says Emma. Lumi feels very happy.')">🔊 Listen to the Story</button>
+  <div class="practice-item">
+    <strong>What do you think?</strong>
+    <div id="storyQ1" class="choice-row"></div>
+    <div class="feedback" id="storyQ1fb"></div>
+  </div>
+  <div class="practice-item">
+    <strong>How does Lumi feel at the end?</strong>
+    <div id="storyQ2" class="choice-row"></div>
+    <div class="feedback" id="storyQ2fb"></div>
+  </div>
+</div>`, 4);
+
+// 8. Lumi's Mission
+addPage(`
+<div class="card">
+  <span class="eyebrow">⭐ Mission Time</span>
+  <div class="mascot-row">
+    <div class="mascot">⭐</div>
+    <div class="speech-bubble">Ready for a mission? Tap 🔊 to hear each line, say it out loud, then check it off!</div>
+  </div>
+  <h2 class="title-lg">Lumi's Mission</h2>
+  <ul class="checklist" id="missionList">
+    <li onclick="toggleMission(this)"><span class="box"></span><span class="mtext">Say "Thank you."</span><button class="say-btn" style="margin:0 0 0 auto;" onclick="event.stopPropagation();speak('Thank you.')">🔊</button></li>
+    <li onclick="toggleMission(this)"><span class="box"></span><span class="mtext">Say "Sorry."</span><button class="say-btn" style="margin:0 0 0 auto;" onclick="event.stopPropagation();speak('Sorry.')">🔊</button></li>
+    <li onclick="toggleMission(this)"><span class="box"></span><span class="mtext">Say "My name is..."</span><button class="say-btn" style="margin:0 0 0 auto;" onclick="event.stopPropagation();speak('My name is Lumi.')">🔊</button></li>
+    <li onclick="toggleMission(this)"><span class="box"></span><span class="mtext">Say "I am happy."</span><button class="say-btn" style="margin:0 0 0 auto;" onclick="event.stopPropagation();speak('I am happy.')">🔊</button></li>
+  </ul>
+  <div id="missionScore" style="margin-top:10px;font-weight:900;color:var(--pink-deep);"></div>
+</div>`, 3);
+
+// 9. Let's Practice
+let practiceHtml = `<div class="card">
+  <span class="eyebrow">🎯 Let's Practice</span>
+  <h2 class="title-lg">Activity 1: Look and Say</h2>
+  <p class="sub">Tap each picture and say the word out loud!</p>
+  <div class="pill-grid" id="lookSayRow"></div>
+
+  <h2 class="title-lg" style="margin-top:22px;">Activity 2: Say My Name</h2>
+  <div class="grammar-box">
+    <p class="sub">Type your name below, then tap the button!</p>
+    <input id="nameInput" type="text" placeholder="Your name" style="padding:10px 14px;border-radius:12px;border:2px solid var(--tosca-deep);font-size:1rem;width:70%;max-width:260px;">
+    <button class="btn" onclick="sayMyName()">Say it! 🙋</button>
+    <div id="nameOut" style="margin-top:10px;font-weight:800;font-size:1.1rem;color:var(--pink-deep);"></div>
+  </div>
+
+  <h2 class="title-lg" style="margin-top:22px;">Activity 3: Circle the Correct Word</h2>`;
+quizQ.forEach((q,i)=>{
+  practiceHtml += `<div class="practice-item">
+    <div style="font-size:2rem;">${q.emo}</div>
+    <strong>${q.ask}</strong>
+    <div class="choice-row" id="quiz${i}"></div>
+    <div class="feedback" id="quiz${i}fb"></div>
+  </div>`;
+});
+practiceHtml += `</div>`;
+addPage(practiceHtml, 6);
+
+// 9. Let's Move (TPR / Classroom Instructions merged)
+addPage(`
+<div class="card">
+  <span class="eyebrow">🤸 Let's Move!</span>
+  <div class="mascot-row">
+    <div class="mascot">⭐</div>
+    <div class="speech-bubble">Time to move our bodies! Tap each card and do the action!</div>
+  </div>
+  <div class="move-grid" id="moveGrid"></div>
+</div>`, 3);
+
+// 10. How Do You Feel Today
+addPage(`
+<div class="card">
+  <span class="eyebrow">💛 About Me</span>
+  <h2 class="title-lg">How Do You Feel Today?</h2>
+  <p class="sub">Tap the picture that shows how you feel!</p>
+  <div class="feel-grid">
+    <div class="feel-card" onclick="pickFeel(this,'Happy')"><span class="icon">😄</span>Happy</div>
+    <div class="feel-card" onclick="pickFeel(this,'Sleepy')"><span class="icon">😴</span>Sleepy</div>
+    <div class="feel-card" onclick="pickFeel(this,'Excited')"><span class="icon">🤩</span>Excited</div>
+  </div>
+  <div id="feelMsg"></div>
+</div>`, 2);
+
+// 11. Alphabet Time
+addPage(`
+<div class="card">
+  <span class="eyebrow">🔤 Alphabet Time</span>
+  <h2 class="title-lg">Letter A</h2>
+  <div class="letter-block">
+    <div class="letter-big">Aa</div>
+    <div class="letter-words">
+      <div class="letter-word"><span class="e">🍎</span>Apple</div>
+      <div class="letter-word"><span class="e">🐜</span>Ant</div>
+      <div class="letter-word"><span class="e">🐊</span>Alligator</div>
+    </div>
+  </div>
+  <button class="say-btn" onclick="speak('Letter A. A is for Apple, Ant, Alligator.')">🔊 Hear Letter A</button>
+  <div class="prompt-line">Can you find something that starts with A?</div>
+
+  <h2 class="title-lg" style="margin-top:26px;">Letter B</h2>
+  <div class="letter-block">
+    <div class="letter-big">Bb</div>
+    <div class="letter-words">
+      <div class="letter-word"><span class="e">⚽</span>Ball</div>
+      <div class="letter-word"><span class="e">🐻</span>Bear</div>
+      <div class="letter-word"><span class="e">🍌</span>Banana</div>
+    </div>
+  </div>
+  <button class="say-btn" onclick="speak('Letter B. B is for Ball, Bear, Banana.')">🔊 Hear Letter B</button>
+  <div class="prompt-line">Can you find something that starts with B?</div>
+</div>`, 4);
+
+// 12. Mini Speaking Practice
+addPage(`
+<div class="card">
+  <span class="eyebrow">🗣️ Mini Speaking Practice</span>
+  <h2 class="title-lg">Talk With a Friend</h2>
+  <p class="sub">Tap "Next" to see the conversation grow, one line at a time!</p>
+  <div class="comic" id="comicBox"></div>
+  <button class="btn" id="comicNextBtn" onclick="comicNext()">Next ➜</button>
+</div>`, 4);
+
+// 13. Review Game
+let reviewHtml = `<div class="card">
+  <span class="eyebrow">🎮 Review Game</span>
+  <h2 class="title-lg">Happy Review!</h2>`;
+reviewGame.forEach((q,i)=>{
+  reviewHtml += `<div class="practice-item">
+    <div style="font-size:2.2rem;">${q.emo}</div>
+    <strong>${q.ask}</strong>
+    <div class="choice-row" id="rg${i}"></div>
+    <div class="feedback" id="rg${i}fb"></div>
+  </div>`;
+});
+reviewHtml += `<div id="reviewScore" style="margin-top:14px;font-weight:900;font-size:1.1rem;color:var(--pink-deep);"></div></div>`;
+addPage(reviewHtml, 4);
+
+// 14. Goodbye
+addPage(`
+<div class="card">
+  <span class="eyebrow">⭐ Great Job!</span>
+  <div class="mascot-row">
+    <div class="mascot">⭐</div>
+    <div class="speech-bubble">You did SO well today! I'm proud of you, friend!</div>
+  </div>
+  <h2 class="title-lg">Today I Learned:</h2>
+  <ul class="checklist" id="finalChecklist">
+    <li onclick="toggleCheck(this)"><span class="box"></span>Hello, my name is...</li>
+    <li onclick="toggleCheck(this)"><span class="box"></span>Thank you & You're welcome</li>
+    <li onclick="toggleCheck(this)"><span class="box"></span>Yes & No</li>
+    <li onclick="toggleCheck(this)"><span class="box"></span>Sorry</li>
+    <li onclick="toggleCheck(this)"><span class="box"></span>Happy & Welcome</li>
+    <li onclick="toggleCheck(this)"><span class="box"></span>Letters A and B</li>
+  </ul>
+  <p class="sub" style="margin-top:16px;">See you next time, LittleLume friend! 🌟</p>
+  <div class="grammar-box small" style="margin-top:18px;">
+    <h3>💛 For Parents</h3>
+    <ul style="margin:8px 0 0;padding-left:20px;font-weight:700;">
+      <li>Practice saying "Thank you" at home.</li>
+      <li>Encourage your child to greet family members in English.</li>
+      <li>Read the mini story together (Story Time page).</li>
+    </ul>
+  </div>
+</div>`, 2);
+
+/* ============ RENDER ============ */
+const pagesEl = document.getElementById('pages');
+const dotsEl = document.getElementById('dots');
+pages.forEach((p,i)=>{
+  const div = document.createElement('div');
+  div.className = 'page' + (i===0 ? ' active' : '');
+  div.id = 'page-'+i;
+  div.innerHTML = p.html + `
+    <div class="nav-row">
+      <button class="btn secondary" onclick="goTo(${i-1})" ${i===0?'style="visibility:hidden;"':''}>⟵ Back</button>
+      <span class="time-chip">⏱ ~${p.minutes} min</span>
+      <button class="btn" onclick="goTo(${i+1})" ${i===pages.length-1?'style="visibility:hidden;"':''}>Next ⟶</button>
+    </div>`;
+  pagesEl.appendChild(div);
+
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i===0?' active':'');
+  dot.id = 'dot-'+i;
+  dot.onclick = ()=>goTo(i);
+  dotsEl.appendChild(dot);
+});
+
+let current = 0;
+function goTo(i){
+  if(i<0 || i>=pages.length) return;
+  document.getElementById('page-'+current).classList.remove('active');
+  document.getElementById('dot-'+current).classList.remove('active');
+  document.getElementById('dot-'+current).classList.add('seen');
+  current = i;
+  document.getElementById('page-'+current).classList.add('active');
+  document.getElementById('dot-'+current).classList.add('active');
+  document.getElementById('progressFill').style.width = (100*(current+1)/pages.length)+'%';
+  document.getElementById('pageCounter').textContent = (current+1)+'/'+pages.length;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+goTo(0);
+
+/* ============ SPEECH ============ */
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.85;
+  u.pitch = 1.15;
+  window.speechSynthesis.speak(u);
+}
+
+/* ============ LISTEN & REPEAT ============ */
+const repeatRow = document.getElementById('repeatRow');
+vocab.forEach(v=>{
+  const b = document.createElement('div');
+  b.className = 'pill';
+  b.style.cursor='pointer';
+  b.innerHTML = `${v.emo} ${v.word} 🔊`;
+  b.onclick = ()=>speak(v.word);
+  repeatRow.appendChild(b);
+});
+
+/* ============ STORY QUESTIONS ============ */
+function buildChoice(containerId, fbId, choices, correct, note){
+  const c = document.getElementById(containerId);
+  choices.forEach(ch=>{
+    const btn = document.createElement('div');
+    btn.className='choice';
+    btn.textContent = ch;
+    btn.onclick = ()=>{
+      const fb = document.getElementById(fbId);
+      if(ch === correct){
+        btn.classList.add('correct');
+        fb.textContent = '🎉 Great job! ' + (note||'');
+        fb.style.color = '#2f9e57';
+      } else {
+        btn.classList.add('wrong');
+        fb.textContent = '🤔 Try again — the answer is "'+correct+'"';
+        fb.style.color = '#d14b4b';
+      }
+    };
+    c.appendChild(btn);
+  });
+}
+buildChoice('storyQ1','storyQ1fb',['Emma gives Lumi a flower','Emma gives Lumi a ball'],'Emma gives Lumi a flower');
+buildChoice('storyQ2','storyQ2fb',['Happy','Sorry'],'Happy');
+
+/* ============ LOOK AND SAY ============ */
+const lookSayWords = [{emo:'👋',w:'Hello!'},{emo:'🙏',w:'Thank you!'},{emo:'🥺',w:'Sorry!'},{emo:'👍',w:'Yes!'},{emo:'👎',w:'No!'}];
+const lookSayRow = document.getElementById('lookSayRow');
+lookSayWords.forEach(item=>{
+  const b = document.createElement('div');
+  b.className='pill';
+  b.style.cursor='pointer';
+  b.innerHTML = `${item.emo} ${item.w}`;
+  b.onclick = ()=>{ speak(item.w); b.style.background='var(--tosca)'; };
+  lookSayRow.appendChild(b);
+});
+
+/* ============ SAY MY NAME ============ */
+function sayMyName(){
+  const name = document.getElementById('nameInput').value.trim() || 'friend';
+  const sentence = `Hello! My name is ${name}.`;
+  document.getElementById('nameOut').textContent = sentence;
+  speak(sentence);
+}
+
+/* ============ CIRCLE THE CORRECT WORD QUIZ ============ */
+quizQ.forEach((q,i)=>{
+  buildChoice('quiz'+i, 'quiz'+i+'fb', q.choices, q.correct, q.note);
+});
+
+/* ============ LET'S MOVE ============ */
+const moves = [
+  {icon:'🧍',label:'Stand up'},
+  {icon:'🪑',label:'Sit down'},
+  {icon:'👂',label:'Listen'},
+  {icon:'👀',label:'Look'},
+  {icon:'👏',label:'Clap your hands'},
+  {icon:'🔁',label:'Repeat after me'},
+  {icon:'👋',label:'Wave'},
+  {icon:'😄',label:'Smile'}
+];
+const moveGrid = document.getElementById('moveGrid');
+moves.forEach(m=>{
+  const c = document.createElement('div');
+  c.className='move-card';
+  c.innerHTML = `<span class="icon">${m.icon}</span>${m.label}`;
+  c.onclick = ()=>{
+    c.classList.add('bounced');
+    c.classList.add('done');
+    speak(m.label);
+    setTimeout(()=>c.classList.remove('bounced'),500);
+  };
+  moveGrid.appendChild(c);
+});
+
+/* ============ FEELINGS ============ */
+function pickFeel(el, feeling){
+  document.querySelectorAll('.feel-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const msgs = {
+    Happy: "Yay! It's wonderful to feel happy! 😄",
+    Sleepy: "That's okay! A little stretch might help. 😴",
+    Excited: "Wow, exciting day ahead! 🤩"
+  };
+  document.getElementById('feelMsg').textContent = msgs[feeling];
+  speak('I am ' + feeling.toLowerCase() + ' today.');
+}
+
+/* ============ COMIC BUILD-UP ============ */
+const comicLines = [
+  {who:'Teacher', say:'Hello!'},
+  {who:'Student', say:'Hello!'},
+  {who:'Teacher', say:"What's your name?"},
+  {who:'Student', say:'My name is Emma.'},
+  {who:'Teacher', say:'Nice to meet you!'},
+  {who:'Student', say:'Nice to meet you!'}
+];
+const comicBox = document.getElementById('comicBox');
+let comicStep = 0;
+function renderComic(){
+  comicBox.innerHTML = '';
+  for(let i=0;i<comicStep;i++){
+    const line = comicLines[i];
+    const row = document.createElement('div');
+    row.className='comic-line';
+    row.innerHTML = `<div class="who">${line.who}</div><div class="say">${line.say}</div>`;
+    comicBox.appendChild(row);
+  }
+  const btn = document.getElementById('comicNextBtn');
+  if(comicStep >= comicLines.length){
+    btn.textContent = 'Play it again ↺';
+  } else {
+    btn.textContent = 'Next ➜';
+  }
+}
+function comicNext(){
+  if(comicStep >= comicLines.length){ comicStep = 0; renderComic(); return; }
+  speak(comicLines[comicStep].say);
+  comicStep++;
+  renderComic();
+}
+renderComic();
+
+/* ============ REVIEW GAME ============ */
+let reviewScoreCount = 0;
+reviewGame.forEach((q,i)=>{
+  const c = document.getElementById('rg'+i);
+  q.choices.forEach(ch=>{
+    const btn = document.createElement('div');
+    btn.className='choice';
+    btn.textContent = ch;
+    btn.onclick = ()=>{
+      if(btn.dataset.answered) return;
+      const row = document.getElementById('rg'+i);
+      row.querySelectorAll('.choice').forEach(x=>x.dataset.answered='1');
+      const fb = document.getElementById('rg'+i+'fb');
+      if(ch === q.answer){
+        btn.classList.add('correct');
+        fb.textContent = '🌟 Correct!';
+        fb.style.color = '#2f9e57';
+        reviewScoreCount++;
+      } else {
+        btn.classList.add('wrong');
+        fb.textContent = 'Almost! It was "'+q.answer+'"';
+        fb.style.color = '#d14b4b';
+      }
+      document.getElementById('reviewScore').textContent = '⭐ Stars collected: ' + reviewScoreCount + ' / ' + reviewGame.length;
+    };
+    c.appendChild(btn);
+  });
+});
+
+/* ============ CHECKLIST ============ */
+function toggleCheck(li){
+  li.classList.toggle('checked');
+  const box = li.querySelector('.box');
+  box.textContent = li.classList.contains('checked') ? '✓' : '';
+}
+
+function toggleMission(li){
+  li.classList.toggle('checked');
+  const box = li.querySelector('.box');
+  box.textContent = li.classList.contains('checked') ? '✓' : '';
+  const list = document.getElementById('missionList');
+  const done = list.querySelectorAll('li.checked').length;
+  const total = list.querySelectorAll('li').length;
+  const scoreEl = document.getElementById('missionScore');
+  scoreEl.textContent = done === total ? '🎉 Mission complete! Great job, hero!' : ('⭐ ' + done + ' / ' + total + ' missions done');
+}
+</script>
+</body>
+</html>
