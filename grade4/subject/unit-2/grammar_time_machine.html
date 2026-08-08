@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Time Machine | Littlelume English</title>
+<style>
+/* ============ ROOT / RESET ============ */
+:root{
+  --pink:#ffd6e8;
+  --pink-deep:#ff8fb1;
+  --mint:#c9f4e2;
+  --mint-deep:#4fd1a5;
+  --lavender:#e3d9fb;
+  --lavender-deep:#a78bfa;
+  --sky:#cfeeff;
+  --sky-deep:#5eb8f0;
+  --peach:#ffe3c9;
+  --peach-deep:#ffab6b;
+  --ink:#3a3352;
+  --ink-soft:#6b6482;
+  --white:#ffffff;
+  --card-radius:22px;
+  --shadow:0 10px 30px rgba(90,70,140,0.12);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif;
+  background:linear-gradient(160deg,#fbf7ff,#f3fbff);
+  color:var(--ink);
+  line-height:1.55;
+}
+h1,h2,h3,h4{font-family:'Trebuchet MS',Verdana,sans-serif;margin:0 0 10px;color:var(--ink);}
+p{margin:0 0 10px;}
+.page{
+  max-width:900px;
+  margin:26px auto;
+  background:var(--white);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  padding:44px 48px;
+  min-height:1000px;
+  position:relative;
+  overflow:hidden;
+}
+.page-label{
+  position:absolute;top:18px;right:26px;
+  font-size:12px;color:var(--ink-soft);
+  background:var(--lavender);padding:4px 12px;border-radius:20px;
+}
+.eyebrow{
+  display:inline-block;font-size:13px;font-weight:bold;letter-spacing:1px;
+  color:var(--mint-deep);background:#eafff6;padding:5px 14px;border-radius:20px;margin-bottom:10px;
+}
+.section-title{font-size:30px;color:var(--ink);}
+.section-sub{color:var(--ink-soft);font-size:16px;margin-bottom:22px;}
+
+/* ============ COVER ============ */
+.cover{
+  background:linear-gradient(150deg,var(--lavender) 0%, var(--sky) 45%, var(--mint) 100%);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:1000px;
+}
+.cover .brand{
+  font-size:15px;letter-spacing:3px;font-weight:bold;color:var(--ink);
+  background:rgba(255,255,255,0.7);padding:6px 22px;border-radius:30px;margin-bottom:26px;
+}
+.time-machine-illustration{margin:10px 0 20px;}
+.cover h1{
+  font-size:52px;color:var(--ink);margin-bottom:6px;
+  text-shadow:2px 2px 0 rgba(255,255,255,0.6);
+}
+.cover h2{font-size:22px;color:var(--ink-soft);font-weight:normal;margin-bottom:26px;}
+.cover .badges{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:10px;}
+.badge{background:var(--white);padding:10px 18px;border-radius:16px;box-shadow:var(--shadow);font-size:14px;font-weight:bold;}
+.cover .cast{display:flex;gap:26px;margin-top:34px;font-size:52px;}
+.cover .clock-ring{
+  width:190px;height:190px;border-radius:50%;
+  background:var(--white);border:8px solid var(--peach-deep);
+  display:flex;align-items:center;justify-content:center;font-size:70px;
+  box-shadow:var(--shadow);
+}
+
+/* ============ CARDS / BOXES ============ */
+.card{
+  background:#fbfaff;border:2px solid #eee6ff;border-radius:var(--card-radius);
+  padding:22px 24px;margin-bottom:18px;
+}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:700px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+.tip-box{
+  background:linear-gradient(120deg,#fff7e0,#fff1cf);
+  border:2px dashed var(--peach-deep);border-radius:18px;
+  padding:16px 20px;margin:16px 0;font-size:15px;
+}
+.tip-box b{color:var(--peach-deep);}
+.remember-box{
+  background:linear-gradient(120deg,var(--mint),#e7fff5);
+  border:2px solid var(--mint-deep);border-radius:18px;padding:18px 22px;margin-top:16px;
+}
+.remember-box b{color:var(--mint-deep);}
+
+.formula-box{
+  background:var(--sky);border-radius:16px;padding:14px 18px;margin-bottom:10px;
+  font-weight:bold;font-size:16px;color:var(--ink);
+}
+.formula-box span.tag{
+  display:inline-block;background:var(--white);border-radius:10px;padding:2px 10px;
+  font-size:12px;margin-right:8px;color:var(--sky-deep);
+}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eee6ff;font-size:15px;}
+th{background:var(--lavender);color:var(--ink);border-radius:8px;}
+tr:nth-child(even){background:#fbfaff;}
+
+.chip{display:inline-block;background:var(--peach);border-radius:20px;padding:5px 14px;margin:4px;font-size:14px;font-weight:bold;}
+.chip.mint{background:var(--mint);}
+.chip.pink{background:var(--pink);}
+.chip.sky{background:var(--sky);}
+
+.wrong{color:#e2547a;font-weight:bold;}
+.right{color:#2fae7b;font-weight:bold;}
+.mistake-row{
+  display:flex;flex-direction:column;gap:4px;background:#fff9fb;border-left:6px solid var(--pink-deep);
+  border-radius:12px;padding:12px 16px;margin-bottom:12px;
+}
+.mistake-row .why{font-size:13px;color:var(--ink-soft);}
+
+/* ============ NAV / PROGRESS (screen only) ============ */
+.nav-bar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);
+  border-bottom:2px solid var(--lavender);
+  padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.nav-bar .title{font-weight:bold;color:var(--ink);font-size:14px;flex:1;min-width:160px;}
+.progress-wrap{flex:2;min-width:180px;background:#eee6ff;border-radius:20px;height:14px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--mint-deep),var(--sky-deep));width:0%;transition:width .4s;}
+.nav-btns button{
+  border:none;background:var(--lavender-deep);color:white;padding:8px 16px;border-radius:14px;
+  font-weight:bold;cursor:pointer;font-size:13px;
+}
+.nav-btns button:hover{opacity:0.85;}
+.section-jump{border:none;background:var(--mint);color:var(--ink);padding:8px 12px;border-radius:14px;font-weight:bold;font-size:12px;cursor:pointer;}
+#printBtn{background:var(--peach-deep);}
+
+/* ============ INTERACTIVE ELEMENTS ============ */
+.activity{
+  background:#fbfaff;border-radius:18px;padding:20px;border:2px solid #eee6ff;margin-bottom:16px;
+}
+.q-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+.q-row input[type=text]{
+  padding:8px 12px;border:2px solid #d9cbff;border-radius:10px;font-size:15px;width:170px;
+}
+.q-row select{padding:8px;border-radius:10px;border:2px solid #d9cbff;font-size:15px;}
+.check-btn{
+  border:none;background:var(--mint-deep);color:white;padding:8px 16px;border-radius:12px;
+  font-weight:bold;cursor:pointer;
+}
+.feedback{margin-left:6px;font-weight:bold;font-size:14px;}
+.mc-options label{
+  display:block;background:var(--white);border:2px solid #eee6ff;border-radius:12px;
+  padding:8px 12px;margin-bottom:6px;cursor:pointer;
+}
+.mc-options input{margin-right:8px;}
+.checklist label{display:block;margin-bottom:10px;font-size:16px;cursor:pointer;}
+.checklist input{margin-right:10px;transform:scale(1.3);}
+
+.teacher-notes{
+  margin-top:24px;background:#fff2f7;border:2px dashed var(--pink-deep);border-radius:16px;
+  padding:16px 20px;font-size:14px;color:var(--ink);
+}
+.teacher-notes h4{color:var(--pink-deep);margin-bottom:8px;}
+.teacher-notes ul{margin:0;padding-left:20px;}
+
+.time-pill{
+  display:inline-block;background:var(--sky);color:var(--sky-deep);font-weight:bold;
+  border-radius:16px;padding:4px 12px;font-size:12px;margin-bottom:10px;
+}
+
+.speech-bubble{
+  position:relative;background:var(--white);border:2px solid var(--lavender-deep);
+  border-radius:16px;padding:12px 16px;margin-bottom:10px;font-size:15px;
+}
+
+@media print{
+  .nav-bar{display:none;}
+  .page{box-shadow:none;border-radius:0;margin:0;page-break-after:always;min-height:0;}
+  body{background:white;}
+}
+.icon-lg{font-size:34px;}
+.two-col{display:flex;gap:24px;flex-wrap:wrap;}
+.two-col > div{flex:1;min-width:260px;}
+.center{text-align:center;}
+.small-note{font-size:13px;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV BAR (screen only) ============ -->
+<div class="nav-bar">
+  <div class="title">🕰️ Grammar Time Machine</div>
+  <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="nav-btns">
+    <button onclick="printBook()" id="printBtn">🖨️ Print</button>
+  </div>
+</div>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page cover" id="page-cover">
+  <div class="brand">LITTLELUME ENGLISH • LEARN PLAY SHINE</div>
+  <div class="clock-ring">⏰</div>
+  <div class="time-machine-illustration icon-lg">🚀📅🤖📖</div>
+  <h1>Grammar Time Machine</h1>
+  <h2>Quick Review — Simple Present &amp; Simple Past</h2>
+  <div class="badges">
+    <div class="badge">👦 Grade 4</div>
+    <div class="badge">🌟 CEFR A1–A2</div>
+    <div class="badge">⏱️ 90 Minutes</div>
+  </div>
+  <div class="cast">🧑‍🚀🧒👧🤖</div>
+  <p class="small-note" style="margin-top:22px;">A Student Handbook for a Quick Review Lesson</p>
+</section>
+
+<!-- ============ 2. LEARNING OBJECTIVES ============ -->
+<section class="page" id="page-objectives">
+  <span class="page-label">Page 2</span>
+  <span class="eyebrow">GET READY</span>
+  <h2 class="section-title">Today I Can... 🎯</h2>
+  <p class="section-sub">Before we jump in our time machine, let's see what we will learn today!</p>
+  <div class="grid-2">
+    <div class="card">✅ talk about my <b>daily routines</b> (Simple Present)</div>
+    <div class="card">✅ talk about <b>past events</b> (Simple Past)</div>
+    <div class="card">✅ choose the <b>correct tense</b> for the situation</div>
+    <div class="card">✅ build sentences: <b>affirmative, negative, question</b></div>
+    <div class="card">✅ ask and answer questions with a friend</div>
+    <div class="card">✅ avoid the <b>most common mistakes</b> students make</div>
+  </div>
+  <div class="tip-box">🤖 <b>Robo says:</b> Don't worry — this is a REVIEW, not a test! We already know a lot about these two tenses. Today we just polish our time-travel skills. ⏳✨</div>
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 3 minutes</li>
+      <li><b>Objective:</b> Set clear, student-friendly expectations for the lesson.</li>
+      <li><b>Classroom Tip:</b> Read each "I can" statement aloud together as a class chant.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 3. WARM UP ============ -->
+<section class="page" id="page-warmup">
+  <span class="page-label">Page 3</span>
+  <span class="eyebrow">WARM UP</span>
+  <h2 class="section-title">Today or Yesterday? 🕹️</h2>
+  <p class="section-sub">Look at each situation. Is it something we do <b>every day</b>, or something that already <b>happened</b>?</p>
+  <div class="activity">
+    <div id="warmupList"></div>
+    <button class="check-btn" onclick="checkWarmup()">Check My Answers ✅</button>
+    <span class="feedback" id="warmupResult"></span>
+  </div>
+  <div class="tip-box"><b>Teacher Discussion — guiding questions:</b>
+    <ul>
+      <li>How do you know an action happened in the past?</li>
+      <li>What word in the sentence gives you a clue (e.g. "yesterday", "every day")?</li>
+      <li>Can one action be both a habit AND something that happened once? Give an example.</li>
+    </ul>
+  </div>
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 8 minutes</li>
+      <li><b>Objective:</b> Activate prior knowledge of the two tenses through familiar actions.</li>
+      <li><b>Classroom Tip:</b> Say each sentence aloud with a gesture (pointing forward for "today", pointing back for "yesterday") before students answer.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4. REVIEW 1 - SIMPLE PRESENT ============ -->
+<section class="page" id="page-present">
+  <span class="page-label">Page 4</span>
+  <span class="eyebrow">REVIEW 1</span>
+  <h2 class="section-title">🔵 Simple Present</h2>
+  <div class="card">
+    <h3>What is Simple Present?</h3>
+    <p>Simple Present is the tense we use for things that happen <b>again and again</b>, or things that are <b>always true</b>.</p>
+    <h3>When do we use it?</h3>
+    <div class="grid-2">
+      <div>🔁 <b>Daily routines</b> — I brush my teeth every morning.</div>
+      <div>🎯 <b>Habits</b> — She always reads before bed.</div>
+      <div>🌍 <b>Facts</b> — The sun rises in the east.</div>
+      <div>🗓️ <b>Schedules</b> — The bus leaves at 7 a.m.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Formula</h3>
+    <div class="formula-box"><span class="tag">➕ Affirmative</span> Subject + Verb (+s/es) + ...</div>
+    <div class="formula-box"><span class="tag">➖ Negative</span> Subject + do/does + not + Verb + ...</div>
+    <div class="formula-box"><span class="tag">❓ Interrogative</span> Do/Does + Subject + Verb + ...?</div>
+  </div>
+
+  <div class="card">
+    <h3>Subject + Verb Chart</h3>
+    <table>
+      <tr><th>Subject</th><th>Verb form</th><th>Example</th></tr>
+      <tr><td>I / You / We / They</td><td>Verb (base form)</td><td>They play football.</td></tr>
+      <tr><td>He / She / It</td><td>Verb + s / es</td><td>She plays football.</td></tr>
+    </table>
+    <p class="small-note">🤖 Robo's rule: He, She, It → add "s" or "es" to the verb!</p>
+  </div>
+
+  <div class="card">
+    <h3>Signal Words ⏰</h3>
+    <div>
+      <span class="chip mint">always</span><span class="chip mint">usually</span><span class="chip mint">often</span>
+      <span class="chip mint">sometimes</span><span class="chip mint">every day</span><span class="chip mint">every morning</span>
+      <span class="chip mint">on Mondays</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Example Sentences</h3>
+    <ol>
+      <li>I wake up at six o'clock.</li>
+      <li>My mother cooks breakfast every day.</li>
+      <li>We go to school on Mondays.</li>
+      <li>He plays basketball after school.</li>
+      <li>She doesn't like spicy food.</li>
+      <li>The cat sleeps on the sofa.</li>
+      <li>Do you brush your teeth every night?</li>
+      <li>My father drives to work.</li>
+      <li>They don't watch TV in the morning.</li>
+      <li>Does she read every day?</li>
+    </ol>
+  </div>
+
+  <div class="tip-box">🤖 <b>Grammar Tip:</b> For "he/she/it", if the verb ends in -o, -ch, -sh, -x, -s → add <b>-es</b> (go → goes, watch → watches).</div>
+  <div class="tip-box">🤖 <b>Grammar Tip:</b> Don't forget "do/does" in questions and negatives — never add "s" twice! ("She doesn't likes" is WRONG.)</div>
+
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 15 minutes</li>
+      <li><b>Objective:</b> Recall the form and use of Simple Present.</li>
+      <li><b>Classroom Tip:</b> Have students clap once for "he/she/it" verbs that need -s.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 5. REVIEW 2 - SIMPLE PAST ============ -->
+<section class="page" id="page-past">
+  <span class="page-label">Page 5</span>
+  <span class="eyebrow">REVIEW 2</span>
+  <h2 class="section-title">🟣 Simple Past</h2>
+  <div class="card">
+    <h3>What is Simple Past?</h3>
+    <p>Simple Past is the tense we use for actions that are <b>already finished</b> — they happened before now.</p>
+    <h3>When do we use it?</h3>
+    <div class="grid-2">
+      <div>✅ <b>Completed actions</b> — I finished my homework.</div>
+      <div>📅 <b>Past events</b> — We visited Grandma last week.</div>
+      <div>🏁 <b>Finished activities</b> — She watched a movie yesterday.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Formula</h3>
+    <div class="formula-box"><span class="tag">➕ Affirmative</span> Subject + Verb-ed (or V2) + ...</div>
+    <div class="formula-box"><span class="tag">➖ Negative</span> Subject + did + not + Verb (base form) + ...</div>
+    <div class="formula-box"><span class="tag">❓ Interrogative</span> Did + Subject + Verb (base form) + ...?</div>
+  </div>
+
+  <div class="card">
+    <h3>Regular Verbs (Verb + ed)</h3>
+    <table>
+      <tr><th>Base Verb</th><th>Past Form</th></tr>
+      <tr><td>play</td><td>played</td></tr>
+      <tr><td>watch</td><td>watched</td></tr>
+      <tr><td>clean</td><td>cleaned</td></tr>
+      <tr><td>help</td><td>helped</td></tr>
+      <tr><td>study</td><td>studied</td></tr>
+    </table>
+    <p>Example: <i>I <b>played</b> football yesterday. She <b>studied</b> for the test last night.</i></p>
+  </div>
+
+  <div class="card">
+    <h3>Irregular Verbs</h3>
+    <table>
+      <tr><th>Base</th><th>Past</th><th>Base</th><th>Past</th></tr>
+      <tr><td>go</td><td>went</td><td>write</td><td>wrote</td></tr>
+      <tr><td>eat</td><td>ate</td><td>make</td><td>made</td></tr>
+      <tr><td>see</td><td>saw</td><td>take</td><td>took</td></tr>
+      <tr><td>come</td><td>came</td><td>give</td><td>gave</td></tr>
+      <tr><td>have</td><td>had</td><td>read</td><td>read</td></tr>
+      <tr><td>buy</td><td>bought</td><td>sleep</td><td>slept</td></tr>
+      <tr><td>drink</td><td>drank</td><td>find</td><td>found</td></tr>
+      <tr><td>run</td><td>ran</td><td>begin</td><td>began</td></tr>
+      <tr><td>do</td><td>did</td><td>say</td><td>said</td></tr>
+      <tr><td>tell</td><td>told</td><td>bring</td><td>brought</td></tr>
+      <tr><td colspan="2">think</td><td colspan="2">thought</td></tr>
+    </table>
+    <p>Example: <i>We <b>went</b> to the zoo. He <b>ate</b> a mango. They <b>saw</b> a rainbow.</i></p>
+  </div>
+
+  <div class="card">
+    <h3>Signal Words ⏰</h3>
+    <div>
+      <span class="chip pink">yesterday</span><span class="chip pink">last week</span><span class="chip pink">last month</span>
+      <span class="chip pink">last year</span><span class="chip pink">... ago</span><span class="chip pink">this morning</span>
+      <span class="chip pink">last night</span>
+    </div>
+  </div>
+
+  <div class="tip-box">🤖 <b>Grammar Tip:</b> Irregular verbs don't follow the "+ed" rule — you just have to remember them, like magic spells! Practice a few every day. ✨</div>
+  <div class="tip-box">🤖 <b>Grammar Tip:</b> In negatives and questions, the verb goes back to its base form: "Did you <b>go</b>?" NOT "Did you <b>went</b>?"</div>
+
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 15 minutes</li>
+      <li><b>Objective:</b> Recall the form and use of Simple Past, including irregular verbs.</li>
+      <li><b>Classroom Tip:</b> Turn the irregular verb table into a quick chant or a "verb bingo" for extra practice.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6. COMPARE BOTH TENSES ============ -->
+<section class="page" id="page-compare">
+  <span class="page-label">Page 6</span>
+  <span class="eyebrow">COMPARE</span>
+  <h2 class="section-title">Simple Present vs Simple Past ⚖️</h2>
+  <table>
+    <tr><th></th><th>🔵 Simple Present</th><th>🟣 Simple Past</th></tr>
+    <tr><td>🎯 Purpose</td><td>Routines, habits, facts</td><td>Finished actions</td></tr>
+    <tr><td>⏰ Time</td><td>Now / always / regularly</td><td>Before now (finished)</td></tr>
+    <tr><td>✍️ Verb Form</td><td>Verb / Verb+s</td><td>Verb+ed / V2 (irregular)</td></tr>
+    <tr><td>🔔 Signal Words</td><td>always, usually, every day</td><td>yesterday, last week, ago</td></tr>
+    <tr><td>💬 Example</td><td>I walk to school.</td><td>I walked to school.</td></tr>
+  </table>
+  <div class="remember-box">
+    <b>Remember! 🌟</b>
+    <p>If it happens again and again → use <b>Simple Present</b>.<br>
+    If it already finished → use <b>Simple Past</b>.<br>
+    Look for the signal word — it's your best clue! 🔍</p>
+  </div>
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 8 minutes</li>
+      <li><b>Objective:</b> Directly contrast the two tenses side by side.</li>
+      <li><b>Classroom Tip:</b> Ask students to cover one column and quiz a partner using the other.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7. COMMON MISTAKES ============ -->
+<section class="page" id="page-mistakes">
+  <span class="page-label">Page 7</span>
+  <span class="eyebrow">FIX IT</span>
+  <h2 class="section-title">Common Mistakes 🚧</h2>
+  <p class="section-sub">Even time travelers make mistakes! Let's fix them together.</p>
+  <div id="mistakesList"></div>
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 10 minutes</li>
+      <li><b>Objective:</b> Identify and correct the most frequent Grade 4 tense errors.</li>
+      <li><b>Classroom Tip:</b> Read the ❌ sentence dramatically wrong, then let students shout the ✅ correction.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 8. GUIDED PRACTICE ============ -->
+<section class="page" id="page-practice">
+  <span class="page-label">Page 8</span>
+  <span class="eyebrow">PRACTICE</span>
+  <h2 class="section-title">Guided Practice ✏️</h2>
+
+  <h3>Activity 1 — Fill in the Blanks</h3>
+  <p class="time-pill">⏱️ 8 minutes</p>
+  <div class="activity" id="activity1"></div>
+  <button class="check-btn" onclick="checkActivity1()">Check Activity 1 ✅</button>
+  <span class="feedback" id="a1Result"></span>
+
+  <h3 style="margin-top:26px;">Activity 2 — Choose the Correct Answer</h3>
+  <p class="time-pill">⏱️ 8 minutes</p>
+  <div class="activity" id="activity2"></div>
+  <button class="check-btn" onclick="checkActivity2()">Check Activity 2 ✅</button>
+  <span class="feedback" id="a2Result"></span>
+
+  <h3 style="margin-top:26px;">Activity 3 — Rewrite the Sentences</h3>
+  <p class="small-note">Change Present → Past, or Past → Present.</p>
+  <p class="time-pill">⏱️ 8 minutes</p>
+  <div class="activity" id="activity3"></div>
+  <p class="small-note">✍️ Write your answers on the lines. Ask your teacher to check!</p>
+
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 24 minutes total</li>
+      <li><b>Objective:</b> Apply both tenses independently across three activity types.</li>
+      <li><b>Classroom Tip:</b> Let students self-check Activities 1–2 on-screen, then swap notebooks for Activity 3.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 9. SPEAKING PRACTICE ============ -->
+<section class="page" id="page-speaking">
+  <span class="page-label">Page 9</span>
+  <span class="eyebrow">SPEAK UP</span>
+  <h2 class="section-title">Speaking Practice 🗣️</h2>
+  <p class="section-sub">Pair Work — Ask and answer with a friend!</p>
+
+  <div class="card">
+    <h3>Model Dialogue</h3>
+    <div class="speech-bubble">🧒 <b>Amir:</b> What do you usually do on Saturday mornings?</div>
+    <div class="speech-bubble">👧 <b>Sasa:</b> I usually clean my room. What about you?</div>
+    <div class="speech-bubble">🧒 <b>Amir:</b> I usually play football. What did you do last Saturday?</div>
+    <div class="speech-bubble">👧 <b>Sasa:</b> Last Saturday, I visited my grandma. It was fun!</div>
+  </div>
+
+  <div class="card">
+    <h3>Question Cards 🃏</h3>
+    <div class="grid-2">
+      <div class="chip sky">What do you usually eat for breakfast?</div>
+      <div class="chip sky">What did you eat for breakfast today?</div>
+      <div class="chip sky">Where do you usually go after school?</div>
+      <div class="chip sky">Where did you go yesterday?</div>
+      <div class="chip sky">What do you do every weekend?</div>
+      <div class="chip sky">What did you do last weekend?</div>
+    </div>
+  </div>
+
+  <div class="tip-box"><b>Speaking Tips:</b> Use "usually / always / every day" for habits. Use "yesterday / last week" for the past. Smile and take turns! 😊</div>
+
+  <div class="card">
+    <h3>🌟 Challenge</h3>
+    <p>Write TWO original questions to ask your partner — one Simple Present, one Simple Past.</p>
+    <div class="q-row">1. <input type="text" style="width:60%;" placeholder="Simple Present question..."></div>
+    <div class="q-row">2. <input type="text" style="width:60%;" placeholder="Simple Past question..."></div>
+  </div>
+
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 10 minutes</li>
+      <li><b>Objective:</b> Produce both tenses orally in a natural conversation.</li>
+      <li><b>Classroom Tip:</b> Rotate pairs once, so each student practices with two different partners.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 10. MINI REVIEW ============ -->
+<section class="page" id="page-mini-review">
+  <span class="page-label">Page 10</span>
+  <span class="eyebrow">QUICK LOOK</span>
+  <h2 class="section-title">Mini Review 📋</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3>🔵 Simple Present</h3>
+      <p><b>Formula:</b> Subject + Verb(+s/es)</p>
+      <p><b>Signals:</b> always, usually, every day</p>
+      <p><b>Example:</b> She plays every day.</p>
+    </div>
+    <div class="card">
+      <h3>🟣 Simple Past</h3>
+      <p><b>Formula:</b> Subject + Verb-ed / V2</p>
+      <p><b>Signals:</b> yesterday, last week, ago</p>
+      <p><b>Example:</b> She played yesterday.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Common Verbs to Remember</h3>
+    <div>
+      <span class="chip">go → went</span><span class="chip">eat → ate</span><span class="chip">see → saw</span>
+      <span class="chip">have → had</span><span class="chip">do → did</span><span class="chip">make → made</span>
+      <span class="chip">write → wrote</span><span class="chip">take → took</span>
+    </div>
+  </div>
+  <div class="remember-box">
+    <b>Mini Comparison Chart 🌟</b>
+    <table>
+      <tr><th>Clue Word</th><th>Tense</th></tr>
+      <tr><td>every day / usually</td><td>Simple Present</td></tr>
+      <tr><td>yesterday / last week</td><td>Simple Past</td></tr>
+    </table>
+  </div>
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 5 minutes</li>
+      <li><b>Objective:</b> Give students a fast, visual summary for last-minute review before a test.</li>
+      <li><b>Classroom Tip:</b> Encourage students to fold this page as a bookmark study card.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 11. REFLECTION ============ -->
+<section class="page" id="page-reflection">
+  <span class="page-label">Page 11</span>
+  <span class="eyebrow">WRAP UP</span>
+  <h2 class="section-title">I Can... ⭐</h2>
+  <div class="card checklist">
+    <label><input type="checkbox"> I know when to use Simple Present.</label>
+    <label><input type="checkbox"> I know when to use Simple Past.</label>
+    <label><input type="checkbox"> I can write correct sentences.</label>
+    <label><input type="checkbox"> I can ask questions.</label>
+    <label><input type="checkbox"> I can answer questions.</label>
+    <label><input type="checkbox"> I can speak confidently.</label>
+  </div>
+  <div class="card">
+    <p>⭐ <b>Today I learned...</b></p>
+    <input type="text" style="width:100%;padding:8px;border-radius:10px;border:2px solid #eee6ff;">
+    <p style="margin-top:14px;">⭐ <b>My favorite activity...</b></p>
+    <input type="text" style="width:100%;padding:8px;border-radius:10px;border:2px solid #eee6ff;">
+    <p style="margin-top:14px;">⭐ <b>I still need more practice on...</b></p>
+    <input type="text" style="width:100%;padding:8px;border-radius:10px;border:2px solid #eee6ff;">
+    <p style="margin-top:14px;">⭐ <b>My goal for next lesson...</b></p>
+    <input type="text" style="width:100%;padding:8px;border-radius:10px;border:2px solid #eee6ff;">
+  </div>
+  <div class="center" style="margin-top:20px;">
+    <p class="icon-lg">🤖🚀🎉</p>
+    <p><b>Great job, time traveler! See you at the next stop. 🌟</b></p>
+  </div>
+  <div class="teacher-notes">
+    <h4>👩‍🏫 Teacher Notes</h4>
+    <ul>
+      <li><b>Estimated Time:</b> 5 minutes</li>
+      <li><b>Objective:</b> Encourage self-assessment and goal-setting.</li>
+      <li><b>Classroom Tip:</b> Collect notebooks briefly to spot-check which students need follow-up support.</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+/* ============ DATA ============ */
+const warmupItems = [
+  {text:"🪥 I brush my teeth every morning.", answer:"today"},
+  {text:"🥞 I ate pancakes yesterday.", answer:"yesterday"},
+  {text:"⚽ He played football yesterday.", answer:"yesterday"},
+  {text:"📖 She reads a book every night.", answer:"today"},
+  {text:"🏊 We swam in the pool last weekend.", answer:"yesterday"},
+  {text:"👵 They visit grandma every Sunday.", answer:"today"},
+  {text:"🧹 I cleaned my room yesterday.", answer:"yesterday"},
+  {text:"📺 He watches TV every afternoon.", answer:"today"}
+];
+
+const mistakes = [
+  {wrong:"Yesterday I go to school.", right:"Yesterday I went to school.", why:"\"Yesterday\" needs Simple Past — use \"went\", not \"go\"."},
+  {wrong:"She don't like milk.", right:"She doesn't like milk.", why:"With he/she/it, use \"doesn't\", not \"don't\"."},
+  {wrong:"He goed to the park.", right:"He went to the park.", why:"\"Go\" is irregular — the past form is \"went\", not \"goed\"."},
+  {wrong:"Did you went there?", right:"Did you go there?", why:"After \"did\", the verb goes back to its base form."},
+  {wrong:"She play every day.", right:"She plays every day.", why:"With he/she/it in Simple Present, add \"-s\" to the verb."},
+  {wrong:"I doesn't like spinach.", right:"I don't like spinach.", why:"Use \"don't\" with I/you/we/they, not \"doesn't\"."},
+  {wrong:"We visited to the museum.", right:"We visited the museum.", why:"No \"to\" is needed after \"visit\"."},
+  {wrong:"He drinked juice.", right:"He drank juice.", why:"\"Drink\" is irregular — the past form is \"drank\", not \"drinked\"."},
+  {wrong:"Last week, she goes shopping.", right:"Last week, she went shopping.", why:"\"Last week\" is a past signal word — use Simple Past."},
+  {wrong:"Do she like ice cream?", right:"Does she like ice cream?", why:"With he/she/it, use \"does\" in questions, not \"do\"."},
+  {wrong:"I eated breakfast this morning.", right:"I ate breakfast this morning.", why:"\"Eat\" is irregular — the past form is \"ate\", not \"eated\"."},
+  {wrong:"They didn't went to the party.", right:"They didn't go to the party.", why:"After \"didn't\", the verb goes back to its base form."}
+];
+
+const activity1Data = [
+  {before:"I ", answer:"go", after:" to school every day. (go)"},
+  {before:"She ", answer:"watched", after:" a movie last night. (watch)"},
+  {before:"They ", answer:"play", after:" football every Saturday. (play)"},
+  {before:"He ", answer:"ate", after:" a sandwich yesterday. (eat)"},
+  {before:"We ", answer:"visited", after:" our cousins last month. (visit)"},
+  {before:"My mom ", answer:"cooks", after:" dinner every evening. (cook)"},
+  {before:"I ", answer:"saw", after:" a rainbow yesterday. (see)"},
+  {before:"The dog ", answer:"sleeps", after:" all afternoon. (sleep)"},
+  {before:"Did you ", answer:"finish", after:" your homework? (finish)"},
+  {before:"He ", answer:"doesn't", after:" like broccoli. (do not)"}
+];
+
+const activity2Data = [
+  {q:"I ___ to school every day.", options:["go","went","goes"], answer:"go"},
+  {q:"She ___ her homework yesterday.", options:["finish","finished","finishes"], answer:"finished"},
+  {q:"They ___ football on Saturdays.", options:["play","played","plays"], answer:"play"},
+  {q:"He ___ to the beach last week.", options:["go","goes","went"], answer:"went"},
+  {q:"We ___ a movie last night.", options:["watch","watched","watches"], answer:"watched"},
+  {q:"My sister ___ up at 6 a.m. every day.", options:["wake","wakes","woke"], answer:"wakes"},
+  {q:"___ you eat breakfast this morning?", options:["Do","Does","Did"], answer:"Did"},
+  {q:"He ___ like spicy food.", options:["don't","doesn't","didn't"], answer:"doesn't"},
+  {q:"I ___ my grandma last Sunday.", options:["visit","visited","visits"], answer:"visited"},
+  {q:"The sun ___ in the east.", options:["rise","rises","rose"], answer:"rises"}
+];
+
+const activity3Data = [
+  "I play badminton every day. → (change to past)",
+  "She watches cartoons every morning. → (change to past)",
+  "We walked to school yesterday. → (change to present)",
+  "He ate noodles for lunch. → (change to present)",
+  "They study English every week. → (change to past)",
+  "I visited my uncle last month. → (change to present)",
+  "She reads a book every night. → (change to past)",
+  "We went to the zoo last weekend. → (change to present)",
+  "He plays the guitar every afternoon. → (change to past)",
+  "I did my homework yesterday. → (change to present)"
+];
+
+/* ============ RENDER WARM UP ============ */
+const warmupList = document.getElementById('warmupList');
+warmupItems.forEach((item,i)=>{
+  const row = document.createElement('div');
+  row.className='q-row';
+  row.innerHTML = `<span style="flex:1;">${item.text}</span>
+    <select id="wu-${i}">
+      <option value="">Choose...</option>
+      <option value="today">TODAY</option>
+      <option value="yesterday">YESTERDAY</option>
+    </select>`;
+  warmupList.appendChild(row);
+});
+function checkWarmup(){
+  let correct=0;
+  warmupItems.forEach((item,i)=>{
+    const val = document.getElementById('wu-'+i).value;
+    if(val===item.answer) correct++;
+  });
+  document.getElementById('warmupResult').innerText = `You got ${correct} / ${warmupItems.length} correct! ${correct===warmupItems.length?'🎉 Perfect!':'Keep trying!'}`;
+  updateProgress();
+}
+
+/* ============ RENDER MISTAKES ============ */
+const mistakesList = document.getElementById('mistakesList');
+mistakes.forEach(m=>{
+  const div = document.createElement('div');
+  div.className='mistake-row';
+  div.innerHTML = `<div><span class="wrong">❌</span> ${m.wrong}</div>
+    <div><span class="right">✅</span> ${m.right}</div>
+    <div class="why">💡 ${m.why}</div>`;
+  mistakesList.appendChild(div);
+});
+
+/* ============ RENDER ACTIVITY 1 ============ */
+const a1 = document.getElementById('activity1');
+activity1Data.forEach((item,i)=>{
+  const row = document.createElement('div');
+  row.className='q-row';
+  row.innerHTML = `<span>${i+1}. ${item.before}</span><input type="text" id="a1-${i}"><span>${item.after}</span>`;
+  a1.appendChild(row);
+});
+function checkActivity1(){
+  let correct=0;
+  activity1Data.forEach((item,i)=>{
+    const val = document.getElementById('a1-'+i).value.trim().toLowerCase();
+    if(val===item.answer.toLowerCase()) correct++;
+  });
+  document.getElementById('a1Result').innerText = `Score: ${correct} / ${activity1Data.length}`;
+  updateProgress();
+}
+
+/* ============ RENDER ACTIVITY 2 ============ */
+const a2 = document.getElementById('activity2');
+activity2Data.forEach((item,i)=>{
+  const div = document.createElement('div');
+  div.className='card';
+  let optsHtml='';
+  item.options.forEach(opt=>{
+    optsHtml += `<label><input type="radio" name="a2-${i}" value="${opt}"> ${opt}</label>`;
+  });
+  div.innerHTML = `<p><b>${i+1}. ${item.q}</b></p><div class="mc-options">${optsHtml}</div>`;
+  a2.appendChild(div);
+});
+function checkActivity2(){
+  let correct=0;
+  activity2Data.forEach((item,i)=>{
+    const selected = document.querySelector(`input[name="a2-${i}"]:checked`);
+    if(selected && selected.value===item.answer) correct++;
+  });
+  document.getElementById('a2Result').innerText = `Score: ${correct} / ${activity2Data.length}`;
+  updateProgress();
+}
+
+/* ============ RENDER ACTIVITY 3 ============ */
+const a3 = document.getElementById('activity3');
+activity3Data.forEach((item,i)=>{
+  const row = document.createElement('div');
+  row.className='q-row';
+  row.innerHTML = `<span style="flex:1;">${i+1}. ${item}</span><input type="text" style="width:45%;" placeholder="Write your answer here">`;
+  a3.appendChild(row);
+});
+
+/* ============ PROGRESS + PRINT ============ */
+function updateProgress(){
+  const fill = document.getElementById('progressFill');
+  let filled = 0, total = 3;
+  if(document.getElementById('warmupResult').innerText) filled++;
+  if(document.getElementById('a1Result').innerText) filled++;
+  if(document.getElementById('a2Result').innerText) filled++;
+  fill.style.width = (filled/total*100)+'%';
+}
+function printBook(){ window.print(); }
+</script>
+</body>
+</html>

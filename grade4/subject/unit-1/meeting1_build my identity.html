@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Littlelume English • Grade 4 Unit 1 • Build My Identity</title>
+<style>
+/* ============================================================
+   LITTLELUME ENGLISH — DESIGN TOKENS
+   ============================================================ */
+:root{
+  --mint:#B9EDDD;
+  --mint-deep:#7FD9BE;
+  --pink:#FFD3E0;
+  --pink-deep:#FF9FB8;
+  --sky:#AEE1F9;
+  --sky-deep:#6FC3EE;
+  --lavender:#DCC9F7;
+  --lavender-deep:#B79CEB;
+  --yellow:#FFF3B8;
+  --yellow-deep:#FFD966;
+  --white:#FFFFFF;
+  --ink:#3A3355;
+  --ink-soft:#665F82;
+  --shadow: 0 10px 30px rgba(90,70,140,0.14);
+  --shadow-sm: 0 4px 14px rgba(90,70,140,0.12);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --font-display:'Baloo 2','Trebuchet MS','Segoe UI Rounded',Verdana,sans-serif;
+  --font-body:'Trebuchet MS','Segoe UI Rounded',Verdana,sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:linear-gradient(160deg,var(--sky) 0%,var(--mint) 45%,var(--lavender) 100%);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:800;margin:0 0 8px;}
+p{margin:0 0 10px;line-height:1.5;}
+button{font-family:var(--font-body);cursor:pointer;}
+::selection{background:var(--yellow-deep);}
+
+/* Decorative floating shapes */
+.floaters{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+.floater{position:absolute;opacity:.35;animation:float 9s ease-in-out infinite;font-size:2.4rem;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-26px) rotate(8deg);}}
+
+/* App shell */
+#app{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:18px 16px 60px;}
+
+/* Sticky header / mission bar */
+#missionBar{
+  position:sticky;top:0;z-index:50;
+  display:none;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(10px);
+  border-radius:var(--radius-md);
+  padding:10px 16px;margin-bottom:16px;
+  box-shadow:var(--shadow-sm);
+  align-items:center;gap:14px;flex-wrap:wrap;
+}
+#missionBar.show{display:flex;}
+.brand-mini{font-family:var(--font-display);font-weight:800;color:var(--lavender-deep);font-size:1.05rem;white-space:nowrap;}
+.progress-track{flex:1;min-width:120px;height:14px;background:#eee5fb;border-radius:20px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,0.08);}
+.progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--mint-deep),var(--sky-deep));transition:width .6s ease;width:0%;}
+.stat-pill{display:flex;align-items:center;gap:5px;background:var(--yellow);border-radius:20px;padding:5px 12px;font-weight:700;font-size:.92rem;white-space:nowrap;}
+.mapdots{display:flex;gap:6px;}
+.mapdot{width:10px;height:10px;border-radius:50%;background:#dcd6f0;transition:.3s;}
+.mapdot.done{background:var(--mint-deep);}
+.mapdot.active{background:var(--pink-deep);transform:scale(1.3);}
+
+/* Screens */
+.screen{display:none;animation:fadein .5s ease;}
+.screen.active{display:block;}
+@keyframes fadein{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+.card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  padding:26px 24px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+  position:relative;
+}
+.card.glass{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.6);
+}
+.eyebrow{
+  display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--lavender-deep);background:var(--lavender);
+  padding:4px 12px;border-radius:20px;margin-bottom:10px;
+}
+.title-xl{font-size:1.7rem;color:var(--ink);}
+.title-lg{font-size:1.35rem;color:var(--ink);}
+.sub{color:var(--ink-soft);font-size:1rem;}
+
+.btn{
+  border:none;border-radius:50px;padding:13px 26px;font-weight:800;font-size:1rem;
+  font-family:var(--font-display);color:var(--white);
+  background:linear-gradient(135deg,var(--pink-deep),var(--lavender-deep));
+  box-shadow:0 6px 0 rgba(150,110,190,0.35);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(150,110,190,0.35);}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:0 6px 0 rgba(150,110,190,0.2);}
+.btn.secondary{background:linear-gradient(135deg,var(--mint-deep),var(--sky-deep));box-shadow:0 6px 0 rgba(70,140,150,0.3);}
+.btn.ghost{background:var(--white);color:var(--ink);border:2px solid var(--lavender);box-shadow:none;}
+.btn.sm{padding:8px 16px;font-size:.85rem;box-shadow:0 4px 0 rgba(150,110,190,0.3);}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;}
+
+/* Speech bubble / character */
+.char-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+.char-avatar{font-size:2.6rem;flex-shrink:0;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.12));}
+.bubble{
+  background:var(--yellow);border-radius:var(--radius-md) var(--radius-md) var(--radius-md) 4px;
+  padding:12px 16px;font-weight:600;position:relative;flex:1;
+}
+.bubble.blue{background:var(--sky);}
+.bubble.pink{background:var(--pink);}
+.bubble.mint{background:var(--mint);}
+
+/* Mission card / adventure map */
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:560px){.mission-grid{grid-template-columns:1fr;}}
+.mini-box{background:var(--mint);border-radius:var(--radius-sm);padding:14px;}
+.mini-box.blue{background:var(--sky);}
+.mini-box.pink{background:var(--pink);}
+.mini-box.lav{background:var(--lavender);}
+.mini-box h4{margin:0 0 6px;font-size:.95rem;}
+.mini-box ul{margin:0;padding-left:18px;font-size:.9rem;}
+
+.adv-map{display:flex;gap:10px;overflow-x:auto;padding:10px 2px;margin-top:10px;}
+.adv-node{
+  min-width:78px;text-align:center;font-size:1.6rem;background:var(--white);
+  border-radius:var(--radius-sm);padding:10px 6px;box-shadow:var(--shadow-sm);
+  border:2px solid transparent;
+}
+.adv-node .lbl{font-size:.62rem;font-weight:700;color:var(--ink-soft);margin-top:4px;}
+
+/* envelope */
+.envelope{
+  width:220px;height:150px;margin:20px auto;position:relative;cursor:pointer;
+  background:linear-gradient(135deg,var(--pink),var(--lavender));
+  border-radius:14px;box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;font-size:3rem;
+  transition:transform .3s;
+}
+.envelope:hover{transform:scale(1.05) rotate(-1deg);}
+.envelope.opened{animation:pop .4s ease;}
+@keyframes pop{0%{transform:scale(1);}50%{transform:scale(1.15);}100%{transform:scale(1);}}
+
+/* Choice grid (warm up) */
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:12px;margin:14px 0;}
+.choice{
+  background:var(--white);border:3px solid var(--mint);border-radius:var(--radius-md);
+  padding:14px 8px;text-align:center;font-size:1.9rem;transition:.2s;
+}
+.choice:hover{border-color:var(--pink-deep);transform:translateY(-3px);}
+.choice.selected{border-color:var(--lavender-deep);background:var(--lavender);transform:scale(1.06);}
+.choice .clabel{display:block;font-size:.72rem;font-weight:700;margin-top:6px;color:var(--ink-soft);}
+
+/* Profile builder */
+.profile-wrap{display:flex;gap:20px;flex-wrap:wrap;}
+.profile-form{flex:1;min-width:240px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-weight:700;font-size:.85rem;margin-bottom:5px;color:var(--ink-soft);}
+.field input, .field select{
+  width:100%;padding:11px 14px;border-radius:var(--radius-sm);border:2px solid var(--mint);
+  font-size:1rem;font-family:var(--font-body);background:#fbfbff;
+}
+.field input:focus, .field select:focus{outline:none;border-color:var(--pink-deep);}
+.avatar-grid{display:flex;gap:8px;flex-wrap:wrap;}
+.avatar-opt{font-size:1.8rem;background:var(--white);border:3px solid var(--mint);border-radius:14px;padding:6px 10px;}
+.avatar-opt.selected{border-color:var(--pink-deep);background:var(--pink);}
+
+.profile-preview{
+  flex:0 0 240px;background:linear-gradient(160deg,var(--yellow),var(--pink));
+  border-radius:var(--radius-lg);padding:20px;text-align:center;box-shadow:var(--shadow);
+  height:fit-content;
+}
+.pp-avatar{font-size:4rem;margin-bottom:8px;}
+.pp-name{font-family:var(--font-display);font-size:1.3rem;font-weight:800;}
+.pp-line{font-size:.88rem;color:var(--ink-soft);margin:2px 0;}
+
+/* Tabs */
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.tab{padding:9px 18px;border-radius:50px;background:var(--white);border:2px solid var(--mint);font-weight:700;font-size:.9rem;}
+.tab.active{background:var(--mint-deep);color:var(--white);border-color:var(--mint-deep);}
+
+/* Flip cards */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin:10px 0;}
+.flipcard{perspective:1000px;height:150px;}
+.flipcard-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+.flipcard.flipped .flipcard-inner{transform:rotateY(180deg);}
+.flipface{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius-md);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;box-shadow:var(--shadow-sm);}
+.flipfront{background:var(--sky);font-size:1.7rem;font-weight:800;}
+.flipfront .fi{font-size:2.2rem;}
+.flipback{background:var(--lavender);transform:rotateY(180deg);font-size:.78rem;}
+.flipback b{display:block;font-size:.9rem;margin-bottom:4px;}
+
+/* Word chip / sentence builder */
+.chip-pool{display:flex;gap:8px;flex-wrap:wrap;min-height:44px;margin:10px 0;}
+.chip{background:var(--white);border:2px solid var(--lavender-deep);border-radius:10px;padding:8px 14px;font-weight:700;}
+.chip.used{opacity:.3;pointer-events:none;}
+.answer-slot{
+  min-height:50px;border:3px dashed var(--mint-deep);border-radius:var(--radius-sm);
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px;background:#f4fffb;
+}
+.answer-slot .chip{background:var(--mint);border-color:var(--mint-deep);}
+
+/* Quiz / MCQ */
+.qblock{margin-bottom:20px;padding-bottom:16px;border-bottom:2px dashed #eee2fb;}
+.qblock:last-child{border-bottom:none;}
+.qtext{font-weight:800;margin-bottom:10px;}
+.opt-row{display:flex;gap:10px;flex-wrap:wrap;}
+.opt{background:var(--white);border:2px solid var(--sky-deep);border-radius:var(--radius-sm);padding:10px 16px;font-weight:700;}
+.opt.correct{background:var(--mint-deep);color:#fff;border-color:var(--mint-deep);}
+.opt.wrong{background:var(--pink-deep);color:#fff;border-color:var(--pink-deep);}
+.fillblank input{border:2px solid var(--sky-deep);border-radius:10px;padding:8px 10px;font-weight:700;width:120px;text-align:center;}
+.fillblank input.correct{border-color:var(--mint-deep);background:#e8fff5;}
+.fillblank input.wrong{border-color:var(--pink-deep);background:#ffeef2;}
+
+/* Memory game */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:480px){.memory-grid{grid-template-columns:repeat(3,1fr);}}
+.mcard{aspect-ratio:1;background:var(--lavender-deep);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:transparent;transition:.3s;box-shadow:var(--shadow-sm);}
+.mcard.open{background:var(--white);color:var(--ink);}
+.mcard.matched{background:var(--mint);color:var(--ink);opacity:.6;}
+
+/* Mystery box */
+.mystery-row{display:flex;gap:14px;flex-wrap:wrap;}
+.mbox{background:var(--lavender);border-radius:var(--radius-md);padding:22px;font-size:2rem;text-align:center;flex:1;min-width:100px;box-shadow:var(--shadow-sm);}
+.mbox.opened{background:var(--yellow);font-size:.85rem;font-weight:700;}
+
+/* Identity card */
+.id-card{
+  max-width:380px;margin:20px auto;background:linear-gradient(160deg,var(--sky),var(--lavender));
+  border-radius:var(--radius-lg);padding:26px;text-align:center;box-shadow:var(--shadow);
+  border:4px solid var(--white);
+}
+.id-badge{position:absolute;top:-16px;right:-10px;background:var(--yellow-deep);border-radius:50%;
+  width:64px;height:64px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:var(--shadow-sm);}
+.id-avatar{font-size:4.4rem;}
+.id-name{font-family:var(--font-display);font-size:1.5rem;font-weight:800;margin:6px 0 2px;}
+.id-row{font-size:.92rem;color:var(--ink-soft);margin:2px 0;}
+.id-stars{margin-top:10px;font-size:1.3rem;}
+
+/* progress bars grid (assessment) */
+.assess-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px;}
+.assess-item .albl{display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;margin-bottom:4px;}
+.abar{height:12px;background:#eee5fb;border-radius:20px;overflow:hidden;}
+.abar-fill{height:100%;background:linear-gradient(90deg,var(--pink-deep),var(--lavender-deep));border-radius:20px;transition:width 1s ease;}
+
+/* Toast / celebration */
+#toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--ink);color:#fff;padding:12px 22px;border-radius:50px;font-weight:700;
+  box-shadow:var(--shadow);z-index:200;transition:transform .4s ease;font-size:.92rem;
+}
+#toast.show{transform:translateX(-50%) translateY(0);}
+
+/* Confetti */
+.confetti-piece{position:fixed;top:-20px;font-size:1.4rem;z-index:300;animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2;}}
+
+.hidden{display:none !important;}
+.small-note{font-size:.8rem;color:var(--ink-soft);}
+.icon-btn{background:var(--white);border:2px solid var(--sky-deep);border-radius:50px;padding:6px 14px;font-weight:700;font-size:.85rem;}
+.icon-btn.mic{border-color:var(--pink-deep);}
+footer.brandfoot{text-align:center;margin-top:30px;color:var(--ink-soft);font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<div class="floaters" id="floaters"></div>
+<div id="toast"></div>
+
+<div id="app">
+
+  <!-- ============================================================
+       STICKY MISSION BAR (progress, stars, mini map)
+  ============================================================ -->
+  <div id="missionBar">
+    <div class="brand-mini">🌟 Littlelume Explorer Club</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="stat-pill">⭐ <span id="starCount">0</span></div>
+    <div class="mapdots" id="mapDots"></div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1 — STORY OPENING
+  ============================================================ -->
+  <section class="screen active" id="screen-1">
+    <div class="card">
+      <div class="eyebrow">Littlelume English • Grade 4 • Unit 1</div>
+      <h1 class="title-xl">Meeting 1 — Build My Identity</h1>
+      <p class="sub">Learn • Play • Shine ✨</p>
+
+      <div id="envelopeWrap">
+        <div class="envelope" id="envelope">✉️</div>
+        <p class="small-note" style="text-align:center;">Tap the envelope to open your letter!</p>
+      </div>
+
+      <div id="letterContent" class="hidden">
+        <div class="char-row">
+          <div class="char-avatar">🧑‍🚀</div>
+          <div class="bubble pink">Welcome, new Explorer! Before you can become an official <b>Littlelume Explorer</b>, you must build your very own <b>Identity Profile</b>. Are you ready for your first mission?</div>
+        </div>
+
+        <div class="mission-grid">
+          <div class="mini-box">
+            <h4>🎯 Mission Card</h4>
+            <p style="margin:0;font-size:.9rem;">Mission 1: <b>Build My Identity</b></p>
+          </div>
+          <div class="mini-box blue">
+            <h4>🏁 Today's Goal</h4>
+            <ul>
+              <li>Say my name &amp; age</li>
+              <li>Say where I live</li>
+              <li>Describe myself</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4 style="margin-top:6px;">🗺️ Your Adventure Map</h4>
+        <div class="adv-map" id="advMapPreview"></div>
+
+        <div class="btnrow">
+          <button class="btn" id="startAdventureBtn">Start My Adventure 🚀</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2 — WARM UP
+  ============================================================ -->
+  <section class="screen" id="screen-2">
+    <div class="card">
+      <div class="eyebrow">Step 1 of 8</div>
+      <h2 class="title-lg">🔥 Warm Up — Ice Breaker</h2>
+      <div class="char-row">
+        <div class="char-avatar">🧑‍🚀</div>
+        <div class="bubble" id="warmupBubble">Let's get to know you a little before we build your profile! Pick your favorites below.</div>
+      </div>
+
+      <h4>🎨 Favorite Color</h4>
+      <div class="choice-grid" id="wu-color"></div>
+
+      <h4>🐾 Favorite Animal</h4>
+      <div class="choice-grid" id="wu-animal"></div>
+
+      <h4>🍕 Favorite Food</h4>
+      <div class="choice-grid" id="wu-food"></div>
+
+      <h4>🎨 Favorite Hobby</h4>
+      <div class="choice-grid" id="wu-hobby"></div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(1)">Back</button>
+        <button class="btn" id="wuContinueBtn" disabled onclick="completeWarmup()">Continue ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 — CREATE MY DIGITAL PROFILE
+  ============================================================ -->
+  <section class="screen" id="screen-3">
+    <div class="card">
+      <div class="eyebrow">Step 2 of 8</div>
+      <h2 class="title-lg">🪪 Create My Digital Profile</h2>
+      <p class="sub">Fill in your details and watch your Explorer Card come to life!</p>
+
+      <div class="profile-wrap">
+        <div class="profile-form">
+          <div class="field">
+            <label>Choose your avatar</label>
+            <div class="avatar-grid" id="avatarGrid"></div>
+          </div>
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" id="pf-name" placeholder="e.g. Alex" oninput="updateProfilePreview()">
+          </div>
+          <div class="field">
+            <label>Your Age</label>
+            <input type="number" id="pf-age" min="6" max="13" placeholder="e.g. 10" oninput="updateProfilePreview()">
+          </div>
+          <div class="field">
+            <label>Your City</label>
+            <input type="text" id="pf-city" placeholder="e.g. Bandung" oninput="updateProfilePreview()">
+          </div>
+          <div class="field">
+            <label>Your Country</label>
+            <input type="text" id="pf-country" placeholder="e.g. Indonesia" oninput="updateProfilePreview()">
+          </div>
+        </div>
+
+        <div class="profile-preview">
+          <div class="pp-avatar" id="pp-avatar">🙂</div>
+          <div class="pp-name" id="pp-name">Your Name</div>
+          <div class="pp-line" id="pp-age">Age: —</div>
+          <div class="pp-line" id="pp-city">City: —</div>
+          <div class="pp-line" id="pp-country">Country: —</div>
+          <div class="pp-line" id="pp-color">Favorite Color: —</div>
+        </div>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(2)">Back</button>
+        <button class="btn" id="profileContinueBtn" disabled onclick="completeProfile()">Continue ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — VOCABULARY ADVENTURE
+  ============================================================ -->
+  <section class="screen" id="screen-4">
+    <div class="card">
+      <div class="eyebrow">Step 3 of 8</div>
+      <h2 class="title-lg">📖 Vocabulary Adventure</h2>
+      <p class="sub">Flip the cards, listen, and learn new words!</p>
+
+      <div class="tabs">
+        <div class="tab active" id="tab-personal" onclick="switchVocabTab('personal')">🧍 Personal Information</div>
+        <div class="tab" id="tab-personality" onclick="switchVocabTab('personality')">💫 Personality</div>
+      </div>
+
+      <div class="flip-grid" id="flipGrid"></div>
+      <p class="small-note">👆 Tap a card to flip it and see the meaning. Tap 🔊 to hear it.</p>
+
+      <div class="card glass" style="margin-top:18px;">
+        <h4>🧩 Matching Game</h4>
+        <p class="small-note">Click a word, then click its matching meaning.</p>
+        <div id="matchingGame"></div>
+      </div>
+
+      <div class="card glass" id="findWordCard">
+        <h4>🔍 Find the Word</h4>
+        <p class="small-note">Look at the picture and choose the correct word.</p>
+        <div id="findWordGame"></div>
+      </div>
+
+      <div class="card glass" id="vocabQuizCard">
+        <h4>📝 Vocabulary Quiz</h4>
+        <div id="vocabQuiz"></div>
+        <button class="btn sm secondary" id="checkVocabQuizBtn" onclick="checkVocabQuiz()">Check My Answers</button>
+      </div>
+
+      <div class="mini-box lav" style="margin-top:16px;">
+        <h4>🔗 Sneak Peek Word: <i>Because</i></h4>
+        <p style="margin:0;font-size:.88rem;">We use <b>because</b> to explain why: "I like drawing <b>because</b> it is fun." You'll learn more about this in Meeting 2! 👀</p>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(3)">Back</button>
+        <button class="btn" id="vocabContinueBtn" disabled onclick="completeVocab()">Continue ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 — GRAMMAR WORKSHOP
+  ============================================================ -->
+  <section class="screen" id="screen-5">
+    <div class="card">
+      <div class="eyebrow">Step 4 of 8</div>
+      <h2 class="title-lg">🛠️ Grammar Workshop</h2>
+      <p class="sub">Let's build sentences about YOU!</p>
+
+      <div class="mission-grid">
+        <div class="mini-box"><b>My name is ...</b><br><span class="small-note" id="gp-name-ex"></span></div>
+        <div class="mini-box blue"><b>I am ... years old.</b><br><span class="small-note" id="gp-age-ex"></span></div>
+        <div class="mini-box pink"><b>I live in ...</b><br><span class="small-note" id="gp-city-ex"></span></div>
+        <div class="mini-box lav"><b>I am ...</b> (a describing word)<br><span class="small-note">I am friendly.</span></div>
+      </div>
+
+      <div class="card glass">
+        <h4>🧱 Sentence Builder</h4>
+        <div id="sentenceBuilder"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>✏️ Fill in the Blanks</h4>
+        <div id="fillBlanks"></div>
+        <button class="btn sm secondary" onclick="checkFillBlanks()">Check</button>
+      </div>
+
+      <div class="card glass">
+        <h4>✅ Choose the Correct Answer</h4>
+        <div id="grammarMCQ"></div>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(4)">Back</button>
+        <button class="btn" id="grammarContinueBtn" disabled onclick="completeGrammar()">Continue ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6 — GUIDED PRACTICE
+  ============================================================ -->
+  <section class="screen" id="screen-6">
+    <div class="card">
+      <div class="eyebrow">Step 5 of 8</div>
+      <h2 class="title-lg">🤝 Guided Practice</h2>
+      <div class="char-row">
+        <div class="char-avatar">🤖</div>
+        <div class="bubble blue">Hi! I'm <b>Ziggy</b>, a new Explorer. I'm a little shy... can you help me introduce myself?</div>
+      </div>
+
+      <div class="card glass">
+        <h4>1️⃣ Complete the Sentence</h4>
+        <div id="gp-complete"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>2️⃣ Arrange the Words</h4>
+        <div id="gp-arrange"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>3️⃣ Choose the Missing Word</h4>
+        <div id="gp-missing"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>4️⃣ Read and Repeat</h4>
+        <div id="gp-readrepeat"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>🎤 Speaking Prompt</h4>
+        <p>Now say Ziggy's whole introduction out loud, from start to finish!</p>
+        <button class="icon-btn mic" onclick="tryListen('gp-speak-status')">🎤 I'm Ready to Speak</button>
+        <p class="small-note" id="gp-speak-status"></p>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(5)">Back</button>
+        <button class="btn" id="guidedContinueBtn" onclick="completeGuided()">Continue ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7 — SPEAKING PRACTICE
+  ============================================================ -->
+  <section class="screen" id="screen-7">
+    <div class="card">
+      <div class="eyebrow">Step 6 of 8</div>
+      <h2 class="title-lg">🎤 Speaking Practice</h2>
+      <p class="sub">Time to use YOUR own voice and YOUR own words!</p>
+
+      <div class="card glass">
+        <h4>🗣️ Speaking Cards</h4>
+        <div id="speakingCards"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>🎭 Role-Play with Lumi</h4>
+        <div id="rolePlay"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>🪞 Mirror Speaking Challenge</h4>
+        <p>Repeat this sentence <b>3 times</b>: "I am friendly."</p>
+        <button class="btn sm" onclick="mirrorTap()">🔊 Play &amp; I Said It!</button>
+        <p class="small-note" id="mirrorCount">Repeated: 0 / 3</p>
+      </div>
+
+      <div class="card glass">
+        <h4>🎲 Random Introduction Generator</h4>
+        <p>Practice reading a new introduction every time!</p>
+        <div class="mini-box blue" id="randomIntroBox">Tap the button to generate one!</div>
+        <button class="btn sm secondary" style="margin-top:10px;" onclick="generateRandomIntro()">🎲 Generate</button>
+      </div>
+
+      <div class="card glass">
+        <h4>💬 Chat with Lumi</h4>
+        <div id="convoChar"></div>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(6)">Back</button>
+        <button class="btn" id="speakingContinueBtn" onclick="completeSpeaking()">Continue ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8 — MINI REVIEW
+  ============================================================ -->
+  <section class="screen" id="screen-8">
+    <div class="card">
+      <div class="eyebrow">Step 7 of 8</div>
+      <h2 class="title-lg">🎮 Mini Review — Game Time!</h2>
+
+      <div class="card glass">
+        <h4>🧠 Memory Game</h4>
+        <p class="small-note">Find all the matching pairs!</p>
+        <div class="memory-grid" id="memoryGrid"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>✅❌ True or False</h4>
+        <div id="trueFalse"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>🧱 Sentence Builder Challenge</h4>
+        <div id="reviewSentenceBuilder"></div>
+      </div>
+
+      <div class="card glass">
+        <h4>📝 Vocabulary Challenge</h4>
+        <div id="reviewQuiz"></div>
+        <button class="btn sm secondary" onclick="checkReviewQuiz()">Check My Answers</button>
+      </div>
+
+      <div class="card glass">
+        <h4>🎁 Mystery Box</h4>
+        <p class="small-note">Tap a box for a surprise!</p>
+        <div class="mystery-row" id="mysteryRow"></div>
+      </div>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goToScreen(7)">Back</button>
+        <button class="btn" id="reviewContinueBtn" onclick="completeReview()">Finish Mission ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9 — MISSION COMPLETE
+  ============================================================ -->
+  <section class="screen" id="screen-9">
+    <div class="card" style="text-align:center;">
+      <div class="eyebrow">Mission Complete!</div>
+      <h1 class="title-xl">🎉 Great Job, Explorer! 🎉</h1>
+      <p class="sub">You built your Identity Profile. Choose one word that describes you best:</p>
+
+      <select id="traitSelect" style="padding:10px 16px;border-radius:20px;border:2px solid var(--lavender-deep);font-weight:700;">
+        <option value="">-- pick a personality word --</option>
+      </select>
+      <br><br>
+      <button class="btn" onclick="generateIdentityCard()">✨ Generate My Explorer Card</button>
+
+      <div id="idCardWrap"></div>
+
+      <div class="card glass" style="text-align:left;">
+        <h4>📊 My Achievement</h4>
+        <div class="assess-grid" id="assessGrid"></div>
+      </div>
+
+      <div class="char-row" style="text-align:left;">
+        <div class="char-avatar">🧑‍🚀</div>
+        <div class="bubble pink">Amazing work! You've built your Identity Profile and joined the Littlelume Explorer Club! Next time, you'll tell everyone even more about yourself — your hobbies, your favorite things, and <b>why</b> you like them. See you at Meeting 2, Explorer! 🚀</div>
+      </div>
+
+      <div class="btnrow" style="justify-content:center;">
+        <button class="btn secondary" onclick="restartLesson()">🔁 Explore Again</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="brandfoot">🌟 Littlelume English — Learn • Play • Shine 🌟</footer>
+</div>
+
+<script>
+/* ============================================================
+   GLOBAL STATE
+============================================================ */
+const SECTION_IDS = [1,2,3,4,5,6,7,8,9];
+const SECTION_ICONS = ['✉️','🔥','🪪','📖','🛠️','🤝','🎤','🎮','🏆'];
+const SECTION_LABELS = ['Start','Warm Up','Profile','Vocab','Grammar','Practice','Speaking','Review','Complete'];
+
+let state = {
+  current: 1,
+  unlocked: 1,
+  stars: 0,
+  warmup: {color:null, animal:null, food:null, hobby:null},
+  profile: {avatar:'🙂', name:'', age:'', city:'', country:''},
+  vocabTab: 'personal',
+  flippedWords: new Set(),
+  matchSelections: {word:null, meaning:null},
+  matchedPairs: new Set(),
+  findWordDone: false,
+  vocabQuizAnswered: false,
+  sentenceBuilderDone: {},
+  fillBlanksDone: false,
+  grammarMCQAnswered: {},
+  guidedDone: {complete:false, arrange:false, missing:false},
+  mirrorCount: 0,
+  memoryFirst: null,
+  memoryMatched: new Set(),
+  reviewQuizAnswered: false,
+  mysteryOpened: new Set(),
+  scores: {vocab:0, grammar:0, speaking:0, participation:0}
+};
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+function addStars(n){
+  state.stars += n;
+  document.getElementById('starCount').textContent = state.stars;
+  const pill = document.querySelector('.stat-pill');
+  pill.style.transform='scale(1.25)';
+  setTimeout(()=>pill.style.transform='scale(1)',250);
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+function speak(text){
+  try{
+    if('speechSynthesis' in window){
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.85; u.pitch = 1.15; u.lang='en-US';
+      window.speechSynthesis.speak(u);
+    }
+  }catch(e){}
+}
+function tryListen(statusId){
+  const el = document.getElementById(statusId);
+  if(!el) return;
+  el.textContent = "🎙️ Listening... (great job speaking out loud!)";
+  el.style.color = "#7FD9BE";
+  setTimeout(()=>{ el.textContent = "✅ Nice speaking, Explorer!"; },1400);
+  try{
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(SR){
+      const rec = new SR();
+      rec.lang='en-US'; rec.interimResults=false;
+      rec.onresult = ()=>{ el.textContent = "✅ I heard you! Great speaking!"; };
+      rec.onerror = ()=>{};
+      rec.start();
+      setTimeout(()=>{ try{rec.stop();}catch(e){} }, 3000);
+    }
+  }catch(e){}
+}
+function confettiBurst(count=26){
+  const emojis=['🎉','✨','⭐','🎊','💫'];
+  for(let i=0;i<count;i++){
+    const el = document.createElement('div');
+    el.className='confetti-piece';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = Math.random()*100+'vw';
+    el.style.animationDuration = (2+Math.random()*1.5)+'s';
+    el.style.fontSize = (1+Math.random()*1.2)+'rem';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 4000);
+  }
+}
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+function goToScreen(n){
+  if(n > state.unlocked) return;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+n).classList.add('active');
+  state.current = n;
+  window.scrollTo({top:0, behavior:'smooth'});
+  const bar = document.getElementById('missionBar');
+  if(n>1){ bar.classList.add('show'); } else { bar.classList.remove('show'); }
+  renderMapDots();
+  renderProgress();
+}
+function unlockNext(){
+  state.unlocked = Math.max(state.unlocked, state.current+1);
+  goToScreen(state.current+1);
+}
+function renderProgress(){
+  const pct = Math.round(((state.current-1)/8)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+}
+function renderMapDots(){
+  const wrap = document.getElementById('mapDots');
+  wrap.innerHTML='';
+  SECTION_IDS.forEach(n=>{
+    const d = document.createElement('div');
+    d.className='mapdot'+(n<state.current?' done':'')+(n===state.current?' active':'');
+    wrap.appendChild(d);
+  });
+}
+function renderAdvMapPreview(){
+  const wrap = document.getElementById('advMapPreview');
+  wrap.innerHTML='';
+  SECTION_IDS.forEach((n,i)=>{
+    const d = document.createElement('div');
+    d.className='adv-node';
+    d.innerHTML = SECTION_ICONS[i]+'<div class="lbl">'+SECTION_LABELS[i]+'</div>';
+    wrap.appendChild(d);
+  });
+}
+
+/* ============================================================
+   SECTION 1 — ENVELOPE
+============================================================ */
+document.getElementById('envelope').addEventListener('click', function(){
+  this.classList.add('opened');
+  this.textContent='💌';
+  document.getElementById('letterContent').classList.remove('hidden');
+  document.getElementById('envelopeWrap').querySelector('p').style.display='none';
+  renderAdvMapPreview();
+});
+document.getElementById('startAdventureBtn').addEventListener('click', function(){
+  state.unlocked = 2;
+  goToScreen(2);
+  showToast('Adventure started! 🚀');
+});
+
+/* ============================================================
+   SECTION 2 — WARM UP
+============================================================ */
+const WARMUP_DATA = {
+  color:[['🔴','Red'],['🟠','Orange'],['🟡','Yellow'],['🟢','Green'],['🔵','Blue'],['🟣','Purple']],
+  animal:[['🐶','Dog'],['🐱','Cat'],['🐰','Rabbit'],['🐼','Panda'],['🦁','Lion'],['🐬','Dolphin']],
+  food:[['🍕','Pizza'],['🍔','Burger'],['🍜','Noodles'],['🍎','Apple'],['🍦','Ice Cream'],['🍣','Sushi']],
+  hobby:[['🎨','Drawing'],['⚽','Sports'],['📚','Reading'],['🎮','Gaming'],['🎵','Music'],['🚴','Cycling']]
+};
+function renderWarmup(){
+  Object.keys(WARMUP_DATA).forEach(cat=>{
+    const grid = document.getElementById('wu-'+cat);
+    grid.innerHTML='';
+    WARMUP_DATA[cat].forEach(([emoji,label])=>{
+      const c = document.createElement('div');
+      c.className='choice';
+      c.innerHTML = emoji+'<span class="clabel">'+label+'</span>';
+      c.onclick = ()=>selectWarmup(cat,label,c);
+      grid.appendChild(c);
+    });
+  });
+}
+function selectWarmup(cat,label,el){
+  document.querySelectorAll('#wu-'+cat+' .choice').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.warmup[cat]=label;
+  addStars(1);
+  const msgs = {
+    color:"Ooh, I love "+label+"! Great choice! 🎨",
+    animal:label+"s are so cool! 🐾",
+    food:label+" sounds delicious! 😋",
+    hobby:label+" is a lot of fun! 🌟"
+  };
+  document.getElementById('warmupBubble').textContent = msgs[cat];
+  const allPicked = Object.values(state.warmup).every(v=>v!==null);
+  document.getElementById('wuContinueBtn').disabled = !allPicked;
+}
+function completeWarmup(){
+  state.scores.participation += 10;
+  unlockNext();
+}
+
+/* ============================================================
+   SECTION 3 — PROFILE BUILDER
+============================================================ */
+const AVATARS = ['🙂','😎','🤓','🥳','🦸','🧑‍🚀','🐯','🐧'];
+function renderAvatars(){
+  const grid = document.getElementById('avatarGrid');
+  grid.innerHTML='';
+  AVATARS.forEach(a=>{
+    const b = document.createElement('div');
+    b.className='avatar-opt'+(a===state.profile.avatar?' selected':'');
+    b.textContent=a;
+    b.onclick=()=>{
+      document.querySelectorAll('.avatar-opt').forEach(x=>x.classList.remove('selected'));
+      b.classList.add('selected');
+      state.profile.avatar=a;
+      updateProfilePreview();
+    };
+    grid.appendChild(b);
+  });
+}
+function updateProfilePreview(){
+  state.profile.name = document.getElementById('pf-name').value.trim();
+  state.profile.age = document.getElementById('pf-age').value.trim();
+  state.profile.city = document.getElementById('pf-city').value.trim();
+  state.profile.country = document.getElementById('pf-country').value.trim();
+
+  document.getElementById('pp-avatar').textContent = state.profile.avatar;
+  document.getElementById('pp-name').textContent = state.profile.name || 'Your Name';
+  document.getElementById('pp-age').textContent = 'Age: '+(state.profile.age||'—');
+  document.getElementById('pp-city').textContent = 'City: '+(state.profile.city||'—');
+  document.getElementById('pp-country').textContent = 'Country: '+(state.profile.country||'—');
+  document.getElementById('pp-color').textContent = 'Favorite Color: '+(state.warmup.color||'—');
+
+  const filled = state.profile.name && state.profile.age && state.profile.city && state.profile.country;
+  document.getElementById('profileContinueBtn').disabled = !filled;
+}
+function completeProfile(){
+  addStars(3);
+  state.scores.participation += 15;
+  showToast('Your Explorer Profile is ready! ⭐⭐⭐');
+  document.getElementById('gp-name-ex').textContent = 'My name is '+state.profile.name+'.';
+  document.getElementById('gp-age-ex').textContent = 'I am '+state.profile.age+' years old.';
+  document.getElementById('gp-city-ex').textContent = 'I live in '+state.profile.city+'.';
+  unlockNext();
+}
+
+/* ============================================================
+   SECTION 4 — VOCABULARY
+============================================================ */
+const VOCAB = {
+  personal:[
+    {w:'Name',i:'🏷️',m:'What people call you',ex:'My name is Alex.'},
+    {w:'Age',i:'🎂',m:'How many years old you are',ex:'I am 9 years old.'},
+    {w:'Address',i:'🏠',m:'Where you live',ex:'My address is on Sunshine Street.'},
+    {w:'Live',i:'📍',m:'The place you stay',ex:'I live in Bandung.'},
+    {w:'City',i:'🌆',m:'A big town where people live',ex:'My city is beautiful.'},
+    {w:'Favorite',i:'⭐',m:'The one you like best',ex:'My favorite color is blue.'},
+    {w:'Hobby',i:'🎨',m:'Something fun you like to do',ex:'My hobby is drawing.'}
+  ],
+  personality:[
+    {w:'Kind',i:'💛',m:'Nice and caring to others',ex:'She is kind to her friends.'},
+    {w:'Friendly',i:'🤝',m:'Easy to talk to and warm',ex:'He is very friendly.'},
+    {w:'Funny',i:'😄',m:'Makes people laugh',ex:'My brother is funny.'},
+    {w:'Happy',i:'😊',m:'Feeling good and cheerful',ex:'I am happy today.'},
+    {w:'Smart',i:'🧠',m:'Good at learning and thinking',ex:'She is smart in math.'},
+    {w:'Creative',i:'🖌️',m:'Full of new ideas',ex:'He is creative with art.'},
+    {w:'Helpful',i:'🤲',m:'Likes to help others',ex:'I am helpful at home.'}
+  ]
+};
+function switchVocabTab(tab){
+  state.vocabTab = tab;
+  document.getElementById('tab-personal').classList.toggle('active', tab==='personal');
+  document.getElementById('tab-personality').classList.toggle('active', tab==='personality');
+  renderFlipCards();
+}
+function renderFlipCards(){
+  const grid = document.getElementById('flipGrid');
+  grid.innerHTML='';
+  VOCAB[state.vocabTab].forEach(item=>{
+    const key = state.vocabTab+'-'+item.w;
+    const card = document.createElement('div');
+    card.className='flipcard'+(state.flippedWords.has(key)?' flipped':'');
+    card.innerHTML = `
+      <div class="flipcard-inner">
+        <div class="flipface flipfront">
+          <div class="fi">${item.i}</div>${item.w}
+        </div>
+        <div class="flipface flipback">
+          <b>${item.w}</b>${item.m}<br><i>"${item.ex}"</i>
+        </div>
+      </div>`;
+    card.onclick = (e)=>{
+      card.classList.toggle('flipped');
+      if(card.classList.contains('flipped')){
+        state.flippedWords.add(key);
+        speak(item.w+'. '+item.ex);
+        checkVocabExploreProgress();
+      }
+    };
+    grid.appendChild(card);
+  });
+}
+function checkVocabExploreProgress(){
+  const totalWords = VOCAB.personal.length + VOCAB.personality.length;
+  if(state.flippedWords.size >= Math.min(10,totalWords)){
+    addStars(2);
+  }
+}
+function renderMatchingGame(){
+  const words = shuffle([...VOCAB.personal.slice(0,4)]);
+  const wrap = document.getElementById('matchingGame');
+  wrap.innerHTML = '<div style="display:flex;gap:20px;flex-wrap:wrap;"><div id="matchWords" style="display:flex;flex-direction:column;gap:8px;"></div><div id="matchMeanings" style="display:flex;flex-direction:column;gap:8px;"></div></div><p class="small-note" id="matchStatus">Matched: 0 / 4</p>';
+  const wordsCol = document.getElementById('matchWords');
+  const meaningsCol = document.getElementById('matchMeanings');
+  const shuffledMeanings = shuffle(words);
+  words.forEach(item=>{
+    const b = document.createElement('div');
+    b.className='chip'; b.textContent = item.w; b.dataset.word = item.w;
+    b.onclick = ()=>selectMatch('word', item.w, b);
+    wordsCol.appendChild(b);
+  });
+  shuffledMeanings.forEach(item=>{
+    const b = document.createElement('div');
+    b.className='chip'; b.textContent = item.m; b.dataset.word = item.w;
+    b.onclick = ()=>selectMatch('meaning', item.w, b);
+    meaningsCol.appendChild(b);
+  });
+}
+let matchSelWordEl=null, matchSelMeanEl=null;
+function selectMatch(type, wordKey, el){
+  if(state.matchedPairs.has(wordKey)) return;
+  if(type==='word'){
+    if(matchSelWordEl) matchSelWordEl.style.outline='none';
+    matchSelWordEl = el; el.style.outline='3px solid var(--pink-deep)';
+    state.matchSelections.word = wordKey;
+  } else {
+    if(matchSelMeanEl) matchSelMeanEl.style.outline='none';
+    matchSelMeanEl = el; el.style.outline='3px solid var(--pink-deep)';
+    state.matchSelections.meaning = wordKey;
+  }
+  if(state.matchSelections.word && state.matchSelections.meaning){
+    if(state.matchSelections.word === state.matchSelections.meaning){
+      matchSelWordEl.classList.add('used'); matchSelMeanEl.classList.add('used');
+      state.matchedPairs.add(state.matchSelections.word);
+      addStars(1);
+      document.getElementById('matchStatus').textContent = 'Matched: '+state.matchedPairs.size+' / 4';
+      if(state.matchedPairs.size>=4){ showToast('Matching complete! 🎉'); }
+    } else {
+      showToast('Try again! 🤔');
+    }
+    matchSelWordEl.style.outline='none'; matchSelMeanEl.style.outline='none';
+    matchSelWordEl=null; matchSelMeanEl=null;
+    state.matchSelections={word:null,meaning:null};
+  }
+}
+function renderFindWord(){
+  const pool = shuffle([...VOCAB.personal,...VOCAB.personality]).slice(0,3);
+  const wrap = document.getElementById('findWordGame');
+  wrap.innerHTML='';
+  pool.forEach((item,idx)=>{
+    const options = shuffle([item.w, ...shuffle([...VOCAB.personal,...VOCAB.personality]).filter(v=>v.w!==item.w).slice(0,3).map(v=>v.w)]);
+    const q = document.createElement('div');
+    q.className='qblock';
+    q.innerHTML = `<div class="qtext" style="font-size:2rem;">${item.i}</div><div class="opt-row" id="fw-${idx}"></div>`;
+    wrap.appendChild(q);
+    const row = q.querySelector('.opt-row');
+    options.forEach(opt=>{
+      const b=document.createElement('div');
+      b.className='opt'; b.textContent=opt;
+      b.onclick=()=>{
+        if(b.classList.contains('correct')||b.classList.contains('wrong')) return;
+        if(opt===item.w){ b.classList.add('correct'); addStars(1); }
+        else { b.classList.add('wrong'); }
+        row.querySelectorAll('.opt').forEach(o=>{ if(o.textContent===item.w) o.classList.add('correct'); });
+      };
+      row.appendChild(b);
+    });
+  });
+}
+const VOCAB_QUIZ = [
+  {q:'What word means "a big town where people live"?', options:['City','Age','Kind'], a:'City'},
+  {q:'What word means "makes people laugh"?', options:['Funny','Address','Live'], a:'Funny'},
+  {q:'What word means "nice and caring to others"?', options:['Hobby','Kind','Smart'], a:'Kind'},
+  {q:'What word means "the one you like best"?', options:['Favorite','Helpful','Creative'], a:'Favorite'},
+  {q:'What word means "full of new ideas"?', options:['Happy','Creative','Name'], a:'Creative'}
+];
+function renderVocabQuiz(){
+  const wrap = document.getElementById('vocabQuiz');
+  wrap.innerHTML='';
+  VOCAB_QUIZ.forEach((item,idx)=>{
+    const q = document.createElement('div');
+    q.className='qblock';
+    q.innerHTML = `<div class="qtext">${idx+1}. ${item.q}</div><div class="opt-row" id="vq-${idx}"></div>`;
+    wrap.appendChild(q);
+    const row = q.querySelector('.opt-row');
+    shuffle(item.options).forEach(opt=>{
+      const b=document.createElement('div');
+      b.className='opt'; b.textContent=opt; b.dataset.selected='';
+      b.onclick=()=>{
+        row.querySelectorAll('.opt').forEach(o=>o.dataset.selected='');
+        row.querySelectorAll('.opt').forEach(o=>o.style.outline='none');
+        b.style.outline='3px solid var(--lavender-deep)';
+        b.dataset.selected='true';
+      };
+      row.appendChild(b);
+    });
+  });
+}
+function checkVocabQuiz(){
+  let correct=0;
+  VOCAB_QUIZ.forEach((item,idx)=>{
+    const row = document.getElementById('vq-'+idx);
+    let picked=null;
+    row.querySelectorAll('.opt').forEach(o=>{
+      if(o.dataset.selected==='true') picked=o;
+      o.classList.remove('correct','wrong');
+    });
+    row.querySelectorAll('.opt').forEach(o=>{
+      if(o.textContent===item.a) o.classList.add('correct');
+    });
+    if(picked && picked.textContent===item.a) correct++;
+    else if(picked) picked.classList.add('wrong');
+  });
+  addStars(correct);
+  state.scores.vocab = Math.round((correct/VOCAB_QUIZ.length)*100);
+  state.vocabQuizAnswered = true;
+  showToast('You got '+correct+' / '+VOCAB_QUIZ.length+' correct! ⭐');
+  document.getElementById('vocabContinueBtn').disabled = false;
+}
+function completeVocab(){
+  state.scores.participation += 10;
+  unlockNext();
+}
+
+/* ============================================================
+   SECTION 5 — GRAMMAR WORKSHOP
+============================================================ */
+function renderSentenceBuilder(containerId, items, storeKey){
+  const wrap = document.getElementById(containerId);
+  wrap.innerHTML='';
+  items.forEach((item,idx)=>{
+    const box = document.createElement('div');
+    box.className='qblock';
+    const chips = shuffle(item.chips);
+    box.innerHTML = `<div class="qtext">Build sentence #${idx+1}:</div>
+      <div class="answer-slot" id="${containerId}-slot-${idx}"></div>
+      <div class="chip-pool" id="${containerId}-pool-${idx}"></div>
+      <button class="btn sm ghost" onclick="clearSlot('${containerId}',${idx})">Clear</button>
+      <span class="small-note" id="${containerId}-fb-${idx}" style="margin-left:8px;"></span>`;
+    wrap.appendChild(box);
+    const pool = box.querySelector('#'+containerId+'-pool-'+idx);
+    chips.forEach(word=>{
+      const c = document.createElement('div');
+      c.className='chip';
+      c.textContent=word;
+      c.onclick=()=>{
+        if(c.classList.contains('used')) return;
+        c.classList.add('used');
+        const slot = document.getElementById(containerId+'-slot-'+idx);
+        const sc = document.createElement('div');
+        sc.className='chip'; sc.textContent=word;
+        sc.onclick=()=>{ sc.remove(); c.classList.remove('used'); };
+        slot.appendChild(sc);
+        checkSentenceBuilder(containerId, idx, item.correct, storeKey);
+      };
+      pool.appendChild(c);
+    });
+  });
+}
+function clearSlot(containerId, idx){
+  document.getElementById(containerId+'-slot-'+idx).innerHTML='';
+  document.querySelectorAll('#'+containerId+'-pool-'+idx+' .chip').forEach(c=>c.classList.remove('used'));
+  document.getElementById(containerId+'-fb-'+idx).textContent='';
+}
+function checkSentenceBuilder(containerId, idx, correctSentence, storeKey){
+  const slot = document.getElementById(containerId+'-slot-'+idx);
+  const built = Array.from(slot.children).map(c=>c.textContent).join(' ');
+  if(built.split(' ').length === correctSentence.split(' ').length){
+    const fb = document.getElementById(containerId+'-fb-'+idx);
+    if(built.toLowerCase() === correctSentence.toLowerCase()){
+      fb.textContent = '✅ Correct: "'+correctSentence+'"';
+      fb.style.color = '#3fae86';
+      addStars(1);
+      state[storeKey] = state[storeKey]||{};
+      state[storeKey][idx]=true;
+    } else {
+      fb.textContent = '❌ Not quite — try again!';
+      fb.style.color = '#e0668a';
+    }
+  }
+}
+const SENTENCE_ITEMS = [
+  {chips:['My','name','is','Emma','.'], correct:'My name is Emma .'},
+  {chips:['I','am','9','years','old','.'], correct:'I am 9 years old .'},
+  {chips:['I','live','in','Jakarta','.'], correct:'I live in Jakarta .'}
+];
+const FILL_BLANKS = [
+  {sentence:'My ____ is Lumi.', answer:'name'},
+  {sentence:'I ____ 10 years old.', answer:'am'},
+  {sentence:'I live ____ Bandung.', answer:'in'}
+];
+function renderFillBlanks(){
+  const wrap = document.getElementById('fillBlanks');
+  wrap.innerHTML='';
+  FILL_BLANKS.forEach((item,idx)=>{
+    const parts = item.sentence.split('____');
+    const box = document.createElement('div');
+    box.className='fillblank qblock';
+    box.innerHTML = `${idx+1}. ${parts[0]} <input type="text" id="fb-input-${idx}"> ${parts[1]}`;
+    wrap.appendChild(box);
+  });
+}
+function checkFillBlanks(){
+  let correct=0;
+  FILL_BLANKS.forEach((item,idx)=>{
+    const inp = document.getElementById('fb-input-'+idx);
+    inp.classList.remove('correct','wrong');
+    if(inp.value.trim().toLowerCase()===item.answer){
+      inp.classList.add('correct'); correct++;
+    } else {
+      inp.classList.add('wrong');
+    }
+  });
+  addStars(correct);
+  state.fillBlanksDone = true;
+  showToast('Fill in the Blanks: '+correct+' / '+FILL_BLANKS.length+' correct!');
+  maybeUnlockGrammar();
+}
+const GRAMMAR_MCQ = [
+  {q:'___ name is Toby.', options:['My','I','Is'], a:'My'},
+  {q:'I ___ 9 years old.', options:['am','is','are'], a:'am'},
+  {q:'I live ___ Surabaya.', options:['on','in','at'], a:'in'}
+];
+function renderGrammarMCQ(){
+  const wrap = document.getElementById('grammarMCQ');
+  wrap.innerHTML='';
+  GRAMMAR_MCQ.forEach((item,idx)=>{
+    const q=document.createElement('div');
+    q.className='qblock';
+    q.innerHTML = `<div class="qtext">${idx+1}. ${item.q}</div><div class="opt-row" id="gm-${idx}"></div>`;
+    wrap.appendChild(q);
+    const row = q.querySelector('.opt-row');
+    shuffle(item.options).forEach(opt=>{
+      const b=document.createElement('div');
+      b.className='opt'; b.textContent=opt;
+      b.onclick=()=>{
+        if(row.dataset.answered) return;
+        row.dataset.answered='true';
+        if(opt===item.a){ b.classList.add('correct'); addStars(1); }
+        else{
+          b.classList.add('wrong');
+          row.querySelectorAll('.opt').forEach(o=>{ if(o.textContent===item.a) o.classList.add('correct'); });
+        }
+        state.grammarMCQAnswered[idx]=true;
+        maybeUnlockGrammar();
+      };
+      row.appendChild(b);
+    });
+  });
+}
+function maybeUnlockGrammar(){
+  const mcqDone = Object.keys(state.grammarMCQAnswered).length >= GRAMMAR_MCQ.length;
+  if(state.fillBlanksDone && mcqDone){
+    document.getElementById('grammarContinueBtn').disabled = false;
+  }
+}
+function completeGrammar(){
+  state.scores.grammar = 80;
+  state.scores.participation += 10;
+  unlockNext();
+}
+
+/* ============================================================
+   SECTION 6 — GUIDED PRACTICE (with Ziggy)
+============================================================ */
+function renderGuidedComplete(){
+  const wrap = document.getElementById('gp-complete');
+  wrap.innerHTML = `<div class="fillblank">Hello! My name ____ Ziggy. <input type="text" id="gpc-input"><button class="btn sm secondary" style="margin-left:8px;" onclick="checkGuidedComplete()">Check</button></div><p class="small-note" id="gpc-fb"></p>`;
+}
+function checkGuidedComplete(){
+  const v = document.getElementById('gpc-input').value.trim().toLowerCase();
+  const fb = document.getElementById('gpc-fb');
+  if(v==='is'){ fb.textContent='✅ Correct! "Hello! My name is Ziggy."'; fb.style.color='#3fae86'; addStars(1); state.guidedDone.complete=true; }
+  else{ fb.textContent='❌ Try again! Hint: it starts with i...'; fb.style.color='#e0668a'; }
+  maybeUnlockGuided();
+}
+function renderGuidedArrange(){
+  renderSentenceBuilder('gp-arrange', [{chips:['I','am','8','years','old','.'], correct:'I am 8 years old .'}], 'guidedArrangeDone');
+}
+function renderGuidedMissing(){
+  const wrap = document.getElementById('gp-missing');
+  wrap.innerHTML = `<div class="qtext">I ___ in Littlelume Town.</div><div class="opt-row" id="gpm-row"></div>`;
+  const row = document.getElementById('gpm-row');
+  shuffle(['live','have','is']).forEach(opt=>{
+    const b=document.createElement('div'); b.className='opt'; b.textContent=opt;
+    b.onclick=()=>{
+      if(row.dataset.answered) return; row.dataset.answered='true';
+      if(opt==='live'){ b.classList.add('correct'); addStars(1); state.guidedDone.missing=true; }
+      else{ b.classList.add('wrong'); row.querySelectorAll('.opt').forEach(o=>{if(o.textContent==='live')o.classList.add('correct');}); }
+      maybeUnlockGuided();
+    };
+    row.appendChild(b);
+  });
+}
+const GUIDED_LINES = ['Hello! My name is Ziggy.','I am 8 years old.','I live in Littlelume Town.','I am friendly.'];
+function renderReadRepeat(){
+  const wrap = document.getElementById('gp-readrepeat');
+  wrap.innerHTML='';
+  GUIDED_LINES.forEach(line=>{
+    const row = document.createElement('div');
+    row.style.marginBottom='8px';
+    row.innerHTML = `<button class="icon-btn" onclick="speak('${line.replace(/'/g,"\\'")}')">🔊</button> ${line}`;
+    wrap.appendChild(row);
+  });
+}
+function maybeUnlockGuided(){
+  if(state.guidedDone.complete && state.guidedDone.missing){
+    // arrange checked separately via sentence builder store, allow continue anyway after some interaction
+  }
+}
+function completeGuided(){
+  state.scores.participation += 10;
+  unlockNext();
+}
+
+/* ============================================================
+   SECTION 7 — SPEAKING PRACTICE
+============================================================ */
+function renderSpeakingCards(){
+  const p = state.profile;
+  const lines = [
+    'Hello!',
+    'My name is '+(p.name||'___')+'.',
+    'I am '+(p.age||'___')+' years old.',
+    'I live in '+(p.city||'___')+'.',
+    'I am friendly.'
+  ];
+  const wrap = document.getElementById('speakingCards');
+  wrap.innerHTML='';
+  lines.forEach((line,idx)=>{
+    const c = document.createElement('div');
+    c.className='mini-box'+(idx%2===0?' blue':'');
+    c.style.marginBottom='8px';
+    c.innerHTML = `<b>${line}</b><br>
+      <button class="icon-btn" onclick="speak('${line.replace(/'/g,"\\'")}')">🔊 Listen</button>
+      <button class="icon-btn mic" onclick="tryListen('sc-status-${idx}')">🎤 Speak</button>
+      <span class="small-note" id="sc-status-${idx}"></span>`;
+    wrap.appendChild(c);
+  });
+}
+function renderRolePlay(){
+  const p = state.profile;
+  const wrap = document.getElementById('rolePlay');
+  const lines = [
+    {who:'Lumi', text:'Hi there, Explorer! What is your name?'},
+    {who:'You', text:'My name is '+(p.name||'___')+'.'},
+    {who:'Lumi', text:'Nice to meet you! How old are you?'},
+    {who:'You', text:'I am '+(p.age||'___')+' years old.'},
+    {who:'Lumi', text:'Where do you live?'},
+    {who:'You', text:'I live in '+(p.city||'___')+'.'},
+    {who:'Lumi', text:'Wonderful! You did it, Explorer! 🎉'}
+  ];
+  wrap.innerHTML='';
+  lines.forEach(l=>{
+    const row = document.createElement('div');
+    row.className='char-row';
+    row.style.marginBottom='6px';
+    row.innerHTML = `<div class="char-avatar" style="font-size:1.6rem;">${l.who==='Lumi'?'🧑‍🚀':'🙋'}</div>
+      <div class="bubble ${l.who==='Lumi'?'blue':'mint'}" style="font-size:.92rem;">${l.text}
+      <button class="icon-btn" style="margin-left:6px;padding:2px 8px;" onclick="speak('${l.text.replace(/'/g,"\\'")}')">🔊</button></div>`;
+    wrap.appendChild(row);
+  });
+}
+function mirrorTap(){
+  speak('I am friendly.');
+  state.mirrorCount = Math.min(3, state.mirrorCount+1);
+  document.getElementById('mirrorCount').textContent = 'Repeated: '+state.mirrorCount+' / 3';
+  if(state.mirrorCount>=3){ addStars(2); showToast('Mirror Challenge complete! ⭐⭐'); }
+}
+const RANDOM_POOL = {
+  names:['Maya','Diego','Aria','Kenji','Zara','Leo'],
+  ages:[7,8,9,10,11],
+  cities:['Paris','Tokyo','Cairo','Bandung','Toronto','Nairobi'],
+  traits:['kind','funny','smart','creative','helpful','happy']
+};
+function generateRandomIntro(){
+  const n = RANDOM_POOL.names[Math.floor(Math.random()*RANDOM_POOL.names.length)];
+  const a = RANDOM_POOL.ages[Math.floor(Math.random()*RANDOM_POOL.ages.length)];
+  const c = RANDOM_POOL.cities[Math.floor(Math.random()*RANDOM_POOL.cities.length)];
+  const t = RANDOM_POOL.traits[Math.floor(Math.random()*RANDOM_POOL.traits.length)];
+  const text = `Hello! My name is ${n}. I am ${a} years old. I live in ${c}. I am ${t}.`;
+  document.getElementById('randomIntroBox').innerHTML = text+' <button class="icon-btn" onclick="speak(\''+text.replace(/'/g,"\\'")+'\')">🔊</button>';
+  addStars(1);
+}
+function renderConvo(){
+  const wrap = document.getElementById('convoChar');
+  wrap.innerHTML = `<div class="char-row"><div class="char-avatar" style="font-size:1.8rem;">🧑‍🚀</div>
+    <div class="bubble blue">Do you like adventures?</div></div>
+    <div class="opt-row" id="convoOpts">
+      <div class="opt" onclick="convoAnswer(true)">Yes, I love them!</div>
+      <div class="opt" onclick="convoAnswer(false)">Sometimes.</div>
+    </div>
+    <p class="small-note" id="convoReply"></p>`;
+}
+function convoAnswer(yes){
+  const el = document.getElementById('convoReply');
+  el.textContent = yes ? "Awesome! You're going to be a great Explorer! 🚀" : "That's okay! Every explorer starts somewhere. 🌟";
+  addStars(1);
+}
+function completeSpeaking(){
+  state.scores.speaking = 85;
+  state.scores.participation += 10;
+  unlockNext();
+}
+
+/* ============================================================
+   SECTION 8 — MINI REVIEW
+============================================================ */
+function renderMemoryGame(){
+  const pairsSource = shuffle(VOCAB.personal.concat(VOCAB.personality)).slice(0,6);
+  let cards = [];
+  pairsSource.forEach(item=>{ cards.push({key:item.w, face:item.i}); cards.push({key:item.w, face:item.w}); });
+  cards = shuffle(cards);
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML='';
+  state.memoryMatched = new Set();
+  state.memoryFirst = null;
+  cards.forEach((c,idx)=>{
+    const el = document.createElement('div');
+    el.className='mcard';
+    el.dataset.key=c.key; el.dataset.idx=idx; el.dataset.face=c.face;
+    el.textContent='❓';
+    el.onclick=()=>flipMemory(el);
+    grid.appendChild(el);
+  });
+}
+function flipMemory(el){
+  if(el.classList.contains('open')||el.classList.contains('matched')) return;
+  el.classList.add('open');
+  el.textContent = el.dataset.face;
+  if(!state.memoryFirst){
+    state.memoryFirst = el;
+  } else {
+    const first = state.memoryFirst;
+    if(first.dataset.key === el.dataset.key && first.dataset.idx !== el.dataset.idx){
+      first.classList.add('matched'); el.classList.add('matched');
+      addStars(1);
+      state.memoryFirst = null;
+    } else {
+      setTimeout(()=>{
+        first.classList.remove('open'); first.textContent='❓';
+        el.classList.remove('open'); el.textContent='❓';
+        state.memoryFirst = null;
+      }, 700);
+    }
+  }
+}
+const TRUE_FALSE = [
+  {s:'"Name" is a personal information word.', a:true},
+  {s:'"Funny" means sad.', a:false},
+  {s:'"I live in" tells where you stay.', a:true},
+  {s:'"Age" means your favorite color.', a:false},
+  {s:'"Kind" means nice and caring.', a:true}
+];
+function renderTrueFalse(){
+  const wrap = document.getElementById('trueFalse');
+  wrap.innerHTML='';
+  TRUE_FALSE.forEach((item,idx)=>{
+    const q=document.createElement('div');
+    q.className='qblock';
+    q.innerHTML = `<div class="qtext">${idx+1}. ${item.s}</div><div class="opt-row" id="tf-${idx}">
+      <div class="opt" onclick="answerTF(${idx},true,this)">✅ True</div>
+      <div class="opt" onclick="answerTF(${idx},false,this)">❌ False</div></div>`;
+    wrap.appendChild(q);
+  });
+}
+function answerTF(idx, val, el){
+  const row = document.getElementById('tf-'+idx);
+  if(row.dataset.answered) return; row.dataset.answered='true';
+  const correct = TRUE_FALSE[idx].a;
+  if(val===correct){ el.classList.add('correct'); addStars(1); }
+  else{ el.classList.add('wrong'); }
+}
+const REVIEW_QUIZ = [
+  {q:'What word means "how many years old you are"?', options:['Age','City','Funny'], a:'Age'},
+  {q:'What word means "likes to help others"?', options:['Helpful','Address','Live'], a:'Helpful'},
+  {q:'What word means "good at learning and thinking"?', options:['Smart','Hobby','Name'], a:'Smart'},
+  {q:'What word means "where you live"?', options:['Address','Kind','Happy'], a:'Address'},
+  {q:'What word means "feeling good and cheerful"?', options:['Happy','Favorite','City'], a:'Happy'}
+];
+function renderReviewQuiz(){
+  const wrap = document.getElementById('reviewQuiz');
+  wrap.innerHTML='';
+  REVIEW_QUIZ.forEach((item,idx)=>{
+    const q=document.createElement('div');
+    q.className='qblock';
+    q.innerHTML = `<div class="qtext">${idx+1}. ${item.q}</div><div class="opt-row" id="rq-${idx}"></div>`;
+    wrap.appendChild(q);
+    const row = q.querySelector('.opt-row');
+    shuffle(item.options).forEach(opt=>{
+      const b=document.createElement('div'); b.className='opt'; b.textContent=opt;
+      b.onclick=()=>{
+        row.querySelectorAll('.opt').forEach(o=>o.style.outline='none');
+        b.style.outline='3px solid var(--lavender-deep)'; b.dataset.selected='true';
+        row.querySelectorAll('.opt').forEach(o=>{if(o!==b)o.dataset.selected='';});
+      };
+      row.appendChild(b);
+    });
+  });
+}
+function checkReviewQuiz(){
+  let correct=0;
+  REVIEW_QUIZ.forEach((item,idx)=>{
+    const row=document.getElementById('rq-'+idx);
+    let picked=null;
+    row.querySelectorAll('.opt').forEach(o=>{ if(o.dataset.selected==='true')picked=o; o.classList.remove('correct','wrong'); });
+    row.querySelectorAll('.opt').forEach(o=>{ if(o.textContent===item.a) o.classList.add('correct'); });
+    if(picked&&picked.textContent===item.a) correct++;
+    else if(picked) picked.classList.add('wrong');
+  });
+  addStars(correct);
+  state.reviewQuizAnswered = true;
+  showToast('Review Quiz: '+correct+' / '+REVIEW_QUIZ.length+' correct!');
+}
+const MYSTERY_REWARDS = [
+  '🌟 Fun Fact: English is spoken in over 60 countries!',
+  '🎁 Bonus +2 Stars!',
+  '🌈 Fun Fact: "Hello" comes from an old greeting word!'
+];
+function renderMysteryBoxes(){
+  const wrap = document.getElementById('mysteryRow');
+  wrap.innerHTML='';
+  MYSTERY_REWARDS.forEach((reward,idx)=>{
+    const b = document.createElement('div');
+    b.className='mbox';
+    b.textContent='🎁';
+    b.onclick=()=>{
+      if(state.mysteryOpened.has(idx)) return;
+      state.mysteryOpened.add(idx);
+      b.classList.add('opened');
+      b.textContent = reward;
+      addStars(2);
+    };
+    wrap.appendChild(b);
+  });
+}
+function completeReview(){
+  state.scores.participation += 15;
+  unlockNext();
+  buildTraitOptions();
+}
+
+/* ============================================================
+   SECTION 9 — MISSION COMPLETE
+============================================================ */
+function buildTraitOptions(){
+  const sel = document.getElementById('traitSelect');
+  sel.innerHTML = '<option value="">-- pick a personality word --</option>';
+  VOCAB.personality.forEach(item=>{
+    const o = document.createElement('option');
+    o.value = item.w; o.textContent = item.i+' '+item.w;
+    sel.appendChild(o);
+  });
+}
+function generateIdentityCard(){
+  const trait = document.getElementById('traitSelect').value;
+  if(!trait){ showToast('Please pick a word first!'); return; }
+  const p = state.profile;
+  const wrap = document.getElementById('idCardWrap');
+  wrap.innerHTML = `
+    <div class="id-card">
+      <div class="id-badge">🏅</div>
+      <div class="id-avatar">${p.avatar}</div>
+      <div class="id-name">${p.name||'Explorer'}</div>
+      <div class="id-row">🎂 Age: ${p.age||'—'}</div>
+      <div class="id-row">📍 Lives in: ${p.city||'—'}, ${p.country||'—'}</div>
+      <div class="id-row">💫 I am: <b>${trait}</b></div>
+      <div class="id-row">🎯 Mission Status: <b>Complete!</b></div>
+      <div class="id-row">🏆 Badge: Identity Builder</div>
+      <div class="id-stars">⭐ ${state.stars} Stars Earned</div>
+    </div>`;
+  confettiBurst(30);
+  renderAssessment();
+  showToast('Your Explorer Card is ready! 🎉');
+}
+function renderAssessment(){
+  const grid = document.getElementById('assessGrid');
+  const vocab = state.scores.vocab || 60;
+  const grammar = state.scores.grammar || 60;
+  const speaking = state.scores.speaking || 60;
+  const participation = Math.min(100, state.scores.participation || 40);
+  const overall = Math.round((vocab+grammar+speaking+participation)/4);
+  const items = [
+    ['📖 Vocabulary', vocab],['🛠️ Grammar', grammar],['🎤 Speaking', speaking],
+    ['🙌 Participation', participation],['🏆 Overall Achievement', overall]
+  ];
+  grid.innerHTML='';
+  items.forEach(([label,val])=>{
+    const it = document.createElement('div');
+    it.className='assess-item';
+    it.innerHTML = `<div class="albl"><span>${label}</span><span>${val}%</span></div>
+      <div class="abar"><div class="abar-fill" style="width:${val}%;"></div></div>`;
+    grid.appendChild(it);
+  });
+}
+function restartLesson(){
+  window.location.reload();
+}
+
+/* ============================================================
+   FLOATING DECORATIONS
+============================================================ */
+function renderFloaters(){
+  const emojis=['⭐','✨','🌈','☁️','💫'];
+  const wrap = document.getElementById('floaters');
+  for(let i=0;i<10;i++){
+    const el = document.createElement('div');
+    el.className='floater';
+    el.textContent = emojis[i%emojis.length];
+    el.style.left = (Math.random()*95)+'vw';
+    el.style.top = (Math.random()*90)+'vh';
+    el.style.animationDelay = (Math.random()*4)+'s';
+    el.style.animationDuration = (7+Math.random()*5)+'s';
+    wrap.appendChild(el);
+  }
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+function init(){
+  renderFloaters();
+  renderWarmup();
+  renderAvatars();
+  updateProfilePreview();
+  renderFlipCards();
+  renderMatchingGame();
+  renderFindWord();
+  renderVocabQuiz();
+  renderSentenceBuilder('sentenceBuilder', SENTENCE_ITEMS, 'sentenceBuilderDone');
+  renderFillBlanks();
+  renderGrammarMCQ();
+  renderGuidedComplete();
+  renderGuidedArrange();
+  renderGuidedMissing();
+  renderReadRepeat();
+  renderSpeakingCards();
+  renderRolePlay();
+  renderConvo();
+  renderMemoryGame();
+  renderTrueFalse();
+  renderSentenceBuilder('reviewSentenceBuilder', [{chips:['helpful','I','am','.'], correct:'I am helpful .'}], 'reviewSBDone');
+  renderReviewQuiz();
+  renderMysteryBoxes();
+  renderMapDots();
+}
+init();
+</script>
+</body>
+</html>

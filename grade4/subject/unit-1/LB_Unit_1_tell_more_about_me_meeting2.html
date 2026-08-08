@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Littlelume English | Grade 4 – Tell More About Me (Lesson Book)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap');
+
+:root{
+  --mint:#BFF3E3; --mint-d:#8FE3C6;
+  --pink:#FFD3E6; --pink-d:#FFA9CC;
+  --sky:#C7E9FF; --sky-d:#93D2FF;
+  --yellow:#FFEFB0; --yellow-d:#FFDD6B;
+  --lav:#E3D9FF; --lav-d:#C7B4FF;
+  --purple:#7C6FEA; --purple-d:#5F52C7;
+  --ink:#3C3564; --ink-soft:#6B6390;
+  --cream:#FFFBF3; --white:#FFFFFF;
+  --shadow: 0 10px 30px rgba(92,74,158,.14);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; font-family:'Nunito',sans-serif; background:var(--cream); color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.display{font-family:'Baloo 2',cursive; color:var(--ink); margin:0 0 .4em;}
+p{line-height:1.6;}
+button{font-family:inherit; cursor:pointer;}
+::selection{background:var(--yellow-d);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+}
+
+/* ===== Top Bar & Nav ===== */
+#topbar{
+  position:sticky; top:0; z-index:50; background:rgba(255,251,243,.9); backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--lav); display:flex; align-items:center; gap:14px; padding:10px 18px;
+}
+#topbar .logo{font-family:'Baloo 2'; font-weight:800; font-size:1.15rem; color:var(--purple-d); display:flex; align-items:center; gap:8px; white-space:nowrap;}
+#topbar .logo .dot{width:14px;height:14px;border-radius:50%; background:radial-gradient(circle at 30% 30%, #fff, var(--yellow-d) 60%, var(--purple)); box-shadow:0 0 8px var(--yellow-d);}
+#progress-wrap{flex:1; height:14px; background:var(--lav); border-radius:20px; overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,.08);}
+#progress-bar{height:100%; width:0%; background:linear-gradient(90deg,var(--mint-d),var(--sky-d),var(--pink-d)); border-radius:20px; transition:width .5s ease;}
+#progress-label{font-size:.75rem; font-weight:800; color:var(--purple-d); white-space:nowrap;}
+#menu-toggle{display:none; background:var(--lav); border:none; border-radius:10px; padding:8px 10px; font-size:1.1rem;}
+
+#shell{display:flex; max-width:1400px; margin:0 auto;}
+#sidenav{
+  width:230px; flex-shrink:0; padding:18px 10px; position:sticky; top:58px; align-self:flex-start;
+  max-height:calc(100vh - 58px); overflow-y:auto;
+}
+#sidenav button{
+  display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:none; border:none;
+  padding:10px 12px; border-radius:12px; font-weight:700; color:var(--ink-soft); font-size:.86rem; margin-bottom:2px;
+  transition:background .2s, color .2s, transform .15s;
+}
+#sidenav button .num{
+  width:22px;height:22px;border-radius:50%;background:var(--lav);color:var(--purple-d);font-size:.7rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Baloo 2';
+}
+#sidenav button:hover{background:var(--lav); transform:translateX(3px);}
+#sidenav button.active{background:var(--purple); color:#fff;}
+#sidenav button.active .num{background:#fff; color:var(--purple-d);}
+#sidenav button.done .num::after{content:'✓'; }
+#sidenav button.done .num{background:var(--mint-d); color:#fff; font-size:0;}
+#sidenav button.done .num::before{content:'✓'; font-size:.75rem;}
+
+main{flex:1; min-width:0; padding:20px 26px 80px;}
+
+/* ===== Mascot ===== */
+#mascot-wrap{
+  position:fixed; right:18px; bottom:18px; z-index:60; display:flex; align-items:flex-end; gap:10px; max-width:290px;
+}
+#mascot-bubble{
+  background:#fff; border-radius:18px 18px 4px 18px; padding:12px 14px; box-shadow:var(--shadow); font-size:.82rem;
+  font-weight:700; color:var(--ink); border:2px solid var(--lav); display:none;
+}
+#mascot-bubble.show{display:block; animation:pop .3s ease;}
+@keyframes pop{from{transform:scale(.8); opacity:0;} to{transform:scale(1); opacity:1;}}
+#lumi{
+  width:56px; height:56px; border-radius:50%; flex-shrink:0; position:relative; cursor:pointer;
+  background:radial-gradient(circle at 32% 30%, #fff, var(--yellow-d) 55%, var(--purple) 100%);
+  box-shadow:0 0 18px 4px rgba(255,221,107,.7), var(--shadow);
+  animation:float 3s ease-in-out infinite;
+}
+#lumi::before,#lumi::after{
+  content:''; position:absolute; top:14px; width:20px; height:14px; background:rgba(255,255,255,.55); border-radius:50% 50% 50% 0;
+}
+#lumi::before{left:-12px; transform:rotate(-20deg);}
+#lumi::after{right:-12px; transform:scaleX(-1) rotate(-20deg);}
+@keyframes float{0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);}}
+
+/* ===== Sections / Cards ===== */
+.page{display:none; animation:fadein .4s ease;}
+.page.active{display:block;}
+@keyframes fadein{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+.eyebrow{display:inline-block; font-family:'Baloo 2'; font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--purple-d); background:var(--lav); padding:5px 12px; border-radius:20px; margin-bottom:10px;}
+.section-title{font-size:1.9rem; margin-bottom:6px;}
+.section-sub{color:var(--ink-soft); font-weight:700; margin-bottom:22px;}
+
+.card{background:#fff; border-radius:22px; box-shadow:var(--shadow); padding:22px; border:2px solid rgba(199,180,255,.35);}
+.grid{display:grid; gap:16px;}
+.grid.cols-2{grid-template-columns:repeat(2,1fr);}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+.grid.cols-4{grid-template-columns:repeat(4,1fr);}
+@media(max-width:900px){.grid.cols-3,.grid.cols-4{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.grid.cols-2,.grid.cols-3,.grid.cols-4{grid-template-columns:1fr;}}
+
+.tile{border-radius:20px; padding:18px; box-shadow:var(--shadow); position:relative; overflow:hidden; transition:transform .2s;}
+.tile:hover{transform:translateY(-4px);}
+.tile.mint{background:var(--mint);} .tile.pink{background:var(--pink);} .tile.sky{background:var(--sky);}
+.tile.yellow{background:var(--yellow);} .tile.lav{background:var(--lav);}
+.tile .emoji{font-size:2.1rem;}
+.tile h4{margin:8px 0 4px; font-size:1.05rem;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px; font-family:'Baloo 2'; font-weight:700; font-size:.95rem;
+  border:none; border-radius:16px; padding:12px 22px; color:#fff; background:var(--purple); box-shadow:0 6px 0 var(--purple-d);
+  transition:transform .12s, box-shadow .12s;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(2px); box-shadow:0 3px 0 var(--purple-d);}
+.btn.secondary{background:#fff; color:var(--purple-d); box-shadow:0 6px 0 var(--lav); border:2px solid var(--lav);}
+.btn.small{padding:8px 16px; font-size:.8rem; box-shadow:0 4px 0 var(--purple-d);}
+.btn:disabled{opacity:.45; cursor:not-allowed;}
+
+.nav-controls{display:flex; justify-content:space-between; margin-top:34px; gap:10px; flex-wrap:wrap;}
+
+/* Flip cards for vocab */
+.flip-outer{perspective:1200px; height:210px;}
+.flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d; cursor:pointer;}
+.flip-outer.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; padding:16px; display:flex; flex-direction:column; justify-content:center; box-shadow:var(--shadow);}
+.flip-front{background:var(--sky);}
+.flip-back{background:var(--white); border:2px solid var(--sky-d); transform:rotateY(180deg); font-size:.85rem;}
+.flip-front .emoji{font-size:2.4rem; display:block; margin-bottom:6px;}
+.hint{font-size:.7rem; color:var(--ink-soft); position:absolute; bottom:8px; right:12px;}
+
+/* fill-blank inputs */
+input.blank, input.text-in{
+  border:none; border-bottom:3px solid var(--purple); background:var(--lav); border-radius:8px 8px 0 0;
+  padding:6px 10px; font-family:'Nunito'; font-weight:800; font-size:1rem; color:var(--purple-d); width:150px; text-align:center;
+}
+input.blank:focus, input.text-in:focus{outline:none; background:var(--yellow);}
+
+.example-box{background:var(--mint); border-radius:16px; padding:14px 18px; margin:10px 0; font-weight:700;}
+.pattern-box{border-left:6px solid var(--purple); background:var(--lav); border-radius:0 18px 18px 0; padding:18px 20px; margin-bottom:18px;}
+.speaking-tag{display:inline-flex; align-items:center; gap:6px; background:var(--pink); border-radius:20px; padding:6px 14px; font-weight:800; font-size:.78rem; margin-top:10px;}
+
+.quiz-q{margin-bottom:20px; padding-bottom:18px; border-bottom:2px dashed var(--lav);}
+.quiz-q:last-child{border-bottom:none;}
+.opt{display:block; width:100%; text-align:left; background:var(--sky); border:2px solid transparent; border-radius:14px; padding:10px 14px; margin-bottom:8px; font-weight:700;}
+.opt.correct{background:var(--mint-d); border-color:#3fae86;}
+.opt.wrong{background:var(--pink-d); border-color:#e0578e;}
+.opt:disabled{cursor:default;}
+#quiz-result, #miniquiz-result, #finalquiz-result{font-weight:800; margin-top:10px;}
+
+/* dialogue */
+.dialogue-card{margin-bottom:24px;}
+.line{display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;}
+.line .who{flex-shrink:0; font-family:'Baloo 2'; font-weight:700; background:var(--purple); color:#fff; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:.85rem;}
+.line.b .who{background:var(--pink-d);}
+.line p{background:var(--cream); border-radius:14px; padding:8px 14px; margin:0; flex:1;}
+.note{font-size:.75rem; color:var(--ink-soft); font-style:italic;}
+
+/* checklist */
+.checklist label{display:flex; align-items:center; gap:10px; padding:10px 4px; font-weight:700; cursor:pointer;}
+.checklist input{width:20px; height:20px; accent-color:var(--purple);}
+
+/* Teacher notes */
+.teacher-note{background:#FFF7E0; border:2px dashed var(--yellow-d); border-radius:14px; padding:10px 16px 6px; margin-bottom:20px; font-size:.82rem; color:var(--ink-soft);}
+.teacher-note summary{cursor:pointer; font-weight:800; color:var(--purple-d); font-family:'Baloo 2'; font-size:.88rem; list-style:none;}
+.teacher-note summary::-webkit-details-marker{display:none;}
+.teacher-note summary::before{content:'▸ ';}
+.teacher-note[open] summary::before{content:'▾ ';}
+.teacher-note p{margin:8px 0;}
+
+/* Grade badge */
+.grade-badge{background:var(--purple); color:#fff; font-size:.66rem; font-weight:800; padding:3px 10px; border-radius:20px; font-family:'Baloo 2';}
+.badge-adv{position:absolute; top:8px; right:10px; background:var(--purple); color:#fff; font-size:.58rem; font-weight:800; padding:3px 8px; border-radius:10px; z-index:2;}
+
+/* Listening / Reading / Writing */
+.audio-card{text-align:center;}
+.reading-passage{font-size:1.05rem; line-height:1.9;}
+#writing-box{width:100%; border:3px solid var(--lav); border-radius:16px; padding:14px; font-family:'Nunito'; font-size:1rem; resize:vertical;}
+#writing-box:focus{outline:none; border-color:var(--purple);}
+
+/* Games */
+.game-nav{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+.game-nav button{background:var(--white); border:2px solid var(--lav); border-radius:14px; padding:9px 15px; font-weight:800; font-size:.82rem; color:var(--ink-soft);}
+.game-nav button.active{background:var(--purple); color:#fff; border-color:var(--purple);}
+.game-panel{display:none;}
+.game-panel.active{display:block;}
+
+.match-col{display:flex; flex-direction:column; gap:10px;}
+.match-item{background:var(--white); border:2px solid var(--sky-d); border-radius:14px; padding:10px 14px; font-weight:800; text-align:center;}
+.match-item.selected{background:var(--yellow);}
+.match-item.matched{background:var(--mint-d); color:#fff; border-color:#3fae86;}
+
+.mem-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.mem-card{aspect-ratio:1/1; border-radius:14px; background:var(--purple); display:flex; align-items:center; justify-content:center; font-size:1.6rem; cursor:pointer; box-shadow:var(--shadow);}
+.mem-card.flipped{background:var(--white); border:2px solid var(--purple);}
+.mem-card.matched{background:var(--mint-d); opacity:.6; cursor:default;}
+
+#ws-grid{display:grid; grid-template-columns:repeat(10,1fr); gap:4px; max-width:420px; margin:0 auto 14px;}
+.ws-cell{aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; background:var(--white); border:2px solid var(--lav); border-radius:6px; font-weight:800; font-size:.8rem; cursor:pointer; user-select:none;}
+.ws-cell.sel{background:var(--yellow);}
+.ws-cell.found{background:var(--mint-d); color:#fff;}
+#ws-words{display:flex; gap:8px; flex-wrap:wrap; justify-content:center;}
+.ws-word{background:var(--sky); border-radius:20px; padding:5px 12px; font-weight:800; font-size:.78rem;}
+.ws-word.found{background:var(--mint-d); color:#fff; text-decoration:line-through;}
+
+#wheel-wrap{display:flex; flex-direction:column; align-items:center; gap:16px;}
+#wheel{width:280px; height:280px; border-radius:50%; position:relative; transition:transform 3.5s cubic-bezier(.17,.67,.32,1.28); box-shadow:var(--shadow); border:6px solid #fff;}
+#wheel-pointer{position:absolute; top:-4px; left:50%; transform:translateX(-50%); font-size:1.6rem;}
+
+.sb-chip{display:inline-block; background:var(--purple); color:#fff; font-weight:800; padding:8px 14px; border-radius:12px; margin:4px; cursor:pointer;}
+#sb-answer{min-height:52px; border:3px dashed var(--lav); border-radius:14px; padding:10px; margin-bottom:14px; display:flex; flex-wrap:wrap; align-items:center;}
+#sb-bank{min-height:52px;}
+
+/* drag drop */
+.dd-target{display:inline-flex; align-items:center; gap:6px; min-width:120px; min-height:38px; background:var(--cream); border:3px dashed var(--purple); border-radius:12px; padding:4px 10px; vertical-align:middle;}
+.dd-target.filled{border-style:solid; background:var(--mint);}
+.dd-source{display:inline-block; background:var(--pink-d); color:#fff; font-weight:800; padding:8px 14px; border-radius:12px; margin:5px; cursor:grab;}
+.dd-source.used{opacity:.3; pointer-events:none;}
+
+/* Certificate */
+#cert{
+  background:linear-gradient(135deg,#fff, var(--lav) 150%); border:10px solid var(--yellow-d); border-radius:26px;
+  padding:44px; text-align:center; position:relative; max-width:760px; margin:0 auto;
+}
+#cert::before,#cert::after{content:'⭐'; position:absolute; font-size:1.6rem; top:16px;}
+#cert::before{left:20px;} #cert::after{right:20px;}
+#cert .medal{font-size:3.2rem;}
+#cert h2{font-size:2.1rem; margin:6px 0;}
+#cert .name-line{font-family:'Baloo 2'; font-size:1.6rem; color:var(--purple-d); border-bottom:3px solid var(--purple); display:inline-block; padding:0 20px 4px; min-width:260px;}
+
+footer.brand-foot{text-align:center; padding:30px; color:var(--ink-soft); font-weight:800; font-size:.8rem;}
+
+/* confetti canvas */
+#confetti-canvas{position:fixed; inset:0; pointer-events:none; z-index:999;}
+
+/* Cover */
+#page-cover{text-align:center; padding-top:20px;}
+.cover-illust{font-size:5rem; margin:14px 0;}
+.cover-badges{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin:16px 0 26px;}
+.cover-badges span{background:var(--white); border:2px solid var(--lav); border-radius:20px; padding:7px 16px; font-weight:800; font-size:.8rem; color:var(--purple-d);}
+.tagline{font-family:'Baloo 2'; font-weight:700; letter-spacing:.04em; color:var(--purple-d); font-size:1rem;}
+
+@media(max-width:840px){
+  #sidenav{position:fixed; top:56px; left:0; bottom:0; background:var(--cream); z-index:40; box-shadow:6px 0 20px rgba(0,0,0,.08); transform:translateX(-105%); transition:transform .3s; width:240px;}
+  #sidenav.open{transform:translateX(0);}
+  #menu-toggle{display:block;}
+  main{padding:16px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div id="topbar">
+  <button id="menu-toggle">☰</button>
+  <div class="logo"><span class="dot"></span>Littlelume English <span class="grade-badge">Grade 4</span></div>
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+  <div id="progress-label">0% complete</div>
+</div>
+
+<div id="shell">
+  <nav id="sidenav"></nav>
+  <main id="main"></main>
+</div>
+
+<div id="mascot-wrap">
+  <div id="mascot-bubble"></div>
+  <div id="lumi" title="Hi! I'm Lumi!"></div>
+</div>
+
+<footer class="brand-foot">✨ Littlelume English — Learn • Play • Shine ✨</footer>
+
+<script>
+/* =========================================================
+   DATA
+========================================================= */
+const SECTIONS = [
+  {id:'cover', label:'Cover'},
+  {id:'objectives', label:'Objectives'},
+  {id:'review', label:"Let's Remember!"},
+  {id:'hobbies', label:'Hobbies'},
+  {id:'listening', label:'Listening'},
+  {id:'reading', label:'Reading'},
+  {id:'favorites', label:'Favorite Things'},
+  {id:'grammar', label:'Grammar'},
+  {id:'conversation', label:'Conversation'},
+  {id:'speaking', label:'Speaking Practice'},
+  {id:'presentation', label:'This Is Me!'},
+  {id:'writing', label:'Writing Task'},
+  {id:'games', label:'Games & Review'},
+  {id:'challenge', label:'Final Challenge'},
+  {id:'reflection', label:'Reflection'},
+  {id:'certificate', label:'Certificate'}
+];
+
+const HOBBIES = [
+ {e:'📚',w:'Reading',p:'REE-ding',m:'looking at and understanding words in a book',x:'My hobby is reading. I read every night.'},
+ {e:'🎨',w:'Drawing',p:'DRAW-ing',m:'making pictures with a pencil or crayon',x:'My hobby is drawing. I draw cute animals.'},
+ {e:'🏊',w:'Swimming',p:'SWIM-ing',m:'moving your body in water',x:'My hobby is swimming. I swim on Sunday.'},
+ {e:'⚽',w:'Playing football',p:'PLAY-ing FOOT-ball',m:'kicking a ball with friends',x:'My hobby is playing football with my friends.'},
+ {e:'🏸',w:'Playing badminton',p:'PLAY-ing BAD-min-ton',m:'hitting a shuttlecock over a net',x:'My hobby is playing badminton with my dad.'},
+ {e:'🎤',w:'Singing',p:'SING-ing',m:'making music with your voice',x:'My hobby is singing. I sing in the shower!'},
+ {e:'💃',w:'Dancing',p:'DAN-cing',m:'moving your body to music',x:'My hobby is dancing. I dance to pop songs.'},
+ {e:'🍳',w:'Cooking',p:'COOK-ing',m:'making food to eat',x:'My hobby is cooking. I cook with my mom.'},
+ {e:'🚴',w:'Cycling',p:'CY-cling',m:'riding a bicycle',x:'My hobby is cycling. I cycle in the park.'},
+ {e:'🎮',w:'Gaming',p:'GAME-ing',m:'playing video games',x:'My hobby is gaming. I play games after school.'},
+ {e:'🎬',w:'Watching movies',p:'WATCH-ing MOO-vees',m:'looking at films for fun',x:'My hobby is watching movies on Saturday.'},
+ {e:'🎧',w:'Listening to music',p:'LIS-ning to MU-zik',m:'enjoying songs with your ears',x:'My hobby is listening to music every day.'},
+ {e:'📮',w:'Collecting stamps',p:'kə-LEK-ting STAMPS',m:'keeping and organizing stamps as a hobby',x:'My hobby is collecting stamps from different countries.', adv:true},
+ {e:'📷',w:'Photography',p:'fə-TOG-rə-fee',m:'taking pictures with a camera',x:'My hobby is photography. I take pictures of flowers.', adv:true},
+ {e:'🌱',w:'Gardening',p:'GAR-dən-ing',m:'growing plants and flowers',x:'My hobby is gardening. I water the plants every day.', adv:true},
+ {e:'♟️',w:'Playing chess',p:'PLAY-ing CHESS',m:'playing a smart board game with a partner',x:'My hobby is playing chess. It makes me think carefully.', adv:true}
+];
+
+const FAVS = [
+ {cat:'Food', e:'🍚', ex:'My favorite food is fried rice.', q:'What is your favorite food?'},
+ {cat:'Drink', e:'🥤', ex:'My favorite drink is orange juice.', q:'What is your favorite drink?'},
+ {cat:'Animal', e:'🐱', ex:'My favorite animal is a cat.', q:'What is your favorite animal?'},
+ {cat:'Color', e:'💙', ex:'My favorite color is blue.', q:'What is your favorite color?'},
+ {cat:'Subject', e:'📖', ex:'My favorite subject is English.', q:'What is your favorite subject?'},
+ {cat:'Game', e:'🎲', ex:'My favorite game is hide and seek.', q:'What is your favorite game?'},
+ {cat:'Book', e:'📗', ex:'My favorite book is a comic book.', q:'What is your favorite book?'},
+ {cat:'Place', e:'🏖️', ex:'My favorite place is the beach.', q:'What is your favorite place?'},
+ {cat:'Sport', e:'🏀', ex:'My favorite sport is basketball.', q:'What is your favorite sport?'},
+ {cat:'Fruit', e:'🍉', ex:'My favorite fruit is watermelon.', q:'What is your favorite fruit?'},
+ {cat:'Snack', e:'🍪', ex:'My favorite snack is a cookie.', q:'What is your favorite snack?'},
+ {cat:'Movie', e:'🎥', ex:'My favorite movie is a cartoon movie.', q:'What is your favorite movie?'}
+];
+
+const LISTENING_SCRIPT = "Hello! My name is Dimas. I am ten years old. I live in Surabaya. My hobby is playing chess. I like chess because it is fun and it makes me think. My favorite subject is Math. My favorite color is green. I want to be an engineer in the future.";
+
+const LISTENING_Q = [
+ {q:'What is Dimas\'s hobby?', opts:['Reading','Playing chess','Swimming'], correct:1},
+ {q:'Where does Dimas live?', opts:['Jakarta','Surabaya','Bandung'], correct:1},
+ {q:'Why does he like chess?', opts:['Because it is easy','Because it is fun and makes him think','Because it is boring'], correct:1},
+ {q:'What is his favorite subject?', opts:['Math','English','Art'], correct:0},
+ {q:'What does he want to be in the future?', opts:['A doctor','An engineer','A teacher'], correct:1}
+];
+
+const READING_PASSAGE = "My name is Sinta. I am ten years old and I live in Bandung. My hobby is gardening. Every weekend, I water the plants with my grandmother. I also like drawing flowers in my notebook. My favorite subject is Science because I love learning about plants and animals. My favorite food is fried noodles, and my favorite color is green. In the future, I want to be a scientist. I want to help people grow healthy food. I am proud of my hobby because it makes me calm and happy.";
+
+const READING_Q = [
+ {q:'What is Sinta\'s hobby?', opts:['Gardening','Cooking','Dancing'], correct:0},
+ {q:'Who does she garden with?', opts:['Her friend','Her grandmother','Her teacher'], correct:1},
+ {q:'Why does she like Science?', opts:['Because it is easy','Because she loves learning about plants and animals','Because it has no homework'], correct:1},
+ {q:'What is her favorite food?', opts:['Fried rice','Fried noodles','Satay'], correct:1},
+ {q:'What does she want to be in the future?', opts:['A scientist','A nurse','A chef'], correct:0}
+];
+
+const DIALOGUES = [
+ {t:'Talking to a New Friend', v:'hobby, favorite', note:'"Nice to meet you" = senang bertemu denganmu',
+  lines:[['A','Hi! I am Mia. Nice to meet you!'],['B','Hi Mia! I am Budi. Nice to meet you too!'],
+  ['A','What is your hobby?'],['B','My hobby is drawing. What about you?'],
+  ['A','My hobby is reading. I like storybooks.']],
+  challenge:'Act this out and change the hobby words!'},
+ {t:'Talking with Classmates', v:'like, because', note:'"because" tells the reason (alasan)',
+  lines:[['A','Do you like football?'],['B','Yes, I like football because it is fun!'],
+  ['A','Me too! I like playing football after school.'],['B','Let\'s play together on Saturday!']],
+  challenge:'Ask a classmate the same question and answer with "because".'},
+ {t:'Talking with the Teacher', v:'want to be', note:'"want to be" = dream job (cita-cita)',
+  lines:[['T','What do you want to be in the future?'],['B','I want to be a doctor. I want to help people.'],
+  ['T','That is wonderful! What is your favorite subject?'],['B','My favorite subject is Science.']],
+  challenge:'Tell your teacher your own dream job.'},
+ {t:'Interview Activity', v:'question words', note:'Use What, Why, and Do you...?',
+  lines:[['A','What is your favorite color?'],['B','My favorite color is yellow.'],
+  ['A','Why do you like it?'],['B','I like yellow because it is bright and happy.']],
+  challenge:'Interview 3 friends and write their answers.'},
+ {t:'Pair Work: Show and Share', v:'my, favorite, hobby', note:'Take turns speaking and listening.',
+  lines:[['A','This is me! My name is Sari. My hobby is singing.'],
+  ['B','Nice! My name is Andi. My hobby is cycling.'],
+  ['A','What is your favorite food?'],['B','My favorite food is noodles. What about you?'],
+  ['A','My favorite food is fried rice!']],
+  challenge:'Practice with a partner, then swap roles.'}
+];
+
+const SPEAKING_Q = [
+ {q:'What is your hobby?', a:'My hobby is ______.'},
+ {q:'What do you like?', a:'I like ______.'},
+ {q:'Why do you like it?', a:'I like it because it is ______.'},
+ {q:'What is your favorite food?', a:'My favorite food is ______.'},
+ {q:'What is your favorite color?', a:'My favorite color is ______.'},
+ {q:'What do you want to be?', a:'I want to be a ______.'}
+];
+
+const MINI_QUIZ = [
+ {q:'I ___ Sari.', opts:['am','is','are'], correct:0},
+ {q:'I am 10 ___ old.', opts:['year','years','yearly'], correct:1},
+ {q:'I ___ in Jakarta.', opts:['live','lives','living'], correct:0},
+ {q:'What is your ___?', opts:['name','names','naming'], correct:0},
+ {q:'"I live in Bandung" tells your ___.', opts:['age','address','hobby'], correct:1}
+];
+
+const FINAL_QUIZ = [
+ {q:'My hobby ___ reading.', opts:['am','is','are'], correct:1},
+ {q:'I like ice cream ___ it is delicious.', opts:['because','and','but'], correct:0},
+ {q:'My favorite ___ is blue.', opts:['color','colors','coloring'], correct:0},
+ {q:'I ___ to be a doctor.', opts:['want','wants','wanting'], correct:0},
+ {q:'Choose the correct hobby word for 🏊', opts:['Cooking','Swimming','Dancing'], correct:1},
+ {q:'Choose the correct pattern: "I like cats ___ they are cute."', opts:['because','because of','so'], correct:0}
+];
+
+const SENTENCE_SETS = [
+ {bank:['My','hobby','is','reading','.'], target:'My hobby is reading .'},
+ {bank:['I','like','pizza','because','it','is','yummy','.'], target:'I like pizza because it is yummy .'},
+ {bank:['My','favorite','color','is','blue','.'], target:'My favorite color is blue .'},
+ {bank:['I','want','to','be','a','teacher','.'], target:'I want to be a teacher .'}
+];
+
+const MASCOT_TIPS = {
+ cover:"Hi! I'm Lumi the Lightbug! Let's shine together today! ✨",
+ objectives:"These are our goals today. You can do it!",
+ review:"Let's remember what we learned in Meeting 1!",
+ hobbies:"Tap each card to flip it and learn a new hobby word!",
+ listening:"Listen carefully! You can play the audio again if you need to.",
+ reading:"Read slowly and enjoy Sinta's story!",
+ favorites:"Everyone has favorite things. What are yours?",
+ grammar:"Read slowly and try every example out loud!",
+ conversation:"Read the dialogues with a friend. Have fun!",
+ speaking:"Try to answer every question with a full sentence!",
+ presentation:"Fill in the blanks — this is YOUR story!",
+ writing:"Now it's time to write your own story. You can do it!",
+ games:"Games time! Learning is more fun when we play!",
+ challenge:"You are ready! Speak loudly and proudly!",
+ reflection:"Think about today. I'm proud of you!",
+ certificate:"Type your name and get your shiny certificate!"
+};
+
+/* =========================================================
+   STATE
+========================================================= */
+let currentIndex = 0;
+const completed = new Set();
+
+/* =========================================================
+   BUILD NAV
+========================================================= */
+const sidenav = document.getElementById('sidenav');
+SECTIONS.forEach((s,i)=>{
+  const b = document.createElement('button');
+  b.innerHTML = `<span class="num">${i}</span><span>${s.label}</span>`;
+  b.addEventListener('click', ()=>goTo(i));
+  b.dataset.idx = i;
+  sidenav.appendChild(b);
+});
+
+document.getElementById('menu-toggle').addEventListener('click', ()=> sidenav.classList.toggle('open'));
+
+function updateNav(){
+  [...sidenav.children].forEach((b,i)=>{
+    b.classList.toggle('active', i===currentIndex);
+    b.classList.toggle('done', completed.has(i));
+  });
+  const pct = Math.round((completed.size / SECTIONS.length)*100);
+  document.getElementById('progress-bar').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = pct+'% complete';
+}
+
+function goTo(i){
+  currentIndex = i;
+  completed.add(i>0? i-1 : 0);
+  if(i===SECTIONS.length-1){ SECTIONS.forEach((s,idx)=>completed.add(idx)); }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+SECTIONS[i].id).classList.add('active');
+  updateNav();
+  window.scrollTo({top:0, behavior:'smooth'});
+  sidenav.classList.remove('open');
+  showMascot(MASCOT_TIPS[SECTIONS[i].id]);
+}
+
+function navButtons(id){
+  const i = SECTIONS.findIndex(s=>s.id===id);
+  const prev = i>0 ? `<button class="btn secondary" onclick="goTo(${i-1})">⬅ Back</button>` : `<span></span>`;
+  const next = i<SECTIONS.length-1 ? `<button class="btn" onclick="goTo(${i+1})">Next ➡</button>` : `<span></span>`;
+  return `<div class="nav-controls">${prev}${next}</div>`;
+}
+
+/* =========================================================
+   MASCOT
+========================================================= */
+const bubble = document.getElementById('mascot-bubble');
+function showMascot(text){
+  bubble.textContent = text;
+  bubble.classList.add('show');
+  clearTimeout(showMascot._t);
+  showMascot._t = setTimeout(()=>bubble.classList.remove('show'), 5000);
+}
+document.getElementById('lumi').addEventListener('click', ()=>{
+  showMascot(MASCOT_TIPS[SECTIONS[currentIndex].id] || "You're doing great! Keep going!");
+});
+
+/* =========================================================
+   TEACHER NOTES HELPER
+========================================================= */
+function tNote(time, goal, tip){
+  return `<details class="teacher-note">
+    <summary>👩‍🏫 Teacher Notes</summary>
+    <p><strong>⏱ Estimated time:</strong> ${time}</p>
+    <p><strong>🎯 Activity goal:</strong> ${goal}</p>
+    <p><strong>💡 Tip:</strong> ${tip}</p>
+  </details>`;
+}
+
+/* =========================================================
+   TEXT-TO-SPEECH (LISTENING AUDIO)
+========================================================= */
+function speakText(text, btn){
+  if(!('speechSynthesis' in window)){
+    alert("Sorry, audio playback isn't supported in this browser. Please use the transcript below instead.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 0.85; utter.pitch = 1.05; utter.lang = 'en-US';
+  if(btn){
+    btn.disabled = true; const original = btn.dataset.label || btn.textContent;
+    btn.dataset.label = original;
+    btn.textContent = '🔊 Playing...';
+    utter.onend = ()=>{ btn.disabled=false; btn.textContent = '🔁 Listen Again'; };
+    utter.onerror = ()=>{ btn.disabled=false; btn.textContent = original; };
+  }
+  window.speechSynthesis.speak(utter);
+}
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+const cCanvas = document.getElementById('confetti-canvas');
+const cCtx = cCanvas.getContext('2d');
+function resizeCanvas(){cCanvas.width=innerWidth; cCanvas.height=innerHeight;}
+resizeCanvas(); addEventListener('resize', resizeCanvas);
+function confettiBurst(){
+  const colors = ['#FFD3E6','#BFF3E3','#C7E9FF','#FFEFB0','#E3D9FF','#7C6FEA'];
+  const pieces = Array.from({length:120}, ()=>({
+    x: Math.random()*cCanvas.width, y: -20 - Math.random()*200,
+    r: 4+Math.random()*5, c: colors[Math.floor(Math.random()*colors.length)],
+    vy: 2+Math.random()*3, vx: -2+Math.random()*4, rot: Math.random()*360, vr:-6+Math.random()*12
+  }));
+  let frame=0;
+  function anim(){
+    frame++;
+    cCtx.clearRect(0,0,cCanvas.width,cCanvas.height);
+    pieces.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+      cCtx.save(); cCtx.translate(p.x,p.y); cCtx.rotate(p.rot*Math.PI/180);
+      cCtx.fillStyle=p.c; cCtx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);
+      cCtx.restore();
+    });
+    if(frame<130) requestAnimationFrame(anim); else cCtx.clearRect(0,0,cCanvas.width,cCanvas.height);
+  }
+  anim();
+}
+
+/* =========================================================
+   PAGE BUILDERS
+========================================================= */
+const main = document.getElementById('main');
+function section(id, innerHTML){
+  const div = document.createElement('div');
+  div.className='page'; div.id='page-'+id;
+  div.innerHTML = innerHTML;
+  main.appendChild(div);
+}
+
+/* ---- Cover ---- */
+section('cover', `
+  <div id="page-cover">
+    <div class="eyebrow">Grade 4 · Unit 1 · Meeting 2 · Lesson Book</div>
+    <h1 class="section-title" style="font-size:2.6rem;">Tell More About Me</h1>
+    <div class="cover-illust">🧒🏽🙋‍♀️🧑‍🎨</div>
+    <div class="cover-badges">
+      <span>🎯 Talk about hobbies</span><span>⭐ Share favorite things</span><span>🗣️ Speak for 1–2 minutes</span>
+    </div>
+    <p class="tagline">LITTLELUME ENGLISH · Learn • Play • Shine</p>
+    <div style="margin-top:26px;"><button class="btn" onclick="goTo(1)">🚀 Start Learning</button></div>
+    <div style="max-width:520px; margin:34px auto 0; text-align:left;">
+      ${tNote('2–3 minutes','Introduce the lesson topic and build excitement for the meeting.','Read the lesson title aloud together and ask students what they think "Tell More About Me" means.')}
+    </div>
+  </div>
+`);
+
+/* ---- Objectives ---- */
+(function(){
+  const objs = [
+    ['🎯','Talk about hobbies'],['⭐','Tell favorite things'],['🔗','Explain reasons using "because"'],
+    ['🌈','Express future dreams'],['📝','Speak in complete sentences'],['🤝','Ask & answer with classmates'],
+    ['🎤','Present for 1–2 minutes']
+  ];
+  const colors=['mint','pink','sky','yellow','lav','mint','pink'];
+  section('objectives', `
+    <div class="eyebrow">Today's Goals</div>
+    <h2 class="section-title">Learning Objectives</h2>
+    <p class="section-sub">By the end of this lesson, you will be able to...</p>
+    ${tNote('3 minutes','Set clear expectations for what students will achieve today.','Read each objective aloud and ask students to repeat after you.')}
+    <div class="grid cols-3">
+      ${objs.map((o,i)=>`<div class="tile ${colors[i%colors.length]}"><div class="emoji">${o[0]}</div><h4>${o[1]}</h4></div>`).join('')}
+    </div>
+    ${navButtons('objectives')}
+  `);
+})();
+
+/* ---- Review ---- */
+section('review', `
+  <div class="eyebrow">Quick Review · Meeting 1</div>
+  <h2 class="section-title">Let's Remember!</h2>
+  <p class="section-sub">Before we learn new things, let's remember Personal Information: name, age, and address.</p>
+  ${tNote('8 minutes','Activate prior knowledge from Meeting 1 before introducing new material.','Cold-call 2–3 students to answer the mini quiz aloud before checking together as a class.')}
+  <div class="card" style="margin-bottom:20px;">
+    <h3>Grammar we know</h3>
+    <div class="example-box">I am <u>Sari</u>.</div>
+    <div class="example-box">I am <u>10</u> years old.</div>
+    <div class="example-box">I live in <u>Jakarta</u>.</div>
+  </div>
+  <div class="card" style="margin-bottom:20px;">
+    <h3>✏️ Complete the sentences</h3>
+    <p>I am <input class="blank" placeholder="your name"> .</p>
+    <p>I am <input class="blank" placeholder="your age"> years old.</p>
+    <p>I live in <input class="blank" placeholder="your city"> .</p>
+    <p class="note">💡 There is no wrong answer here — just write about YOU!</p>
+  </div>
+  <div class="card">
+    <h3>🧠 Mini Quiz</h3>
+    <div id="miniquiz"></div>
+    <button class="btn small" onclick="runQuiz(MINI_QUIZ,'miniquiz','miniquiz-result')">Check My Answers</button>
+    <div id="miniquiz-result"></div>
+  </div>
+  ${navButtons('review')}
+`);
+
+/* ---- Hobbies ---- */
+section('hobbies', `
+  <div class="eyebrow">Vocabulary</div>
+  <h2 class="section-title">My Hobbies</h2>
+  <p class="section-sub">Tap a card to flip it and discover the word! Cards marked <strong>Level Up ⭐</strong> are bonus words for extra challenge. 👆</p>
+  ${tNote('10–12 minutes','Introduce and practice 12 core hobby words plus 4 "Level Up" enrichment words (collecting stamps, photography, gardening, playing chess).','Model pronunciation first, then have students repeat 2–3 times per word. Use the Level Up words with stronger students or as a class challenge.')}
+  <div class="grid cols-4" id="hobby-grid"></div>
+  ${navButtons('hobbies')}
+`);
+
+/* ---- Listening ---- */
+section('listening', `
+  <div class="eyebrow">Listening</div>
+  <h2 class="section-title">Listen & Understand</h2>
+  <p class="section-sub">Listen to Dimas talk about himself, then answer the questions.</p>
+  ${tNote('8–10 minutes','Develop listening comprehension for simple spoken self-introductions.','Play the audio twice. Let students take notes before answering. Headphones are recommended for individual work.')}
+  <div class="card audio-card" style="margin-bottom:20px;">
+    <div style="font-size:3rem;">🎧</div>
+    <h3>Dimas's Introduction</h3>
+    <button class="btn" id="listen-btn" onclick="speakText(LISTENING_SCRIPT, this)">🔊 Listen</button>
+    <details style="margin-top:18px; text-align:left;">
+      <summary style="cursor:pointer; font-weight:800; color:var(--purple-d);">📜 Show Transcript (for teacher / accessibility)</summary>
+      <p class="example-box">${LISTENING_SCRIPT}</p>
+    </details>
+  </div>
+  <div class="card">
+    <h3>🧠 Comprehension Questions</h3>
+    <div id="listeningquiz"></div>
+    <button class="btn small" onclick="runQuiz(LISTENING_Q,'listeningquiz','listeningquiz-result')">Check My Answers</button>
+    <div id="listeningquiz-result"></div>
+  </div>
+  ${navButtons('listening')}
+`);
+
+/* ---- Reading ---- */
+section('reading', `
+  <div class="eyebrow">Reading</div>
+  <h2 class="section-title">Reading Time</h2>
+  <p class="section-sub">Read about Sinta, then answer the questions.</p>
+  ${tNote('10 minutes','Build reading comprehension skills through a short passage about a peer.','Have students read silently first, then read aloud together as a class. Pre-teach the word "gardening" if needed.')}
+  <div class="card" style="margin-bottom:20px;">
+    <h3>🌱 My Hobby: Gardening</h3>
+    <p class="reading-passage">${READING_PASSAGE}</p>
+  </div>
+  <div class="card">
+    <h3>🧠 Comprehension Questions</h3>
+    <div id="readingquiz"></div>
+    <button class="btn small" onclick="runQuiz(READING_Q,'readingquiz','readingquiz-result')">Check My Answers</button>
+    <div id="readingquiz-result"></div>
+  </div>
+  ${navButtons('reading')}
+`);
+
+/* ---- Favorites ---- */
+section('favorites', `
+  <div class="eyebrow">Vocabulary</div>
+  <h2 class="section-title">My Favorite Things</h2>
+  <p class="section-sub">Everyone has favorites! Tap a card to see an example and try the speaking prompt.</p>
+  ${tNote('10 minutes','Expand vocabulary related to personal preferences across 12 categories.','Ask students to think of their own favorites on paper before sharing with a partner.')}
+  <div class="grid cols-4" id="fav-grid"></div>
+  ${navButtons('favorites')}
+`);
+
+/* ---- Grammar ---- */
+section('grammar', `
+  <div class="eyebrow">Grammar Time</div>
+  <h2 class="section-title">Let's Build Sentences!</h2>
+  ${tNote('15 minutes','Teach five sentence patterns for self-introduction using scaffolded examples.','Introduce one pattern at a time. Use choral (whole-class) drilling before individual practice.')}
+  <div id="grammar-patterns"></div>
+  ${navButtons('grammar')}
+`);
+
+/* ---- Conversation ---- */
+section('conversation', `
+  <div class="eyebrow">Let's Talk!</div>
+  <h2 class="section-title">Conversation Practice</h2>
+  <p class="section-sub">Read each dialogue out loud. Try it with a friend!</p>
+  ${tNote('12 minutes','Practice using vocabulary and grammar naturally in short dialogues.','Pair students up and have them swap roles A and B after reading once.')}
+  <div id="dialogue-list"></div>
+  ${navButtons('conversation')}
+`);
+
+/* ---- Speaking ---- */
+section('speaking', `
+  <div class="eyebrow">Speak Up!</div>
+  <h2 class="section-title">Speaking Practice</h2>
+  <p class="section-sub">Answer each question out loud. Tap "Show Model Answer" if you need help.</p>
+  ${tNote('8 minutes','Build confidence answering personal questions in complete sentences.','Encourage students to cover the model answer and try first before revealing it.')}
+  <div id="speaking-list"></div>
+  ${navButtons('speaking')}
+`);
+
+/* ---- Presentation ---- */
+section('presentation', `
+  <div class="eyebrow">My Project</div>
+  <h2 class="section-title">This Is Me!</h2>
+  <p class="section-sub">Fill in the blanks to build your own 1–2 minute presentation.</p>
+  ${tNote('10 minutes','Guide students to prepare a structured self-introduction using today\'s vocabulary and grammar.','Let students say their speech quietly to themselves before presenting to a partner.')}
+  <div class="card" id="pres-card">
+    <p>Hello! 👋</p>
+    <p>My name is <input class="blank" id="p-name" placeholder="name"> .</p>
+    <p>I am <input class="blank" id="p-age" placeholder="age"> years old.</p>
+    <p>I live in <input class="blank" id="p-city" placeholder="city"> .</p>
+    <p>My hobby is <input class="blank" id="p-hobby" placeholder="hobby"> .</p>
+    <p>I like <input class="blank" id="p-like" placeholder="something"> because <input class="blank" id="p-because" placeholder="reason"> .</p>
+    <p>My favorite food is <input class="blank" id="p-food" placeholder="food"> .</p>
+    <p>My favorite color is <input class="blank" id="p-color" placeholder="color"> .</p>
+    <p>I want to be <input class="blank" id="p-dream" placeholder="a job"> .</p>
+    <p>Thank you! 🙏</p>
+    <button class="btn small" onclick="buildPresentation()">✨ Build My Speech</button>
+    <div id="pres-output" class="example-box" style="display:none; margin-top:16px;"></div>
+  </div>
+  <div class="card" style="margin-top:20px;">
+    <h3>🌟 Speaking Tips</h3>
+    <div class="grid cols-3">
+      <div class="tile mint">✔ Speak loudly</div>
+      <div class="tile pink">✔ Smile</div>
+      <div class="tile sky">✔ Make eye contact</div>
+      <div class="tile yellow">✔ Speak slowly</div>
+      <div class="tile lav">✔ Don't worry about mistakes</div>
+    </div>
+  </div>
+  ${navButtons('presentation')}
+`);
+
+/* ---- Writing Task ---- */
+section('writing', `
+  <div class="eyebrow">Writing</div>
+  <h2 class="section-title">Write About Me!</h2>
+  <p class="section-sub">Now write a paragraph of 6–8 sentences about yourself. Use your presentation as a guide!</p>
+  ${tNote('12–15 minutes','Integrate reading, speaking, and grammar skills into a short written paragraph.','Remind students to use capital letters and full stops. Walk around the room to help with spelling and sentence structure.')}
+  <div class="card" style="margin-bottom:16px;">
+    <h4>✅ Try to include:</h4>
+    <div class="grid cols-3">
+      <div class="tile mint">Name & age</div>
+      <div class="tile pink">Address</div>
+      <div class="tile sky">Hobby</div>
+      <div class="tile yellow">Like... because...</div>
+      <div class="tile lav">Favorite things</div>
+      <div class="tile mint">Dream job</div>
+    </div>
+  </div>
+  <div class="card">
+    <textarea id="writing-box" rows="8" placeholder="Hello! My name is..." oninput="updateWritingCount()"></textarea>
+    <p id="writing-count" style="font-weight:800; color:var(--purple-d); margin-top:8px;">0 sentences · 0 words</p>
+    <p class="note">🎯 Goal: 6–8 sentences</p>
+  </div>
+  ${navButtons('writing')}
+`);
+
+/* ---- Games ---- */
+section('games', `
+  <div class="eyebrow">Play Time</div>
+  <h2 class="section-title">Games & Review</h2>
+  ${tNote('15–20 minutes','Reinforce vocabulary and grammar through playful repetition.','Let students choose 2–3 games depending on time available. Rotate in small groups if the class is large.')}
+  <div class="game-nav" id="game-nav"></div>
+  <div class="card">
+    <div class="game-panel active" id="game-match">
+      <h3>🔗 Matching — Word ↔ Picture</h3>
+      <p class="note">Tap a word, then tap its matching picture.</p>
+      <div class="grid cols-2">
+        <div class="match-col" id="match-words"></div>
+        <div class="match-col" id="match-pics"></div>
+      </div>
+      <div id="match-result"></div>
+    </div>
+    <div class="game-panel" id="game-dd">
+      <h3>🖐️ Drag & Drop — Complete the Sentence</h3>
+      <p class="note">Drag the correct word into each blank.</p>
+      <div id="dd-area"></div>
+      <button class="btn small" onclick="checkDragDrop()">Check</button>
+      <div id="dd-result"></div>
+    </div>
+    <div class="game-panel" id="game-ws">
+      <h3>🔎 Word Search</h3>
+      <p class="note">Click letters in order to find hobby words.</p>
+      <div id="ws-grid"></div>
+      <div id="ws-words"></div>
+    </div>
+    <div class="game-panel" id="game-mem">
+      <h3>🧠 Memory Cards</h3>
+      <p class="note">Flip two cards to find a matching pair.</p>
+      <div class="mem-grid" id="mem-grid"></div>
+      <div id="mem-result"></div>
+    </div>
+    <div class="game-panel" id="game-wheel">
+      <h3>🎡 Spin the Wheel</h3>
+      <div id="wheel-wrap">
+        <div style="position:relative;">
+          <div id="wheel-pointer">🔻</div>
+          <canvas id="wheel" width="280" height="280"></canvas>
+        </div>
+        <button class="btn" onclick="spinWheel()">Spin!</button>
+        <div id="wheel-result" style="font-weight:800; font-size:1.1rem;"></div>
+      </div>
+    </div>
+    <div class="game-panel" id="game-quiz">
+      <h3>❓ Quiz</h3>
+      <div id="finalquiz"></div>
+      <button class="btn small" onclick="runQuiz(FINAL_QUIZ,'finalquiz','finalquiz-result')">Check My Answers</button>
+      <div id="finalquiz-result"></div>
+    </div>
+    <div class="game-panel" id="game-sb">
+      <h3>🧩 Sentence Builder</h3>
+      <p class="note">Tap the words in the right order to build the sentence.</p>
+      <div id="sb-target-label" style="font-weight:800; margin-bottom:6px;"></div>
+      <div id="sb-answer"></div>
+      <div id="sb-bank"></div>
+      <button class="btn small" onclick="checkSentence()">Check</button>
+      <button class="btn small secondary" onclick="resetSentence()">Reset</button>
+      <div id="sb-result"></div>
+    </div>
+  </div>
+  ${navButtons('games')}
+`);
+
+/* ---- Final Challenge ---- */
+section('challenge', `
+  <div class="eyebrow">Mission Time</div>
+  <h2 class="section-title">Can You Introduce Yourself?</h2>
+  <p class="section-sub">Present yourself for 1–2 minutes using what you learned today!</p>
+  ${tNote('~10 minutes per student (or pair share)','Assess students\' ability to deliver a confident 1–2 minute self-introduction.','Use the checklist as a simple rubric. Consider recording students for a portfolio assessment.')}
+  <div class="card checklist">
+    <label><input type="checkbox" class="chk"> I can tell my hobby.</label>
+    <label><input type="checkbox" class="chk"> I can tell my favorite things.</label>
+    <label><input type="checkbox" class="chk"> I can explain why (using "because").</label>
+    <label><input type="checkbox" class="chk"> I can tell my dream job.</label>
+    <label><input type="checkbox" class="chk"> I speak confidently.</label>
+    <button class="btn" style="margin-top:14px;" onclick="checkChallenge()">🎉 I'm Ready!</button>
+    <div id="challenge-msg" style="margin-top:10px; font-weight:800;"></div>
+  </div>
+  ${navButtons('challenge')}
+`);
+
+/* ---- Reflection ---- */
+section('reflection', `
+  <div class="eyebrow">Think About It</div>
+  <h2 class="section-title">Mini Reflection</h2>
+  ${tNote('5 minutes','Encourage metacognition and self-assessment of today\'s learning.','Allow students to write in Bahasa Indonesia if English is still difficult for reflection.')}
+  <div class="card">
+    <p>Today I learned <input class="text-in" style="width:100%;" placeholder="write here..."></p>
+    <p>The easiest part was <input class="text-in" style="width:100%;" placeholder="write here..."></p>
+    <p>The hardest part was <input class="text-in" style="width:100%;" placeholder="write here..."></p>
+    <p>I am proud because <input class="text-in" style="width:100%;" placeholder="write here..."></p>
+  </div>
+  ${navButtons('reflection')}
+`);
+
+/* ---- Certificate ---- */
+section('certificate', `
+  <div class="eyebrow">You Did It!</div>
+  <h2 class="section-title">Your Certificate</h2>
+  ${tNote('3 minutes','Celebrate achievement and build motivation to continue learning.','Print certificates in advance, or let students type their name digitally and print at home.')}
+  <div class="card" style="margin-bottom:18px;">
+    <p>Type your name and today's date, then generate your certificate!</p>
+    <p>Name: <input class="text-in" id="cert-name" placeholder="Your name"></p>
+    <p>Date: <input class="text-in" id="cert-date" placeholder="DD/MM/YYYY"></p>
+    <button class="btn" onclick="generateCert()">🎉 Generate My Certificate</button>
+    <button class="btn secondary" onclick="window.print()">🖨️ Print</button>
+  </div>
+  <div id="cert">
+    <div class="medal">🏅</div>
+    <div class="eyebrow">Certificate of Achievement</div>
+    <h2>Congratulations!</h2>
+    <p>You have completed</p>
+    <h3 style="margin:2px 0;">Unit 1 · Meeting 2</h3>
+    <h3 style="margin-bottom:16px;">Tell More About Me</h3>
+    <p>This certifies that</p>
+    <p class="name-line" id="cert-name-out">____________________</p>
+    <p style="margin-top:14px;">has shown that they can now introduce themselves confidently! 🌟</p>
+    <div class="grid cols-2" style="margin-top:26px; text-align:left;">
+      <div>Date: <span id="cert-date-out">___________</span></div>
+      <div>Teacher Signature: ___________</div>
+    </div>
+    <p style="margin-top:20px;" class="tagline">LITTLELUME ENGLISH · Learn • Play • Shine ⭐</p>
+  </div>
+  <div style="text-align:center; margin-top:30px;">
+    <button class="btn secondary" onclick="goTo(0)">🔁 Back to Cover</button>
+  </div>
+`);
+
+/* =========================================================
+   RENDER: HOBBIES & FAVORITES
+========================================================= */
+const hobbyGrid = document.getElementById('hobby-grid');
+HOBBIES.forEach(h=>{
+  const el = document.createElement('div');
+  el.className='flip-outer';
+  el.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-face flip-front">${h.adv?'<span class="badge-adv">Level Up ⭐</span>':''}<span class="emoji">${h.e}</span><strong>${h.w}</strong><span class="hint">tap to flip</span></div>
+      <div class="flip-face flip-back">
+        <strong>${h.w}</strong><br>
+        🔊 <em>${h.p}</em><br>
+        Meaning: ${h.m}<br>
+        <span class="speaking-tag">🗣️ "${h.x}"</span>
+      </div>
+    </div>`;
+  el.addEventListener('click', ()=> el.classList.toggle('flipped'));
+  hobbyGrid.appendChild(el);
+});
+
+const favGrid = document.getElementById('fav-grid');
+FAVS.forEach(f=>{
+  const el = document.createElement('div');
+  el.className='flip-outer';
+  el.innerHTML = `
+    <div class="flip-inner">
+      <div class="flip-face flip-front"><span class="emoji">${f.e}</span><strong>Favorite ${f.cat}</strong><span class="hint">tap to flip</span></div>
+      <div class="flip-face flip-back">
+        <strong>Favorite ${f.cat}</strong><br>
+        Example: "${f.ex}"<br>
+        <span class="speaking-tag">🗣️ ${f.q}</span>
+      </div>
+    </div>`;
+  el.addEventListener('click', ()=> el.classList.toggle('flipped'));
+  favGrid.appendChild(el);
+});
+
+/* =========================================================
+   RENDER: GRAMMAR PATTERNS
+========================================================= */
+const PATTERNS = [
+ {t:'Pattern 1 — My hobby is...', ex:['My hobby is reading.','My hobby is drawing.'],
+  practice:`<p>Practice: My hobby is <input class="blank" placeholder="your hobby"> .</p>`},
+ {t:'Pattern 2 — I like...', ex:['I like cats.','I like pizza.','I like swimming.'],
+  practice:`<p>Practice: I like <input class="blank" placeholder="something"> .</p>`},
+ {t:'Pattern 3 — I like... because...', ex:['I like ice cream because it is delicious.','I like football because it is fun.','I like reading because it is relaxing.'],
+  practice:`<p>Practice: I like <input class="blank" placeholder="something"> because it is <input class="blank" placeholder="reason"> .</p>
+  <div id="match-because" style="margin-top:10px;"></div>`},
+ {t:'Pattern 4 — My favorite...', ex:['My favorite food is fried rice.','My favorite color is blue.','My favorite subject is English.'],
+  practice:`<p>Practice: My favorite <input class="blank" placeholder="category" style="width:110px;"> is <input class="blank" placeholder="answer"> .</p>`},
+ {t:'Pattern 5 — I want to be...', ex:['I want to be a doctor.','I want to be a teacher.','I want to be a pilot.','I want to be an artist.','I want to be a chef.'],
+  practice:`<p>Practice: I want to be a <input class="blank" placeholder="your dream job"> .</p>`}
+];
+const gDiv = document.getElementById('grammar-patterns');
+PATTERNS.forEach(p=>{
+  const box = document.createElement('div');
+  box.className='pattern-box';
+  box.innerHTML = `<h3>${p.t}</h3>${p.ex.map(e=>`<div class="example-box">${e}</div>`).join('')}${p.practice}`;
+  gDiv.appendChild(box);
+});
+// simple matching mini-activity for "because" pattern
+(function(){
+  const pairs = [['I like ice cream','because it is delicious'],['I like football','because it is fun'],['I like reading','because it is relaxing']];
+  const box = document.getElementById('match-because');
+  box.innerHTML = `<p class="note">Bonus: match the reason! (tap left then right)</p>
+    <div class="grid cols-2">
+      <div class="match-col" id="bec-left"></div>
+      <div class="match-col" id="bec-right"></div>
+    </div><div id="bec-result"></div>`;
+  buildMatchGame(pairs.map(p=>p[0]), shuffle(pairs.map(p=>p[1])), pairs, 'bec-left','bec-right','bec-result');
+})();
+
+/* =========================================================
+   RENDER: DIALOGUES
+========================================================= */
+const dList = document.getElementById('dialogue-list');
+DIALOGUES.forEach(d=>{
+  const card = document.createElement('div');
+  card.className='card dialogue-card';
+  card.innerHTML = `
+    <h3>${d.t}</h3>
+    <p class="note">Vocabulary highlight: <strong>${d.v}</strong> &nbsp;·&nbsp; ${d.note}</p>
+    ${d.lines.map(l=>`<div class="line ${l[0]==='B'?'b':''}"><div class="who">${l[0]}</div><p>${l[1]}</p></div>`).join('')}
+    <div class="speaking-tag">🎯 Speaking Challenge: ${d.challenge}</div>
+  `;
+  dList.appendChild(card);
+});
+
+/* =========================================================
+   RENDER: SPEAKING PRACTICE
+========================================================= */
+const sList = document.getElementById('speaking-list');
+SPEAKING_Q.forEach((s,i)=>{
+  const card = document.createElement('div');
+  card.className='card'; card.style.marginBottom='14px';
+  card.innerHTML = `<h4>${i+1}. ${s.q}</h4>
+    <button class="btn small secondary" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">Show Model Answer</button>
+    <div class="example-box" style="display:none;">${s.a}</div>`;
+  sList.appendChild(card);
+});
+
+/* =========================================================
+   QUIZ ENGINE
+========================================================= */
+window.runQuiz = function(data, containerId, resultId){
+  const c = document.getElementById(containerId);
+  if(!c.querySelector('.opt')){ // build first time
+    c.innerHTML = data.map((q,i)=>`
+      <div class="quiz-q" data-i="${i}">
+        <p><strong>${i+1}. ${q.q}</strong></p>
+        ${q.opts.map((o,j)=>`<button class="opt" data-j="${j}">${o}</button>`).join('')}
+      </div>`).join('');
+    c.querySelectorAll('.quiz-q').forEach((qEl,i)=>{
+      qEl.querySelectorAll('.opt').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          if(qEl.dataset.answered) return;
+          qEl.dataset.answered='1';
+          const j=+btn.dataset.j;
+          qEl.querySelectorAll('.opt').forEach(b=>b.disabled=true);
+          if(j===data[i].correct){btn.classList.add('correct');}
+          else{btn.classList.add('wrong'); qEl.querySelectorAll('.opt')[data[i].correct].classList.add('correct');}
+        });
+      });
+    });
+    document.getElementById(resultId).textContent='Answer all questions, then tap "Check My Answers" again!';
+    return;
+  }
+  const score = [...c.querySelectorAll('.quiz-q')].filter(qEl=>{
+    const wrongPicked = qEl.querySelector('.opt.wrong');
+    return qEl.dataset.answered && !wrongPicked;
+  }).length;
+  const answeredCount = [...c.querySelectorAll('.quiz-q')].filter(q=>q.dataset.answered).length;
+  const resEl = document.getElementById(resultId);
+  if(answeredCount < data.length){
+    resEl.textContent = `You answered ${answeredCount}/${data.length}. Please answer every question!`;
+    return;
+  }
+  resEl.textContent = `🎉 Great job! You scored ${score} / ${data.length}!`;
+  if(score >= Math.ceil(data.length*0.6)) confettiBurst();
+};
+
+/* =========================================================
+   MATCHING GAME (generic, used for grammar bonus)
+========================================================= */
+function buildMatchGame(leftArr, rightArr, correctPairs, leftId, rightId, resultId){
+  const leftEl = document.getElementById(leftId), rightEl = document.getElementById(rightId);
+  leftEl.innerHTML=''; rightEl.innerHTML='';
+  let selectedLeft=null, matchedCount=0;
+  leftArr.forEach(txt=>{
+    const d=document.createElement('div'); d.className='match-item'; d.textContent=txt;
+    d.addEventListener('click', ()=>{
+      if(d.classList.contains('matched')) return;
+      leftEl.querySelectorAll('.match-item').forEach(i=>i.classList.remove('selected'));
+      d.classList.add('selected'); selectedLeft=d;
+    });
+    leftEl.appendChild(d);
+  });
+  rightArr.forEach(txt=>{
+    const d=document.createElement('div'); d.className='match-item'; d.textContent=txt;
+    d.addEventListener('click', ()=>{
+      if(d.classList.contains('matched') || !selectedLeft) return;
+      const pair = correctPairs.find(p=>p[0]===selectedLeft.textContent);
+      if(pair && pair[1]===txt){
+        selectedLeft.classList.remove('selected'); selectedLeft.classList.add('matched');
+        d.classList.add('matched'); matchedCount++;
+        document.getElementById(resultId).textContent = matchedCount===correctPairs.length ? '🎉 All matched! Great job!' : `${matchedCount}/${correctPairs.length} matched`;
+        if(matchedCount===correctPairs.length) confettiBurst();
+      } else {
+        d.classList.add('wrong'); setTimeout(()=>d.classList.remove('wrong'),500);
+      }
+      selectedLeft=null;
+    });
+    rightEl.appendChild(d);
+  });
+}
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+
+/* Hobby word<->picture matching game */
+(function(){
+  const sample = shuffle(HOBBIES).slice(0,6);
+  const pairs = sample.map(h=>[h.w, h.e+' ']);
+  buildMatchGame(shuffle(sample.map(h=>h.w)), shuffle(sample.map(h=>h.e+' ')), pairs, 'match-words','match-pics','match-result');
+})();
+
+/* =========================================================
+   GAME NAV
+========================================================= */
+const GAME_TABS = [
+ ['match','🔗 Matching'],['dd','🖐️ Drag & Drop'],['ws','🔎 Word Search'],
+ ['mem','🧠 Memory'],['wheel','🎡 Spin the Wheel'],['quiz','❓ Quiz'],['sb','🧩 Sentence Builder']
+];
+const gameNav = document.getElementById('game-nav');
+GAME_TABS.forEach(([id,label],i)=>{
+  const b=document.createElement('button');
+  b.textContent=label; if(i===0) b.classList.add('active');
+  b.addEventListener('click', ()=>{
+    gameNav.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.game-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('game-'+id).classList.add('active');
+    if(id==='ws' && !window._wsInit){ initWordSearch(); window._wsInit=true; }
+    if(id==='mem' && !window._memInit){ initMemory(); window._memInit=true; }
+    if(id==='wheel' && !window._wheelInit){ drawWheel(); window._wheelInit=true; }
+    if(id==='sb' && !window._sbInit){ initSentenceBuilder(); window._sbInit=true; }
+    if(id==='dd' && !window._ddInit){ initDragDrop(); window._ddInit=true; }
+  });
+  gameNav.appendChild(b);
+});
+
+/* --- Drag & Drop game --- */
+function initDragDrop(){
+  const area = document.getElementById('dd-area');
+  const items = [
+    {sentence:'My hobby is ___ .', answer:'reading'},
+    {sentence:'My favorite color is ___ .', answer:'blue'},
+    {sentence:'I want to be a ___ .', answer:'teacher'}
+  ];
+  const words = shuffle(items.map(i=>i.answer).concat(['pizza','cat']));
+  area.innerHTML = items.map((it,i)=>`<p data-answer="${it.answer}">${it.sentence.replace('___', `<span class="dd-target" data-slot="${i}"></span>`)}</p>`).join('')
+    + `<div style="margin-top:12px;">${words.map(w=>`<span class="dd-source" draggable="true" data-word="${w}">${w}</span>`).join('')}</div>`;
+  area.querySelectorAll('.dd-source').forEach(src=>{
+    src.addEventListener('dragstart', e=> e.dataTransfer.setData('text/plain', src.dataset.word));
+  });
+  area.querySelectorAll('.dd-target').forEach(t=>{
+    t.addEventListener('dragover', e=> e.preventDefault());
+    t.addEventListener('drop', e=>{
+      e.preventDefault();
+      const word = e.dataTransfer.getData('text/plain');
+      t.textContent = word; t.classList.add('filled');
+      const usedSrc = [...area.querySelectorAll('.dd-source')].find(s=>s.dataset.word===word && !s.classList.contains('used'));
+      if(usedSrc) usedSrc.classList.add('used');
+    });
+  });
+}
+function checkDragDrop(){
+  const area = document.getElementById('dd-area');
+  let correct=0, total=0;
+  area.querySelectorAll('p[data-answer]').forEach(p=>{
+    total++;
+    const target = p.querySelector('.dd-target');
+    if(target.textContent.trim().toLowerCase()===p.dataset.answer.toLowerCase()){
+      target.style.background='var(--mint-d)'; correct++;
+    } else {
+      target.style.background='var(--pink-d)';
+    }
+  });
+  document.getElementById('dd-result').textContent = correct===total ? '🎉 Perfect! All correct!' : `${correct}/${total} correct — try again!`;
+  if(correct===total) confettiBurst();
+}
+
+/* --- Word Search --- */
+function initWordSearch(){
+  const words = ['READING','DRAWING','SINGING','DANCING','GAMING','CYCLING'];
+  const size=10;
+  let grid = Array.from({length:size},()=>Array(size).fill(''));
+  const dirs=[[0,1],[1,0]];
+  words.forEach(w=>{
+    let placed=false, tries=0;
+    while(!placed && tries<200){
+      tries++;
+      const dir = dirs[Math.floor(Math.random()*dirs.length)];
+      const r0 = Math.floor(Math.random()*(size - (dir[0]?w.length:0)));
+      const c0 = Math.floor(Math.random()*(size - (dir[1]?w.length:0)));
+      let ok=true;
+      for(let k=0;k<w.length;k++){
+        const r=r0+dir[0]*k, c=c0+dir[1]*k;
+        if(grid[r][c] && grid[r][c]!==w[k]){ ok=false; break; }
+      }
+      if(ok){
+        for(let k=0;k<w.length;k++){ const r=r0+dir[0]*k,c=c0+dir[1]*k; grid[r][c]=w[k]; }
+        placed=true;
+      }
+    }
+  });
+  const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for(let r=0;r<size;r++) for(let c=0;c<size;c++) if(!grid[r][c]) grid[r][c]=letters[Math.floor(Math.random()*26)];
+
+  const wsGrid = document.getElementById('ws-grid');
+  wsGrid.innerHTML='';
+  let selecting=false, selCells=[];
+  for(let r=0;r<size;r++) for(let c=0;c<size;c++){
+    const cell=document.createElement('div'); cell.className='ws-cell'; cell.textContent=grid[r][c];
+    cell.dataset.r=r; cell.dataset.c=c;
+    cell.addEventListener('click', ()=>{
+      cell.classList.toggle('sel');
+      if(cell.classList.contains('sel')) selCells.push(cell); else selCells=selCells.filter(x=>x!==cell);
+      const word = selCells.map(x=>x.textContent).join('');
+      const wordRev = [...word].reverse().join('');
+      const found = words.find(w=> (w===word || w===wordRev) && !w._done);
+      if(found){
+        selCells.forEach(x=>{x.classList.remove('sel'); x.classList.add('found');});
+        found._done=true; selCells=[];
+        document.querySelectorAll('.ws-word').forEach(w=>{ if(w.textContent===found) w.classList.add('found'); });
+        if(words.every(w=>w._done)) confettiBurst();
+      }
+    });
+    wsGrid.appendChild(cell);
+  }
+  document.getElementById('ws-words').innerHTML = words.map(w=>`<span class="ws-word">${w}</span>`).join('');
+}
+
+/* --- Memory Cards --- */
+function initMemory(){
+  const sample = shuffle(HOBBIES).slice(0,6);
+  let cards = shuffle(sample.flatMap(h=>[{key:h.w,disp:h.e},{key:h.w,disp:h.w}]));
+  const grid = document.getElementById('mem-grid'); grid.innerHTML='';
+  let flipped=[], lock=false, matches=0;
+  cards.forEach(cd=>{
+    const el=document.createElement('div'); el.className='mem-card'; el.dataset.key=cd.key; el.dataset.disp=cd.disp;
+    el.textContent='❔';
+    el.addEventListener('click', ()=>{
+      if(lock || el.classList.contains('flipped') || el.classList.contains('matched')) return;
+      el.classList.add('flipped'); el.textContent=cd.disp;
+      flipped.push(el);
+      if(flipped.length===2){
+        lock=true;
+        setTimeout(()=>{
+          if(flipped[0].dataset.key===flipped[1].dataset.key){
+            flipped.forEach(f=>f.classList.add('matched'));
+            matches++;
+            document.getElementById('mem-result').textContent = matches===sample.length ? '🎉 You found them all!' : `${matches}/${sample.length} pairs found`;
+            if(matches===sample.length) confettiBurst();
+          } else {
+            flipped.forEach(f=>{f.classList.remove('flipped'); f.textContent='❔';});
+          }
+          flipped=[]; lock=false;
+        },700);
+      }
+    });
+    grid.appendChild(el);
+  });
+}
+
+/* --- Spin the Wheel --- */
+let wheelRotation=0;
+function drawWheel(){
+  const canvas=document.getElementById('wheel'); const ctx=canvas.getContext('2d');
+  const colors=['#BFF3E3','#FFD3E6','#C7E9FF','#FFEFB0','#E3D9FF','#FFA9CC'];
+  const n=SPEAKING_Q.length, R=140;
+  ctx.clearRect(0,0,280,280);
+  for(let i=0;i<n;i++){
+    const a0=(i/n)*2*Math.PI, a1=((i+1)/n)*2*Math.PI;
+    ctx.beginPath(); ctx.moveTo(140,140); ctx.arc(140,140,R,a0,a1); ctx.closePath();
+    ctx.fillStyle=colors[i%colors.length]; ctx.fill();
+    ctx.save(); ctx.translate(140,140); ctx.rotate((a0+a1)/2);
+    ctx.fillStyle='#3C3564'; ctx.font='bold 11px Nunito'; ctx.textAlign='right';
+    ctx.fillText((i+1)+'', R-10, 4);
+    ctx.restore();
+  }
+}
+function spinWheel(){
+  const n=SPEAKING_Q.length;
+  const extra = 360*4 + Math.random()*360;
+  wheelRotation += extra;
+  const canvas=document.getElementById('wheel');
+  canvas.style.transform = `rotate(${wheelRotation}deg)`;
+  setTimeout(()=>{
+    const norm = (360 - (wheelRotation % 360)) % 360;
+    const idx = Math.floor(norm / (360/n)) % n;
+    document.getElementById('wheel-result').textContent = '🎯 ' + SPEAKING_Q[idx].q;
+    confettiBurst();
+  }, 3600);
+}
+
+/* --- Sentence Builder --- */
+let sbCurrent=0, sbChosen=[];
+function initSentenceBuilder(){ sbCurrent=0; loadSentence(); }
+function loadSentence(){
+  sbChosen=[];
+  const set = SENTENCE_SETS[sbCurrent];
+  document.getElementById('sb-target-label').textContent = `Sentence ${sbCurrent+1} of ${SENTENCE_SETS.length}`;
+  document.getElementById('sb-answer').innerHTML='';
+  document.getElementById('sb-result').textContent='';
+  const bank = document.getElementById('sb-bank');
+  bank.innerHTML='';
+  shuffle(set.bank).forEach(w=>{
+    const chip=document.createElement('span'); chip.className='sb-chip'; chip.textContent=w;
+    chip.addEventListener('click', ()=>{
+      if(chip.classList.contains('used')) return;
+      chip.classList.add('used'); chip.style.opacity='.3'; chip.style.pointerEvents='none';
+      const ansChip=document.createElement('span'); ansChip.className='sb-chip'; ansChip.style.background='var(--purple-d)'; ansChip.textContent=w;
+      ansChip.addEventListener('click', ()=>{
+        ansChip.remove(); chip.classList.remove('used'); chip.style.opacity='1'; chip.style.pointerEvents='auto';
+        sbChosen = sbChosen.filter(x=>x!==w+chip.dataset.uid);
+      });
+      document.getElementById('sb-answer').appendChild(ansChip);
+      sbChosen.push(w);
+    });
+    bank.appendChild(chip);
+  });
+}
+function checkSentence(){
+  const target = SENTENCE_SETS[sbCurrent].target;
+  const built = sbChosen.join(' ');
+  const resEl = document.getElementById('sb-result');
+  if(built===target){
+    resEl.textContent='🎉 Correct! Great sentence!'; confettiBurst();
+    setTimeout(()=>{ sbCurrent=(sbCurrent+1)%SENTENCE_SETS.length; loadSentence(); }, 1200);
+  } else {
+    resEl.textContent='Not quite — try reordering the words!';
+  }
+}
+function resetSentence(){ loadSentence(); }
+
+/* =========================================================
+   PRESENTATION BUILDER
+========================================================= */
+function buildPresentation(){
+  const g = id => document.getElementById(id).value || '______';
+  const out = document.getElementById('pres-output');
+  out.style.display='block';
+  out.innerHTML = `Hello! My name is ${g('p-name')}. I am ${g('p-age')} years old. I live in ${g('p-city')}. `+
+    `My hobby is ${g('p-hobby')}. I like ${g('p-like')} because ${g('p-because')}. `+
+    `My favorite food is ${g('p-food')}. My favorite color is ${g('p-color')}. `+
+    `I want to be ${g('p-dream')}. Thank you!`;
+  completed.add(SECTIONS.findIndex(s=>s.id==='presentation'));
+  updateNav();
+  confettiBurst();
+}
+
+/* =========================================================
+   WRITING TASK
+========================================================= */
+function updateWritingCount(){
+  const text = document.getElementById('writing-box').value;
+  const sentences = (text.match(/[.!?]+/g) || []).length;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const el = document.getElementById('writing-count');
+  el.textContent = `${sentences} sentence${sentences===1?'':'s'} · ${words} word${words===1?'':'s'}`;
+  if(sentences>=6 && sentences<=8){
+    el.style.color = '#3fae86';
+    completed.add(SECTIONS.findIndex(s=>s.id==='writing'));
+    updateNav();
+  } else {
+    el.style.color = 'var(--purple-d)';
+  }
+}
+
+/* =========================================================
+   CHALLENGE CHECKLIST
+========================================================= */
+function checkChallenge(){
+  const boxes = document.querySelectorAll('#page-challenge .chk');
+  const allChecked = [...boxes].every(b=>b.checked);
+  const msg = document.getElementById('challenge-msg');
+  if(allChecked){
+    msg.textContent = '🌟 Amazing! You are ready to present. Go shine!';
+    confettiBurst();
+  } else {
+    msg.textContent = 'Check every box when you feel ready! You can do it 💪';
+  }
+}
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+function generateCert(){
+  const name = document.getElementById('cert-name').value.trim() || '____________________';
+  const date = document.getElementById('cert-date').value.trim() || new Date().toLocaleDateString();
+  document.getElementById('cert-name-out').textContent = name;
+  document.getElementById('cert-date-out').textContent = date;
+  confettiBurst();
+}
+
+/* =========================================================
+   INIT
+========================================================= */
+goTo(0);
+document.getElementById('cert-date').value = new Date().toLocaleDateString();
+</script>
+</body>
+</html>

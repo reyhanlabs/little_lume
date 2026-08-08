@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Time Machine - Practice Zone</title>
+<style>
+  :root{
+    --pink:#ffd6e8; --pink-d:#ff9ec7;
+    --mint:#c8f4e6; --mint-d:#6fd6b3;
+    --lav:#e3d9fb; --lav-d:#b39ddb;
+    --sky:#cfeaff; --sky-d:#7fc4ff;
+    --peach:#ffe3c9; --peach-d:#ffb877;
+    --ink:#3a2e4d;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Trebuchet MS','Segoe UI',sans-serif;
+    background:linear-gradient(160deg,var(--sky) 0%,var(--lav) 45%,var(--pink) 100%);
+    color:var(--ink); min-height:100vh; padding-bottom:60px;
+  }
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.9); backdrop-filter:blur(6px);
+    padding:12px 16px; display:flex; align-items:center; justify-content:space-between;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08); flex-wrap:wrap; gap:8px;
+  }
+  header h1{font-size:1.05rem; margin:0; display:flex; align-items:center; gap:8px;}
+  .stat-pill{
+    background:var(--peach); border-radius:999px; padding:6px 14px; font-weight:bold;
+    font-size:0.9rem; display:flex; align-items:center; gap:6px; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  }
+  .progress-wrap{flex:1 1 160px; min-width:120px;}
+  .progress-track{background:#eee; border-radius:999px; height:14px; overflow:hidden; box-shadow:inset 0 1px 3px rgba(0,0,0,0.15);}
+  .progress-fill{background:linear-gradient(90deg,var(--mint-d),var(--sky-d)); height:100%; width:0%; transition:width .5s ease;}
+  main{max-width:900px; margin:0 auto; padding:20px 14px;}
+  .screen{display:none; animation:fadeIn .4s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+  .hero{
+    text-align:center; background:var(--white); border-radius:28px; padding:34px 20px;
+    box-shadow:0 8px 24px rgba(120,90,180,0.15); position:relative; overflow:hidden;
+  }
+  .hero .clock-emoji{font-size:4rem; display:block; margin-bottom:6px;}
+  .hero h2{margin:6px 0; font-size:1.6rem; color:var(--ink);}
+  .hero p{color:#6b5f80; max-width:520px; margin:8px auto 20px;}
+  .btn{
+    border:none; border-radius:16px; padding:14px 28px; font-size:1rem; font-weight:bold;
+    cursor:pointer; color:var(--ink); background:var(--mint-d); box-shadow:0 4px 0 #4fae90;
+    transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px); box-shadow:0 1px 0 #4fae90;}
+  .btn.alt{background:var(--sky-d); box-shadow:0 4px 0 #4c9ede;}
+  .btn.pink{background:var(--pink-d); box-shadow:0 4px 0 #e0669e;}
+  .btn.small{padding:8px 16px; font-size:0.85rem; border-radius:12px;}
+  .btn:disabled{opacity:0.5; cursor:not-allowed;}
+
+  .map-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-top:18px;
+  }
+  .map-card{
+    background:var(--white); border-radius:20px; padding:16px 10px; text-align:center;
+    box-shadow:0 6px 14px rgba(120,90,180,0.15); cursor:pointer; border:3px solid transparent;
+    transition:transform .15s ease;
+  }
+  .map-card:hover{transform:translateY(-4px);}
+  .map-card .icon{font-size:2.2rem; display:block; margin-bottom:6px;}
+  .map-card .name{font-size:0.8rem; font-weight:bold; line-height:1.2;}
+  .map-card.done{border-color:var(--mint-d); background:#f2fff9;}
+  .map-card.done .check{color:#2fa87c; font-size:0.75rem; display:block; margin-top:4px;}
+  .map-card.locked{opacity:0.5; cursor:not-allowed;}
+
+  .game-panel{
+    background:var(--white); border-radius:24px; padding:22px 18px; box-shadow:0 8px 24px rgba(120,90,180,0.15);
+  }
+  .game-panel h2{margin-top:0; display:flex; align-items:center; gap:8px; font-size:1.25rem;}
+  .backbtn{background:none; border:none; color:#7a6a95; font-weight:bold; cursor:pointer; margin-bottom:10px; font-size:0.9rem;}
+  .instructions{background:var(--lav); border-radius:14px; padding:10px 14px; margin-bottom:16px; font-size:0.9rem;}
+
+  .qcard{background:#faf7ff; border-radius:16px; padding:16px; margin-bottom:14px; box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+  .qcard .qtext{font-weight:bold; margin-bottom:10px;}
+  .options{display:grid; gap:8px;}
+  .opt-btn{
+    text-align:left; border:2px solid #e3daf5; background:#fff; border-radius:12px; padding:10px 14px;
+    cursor:pointer; font-size:0.95rem; transition:.15s ease;
+  }
+  .opt-btn:hover{border-color:var(--sky-d);}
+  .opt-btn.correct{background:#d4f7e5; border-color:#4fae90;}
+  .opt-btn.wrong{background:#ffd9d9; border-color:#e07272;}
+  .opt-btn:disabled{cursor:default;}
+
+  .timerbar{height:8px; background:#eee; border-radius:6px; overflow:hidden; margin-bottom:12px;}
+  .timerfill{height:100%; background:var(--peach-d); width:100%;}
+
+  .zones{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;}
+  .zone{
+    flex:1; min-width:130px; background:#f5f2ff; border:3px dashed var(--lav-d); border-radius:16px;
+    padding:12px; min-height:120px;
+  }
+  .zone h4{margin:0 0 8px; text-align:center; font-size:0.9rem;}
+  .pool{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .chip{
+    background:var(--sky); border-radius:12px; padding:8px 12px; cursor:pointer; font-size:0.85rem;
+    box-shadow:0 2px 4px rgba(0,0,0,0.1); border:2px solid transparent;
+  }
+  .chip.selected{border-color:var(--pink-d); background:var(--pink);}
+  .zone .chip{margin:4px;}
+
+  input[type="text"]{
+    border:2px solid #ddd4f2; border-radius:10px; padding:8px 10px; font-size:0.95rem; width:140px;
+  }
+  input[type="text"]:focus{outline:none; border-color:var(--sky-d);}
+
+  .memory-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
+  .mcard{
+    background:var(--sky-d); border-radius:12px; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    font-weight:bold; cursor:pointer; font-size:0.85rem; color:#fff; text-align:center; padding:6px;
+  }
+  .mcard.flipped{background:#fff; color:var(--ink); border:2px solid var(--lav-d);}
+  .mcard.matched{background:#d4f7e5; color:#2fa87c; border:2px solid #4fae90; cursor:default;}
+
+  .dice{
+    width:90px; height:90px; background:var(--peach); border-radius:16px; display:flex; align-items:center;
+    justify-content:center; font-size:2.4rem; margin:14px auto; box-shadow:0 4px 0 #e0a860; cursor:pointer;
+  }
+  .checklist label{display:flex; align-items:center; gap:8px; margin:8px 0; font-size:0.9rem; cursor:pointer;}
+
+  .score-banner{
+    text-align:center; padding:16px; border-radius:16px; margin-top:14px; font-weight:bold; font-size:1.05rem;
+  }
+  .score-banner.good{background:#d4f7e5; color:#2b8f68;}
+  .score-banner.retry{background:#ffe6cf; color:#a56a1e;}
+
+  .cert{
+    background:linear-gradient(135deg,var(--peach),var(--pink)); border-radius:24px; padding:36px 20px; text-align:center;
+    box-shadow:0 8px 24px rgba(120,90,180,0.2); border:6px double #fff;
+  }
+  .cert h2{font-size:1.6rem; margin-bottom:6px;}
+  .cert .name-line{font-size:1.4rem; font-weight:bold; margin:16px 0; border-bottom:2px dashed var(--ink); display:inline-block; padding-bottom:4px; min-width:220px;}
+  #nameInput{border:none; background:transparent; border-bottom:2px solid var(--ink); text-align:center; font-size:1.3rem; font-family:inherit; width:260px;}
+
+  .fill-blank{padding:4px 8px; border:2px solid var(--sky-d); border-radius:8px; width:110px; text-align:center; font-size:0.9rem;}
+
+  .confetti-piece{
+    position:fixed; top:-10px; width:10px; height:10px; opacity:0.9; z-index:999; pointer-events:none;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{to{transform:translateY(110vh) rotate(540deg); opacity:0.3;}}
+
+  @media (max-width:480px){
+    .memory-grid{grid-template-columns:repeat(3,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⏰🤖 Grammar Time Machine</h1>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="stat-pill">⭐ <span id="xpCount">0</span> XP</div>
+</header>
+
+<main>
+
+  <!-- START SCREEN -->
+  <section class="screen active" id="screen-start">
+    <div class="hero">
+      <span class="clock-emoji">⏰🤖📅</span>
+      <h2>Welcome back, Time Traveler!</h2>
+      <p>You already learned Simple Present & Simple Past in your Lesson Book. Now it's time for a quick reminder, then hop into the Time Machine and PLAY through 13 challenges to prove your grammar power!</p>
+      <button class="btn" onclick="goTo('screen-review')">🚀 Start the Journey</button>
+    </div>
+  </section>
+
+  <!-- QUICK REVIEW -->
+  <section class="screen" id="screen-review">
+    <div class="hero" style="padding:24px 18px;">
+      <h2 style="margin-top:0;">⏰ Time Machine Reminder</h2>
+      <div style="display:grid; gap:10px; text-align:left; margin-top:16px;">
+        <div class="qcard" style="background:var(--mint); margin-bottom:0;">
+          <div class="qtext">🟢 PRESENT → every day, usually, always</div>
+        </div>
+        <div class="qcard" style="background:var(--sky); margin-bottom:0;">
+          <div class="qtext">🔵 PAST → yesterday, last week, ago</div>
+        </div>
+        <div class="qcard" style="background:var(--peach); margin-bottom:0; text-align:center;">
+          <p style="margin:4px 0; font-weight:bold;">play → plays → played</p>
+          <p style="margin:4px 0; font-weight:bold;">go → goes → went</p>
+        </div>
+      </div>
+      <button class="btn" style="margin-top:20px;" onclick="goTo('screen-map')">🚀 START THE MISSIONS</button>
+    </div>
+  </section>
+
+  <!-- MISSION MAP -->
+  <section class="screen" id="screen-map">
+    <div class="hero" style="padding:20px;">
+      <h2 style="margin-top:0;">🗺️ Mission Map</h2>
+      <p style="margin-bottom:0;">Tap any mission to play. Complete all 13 to unlock your Mission Summary and Certificate!</p>
+    </div>
+    <div class="map-grid" id="mapGrid"></div>
+  </section>
+
+  <!-- GAME CONTAINER (single dynamic panel) -->
+  <section class="screen" id="screen-game">
+    <button class="backbtn" onclick="goTo('screen-map')">← Back to Mission Map</button>
+    <div class="game-panel" id="gamePanel"></div>
+  </section>
+
+  <!-- MISSION SUMMARY -->
+  <section class="screen" id="screen-summary">
+    <div class="hero" style="padding:26px 18px;">
+      <h2 style="margin-top:0;">📊 Mission Summary</h2>
+      <p>Amazing work, Time Traveler! Here's everything you mastered:</p>
+      <div id="summaryList" style="display:grid; gap:8px; text-align:left; margin:16px 0;"></div>
+      <div class="stat-pill" style="display:inline-flex; font-size:1.1rem;">⭐ Total XP: <span id="summaryXp">0</span></div>
+      <br><button class="btn pink" style="margin-top:18px;" onclick="goTo('screen-cert')">🏆 Get My Certificate</button>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE -->
+  <section class="screen" id="screen-cert">
+    <div class="cert">
+      <div style="font-size:3rem;">🏆⏰</div>
+      <h2>Time Traveler Certificate</h2>
+      <p>This certifies that</p>
+      <div class="name-line"><input type="text" id="nameInput" placeholder="Type your name"></div>
+      <p>has mastered <strong>Simple Present &amp; Simple Past</strong><br>and completed all 13 missions of the Grammar Time Machine!</p>
+      <p>⭐ Total XP earned: <strong id="finalXp">0</strong></p>
+      <button class="btn pink" onclick="window.print()">🖨️ Print Certificate</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* ===================== STATE ===================== */
+const state = { xp:0, completed:{} };
+const TOTAL_GAMES = 13;
+
+const games = [
+  {id:'speed', icon:'⚡', name:'Speed Round'},
+  {id:'sort', icon:'🗂️', name:'Time Machine Sort'},
+  {id:'fix', icon:'🛠️', name:'Fix the Mistake'},
+  {id:'tf', icon:'✅', name:'True or False'},
+  {id:'fillblank', icon:'⛽', name:'Fill the Time Machine'},
+  {id:'wheel', icon:'🎡', name:'Spin the Wheel'},
+  {id:'mystery', icon:'🔍', name:'Mystery Sentence'},
+  {id:'story', icon:'📖', name:'Story Time Travel'},
+  {id:'dice', icon:'🎲', name:'Speaking Dice'},
+  {id:'create', icon:'📝', name:'Creative Sentences'},
+  {id:'memory', icon:'🧠', name:'Memory Match'},
+  {id:'fastquiz', icon:'🏁', name:'Fast Quiz'},
+  {id:'boss', icon:'👑', name:'Boss Challenge'},
+];
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function addXp(n){
+  state.xp += n;
+  document.getElementById('xpCount').textContent = state.xp;
+  document.getElementById('finalXp').textContent = state.xp;
+}
+
+function updateProgress(){
+  const done = Object.keys(state.completed).length;
+  document.getElementById('progressFill').style.width = (done/TOTAL_GAMES*100)+'%';
+}
+
+function renderMap(){
+  const grid = document.getElementById('mapGrid');
+  grid.innerHTML = '';
+  games.forEach(g=>{
+    const done = state.completed[g.id];
+    const card = document.createElement('div');
+    card.className = 'map-card' + (done ? ' done':'');
+    card.innerHTML = `<span class="icon">${g.icon}</span><span class="name">${g.name}</span>${done?'<span class="check">✔ Completed</span>':''}`;
+    card.onclick = ()=>openGame(g.id);
+    grid.appendChild(card);
+  });
+}
+
+function completeGame(id, stars){
+  if(!state.completed[id]){
+    state.completed[id] = true;
+    addXp(stars);
+    updateProgress();
+    burstConfetti();
+    if(Object.keys(state.completed).length === TOTAL_GAMES){
+      setTimeout(()=>{ renderSummary(); goTo('screen-summary'); }, 900);
+    }
+  }
+  renderMap();
+}
+
+function renderSummary(){
+  const list = document.getElementById('summaryList');
+  list.innerHTML = games.map(g=>`
+    <div style="display:flex; align-items:center; gap:10px; background:#f7f4ff; border-radius:12px; padding:10px 14px;">
+      <span style="font-size:1.3rem;">${g.icon}</span>
+      <span style="flex:1; font-weight:bold;">${g.name}</span>
+      <span style="color:#2fa87c; font-weight:bold;">✔ Mastered</span>
+    </div>`).join('');
+  document.getElementById('summaryXp').textContent = state.xp;
+}
+
+function burstConfetti(){
+  const colors = ['#ff9ec7','#6fd6b3','#b39ddb','#7fc4ff','#ffb877'];
+  for(let i=0;i<40;i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.left = Math.random()*100+'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration = (2+Math.random()*1.5)+'s';
+    p.style.borderRadius = Math.random()>0.5 ? '50%':'2px';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 3600);
+  }
+}
+
+function openGame(id){
+  goTo('screen-game');
+  const panel = document.getElementById('gamePanel');
+  panel.innerHTML = '';
+  renderers[id](panel);
+}
+
+/* ===================== SHARED MCQ RENDERER ===================== */
+function renderMCQGame(container, title, icon, instructions, questions, gameId, passRatio, timerSeconds){
+  let idx = 0, correctCount = 0;
+  let timerInterval = null;
+
+  container.innerHTML = `
+    <h2>${icon} ${title}</h2>
+    <div class="instructions">${instructions}</div>
+    ${timerSeconds ? '<div class="timerbar"><div class="timerfill" id="tfill"></div></div>' : ''}
+    <div id="qArea"></div>
+    <p style="text-align:center; font-weight:bold;" id="scoreLine"></p>
+  `;
+
+  function startTimer(){
+    if(!timerSeconds) return;
+    let t = timerSeconds;
+    const fill = document.getElementById('tfill');
+    clearInterval(timerInterval);
+    timerInterval = setInterval(()=>{
+      t -= 0.1;
+      fill.style.width = Math.max(0,(t/timerSeconds*100))+'%';
+      if(t<=0){ clearInterval(timerInterval); lockAndNext(false); }
+    },100);
+  }
+
+  function showQ(){
+    if(idx >= questions.length){
+      clearInterval(timerInterval);
+      finish();
+      return;
+    }
+    const q = questions[idx];
+    const area = document.getElementById('qArea');
+    area.innerHTML = `
+      <div class="qcard">
+        <div class="qtext">${idx+1}. ${q.q}</div>
+        <div class="options">
+          ${q.options.map((o,i)=>`<button class="opt-btn" data-i="${i}">${o}</button>`).join('')}
+        </div>
+      </div>`;
+    area.querySelectorAll('.opt-btn').forEach(btn=>{
+      btn.onclick = ()=>{
+        const i = parseInt(btn.dataset.i);
+        checkAnswer(i, q.correct);
+      };
+    });
+    startTimer();
+  }
+
+  function showExplain(q){
+    const area = document.getElementById('qArea');
+    const exp = q.explain ? q.explain : '';
+    if(exp){
+      area.insertAdjacentHTML('beforeend', `<div class="instructions" style="background:var(--sky); margin-top:-4px;">💡 ${exp}</div>`);
+    }
+  }
+
+  function checkAnswer(chosen, correctIdx){
+    clearInterval(timerInterval);
+    const btns = document.querySelectorAll('.opt-btn');
+    btns.forEach((b,i)=>{
+      b.disabled = true;
+      if(i===correctIdx) b.classList.add('correct');
+      if(i===chosen && chosen!==correctIdx) b.classList.add('wrong');
+    });
+    if(chosen===correctIdx) correctCount++;
+    showExplain(questions[idx]);
+    setTimeout(()=>{ idx++; showQ(); }, 1900);
+  }
+
+  function lockAndNext(){
+    const btns = document.querySelectorAll('.opt-btn');
+    btns.forEach((b,i)=>{ b.disabled = true; if(i===questions[idx].correct) b.classList.add('correct'); });
+    showExplain(questions[idx]);
+    setTimeout(()=>{ idx++; showQ(); }, 1900);
+  }
+
+  function finish(){
+    const pct = correctCount/questions.length;
+    const line = document.getElementById('scoreLine');
+    line.textContent = `You got ${correctCount} / ${questions.length} correct!`;
+    if(pct >= passRatio){
+      container.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Mission Passed! Great work, Time Traveler!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="finishGame_${gameId}()">Collect Reward ⭐</button></div>`);
+    } else {
+      container.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 Almost there! Try again to pass.</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="retryGame_${gameId}()">Retry Mission</button></div>`);
+    }
+  }
+
+  window['finishGame_'+gameId] = ()=>{ completeGame(gameId, Math.round(3 + pct_star(correctCount,questions.length))); goTo('screen-map'); };
+  window['retryGame_'+gameId] = ()=>{ idx=0; correctCount=0; showQ(); };
+
+  function pct_star(c,total){ return Math.round((c/total)*3); }
+
+  showQ();
+}
+
+/* ===================== RENDERERS PER GAME ===================== */
+const renderers = {};
+
+/* 1. SPEED ROUND */
+renderers.speed = (c)=>{
+  const qs = [
+    {q:"She ___ to school every day.", options:["go","goes","went","gone"], correct:1, explain:"'every day' = habit → Present. He/She/It needs +s → goes."},
+    {q:"They ___ football yesterday.", options:["play","plays","played","playing"], correct:2, explain:"'yesterday' = Past → play + ed = played."},
+    {q:"I ___ my homework now... wait, every night!", options:["do","did","does","doing"], correct:0, explain:"'every night' = habit → Present. I/You/We/They use the base verb."},
+    {q:"We ___ a movie last weekend.", options:["watch","watches","watched","watching"], correct:2, explain:"'last weekend' = Past → watch + ed = watched."},
+    {q:"He ___ his teeth every morning.", options:["brush","brushed","brushes","brushing"], correct:2, explain:"'every morning' = habit → Present. He needs +es → brushes."},
+    {q:"My dad ___ to work yesterday by bus.", options:["go","goes","went","gone"], correct:2, explain:"'yesterday' = Past. 'go' is irregular → went."},
+    {q:"The sun ___ in the east every day.", options:["rise","rises","rose","rising"], correct:1, explain:"'every day' = habit → Present. The sun (it) needs +s → rises."},
+    {q:"Yesterday, I ___ a letter to my friend.", options:["write","writes","wrote","writing"], correct:2, explain:"'yesterday' = Past. 'write' is irregular → wrote."},
+  ];
+  renderMCQGame(c, 'Speed Round', '⚡', 'Choose the correct verb before time runs out! Watch the timer bar.', qs, 'speed', 0.6, 8);
+};
+
+/* 4. TRUE OR FALSE */
+renderers.tf = (c)=>{
+  const qs = [
+    {q:"'I play basketball every day.' — This is Simple PAST.", options:["True","False"], correct:1, explain:"'every day' is a Present time word, not Past."},
+    {q:"'She watched TV last night.' — This is Simple PAST.", options:["True","False"], correct:0, explain:"'last night' + watched (verb+ed) = Past."},
+    {q:"'They go to the market on Sundays.' — This is Simple PRESENT.", options:["True","False"], correct:0, explain:"'on Sundays' describes a routine/habit = Present."},
+    {q:"'We ate noodles yesterday.' — This is Simple PRESENT.", options:["True","False"], correct:1, explain:"'ate' + 'yesterday' = Past, not Present."},
+    {q:"'He always brushes his teeth.' — This is Simple PAST.", options:["True","False"], correct:1, explain:"'always' + brushes (+s) = Present, not Past."},
+    {q:"'I visited my grandma last week.' — This is Simple PAST.", options:["True","False"], correct:0, explain:"'visited' + 'last week' = Past."},
+    {q:"'The past tense of 'go' is 'goed'.'", options:["True","False"], correct:1, explain:"'go' is irregular — the correct past form is 'went', not 'goed'."},
+    {q:"'The past tense of 'eat' is 'ate'.'", options:["True","False"], correct:0, explain:"Correct! 'eat' is irregular → ate."},
+    {q:"'She cook dinner every day.' is a CORRECT sentence.", options:["True","False"], correct:1, explain:"He/She/It needs +s in Present → it should be 'cooks'."},
+    {q:"'Last Monday, we visited the zoo.' — This is Simple PAST.", options:["True","False"], correct:0, explain:"'Last Monday' + visited (+ed) = Past."},
+  ];
+  renderMCQGame(c, 'True or False', '✅', 'Tap True or False as fast as you can!', qs, 'tf', 0.6, 6);
+};
+
+/* 11. FAST QUIZ */
+renderers.fastquiz = (c)=>{
+  const qs = [
+    {q:"Choose the correct sentence.", options:["She go to school.","She goes to school.","She going to school.","She gone to school."], correct:1, explain:"She/He/It needs +s in Simple Present → goes."},
+    {q:"Choose the correct sentence.", options:["I eated rice.","I eat rice yesterday.","I ate rice yesterday.","I eats rice yesterday."], correct:2, explain:"'eat' is irregular → ate. 'yesterday' needs Past."},
+    {q:"Which word shows PAST time?", options:["Every day","Usually","Yesterday","Always"], correct:2, explain:"'Yesterday' signals Past. The others signal habits (Present)."},
+    {q:"Which word shows PRESENT time (habit)?", options:["Last night","Two days ago","Often","Yesterday"], correct:2, explain:"'Often' signals a habit (Present). The others signal Past."},
+    {q:"Past tense of 'run'?", options:["runned","ran","runed","running"], correct:1, explain:"'run' is irregular → ran."},
+    {q:"Past tense of 'have'?", options:["haved","haves","had","having"], correct:2, explain:"'have' is irregular → had."},
+    {q:"Choose correct: 'We ___ swimming last Sunday.'", options:["go","goes","went","going"], correct:2, explain:"'last Sunday' = Past → went."},
+    {q:"Choose correct: 'My cat ___ milk every morning.'", options:["drink","drinks","drank","drinking"], correct:1, explain:"'every morning' = Present, subject is 'it' → drinks."},
+    {q:"Past tense of 'buy'?", options:["buyed","bought","buys","buying"], correct:1, explain:"'buy' is irregular → bought."},
+    {q:"Choose correct: 'Yesterday, they ___ a big cake.'", options:["make","makes","made","making"], correct:2, explain:"'Yesterday' = Past. 'make' is irregular → made."},
+  ];
+  renderMCQGame(c, 'Fast Quiz', '🏁', '10 questions, no timer — but try to be quick and accurate!', qs, 'fastquiz', 0.7, null);
+};
+
+/* 13. BOSS CHALLENGE - 3 stages: Identify, Fix, Create */
+renderers.boss = (c)=>{
+  const identifyQs = [
+    {q:"'Last year, we ___ to Bali.'", options:["travel","travels","traveled","traveling"], correct:2, explain:"'Last year' = Past → travel + ed."},
+    {q:"Which sentence is Simple PRESENT?", options:["I watched a film.","I watch a film every Friday.","I was watching a film.","I will watch a film."], correct:1, explain:"'every Friday' = habit = Present."},
+    {q:"'She ___ her room every Saturday.'", options:["clean","cleans","cleaned","cleaning"], correct:1, explain:"'every Saturday' = Present, She needs +s."},
+    {q:"Which time word signals PAST?", options:["Every week","Usually","Last night","Often"], correct:2, explain:"'Last night' signals Past."},
+  ];
+  const fixQs = [
+    {wrong:"They goed home yesterday.", options:["goed","went","go"], correct:"went", explain:"'go' is irregular — Past form is 'went'."},
+    {wrong:"My family eat dinner together every evening.", options:["eat","eats","ate"], correct:"eats", explain:"'every evening' = Present, family (it) needs +s."},
+    {wrong:"Two days ago, my brother buy a new bike.", options:["buy","buys","bought"], correct:"bought", explain:"'Two days ago' = Past. 'buy' is irregular → bought."},
+  ];
+  let stage = 1;
+  let idIdx=0, idCorrect=0;
+  let fixIdx=0, fixCorrect=0;
+
+  function stageHeader(n, label){
+    return `<div style="text-align:center; margin-bottom:10px; font-weight:bold; color:#7a6a95;">Stage ${n}/3: ${label}</div>`;
+  }
+
+  function startIdentify(){
+    stage = 1;
+    c.innerHTML = `<h2>👑 Boss Challenge</h2>
+      <div class="instructions">Defeat the Time Boss in 3 stages: Identify the tense, Fix the mistake, and Create your own sentences!</div>
+      ${stageHeader(1,'Identify')}
+      <div id="bossArea"></div>`;
+    showIdentify();
+  }
+  function showIdentify(){
+    if(idIdx >= identifyQs.length){ startFix(); return; }
+    const q = identifyQs[idIdx];
+    document.getElementById('bossArea').innerHTML = `
+      <div class="qcard">
+        <div class="qtext">${idIdx+1}. ${q.q}</div>
+        <div class="options">${q.options.map((o,i)=>`<button class="opt-btn" data-i="${i}">${o}</button>`).join('')}</div>
+      </div>`;
+    document.querySelectorAll('#bossArea .opt-btn').forEach(btn=>{
+      btn.onclick = ()=>{
+        const i = parseInt(btn.dataset.i);
+        document.querySelectorAll('#bossArea .opt-btn').forEach((b,bi)=>{
+          b.disabled=true;
+          if(bi===q.correct) b.classList.add('correct');
+          if(bi===i && i!==q.correct) b.classList.add('wrong');
+        });
+        if(i===q.correct) idCorrect++;
+        document.getElementById('bossArea').insertAdjacentHTML('beforeend', `<div class="instructions" style="background:var(--sky);">💡 ${q.explain}</div>`);
+        setTimeout(()=>{ idIdx++; showIdentify(); }, 1700);
+      };
+    });
+  }
+
+  function startFix(){
+    stage = 2;
+    c.innerHTML = `<h2>👑 Boss Challenge</h2>
+      ${stageHeader(2,'Fix the Mistake')}
+      <div id="bossArea"></div>`;
+    showFix();
+  }
+  function showFix(){
+    if(fixIdx >= fixQs.length){ startCreate(); return; }
+    const it = fixQs[fixIdx];
+    document.getElementById('bossArea').innerHTML = `
+      <div class="qcard">
+        <div class="qtext">${fixIdx+1}. ${it.wrong}</div>
+        <div class="options">${it.options.map(o=>`<button class="opt-btn" data-o="${o}">${o}</button>`).join('')}</div>
+      </div>`;
+    document.querySelectorAll('#bossArea .opt-btn').forEach(b=>{
+      b.onclick = ()=>{
+        const ok = b.dataset.o === it.correct;
+        document.querySelectorAll('#bossArea .opt-btn').forEach(x=>{
+          x.disabled=true;
+          if(x.dataset.o===it.correct) x.classList.add('correct');
+          else if(x===b) x.classList.add('wrong');
+        });
+        if(ok) fixCorrect++;
+        document.getElementById('bossArea').insertAdjacentHTML('beforeend', `<div class="instructions" style="background:var(--sky);">💡 ${it.explain}</div>`);
+        setTimeout(()=>{ fixIdx++; showFix(); }, 1700);
+      };
+    });
+  }
+
+  function startCreate(){
+    stage = 3;
+    c.innerHTML = `<h2>👑 Boss Challenge</h2>
+      ${stageHeader(3,'Create')}
+      <div class="instructions">Final move! Write ONE Present sentence and ONE Past sentence about your last holiday.</div>
+      <div class="qcard">
+        <div class="qtext">🟢 Present (e.g. a habit during holidays)</div>
+        <input type="text" id="bossPresent" placeholder="Type your sentence..." style="width:100%; max-width:420px;">
+      </div>
+      <div class="qcard">
+        <div class="qtext">🟤 Past (something you did on your last holiday)</div>
+        <input type="text" id="bossPast" placeholder="Type your sentence..." style="width:100%; max-width:420px;">
+      </div>
+      <div class="checklist">
+        <label><input type="checkbox" id="bc1"> My present sentence uses a time word like every/usually/often</label>
+        <label><input type="checkbox" id="bc2"> My past sentence uses a time word like yesterday/last/ago</label>
+        <label><input type="checkbox" id="bc3"> Both verbs match their tense correctly</label>
+      </div>
+      <div style="text-align:center;"><button class="btn small" id="bossFinish">Defeat the Boss! 👑</button></div>`;
+    document.getElementById('bossFinish').onclick = ()=>{
+      const pres = document.getElementById('bossPresent').value.trim();
+      const past = document.getElementById('bossPast').value.trim();
+      const boxes = [document.getElementById('bc1'), document.getElementById('bc2'), document.getElementById('bc3')];
+      if(!pres || !past){ alert('Please write both sentences first!'); return; }
+      if(!boxes.every(b=>b.checked)){ alert('Check all three boxes to confirm your sentences!'); return; }
+      finishBoss();
+    };
+  }
+
+  function finishBoss(){
+    const idPct = idCorrect/identifyQs.length;
+    const fixPct = fixCorrect/fixQs.length;
+    const overallPct = (idPct + fixPct) / 2;
+    c.innerHTML = `<h2>👑 Boss Challenge</h2>
+      <div class="qcard">
+        <p>🔍 Identify: ${idCorrect}/${identifyQs.length}</p>
+        <p>🛠️ Fix: ${fixCorrect}/${fixQs.length}</p>
+        <p>📝 Create: Completed ✔</p>
+      </div>`;
+    if(overallPct >= 0.6){
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 You defeated the Time Boss!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('boss',5); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+    } else {
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 So close! Challenge the Boss again.</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="openGame('boss')">Retry Mission</button></div>`);
+    }
+  }
+
+  startIdentify();
+};
+
+/* 10b. CREATE YOUR TIME TRAVEL SENTENCE */
+renderers.create = (c)=>{
+  c.innerHTML = `<h2>📝 Create Your Time Travel Sentence</h2>
+    <div class="instructions">Fill in both blanks with your own idea. Then speak both sentences out loud to your teacher!</div>
+    <div id="createArea">
+      <div class="qcard">
+        <div class="qtext">🟢 PRESENT</div>
+        <p style="margin:6px 0;">I <input type="text" class="fill-blank" id="cPresent" style="width:130px;"> every day.</p>
+        <p style="color:#999; font-size:0.85rem; margin:2px 0;">e.g. play football, read books, drink milk...</p>
+      </div>
+      <div class="qcard">
+        <div class="qtext">🔵 PAST</div>
+        <p style="margin:6px 0;">Yesterday, I <input type="text" class="fill-blank" id="cPast" style="width:130px;">.</p>
+        <p style="color:#999; font-size:0.85rem; margin:2px 0;">Tip: try the past form of the same verb you used above!</p>
+      </div>
+      <div style="text-align:center;"><button class="btn small" id="cCheck">My Sentences Are Ready ✔</button></div>
+    </div>`;
+  document.getElementById('cCheck').onclick = ()=>{
+    const pres = document.getElementById('cPresent').value.trim();
+    const past = document.getElementById('cPast').value.trim();
+    if(!pres || !past){ alert('Please fill in both blanks first!'); return; }
+    showSpeak(pres, past);
+  };
+
+  function showSpeak(pres, past){
+    document.getElementById('createArea').innerHTML = `
+      <div class="qcard">
+        <div class="qtext">🎤 Now speak both sentences to your teacher!</div>
+        <p style="margin:8px 0; font-size:1.05rem;">🟢 "I <strong>${pres}</strong> every day."</p>
+        <p style="margin:8px 0; font-size:1.05rem;">🔵 "Yesterday, I <strong>${past}</strong>."</p>
+      </div>
+      <div class="qcard" style="background:#fff7ec;">
+        <div class="qtext">👩‍🏫 Teacher Check</div>
+        <div class="checklist">
+          <label><input type="checkbox" class="tcheck"> Correct tense</label>
+          <label><input type="checkbox" class="tcheck"> Correct verb</label>
+          <label><input type="checkbox" class="tcheck"> Complete sentence</label>
+          <label><input type="checkbox" class="tcheck"> Clear pronunciation</label>
+        </div>
+      </div>
+      <div style="text-align:center;"><button class="btn small" id="cDone">Done ✔</button></div>`;
+    document.getElementById('cDone').onclick = ()=>{
+      const boxes = document.querySelectorAll('.tcheck');
+      const allChecked = Array.from(boxes).every(b=>b.checked);
+      if(!allChecked){ alert('Teacher: please check all four boxes once the student has spoken both sentences.'); return; }
+      finish();
+    };
+  }
+
+  function finish(){
+    c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Great creating and speaking, Time Traveler!</div>
+      <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('create',4); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+  }
+};
+
+/* 2. TIME MACHINE SORT */
+renderers.sort = (c)=>{
+  const items = [
+    {t:"I play football every day.", ans:"present"},
+    {t:"She watched a movie last night.", ans:"past"},
+    {t:"We visited grandma last week.", ans:"past"},
+    {t:"He usually walks to school.", ans:"present"},
+    {t:"They ate pizza yesterday.", ans:"past"},
+    {t:"My mom cooks dinner every evening.", ans:"present"},
+    {t:"I cleaned my room this morning.", ans:"past"},
+    {t:"The birds sing every morning.", ans:"present"},
+  ];
+  let selected = null; let placed = {};
+  c.innerHTML = `
+    <h2>🗂️ Time Machine Sort</h2>
+    <div class="instructions">Tap a sentence below, then tap the correct time zone (Present or Past) to sort it!</div>
+    <div class="pool" id="pool"></div>
+    <div class="zones">
+      <div class="zone" id="zonePresent"><h4>🟢 Present Zone</h4></div>
+      <div class="zone" id="zonePast"><h4>🟤 Past Zone</h4></div>
+    </div>
+    <p style="text-align:center; font-weight:bold;" id="sortMsg"></p>
+  `;
+  const pool = document.getElementById('pool');
+  items.forEach((it,i)=>{
+    const chip = document.createElement('div');
+    chip.className = 'chip'; chip.textContent = it.t; chip.dataset.i = i;
+    chip.onclick = ()=>{
+      document.querySelectorAll('#pool .chip').forEach(ch=>ch.classList.remove('selected'));
+      chip.classList.add('selected'); selected = i;
+    };
+    pool.appendChild(chip);
+  });
+  function tryPlace(zoneAns, zoneEl){
+    if(selected===null) return;
+    const it = items[selected];
+    const chipEl = pool.querySelector(`[data-i="${selected}"]`);
+    if(!chipEl) return;
+    if(it.ans === zoneAns){
+      chipEl.remove();
+      const done = document.createElement('div'); done.className='chip'; done.textContent = it.t;
+      zoneEl.appendChild(done);
+      placed[selected] = true;
+      selected = null;
+      document.getElementById('sortMsg').textContent = '✅ Correct!';
+      checkDone();
+    } else {
+      document.getElementById('sortMsg').textContent = '❌ Try another zone!';
+    }
+  }
+  document.getElementById('zonePresent').onclick = ()=>tryPlace('present', document.getElementById('zonePresent'));
+  document.getElementById('zonePast').onclick = ()=>tryPlace('past', document.getElementById('zonePast'));
+  function checkDone(){
+    if(Object.keys(placed).length === items.length){
+      document.getElementById('sortMsg').innerHTML = '🎉 All sorted! Great job!';
+      c.insertAdjacentHTML('beforeend', `<div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('sort',4); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+    }
+  }
+};
+
+/* 3. FIX THE MISTAKE */
+renderers.fix = (c)=>{
+  const items = [
+    {wrong:"She go to school every day.", options:["go","goes","went"], correct:"goes", explain:"'every day' = Present, and He/She/It needs +s."},
+    {wrong:"I eated breakfast this morning.", options:["eated","ate","eat"], correct:"ate", explain:"'eat' is irregular — never add 'ed'. Past = ate."},
+    {wrong:"They walks to the park yesterday.", options:["walks","walked","walk"], correct:"walked", explain:"'yesterday' = Past, and Past tense never adds 's'."},
+    {wrong:"He drink milk every night.", options:["drink","drinks","drank"], correct:"drinks", explain:"'every night' = Present, He needs +s → drinks."},
+    {wrong:"We goed to the zoo last week.", options:["goed","went","go"], correct:"went", explain:"'go' is irregular — the Past form is 'went', not 'goed'."},
+    {wrong:"Yesterday, I go to my grandma's house.", options:["go","went","goes"], correct:"went", explain:"'Yesterday' = Past → went."},
+    {wrong:"The cat sleep on the sofa every afternoon.", options:["sleep","sleeps","slept"], correct:"sleeps", explain:"'every afternoon' = Present, the cat (it) needs +s."},
+    {wrong:"Last night, I watch a movie.", options:["watch","watches","watched"], correct:"watched", explain:"'Last night' = Past → watched."},
+  ];
+  let idx = 0, correct = 0;
+  c.innerHTML = `<h2>🛠️ Fix the Mistake</h2>
+    <div class="instructions">Each sentence has ONE mistake. Tap the correct word to fix it!</div>
+    <div id="fixArea"></div><p style="text-align:center; font-weight:bold;" id="fixMsg"></p>`;
+  function show(){
+    if(idx>=items.length){ finish(); return; }
+    const it = items[idx];
+    document.getElementById('fixArea').innerHTML = `
+      <div class="qcard">
+        <div class="qtext">${idx+1}. ${it.wrong}</div>
+        <div class="options">${it.options.map(o=>`<button class="opt-btn" data-o="${o}">${o}</button>`).join('')}</div>
+      </div>`;
+    document.querySelectorAll('#fixArea .opt-btn').forEach(b=>{
+      b.onclick = ()=>{
+        const ok = b.dataset.o === it.correct;
+        document.querySelectorAll('#fixArea .opt-btn').forEach(x=>{
+          x.disabled=true;
+          if(x.dataset.o===it.correct) x.classList.add('correct');
+          else if(x===b) x.classList.add('wrong');
+        });
+        if(ok) correct++;
+        document.getElementById('fixArea').insertAdjacentHTML('beforeend', `<div class="instructions" style="background:var(--sky);">💡 ${it.explain}</div>`);
+        setTimeout(()=>{ idx++; show(); }, 1900);
+      };
+    });
+  }
+  function finish(){
+    document.getElementById('fixMsg').textContent = `You fixed ${correct}/${items.length} sentences!`;
+    if(correct/items.length >= 0.6){
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Great fixing work!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('fix',3); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+    } else {
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 Try again!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="openGame('fix')">Retry Mission</button></div>`);
+    }
+  }
+  show();
+};
+
+/* 5. FILL THE TIME MACHINE */
+renderers.fillblank = (c)=>{
+  const items = [
+    {before:"Every morning, I ", verb:"(brush)", after:" my teeth.", ans:"brush", hint:"'Every morning' = Present, I/You/We/They use the base verb."},
+    {before:"Yesterday, she ", verb:"(cook)", after:" fried rice.", ans:"cooked", hint:"'Yesterday' = Past → cook + ed."},
+    {before:"We ", verb:"(visit)", after:" our uncle last month.", ans:"visited", hint:"'last month' = Past → visit + ed."},
+    {before:"He usually ", verb:"(read)", after:" comic books.", ans:"reads", hint:"'usually' = Present, He needs +s → reads."},
+    {before:"Last night, they ", verb:"(watch)", after:" a football match.", ans:"watched", hint:"'Last night' = Past → watch + ed."},
+    {before:"My cat ", verb:"(sleep)", after:" a lot every day.", ans:"sleeps", hint:"'every day' = Present, cat (it) needs +s."},
+    {before:"Two days ago, I ", verb:"(lose)", after:" my pencil.", ans:"lost", hint:"'lose' is irregular — Past form is 'lost'."},
+    {before:"She ", verb:"(go)", after:" to Bandung last year.", ans:"went", hint:"'last year' = Past. 'go' is irregular → went."},
+  ];
+  let idx=0, correct=0;
+  c.innerHTML = `<h2>⛽ Fill the Time Machine</h2>
+    <div class="instructions">Type the correct form of the verb in brackets to fuel the time machine!</div>
+    <div id="fbArea"></div><p style="text-align:center; font-weight:bold;" id="fbMsg"></p>`;
+  function show(){
+    if(idx>=items.length){ finish(); return; }
+    const it = items[idx];
+    document.getElementById('fbArea').innerHTML = `
+      <div class="qcard">
+        <div class="qtext">${idx+1}. ${it.before}<input type="text" class="fill-blank" id="fbInput"> ${it.after} <span style="color:#999">${it.verb}</span></div>
+        <button class="btn small" id="fbCheck">Check ✔</button>
+        <span id="fbFeedback" style="margin-left:10px; font-weight:bold;"></span>
+      </div>`;
+    document.getElementById('fbCheck').onclick = ()=>{
+      const val = document.getElementById('fbInput').value.trim().toLowerCase();
+      const fb = document.getElementById('fbFeedback');
+      if(val === it.ans){
+        fb.textContent = '✅ Correct!'; fb.style.color='#2fa87c'; correct++;
+        document.getElementById('fbCheck').disabled = true;
+        document.getElementById('fbInput').disabled = true;
+        setTimeout(()=>{ idx++; show(); }, 700);
+      } else {
+        fb.textContent = '❌ Try again — 💡 ' + it.hint; fb.style.color='#c1554e';
+      }
+    };
+  }
+  function finish(){
+    document.getElementById('fbMsg').textContent = `Score: ${correct}/${items.length}`;
+    if(correct/items.length >= 0.6){
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Time machine fueled up!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('fillblank',4); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+    } else {
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 Almost! Try again.</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="openGame('fillblank')">Retry Mission</button></div>`);
+    }
+  }
+  show();
+};
+
+/* 6. SPIN THE WHEEL */
+renderers.wheel = (c)=>{
+  const verbs = ['play','watch','clean','cook','walk','study','listen','talk','open','close','wash','dance'];
+  const irregular = {go:'went', eat:'ate', see:'saw', have:'had', write:'wrote', run:'ran'};
+  const allVerbs = verbs.concat(Object.keys(irregular));
+  let round = 0, correct = 0; const maxRounds = 6; let current = '';
+  c.innerHTML = `<h2>🎡 Spin the Wheel</h2>
+    <div class="instructions">Spin to get a verb, then type its PAST TENSE form!</div>
+    <div style="text-align:center;">
+      <div class="dice" id="wheelBtn">🎡</div>
+      <p id="wheelWord" style="font-size:1.3rem; font-weight:bold; min-height:1.6em;"></p>
+      <input type="text" id="wheelInput" placeholder="past tense..." style="display:none;">
+      <br><button class="btn small" id="wheelCheck" style="display:none; margin-top:10px;">Check ✔</button>
+      <p id="wheelFeedback" style="font-weight:bold;"></p>
+      <p id="wheelScore">Round 0/${maxRounds}</p>
+    </div>`;
+  document.getElementById('wheelBtn').onclick = spin;
+  function spin(){
+    if(round>=maxRounds) return;
+    current = allVerbs[Math.floor(Math.random()*allVerbs.length)];
+    document.getElementById('wheelWord').textContent = current;
+    document.getElementById('wheelInput').style.display='inline-block';
+    document.getElementById('wheelCheck').style.display='inline-block';
+    document.getElementById('wheelInput').value='';
+    document.getElementById('wheelFeedback').textContent='';
+  }
+  document.getElementById('wheelCheck').onclick = ()=>{
+    const val = document.getElementById('wheelInput').value.trim().toLowerCase();
+    let ans = irregular[current] ? irregular[current] : (current.endsWith('e') ? current+'d' : current+'ed');
+    const fb = document.getElementById('wheelFeedback');
+    round++;
+    if(val === ans){ fb.textContent='✅ Correct! ('+ans+')'; fb.style.color='#2fa87c'; correct++; }
+    else { fb.textContent='❌ Answer: '+ans; fb.style.color='#c1554e'; }
+    document.getElementById('wheelScore').textContent = `Round ${round}/${maxRounds}`;
+    document.getElementById('wheelInput').style.display='none';
+    document.getElementById('wheelCheck').style.display='none';
+    if(round>=maxRounds){
+      setTimeout(()=>{
+        document.getElementById('wheelWord').textContent = `Final score: ${correct}/${maxRounds}`;
+        if(correct/maxRounds >= 0.5){
+          c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Wheel Master!</div>
+            <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('wheel',3); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+        } else {
+          c.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 Spin again!</div>
+            <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="openGame('wheel')">Retry Mission</button></div>`);
+        }
+      }, 900);
+    }
+  };
+};
+
+/* 7. MYSTERY SENTENCE */
+renderers.mystery = (c)=>{
+  const items = [
+    {words:["Yesterday,","my","family","went","to","the","beach."], ans:"past"},
+    {words:["I","usually","drink","milk","every","morning."], ans:"present"},
+    {words:["She","cooked","fried","rice","last","night."], ans:"past"},
+    {words:["We","always","clean","our","classroom","together."], ans:"present"},
+    {words:["Two","days","ago,","he","lost","his","pencil."], ans:"past"},
+    {words:["The","birds","sing","every","morning","loudly."], ans:"present"},
+  ];
+  let idx=0, correct=0, revealCount=0, revealTimer=null;
+  c.innerHTML = `<h2>🔍 Mystery Sentence</h2>
+    <div class="instructions">Words appear one by one. Guess PRESENT or PAST as soon as you know — the faster, the more stars!</div>
+    <div id="mysArea"></div><p style="text-align:center; font-weight:bold;" id="mysMsg"></p>`;
+  function show(){
+    if(idx>=items.length){ finish(); return; }
+    revealCount = 1;
+    const it = items[idx];
+    document.getElementById('mysArea').innerHTML = `
+      <div class="qcard">
+        <div class="qtext" id="mysText">${it.words[0]}</div>
+        <div class="options">
+          <button class="opt-btn" data-a="present">🟢 Present</button>
+          <button class="opt-btn" data-a="past">🟤 Past</button>
+        </div>
+      </div>`;
+    clearInterval(revealTimer);
+    revealTimer = setInterval(()=>{
+      if(revealCount < it.words.length){
+        document.getElementById('mysText').textContent = it.words.slice(0,revealCount+1).join(' ');
+        revealCount++;
+      } else { clearInterval(revealTimer); }
+    }, 900);
+    document.querySelectorAll('#mysArea .opt-btn').forEach(b=>{
+      b.onclick = ()=>{
+        clearInterval(revealTimer);
+        const ok = b.dataset.a === it.ans;
+        document.querySelectorAll('#mysArea .opt-btn').forEach(x=>{
+          x.disabled=true;
+          if(x.dataset.a===it.ans) x.classList.add('correct');
+          else if(x===b) x.classList.add('wrong');
+        });
+        if(ok) correct++;
+        setTimeout(()=>{ idx++; show(); }, 700);
+      };
+    });
+  }
+  function finish(){
+    document.getElementById('mysMsg').textContent = `Score: ${correct}/${items.length}`;
+    if(correct/items.length >= 0.5){
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Mystery solved!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('mystery',3); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+    } else {
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 Try again!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="openGame('mystery')">Retry Mission</button></div>`);
+    }
+  }
+  show();
+};
+
+/* 8. STORY TIME TRAVEL */
+renderers.story = (c)=>{
+  const blanks = [
+    {ans:'wakes', hint:'(wake)'}, {ans:'eats', hint:'(eat)'}, {ans:'walks', hint:'(walk)'},
+    {ans:'visited', hint:'(visit)'}, {ans:'saw', hint:'(see)'}, {ans:'played', hint:'(play)'},
+    {ans:'was', hint:'(be)'}, {ans:'came', hint:'(come)'}
+  ];
+  c.innerHTML = `<h2>📖 Story Time Travel</h2>
+    <div class="instructions">Read the story and fill in each blank with the correct verb form. Some parts are everyday habits (present), some are about a special day (past)!</div>
+    <div class="qcard">
+      <p>Every morning, Toby <input class="fill-blank" data-i="0" style="width:90px;"> up early. <span style="color:#999">${blanks[0].hint}</span>
+      He <input class="fill-blank" data-i="1" style="width:90px;"> breakfast with his family <span style="color:#999">${blanks[1].hint}</span>
+      and then he <input class="fill-blank" data-i="2" style="width:90px;"> to school. <span style="color:#999">${blanks[2].hint}</span></p>
+      <p>But last Sunday was a special day! Toby's family <input class="fill-blank" data-i="3" style="width:90px;"> Grandma's house <span style="color:#999">${blanks[3].hint}</span>.
+      There, he <input class="fill-blank" data-i="4" style="width:90px;"> a beautiful garden <span style="color:#999">${blanks[4].hint}</span>
+      and he <input class="fill-blank" data-i="5" style="width:90px;"> games with his cousins <span style="color:#999">${blanks[5].hint}</span>.
+      Everyone <input class="fill-blank" data-i="6" style="width:90px;"> so happy <span style="color:#999">${blanks[6].hint}</span>
+      when the ice cream truck <input class="fill-blank" data-i="7" style="width:90px;"> by! <span style="color:#999">${blanks[7].hint}</span></p>
+    </div>
+    <div style="text-align:center;"><button class="btn small" id="storyCheck">Check My Story ✔</button></div>
+    <p style="text-align:center; font-weight:bold;" id="storyMsg"></p>`;
+  document.getElementById('storyCheck').onclick = ()=>{
+    let correct = 0;
+    document.querySelectorAll('.fill-blank').forEach(inp=>{
+      const i = parseInt(inp.dataset.i);
+      const val = inp.value.trim().toLowerCase();
+      if(val === blanks[i].ans){ inp.style.borderColor='#4fae90'; inp.style.background='#eafff5'; correct++; }
+      else { inp.style.borderColor='#e07272'; inp.style.background='#fff0f0'; }
+    });
+    document.getElementById('storyMsg').textContent = `Score: ${correct}/${blanks.length}`;
+    if(correct/blanks.length >= 0.6){
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Wonderful storytelling!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('story',4); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+    } else {
+      c.insertAdjacentHTML('beforeend', `<div class="score-banner retry">🔁 Check the hints and try again!</div>
+        <div style="text-align:center; margin-top:12px;"><button class="btn alt" onclick="openGame('story')">Retry Mission</button></div>`);
+    }
+  };
+};
+
+/* 9. SPEAKING DICE */
+renderers.dice = (c)=>{
+  const faces = [
+    {n:1, subject:'I', tense:'Present', prompt:'Say a sentence about something you do every day.'},
+    {n:2, subject:'She/He', tense:'Past', prompt:'Say a sentence about what she/he did yesterday.'},
+    {n:3, subject:'We', tense:'Present', prompt:'Say a sentence about something your family usually does.'},
+    {n:4, subject:'They', tense:'Past', prompt:'Say a sentence about what they did last week.'},
+    {n:5, subject:'My friend', tense:'Present', prompt:"Say a sentence about your friend's habit."},
+    {n:6, subject:'I', tense:'Past', prompt:'Say a sentence about something special you did last year.'},
+  ];
+  let rolls = 0; const maxRolls = 4; let checkedCount = 0;
+  c.innerHTML = `<h2>🎲 Speaking Dice</h2>
+    <div class="instructions">Roll the dice, say your sentence out loud, then ask your teacher to check it off!</div>
+    <div class="dice" id="diceBtn">🎲</div>
+    <div id="diceResult"></div>
+    <p style="text-align:center;">Rolls used: <span id="rollCount">0</span>/${maxRolls}</p>`;
+  document.getElementById('diceBtn').onclick = roll;
+  function roll(){
+    if(rolls>=maxRolls) return;
+    rolls++;
+    document.getElementById('rollCount').textContent = rolls;
+    const f = faces[Math.floor(Math.random()*faces.length)];
+    document.getElementById('diceResult').innerHTML = `
+      <div class="qcard">
+        <div class="qtext">🎯 Subject: <strong>${f.subject}</strong> | Tense: <strong>${f.tense}</strong></div>
+        <p>${f.prompt}</p>
+        <div class="checklist">
+          <label><input type="checkbox" class="dcheck"> I said my sentence out loud</label>
+        </div>
+      </div>
+      <div class="qcard" style="background:#fff7ec;">
+        <div class="qtext">👩‍🏫 Teacher Check</div>
+        <div class="checklist">
+          <label><input type="checkbox" class="dcheck"> Correct tense</label>
+          <label><input type="checkbox" class="dcheck"> Correct verb</label>
+          <label><input type="checkbox" class="dcheck"> Complete sentence</label>
+          <label><input type="checkbox" class="dcheck"> Clear pronunciation</label>
+        </div>
+        <button class="btn small" id="diceDone">Done ✔</button>
+      </div>`;
+    document.getElementById('diceDone').onclick = ()=>{
+      const boxes = document.querySelectorAll('.dcheck');
+      const allChecked = Array.from(boxes).every(b=>b.checked);
+      if(allChecked){
+        checkedCount++;
+        document.getElementById('diceResult').insertAdjacentHTML('beforeend', '<p style="color:#2fa87c; font-weight:bold;">✅ Nice speaking!</p>');
+        if(rolls>=maxRolls){
+          setTimeout(()=>{
+            c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Speaking Champion!</div>
+              <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('dice',3); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+          }, 500);
+        }
+      } else {
+        alert('Teacher: please check all boxes once the student has spoken the sentence correctly.');
+      }
+    };
+  }
+};
+
+/* 10. MEMORY MATCH */
+renderers.memory = (c)=>{
+  const pairs = [
+    ['play','played'],['watch','watched'],['go','went'],['eat','ate'],
+    ['see','saw'],['have','had']
+  ];
+  let cards = [];
+  pairs.forEach((p,i)=>{ cards.push({text:p[0], pair:i}); cards.push({text:p[1], pair:i}); });
+  cards = cards.sort(()=>Math.random()-0.5);
+  let first = null, matches = 0, lock=false;
+  c.innerHTML = `<h2>🧠 Memory Match</h2>
+    <div class="instructions">Flip two cards to match a verb with its past tense form!</div>
+    <div class="memory-grid" id="memGrid"></div>
+    <p style="text-align:center; font-weight:bold;" id="memMsg"></p>`;
+  const grid = document.getElementById('memGrid');
+  cards.forEach((card,i)=>{
+    const el = document.createElement('div');
+    el.className = 'mcard'; el.textContent = '⏰'; el.dataset.i = i;
+    el.onclick = ()=>flip(el, card);
+    grid.appendChild(el);
+  });
+  function flip(el, card){
+    if(lock || el.classList.contains('flipped') || el.classList.contains('matched')) return;
+    el.classList.add('flipped'); el.textContent = card.text;
+    if(first === null){ first = {el, card}; return; }
+    lock = true;
+    if(first.card.pair === card.pair && first.el !== el){
+      first.el.classList.add('matched'); el.classList.add('matched');
+      matches++;
+      first = null; lock = false;
+      document.getElementById('memMsg').textContent = `Matches: ${matches}/${pairs.length}`;
+      if(matches === pairs.length){
+        c.insertAdjacentHTML('beforeend', `<div class="score-banner good">🎉 Perfect memory!</div>
+          <div style="text-align:center; margin-top:12px;"><button class="btn" onclick="completeGame('memory',4); goTo('screen-map')">Collect Reward ⭐</button></div>`);
+      }
+    } else {
+      setTimeout(()=>{
+        el.classList.remove('flipped'); el.textContent='⏰';
+        first.el.classList.remove('flipped'); first.el.textContent='⏰';
+        first = null; lock = false;
+      }, 800);
+    }
+  }
+};
+
+/* ===================== INIT ===================== */
+renderMap();
+updateProgress();
+</script>
+</body>
+</html>

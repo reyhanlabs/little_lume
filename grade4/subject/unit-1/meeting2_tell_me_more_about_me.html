@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Littlelume English — Meeting 2: Tell More About Me</title>
+<style>
+/* ===================================================================
+   DESIGN TOKENS
+   Palette: Mint / Pink / Sky / Lavender / Soft Yellow, on warm white.
+   Signature element: the "Showcase Passport" — a stamp book that
+   fills up with location-style stamps as the student completes
+   each leg of the journey toward the Littlelume Student Showcase.
+=================================================================== */
+:root{
+  --mint:      #A9E4C7;
+  --mint-deep: #6FCBA0;
+  --pink:      #FFC2D6;
+  --pink-deep: #FF8FB3;
+  --sky:       #A8DEF5;
+  --sky-deep:  #59B9E6;
+  --lav:       #D6C6F5;
+  --lav-deep:  #A985E8;
+  --yellow:    #FFE99A;
+  --yellow-deep: #F4C93F;
+  --ink:       #362F4D;
+  --ink-soft:  #6b6284;
+  --paper:     #FFFBF3;
+  --card:      #FFFFFF;
+  --shadow:    rgba(54,47,77,0.14);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --font-display: 'Baloo 2','Segoe UI Rounded',ui-rounded,'Trebuchet MS',sans-serif;
+  --font-body: 'Nunito','Segoe UI',ui-sans-serif,system-ui,sans-serif;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--font-body);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(169,228,199,0.35), transparent 40%),
+    radial-gradient(circle at 88% 15%, rgba(255,194,214,0.35), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(168,222,245,0.30), transparent 45%),
+    var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; margin:0 0 .4em;}
+p{line-height:1.55; margin:.3em 0;}
+button{font-family:var(--font-body); cursor:pointer;}
+::selection{background:var(--yellow);}
+
+/* focus visibility for a11y */
+button:focus-visible, .choice:focus-visible, input:focus-visible, .draggable:focus-visible{
+  outline:3px solid var(--sky-deep);
+  outline-offset:2px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001s !important; transition-duration:0.001s !important;}
+}
+
+/* ===================== TOP CHROME ===================== */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; gap:14px;
+  padding:10px 18px;
+  background:rgba(255,251,243,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:2px solid rgba(54,47,77,0.06);
+}
+.brand{display:flex; align-items:center; gap:10px; flex-shrink:0;}
+.brand-badge{
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(135deg,var(--mint),var(--sky));
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px; box-shadow:0 3px 0 rgba(0,0,0,0.06);
+}
+.brand-text{line-height:1.1;}
+.brand-text b{font-family:var(--font-display); font-size:1.05rem; display:block;}
+.brand-text span{font-size:.7rem; color:var(--ink-soft); letter-spacing:.04em;}
+
+.progress-wrap{flex:1; min-width:80px;}
+.progress-track{
+  height:14px; border-radius:20px; background:#EFE9DC;
+  overflow:hidden; box-shadow:inset 0 2px 4px rgba(0,0,0,0.08);
+  position:relative;
+}
+.progress-fill{
+  height:100%; width:0%;
+  background:linear-gradient(90deg,var(--mint-deep),var(--sky-deep));
+  border-radius:20px; transition:width .6s cubic-bezier(.4,1.4,.6,1);
+  position:relative;
+}
+.progress-fill::after{
+  content:''; position:absolute; right:-2px; top:-3px;
+  width:20px; height:20px; border-radius:50%;
+  background:var(--card); border:3px solid var(--sky-deep);
+}
+.progress-label{font-size:.68rem; color:var(--ink-soft); margin-top:3px; text-align:right;}
+
+.xp-chip{
+  display:flex; align-items:center; gap:6px;
+  background:var(--card); padding:6px 12px; border-radius:20px;
+  box-shadow:0 3px 0 var(--shadow); font-weight:800; font-size:.82rem;
+  flex-shrink:0; white-space:nowrap;
+}
+.level-chip{
+  background:linear-gradient(135deg,var(--lav),var(--pink));
+  padding:6px 12px; border-radius:20px; font-weight:800; font-size:.78rem;
+  box-shadow:0 3px 0 var(--shadow); flex-shrink:0; white-space:nowrap;
+}
+.passport-btn{
+  background:var(--card); border:none; border-radius:16px;
+  padding:6px 12px; box-shadow:0 3px 0 var(--shadow); font-weight:800;
+  font-size:.8rem; display:flex; align-items:center; gap:6px; flex-shrink:0;
+}
+.passport-btn:hover{transform:translateY(-2px);}
+.teacher-btn{
+  background:var(--card); border:none; border-radius:16px;
+  padding:6px 12px; box-shadow:0 3px 0 var(--shadow); font-weight:800;
+  font-size:.8rem; display:flex; align-items:center; gap:6px; flex-shrink:0;
+}
+.teacher-btn:hover{transform:translateY(-2px);}
+.reward-chip{
+  display:flex; align-items:center; gap:6px; padding:6px 12px; border-radius:20px;
+  font-weight:800; font-size:.78rem; box-shadow:0 3px 0 var(--shadow); flex-shrink:0;
+  white-space:nowrap; color:#4a2f0a; transition:background .4s ease;
+}
+
+/* ===================== SHOWCASE PASSPORT (signature element) ===================== */
+.passport-overlay{
+  position:fixed; inset:0; background:rgba(54,47,77,0.45); z-index:200;
+  display:none; align-items:center; justify-content:center; padding:20px;
+}
+.passport-overlay.open{display:flex;}
+.passport-book{
+  width:100%; max-width:480px; max-height:86vh; overflow-y:auto;
+  background:
+    linear-gradient(135deg, #fff, #FFF9EE);
+  border-radius:22px; padding:26px 24px 30px;
+  box-shadow:0 20px 50px rgba(54,47,77,0.35);
+  position:relative;
+  border:3px solid var(--lav);
+}
+.passport-book h2{text-align:center; font-size:1.4rem;}
+.passport-sub{text-align:center; color:var(--ink-soft); font-size:.85rem; margin-bottom:18px;}
+.stamp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.stamp{
+  aspect-ratio:1; border-radius:16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-size:1.6rem; text-align:center; gap:4px;
+  background:#F3EFE4; color:#c9c2ad; border:2px dashed #d9d2c0;
+  transform:rotate(0deg);
+}
+.stamp span.stamp-name{font-size:.55rem; font-weight:800; padding:0 4px;}
+.stamp.earned{
+  background:linear-gradient(135deg,var(--mint),var(--sky));
+  color:var(--ink); border:2px solid var(--card);
+  box-shadow:0 4px 0 var(--shadow);
+  animation:stampIn .4s ease;
+  transform:rotate(-4deg);
+}
+.stamp.earned:nth-child(3n){transform:rotate(4deg);}
+.stamp.earned:nth-child(3n+2){transform:rotate(-2deg);}
+@keyframes stampIn{
+  0%{transform:scale(2) rotate(-25deg); opacity:0;}
+  70%{transform:scale(0.92) rotate(-4deg); opacity:1;}
+  100%{transform:scale(1) rotate(-4deg); opacity:1;}
+}
+.passport-close{
+  position:absolute; top:14px; right:14px; background:var(--card);
+  border:none; border-radius:50%; width:34px; height:34px; font-size:1.1rem;
+  box-shadow:0 3px 0 var(--shadow);
+}
+
+/* ===================== SCREENS / SECTIONS ===================== */
+.screen{
+  display:none;
+  max-width:920px; margin:0 auto;
+  padding:26px 18px 60px;
+  animation:fadeSlide .45s ease;
+}
+.screen.active{display:block;}
+@keyframes fadeSlide{
+  from{opacity:0; transform:translateY(14px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.eyebrow{
+  display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-soft); background:var(--card);
+  padding:4px 12px; border-radius:20px; box-shadow:0 2px 0 var(--shadow); margin-bottom:10px;
+}
+.section-title{font-size:1.7rem; margin-bottom:6px;}
+.section-sub{color:var(--ink-soft); margin-bottom:20px; font-size:.98rem;}
+
+.card{
+  background:var(--card); border-radius:var(--radius-lg);
+  padding:22px 22px; box-shadow:0 10px 26px var(--shadow);
+  margin-bottom:18px; position:relative;
+}
+.glass{
+  background:rgba(255,255,255,0.55); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.6);
+}
+
+/* speech / story dialogue */
+.story-row{display:flex; gap:14px; align-items:flex-start; margin-bottom:16px;}
+.avatar{
+  width:56px; height:56px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:1.7rem;
+  box-shadow:0 4px 0 var(--shadow);
+}
+.avatar.lumi{background:linear-gradient(135deg,var(--yellow),var(--pink));}
+.avatar.you{background:linear-gradient(135deg,var(--sky),var(--lav));}
+.bubble{
+  background:#F6F2FF; border-radius:18px 18px 18px 4px; padding:14px 18px;
+  box-shadow:0 4px 0 rgba(54,47,77,0.06); position:relative; max-width:640px;
+}
+.bubble.you-bubble{background:#EAF7FF; border-radius:18px 18px 4px 18px;}
+.bubble p{margin:0;}
+
+.mission-card{
+  background:linear-gradient(135deg, var(--lav), var(--sky));
+  border-radius:var(--radius-lg); padding:22px; color:var(--ink);
+  box-shadow:0 12px 26px var(--shadow); position:relative; overflow:hidden;
+}
+.mission-card::before{
+  content:'✦'; position:absolute; right:-10px; top:-20px; font-size:8rem; opacity:.15;
+}
+.mission-card h3{margin-bottom:8px; font-size:1.3rem;}
+.mission-list{list-style:none; padding:0; margin:14px 0 0;}
+.mission-list li{
+  display:flex; align-items:center; gap:10px; padding:8px 0;
+  border-top:1px dashed rgba(54,47,77,0.2); font-weight:700; font-size:.92rem;
+}
+.mission-list li:first-child{border-top:none;}
+.mission-check{
+  width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,0.6);
+  display:flex; align-items:center; justify-content:center; font-size:.75rem; flex-shrink:0;
+}
+
+/* Buttons */
+.btn{
+  border:none; border-radius:16px; padding:13px 26px; font-weight:800; font-size:1rem;
+  background:var(--ink); color:#fff; box-shadow:0 5px 0 rgba(0,0,0,0.25);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn:active{transform:translateY(2px); box-shadow:0 2px 0 rgba(0,0,0,0.25);}
+.btn.primary{background:linear-gradient(135deg,var(--mint-deep),var(--sky-deep)); color:#123; box-shadow:0 5px 0 #4b9e86;}
+.btn.pink{background:linear-gradient(135deg,var(--pink-deep),var(--pink)); color:#4a2135; box-shadow:0 5px 0 #d46a8c;}
+.btn.ghost{background:var(--card); color:var(--ink); box-shadow:0 5px 0 var(--shadow);}
+.btn.sm{padding:8px 16px; font-size:.85rem; border-radius:12px;}
+.btn:disabled{opacity:.45; cursor:not-allowed; transform:none;}
+.btn-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;}
+.nav-row{display:flex; justify-content:space-between; margin-top:26px; gap:12px;}
+
+.sound-btn{
+  border:none; border-radius:14px; padding:8px 14px; font-weight:800; font-size:.85rem;
+  background:var(--yellow); box-shadow:0 3px 0 var(--yellow-deep);
+}
+.sound-btn:active{transform:translateY(2px); box-shadow:none;}
+
+/* Vocabulary tabs */
+.tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.tab-btn{
+  border:none; border-radius:16px; padding:10px 18px; font-weight:800; font-size:.9rem;
+  background:var(--card); box-shadow:0 3px 0 var(--shadow); color:var(--ink-soft);
+}
+.tab-btn.active{background:linear-gradient(135deg,var(--mint),var(--sky)); color:var(--ink);}
+
+.flip-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px;}
+.flip-card{
+  perspective:1000px; height:170px; cursor:pointer;
+}
+.flip-inner{
+  position:relative; width:100%; height:100%; transition:transform .5s;
+  transform-style:preserve-3d;
+}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-face{
+  position:absolute; inset:0; border-radius:18px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; backface-visibility:hidden;
+  box-shadow:0 6px 16px var(--shadow); padding:10px; text-align:center;
+}
+.flip-front{background:linear-gradient(135deg,var(--sky),var(--lav)); font-size:2.4rem;}
+.flip-back{background:var(--card); transform:rotateY(180deg); gap:4px;}
+.flip-back .word{font-family:var(--font-display); font-weight:700; font-size:1.05rem;}
+.flip-back .example{font-size:.72rem; color:var(--ink-soft);}
+
+/* matching game */
+.match-wrap{display:flex; gap:20px; flex-wrap:wrap; justify-content:space-between;}
+.match-col{flex:1; min-width:140px; display:flex; flex-direction:column; gap:10px;}
+.match-item{
+  background:var(--card); border-radius:14px; padding:12px 14px; box-shadow:0 3px 0 var(--shadow);
+  font-weight:700; text-align:center; border:2px solid transparent;
+}
+.match-item.selected{border-color:var(--sky-deep); background:#EAF7FF;}
+.match-item.correct{border-color:var(--mint-deep); background:var(--mint);}
+.match-item.wrong{border-color:var(--pink-deep); background:#FFE3EC; animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+/* drag and drop */
+.dnd-bank{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; min-height:50px;
+  padding:10px; border-radius:14px; background:#F3EFE4;}
+.draggable{
+  background:var(--card); border-radius:12px; padding:10px 16px; font-weight:800;
+  box-shadow:0 3px 0 var(--shadow); cursor:grab; user-select:none;
+}
+.dnd-targets{display:flex; flex-direction:column; gap:12px;}
+.dnd-slot-row{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.dnd-slot{
+  min-width:120px; min-height:44px; border-radius:12px; border:2px dashed #cfc7e6;
+  background:#FBF9FF; display:flex; align-items:center; justify-content:center;
+  padding:4px 10px; font-weight:800; color:var(--ink-soft);
+}
+.dnd-slot.filled{border-style:solid; border-color:var(--mint-deep); background:var(--mint); color:var(--ink);}
+.dnd-slot.over{background:#EAF7FF;}
+
+/* quiz choices */
+.quiz-q{font-weight:800; font-size:1.05rem; margin-bottom:12px;}
+.choices{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+@media(max-width:520px){.choices{grid-template-columns:1fr;}}
+.choice{
+  background:var(--card); border:2px solid #eee6d5; border-radius:14px; padding:12px 16px;
+  font-weight:700; text-align:left; box-shadow:0 3px 0 var(--shadow);
+}
+.choice:hover{border-color:var(--sky-deep);}
+.choice.correct{background:var(--mint); border-color:var(--mint-deep);}
+.choice.wrong{background:#FFE3EC; border-color:var(--pink-deep);}
+
+/* grammar pattern card */
+.pattern-card{
+  background:linear-gradient(135deg,#FFF6DE,#FFEFF5);
+  border-radius:18px; padding:18px; margin-bottom:14px;
+  border:2px dashed var(--yellow-deep);
+}
+.pattern-card .pattern{font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--ink);}
+.pattern-card .example{color:var(--ink-soft); margin-top:6px; font-style:italic;}
+
+/* conversation / roleplay */
+.role-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+.role-card{
+  background:var(--card); border-radius:18px; padding:16px; box-shadow:0 6px 16px var(--shadow);
+}
+.role-card h4{margin-bottom:6px;}
+.wheel-word{
+  display:inline-block; background:var(--yellow); padding:4px 12px; border-radius:10px; font-weight:800; margin-top:8px;
+}
+
+/* presentation form */
+.form-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr;}}
+.field{display:flex; flex-direction:column; gap:6px;}
+.field label{font-weight:800; font-size:.85rem; color:var(--ink-soft);}
+.field input, .field select{
+  border:2px solid #eee6d5; border-radius:12px; padding:11px 14px; font-size:.95rem;
+  font-family:var(--font-body); background:#FFFDF8;
+}
+.field input:focus, .field select:focus{border-color:var(--sky-deep); outline:none;}
+.paragraph-preview{
+  background:linear-gradient(135deg,#fff,#FFF7EA); border-radius:18px; padding:22px;
+  font-size:1.05rem; line-height:1.8; border:2px solid var(--yellow-deep);
+  min-height:120px;
+}
+.paragraph-preview .ph{color:#cbbf9d; font-style:italic;}
+
+/* mini games nav */
+.game-menu{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;}
+.game-tile{
+  background:var(--card); border-radius:16px; padding:14px 18px; box-shadow:0 5px 0 var(--shadow);
+  font-weight:800; display:flex; align-items:center; gap:8px; flex:1; min-width:150px; justify-content:center;
+}
+.game-tile.active{background:linear-gradient(135deg,var(--pink),var(--lav));}
+.score-pill{
+  display:inline-flex; align-items:center; gap:6px; background:var(--yellow); padding:5px 14px;
+  border-radius:20px; font-weight:800; font-size:.85rem; box-shadow:0 3px 0 var(--yellow-deep);
+}
+
+/* wheel */
+.wheel-outer{display:flex; flex-direction:column; align-items:center; gap:16px;}
+.wheel{
+  width:240px; height:240px; border-radius:50%; position:relative;
+  background:conic-gradient(var(--mint) 0deg 60deg, var(--sky) 60deg 120deg, var(--pink) 120deg 180deg,
+    var(--lav) 180deg 240deg, var(--yellow) 240deg 300deg, var(--mint-deep) 300deg 360deg);
+  transition:transform 3.2s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 10px 30px var(--shadow);
+  border:6px solid var(--card);
+}
+.wheel-pointer{font-size:2rem; margin-bottom:-14px;}
+.wheel-labels{position:absolute; inset:0;}
+.wheel-labels span{
+  position:absolute; left:50%; top:50%; font-size:.65rem; font-weight:800;
+  transform-origin:0 0;
+}
+
+/* stars / celebration */
+.stars-row{display:flex; gap:8px; font-size:1.8rem; margin:10px 0;}
+.star{opacity:.25; transition:opacity .3s, transform .3s;}
+.star.on{opacity:1; transform:scale(1.15);}
+.confetti-piece{
+  position:fixed; top:-20px; width:10px; height:14px; z-index:300; pointer-events:none;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  to{ transform:translateY(110vh) rotate(540deg); opacity:0.9;}
+}
+.toast{
+  position:fixed; bottom:26px; left:50%; transform:translateX(-50%) translateY(100px);
+  background:var(--ink); color:#fff; padding:14px 22px; border-radius:16px; font-weight:800;
+  box-shadow:0 10px 24px rgba(0,0,0,0.3); z-index:400; transition:transform .4s ease; display:flex; gap:10px; align-items:center;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* feedback boxes for personalized answer explanations */
+.feedback-box{
+  margin-top:10px; padding:12px 14px; border-radius:14px; font-size:.88rem; font-weight:700;
+  line-height:1.5; animation:feedIn .3s ease; display:none;
+}
+.feedback-box.show{display:block;}
+.feedback-box.good{background:#E3F8ED; color:#1f6e46; border:2px solid var(--mint-deep);}
+.feedback-box.bad{background:#FFEDF2; color:#8a2b48; border:2px solid var(--pink-deep);}
+@keyframes feedIn{from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:translateY(0);}}
+
+/* ===================== TEACHER NOTES DASHBOARD ===================== */
+.teacher-overlay{
+  position:fixed; inset:0; background:rgba(54,47,77,0.5); z-index:210;
+  display:none; align-items:center; justify-content:center; padding:16px;
+}
+.teacher-overlay.open{display:flex;}
+.teacher-panel{
+  width:100%; max-width:560px; max-height:88vh; overflow-y:auto;
+  background:var(--card); border-radius:24px; padding:26px 24px 30px;
+  box-shadow:0 20px 50px rgba(54,47,77,0.35); position:relative;
+  border:3px solid var(--sky);
+}
+.teacher-panel h2{font-size:1.3rem;}
+.teacher-panel h4{margin:18px 0 8px; font-size:.95rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
+.teacher-close{
+  position:absolute; top:14px; right:14px; background:#F3EFE4;
+  border:none; border-radius:50%; width:34px; height:34px; font-size:1.1rem;
+}
+.t-table{width:100%; border-collapse:collapse; font-size:.85rem;}
+.t-table th, .t-table td{text-align:left; padding:7px 8px; border-bottom:1px solid #f1ead9;}
+.t-table th{color:var(--ink-soft); font-size:.72rem; text-transform:uppercase;}
+.rubric-row{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 0; border-bottom:1px dashed #eee6d5;}
+.rubric-row:last-child{border-bottom:none;}
+.rubric-level{font-size:.75rem; font-weight:800; padding:3px 10px; border-radius:10px;}
+.rl-1{background:#FFE3EC; color:#8a2b48;}
+.rl-2{background:#FFF3B0; color:#7a5c00;}
+.rl-3{background:var(--mint); color:#1f6e46;}
+.snapshot-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:8px;}
+.snapshot-box{background:#FBF9FF; border-radius:12px; padding:10px 12px; font-size:.82rem;}
+.snapshot-box b{display:block; font-family:var(--font-display); font-size:1.1rem;}
+
+/* ===================== SHOWCASE STAGE ===================== */
+.stage-overlay{
+  position:fixed; inset:0; z-index:260; display:none; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 50% 30%, #3a2a5c, #1b1330 65%); overflow:hidden;
+}
+.stage-overlay.open{display:flex;}
+.stage-curtain{position:absolute; top:0; bottom:0; width:16%; z-index:1;
+  background:repeating-linear-gradient(90deg,#7a1f3d,#7a1f3d 10px,#961f47 10px,#961f47 20px);
+  box-shadow:inset -14px 0 40px rgba(0,0,0,0.5);}
+.stage-curtain.left{left:0; border-radius:0 0 70% 0;}
+.stage-curtain.right{right:0; border-radius:0 0 0 70%;}
+.stage-spotlight{
+  position:absolute; top:-8%; left:50%; width:560px; height:560px; transform:translateX(-50%);
+  background:radial-gradient(circle, rgba(255,244,190,0.32), transparent 62%);
+  animation:spotPulse 4s ease-in-out infinite; z-index:0;
+}
+@keyframes spotPulse{0%,100%{opacity:.55;} 50%{opacity:1;}}
+.stage-content{position:relative; z-index:2; text-align:center; color:#fff; max-width:520px; padding:20px;}
+.stage-avatar{font-size:5.4rem; filter:drop-shadow(0 12px 18px rgba(0,0,0,0.5)); animation:stageBob 2.6s ease-in-out infinite;}
+@keyframes stageBob{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+.stage-podium{width:130px; height:36px; margin:6px auto 0; background:linear-gradient(180deg,#d3ac57,#8a6a24); border-radius:8px 8px 0 0; box-shadow:0 6px 0 rgba(0,0,0,0.35);}
+.stage-name{font-family:var(--font-display); font-size:1.3rem; margin-top:8px; opacity:.9;}
+.stage-bubble{background:rgba(255,255,255,0.96); color:var(--ink); border-radius:20px; padding:16px 22px; margin-top:16px; font-weight:800; font-size:1.15rem; min-height:64px; display:flex; align-items:center; justify-content:center;}
+.stage-progress{font-size:.78rem; opacity:.75; margin-top:10px; letter-spacing:.03em;}
+.stage-audience{position:absolute; bottom:14px; left:0; right:0; text-align:center; font-size:1.7rem; letter-spacing:10px; z-index:1; opacity:.85;}
+.stage-audience.clapping span{display:inline-block; animation:clap .45s infinite alternate;}
+.stage-audience span:nth-child(2n){animation-delay:.15s;}
+@keyframes clap{from{transform:rotate(-10deg) scale(1);} to{transform:rotate(10deg) scale(1.08);}}
+.stage-close{position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.15); border:none; color:#fff; width:38px; height:38px; border-radius:50%; font-size:1.1rem; z-index:5;}
+.stage-btns{margin-top:20px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+.avatar-pick{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;}
+.avatar-pick button{
+  font-size:1.6rem; background:var(--card); border:2px solid #eee6d5; border-radius:14px; padding:8px 12px;
+}
+.avatar-pick button.active{border-color:var(--sky-deep); background:#EAF7FF;}
+
+/* badge popup */
+.badge-popup{
+  position:fixed; inset:0; background:rgba(54,47,77,0.5); z-index:250; display:none;
+  align-items:center; justify-content:center;
+}
+.badge-popup.show{display:flex;}
+.badge-popup-card{
+  background:var(--card); border-radius:26px; padding:34px 30px; text-align:center; max-width:320px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.35); animation:popIn .5s cubic-bezier(.2,1.4,.4,1);
+}
+@keyframes popIn{from{transform:scale(0.5); opacity:0;} to{transform:scale(1); opacity:1;}}
+.badge-popup-icon{font-size:4rem; margin-bottom:6px;}
+
+/* floating decorative shapes */
+.floaty{position:fixed; pointer-events:none; z-index:0; opacity:.5; animation:floaty 8s ease-in-out infinite;}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-22px) rotate(8deg);}}
+
+/* score board */
+.score-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px; margin:18px 0;}
+.score-box{background:var(--card); border-radius:16px; padding:16px; text-align:center; box-shadow:0 5px 0 var(--shadow);}
+.score-box .num{font-family:var(--font-display); font-size:1.7rem; font-weight:700;}
+.score-box .lbl{font-size:.75rem; color:var(--ink-soft); font-weight:800; text-transform:uppercase;}
+
+/* certificate */
+.certificate{
+  background:linear-gradient(135deg,#fff,#FFF9EC);
+  border:8px double var(--lav-deep); border-radius:24px; padding:40px 30px; text-align:center;
+  box-shadow:0 20px 50px var(--shadow); position:relative; overflow:hidden;
+}
+.certificate::before, .certificate::after{
+  content:'✦'; position:absolute; font-size:3rem; color:var(--yellow-deep); opacity:.5;
+}
+.certificate::before{top:14px; left:20px;}
+.certificate::after{bottom:14px; right:20px;}
+.cert-logo{font-family:var(--font-display); font-size:1.3rem; font-weight:700; letter-spacing:.03em;}
+.cert-name{font-family:var(--font-display); font-size:2.1rem; margin:14px 0; border-bottom:3px solid var(--ink); display:inline-block; padding-bottom:6px;}
+.cert-stars{font-size:1.6rem; margin:12px 0;}
+.cert-sign{display:flex; justify-content:space-between; margin-top:34px; font-size:.8rem;}
+.cert-sign div{border-top:2px solid var(--ink-soft); padding-top:6px; width:40%;}
+
+@media print{
+  .topbar, .btn-row, .nav-row, .no-print{display:none !important;}
+  .screen{display:block !important; padding:0;}
+  body{background:#fff;}
+}
+
+/* responsive tweaks */
+@media(max-width:640px){
+  .topbar{flex-wrap:wrap;}
+  .progress-wrap{order:3; flex-basis:100%;}
+  .section-title{font-size:1.4rem;}
+  .card{padding:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOP BAR: brand, progress, XP, level, passport button
+============================================================= -->
+<div class="topbar no-print">
+  <div class="brand">
+    <div class="brand-badge">✨</div>
+    <div class="brand-text">
+      <b>Littlelume English</b>
+      <span>Learn • Play • Shine</span>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">Mission 0 of 9</div>
+  </div>
+  <div class="xp-chip">⭐ <span id="xpCount">0</span> XP</div>
+  <div class="reward-chip" id="rewardChip">🥉 Bronze</div>
+  <div class="level-chip">Lv.<span id="levelCount">1</span></div>
+  <button class="teacher-btn" id="openTeacher">👩‍🏫 Teacher</button>
+  <button class="passport-btn" id="openPassport">📘 Passport</button>
+</div>
+
+<!-- ============================================================
+     TEACHER NOTES DASHBOARD
+============================================================= -->
+<div class="teacher-overlay no-print" id="teacherOverlay">
+  <div class="teacher-panel">
+    <button class="teacher-close" id="closeTeacher">✕</button>
+    <div class="eyebrow">For the teacher</div>
+    <h2>👩‍🏫 Teacher Notes — Meeting 2</h2>
+    <p style="color:var(--ink-soft); font-size:.88rem;">Target scores, suggested pacing, and a speaking rubric to support assessment during class.</p>
+
+    <h4>🎯 Target Scores</h4>
+    <table class="t-table">
+      <tr><th>Skill</th><th>Target</th><th>Current</th></tr>
+      <tr><td>Vocabulary</td><td>≥ 80%</td><td id="ttVocab">—</td></tr>
+      <tr><td>Grammar</td><td>≥ 80%</td><td id="ttGrammar">—</td></tr>
+      <tr><td>Listening</td><td>≥ 80%</td><td id="ttListening">—</td></tr>
+      <tr><td>Speaking (completion)</td><td>100%</td><td id="ttSpeaking">—</td></tr>
+    </table>
+
+    <h4>⏱️ Suggested Time per Activity</h4>
+    <table class="t-table">
+      <tr><th>Activity</th><th>Time</th></tr>
+      <tr><td>Story Opening</td><td>3 min</td></tr>
+      <tr><td>Quick Review</td><td>4 min</td></tr>
+      <tr><td>Vocabulary Adventure</td><td>8 min</td></tr>
+      <tr><td>Grammar Workshop</td><td>8 min</td></tr>
+      <tr><td>Conversation Practice</td><td>7 min</td></tr>
+      <tr><td>My Presentation Project</td><td>10 min</td></tr>
+      <tr><td>Games &amp; Review (incl. Listening)</td><td>14 min</td></tr>
+      <tr><td>Final Challenge + Stage</td><td>8 min</td></tr>
+      <tr><td>Certificate</td><td>2 min</td></tr>
+      <tr><td><b>Total</b></td><td><b>~64 min</b></td></tr>
+    </table>
+
+    <h4>🗣️ Speaking Assessment Rubric</h4>
+    <div class="rubric-row"><span>Pronunciation</span><span class="rubric-level rl-1">1 · Developing</span></div>
+    <div class="rubric-row"><span>Clear enough to understand key words</span><span class="rubric-level rl-2">2 · Good</span></div>
+    <div class="rubric-row"><span>Clear, natural, confident pronunciation</span><span class="rubric-level rl-3">3 · Excellent</span></div>
+    <div class="rubric-row"><span>Fluency (speaks without long pauses)</span><span class="rubric-level rl-2">2 · Good</span></div>
+    <div class="rubric-row"><span>Confidence &amp; eye contact</span><span class="rubric-level rl-3">3 · Excellent</span></div>
+    <div class="rubric-row"><span>Grammar accuracy in spoken sentences</span><span class="rubric-level rl-2">2 · Good</span></div>
+    <p style="font-size:.78rem; color:var(--ink-soft); margin-top:6px;">Use 1 (Developing) – 2 (Good) – 3 (Excellent) per indicator while students present on the Showcase Stage.</p>
+
+    <h4>📊 Live Student Snapshot</h4>
+    <div class="snapshot-grid" id="snapshotGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SHOWCASE STAGE
+============================================================= -->
+<div class="stage-overlay no-print" id="stageOverlay">
+  <button class="stage-close" id="closeStage">✕</button>
+  <div class="stage-curtain left"></div>
+  <div class="stage-curtain right"></div>
+  <div class="stage-spotlight"></div>
+  <div class="stage-content">
+    <div class="stage-avatar" id="stageAvatar">🧑‍🎤</div>
+    <div class="stage-podium"></div>
+    <div class="stage-name" id="stageName">My Introduction</div>
+    <div class="stage-bubble" id="stageBubble">Get ready…</div>
+    <div class="stage-progress" id="stageProgress"></div>
+    <div class="stage-btns">
+      <button class="btn primary" onclick="runStagePresentation()">▶️ Start / Replay</button>
+      <button class="btn ghost" onclick="closeStage()">Back to Editing</button>
+    </div>
+  </div>
+  <div class="stage-audience" id="stageAudience">🧍🧍‍♀️🧍🧍‍♀️🧍</div>
+</div>
+
+<!-- ============================================================
+     SHOWCASE PASSPORT (signature element)
+============================================================= -->
+<div class="passport-overlay no-print" id="passportOverlay">
+  <div class="passport-book">
+    <button class="passport-close" id="closePassport">✕</button>
+    <h2>📘 My Showcase Passport</h2>
+    <p class="passport-sub">Collect a stamp for every mission you complete!</p>
+    <div class="stamp-grid" id="stampGrid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     BADGE / ACHIEVEMENT POPUP
+============================================================= -->
+<div class="badge-popup no-print" id="badgePopup">
+  <div class="badge-popup-card">
+    <div class="badge-popup-icon" id="badgeIcon">🏅</div>
+    <h3 id="badgeTitle">New Stamp!</h3>
+    <p id="badgeText">You earned a passport stamp.</p>
+    <button class="btn primary" id="badgeOk">Yay!</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOAST
+============================================================= -->
+<div class="toast no-print" id="toast"></div>
+
+<!-- ============================================================
+     MAIN CONTENT — all sections live here, one shown at a time
+============================================================= -->
+<main id="app"></main>
+
+<script>
+/* =====================================================================
+   LITTLELUME ENGLISH — MEETING 2: TELL MORE ABOUT ME
+   Single-file interactive lesson. All state lives in `state`.
+   Sections are rendered on demand into #app by renderSection().
+===================================================================== */
+
+/* ---------------------- DATA ---------------------- */
+const VOCAB = {
+  hobbies: [
+    {icon:'🎨', word:'Drawing',  example:'My hobby is drawing.'},
+    {icon:'📚', word:'Reading',  example:'My hobby is reading.'},
+    {icon:'🍳', word:'Cooking',  example:'My hobby is cooking.'},
+    {icon:'🏊', word:'Swimming', example:'My hobby is swimming.'},
+    {icon:'🎵', word:'Music',    example:'I like music.'},
+    {icon:'⚽', word:'Sports',   example:'I like sports.'},
+    {icon:'💃', word:'Dancing',  example:'My hobby is dancing.'},
+    {icon:'🚴', word:'Cycling',  example:'My hobby is cycling.'},
+    {icon:'📷', word:'Photography', example:'My hobby is photography.'}
+  ],
+  favorites: [
+    {icon:'🐱', word:'Cat (Animal)',   example:'My favorite animal is a cat.'},
+    {icon:'🐶', word:'Dog (Animal)',   example:'My favorite animal is a dog.'},
+    {icon:'🍕', word:'Pizza (Food)',   example:'My favorite food is pizza.'},
+    {icon:'🍚', word:'Fried Rice (Food)', example:'My favorite food is fried rice.'},
+    {icon:'💙', word:'Blue (Color)',  example:'My favorite color is blue.'},
+    {icon:'💚', word:'Green (Color)', example:'My favorite color is green.'},
+    {icon:'☀️', word:'Summer (Season)', example:'My favorite season is summer.'},
+    {icon:'➗', word:'Math (Subject)', example:'My favorite subject is math.'},
+    {icon:'🥭', word:'Mango (Fruit)', example:'My favorite fruit is mango.'}
+  ],
+  jobs: [
+    {icon:'👩‍⚕️', word:'Doctor',    example:'I want to be a doctor.'},
+    {icon:'👩‍🏫', word:'Teacher',   example:'I want to be a teacher.'},
+    {icon:'🎨', word:'Artist',    example:'I want to be an artist.'},
+    {icon:'👨‍🍳', word:'Chef',      example:'I want to be a chef.'},
+    {icon:'🔬', word:'Scientist', example:'I want to be a scientist.'},
+    {icon:'🎤', word:'Singer',    example:'I want to be a singer.'},
+    {icon:'👮', word:'Police Officer', example:'I want to be a police officer.'},
+    {icon:'✈️', word:'Pilot',     example:'I want to be a pilot.'},
+    {icon:'🐾', word:'Vet',       example:'I want to be a vet.'}
+  ],
+  challenge: [
+    {icon:'👩‍🚀', word:'Astronaut',  example:'I want to be an astronaut.'},
+    {icon:'👷', word:'Engineer',    example:'I want to be an engineer.'},
+    {icon:'🌱', word:'Gardening',   example:'My hobby is gardening.'},
+    {icon:'✍️', word:'Writing',     example:'My hobby is writing.'},
+    {icon:'❄️', word:'Winter (Season)', example:'My favorite season is winter.'},
+    {icon:'🏀', word:'Basketball (Sport)', example:'My favorite sport is basketball.'},
+    {icon:'🥛', word:'Milk (Drink)', example:'My favorite drink is milk.'},
+    {icon:'🔬', word:'Science (Subject)', example:'My favorite subject is science.'},
+    {icon:'🎸', word:'Guitar', example:'I like playing the guitar.'},
+    {icon:'🦸', word:'Superhero (Dream)', example:'I want to be a superhero!'}
+  ]
+};
+
+const PATTERNS = [
+  {pattern:"My hobby is …", example:"My hobby is drawing.",
+   blank:"My hobby is ___.", options:['drawing','teacher','blue'], correct:'drawing',
+   explain:"A hobby is an activity you enjoy, like drawing, reading, or swimming — not a job or a color."},
+  {pattern:"I like …", example:"I like pizza.",
+   blank:"I like ___.", options:['pizza','Monday','chair'], correct:'pizza',
+   explain:"After \"I like\", we usually name something we enjoy, such as a food, hobby, or animal — not a day of the week."},
+  {pattern:"I like … because …", example:"I like pizza because it is delicious.",
+   blank:"I like pizza because it is ___.", options:['delicious','blue','Tuesday'], correct:'delicious',
+   explain:"\"Because\" gives a reason. We describe HOW something is, like \"delicious\" or \"fun\" — not a color or a day."},
+  {pattern:"My favorite …", example:"My favorite animal is a cat.",
+   blank:"My favorite animal is a ___.", options:['cat','teacher','drawing'], correct:'cat',
+   explain:"A favorite animal is a type of creature, like a cat or a dog — not a job or a hobby."},
+  {pattern:"I want to be …", example:"I want to be a doctor.",
+   blank:"I want to be a ___.", options:['doctor','pizza','Monday'], correct:'doctor',
+   explain:"This tells your dream job, like doctor, teacher, or chef — not a food or a day."}
+];
+
+const CONV_QUESTIONS = [
+  "What is your hobby?", "How old are you?", "Where do you live?",
+  "What is your favorite food?", "What is your favorite animal?",
+  "What do you want to be when you grow up?"
+];
+
+const TF_STATEMENTS = [
+  {text:"My hobby is swimming.", answer:true, explain:"Correct! \"My hobby is\" + an activity is the right pattern."},
+  {text:"I hobby is reading.", answer:false, explain:"The correct sentence is \"My hobby is reading.\" We say \"MY hobby\", not \"I hobby\"."},
+  {text:"I like pizza because it is delicious.", answer:true, explain:"Correct! This sentence gives a reason using \"because\"."},
+  {text:"My favorite is a cat animal.", answer:false, explain:"The correct order is \"My favorite ANIMAL is a cat.\" The category word comes right after \"favorite\"."},
+  {text:"I want to be a doctor.", answer:true, explain:"Correct! \"I want to be a\" + job is the right pattern."},
+  {text:"I want be teacher.", answer:false, explain:"The correct sentence is \"I want TO BE A teacher.\" Don't forget the words \"to\" and \"a\"."}
+];
+
+const WHEEL_TOPICS = ["Hobby","Age","Address","Favorite Food","Favorite Animal","Dream Job"];
+
+const SENTENCE_SETS = [
+  ["I","like","pizza","because","it","is","delicious"],
+  ["My","hobby","is","swimming"],
+  ["I","want","to","be","a","doctor"]
+];
+
+const WHOAMI = [
+  {clue:"I use crayons and paper. I make pictures. What is my hobby?", choices:["Drawing","Cooking","Swimming"], answer:"Drawing",
+   explain:"Drawing uses crayons, pencils, or paint on paper to make pictures — that's the clue!"},
+  {clue:"I jump in the pool and swim fast. What is my hobby?", choices:["Reading","Swimming","Music"], answer:"Swimming",
+   explain:"Swimming happens in water, like a pool or the sea — \"jump in the pool\" is the clue."},
+  {clue:"I help sick people feel better. What do I want to be?", choices:["Doctor","Chef","Artist"], answer:"Doctor",
+   explain:"Doctors take care of people who are sick — that's their job."},
+  {clue:"I have four legs and I say 'meow'. What animal am I?", choices:["Dog","Cat","Bird"], answer:"Cat",
+   explain:"Cats have four legs and say \"meow\" — dogs say \"woof\" and birds say \"tweet\"!"}
+];
+
+const SPEAKING_PROMPTS = [
+  "Say: Hello! My name is …",
+  "Say: I am … years old.",
+  "Say: My hobby is …",
+  "Say: I like … because …",
+  "Say: I want to be a …"
+];
+
+const INTERVIEW_QUESTIONS = [
+  "What is your name?",
+  "How old are you?",
+  "Where do you live?",
+  "What is your hobby?",
+  "What is your favorite thing? (food, animal, or color)",
+  "What do you want to be when you grow up?"
+];
+const PRONOUN_FORMS = {
+  He:   {subj:'He',   poss:'His',   likes:'likes', wants:'wants', lives:'lives', is:'is'},
+  She:  {subj:'She',  poss:'Her',   likes:'likes', wants:'wants', lives:'lives', is:'is'},
+  They: {subj:'They', poss:'Their', likes:'like',  wants:'want',  lives:'live',  is:'are'}
+};
+
+const FINAL_ITEMS = ["Name","Age","Address","Hobby","Favorite thing","Reason (because)","Dream Job"];
+
+const LISTENING_ITEMS = [
+  {audio:"My hobby is swimming.", choices:['🏊 Swimming','📚 Reading','🎨 Drawing'], answer:'🏊 Swimming',
+   explain:"Listen for the activity word at the end — the speaker says \"swimming\", which means playing and moving in water."},
+  {audio:"I like pizza because it is delicious.", choices:['🍕 Pizza is delicious','🍕 Pizza is boring','🍕 Pizza is expensive'], answer:'🍕 Pizza is delicious',
+   explain:"The word \"delicious\" means it tastes very good — that's the reason the speaker gives after \"because\"."},
+  {audio:"My favorite animal is a cat.", choices:['🐱 Cat','🐶 Dog','🐦 Bird'], answer:'🐱 Cat',
+   explain:"Listen for the animal name — \"cat\" is a small furry pet that says \"meow\"."},
+  {audio:"I want to be a doctor.", choices:['👩‍⚕️ Doctor','👨‍🍳 Chef','🎤 Singer'], answer:'👩‍⚕️ Doctor',
+   explain:"A \"doctor\" helps sick people feel better — that's the dream job named in the sentence."},
+  {audio:"I live in Bekasi.", choices:['📍 Bekasi','📍 Jakarta','📍 Bandung'], answer:'📍 Bekasi',
+   explain:"Listen for the city name at the end of the sentence — it says \"Bekasi\"."},
+  {audio:"I am ten years old.", choices:['🔟 Ten','9️⃣ Nine','8️⃣ Eight'], answer:'🔟 Ten',
+   explain:"The number word \"ten\" tells us the age in this sentence."}
+];
+
+const REWARD_TIERS = [
+  {min:0,   key:'bronze',    icon:'🥉', label:'Bronze',    css:'linear-gradient(135deg,#e7c39a,#cd7f32)'},
+  {min:150, key:'silver',    icon:'🥈', label:'Silver',    css:'linear-gradient(135deg,#eef1f5,#b7c1cc)'},
+  {min:300, key:'gold',      icon:'🥇', label:'Gold',      css:'linear-gradient(135deg,#ffe9a8,#f4c93f)'},
+  {min:450, key:'superstar', icon:'🌟', label:'Superstar', css:'linear-gradient(135deg,#ffd1e6,#ff8fb3)'}
+];
+function getRewardTier(xp){
+  let tier = REWARD_TIERS[0];
+  for(const t of REWARD_TIERS){ if(xp>=t.min) tier=t; }
+  return tier;
+}
+function nextRewardTier(xp){
+  return REWARD_TIERS.find(t=>t.min>xp) || null;
+}
+
+const SECTIONS = [
+  {id:'opening',      name:'Story Opening',        stamp:'📖', label:'Opening'},
+  {id:'review',       name:'Quick Review',         stamp:'🔁', label:'Review'},
+  {id:'vocab',        name:'Vocabulary Adventure', stamp:'🗺️', label:'Vocabulary'},
+  {id:'grammar',      name:'Grammar Workshop',     stamp:'🛠️', label:'Grammar'},
+  {id:'conversation', name:'Conversation Practice',stamp:'💬', label:'Conversation'},
+  {id:'presentation', name:'My Presentation',      stamp:'📝', label:'Presentation'},
+  {id:'games',        name:'Games & Review',       stamp:'🎮', label:'Games'},
+  {id:'final',        name:'Final Challenge',      stamp:'🏆', label:'Challenge'},
+  {id:'certificate',  name:'Certificate',          stamp:'🎓', label:'Certificate'}
+];
+
+/* ---------------------- STATE ---------------------- */
+let state = {
+  idx: 0,
+  xp: 0,
+  stamps: {},
+  quickReview: {score:0, total:0},
+  vocabTab: 'hobbies',
+  vocabSeen: new Set(),
+  matching: {selectedIcon:null, matchedCount:0},
+  dnd: {slot1:null, slot2:null},
+  grammar: {answered:{}},
+  gamesTab: 'memory',
+  memory: {first:null, moves:0, matched:0, locked:false},
+  tf: {i:0, score:0},
+  wheel: {spinning:false, result:null},
+  sentence: {setIndex:0, slots:[]},
+  whoami: {i:0, score:0},
+  vocabChallenge: {i:0, score:0, order:[]},
+  speaking: {done:new Set()},
+  speakingMode: 'solo',
+  interview: {name:'', pronoun:'He', age:'', live:'', hobby:'', reason:'', favCategory:'Animal', favValue:'', job:'', done:false},
+  presentation: {name:'', age:'', live:'', hobby:'', reason:'', favCategory:'Animal', favValue:'', job:'', avatar:'🧑‍🎤'},
+  final: {done:new Set()},
+  listening: {i:0, score:0},
+  rewardTierKey: 'bronze',
+  assess: {grammarCorrect:0, grammarTotal:14, vocabCorrect:0, vocabTotal:0, speakingDone:0, speakingTotal:FINAL_ITEMS.length+SPEAKING_PROMPTS.length+1,
+           listeningCorrect:0, listeningTotal:0}
+};
+
+/* ---------------------- UTILITIES ---------------------- */
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+function article(word){ if(!word) return 'a'; return /^[aeiou]/i.test(word) ? 'an' : 'a'; }
+function esc(s){ return (s||'').replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])); }
+
+function showToast(msg, icon){
+  const t = document.getElementById('toast');
+  t.innerHTML = `<span style="font-size:1.3rem">${icon||'✨'}</span><span>${msg}</span>`;
+  t.classList.add('show');
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+function confetti(n){
+  n = n || 40;
+  const colors = ['#A9E4C7','#FFC2D6','#A8DEF5','#D6C6F5','#FFE99A'];
+  for(let i=0;i<n;i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.left = Math.random()*100+'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration = (2 + Math.random()*1.6)+'s';
+    p.style.borderRadius = Math.random()>0.5 ? '50%':'3px';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 4000);
+  }
+}
+
+function speakPlaceholder(text){
+  showToast('Recording your voice… great job speaking!', '🎤');
+}
+
+/* Real listening audio via the browser's built-in speech synthesis (offline, no external files). */
+function speakText(text, opts){
+  if(!('speechSynthesis' in window)){
+    showToast('Audio is not supported on this device.', '🔇');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = (opts && opts.rate) || 0.9;
+  utter.pitch = (opts && opts.pitch) || 1.05;
+  utter.lang = 'en-US';
+  window.speechSynthesis.speak(utter);
+}
+
+function feedbackHTML(correct, text){
+  return `<div class="feedback-box show ${correct?'good':'bad'}">${correct?'✅ Great job! ':'💡 '}${text}</div>`;
+}
+
+function awardXP(amount){
+  state.xp += amount;
+  updateChrome();
+}
+
+function unlockStamp(sectionId){
+  if(state.stamps[sectionId]) return;
+  state.stamps[sectionId] = true;
+  const sec = SECTIONS.find(s=>s.id===sectionId);
+  awardXP(20);
+  updateChrome();
+  renderPassport();
+  const icon = document.getElementById('badgeIcon');
+  const title = document.getElementById('badgeTitle');
+  const text = document.getElementById('badgeText');
+  icon.textContent = sec.stamp;
+  title.textContent = 'Passport Stamp!';
+  text.textContent = `You earned the "${sec.name}" stamp. +20 XP`;
+  document.getElementById('badgePopup').classList.add('show');
+  confetti(26);
+}
+
+function updateChrome(){
+  const level = Math.floor(state.xp/100)+1;
+  document.getElementById('xpCount').textContent = state.xp;
+  document.getElementById('levelCount').textContent = level;
+  const done = Object.keys(state.stamps).length;
+  document.getElementById('progressFill').style.width = Math.round(done/SECTIONS.length*100)+'%';
+  document.getElementById('progressLabel').textContent = `Mission ${done} of ${SECTIONS.length}`;
+
+  const tier = getRewardTier(state.xp);
+  const chip = document.getElementById('rewardChip');
+  chip.textContent = `${tier.icon} ${tier.label}`;
+  chip.style.background = tier.css;
+  if(tier.key !== state.rewardTierKey){
+    const isFirstPaint = !document.body.dataset.chromeInit;
+    state.rewardTierKey = tier.key;
+    if(!isFirstPaint){
+      showToast(`Reward Up! You are now ${tier.label} ${tier.icon}`, tier.icon);
+      confetti(30);
+    }
+  }
+  document.body.dataset.chromeInit = '1';
+  updateTeacherSnapshot();
+}
+
+function updateTeacherSnapshot(){
+  const grid = document.getElementById('snapshotGrid');
+  if(!grid) return;
+  const a = state.assess;
+  const vocabPct = a.vocabTotal ? Math.round(a.vocabCorrect/a.vocabTotal*100) : 0;
+  const grammarPct = Math.round(a.grammarCorrect/a.grammarTotal*100);
+  const listenPct = a.listeningTotal ? Math.round(a.listeningCorrect/a.listeningTotal*100) : 0;
+  const speakPct = Math.round(a.speakingDone/a.speakingTotal*100);
+  const tier = getRewardTier(state.xp);
+  ['ttVocab','ttGrammar','ttListening','ttSpeaking'].forEach((id,i)=>{
+    const vals = [vocabPct+'%', grammarPct+'%', listenPct+'%', speakPct+'%'];
+    const el = document.getElementById(id);
+    if(el) el.textContent = vals[i];
+  });
+  grid.innerHTML = `
+    <div class="snapshot-box"><b>${state.xp} XP</b>Total XP earned</div>
+    <div class="snapshot-box"><b>${tier.icon} ${tier.label}</b>Current reward tier</div>
+    <div class="snapshot-box"><b>${Object.keys(state.stamps).length}/${SECTIONS.length}</b>Missions completed</div>
+    <div class="snapshot-box"><b>${state.presentation.name || '—'}</b>Student name entered</div>
+  `;
+}
+
+function renderPassport(){
+  const grid = document.getElementById('stampGrid');
+  grid.innerHTML = SECTIONS.map(s=>{
+    const earned = state.stamps[s.id];
+    return `<div class="stamp ${earned?'earned':''}">
+      <div>${earned ? s.stamp : '❔'}</div>
+      <span class="stamp-name">${earned ? s.label : '???'}</span>
+    </div>`;
+  }).join('');
+}
+
+/* ---------------------- NAVIGATION ---------------------- */
+function goTo(sectionId){
+  const i = SECTIONS.findIndex(s=>s.id===sectionId);
+  if(i<0) return;
+  state.idx = i;
+  renderSection(sectionId);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function goNext(){
+  unlockStamp(SECTIONS[state.idx].id);
+  if(state.idx < SECTIONS.length-1){ goTo(SECTIONS[state.idx+1].id); }
+}
+function goPrev(){
+  if(state.idx>0){ goTo(SECTIONS[state.idx-1].id); }
+}
+
+function navRow(showPrev){
+  return `<div class="nav-row">
+    ${showPrev!==false ? `<button class="btn ghost" onclick="goPrev()">← Back</button>` : `<span></span>`}
+    <button class="btn primary" onclick="goNext()">Continue →</button>
+  </div>`;
+}
+
+/* =====================================================================
+   SECTION 1 — STORY OPENING
+===================================================================== */
+function renderOpening(){
+  return `
+  <div class="eyebrow">Meeting 2 · Chapter 1</div>
+  <h2 class="section-title">Tell More About Me ✨</h2>
+  <p class="section-sub">Continuing our adventure toward the Littlelume Student Showcase.</p>
+
+  <div class="card">
+    <div class="story-row">
+      <div class="avatar lumi">🧚</div>
+      <div class="bubble">
+        <p>Welcome back, star! Last time, you learned to say your name and "I am…". The Showcase judges loved it! 🌟</p>
+      </div>
+    </div>
+    <div class="story-row">
+      <div class="avatar lumi">🧚</div>
+      <div class="bubble">
+        <p>But now it's time for the <b>real</b> Showcase — where you tell everyone all about YOU: your age, your home, your hobby, and your dreams!</p>
+      </div>
+    </div>
+    <div class="story-row">
+      <div class="avatar you">🧑‍🚀</div>
+      <div class="bubble you-bubble">
+        <p>I'm ready, Lumi! What do I need to do?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mission-card">
+    <div class="eyebrow" style="background:rgba(255,255,255,0.6)">New Mission</div>
+    <h3>🎯 Prepare your full self-introduction for the Littlelume Student Showcase!</h3>
+    <p>Complete every step below to fill your Showcase Passport:</p>
+    <ul class="mission-list">
+      ${SECTIONS.map(s=>`<li><span class="mission-check">${state.stamps[s.id]?'✓':''}</span> ${s.name}</li>`).join('')}
+    </ul>
+  </div>
+
+  ${navRow(false)}
+  `;
+}
+
+/* =====================================================================
+   SECTION 2 — QUICK REVIEW
+===================================================================== */
+const REVIEW_QUIZ = [
+  {q:'How do you greet someone in the morning?', options:['Good night!','Hello! / Good morning!','Goodbye!'], correct:1,
+   explain:"We say \"Hello!\" or \"Good morning!\" to greet someone politely. \"Good night\" is for bedtime, and \"Goodbye\" is for leaving."},
+  {q:'Which sentence gives your name?', options:['I am Anna.','I am 10.','I live in Bekasi.'], correct:0,
+   explain:"\"I am [name]\" tells your name. \"I am 10\" tells your age, and \"I live in…\" tells your address."},
+  {q:'Which sentence tells your age?', options:['My name is Dio.','I am 9 years old.','I like cats.'], correct:1,
+   explain:"Age uses a number + \"years old\", like \"I am 9 years old.\" The others tell a name or a like."}
+];
+
+function renderReview(){
+  return `
+  <div class="eyebrow">Section 2</div>
+  <h2 class="section-title">Quick Review 🔁</h2>
+  <p class="section-sub">Let's warm up with what you learned in Meeting 1.</p>
+
+  <div class="card">
+    <div class="story-row">
+      <div class="avatar lumi">🧚</div>
+      <div class="bubble"><p>Before we go further, let's check your memory! Answer these 3 quick questions.</p></div>
+    </div>
+    <div id="reviewQuizArea"></div>
+  </div>
+
+  ${navRow()}
+  `;
+}
+function initReview(){
+  const area = document.getElementById('reviewQuizArea');
+  if(!area) return;
+  state.quickReview = {score:0, total:REVIEW_QUIZ.length};
+  area.innerHTML = REVIEW_QUIZ.map((item, qi)=>`
+    <div class="card glass" style="box-shadow:none; border:2px solid #f1ead9; margin-bottom:12px;">
+      <div class="quiz-q">${qi+1}. ${item.q}</div>
+      <div class="choices" data-qi="${qi}">
+        ${item.options.map((op,oi)=>`<button class="choice" data-q="${qi}" data-o="${oi}" onclick="answerReview(${qi},${oi},this)">${op}</button>`).join('')}
+      </div>
+      <div id="reviewFb${qi}"></div>
+    </div>
+  `).join('') + `<div id="reviewResult" style="font-weight:800; margin-top:10px;"></div>`;
+}
+function answerReview(qi, oi, btn){
+  const item = REVIEW_QUIZ[qi];
+  const parent = btn.parentElement;
+  if(parent.dataset.locked) return;
+  parent.dataset.locked = '1';
+  [...parent.children].forEach((c,i)=>{
+    if(i===item.correct) c.classList.add('correct');
+    else if(i===oi) c.classList.add('wrong');
+  });
+  const correct = oi===item.correct;
+  document.getElementById('reviewFb'+qi).innerHTML = feedbackHTML(correct, item.explain);
+  if(correct){ state.quickReview.score++; awardXP(5); }
+  const done = document.querySelectorAll('#reviewQuizArea .choices[data-locked]').length;
+  if(done===REVIEW_QUIZ.length){
+    document.getElementById('reviewResult').innerHTML = `Mini celebration! 🎉 You scored ${state.quickReview.score}/${REVIEW_QUIZ.length}.`;
+  }
+}
+
+/* =====================================================================
+   SECTION 3 — VOCABULARY ADVENTURE
+===================================================================== */
+function renderVocab(){
+  return `
+  <div class="eyebrow">Section 3</div>
+  <h2 class="section-title">Vocabulary Adventure 🗺️</h2>
+  <p class="section-sub">Explore three lands: Hobbies, Favorite Things, and Dream Jobs. Tap a card to flip it!</p>
+
+  <div class="card">
+    <div class="tabs" id="vocabTabs">
+      <button class="tab-btn" data-tab="hobbies" onclick="setVocabTab('hobbies')">🎨 Hobbies</button>
+      <button class="tab-btn" data-tab="favorites" onclick="setVocabTab('favorites')">⭐ Favorite Things</button>
+      <button class="tab-btn" data-tab="jobs" onclick="setVocabTab('jobs')">💼 Dream Jobs</button>
+      <button class="tab-btn" data-tab="challenge" onclick="setVocabTab('challenge')">🌟 Bonus Challenge</button>
+    </div>
+    <p class="section-sub" id="vocabTabNote" style="margin:-6px 0 12px;"></p>
+    <div class="flip-grid" id="flipGrid"></div>
+  </div>
+
+  <div class="card">
+    <h3>🧩 Matching Game</h3>
+    <p class="section-sub" style="margin-bottom:12px;">Match the picture to the correct word.</p>
+    <div class="match-wrap" id="matchWrap"></div>
+    <div id="matchResult" style="font-weight:800; margin-top:10px;"></div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Drag & Drop: Complete the Sentence</h3>
+    <p class="section-sub">Drag a word into the blank.</p>
+    <div class="dnd-bank" id="dndBank"></div>
+    <div class="dnd-targets" id="dndTargets"></div>
+    <div id="dndResult" style="font-weight:800; margin-top:10px;"></div>
+  </div>
+
+  ${navRow()}
+  `;
+}
+
+function setVocabTab(tab){
+  state.vocabTab = tab;
+  document.querySelectorAll('#vocabTabs .tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  const note = document.getElementById('vocabTabNote');
+  if(note) note.textContent = tab==='challenge' ? '🌟 Extra words for students who finish early and want a bigger challenge!' : '';
+  renderFlipGrid();
+}
+function renderFlipGrid(){
+  const grid = document.getElementById('flipGrid');
+  if(!grid) return;
+  grid.innerHTML = VOCAB[state.vocabTab].map((v,i)=>`
+    <div class="flip-card" data-i="${i}" onclick="flipCard(this,'${state.vocabTab}',${i})">
+      <div class="flip-inner">
+        <div class="flip-face flip-front">${v.icon}</div>
+        <div class="flip-face flip-back">
+          <div class="word">${v.word}</div>
+          <div class="example">"${v.example}"</div>
+          <button class="sound-btn" onclick="event.stopPropagation(); speakText('${v.word.replace(/'/g,"\\'")}. ${v.example.replace(/'/g,"\\'")}')">🔊 Listen</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function flipCard(el, tab, i){
+  el.classList.toggle('flipped');
+  const key = tab+i;
+  if(!state.vocabSeen.has(key)){
+    state.vocabSeen.add(key);
+    awardXP(2);
+  }
+}
+
+function renderMatchWrap(){
+  const wrap = document.getElementById('matchWrap');
+  if(!wrap) return;
+  const pool = shuffle(VOCAB.hobbies).slice(0,4);
+  state.matching = {pool, selectedIcon:null, matchedCount:0};
+  const icons = shuffle(pool.map((v,i)=>({...v, i})));
+  const words = shuffle(pool.map((v,i)=>({...v, i})));
+  wrap.innerHTML = `
+    <div class="match-col">${icons.map(v=>`<div class="match-item" data-i="${v.i}" data-role="icon" onclick="selectMatch(this,'icon',${v.i})">${v.icon}</div>`).join('')}</div>
+    <div class="match-col">${words.map(v=>`<div class="match-item" data-i="${v.i}" data-role="word" onclick="selectMatch(this,'word',${v.i})">${v.word}</div>`).join('')}</div>
+  `;
+}
+function selectMatch(el, role, i){
+  if(el.classList.contains('correct')) return;
+  if(role==='icon'){
+    document.querySelectorAll('.match-item[data-role="icon"]').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected');
+    state.matching.selectedIcon = {el, i};
+  } else {
+    const sel = state.matching.selectedIcon;
+    if(!sel){ showToast('Pick a picture first!', '👆'); return; }
+    if(sel.i === i){
+      sel.el.classList.remove('selected'); sel.el.classList.add('correct');
+      el.classList.add('correct');
+      state.matching.matchedCount++;
+      awardXP(3);
+      if(state.matching.matchedCount === state.matching.pool.length){
+        document.getElementById('matchResult').textContent = 'All matched! Great job! 🎉';
+        confetti(18);
+      }
+    } else {
+      el.classList.add('wrong');
+      setTimeout(()=>el.classList.remove('wrong'), 400);
+    }
+    state.matching.selectedIcon = null;
+    document.querySelectorAll('.match-item[data-role="icon"]').forEach(e=>e.classList.remove('selected'));
+  }
+}
+
+function renderDnd(){
+  const bank = document.getElementById('dndBank');
+  const targets = document.getElementById('dndTargets');
+  if(!bank || !targets) return;
+  const words = shuffle(['drawing','swimming','pizza','cat']);
+  targets.innerHTML = `
+    <div class="dnd-slot-row">My hobby is <div class="dnd-slot" data-answer="drawing" data-slot="1" ondragover="event.preventDefault(); this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropWord(event,this)">___</div>.</div>
+    <div class="dnd-slot-row">My favorite animal is a <div class="dnd-slot" data-answer="cat" data-slot="2" ondragover="event.preventDefault(); this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropWord(event,this)">___</div>.</div>
+  `;
+  bank.innerHTML = words.map(w=>`<div class="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text', '${w}')">${w}</div>`).join('');
+}
+function dropWord(ev, slot){
+  ev.preventDefault();
+  slot.classList.remove('over');
+  const word = ev.dataTransfer.getData('text');
+  slot.textContent = word;
+  slot.classList.add('filled');
+  const correct = slot.dataset.answer === word;
+  const result = document.getElementById('dndResult');
+  if(correct){
+    awardXP(4);
+    result.textContent = result.textContent + ' ✅';
+  } else {
+    result.textContent = 'Try again — drag the correct word! 💡';
+  }
+  const allFilled = [...document.querySelectorAll('.dnd-slot')].every(s=>s.classList.contains('filled'));
+  const allCorrect = [...document.querySelectorAll('.dnd-slot')].every(s=>s.dataset.answer === s.textContent.trim());
+  if(allFilled && allCorrect){
+    result.textContent = 'Perfect sentences! 🎉';
+    confetti(18);
+  }
+}
+
+function initVocab(){
+  document.querySelector('#vocabTabs .tab-btn[data-tab="hobbies"]').classList.add('active');
+  renderFlipGrid();
+  renderMatchWrap();
+  renderDnd();
+}
+
+/* =====================================================================
+   SECTION 4 — GRAMMAR WORKSHOP
+===================================================================== */
+function renderGrammar(){
+  return `
+  <div class="eyebrow">Section 4</div>
+  <h2 class="section-title">Grammar Workshop 🛠️</h2>
+  <p class="section-sub">Five simple patterns to build your big introduction. Try each mini exercise!</p>
+
+  ${PATTERNS.map((p, pi)=>`
+    <div class="card">
+      <div class="pattern-card">
+        <div class="pattern">${p.pattern}</div>
+        <div class="example">Example: "${p.example}"</div>
+      </div>
+      <div class="quiz-q">Fill the blank: ${p.blank}</div>
+      <div class="choices" id="patternChoices${pi}">
+        ${shuffle(p.options.map((o,oi)=>({o,oi}))).map(({o,oi})=>`
+          <button class="choice" onclick="answerPattern(${pi},${oi},this)">${o}</button>
+        `).join('')}
+      </div>
+      <div id="patternFb${pi}"></div>
+    </div>
+  `).join('')}
+
+  ${navRow()}
+  `;
+}
+function answerPattern(pi, oi, btn){
+  const p = PATTERNS[pi];
+  const parent = btn.parentElement;
+  if(parent.dataset.locked) return;
+  parent.dataset.locked='1';
+  const chosenWord = btn.textContent.trim();
+  [...parent.children].forEach(c=>{
+    if(c.textContent.trim()===p.correct) c.classList.add('correct');
+    else if(c===btn) c.classList.add('wrong');
+  });
+  const correct = chosenWord===p.correct;
+  document.getElementById('patternFb'+pi).innerHTML = feedbackHTML(correct, p.explain);
+  if(correct){
+    awardXP(6); state.assess.grammarCorrect++;
+  }
+}
+
+/* =====================================================================
+   SECTION 5 — CONVERSATION PRACTICE
+===================================================================== */
+function renderConversation(){
+  return `
+  <div class="eyebrow">Section 5</div>
+  <h2 class="section-title">Conversation Practice 💬</h2>
+  <p class="section-sub">Help Lumi and Buddy prepare their introductions, then practice with a partner!</p>
+
+  <div class="card">
+    <h3>Story Dialogue</h3>
+    <div class="story-row">
+      <div class="avatar lumi">🧚</div>
+      <div class="bubble"><p>Buddy, tell me about yourself!</p></div>
+    </div>
+    <div class="story-row">
+      <div class="avatar you">🐻</div>
+      <div class="bubble you-bubble"><p>Hello! My name is Buddy. I am 10 years old. I live in Littlelume Forest. My hobby is reading. I like reading because it is interesting. My favorite animal is an owl. I want to be a teacher.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎭 Roleplay Cards</h3>
+    <div class="role-cards">
+      <div class="role-card"><h4>Card A — Interviewer</h4><p>Ask your partner: "What is your hobby?" "Where do you live?" "What do you want to be?"</p></div>
+      <div class="role-card"><h4>Card B — Guest</h4><p>Answer using: "My hobby is…", "I live in…", "I want to be…"</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎡 Random Conversation Generator</h3>
+    <p class="section-sub">Tap the button for a surprise question, then answer out loud!</p>
+    <div id="convQBox" class="bubble" style="max-width:100%;"><p>Tap "New Question" to begin!</p></div>
+    <div class="btn-row">
+      <button class="btn pink" onclick="newConvQuestion()">🔀 New Question</button>
+      <button class="btn ghost" id="convListenBtn" onclick="speakText(currentConvQuestion)" disabled>🔊 Listen</button>
+      <button class="btn ghost" onclick="speakPlaceholder('answer')">🎤 Speak My Answer</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>👯 Pair Practice</h3>
+    <p>1. Sit with a partner. 2. Take turns asking and answering. 3. Use full sentences. 4. Cheer for each other! 🎉</p>
+  </div>
+
+  ${navRow()}
+  `;
+}
+let currentConvQuestion = '';
+function newConvQuestion(){
+  const q = CONV_QUESTIONS[Math.floor(Math.random()*CONV_QUESTIONS.length)];
+  currentConvQuestion = q;
+  document.getElementById('convQBox').innerHTML = `<p><b>${q}</b></p>`;
+  const btn = document.getElementById('convListenBtn');
+  if(btn) btn.disabled = false;
+  speakText(q);
+}
+
+/* =====================================================================
+   SECTION 6 — MY PRESENTATION PROJECT
+===================================================================== */
+function renderPresentation(){
+  const p = state.presentation;
+  return `
+  <div class="eyebrow">Section 6</div>
+  <h2 class="section-title">My Presentation Project 📝</h2>
+  <p class="section-sub">Fill in your own details — watch your introduction appear like magic!</p>
+
+  <div class="card">
+    <div class="form-grid">
+      <div class="field"><label>My name</label><input id="fName" value="${esc(p.name)}" oninput="updatePresentation()" placeholder="Anna"></div>
+      <div class="field"><label>My age</label><input id="fAge" type="number" min="6" max="13" value="${esc(p.age)}" oninput="updatePresentation()" placeholder="10"></div>
+      <div class="field"><label>Where I live</label><input id="fLive" value="${esc(p.live)}" oninput="updatePresentation()" placeholder="Bekasi"></div>
+      <div class="field"><label>My hobby</label>
+        <select id="fHobby" onchange="updatePresentation()">
+          <option value="">Choose…</option>
+          ${VOCAB.hobbies.map(v=>`<option value="${v.word}" ${p.hobby===v.word?'selected':''}>${v.word}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field"><label>Reason (it is …)</label><input id="fReason" value="${esc(p.reason)}" oninput="updatePresentation()" placeholder="fun"></div>
+      <div class="field"><label>Favorite category</label>
+        <select id="fFavCat" onchange="updatePresentation()">
+          <option ${p.favCategory==='Animal'?'selected':''}>Animal</option>
+          <option ${p.favCategory==='Food'?'selected':''}>Food</option>
+          <option ${p.favCategory==='Color'?'selected':''}>Color</option>
+        </select>
+      </div>
+      <div class="field"><label>Favorite thing</label><input id="fFavVal" value="${esc(p.favValue)}" oninput="updatePresentation()" placeholder="fried rice"></div>
+      <div class="field"><label>Dream job</label>
+        <select id="fJob" onchange="updatePresentation()">
+          <option value="">Choose…</option>
+          ${VOCAB.jobs.map(v=>`<option value="${v.word}" ${p.job===v.word?'selected':''}>${v.word}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Your Introduction</h3>
+    <div class="paragraph-preview" id="paragraphPreview"></div>
+    <div class="btn-row">
+      <button class="btn primary" id="readBtn" onclick="readPresentation()">🔊 Read My Presentation</button>
+      <button class="btn ghost" onclick="speakPlaceholder('presentation')">🎤 Practice Speaking It</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎭 Showcase Stage</h3>
+    <p class="section-sub">Pick your stage avatar, then step onto the Showcase Stage to perform your introduction with real audio!</p>
+    <div class="avatar-pick" id="avatarPick">
+      ${['🧑‍🎤','🦸','🧚','🐻','🦊','🧑‍🚀'].map(a=>`<button type="button" class="${state.presentation.avatar===a?'active':''}" onclick="pickAvatar('${a}',this)">${a}</button>`).join('')}
+    </div>
+    <div class="btn-row">
+      <button class="btn pink" onclick="openStage()">🎭 Go to Showcase Stage</button>
+    </div>
+  </div>
+
+  ${navRow()}
+  `;
+}
+function pickAvatar(a, btn){
+  state.presentation.avatar = a;
+  document.querySelectorAll('#avatarPick button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function openStage(){
+  document.getElementById('stageAvatar').textContent = state.presentation.avatar || '🧑‍🎤';
+  document.getElementById('stageName').textContent = state.presentation.name ? `${state.presentation.name}'s Introduction` : 'My Introduction';
+  document.getElementById('stageBubble').textContent = 'Get ready…';
+  document.getElementById('stageProgress').textContent = '';
+  document.getElementById('stageAudience').classList.remove('clapping');
+  document.getElementById('stageOverlay').classList.add('open');
+  runStagePresentation();
+}
+function closeStage(){
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+  document.getElementById('stageOverlay').classList.remove('open');
+}
+let stageRunToken = 0;
+function runStagePresentation(){
+  const myToken = ++stageRunToken;
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+  const lines = buildParagraphWords();
+  const bubble = document.getElementById('stageBubble');
+  const progressEl = document.getElementById('stageProgress');
+  const audience = document.getElementById('stageAudience');
+  audience.classList.remove('clapping');
+  let i = 0;
+  function speakLine(){
+    if(myToken !== stageRunToken) return;
+    if(i >= lines.length){
+      bubble.textContent = 'Thank you! 🎉';
+      progressEl.textContent = 'Finished — take a bow!';
+      audience.classList.add('clapping');
+      confetti(40);
+      showToast('Amazing performance!', '👏');
+      awardXP(15);
+      return;
+    }
+    bubble.textContent = lines[i];
+    progressEl.textContent = `Line ${i+1} of ${lines.length}`;
+    if('speechSynthesis' in window){
+      const u = new SpeechSynthesisUtterance(lines[i]);
+      u.rate = 0.88; u.pitch = 1.05; u.lang = 'en-US';
+      u.onend = ()=>{ if(myToken!==stageRunToken) return; i++; setTimeout(speakLine, 350); };
+      u.onerror = ()=>{ if(myToken!==stageRunToken) return; i++; setTimeout(speakLine, 900); };
+      window.speechSynthesis.speak(u);
+    } else {
+      i++; setTimeout(speakLine, 1700);
+    }
+  }
+  speakLine();
+}
+function buildParagraphWords(){
+  const p = state.presentation;
+  const hobbyLc = p.hobby ? p.hobby.toLowerCase() : '';
+  const jobLc = p.job ? p.job.toLowerCase() : '';
+  const parts = [
+    'Hello!',
+    `My name is ${p.name||'____'}.`,
+    `I am ${p.age||'__'} years old.`,
+    `I live in ${p.live||'____'}.`,
+    `My hobby is ${hobbyLc||'____'}.`,
+    `I like ${hobbyLc||'____'} because it is ${p.reason||'____'}.`,
+    `My favorite ${(p.favCategory||'thing').toLowerCase()} is ${p.favValue||'____'}.`,
+    `I want to be ${article(jobLc)} ${jobLc||'____'}.`
+  ];
+  return parts;
+}
+function updatePresentation(){
+  const p = state.presentation;
+  p.name = document.getElementById('fName').value;
+  p.age = document.getElementById('fAge').value;
+  p.live = document.getElementById('fLive').value;
+  p.hobby = document.getElementById('fHobby').value;
+  p.reason = document.getElementById('fReason').value;
+  p.favCategory = document.getElementById('fFavCat').value;
+  p.favValue = document.getElementById('fFavVal').value;
+  p.job = document.getElementById('fJob').value;
+  renderParagraphPreview();
+}
+function renderParagraphPreview(){
+  const box = document.getElementById('paragraphPreview');
+  if(!box) return;
+  box.innerHTML = buildParagraphWords().map(line=>{
+    const isPh = line.includes('____') || line.includes('__ ');
+    return `<div class="${isPh?'ph':''}">${esc(line)}</div>`;
+  }).join('');
+}
+function readPresentation(){
+  const box = document.getElementById('paragraphPreview');
+  const lines = [...box.children];
+  let i = 0;
+  const btn = document.getElementById('readBtn');
+  btn.disabled = true;
+  const timer = setInterval(()=>{
+    lines.forEach(l=>l.style.background='');
+    if(i < lines.length){
+      lines[i].style.background = 'var(--yellow)';
+      i++;
+    } else {
+      clearInterval(timer);
+      lines.forEach(l=>l.style.background='');
+      btn.disabled = false;
+      showToast('Wonderful reading!', '🎉');
+      awardXP(10);
+    }
+  }, 700);
+}
+
+/* =====================================================================
+   SECTION 7 — GAMES & REVIEW
+===================================================================== */
+const GAME_TABS = [
+  {id:'memory', name:'🧠 Memory'},
+  {id:'tf', name:'✅ True/False'},
+  {id:'listening', name:'🎧 Listening'},
+  {id:'wheel', name:'🎡 Spin the Wheel'},
+  {id:'sentence', name:'🧩 Sentence Builder'},
+  {id:'whoami', name:'🕵️ Who Am I'},
+  {id:'vocabc', name:'📖 Vocab Challenge'},
+  {id:'speaking', name:'🎤 Speaking Challenge'}
+];
+function renderGames(){
+  return `
+  <div class="eyebrow">Section 7</div>
+  <h2 class="section-title">Games & Review 🎮</h2>
+  <p class="section-sub">Pick a mini game! Every correct answer earns XP.</p>
+  <div class="game-menu" id="gameMenu">
+    ${GAME_TABS.map(g=>`<button class="game-tile" data-g="${g.id}" onclick="setGameTab('${g.id}')">${g.name}</button>`).join('')}
+  </div>
+  <div class="card" id="gameArea"></div>
+  ${navRow()}
+  `;
+}
+function setGameTab(id){
+  state.gamesTab = id;
+  document.querySelectorAll('#gameMenu .game-tile').forEach(b=>b.classList.toggle('active', b.dataset.g===id));
+  const area = document.getElementById('gameArea');
+  const renderers = {
+    memory: renderMemoryGame, tf: renderTFGame, listening: renderListeningGame, wheel: renderWheelGame,
+    sentence: renderSentenceGame, whoami: renderWhoAmIGame,
+    vocabc: renderVocabChallenge, speaking: renderSpeakingChallenge
+  };
+  area.innerHTML = renderers[id]();
+  const initers = {
+    memory: initMemoryGame, tf: initTFGame, listening: initListeningGame, wheel: initWheelGame,
+    sentence: initSentenceGame, whoami: initWhoAmIGame,
+    vocabc: initVocabChallenge, speaking: initSpeakingChallenge
+  };
+  initers[id]();
+}
+function initGamesDefault(){
+  document.querySelector('#gameMenu .game-tile[data-g="memory"]').classList.add('active');
+  setGameTab('memory');
+}
+
+/* --- Memory Game --- */
+function renderMemoryGame(){
+  return `<h3>🧠 Memory Match</h3><p class="section-sub">Flip two cards to find matching hobby pairs.</p>
+  <div class="score-pill" id="memScore">Matches: 0/6</div>
+  <div class="flip-grid" id="memGrid" style="margin-top:14px;"></div>`;
+}
+function initMemoryGame(){
+  const words = VOCAB.hobbies;
+  let cards = shuffle([
+    ...words.map(w=>({key:w.word, display:w.icon})),
+    ...words.map(w=>({key:w.word, display:w.word}))
+  ]);
+  state.memory = {first:null, moves:0, matched:0, locked:false};
+  const grid = document.getElementById('memGrid');
+  grid.innerHTML = cards.map((c,i)=>`
+    <div class="flip-card" data-i="${i}" data-key="${c.key}" onclick="flipMemoryCard(this,${i})">
+      <div class="flip-inner">
+        <div class="flip-face flip-front" style="font-size:2rem;">❓</div>
+        <div class="flip-face flip-back"><div class="word">${c.display}</div></div>
+      </div>
+    </div>
+  `).join('');
+}
+function flipMemoryCard(el, i){
+  if(state.memory.locked || el.classList.contains('flipped') || el.classList.contains('done')) return;
+  el.classList.add('flipped');
+  if(!state.memory.first){
+    state.memory.first = {el, i, key:el.dataset.key};
+  } else {
+    state.memory.moves++;
+    const first = state.memory.first;
+    if(first.i===i){ return; }
+    if(first.key===el.dataset.key){
+      state.memory.matched++;
+      first.el.classList.add('done'); el.classList.add('done');
+      state.memory.first = null;
+      awardXP(5);
+      document.getElementById('memScore').textContent = `Matches: ${state.memory.matched}/6`;
+      if(state.memory.matched===6){ showToast('Memory Master! 🎉', '🧠'); confetti(20); }
+    } else {
+      state.memory.locked = true;
+      setTimeout(()=>{
+        first.el.classList.remove('flipped'); el.classList.remove('flipped');
+        state.memory.first = null; state.memory.locked = false;
+      }, 700);
+    }
+  }
+}
+
+/* --- True/False Game --- */
+function renderTFGame(){
+  return `<h3>✅ True or False</h3><p class="section-sub">Is the sentence correct English?</p>
+  <div class="score-pill" id="tfScore">Score: 0/${TF_STATEMENTS.length}</div>
+  <div class="card glass" style="margin-top:14px; box-shadow:none; border:2px solid #f1ead9;">
+    <div class="quiz-q" id="tfText"></div>
+    <div class="btn-row">
+      <button class="btn primary" onclick="answerTF(true)">✅ True</button>
+      <button class="btn pink" onclick="answerTF(false)">❌ False</button>
+    </div>
+    <div id="tfFb"></div>
+  </div>`;
+}
+function initTFGame(){
+  state.tf = {i:0, score:0};
+  showTFStatement();
+}
+function showTFStatement(){
+  const el = document.getElementById('tfText');
+  const fb = document.getElementById('tfFb');
+  if(fb) fb.innerHTML = '';
+  if(state.tf.i >= TF_STATEMENTS.length){
+    el.innerHTML = `Done! Final score: ${state.tf.score}/${TF_STATEMENTS.length} 🎉`;
+    return;
+  }
+  el.textContent = TF_STATEMENTS[state.tf.i].text;
+}
+function answerTF(ans){
+  if(state.tf.i >= TF_STATEMENTS.length || state.tf.locked) return;
+  state.tf.locked = true;
+  const item = TF_STATEMENTS[state.tf.i];
+  const correct = item.answer === ans;
+  document.getElementById('tfFb').innerHTML = feedbackHTML(correct, item.explain);
+  if(correct){ state.tf.score++; state.assess.grammarCorrect++; awardXP(4); }
+  state.tf.i++;
+  document.getElementById('tfScore').textContent = `Score: ${state.tf.score}/${TF_STATEMENTS.length}`;
+  setTimeout(()=>{ state.tf.locked=false; showTFStatement(); }, 1400);
+}
+
+/* --- Listening Challenge (real audio via speech synthesis) --- */
+function renderListeningGame(){
+  return `<h3>🎧 Listening Challenge</h3><p class="section-sub">Tap "Play Audio", listen carefully, then choose the correct answer.</p>
+  <div class="score-pill" id="lisScore">Score: 0/${LISTENING_ITEMS.length}</div>
+  <div class="card glass" style="margin-top:14px; box-shadow:none; border:2px solid #f1ead9; text-align:center;">
+    <button class="btn primary" id="lisPlayBtn" onclick="playListeningAudio()" style="font-size:1.1rem;">🔊 Play Audio</button>
+    <p style="color:var(--ink-soft); font-size:.8rem; margin-top:8px;">You can tap play as many times as you like.</p>
+  </div>
+  <div class="choices" id="lisChoices" style="margin-top:14px;"></div>
+  <div id="lisFb"></div>`;
+}
+function initListeningGame(){
+  state.listening = {i:0, score:0};
+  showListeningItem();
+}
+function showListeningItem(){
+  const choicesEl = document.getElementById('lisChoices');
+  const fb = document.getElementById('lisFb');
+  if(fb){ fb.innerHTML=''; }
+  if(state.listening.i >= LISTENING_ITEMS.length){
+    choicesEl.innerHTML = `<p style="grid-column:1/-1; font-weight:800;">Finished! Score: ${state.listening.score}/${LISTENING_ITEMS.length} 🎉</p>`;
+    document.getElementById('lisPlayBtn').disabled = true;
+    return;
+  }
+  document.getElementById('lisPlayBtn').disabled = false;
+  delete choicesEl.dataset.locked;
+  const item = LISTENING_ITEMS[state.listening.i];
+  choicesEl.innerHTML = shuffle(item.choices).map(c=>`<button class="choice" onclick="answerListening('${c.replace(/'/g,"\\'")}',this)">${c}</button>`).join('');
+}
+function playListeningAudio(){
+  const item = LISTENING_ITEMS[state.listening.i];
+  if(item) speakText(item.audio);
+}
+function answerListening(choice, btn){
+  const parent = btn.parentElement;
+  if(parent.dataset.locked) return;
+  parent.dataset.locked = '1';
+  const item = LISTENING_ITEMS[state.listening.i];
+  [...parent.children].forEach(c=>{
+    if(c.textContent===item.answer) c.classList.add('correct');
+    else if(c===btn) c.classList.add('wrong');
+  });
+  const correct = choice===item.answer;
+  document.getElementById('lisFb').innerHTML = feedbackHTML(correct, item.explain);
+  state.assess.listeningTotal++;
+  if(correct){ state.listening.score++; state.assess.listeningCorrect++; awardXP(5); }
+  document.getElementById('lisScore').textContent = `Score: ${state.listening.score}/${LISTENING_ITEMS.length}`;
+  setTimeout(()=>{
+    state.listening.i++;
+    showListeningItem();
+  }, 1600);
+}
+
+/* --- Spin the Wheel --- */
+function renderWheelGame(){
+  return `<h3>🎡 Spin the Wheel</h3><p class="section-sub">Spin to get a topic, then say a sentence about it!</p>
+  <div class="wheel-outer">
+    <div class="wheel-pointer">🔻</div>
+    <div class="wheel" id="wheelEl"></div>
+    <button class="btn primary" onclick="spinWheel()">🎡 Spin!</button>
+    <div id="wheelResult" style="font-weight:800;"></div>
+  </div>`;
+}
+function initWheelGame(){
+  document.getElementById('wheelEl').style.transform = 'rotate(0deg)';
+  document.getElementById('wheelResult').textContent = '';
+}
+function spinWheel(){
+  if(state.wheel.spinning) return;
+  state.wheel.spinning = true;
+  const segCount = WHEEL_TOPICS.length;
+  const segAngle = 360/segCount;
+  const chosen = Math.floor(Math.random()*segCount);
+  const spins = 4;
+  const targetAngle = spins*360 + (360 - (chosen*segAngle + segAngle/2));
+  const wheelEl = document.getElementById('wheelEl');
+  wheelEl.style.transform = `rotate(${targetAngle}deg)`;
+  setTimeout(()=>{
+    state.wheel.spinning = false;
+    document.getElementById('wheelResult').innerHTML = `Topic: <span class="wheel-word">${WHEEL_TOPICS[chosen]}</span> — tell me a sentence!`;
+    awardXP(3);
+  }, 3300);
+}
+
+/* --- Sentence Builder --- */
+function renderSentenceGame(){
+  return `<h3>🧩 Sentence Builder</h3><p class="section-sub">Tap the words in the correct order.</p>
+  <div class="score-pill" id="sentScore">Sentence 1/${SENTENCE_SETS.length}</div>
+  <div class="dnd-slot-row" id="sentSlots" style="margin-top:14px;"></div>
+  <div class="dnd-bank" id="sentBank" style="margin-top:14px;"></div>
+  <div class="btn-row"><button class="btn ghost" onclick="resetSentence()">↺ Reset</button></div>
+  <div id="sentResult" style="font-weight:800; margin-top:8px;"></div>`;
+}
+function initSentenceGame(){
+  state.sentence = {setIndex:0, built:[]};
+  loadSentenceRound();
+}
+function loadSentenceRound(){
+  document.getElementById('sentScore').textContent = `Sentence ${state.sentence.setIndex+1}/${SENTENCE_SETS.length}`;
+  document.getElementById('sentResult').textContent = '';
+  state.sentence.built = [];
+  const target = SENTENCE_SETS[state.sentence.setIndex];
+  const bank = shuffle(target.map((w,i)=>({w,i})));
+  renderSentenceSlots();
+  document.getElementById('sentBank').innerHTML = bank.map(item=>`<div class="draggable" onclick="pickSentenceWord('${item.w}',${item.i},this)">${item.w}</div>`).join('');
+}
+function renderSentenceSlots(){
+  const target = SENTENCE_SETS[state.sentence.setIndex];
+  const built = state.sentence.built;
+  document.getElementById('sentSlots').innerHTML = target.map((_,i)=>`<div class="dnd-slot ${built[i]?'filled':''}">${built[i]||'___'}</div>`).join('');
+}
+function pickSentenceWord(word, origIndex, btn){
+  const target = SENTENCE_SETS[state.sentence.setIndex];
+  const nextSlot = state.sentence.built.length;
+  if(nextSlot >= target.length) return;
+  state.sentence.built.push(word);
+  btn.remove();
+  renderSentenceSlots();
+  if(state.sentence.built.length === target.length){
+    const correct = target.every((w,i)=>w===state.sentence.built[i]);
+    const result = document.getElementById('sentResult');
+    if(correct){
+      result.textContent = 'Correct sentence! 🎉'; state.assess.grammarCorrect++; awardXP(6);
+      state.sentence.setIndex++;
+      if(state.sentence.setIndex < SENTENCE_SETS.length){
+        setTimeout(loadSentenceRound, 1000);
+      } else {
+        setTimeout(()=>{ result.textContent = 'All sentences built! Amazing! 🏆'; confetti(16); }, 400);
+      }
+    } else {
+      result.textContent = 'Order looks mixed up — tap Reset and try again!';
+    }
+  }
+}
+function resetSentence(){ loadSentenceRound(); }
+
+/* --- Who Am I --- */
+function renderWhoAmIGame(){
+  return `<h3>🕵️ Who Am I?</h3><p class="section-sub">Read the clue and guess!</p>
+  <div class="score-pill" id="whoScore">Score: 0/${WHOAMI.length}</div>
+  <div class="quiz-q" id="whoClue" style="margin-top:14px;"></div>
+  <div class="choices" id="whoChoices"></div>
+  <div id="whoFb"></div>`;
+}
+function initWhoAmIGame(){
+  state.whoami = {i:0, score:0};
+  showWhoAmI();
+}
+function showWhoAmI(){
+  const clueEl = document.getElementById('whoClue');
+  const choicesEl = document.getElementById('whoChoices');
+  const fb = document.getElementById('whoFb');
+  if(fb){ fb.innerHTML=''; }
+  if(state.whoami.i >= WHOAMI.length){
+    clueEl.textContent = `Finished! Score: ${state.whoami.score}/${WHOAMI.length} 🎉`;
+    choicesEl.innerHTML = '';
+    return;
+  }
+  const item = WHOAMI[state.whoami.i];
+  clueEl.textContent = item.clue;
+  delete choicesEl.dataset.locked;
+  choicesEl.innerHTML = shuffle(item.choices).map(c=>`<button class="choice" onclick="answerWhoAmI('${c}',this)">${c}</button>`).join('');
+}
+function answerWhoAmI(choice, btn){
+  const parent = btn.parentElement;
+  if(parent.dataset.locked) return;
+  parent.dataset.locked = '1';
+  const item = WHOAMI[state.whoami.i];
+  [...parent.children].forEach(c=>{
+    if(c.textContent===item.answer) c.classList.add('correct');
+    else if(c===btn) c.classList.add('wrong');
+  });
+  const correct = choice===item.answer;
+  document.getElementById('whoFb').innerHTML = feedbackHTML(correct, item.explain);
+  if(correct){ state.whoami.score++; state.assess.vocabCorrect++; awardXP(5); }
+  state.assess.vocabTotal++;
+  setTimeout(()=>{
+    state.whoami.i++;
+    showWhoAmI();
+  }, 1400);
+}
+
+/* --- Vocabulary Challenge --- */
+function renderVocabChallenge(){
+  return `<h3>📖 Vocabulary Challenge</h3><p class="section-sub">Which word matches the picture?</p>
+  <div class="btn-row" id="vcModeRow" style="margin-bottom:6px; margin-top:0;"></div>
+  <div class="score-pill" id="vcScore">Score: 0/6</div>
+  <div class="quiz-q" id="vcClue" style="margin-top:14px; font-size:2.4rem;"></div>
+  <div class="choices" id="vcChoices"></div>
+  <div id="vcFb"></div>`;
+}
+function initVocabChallenge(){
+  buildVocabChallengeRound(false);
+}
+function buildVocabChallengeRound(mode){
+  const core = [...VOCAB.hobbies, ...VOCAB.favorites, ...VOCAB.jobs];
+  const pool = mode ? [...core, ...VOCAB.challenge] : core;
+  const count = mode ? 8 : 6;
+  state.vocabChallenge = {i:0, score:0, mode, pool, order: shuffle(pool).slice(0,count)};
+  renderVcModeRow();
+  const scoreEl = document.getElementById('vcScore');
+  if(scoreEl) scoreEl.textContent = `Score: 0/${count}`;
+  showVocabChallenge();
+}
+function renderVcModeRow(){
+  const row = document.getElementById('vcModeRow');
+  if(!row) return;
+  const mode = state.vocabChallenge.mode;
+  row.innerHTML = `
+    <button class="btn sm ${!mode?'primary':'ghost'}" onclick="buildVocabChallengeRound(false)">Standard (6)</button>
+    <button class="btn sm ${mode?'primary':'ghost'}" onclick="buildVocabChallengeRound(true)">🌟 Challenge + Bonus (8)</button>
+  `;
+}
+function showVocabChallenge(){
+  const clueEl = document.getElementById('vcClue');
+  const choicesEl = document.getElementById('vcChoices');
+  const fb = document.getElementById('vcFb');
+  if(fb){ fb.innerHTML=''; }
+  const {order, i, pool} = state.vocabChallenge;
+  if(i >= order.length){
+    clueEl.textContent = '🎉';
+    choicesEl.innerHTML = `<p style="grid-column:1/-1; font-weight:800;">Finished! Score: ${state.vocabChallenge.score}/${order.length}</p>`;
+    return;
+  }
+  const item = order[i];
+  clueEl.textContent = item.icon;
+  let distractors = shuffle(pool.filter(v=>v.word!==item.word)).slice(0,3).map(v=>v.word);
+  const options = shuffle([item.word, ...distractors]);
+  delete choicesEl.dataset.locked;
+  choicesEl.innerHTML = options.map(o=>`<button class="choice" onclick="answerVocabChallenge('${o.replace(/'/g,"\\'")}',this)">${o}</button>`).join('');
+}
+function answerVocabChallenge(choice, btn){
+  const parent = btn.parentElement;
+  if(parent.dataset.locked) return;
+  parent.dataset.locked='1';
+  const item = state.vocabChallenge.order[state.vocabChallenge.i];
+  [...parent.children].forEach(c=>{
+    if(c.textContent===item.word) c.classList.add('correct');
+    else if(c===btn) c.classList.add('wrong');
+  });
+  const correct = choice===item.word;
+  document.getElementById('vcFb').innerHTML = feedbackHTML(correct, `This picture (${item.icon}) shows "${item.word}" — remember the example: "${item.example}"`);
+  state.assess.vocabTotal++;
+  if(correct){ state.vocabChallenge.score++; state.assess.vocabCorrect++; awardXP(5); }
+  setTimeout(()=>{
+    state.vocabChallenge.i++;
+    document.getElementById('vcScore').textContent = `Score: ${state.vocabChallenge.score}/${state.vocabChallenge.order.length}`;
+    showVocabChallenge();
+  }, 1400);
+}
+
+/* --- Speaking Challenge --- */
+function renderSpeakingChallenge(){
+  return `<h3>🎤 Speaking Challenge</h3>
+  <p class="section-sub">Choose how you want to practice speaking today.</p>
+  <div class="tabs" id="spModeTabs">
+    <button class="tab-btn" data-m="solo" onclick="setSpeakingMode('solo')">🙋 Solo Practice</button>
+    <button class="tab-btn" data-m="interview" onclick="setSpeakingMode('interview')">👥 Interview &amp; Introduce</button>
+  </div>
+  <div id="spModeArea"></div>`;
+}
+function initSpeakingChallenge(){
+  setSpeakingMode(state.speakingMode || 'solo');
+}
+function setSpeakingMode(mode){
+  state.speakingMode = mode;
+  document.querySelectorAll('#spModeTabs .tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.m===mode));
+  const area = document.getElementById('spModeArea');
+  if(mode==='solo'){
+    area.innerHTML = renderSoloSpeaking();
+    initSoloSpeaking();
+  } else {
+    area.innerHTML = renderInterviewSpeaking();
+    initInterviewSpeaking();
+  }
+}
+
+/* Solo self-introduction practice */
+function renderSoloSpeaking(){
+  return `<p class="section-sub">Tap 🎤 Speak, say the sentence out loud, then mark it done.</p>
+  <div class="score-pill" id="spScore">Done: 0/${SPEAKING_PROMPTS.length}</div>
+  <div id="spList" style="margin-top:14px; display:flex; flex-direction:column; gap:10px;"></div>`;
+}
+function initSoloSpeaking(){
+  state.speaking.done = state.speaking.done || new Set();
+  const list = document.getElementById('spList');
+  list.innerHTML = SPEAKING_PROMPTS.map((p,i)=>`
+    <div class="role-card" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <span>${p}</span>
+      <button class="btn ${state.speaking.done.has(i)?'primary':'ghost'} sm" onclick="markSpeaking(${i})">${state.speaking.done.has(i)?'✓ Done':'🎤 Speak'}</button>
+    </div>
+  `).join('');
+  updateSpeakingScore();
+}
+function markSpeaking(i){
+  if(!state.speaking.done.has(i)){
+    state.speaking.done.add(i);
+    speakPlaceholder(SPEAKING_PROMPTS[i]);
+    awardXP(4);
+    state.assess.speakingDone++;
+  }
+  initSoloSpeaking();
+}
+function updateSpeakingScore(){
+  const el = document.getElementById('spScore');
+  if(el) el.textContent = `Done: ${state.speaking.done.size}/${SPEAKING_PROMPTS.length}`;
+}
+
+/* Interview a friend, then introduce them to the class */
+function renderInterviewSpeaking(){
+  const iv = state.interview;
+  return `
+  <p class="section-sub">Step 1 — Interview a partner. Step 2 — Fill in what they told you. Step 3 — Introduce your friend out loud, just like a real Showcase host!</p>
+  <div class="card glass" style="box-shadow:none; border:2px solid #f1ead9; margin-bottom:14px;">
+    <h4 style="margin-bottom:8px;">📋 Ask your partner…</h4>
+    <ul style="padding-left:20px; line-height:1.9; margin:0;">
+      ${INTERVIEW_QUESTIONS.map(q=>`<li>${q}</li>`).join('')}
+    </ul>
+  </div>
+  <div class="card glass" style="box-shadow:none; border:2px solid #f1ead9; margin-bottom:14px;">
+    <h4 style="margin-bottom:10px;">✏️ Write down their answers</h4>
+    <div class="form-grid">
+      <div class="field"><label>Friend's name</label><input id="ivName" value="${esc(iv.name)}" oninput="updateInterview()" placeholder="Dio"></div>
+      <div class="field"><label>Pronoun</label>
+        <select id="ivPronoun" onchange="updateInterview()">
+          <option value="He" ${iv.pronoun==='He'?'selected':''}>He</option>
+          <option value="She" ${iv.pronoun==='She'?'selected':''}>She</option>
+          <option value="They" ${iv.pronoun==='They'?'selected':''}>They</option>
+        </select>
+      </div>
+      <div class="field"><label>Age</label><input id="ivAge" type="number" min="6" max="13" value="${esc(iv.age)}" oninput="updateInterview()" placeholder="10"></div>
+      <div class="field"><label>Lives in</label><input id="ivLive" value="${esc(iv.live)}" oninput="updateInterview()" placeholder="Bandung"></div>
+      <div class="field"><label>Hobby</label>
+        <select id="ivHobby" onchange="updateInterview()">
+          <option value="">Choose…</option>
+          ${VOCAB.hobbies.map(v=>`<option value="${v.word}" ${iv.hobby===v.word?'selected':''}>${v.word}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field"><label>Reason (it is …)</label><input id="ivReason" value="${esc(iv.reason)}" oninput="updateInterview()" placeholder="exciting"></div>
+      <div class="field"><label>Favorite category</label>
+        <select id="ivFavCat" onchange="updateInterview()">
+          <option ${iv.favCategory==='Animal'?'selected':''}>Animal</option>
+          <option ${iv.favCategory==='Food'?'selected':''}>Food</option>
+          <option ${iv.favCategory==='Color'?'selected':''}>Color</option>
+        </select>
+      </div>
+      <div class="field"><label>Favorite thing</label><input id="ivFavVal" value="${esc(iv.favValue)}" oninput="updateInterview()" placeholder="rabbit"></div>
+      <div class="field"><label>Dream job</label>
+        <select id="ivJob" onchange="updateInterview()">
+          <option value="">Choose…</option>
+          ${VOCAB.jobs.map(v=>`<option value="${v.word}" ${iv.job===v.word?'selected':''}>${v.word}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="card glass" style="box-shadow:none; border:2px solid #f1ead9;">
+    <h4 style="margin-bottom:10px;">🎤 Now introduce your friend to the class!</h4>
+    <div class="paragraph-preview" id="ivPreview"></div>
+    <div class="btn-row">
+      <button class="btn primary" onclick="speakInterviewIntro()">🔊 Hear It Read Aloud</button>
+      <button class="btn ${iv.done?'primary':'pink'}" onclick="markInterviewDone()">${iv.done?'✓ Introduced!':'🎉 I Introduced My Friend'}</button>
+    </div>
+  </div>`;
+}
+function initInterviewSpeaking(){
+  renderInterviewPreview();
+}
+function updateInterview(){
+  const iv = state.interview;
+  iv.name = document.getElementById('ivName').value;
+  iv.pronoun = document.getElementById('ivPronoun').value;
+  iv.age = document.getElementById('ivAge').value;
+  iv.live = document.getElementById('ivLive').value;
+  iv.hobby = document.getElementById('ivHobby').value;
+  iv.reason = document.getElementById('ivReason').value;
+  iv.favCategory = document.getElementById('ivFavCat').value;
+  iv.favValue = document.getElementById('ivFavVal').value;
+  iv.job = document.getElementById('ivJob').value;
+  renderInterviewPreview();
+}
+function buildInterviewLines(){
+  const iv = state.interview;
+  const f = PRONOUN_FORMS[iv.pronoun] || PRONOUN_FORMS.He;
+  const hobbyLc = iv.hobby ? iv.hobby.toLowerCase() : '';
+  const jobLc = iv.job ? iv.job.toLowerCase() : '';
+  return [
+    `This is my friend, ${iv.name||'____'}!`,
+    `${f.subj} ${f.is} ${iv.age||'__'} years old.`,
+    `${f.subj} ${f.lives} in ${iv.live||'____'}.`,
+    `${f.poss} hobby is ${hobbyLc||'____'}.`,
+    `${f.subj} ${f.likes} ${hobbyLc||'____'} because it is ${iv.reason||'____'}.`,
+    `${f.poss} favorite ${(iv.favCategory||'thing').toLowerCase()} is ${iv.favValue||'____'}.`,
+    `${f.subj} ${f.wants} to be ${article(jobLc)} ${jobLc||'____'}.`
+  ];
+}
+function renderInterviewPreview(){
+  const box = document.getElementById('ivPreview');
+  if(!box) return;
+  box.innerHTML = buildInterviewLines().map(line=>{
+    const isPh = line.includes('____');
+    return `<div class="${isPh?'ph':''}">${esc(line)}</div>`;
+  }).join('');
+}
+function speakInterviewIntro(){
+  speakText(buildInterviewLines().join(' '));
+}
+function markInterviewDone(){
+  if(!state.interview.done){
+    state.interview.done = true;
+    awardXP(10);
+    state.assess.speakingDone++;
+    showToast('Amazing! You introduced your friend like a real host!', '🎉');
+    confetti(24);
+    const area = document.getElementById('spModeArea');
+    if(area) area.innerHTML = renderInterviewSpeaking();
+    renderInterviewPreview();
+  }
+}
+
+/* =====================================================================
+   SECTION 8 — FINAL CHALLENGE
+===================================================================== */
+function renderFinal(){
+  return `
+  <div class="eyebrow">Section 8</div>
+  <h2 class="section-title">Final Challenge 🏆</h2>
+  <p class="section-sub">Introduce yourself WITHOUT reading! Tap each item after you say it out loud.</p>
+
+  <div class="card">
+    <div id="finalChecklist" style="display:flex; flex-direction:column; gap:10px;"></div>
+    <div class="stars-row" id="finalStars">
+      <span class="star">⭐</span><span class="star">⭐</span><span class="star">⭐</span>
+    </div>
+    <div id="finalMsg" style="font-weight:800;"></div>
+    <div class="btn-row">
+      <button class="btn primary" onclick="showAssessment()">📊 See My Results</button>
+    </div>
+  </div>
+
+  <div class="card" id="assessmentCard" style="display:none;">
+    <h3>📊 Assessment Summary</h3>
+    <div class="score-grid" id="scoreGrid"></div>
+  </div>
+
+  ${navRow()}
+  `;
+}
+function initFinal(){
+  const list = document.getElementById('finalChecklist');
+  list.innerHTML = FINAL_ITEMS.map((item,i)=>`
+    <div class="role-card" style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+      <span>${item}</span>
+      <button class="btn ${state.final.done.has(i)?'primary':'ghost'} sm" onclick="markFinal(${i})">${state.final.done.has(i)?'✓ Done':'🎤 Speak'}</button>
+    </div>
+  `).join('');
+  updateFinalStars();
+}
+function markFinal(i){
+  if(!state.final.done.has(i)){
+    state.final.done.add(i);
+    speakPlaceholder(FINAL_ITEMS[i]);
+    awardXP(6);
+    state.assess.speakingDone++;
+  }
+  initFinal();
+}
+function updateFinalStars(){
+  const n = state.final.done.size;
+  const total = FINAL_ITEMS.length;
+  let starCount = 0;
+  if(n>=total) starCount = 3; else if(n>=Math.ceil(total*0.7)) starCount = 2; else if(n>=Math.ceil(total*0.4)) starCount = 1;
+  state.finalStars = starCount;
+  document.querySelectorAll('#finalStars .star').forEach((s,i)=>s.classList.toggle('on', i<starCount));
+  const msg = document.getElementById('finalMsg');
+  if(n===total){ msg.textContent = 'Amazing! You are ready for the Showcase! 🌟'; confetti(30); }
+  else { msg.textContent = `${n}/${total} completed. Keep going!`; }
+}
+function showAssessment(){
+  document.getElementById('assessmentCard').style.display = 'block';
+  const a = state.assess;
+  const vocabPct = a.vocabTotal ? Math.round(a.vocabCorrect/a.vocabTotal*100) : 80;
+  const grammarPct = Math.round(a.grammarCorrect/a.grammarTotal*100);
+  const listeningPct = a.listeningTotal ? Math.round(a.listeningCorrect/a.listeningTotal*100) : 80;
+  const speakingPct = Math.round(a.speakingDone/a.speakingTotal*100);
+  const overall = Math.round((vocabPct+grammarPct+listeningPct+speakingPct)/4);
+  const tier = getRewardTier(state.xp);
+  document.getElementById('scoreGrid').innerHTML = `
+    <div class="score-box"><div class="num">${vocabPct}%</div><div class="lbl">Vocabulary</div></div>
+    <div class="score-box"><div class="num">${grammarPct}%</div><div class="lbl">Grammar</div></div>
+    <div class="score-box"><div class="num">${listeningPct}%</div><div class="lbl">Listening</div></div>
+    <div class="score-box"><div class="num">${speakingPct}%</div><div class="lbl">Speaking</div></div>
+    <div class="score-box"><div class="num">${overall}%</div><div class="lbl">Overall</div></div>
+    <div class="score-box"><div class="num">${tier.icon}</div><div class="lbl">${tier.label} Tier</div></div>
+  `;
+  state.overallScore = overall;
+  document.getElementById('assessmentCard').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* =====================================================================
+   SECTION 9 — CERTIFICATE
+===================================================================== */
+function renderCertificate(){
+  const name = state.presentation.name || 'Little Star';
+  const stars = state.finalStars || 0;
+  const tier = getRewardTier(state.xp);
+  const dateStr = new Date().toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'});
+  return `
+  <div class="eyebrow">Section 9</div>
+  <h2 class="section-title">Your Certificate 🎓</h2>
+  <p class="section-sub">Congratulations on finishing Meeting 2!</p>
+
+  <div class="certificate" id="certificateBox">
+    <div class="cert-logo">✨ Littlelume English ✨</div>
+    <p style="color:var(--ink-soft); font-size:.8rem;">Learn • Play • Shine</p>
+    <p style="margin-top:20px; font-size:.95rem;">This certifies that</p>
+    <div class="cert-name">${esc(name)}</div>
+    <p>has successfully completed</p>
+    <h3 style="margin:6px 0;">Meeting 2 — Tell More About Me</h3>
+    <p style="color:var(--ink-soft);">and can confidently introduce themselves in English.</p>
+    <div class="cert-stars">${'⭐'.repeat(Math.max(stars,1))}</div>
+    <p style="font-weight:800; font-size:1rem;">Achievement Level: ${tier.icon} ${tier.label} (${state.xp} XP)</p>
+    <p style="font-size:.85rem;">Date: ${dateStr}</p>
+    <div class="cert-sign">
+      <div>Student Signature</div>
+      <div>Teacher Signature</div>
+    </div>
+  </div>
+
+  <div class="btn-row no-print">
+    <button class="btn primary" onclick="window.print()">🖨️ Print Certificate</button>
+    <button class="btn ghost" onclick="goTo('opening')">↺ Restart Journey</button>
+  </div>
+  `;
+}
+
+/* =====================================================================
+   RENDER DISPATCH
+===================================================================== */
+const RENDERERS = {
+  opening: renderOpening, review: renderReview, vocab: renderVocab,
+  grammar: renderGrammar, conversation: renderConversation,
+  presentation: renderPresentation, games: renderGames,
+  final: renderFinal, certificate: renderCertificate
+};
+const INITERS = {
+  review: initReview, vocab: initVocab,
+  presentation: ()=>renderParagraphPreview(),
+  games: initGamesDefault, final: initFinal
+};
+
+function renderSection(id){
+  document.getElementById('app').innerHTML = `<div class="screen active">${RENDERERS[id]()}</div>`;
+  if(INITERS[id]) INITERS[id]();
+  updateChrome();
+}
+
+/* ---------------------- PASSPORT MODAL ---------------------- */
+document.getElementById('openPassport').addEventListener('click', ()=>{
+  renderPassport();
+  document.getElementById('passportOverlay').classList.add('open');
+});
+document.getElementById('closePassport').addEventListener('click', ()=>{
+  document.getElementById('passportOverlay').classList.remove('open');
+});
+document.getElementById('badgeOk').addEventListener('click', ()=>{
+  document.getElementById('badgePopup').classList.remove('show');
+});
+document.getElementById('openTeacher').addEventListener('click', ()=>{
+  updateTeacherSnapshot();
+  document.getElementById('teacherOverlay').classList.add('open');
+});
+document.getElementById('closeTeacher').addEventListener('click', ()=>{
+  document.getElementById('teacherOverlay').classList.remove('open');
+});
+document.getElementById('closeStage').addEventListener('click', closeStage);
+
+/* ---------------------- DECORATIVE FLOATERS ---------------------- */
+(function addFloaters(){
+  const icons = ['⭐','🌸','☁️','✨'];
+  const positions = [ [4,10],[92,18],[8,70],[90,66] ];
+  positions.forEach((pos,i)=>{
+    const d = document.createElement('div');
+    d.className = 'floaty';
+    d.style.left = pos[0]+'vw'; d.style.top = pos[1]+'vh'; d.style.fontSize='2rem';
+    d.style.animationDelay = (i*1.3)+'s';
+    d.setAttribute('aria-hidden','true');
+    d.textContent = icons[i%icons.length];
+    document.body.appendChild(d);
+  });
+})();
+
+/* ---------------------- INIT ---------------------- */
+renderPassport();
+goTo('opening');
+</script>
+</body>
+</html>

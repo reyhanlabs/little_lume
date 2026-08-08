@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English | Build My Identity</title>
+<style>
+:root{
+  --mint:#c8f4e6; --mint-d:#7fe0c0;
+  --pink:#ffd6e8; --pink-d:#ff9fc7;
+  --yellow:#fff3c4; --yellow-d:#ffdd66;
+  --sky:#cdeeff; --sky-d:#7fd0ff;
+  --lav:#e6d9ff; --lav-d:#c3a6ff;
+  --ink:#4a3f6b; --white:#ffffff;
+  --shadow: 0 10px 25px rgba(120,90,180,0.15);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif;
+  background:linear-gradient(160deg,#fdfcff,#f5faff 40%,#fff9f2 100%);
+  color:var(--ink);
+  min-height:100vh;
+  display:flex; flex-direction:column; align-items:center;
+  padding-bottom:40px;
+}
+h1,h2,h3{font-family:'Trebuchet MS',Verdana,sans-serif;}
+button{font-family:inherit; cursor:pointer; border:none;}
+.topbar{
+  width:100%; max-width:1000px; padding:14px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:50;
+  background:rgba(253,252,255,0.9); backdrop-filter:blur(4px);
+}
+.brand{display:flex; align-items:center; gap:10px;}
+.brand-logo{
+  width:44px;height:44px;border-radius:14px;
+  background:linear-gradient(135deg,var(--pink-d),var(--lav-d));
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  box-shadow:var(--shadow);
+}
+.brand-text{line-height:1.1;}
+.brand-text b{font-size:18px;color:#6a4fa0;}
+.brand-text span{font-size:11px;color:#a488d6;font-weight:bold;letter-spacing:.5px;}
+.progress-wrap{flex:1; max-width:340px; margin:0 20px;}
+.progress-bar{
+  height:14px;background:#eee7fb;border-radius:20px;overflow:hidden;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,0.06);
+}
+.progress-fill{
+  height:100%;border-radius:20px;
+  background:linear-gradient(90deg,var(--mint-d),var(--sky-d),var(--lav-d));
+  transition:width .4s ease;
+}
+.progress-label{font-size:11px;text-align:center;margin-top:4px;color:#8a7ab5;font-weight:bold;}
+.page-container{
+  width:100%; max-width:960px; padding:10px 18px 30px;
+}
+.page{display:none; animation:fadeIn .5s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+.card{
+  background:var(--white); border-radius:26px; box-shadow:var(--shadow);
+  padding:28px; margin-bottom:22px;
+}
+.section-title{
+  font-size:26px; color:#6a4fa0; margin-bottom:6px; display:flex; align-items:center; gap:10px;
+}
+.section-sub{font-size:15px; color:#a488d6; margin-bottom:20px; font-weight:bold;}
+.pill{
+  display:inline-block; padding:5px 14px; border-radius:20px; font-size:12px;
+  font-weight:bold; margin-right:6px; margin-bottom:6px;
+}
+.pill-mint{background:var(--mint); color:#1f8a67;}
+.pill-pink{background:var(--pink); color:#c23f7a;}
+.pill-yellow{background:var(--yellow); color:#a3781a;}
+.pill-sky{background:var(--sky); color:#1f7fb0;}
+.pill-lav{background:var(--lav); color:#6a4fa0;}
+
+/* COVER */
+.cover-page .card{
+  text-align:center; padding:50px 30px;
+  background:linear-gradient(160deg,var(--pink) 0%, var(--sky) 50%, var(--lav) 100%);
+}
+.cover-mascot{font-size:80px; margin-bottom:6px; animation:bounce 2.4s infinite ease-in-out;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+.cover-title{font-size:38px; color:#5c3d99; margin:10px 0 4px;}
+.cover-theme{font-size:18px; color:#7a5bb5; font-weight:bold;}
+.cover-tagline{font-size:15px; color:#8a6bc9; margin-top:8px; letter-spacing:1px; font-weight:bold;}
+.cover-meta{
+  margin-top:22px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+}
+.meta-chip{
+  background:var(--white); padding:10px 18px; border-radius:16px; box-shadow:var(--shadow);
+  font-size:13px; font-weight:bold; color:#6a4fa0;
+}
+.big-btn{
+  margin-top:30px; padding:16px 44px; border-radius:30px; font-size:18px; font-weight:bold;
+  background:linear-gradient(135deg,var(--pink-d),var(--lav-d)); color:#fff; box-shadow:var(--shadow);
+  transition:transform .2s;
+}
+.big-btn:hover{transform:scale(1.06);}
+.big-btn:active{transform:scale(0.97);}
+
+/* WARM UP */
+.teacher-bubble{
+  display:flex; gap:16px; align-items:flex-start; background:var(--sky); border-radius:22px;
+  padding:20px; margin-bottom:18px;
+}
+.teacher-avatar{font-size:52px;}
+.speech{
+  background:#fff; border-radius:18px; padding:14px 18px; font-size:17px; position:relative; flex:1;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+.warmup-questions{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-top:16px;}
+@media(max-width:700px){.warmup-questions{grid-template-columns:1fr;}}
+.wq-card{
+  background:var(--yellow); border-radius:18px; padding:18px; text-align:center; font-weight:bold; font-size:15px;
+  box-shadow:var(--shadow);
+}
+.wq-icon{font-size:34px; display:block; margin-bottom:8px;}
+.think-note{
+  margin-top:16px; text-align:center; font-size:14px; color:#a488d6; font-style:italic;
+}
+
+/* PROFILE BUILDER */
+.profile-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+@media(max-width:760px){.profile-grid{grid-template-columns:1fr;}}
+.form-field{margin-bottom:16px;}
+.form-field label{display:block; font-weight:bold; margin-bottom:6px; font-size:15px;}
+.form-field input, .form-field select{
+  width:100%; padding:12px 14px; border-radius:14px; border:2px solid var(--lav);
+  font-size:15px; font-family:inherit; background:#faf7ff; color:var(--ink);
+}
+.form-field input:focus, .form-field select:focus{outline:none; border-color:var(--pink-d);}
+.preview-card{
+  background:linear-gradient(160deg,var(--mint),var(--sky)); border-radius:24px; padding:26px;
+  text-align:center; box-shadow:var(--shadow); position:relative;
+}
+.preview-avatar{font-size:64px; margin-bottom:8px;}
+.preview-text{font-size:17px; line-height:1.9; color:#2e5c50; font-weight:bold;}
+.preview-name{color:#c23f7a;}
+
+/* VOCAB */
+.vocab-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px;}
+.vocab-card{
+  background:var(--white); border:3px solid var(--mint); border-radius:20px; padding:16px; text-align:center;
+  box-shadow:var(--shadow); transition:transform .2s;
+}
+.vocab-card:hover{transform:translateY(-4px);}
+.vocab-emoji{font-size:44px; margin-bottom:6px;}
+.vocab-word{font-size:19px; font-weight:bold; color:#6a4fa0;}
+.vocab-pron{font-size:13px; color:#a488d6; margin-bottom:6px;}
+.vocab-meaning{font-size:13px; color:#777; margin-bottom:8px;}
+.vocab-example{
+  background:var(--yellow); border-radius:12px; padding:8px 10px; font-size:13px; font-style:italic; color:#8a6b1a;
+}
+.vocab-btn{
+  margin-top:8px; background:var(--sky); border-radius:12px; padding:6px 12px; font-size:12px; font-weight:bold; color:#1f7fb0;
+}
+
+/* GRAMMAR */
+.grammar-block{margin-bottom:22px;}
+.pattern-box{
+  background:linear-gradient(135deg,var(--lav),var(--pink)); border-radius:20px; padding:20px; margin-bottom:12px;
+  color:#5c3d99;
+}
+.pattern-title{font-size:20px; font-weight:bold; margin-bottom:10px;}
+.bubble-row{display:flex; flex-wrap:wrap; gap:10px;}
+.example-bubble{
+  background:#fff; border-radius:16px; padding:10px 16px; font-size:15px; box-shadow:0 4px 8px rgba(0,0,0,0.08);
+  color:#4a3f6b; font-weight:bold;
+}
+
+/* ACTIVITIES */
+.activity-block{margin-bottom:30px;}
+.activity-label{
+  display:inline-block; background:var(--pink-d); color:#fff; padding:4px 14px; border-radius:14px;
+  font-size:12px; font-weight:bold; margin-bottom:10px;
+}
+.match-wrap{display:flex; gap:30px; justify-content:center; flex-wrap:wrap;}
+.match-col{display:flex; flex-direction:column; gap:10px;}
+.match-item{
+  background:var(--sky); border-radius:14px; padding:12px 18px; font-weight:bold; text-align:center; min-width:130px;
+  border:3px solid transparent;
+}
+.match-item.picture{background:var(--yellow); font-size:26px;}
+.match-item.selected{border-color:var(--pink-d);}
+.match-item.correct{background:var(--mint); border-color:#1f8a67;}
+.match-item.wrong{background:#ffd6d6; border-color:#d94848;}
+
+.complete-item{margin-bottom:18px;}
+.complete-sentence{font-size:17px; margin-bottom:8px; font-weight:bold;}
+.blank-slot{
+  display:inline-block; min-width:90px; border-bottom:3px dashed var(--pink-d); text-align:center;
+  padding:2px 6px; font-weight:bold; color:#c23f7a;
+}
+.word-choices{display:flex; gap:8px; flex-wrap:wrap;}
+.word-chip{
+  background:var(--lav); border-radius:14px; padding:8px 16px; font-weight:bold; color:#5c3d99;
+}
+.word-chip.used{opacity:.35; pointer-events:none;}
+
+.idcard-form{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;}
+@media(max-width:700px){.idcard-form{grid-template-columns:1fr;}}
+.idcard-result{
+  display:none; margin-top:20px; background:linear-gradient(135deg,var(--yellow),var(--pink)); border-radius:24px;
+  padding:26px; text-align:center; box-shadow:var(--shadow);
+}
+.idcard-result.show{display:block; animation:fadeIn .5s ease;}
+.idcard-badge{font-size:56px;}
+.idcard-name{font-size:24px; font-weight:bold; color:#6a4fa0; margin:6px 0;}
+.idcard-detail{font-size:15px; color:#7a5bb5; margin:2px 0;}
+
+/* LISTENING */
+.listen-item{
+  background:var(--sky); border-radius:20px; padding:18px; margin-bottom:16px;
+}
+.listen-head{display:flex; align-items:center; gap:12px; margin-bottom:12px;}
+.listen-play{
+  background:var(--white); border-radius:50%; width:52px; height:52px; font-size:22px; box-shadow:var(--shadow);
+  display:flex; align-items:center; justify-content:center;
+}
+.listen-title{font-weight:bold; font-size:15px; color:#1f7fb0;}
+.listen-options{display:flex; gap:12px; flex-wrap:wrap;}
+.listen-opt{
+  background:#fff; border-radius:16px; padding:14px 18px; font-size:30px; box-shadow:0 4px 8px rgba(0,0,0,0.08);
+  border:3px solid transparent;
+}
+.listen-opt.word-opt{font-size:17px; font-weight:bold; color:#4a3f6b;}
+.listen-opt.correct{border-color:#1f8a67; background:var(--mint);}
+.listen-opt.wrong{border-color:#d94848; background:#ffd6d6;}
+.listen-score{
+  text-align:center; margin-top:6px; padding:16px; border-radius:18px; background:var(--yellow); display:none; font-weight:bold;
+}
+.listen-score.show{display:block;}
+
+/* SPEAKING */
+.dialogue-line{display:flex; gap:12px; margin-bottom:12px; align-items:flex-start;}
+.dialogue-line.b{flex-direction:row-reverse;}
+.d-avatar{font-size:34px;}
+.d-bubble{
+  background:var(--sky); border-radius:16px; padding:10px 16px; font-size:15px; font-weight:bold; max-width:70%;
+}
+.dialogue-line.b .d-bubble{background:var(--pink);}
+.checklist{margin-top:20px;}
+.check-item{
+  display:flex; align-items:center; gap:10px; background:var(--mint); border-radius:14px; padding:12px 16px;
+  margin-bottom:10px; font-weight:bold; cursor:pointer;
+}
+.check-item input{width:20px; height:20px;}
+
+.challenge-card{
+  background:linear-gradient(135deg,var(--yellow),var(--pink)); border-radius:20px; padding:18px; margin-bottom:14px;
+  display:flex; align-items:center; gap:14px;
+}
+.challenge-icon{font-size:36px;}
+.challenge-text{flex:1;}
+.challenge-title{font-weight:bold; font-size:16px; color:#8a4f2a;}
+.challenge-sub{font-size:13px; color:#a3781a;}
+.challenge-check{width:24px; height:24px;}
+
+/* GAME PAGE */
+.game-tabs{display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;}
+.game-tab{
+  background:var(--lav); border-radius:16px; padding:10px 20px; font-weight:bold; color:#5c3d99;
+}
+.game-tab.active{background:linear-gradient(135deg,var(--pink-d),var(--lav-d)); color:#fff;}
+.game-panel{display:none;}
+.game-panel.active{display:block;}
+.wheel-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+.wheel-outer{position:relative; width:280px; height:280px;}
+.wheel{
+  width:280px; height:280px; border-radius:50%; position:relative; transition:transform 3.2s cubic-bezier(.17,.67,.32,1.01);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.wheel-seg{
+  position:absolute; width:50%; height:50%; top:0; left:50%; transform-origin:0% 100%;
+  display:flex; align-items:flex-start; justify-content:center; padding-top:14px;
+  font-size:11px; font-weight:bold; color:#4a3f6b;
+}
+.wheel-pointer{
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%); font-size:30px; z-index:5;
+}
+.spin-btn{
+  background:linear-gradient(135deg,var(--mint-d),var(--sky-d)); color:#fff; padding:14px 34px; border-radius:26px;
+  font-weight:bold; font-size:16px; box-shadow:var(--shadow);
+}
+.wheel-result{
+  background:var(--white); border-radius:18px; padding:16px 22px; font-size:17px; font-weight:bold; text-align:center;
+  box-shadow:var(--shadow); min-width:220px; color:#6a4fa0;
+}
+.mystery-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+.mystery-box{
+  font-size:90px; animation:wiggle 2s infinite ease-in-out;
+}
+@keyframes wiggle{0%,100%{transform:rotate(-4deg);}50%{transform:rotate(4deg);}}
+.mystery-card{
+  background:linear-gradient(135deg,var(--lav),var(--sky)); border-radius:20px; padding:22px 30px; text-align:center;
+  font-size:18px; font-weight:bold; color:#5c3d99; box-shadow:var(--shadow); min-width:260px; display:none;
+}
+.mystery-card.show{display:block; animation:pop .4s ease;}
+.game-btn-row{display:flex; gap:12px;}
+.mini-btn{
+  background:var(--white); border:2px solid var(--lav); border-radius:20px; padding:10px 22px; font-weight:bold; color:#6a4fa0;
+  box-shadow:var(--shadow);
+}
+
+/* QUIZ */
+.quiz-block{margin-bottom:26px;}
+.quiz-q{font-size:17px; font-weight:bold; margin-bottom:10px;}
+.quiz-options{display:flex; gap:10px; flex-wrap:wrap;}
+.quiz-opt{
+  background:var(--lav); border-radius:14px; padding:10px 18px; font-weight:bold; color:#5c3d99;
+}
+.quiz-opt.correct{background:var(--mint); color:#1f8a67;}
+.quiz-opt.wrong{background:#ffd6d6; color:#d94848;}
+.score-box{
+  text-align:center; margin-top:10px; padding:20px; border-radius:20px; background:var(--yellow); display:none;
+}
+.score-box.show{display:block;}
+.score-num{font-size:32px; font-weight:bold; color:#a3781a;}
+.score-msg{font-size:16px; font-weight:bold; margin-top:4px;}
+
+/* END */
+.end-page .card{
+  text-align:center; background:linear-gradient(160deg,var(--mint),var(--sky) 60%,var(--lav));
+}
+.badge-big{font-size:100px; animation:pop .6s ease;}
+@keyframes pop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+.achieve-list{max-width:400px; margin:20px auto; text-align:left;}
+.achieve-item{
+  display:flex; align-items:center; gap:10px; background:#fff; border-radius:14px; padding:12px 16px;
+  margin-bottom:10px; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.06);
+}
+
+/* TEACHER CORNER */
+.teacher-corner{
+  margin-top:22px; border-radius:20px; border:2px dashed var(--lav-d); background:#faf7ff; overflow:hidden;
+}
+.teacher-toggle{
+  width:100%; background:var(--lav); color:#5c3d99; padding:12px 18px; font-weight:bold; font-size:14px;
+  display:flex; align-items:center; justify-content:space-between; border-radius:18px;
+}
+.teacher-toggle .arrow{transition:transform .3s;}
+.teacher-toggle.open .arrow{transform:rotate(180deg);}
+.teacher-body{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 18px;}
+.teacher-body.open{max-height:600px; padding:16px 18px;}
+.t-row{display:flex; gap:10px; margin-bottom:10px; align-items:flex-start;}
+.t-icon{font-size:20px; width:26px; text-align:center;}
+.t-label{font-weight:bold; font-size:13px; color:#6a4fa0; display:block;}
+.t-text{font-size:13px; color:#6b5f95; line-height:1.5;}
+.t-time{
+  display:inline-block; background:var(--yellow); color:#8a6b1a; padding:3px 12px; border-radius:12px;
+  font-size:12px; font-weight:bold;
+}
+
+/* NAV */
+.nav-row{display:flex; justify-content:space-between; margin-top:10px; padding:0 4px;}
+.nav-btn{
+  padding:12px 28px; border-radius:24px; font-weight:bold; font-size:15px; box-shadow:var(--shadow);
+  background:#fff; color:#6a4fa0; border:2px solid var(--lav);
+}
+.nav-btn.primary{background:linear-gradient(135deg,var(--mint-d),var(--sky-d)); color:#fff; border:none;}
+.nav-btn:disabled{opacity:.35; pointer-events:none;}
+.confetti-piece{
+  position:fixed; top:-20px; font-size:20px; pointer-events:none; z-index:200; animation:fall linear forwards;
+}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg); opacity:0.2;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo">✨</div>
+    <div class="brand-text"><b>Littlelume English</b><br><span>LEARN • PLAY • SHINE</span></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">Page 1 of 12</div>
+  </div>
+</div>
+
+<div class="page-container">
+
+  <!-- PAGE 0: COVER -->
+  <div class="page active cover-page" data-page="0">
+    <div class="card">
+      <div class="cover-mascot">🧑‍🚀</div>
+      <div class="cover-title">Build My Identity</div>
+      <div class="cover-theme">Theme: All About Me — Meeting 1</div>
+      <div class="cover-tagline">LEARN • PLAY • SHINE</div>
+      <div class="cover-meta">
+        <div class="meta-chip">📘 Grade 4</div>
+        <div class="meta-chip">🌱 CEFR A1</div>
+        <div class="meta-chip">🎯 4 Goals</div>
+        <div class="meta-chip">⏱️ ~75 minutes total</div>
+      </div>
+      <button class="big-btn" onclick="goTo(1)">Start the Lesson ▶</button>
+    </div>
+    <div class="card">
+      <div class="section-title">🎯 Learning Objectives</div>
+      <div class="section-sub">By the end of this lesson, I can...</div>
+      <div class="warmup-questions">
+        <div class="wq-card"><span class="wq-icon">🙋</span>Say my name</div>
+        <div class="wq-card"><span class="wq-icon">🎂</span>Say my age</div>
+        <div class="wq-card"><span class="wq-icon">🏠</span>Say where I live</div>
+        <div class="wq-card"><span class="wq-icon">😊</span>Describe myself with one word</div>
+      </div>
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">3 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Show the cover on screen or projector. Read the lesson title and objectives aloud. Ask students to repeat each objective after you.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Students point to themselves each time they hear "my" or "I".</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 1: WARM UP -->
+  <div class="page" data-page="1">
+    <div class="card">
+      <div class="section-title">👋 Hello, Let's Meet!</div>
+      <div class="section-sub">Section 1 — Warm Up</div>
+      <div class="teacher-bubble">
+        <div class="teacher-avatar">👩‍🏫</div>
+        <div class="speech">Hi friends! I am so happy to see you today! Before we start, let's think about YOU. You don't need to write anything yet — just think in your head! 💭</div>
+      </div>
+      <div class="warmup-questions">
+        <div class="wq-card"><span class="wq-icon">🙋</span>What's your name?</div>
+        <div class="wq-card"><span class="wq-icon">🎂</span>How old are you?</div>
+        <div class="wq-card"><span class="wq-icon">🏠</span>Where do you live?</div>
+      </div>
+      <div class="think-note">🤫 Just think about your answers... we will use them on the next page!</div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">5 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Sing a short "Hello" chant. Ask the three warm-up questions to 2-3 volunteers in Indonesian first, then model the English answer. Do not correct mistakes yet — this is just a thinking warm-up.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Wave both hands high for "Hello!". Point to self and smile when thinking of the answers.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(0)">◀ Back</button><button class="nav-btn primary" onclick="goTo(2)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 2: DIGITAL PROFILE -->
+  <div class="page" data-page="2">
+    <div class="card">
+      <div class="section-title">🪪 Create My Digital Profile</div>
+      <div class="section-sub">Section 2 — Fill in the blanks and watch the magic!</div>
+      <div class="profile-grid">
+        <div>
+          <div class="form-field"><label>👤 Name</label><input type="text" id="pName" placeholder="e.g. Mia" oninput="updatePreview()"></div>
+          <div class="form-field"><label>🎂 Age</label><input type="number" id="pAge" placeholder="e.g. 9" min="8" max="11" oninput="updatePreview()"></div>
+          <div class="form-field"><label>🏠 City</label><input type="text" id="pCity" placeholder="e.g. Bekasi" oninput="updatePreview()"></div>
+          <div class="form-field"><label>😊 I am...</label>
+            <select id="pMood" onchange="updatePreview()">
+              <option value="">choose a feeling</option>
+              <option value="happy">happy</option>
+              <option value="kind">kind</option>
+              <option value="friendly">friendly</option>
+              <option value="funny">funny</option>
+              <option value="helpful">helpful</option>
+              <option value="brave">brave</option>
+              <option value="smart">smart</option>
+              <option value="active">active</option>
+              <option value="polite">polite</option>
+              <option value="confident">confident</option>
+            </select>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="preview-avatar" id="pAvatar">🧒</div>
+          <div class="preview-text">
+            Hello!<br>
+            I am <span class="preview-name" id="prName">___</span>.<br>
+            I am <span class="preview-name" id="prAge">___</span> years old.<br>
+            I live in <span class="preview-name" id="prCity">___</span>.<br>
+            I am <span class="preview-name" id="prMood">___</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">8 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Help students type their real name, age, and city. Read each field label aloud before they type. Walk around to assist younger students with spelling.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Hold up fingers to show age. Spread arms wide when saying the city name.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(1)">◀ Back</button><button class="nav-btn primary" onclick="goTo(3)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 3: VOCAB PART A -->
+  <div class="page" data-page="3">
+    <div class="card">
+      <div class="section-title">📚 Vocabulary — Personal Information</div>
+      <div class="section-sub">Section 3A — Listen, say, and remember these words</div>
+      <div class="vocab-grid" id="vocabA"></div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">8 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Press the 🔊 Listen button for each word, or say it yourself. Have students repeat each word 3 times before moving on.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Name: point to self. Age: hold up fingers. City: spread arms wide. Home: make a roof shape with hands. Student: raise hand.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(2)">◀ Back</button><button class="nav-btn primary" onclick="goTo(4)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 4: VOCAB PART B -->
+  <div class="page" data-page="4">
+    <div class="card">
+      <div class="section-title">😊 Vocabulary — Personality</div>
+      <div class="section-sub">Section 3B — Words that describe how I am</div>
+      <div class="vocab-grid" id="vocabB"></div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">8 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Model each feeling with a big facial expression before saying the word. Ask students to copy your face and voice.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Happy: big smile. Kind: hands on heart. Friendly: pretend handshake. Funny: pretend laugh. Helpful: thumbs up.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(3)">◀ Back</button><button class="nav-btn primary" onclick="goTo(5)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 5: LISTENING PRACTICE -->
+  <div class="page" data-page="5">
+    <div class="card">
+      <div class="section-title">👂 Listening Practice</div>
+      <div class="section-sub">Section 3C — Listen and Choose / Listen and Point</div>
+      <div id="listenArea"></div>
+      <div class="listen-score" id="listenScore">
+        <div id="listenScoreText"></div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">6 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Press ▶️ Play (or say the word/sentence yourself) and let students choose or point to the correct picture/word. If working without devices, say the target word and ask students to point at objects/pictures around the room instead.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Students physically point their finger toward the correct picture on the screen or a printed flashcard.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(4)">◀ Back</button><button class="nav-btn primary" onclick="goTo(6)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 6: GRAMMAR -->
+  <div class="page" data-page="6">
+    <div class="card">
+      <div class="section-title">🧩 Grammar Time</div>
+      <div class="section-sub">Section 4 — Three easy patterns</div>
+
+      <div class="grammar-block">
+        <div class="pattern-box">
+          <div class="pattern-title">Pattern 1: I am ...</div>
+          We use this to say our <b>name</b>.
+          <div class="bubble-row" style="margin-top:10px;">
+            <div class="example-bubble">I am Mia. 🙋‍♀️</div>
+            <div class="example-bubble">I am Rafi. 🙋‍♂️</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammar-block">
+        <div class="pattern-box">
+          <div class="pattern-title">Pattern 2: I am ... years old.</div>
+          We use this to say our <b>age</b>.
+          <div class="bubble-row" style="margin-top:10px;">
+            <div class="example-bubble">I am 7 years old. 🎂</div>
+            <div class="example-bubble">I am 6 years old. 🎂</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammar-block">
+        <div class="pattern-box">
+          <div class="pattern-title">Pattern 3: I live in ...</div>
+          We use this to say our <b>city</b>.
+          <div class="bubble-row" style="margin-top:10px;">
+            <div class="example-bubble">I live in Bekasi. 🏠</div>
+            <div class="example-bubble">I live in Jakarta. 🏠</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammar-block">
+        <div class="pattern-box">
+          <div class="pattern-title">Pattern 4: What is your name? → My name is ...</div>
+          We use this to <b>ask and answer</b> about a name.
+          <div class="bubble-row" style="margin-top:10px;">
+            <div class="example-bubble">A: What is your name? 🙋</div>
+            <div class="example-bubble">B: My name is Dito. 😊</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammar-block">
+        <div class="pattern-box">
+          <div class="pattern-title">Pattern 5: How old are you? → I am ... years old.</div>
+          We use this to <b>ask and answer</b> about age.
+          <div class="bubble-row" style="margin-top:10px;">
+            <div class="example-bubble">A: How old are you? 🎂</div>
+            <div class="example-bubble">B: I am 9 years old. 😊</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammar-block">
+        <div class="pattern-box">
+          <div class="pattern-title">Pattern 6: Where do you live? → I live in ...</div>
+          We use this to <b>ask and answer</b> about a city.
+          <div class="bubble-row" style="margin-top:10px;">
+            <div class="example-bubble">A: Where do you live? 🏠</div>
+            <div class="example-bubble">B: I live in Surabaya. 😊</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">14 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Introduce one pattern at a time. Say the example sentences aloud, then invite 2-3 students to say their own version. For Patterns 4-6, pair students up so one asks the question and the other answers, then switch roles.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Students point to their partner on the question, then point to themselves on the answer.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(5)">◀ Back</button><button class="nav-btn primary" onclick="goTo(7)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 7: GUIDED PRACTICE -->
+  <div class="page" data-page="7">
+    <div class="card">
+      <div class="section-title">🎮 Guided Practice</div>
+      <div class="section-sub">Section 5 — Let's practice together!</div>
+
+      <div class="activity-block">
+        <div class="activity-label">Activity 1 — Match It!</div>
+        <p style="margin-bottom:10px; font-weight:bold;">Click a word, then click the picture that matches.</p>
+        <div class="match-wrap">
+          <div class="match-col" id="matchWords"></div>
+          <div class="match-col" id="matchPics"></div>
+        </div>
+      </div>
+
+      <div class="activity-block">
+        <div class="activity-label">Activity 2 — Complete the Sentence</div>
+        <div id="completeArea"></div>
+      </div>
+
+      <div class="activity-block">
+        <div class="activity-label">Activity 3 — My Identity Card</div>
+        <div class="idcard-form">
+          <div class="form-field"><label>👤 Name</label><input type="text" id="cName" placeholder="Your name"></div>
+          <div class="form-field"><label>🎂 Age</label><input type="number" id="cAge" placeholder="Your age" min="8" max="11"></div>
+          <div class="form-field"><label>🏠 City</label><input type="text" id="cCity" placeholder="Your city"></div>
+          <div class="form-field"><label>😊 Personality</label>
+            <select id="cMood">
+              <option value="">choose</option>
+              <option value="happy">happy</option>
+              <option value="kind">kind</option>
+              <option value="friendly">friendly</option>
+              <option value="funny">funny</option>
+              <option value="helpful">helpful</option>
+              <option value="brave">brave</option>
+              <option value="smart">smart</option>
+              <option value="active">active</option>
+              <option value="polite">polite</option>
+              <option value="confident">confident</option>
+            </select>
+          </div>
+        </div>
+        <button class="nav-btn primary" onclick="showCard()">✨ Show My Card</button>
+        <div class="idcard-result" id="idResult">
+          <div class="idcard-badge">🪪</div>
+          <div class="idcard-name" id="idName"></div>
+          <div class="idcard-detail" id="idAge"></div>
+          <div class="idcard-detail" id="idCity"></div>
+          <div class="idcard-detail" id="idMood"></div>
+        </div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">12 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Let students complete Activity 1 and 2 individually or in pairs. For Activity 3, guide students to use their own real information, then invite a few to show their card to the class.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Students raise their hand high when they finish each activity.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(6)">◀ Back</button><button class="nav-btn primary" onclick="goTo(8)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 8: SPEAKING -->
+  <div class="page" data-page="8">
+    <div class="card">
+      <div class="section-title">🗣️ Let's Introduce Ourselves!</div>
+      <div class="section-sub">Section 6 — Speaking Practice</div>
+      <div class="dialogue-line a"><div class="d-avatar">👩‍🏫</div><div class="d-bubble">Hello! What is your name?</div></div>
+      <div class="dialogue-line b"><div class="d-avatar">🙋‍♀️</div><div class="d-bubble">I am Mia.</div></div>
+      <div class="dialogue-line a"><div class="d-avatar">👩‍🏫</div><div class="d-bubble">How old are you?</div></div>
+      <div class="dialogue-line b"><div class="d-avatar">🙋‍♀️</div><div class="d-bubble">I am 7 years old.</div></div>
+      <div class="dialogue-line a"><div class="d-avatar">👩‍🏫</div><div class="d-bubble">Where do you live?</div></div>
+      <div class="dialogue-line b"><div class="d-avatar">🙋‍♀️</div><div class="d-bubble">I live in Bekasi.</div></div>
+      <div class="dialogue-line a"><div class="d-avatar">👩‍🏫</div><div class="d-bubble">How are you?</div></div>
+      <div class="dialogue-line b"><div class="d-avatar">🙋‍♀️</div><div class="d-bubble">I am happy.</div></div>
+
+      <div class="teacher-bubble" style="margin-top:20px;">
+        <div class="teacher-avatar">🌟</div>
+        <div class="speech">Now it's YOUR turn! Practice with a partner or a family member. Check the box after you say each part!</div>
+      </div>
+      <div class="checklist">
+        <label class="check-item"><input type="checkbox"> Say my name</label>
+        <label class="check-item"><input type="checkbox"> Say my age</label>
+        <label class="check-item"><input type="checkbox"> Say where I live</label>
+        <label class="check-item"><input type="checkbox"> Say one personality word</label>
+      </div>
+
+      <div class="activity-block" style="margin-top:26px;">
+        <div class="activity-label">Speaking Challenges — Move Around and Talk!</div>
+        <div class="challenge-card">
+          <div class="challenge-icon">🔍</div>
+          <div class="challenge-text">
+            <div class="challenge-title">Find a friend who is 7 years old.</div>
+            <div class="challenge-sub">Ask "How old are you?" to your friends until you find one!</div>
+          </div>
+          <button class="vocab-btn" onclick="speak('How old are you?')">🔊</button>
+          <input type="checkbox" class="challenge-check">
+        </div>
+        <div class="challenge-card">
+          <div class="challenge-icon">🙋</div>
+          <div class="challenge-text">
+            <div class="challenge-title">Ask 3 friends their names.</div>
+            <div class="challenge-sub">Say "What is your name?" to 3 different classmates.</div>
+          </div>
+          <button class="vocab-btn" onclick="speak('What is your name?')">🔊</button>
+          <input type="checkbox" class="challenge-check">
+        </div>
+        <div class="challenge-card">
+          <div class="challenge-icon">🤝</div>
+          <div class="challenge-text">
+            <div class="challenge-title">Introduce your partner.</div>
+            <div class="challenge-sub">Say "This is [name]. He/She is [age] years old. He/She is [feeling]."</div>
+          </div>
+          <button class="vocab-btn" onclick="speak('This is my friend. She is seven years old. She is happy.')">🔊</button>
+          <input type="checkbox" class="challenge-check">
+        </div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">10 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Model the dialogue with one student first. Then let students stand up and walk around the room to complete the 3 speaking challenges. For "Introduce your partner", pair students up and have 2-3 pairs share in front of the class.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Students shake hands or high-five when they finish talking to a friend.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(7)">◀ Back</button><button class="nav-btn primary" onclick="goTo(9)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 9: CLOSING GAME -->
+  <div class="page" data-page="9">
+    <div class="card">
+      <div class="section-title">🎉 Fun Review Game</div>
+      <div class="section-sub">Warm-down game before the Mini Review</div>
+
+      <div class="game-tabs">
+        <button class="game-tab active" onclick="switchGame('wheel', this)">🎡 Spin the Wheel</button>
+        <button class="game-tab" onclick="switchGame('mystery', this)">📦 Mystery Box</button>
+      </div>
+
+      <div class="game-panel active" id="game-wheel">
+        <div class="wheel-wrap">
+          <div class="wheel-outer">
+            <div class="wheel-pointer">🔻</div>
+            <div class="wheel" id="wheelEl"></div>
+          </div>
+          <button class="spin-btn" onclick="spinWheel()">🎡 Spin!</button>
+          <div class="wheel-result" id="wheelResult">Spin to get your question!</div>
+        </div>
+      </div>
+
+      <div class="game-panel" id="game-mystery">
+        <div class="mystery-wrap">
+          <div class="mystery-box" onclick="openMystery()">📦</div>
+          <div class="mystery-card" id="mysteryCard"></div>
+          <div class="game-btn-row">
+            <button class="mini-btn" onclick="openMystery()">🔄 Open Another Box</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">8 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Let one student spin the wheel or open the mystery box, then answer the question out loud. Rotate turns around the class. Other fun alternatives for review: "Pass the Ball" (pass a ball/object while music plays; whoever holds it when the music stops answers a question), or "Find Someone Who..." (students walk around asking classmates questions until they find a match).</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Everyone claps and cheers after each classmate answers.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(8)">◀ Back</button><button class="nav-btn primary" onclick="goTo(10)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 10: MINI REVIEW -->
+  <div class="page" data-page="10">
+    <div class="card">
+      <div class="section-title">🏆 Mini Review</div>
+      <div class="section-sub">Section 7 — Show what you know!</div>
+
+      <div class="quiz-block">
+        <div class="quiz-q">Quiz 1: What do you say to ASK for a name?</div>
+        <div class="quiz-options" data-quiz="q1" data-correct="What is your name?">
+          <div class="quiz-opt" onclick="answerQuiz(this)">What is your name?</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">I live in Bekasi.</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">I am 9 years old.</div>
+        </div>
+      </div>
+
+      <div class="quiz-block">
+        <div class="quiz-q">Quiz 2: Complete — "I live ___ Jakarta."</div>
+        <div class="quiz-options" data-quiz="q2" data-correct="in">
+          <div class="quiz-opt" onclick="answerQuiz(this)">in</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">am</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">old</div>
+        </div>
+      </div>
+
+      <div class="quiz-block">
+        <div class="quiz-q">Quiz 3: Which picture shows "brave"?</div>
+        <div class="quiz-options" data-quiz="q3" data-correct="🦁">
+          <div class="quiz-opt" style="font-size:30px;" onclick="answerQuiz(this)">🦁</div>
+          <div class="quiz-opt" style="font-size:30px;" onclick="answerQuiz(this)">🏠</div>
+          <div class="quiz-opt" style="font-size:30px;" onclick="answerQuiz(this)">🎂</div>
+        </div>
+      </div>
+
+      <div class="quiz-block">
+        <div class="quiz-q">Quiz 4: Complete — "How old ___ you?"</div>
+        <div class="quiz-options" data-quiz="q4" data-correct="are">
+          <div class="quiz-opt" onclick="answerQuiz(this)">are</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">is</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">do</div>
+        </div>
+      </div>
+
+      <div class="quiz-block">
+        <div class="quiz-q">Quiz 5: A friend who always helps others is...</div>
+        <div class="quiz-options" data-quiz="q5" data-correct="helpful">
+          <div class="quiz-opt" onclick="answerQuiz(this)">helpful</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">funny</div>
+          <div class="quiz-opt" onclick="answerQuiz(this)">active</div>
+        </div>
+      </div>
+
+      <div class="score-box" id="scoreBox">
+        <div class="score-num" id="scoreNum">0 / 5</div>
+        <div class="score-msg" id="scoreMsg"></div>
+      </div>
+
+      <div class="teacher-corner">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">6 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Let students answer independently. Read each question aloud for students who cannot read yet. Celebrate every score with encouragement.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Thumbs up after each correct answer.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row"><button class="nav-btn" onclick="goTo(9)">◀ Back</button><button class="nav-btn primary" onclick="goTo(11)">Next ▶</button></div>
+  </div>
+
+  <!-- PAGE 11: END -->
+  <div class="page end-page" data-page="11">
+    <div class="card">
+      <div class="badge-big">🏅</div>
+      <div class="cover-title" style="font-size:30px;">Today's Achievement</div>
+      <div class="achieve-list">
+        <div class="achieve-item">✅ Say my name</div>
+        <div class="achieve-item">✅ Say my age</div>
+        <div class="achieve-item">✅ Say where I live</div>
+        <div class="achieve-item">✅ Describe myself using one adjective</div>
+      </div>
+      <div class="cover-tagline" style="font-size:18px; color:#5c3d99; margin-top:10px;">🎉 Great job! 🎉</div>
+      <div style="margin-top:6px; font-size:15px; color:#7a5bb5; font-weight:bold;">Now you are ready for the Interactive Adventure!</div>
+      <button class="big-btn" onclick="goTo(0)">🔁 Review Again</button>
+
+      <div class="teacher-corner" style="text-align:left; margin-top:26px;">
+        <button class="teacher-toggle" onclick="toggleTeacher(this)">👩‍🏫 Teacher Notes <span class="arrow">▼</span></button>
+        <div class="teacher-body">
+          <div class="t-row"><span class="t-icon">⏱️</span><div><span class="t-label">Estimated Time</span><span class="t-time">3 minutes</span></div></div>
+          <div class="t-row"><span class="t-icon">📋</span><div><span class="t-label">Classroom Instructions</span><div class="t-text">Congratulate the whole class. Ask students to say one thing they learned today before moving to the Interactive Adventure.</div></div></div>
+          <div class="t-row"><span class="t-icon">🤸</span><div><span class="t-label">TPR</span><div class="t-text">Big group cheer and clap.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const TOTAL_PAGES = 12;
+let currentPage = 0;
+
+function goTo(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelector('.page[data-page="'+n+'"]').classList.add('active');
+  currentPage = n;
+  document.getElementById('progressFill').style.width = ((n+1)/TOTAL_PAGES*100)+'%';
+  document.getElementById('progressLabel').textContent = 'Page '+(n+1)+' of '+TOTAL_PAGES;
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(n===11){ launchConfetti(); }
+}
+
+function toggleTeacher(btn){
+  btn.classList.toggle('open');
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// PROFILE PREVIEW
+function updatePreview(){
+  document.getElementById('prName').textContent = document.getElementById('pName').value || '___';
+  document.getElementById('prAge').textContent = document.getElementById('pAge').value || '___';
+  document.getElementById('prCity').textContent = document.getElementById('pCity').value || '___';
+  document.getElementById('prMood').textContent = document.getElementById('pMood').value || '___';
+}
+
+// VOCAB DATA
+const vocabA = [
+  {e:'🙋',w:'Name',p:'/neɪm/',m:'What you are called',x:'My name is Dito.'},
+  {e:'🎂',w:'Age',p:'/eɪdʒ/',m:'How many years old you are',x:'My age is nine.'},
+  {e:'🏙️',w:'City',p:'/ˈsɪti/',m:'A big place where people live',x:'I live in this city.'},
+  {e:'🏠',w:'Home',p:'/hoʊm/',m:'The place where you live',x:'This is my home.'},
+  {e:'🎒',w:'Student',p:'/ˈstjuːdənt/',m:'A person who learns at school',x:'I am a student.'},
+  {e:'🏫',w:'School',p:'/skuːl/',m:'The place where you study',x:'I go to school every day.'},
+  {e:'📚',w:'Class',p:'/klæs/',m:'A group of students who learn together',x:'I am in Class 4B.'},
+  {e:'🤗',w:'Friend',p:'/frɛnd/',m:'A person you like and trust',x:'She is my best friend.'},
+  {e:'🌏',w:'Country',p:'/ˈkʌntri/',m:'A big area with its own government, like Indonesia',x:'I live in Indonesia, my country.'},
+  {e:'🎉',w:'Birthday',p:'/ˈbɜːrθdeɪ/',m:'The day you were born, celebrated every year',x:'My birthday is in May.'},
+];
+const vocabB = [
+  {e:'😄',w:'Happy',p:'/ˈhæpi/',m:'Feeling good and glad',x:'I am happy today.'},
+  {e:'💗',w:'Kind',p:'/kaɪnd/',m:'Nice and caring to others',x:'She is kind to me.'},
+  {e:'🤝',w:'Friendly',p:'/ˈfrɛndli/',m:'Warm and easy to like',x:'He is friendly.'},
+  {e:'😂',w:'Funny',p:'/ˈfʌni/',m:'Makes people laugh',x:'My friend is funny.'},
+  {e:'🙌',w:'Helpful',p:'/ˈhɛlpfʊl/',m:'Likes to help others',x:'I am helpful at home.'},
+  {e:'🦁',w:'Brave',p:'/breɪv/',m:'Not afraid to try new things',x:'She is brave at swimming.'},
+  {e:'🧠',w:'Smart',p:'/smɑːrt/',m:'Learns and understands quickly',x:'He is smart in Math.'},
+  {e:'⚡',w:'Active',p:'/ˈæktɪv/',m:'Full of energy and movement',x:'I am active at sports.'},
+  {e:'🙏',w:'Polite',p:'/pəˈlaɪt/',m:'Has good manners and says please/thank you',x:'She is polite to her teacher.'},
+  {e:'💪',w:'Confident',p:'/ˈkɒnfɪdənt/',m:'Sure of yourself when trying something',x:'I am confident on stage.'},
+];
+function speak(text){
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.85; u.pitch = 1.15;
+    speechSynthesis.speak(u);
+  }
+}
+function renderVocab(list, containerId){
+  const c = document.getElementById(containerId);
+  c.innerHTML = list.map(v=>`
+    <div class="vocab-card">
+      <div class="vocab-emoji">${v.e}</div>
+      <div class="vocab-word">${v.w}</div>
+      <div class="vocab-pron">${v.p}</div>
+      <div class="vocab-meaning">${v.m}</div>
+      <div class="vocab-example">"${v.x}"</div>
+      <button class="vocab-btn" onclick="speak('${v.w}. ${v.x}')">🔊 Listen</button>
+    </div>
+  `).join('');
+}
+renderVocab(vocabA,'vocabA');
+renderVocab(vocabB,'vocabB');
+
+// LISTENING PRACTICE
+const listenItems = [
+  {type:'point', mode:'Listen and Point', prompt:'City', say:'City', options:[
+    {label:'🏙️', match:true},{label:'🎂', match:false},{label:'😄', match:false}
+  ]},
+  {type:'point', mode:'Listen and Point', prompt:'School', say:'School', options:[
+    {label:'😂', match:false},{label:'🏫', match:true},{label:'🙋', match:false}
+  ]},
+  {type:'choose', mode:'Listen and Choose', prompt:'Sentence about feeling', say:'I am confident on stage.', options:[
+    {label:'I am confident on stage.', match:true, isText:true},{label:'I am 9 years old.', match:false, isText:true},{label:'I live in Bekasi.', match:false, isText:true}
+  ]},
+  {type:'point', mode:'Listen and Point', prompt:'Kind', say:'Kind', options:[
+    {label:'💗', match:true},{label:'🎒', match:false},{label:'🏙️', match:false}
+  ]},
+  {type:'choose', mode:'Listen and Choose', prompt:'Question about age', say:'How old are you?', options:[
+    {label:'How old are you?', match:true, isText:true},{label:'What is your name?', match:false, isText:true},{label:'Where do you live?', match:false, isText:true}
+  ]},
+  {type:'point', mode:'Listen and Point', prompt:'Brave', say:'Brave', options:[
+    {label:'🦁', match:true},{label:'🌏', match:false},{label:'🎉', match:false}
+  ]},
+];
+let listenAnswered = 0;
+let listenCorrect = 0;
+function renderListening(){
+  const area = document.getElementById('listenArea');
+  area.innerHTML = listenItems.map((it,idx)=>`
+    <div class="listen-item">
+      <div class="listen-head">
+        <div class="listen-play" onclick="speak('${it.say}')">▶️</div>
+        <div class="listen-title">${it.mode}: press play, then choose the correct answer</div>
+      </div>
+      <div class="listen-options" data-idx="${idx}">
+        ${[...it.options].sort(()=>Math.random()-0.5).map(o=>
+          `<div class="listen-opt ${o.isText?'word-opt':''}" data-match="${o.match}" onclick="answerListen(this,${idx})">${o.label}</div>`
+        ).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+function answerListen(el, idx){
+  const group = el.parentElement;
+  if(group.dataset.done) return;
+  group.dataset.done = 'true';
+  const opts = group.querySelectorAll('.listen-opt');
+  opts.forEach(o=>{ if(o.dataset.match === 'true') o.classList.add('correct'); });
+  if(el.dataset.match === 'true'){ listenCorrect++; }
+  else { el.classList.add('wrong'); }
+  listenAnswered++;
+  if(listenAnswered === listenItems.length){
+    const box = document.getElementById('listenScore');
+    document.getElementById('listenScoreText').textContent = '🌟 You got ' + listenCorrect + ' / ' + listenItems.length + ' correct!';
+    box.classList.add('show');
+  }
+}
+renderListening();
+
+// ACTIVITY 1: MATCH
+const matchPairs = [
+  {word:'Name', pic:'🙋'},
+  {word:'Age', pic:'🎂'},
+  {word:'City', pic:'🏙️'},
+  {word:'Happy', pic:'😄'},
+  {word:'Kind', pic:'💗'},
+  {word:'School', pic:'🏫'},
+  {word:'Friend', pic:'🤗'},
+  {word:'Brave', pic:'🦁'},
+];
+let selectedWord = null;
+let matchedCount = 0;
+function renderMatch(){
+  const shuffledPics = [...matchPairs].sort(()=>Math.random()-0.5);
+  document.getElementById('matchWords').innerHTML = matchPairs.map(p=>
+    `<div class="match-item" data-word="${p.word}" onclick="pickWord(this)">${p.word}</div>`).join('');
+  document.getElementById('matchPics').innerHTML = shuffledPics.map(p=>
+    `<div class="match-item picture" data-pic="${p.pic}" data-belongs="${p.word}" onclick="pickPic(this)">${p.pic}</div>`).join('');
+}
+function pickWord(el){
+  if(el.classList.contains('correct')) return;
+  document.querySelectorAll('#matchWords .match-item').forEach(i=>i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedWord = el;
+}
+function pickPic(el){
+  if(!selectedWord || el.classList.contains('correct')) return;
+  const word = selectedWord.dataset.word;
+  if(el.dataset.belongs === word){
+    el.classList.add('correct');
+    selectedWord.classList.add('correct');
+    selectedWord.classList.remove('selected');
+    matchedCount++;
+  } else {
+    el.classList.add('wrong');
+    setTimeout(()=>el.classList.remove('wrong'), 500);
+  }
+  selectedWord = null;
+}
+renderMatch();
+
+// ACTIVITY 2: COMPLETE THE SENTENCE
+const completeItems = [
+  {before:'My name', after:'Dito.', answer:'is', choices:['is','am','are']},
+  {before:'I am 9', after:'old.', answer:'years', choices:['years','age','name']},
+  {before:'I live', after:'Surabaya.', answer:'in', choices:['in','on','at']},
+  {before:'I am', after:'to my classmates.', answer:'friendly', choices:['friendly','city','birthday']},
+  {before:'What is your', after:'?', answer:'name', choices:['name','happy','school']},
+  {before:'How old', after:'you?', answer:'are', choices:['are','is','do']},
+];
+function renderComplete(){
+  const area = document.getElementById('completeArea');
+  area.innerHTML = completeItems.map((it,idx)=>`
+    <div class="complete-item">
+      <div class="complete-sentence">${it.before} <span class="blank-slot" id="blank${idx}">______</span> ${it.after}</div>
+      <div class="word-choices">
+        ${[...it.choices].sort(()=>Math.random()-0.5).map(c=>
+          `<div class="word-chip" onclick="fillBlank(${idx},'${c}','${it.answer}',this)">${c}</div>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+function fillBlank(idx, choice, answer, el){
+  const blank = document.getElementById('blank'+idx);
+  if(choice === answer){
+    blank.textContent = choice;
+    blank.style.color = '#1f8a67';
+    el.classList.add('used');
+  } else {
+    blank.textContent = '❌ try again';
+    setTimeout(()=>{ blank.textContent = '______'; }, 700);
+  }
+}
+renderComplete();
+
+// ACTIVITY 3: IDENTITY CARD
+function showCard(){
+  const name = document.getElementById('cName').value || 'Friend';
+  const age = document.getElementById('cAge').value || '?';
+  const city = document.getElementById('cCity').value || '?';
+  const mood = document.getElementById('cMood').value || 'happy';
+  document.getElementById('idName').textContent = 'I am ' + name + '!';
+  document.getElementById('idAge').textContent = '🎂 I am ' + age + ' years old.';
+  document.getElementById('idCity').textContent = '🏠 I live in ' + city + '.';
+  document.getElementById('idMood').textContent = '😊 I am ' + mood + '.';
+  document.getElementById('idResult').classList.add('show');
+}
+
+// CLOSING GAME: TABS
+function switchGame(name, btn){
+  document.querySelectorAll('.game-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.game-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('game-'+name).classList.add('active');
+}
+
+// WHEEL GAME
+const wheelQuestions = [
+  "What's your name?",
+  "How old are you?",
+  "Where do you live?",
+  "How do you feel today?",
+  "Say a color you like!",
+  "Say a friend's name!"
+];
+const wheelColors = ['var(--mint)','var(--pink)','var(--sky)','var(--yellow)','var(--lav)','#ffe0c2'];
+function buildWheel(){
+  const wheel = document.getElementById('wheelEl');
+  const segAngle = 360/wheelQuestions.length;
+  let gradient = 'conic-gradient(';
+  wheelQuestions.forEach((q,i)=>{
+    gradient += wheelColors[i%wheelColors.length]+' '+(i*segAngle)+'deg '+((i+1)*segAngle)+'deg,';
+  });
+  gradient = gradient.slice(0,-1)+')';
+  wheel.style.background = gradient;
+  wheel.innerHTML = wheelQuestions.map((q,i)=>{
+    const angle = segAngle*i + segAngle/2;
+    return `<div class="wheel-seg" style="transform: rotate(${angle}deg);"><span style="display:inline-block; max-width:70px; text-align:center;">${q}</span></div>`;
+  }).join('');
+}
+buildWheel();
+let wheelRotation = 0;
+function spinWheel(){
+  const wheel = document.getElementById('wheelEl');
+  const segAngle = 360/wheelQuestions.length;
+  const extra = 1440 + Math.floor(Math.random()*360);
+  wheelRotation += extra;
+  wheel.style.transform = 'rotate('+wheelRotation+'deg)';
+  document.getElementById('wheelResult').textContent = '🎡 Spinning...';
+  setTimeout(()=>{
+    const mod = wheelRotation % 360;
+    const idx = Math.floor(((360 - mod) % 360) / segAngle);
+    document.getElementById('wheelResult').textContent = '❓ ' + wheelQuestions[idx];
+  }, 3300);
+}
+
+// MYSTERY BOX GAME
+const mysteryQuestions = [
+  "What is your name?",
+  "How old are you?",
+  "Where do you live?",
+  "Are you happy today?",
+  "Say one kind word!",
+  "Point to something and say its color!",
+  "Say 'I am a student.'",
+  "Tell us one thing you are good at!"
+];
+function openMystery(){
+  const card = document.getElementById('mysteryCard');
+  const q = mysteryQuestions[Math.floor(Math.random()*mysteryQuestions.length)];
+  card.textContent = '❓ ' + q;
+  card.classList.remove('show');
+  void card.offsetWidth;
+  card.classList.add('show');
+}
+
+// QUIZ
+let quizScore = 0;
+let quizAnswered = {};
+function answerQuiz(el){
+  const group = el.parentElement;
+  const quizId = group.dataset.quiz;
+  if(quizAnswered[quizId]) return;
+  const correct = group.dataset.correct;
+  const options = group.querySelectorAll('.quiz-opt');
+  options.forEach(o=>{
+    if(o.textContent.trim() === correct){ o.classList.add('correct'); }
+  });
+  if(el.textContent.trim() === correct){
+    quizScore++;
+  } else {
+    el.classList.add('wrong');
+  }
+  quizAnswered[quizId] = true;
+  if(Object.keys(quizAnswered).length === 5){
+    showScore();
+  }
+}
+function showScore(){
+  const box = document.getElementById('scoreBox');
+  document.getElementById('scoreNum').textContent = quizScore + ' / 5';
+  let msg = 'Keep Practicing! 💪';
+  if(quizScore >= 5) msg = 'Amazing! 🌟🌟🌟';
+  else if(quizScore >= 3) msg = 'Good Job! 🌟🌟';
+  document.getElementById('scoreMsg').textContent = msg;
+  box.classList.add('show');
+}
+
+// CONFETTI
+function launchConfetti(){
+  const emojis = ['🎉','⭐','🎈','✨','🏅','🌟'];
+  for(let i=0;i<26;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    el.style.left = Math.random()*100+'vw';
+    el.style.animationDuration = (2.2+Math.random()*1.6)+'s';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 4000);
+  }
+}
+</script>
+</body>
+</html>
