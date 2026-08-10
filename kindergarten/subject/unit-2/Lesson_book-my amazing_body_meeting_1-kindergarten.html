@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Littlelume English (Kindergarten) — My Amazing Body — Unit: My Body, Meeting 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#AEE9FF;
+    --sky-deep:#6FCBEF;
+    --sun:#FFE38C;
+    --sun-deep:#FFC93C;
+    --coral:#FFB4B4;
+    --coral-deep:#FF8FA3;
+    --mint:#B8F2D2;
+    --mint-deep:#7BDFB0;
+    --lav:#D6C8FF;
+    --lav-deep:#AF97F5;
+    --ink:#4A4358;
+    --ink-soft:#736C82;
+    --skin:#FFE3C4;
+    --paper:#FFFDF9;
+    --white:#FFFFFF;
+    --r-lg:28px;
+    --r-md:20px;
+    --r-sm:14px;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{margin:0;padding:0;background:#EDEBF7;font-family:'Quicksand',sans-serif;color:var(--ink);}
+
+  h1,h2,h3,.display{font-family:'Baloo 2',cursive;}
+
+  /* ============ SCREEN CHROME (hidden on print) ============ */
+  .toolbar{
+    position:fixed; top:16px; right:16px; z-index:999;
+    display:flex; gap:10px;
+  }
+  .toolbar button{
+    font-family:'Baloo 2',cursive; font-size:15px; font-weight:700;
+    background:var(--sun-deep); color:#5A4300; border:none;
+    padding:12px 20px; border-radius:999px; cursor:pointer;
+    box-shadow:0 6px 0 #E0A800; transition:transform .1s;
+  }
+  .toolbar button:active{transform:translateY(4px); box-shadow:0 2px 0 #E0A800;}
+  .toolbar button:hover{filter:brightness(1.05);}
+
+  @media screen{
+    body{padding:32px 0 80px;}
+    .page{
+      margin:0 auto 32px; box-shadow:0 20px 45px rgba(74,67,88,.18);
+      border-radius:18px; overflow:hidden;
+    }
+  }
+
+  @media print{
+    .toolbar{display:none;}
+    .nav-bar{display:none !important;}
+    body{background:#fff;}
+    .page{box-shadow:none; border-radius:0; margin:0; display:flex !important;}
+  }
+
+  /* ============ INTERACTIVE READING MODE ============ */
+  body.reading-mode .page{display:none;}
+  body.reading-mode .page.active{display:flex;}
+  @media screen{
+    body.reading-mode{padding-bottom:90px;}
+    body.reading-mode .page{margin:0 auto;}
+  }
+
+  .nav-bar{
+    display:none; position:fixed; left:0; right:0; bottom:0; z-index:998;
+    background:var(--white); border-top:3px solid var(--lav);
+    align-items:center; gap:12px; padding:10px 16px;
+    box-shadow:0 -6px 20px rgba(74,67,88,.12);
+  }
+  body.reading-mode .nav-bar{display:flex;}
+  .nav-bar button{
+    font-family:'Baloo 2',cursive; font-weight:800; font-size:14px;
+    border:none; border-radius:999px; padding:10px 18px; cursor:pointer;
+    background:var(--sky-deep); color:#fff; box-shadow:0 4px 0 #4FA9CC;
+    flex-shrink:0;
+  }
+  .nav-bar button:active{transform:translateY(3px); box-shadow:0 1px 0 #4FA9CC;}
+  .nav-bar button:disabled{opacity:.35; cursor:default;}
+  .nav-track{flex:1; min-width:0;}
+  .nav-count{font-family:'Baloo 2',cursive; font-weight:700; font-size:12px; color:var(--ink-soft); text-align:center; margin-bottom:4px;}
+  .nav-progress{height:8px; border-radius:999px; background:#EDEBF7; overflow:hidden;}
+  .nav-progress-fill{height:100%; background:linear-gradient(90deg,var(--sky-deep),var(--lav-deep)); border-radius:999px; transition:width .3s ease;}
+
+  /* ============ TAPPABLE INTERACTIVE ELEMENTS ============ */
+  .tap-card{cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; position:relative;}
+  .tap-card:active{transform:scale(.95);}
+  .tap-hint{position:absolute; top:6px; left:6px; font-size:13px; opacity:.5; z-index:2;}
+  .tap-card.done{box-shadow:0 5px 0 rgba(74,67,88,.08), 0 0 0 3px var(--mint-deep) inset;}
+  .tap-badge{
+    position:absolute; top:6px; right:6px; width:22px; height:22px; border-radius:50%;
+    background:var(--mint-deep); color:#fff; font-weight:800; font-size:12px;
+    display:none; align-items:center; justify-content:center; z-index:2;
+  }
+  .tap-card.done .tap-badge{display:flex;}
+
+  .tap-row{cursor:pointer; border-radius:var(--r-md); transition:background .15s ease;}
+  .tap-row:active{transform:scale(.98);}
+
+  .listen-btn{
+    display:inline-flex; align-items:center; gap:6px; margin-top:8px;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:12px;
+    background:var(--sun-deep); color:#5A4300; border:none; border-radius:999px;
+    padding:6px 14px; cursor:pointer; box-shadow:0 3px 0 #E0A800;
+  }
+  .listen-btn:active{transform:translateY(2px); box-shadow:0 1px 0 #E0A800;}
+
+  .cmd-list li{cursor:pointer; transition:background .15s ease, opacity .15s ease;}
+  .cmd-list li.done{background:#EEFCF4; opacity:.55; text-decoration:line-through;}
+  .cmd-list li.done .num{background:var(--mint-deep); color:#fff;}
+  .list-reset{
+    display:inline-flex; align-items:center; gap:6px; margin-top:10px;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:12px;
+    background:var(--white); color:var(--ink-soft); border:2px solid #E3DEF4; border-radius:999px;
+    padding:6px 14px; cursor:pointer;
+  }
+
+  .checkbox{cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px; color:#fff; transition:background .15s ease;}
+  .checkbox.checked{background:var(--mint-deep); border-color:var(--mint-deep);}
+
+  .exit-progress{
+    display:inline-flex; align-items:center; gap:8px; font-family:'Baloo 2',cursive;
+    font-weight:800; font-size:13px; color:#2B7A57; background:var(--mint);
+    padding:6px 16px; border-radius:999px; margin-bottom:14px; align-self:flex-start;
+  }
+
+  /* ============ INTERACTIVE DRAWING CANVAS ============ */
+  .canvas-tools{display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap;}
+  .swatch{
+    width:32px; height:32px; border-radius:50%; padding:0; cursor:pointer;
+    border:3px solid #fff; box-shadow:0 0 0 2px var(--ink-soft); flex-shrink:0;
+  }
+  .swatch:active{transform:scale(.9);}
+  .draw-canvas{
+    display:block; width:100%; height:auto; aspect-ratio:700/480;
+    background:#fff; border:3px dashed var(--lav-deep); border-radius:var(--r-md);
+    touch-action:none; cursor:crosshair;
+  }
+
+  /* ============ PAGE FRAME ============ */
+  .page{
+    width:210mm; min-height:297mm; background:var(--paper);
+    position:relative; padding:14mm 14mm 16mm;
+    display:flex; flex-direction:column;
+    page-break-after:always; break-after:page;
+    overflow:hidden;
+  }
+  .page:last-of-type{page-break-after:auto;}
+
+  .deco{position:absolute; border-radius:50%; opacity:.55; z-index:0;}
+
+  .kicker{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:12.5px;
+    letter-spacing:.06em; text-transform:uppercase;
+    background:var(--lav); color:#463A82; padding:6px 16px;
+    border-radius:999px; align-self:flex-start; z-index:1;
+  }
+
+  .page-title{
+    font-size:34px; font-weight:800; color:var(--ink);
+    margin:10px 0 4px; z-index:1; line-height:1.15;
+  }
+  .page-sub{
+    font-size:15px; color:var(--ink-soft); margin:0 0 18px; z-index:1;
+    font-weight:600;
+  }
+
+  .footer-bar{
+    margin-top:auto; padding-top:14px; display:flex; align-items:center;
+    justify-content:space-between; font-size:11px; color:var(--ink-soft);
+    border-top:2px dashed #E3DEF4; z-index:1; font-weight:600;
+  }
+  .footer-bar .brand{display:flex; align-items:center; gap:6px; font-family:'Baloo 2',cursive; font-weight:700; color:var(--lav-deep);}
+
+  .content{position:relative; z-index:1; flex:1; display:flex; flex-direction:column;}
+
+  /* ============ ILLUSTRATION ICONS (consistent flat-style, replaces emoji) ============ */
+  .ico{display:inline-block; vertical-align:middle; flex-shrink:0;}
+  .ico-sm{width:26px; height:26px;}
+  .ico-md{width:40px; height:40px;}
+  .ico-lg{width:56px; height:56px;}
+  .ico-xl{width:88px; height:88px;}
+
+  /* ============ LUME MASCOT (signature element) ============ */
+  .lume{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:44px; height:44px; flex-shrink:0;
+    filter:drop-shadow(0 4px 0 #E0A800);
+  }
+  .lume .ico{width:100%; height:100%;}
+  .lume-tip{
+    display:flex; align-items:flex-start; gap:12px;
+    background:#FFF9E8; border:2px solid var(--sun-deep);
+    border-radius:var(--r-md); padding:12px 16px; margin-top:auto;
+    font-size:13.5px; font-weight:600; color:#6B5300;
+  }
+  .lume-tip b{font-family:'Baloo 2',cursive; color:#8A6A00;}
+  .lume-tip .bubble{padding-top:4px;}
+
+  /* ============ CARDS ============ */
+  .card{
+    background:var(--white); border-radius:var(--r-lg);
+    box-shadow:0 6px 0 rgba(74,67,88,.08), 0 2px 14px rgba(74,67,88,.06);
+    padding:18px 20px;
+  }
+  .soft-sky{background:#EAF9FF;} .soft-sun{background:#FFFAEA;}
+  .soft-coral{background:#FFF0F0;} .soft-mint{background:#EEFCF4;}
+  .soft-lav{background:#F5F1FF;}
+
+  .section-label{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:17px;
+    color:var(--ink); margin:0 0 10px;
+  }
+  .section-label .dot{width:12px; height:12px; border-radius:50%;}
+
+  .teacher-note{
+    background:var(--lav); border-radius:var(--r-md); padding:12px 16px;
+    font-size:12.5px; font-weight:600; color:#3B2E6E; margin-top:10px;
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .teacher-note .pin{font-size:16px;}
+  .teacher-note b{font-family:'Baloo 2',cursive;}
+
+  .speech-bubble{
+    position:relative; background:var(--white); border:2.5px solid var(--ink);
+    border-radius:20px; padding:10px 16px; font-weight:700; font-size:14px;
+    display:inline-block;
+  }
+  .speech-bubble.left::after{
+    content:""; position:absolute; left:24px; bottom:-14px;
+    border-width:14px 10px 0 0; border-style:solid;
+    border-color:var(--white) transparent transparent transparent;
+    filter:drop-shadow(0 2px 0 var(--ink));
+  }
+  .speech-bubble.right::after{
+    content:""; position:absolute; right:24px; bottom:-14px;
+    border-width:14px 0 0 10px; border-style:solid;
+    border-color:var(--white) transparent transparent transparent;
+    filter:drop-shadow(0 2px 0 var(--ink));
+  }
+
+  .pill{
+    display:inline-block; font-family:'Baloo 2',cursive; font-weight:700;
+    font-size:12px; padding:4px 12px; border-radius:999px; color:var(--white);
+  }
+
+  .stars-row{display:flex; gap:4px; font-size:16px;}
+
+  /* ============ CHECKLIST (objectives, exit ticket) ============ */
+  .obj-item{
+    display:flex; align-items:center; gap:16px; background:var(--white);
+    border-radius:var(--r-md); padding:16px 18px; margin-bottom:14px;
+    box-shadow:0 4px 0 rgba(74,67,88,.07);
+  }
+  .obj-icon{
+    width:52px; height:52px; border-radius:50%; display:flex;
+    align-items:center; justify-content:center; font-size:26px; flex-shrink:0;
+  }
+  .obj-text{font-size:15px; font-weight:700; color:var(--ink); line-height:1.35;}
+
+  /* ============ VOCAB GRID ============ */
+  .vocab-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;}
+  .vocab-card{
+    background:var(--white); border-radius:var(--r-lg);
+    padding:14px; text-align:center; position:relative;
+    box-shadow:0 5px 0 rgba(74,67,88,.08);
+    border:3px solid var(--sky);
+  }
+  .vocab-card .emoji{
+    font-size:46px; display:block; margin-bottom:4px;
+  }
+  .vocab-card .word{font-family:'Baloo 2',cursive; font-weight:800; font-size:18px; color:var(--ink);}
+  .vocab-card .pron{font-size:11.5px; color:var(--ink-soft); font-weight:700; margin-bottom:6px;}
+  .vocab-card .ex{font-size:11.5px; font-weight:600; background:#F4F1FF; border-radius:10px; padding:5px 8px; margin-bottom:6px;}
+  .vocab-card .tpr{font-size:11px; font-weight:700; color:#2B7A57; background:var(--mint); border-radius:10px; padding:5px 8px;}
+
+  /* ============ GRID HELPERS ============ */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;}
+
+  /* ============ FILL IN BLANK ============ */
+  .practice-card{
+    background:var(--white); border-radius:var(--r-md); padding:16px;
+    text-align:center; box-shadow:0 5px 0 rgba(74,67,88,.08); position:relative;
+  }
+  .practice-card .emoji{font-size:52px; margin-bottom:8px;}
+  .blank-line{
+    border:none; border-bottom:3px dotted var(--coral-deep);
+    font-family:'Quicksand',sans-serif; font-size:15px; font-weight:700;
+    width:100%; text-align:center; padding:4px 0; color:var(--ink);
+    background:transparent;
+  }
+  .sentence-row{font-size:15px; font-weight:700; margin-top:6px;}
+
+  /* ============ TPR / ROUND BADGES ============ */
+  .round-badge{
+    display:inline-flex; align-items:center; gap:8px; font-family:'Baloo 2',cursive;
+    font-weight:800; font-size:14px; color:#fff; padding:8px 18px; border-radius:999px;
+  }
+  .cmd-list{list-style:none; padding:0; margin:12px 0;}
+  .cmd-list li{
+    display:flex; align-items:center; gap:12px; font-size:15px; font-weight:700;
+    padding:10px 6px; border-bottom:2px dashed #E3DEF4;
+  }
+  .cmd-list li .num{
+    width:28px; height:28px; border-radius:50%; background:var(--sky);
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+    font-family:'Baloo 2',cursive; flex-shrink:0;
+  }
+
+  /* ============ PHONICS ============ */
+  .letter-box{
+    background:var(--white); border-radius:var(--r-lg); padding:20px;
+    text-align:center; box-shadow:0 5px 0 rgba(74,67,88,.08);
+  }
+  .letter-big{font-family:'Baloo 2',cursive; font-weight:800; font-size:64px; color:var(--ink);}
+  .trace-letters{font-family:'Baloo 2',cursive; font-size:40px; letter-spacing:14px; color:#DAD3EF; font-weight:700;}
+  .letter-words{display:flex; justify-content:center; gap:18px; margin-top:8px;}
+  .letter-words .lw{text-align:center; font-size:12.5px; font-weight:700; position:relative; padding:4px;}
+  .letter-words .lw .emoji{font-size:36px; display:block;}
+
+  /* ============ EXIT TICKET ============ */
+  .exit-box{
+    display:flex; align-items:flex-start; gap:12px; background:var(--white);
+    border-radius:var(--r-md); padding:14px 16px; margin-bottom:12px;
+    box-shadow:0 4px 0 rgba(74,67,88,.07);
+  }
+  .checkbox{
+    width:26px; height:26px; border-radius:8px; border:3px solid var(--coral-deep);
+    flex-shrink:0; margin-top:2px;
+  }
+  .exit-box .txt{font-size:15px; font-weight:700;}
+
+  /* ============ COVER ============ */
+  .cover{background:linear-gradient(180deg,#FFF9EC 0%, #EAF9FF 55%, #F5F1FF 100%);}
+  .cover-stars{position:absolute; inset:0; z-index:0;}
+  .rainbow-arc{
+    position:absolute; left:50%; top:78mm; transform:translateX(-50%);
+    width:150mm; height:75mm; border-radius:150mm 150mm 0 0;
+    background:conic-gradient(from 180deg at 50% 100%,
+      #FFB4B4 0deg 30deg, #FFE38C 30deg 60deg, #B8F2D2 60deg 90deg,
+      #AEE9FF 90deg 120deg, #D6C8FF 120deg 150deg, transparent 150deg 180deg);
+    opacity:.5; z-index:0;
+  }
+  .cover-inner{position:relative; z-index:2; text-align:center; margin-top:40mm;}
+  .brand-badge{
+    display:inline-flex; align-items:center; gap:10px; background:var(--white);
+    padding:8px 22px; border-radius:999px; box-shadow:0 4px 0 rgba(74,67,88,.1);
+    font-family:'Baloo 2',cursive; font-weight:800; font-size:16px; color:var(--lav-deep);
+  }
+  .cover-title{
+    font-size:64px; font-weight:800; margin:26px 0 6px; color:var(--ink);
+    text-shadow:3px 3px 0 var(--sun);
+  }
+  .cover-sub{font-size:18px; font-weight:700; color:var(--ink-soft); margin-bottom:26px;}
+  .cover-chips{display:flex; gap:12px; justify-content:center; margin-bottom:34px; flex-wrap:wrap;}
+  .cover-chip{
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:14px; color:#fff;
+    padding:9px 20px; border-radius:999px;
+  }
+  .cover-cast{display:flex; justify-content:center; align-items:center; gap:14px; margin:14px 0 6px;}
+  .cover-foot{position:absolute; bottom:16mm; left:0; right:0; text-align:center; z-index:2;
+    font-size:12px; font-weight:700; color:var(--ink-soft);}
+
+  /* small helpers */
+  .mt-8{margin-top:8px;} .mt-14{margin-top:14px;} .mt-18{margin-top:18px;}
+  .flex-row{display:flex; align-items:center; gap:10px;}
+  .center{text-align:center;}
+  .muted{color:var(--ink-soft);}
+  .tag{font-family:'Baloo 2',cursive; font-weight:700; font-size:11px; padding:3px 10px; border-radius:999px; display:inline-block;}
+
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  @media screen and (max-width:900px){
+    body{padding:12px;}
+    .page{width:100%; min-height:auto; padding:6vw;}
+    .vocab-grid,.grid-3{grid-template-columns:1fr 1fr;}
+    .grid-2{grid-template-columns:1fr;}
+    .cover-title{font-size:40px;}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+
+  <symbol id="icon-lumi" viewBox="0 0 100 100">
+    <path d="M50,4 L62,36 L97,37 L69,58 L79,92 L50,72 L21,92 L31,58 L3,37 L38,36 Z" fill="var(--sun-deep)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="40" cy="52" r="4.5" fill="var(--ink)"/>
+    <circle cx="61" cy="52" r="4.5" fill="var(--ink)"/>
+    <circle cx="33" cy="59" r="4" fill="var(--coral-deep)" opacity=".7"/>
+    <circle cx="68" cy="59" r="4" fill="var(--coral-deep)" opacity=".7"/>
+    <path d="M41,63 Q50,71 59,63" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-kid-a" viewBox="0 0 100 100">
+    <path d="M18,100 Q18,64 50,64 Q82,64 82,100 Z" fill="var(--sky-deep)"/>
+    <circle cx="50" cy="42" r="27" fill="var(--skin)" stroke="var(--ink)" stroke-width="3"/>
+    <path d="M23,40 Q26,10 50,10 Q76,10 78,38 Q60,28 50,30 Q38,28 23,40 Z" fill="var(--lav-deep)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="41" cy="45" r="4" fill="var(--ink)"/>
+    <circle cx="59" cy="45" r="4" fill="var(--ink)"/>
+    <circle cx="34" cy="52" r="4" fill="var(--coral-deep)" opacity=".6"/>
+    <circle cx="66" cy="52" r="4" fill="var(--coral-deep)" opacity=".6"/>
+    <path d="M41,55 Q50,63 59,55" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-kid-b" viewBox="0 0 100 100">
+    <path d="M18,100 Q18,64 50,64 Q82,64 82,100 Z" fill="var(--mint-deep)"/>
+    <circle cx="50" cy="42" r="27" fill="var(--skin)" stroke="var(--ink)" stroke-width="3"/>
+    <path d="M24,32 Q50,6 76,32 Q76,18 66,14 Q50,8 34,14 Q24,18 24,32 Z" fill="var(--coral-deep)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M22,42 Q18,58 26,64" fill="none" stroke="var(--coral-deep)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M78,42 Q82,58 74,64" fill="none" stroke="var(--coral-deep)" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="41" cy="46" r="4" fill="var(--ink)"/>
+    <circle cx="59" cy="46" r="4" fill="var(--ink)"/>
+    <circle cx="34" cy="53" r="4" fill="var(--coral-deep)" opacity=".6"/>
+    <circle cx="66" cy="53" r="4" fill="var(--coral-deep)" opacity=".6"/>
+    <path d="M41,56 Q50,64 59,56" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-head" viewBox="0 0 100 100">
+    <circle cx="50" cy="55" r="32" fill="var(--skin)" stroke="var(--ink)" stroke-width="3.5"/>
+    <path d="M19,50 Q22,16 50,16 Q78,16 81,48 Q60,36 50,38 Q40,36 19,50 Z" fill="var(--lav-deep)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="39" cy="58" r="4.5" fill="var(--ink)"/>
+    <circle cx="61" cy="58" r="4.5" fill="var(--ink)"/>
+    <path d="M40,70 Q50,78 60,70" fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-eyes" viewBox="0 0 100 100">
+    <ellipse cx="30" cy="50" rx="20" ry="14" fill="#fff" stroke="var(--ink)" stroke-width="3.5"/>
+    <ellipse cx="70" cy="50" rx="20" ry="14" fill="#fff" stroke="var(--ink)" stroke-width="3.5"/>
+    <circle cx="33" cy="50" r="7" fill="var(--ink)"/>
+    <circle cx="73" cy="50" r="7" fill="var(--ink)"/>
+    <circle cx="30" cy="47" r="2.2" fill="#fff"/>
+    <circle cx="70" cy="47" r="2.2" fill="#fff"/>
+  </symbol>
+
+  <symbol id="icon-ears" viewBox="0 0 100 100">
+    <path d="M28,72 Q6,64 10,38 Q14,14 36,18 Q30,40 34,60 Q30,68 28,72 Z" fill="var(--skin)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M72,72 Q94,64 90,38 Q86,14 64,18 Q70,40 66,60 Q70,68 72,72 Z" fill="var(--skin)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M25,42 Q20,50 27,58" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M75,42 Q80,50 73,58" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-nose" viewBox="0 0 100 100">
+    <path d="M50,16 Q40,52 30,64 Q30,80 50,80 Q70,80 70,64 Q60,52 50,16 Z" fill="var(--skin)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+    <ellipse cx="41" cy="70" rx="4.5" ry="3.5" fill="var(--ink)" opacity=".8"/>
+    <ellipse cx="59" cy="70" rx="4.5" ry="3.5" fill="var(--ink)" opacity=".8"/>
+  </symbol>
+
+  <symbol id="icon-mouth" viewBox="0 0 100 100">
+    <path d="M10,42 Q50,90 90,42 Q50,66 10,42 Z" fill="var(--coral-deep)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M22,44 Q50,60 78,44 Q50,52 22,44 Z" fill="#fff"/>
+  </symbol>
+
+  <symbol id="icon-hands" viewBox="0 0 100 100">
+    <g>
+      <path d="M30,90 Q14,90 14,74 L14,44 Q14,38 19,38 Q24,38 24,44 L24,30 Q24,24 29,24 Q34,24 34,30 L34,26 Q34,20 39,20 Q44,20 44,26 L44,32 Q44,26 49,26 Q54,26 54,32 L54,60 Q54,90 30,90 Z" fill="var(--skin)" stroke="var(--ink)" stroke-width="3"/>
+    </g>
+    <g transform="translate(100,0) scale(-1,1)">
+      <path d="M30,90 Q14,90 14,74 L14,44 Q14,38 19,38 Q24,38 24,44 L24,30 Q24,24 29,24 Q34,24 34,30 L34,26 Q34,20 39,20 Q44,20 44,26 L44,32 Q44,26 49,26 Q54,26 54,32 L54,60 Q54,90 30,90 Z" fill="var(--skin)" stroke="var(--ink)" stroke-width="3"/>
+    </g>
+  </symbol>
+
+  <symbol id="icon-cat" viewBox="0 0 100 100">
+    <path d="M22,30 L32,10 L42,32 Z" fill="var(--sun)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M78,30 L68,10 L58,32 Z" fill="var(--sun)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="50" cy="55" r="34" fill="var(--sun)" stroke="var(--ink)" stroke-width="3.5"/>
+    <circle cx="38" cy="52" r="4" fill="var(--ink)"/>
+    <circle cx="62" cy="52" r="4" fill="var(--ink)"/>
+    <path d="M50,60 L45,66 L55,66 Z" fill="var(--coral-deep)"/>
+    <path d="M50,66 Q50,72 44,72" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14,58 L34,58 M14,66 L34,64 M66,64 L86,66 M66,58 L86,58" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-car" viewBox="0 0 100 100">
+    <path d="M8,62 Q8,44 26,42 L34,28 Q38,22 48,22 L66,22 Q74,22 78,30 L84,42 Q94,44 94,60 L94,66 Q94,70 90,70 L10,70 Q6,70 6,66 Z" fill="var(--coral-deep)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M38,42 L42,28 L64,28 L70,42 Z" fill="#EAF9FF" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="28" cy="72" r="11" fill="var(--ink)"/><circle cx="28" cy="72" r="5" fill="#fff"/>
+    <circle cx="74" cy="72" r="11" fill="var(--ink)"/><circle cx="74" cy="72" r="5" fill="#fff"/>
+  </symbol>
+
+  <symbol id="icon-dog" viewBox="0 0 100 100">
+    <path d="M18,30 Q4,26 8,50 Q12,66 26,58 Z" fill="var(--sun-deep)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M82,30 Q96,26 92,50 Q88,66 74,58 Z" fill="var(--sun-deep)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="50" cy="55" r="32" fill="#FFF3DC" stroke="var(--ink)" stroke-width="3.5"/>
+    <circle cx="40" cy="52" r="4" fill="var(--ink)"/>
+    <circle cx="60" cy="52" r="4" fill="var(--ink)"/>
+    <ellipse cx="50" cy="66" rx="8" ry="6" fill="var(--ink)"/>
+    <path d="M50,72 Q50,78 44,78 M50,72 Q50,78 56,78" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="icon-duck" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="66" rx="34" ry="24" fill="#FFF3DC" stroke="var(--ink)" stroke-width="3.5"/>
+    <circle cx="62" cy="34" r="20" fill="#FFF3DC" stroke="var(--ink)" stroke-width="3.5"/>
+    <circle cx="68" cy="30" r="3.5" fill="var(--ink)"/>
+    <path d="M78,34 Q94,34 94,42 Q94,50 78,46 Z" fill="var(--sun-deep)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+  </symbol>
+
+</defs>
+</svg>
+
+<div class="toolbar">
+  <button id="modeBtn" onclick="toggleReadingMode()">📖 Interactive Mode</button>
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+</div>
+
+<div class="nav-bar">
+  <button id="prevBtn" onclick="goToPage(currentPage-1)">← Back</button>
+  <div class="nav-track">
+    <div class="nav-count" id="pageCounter">Page 1 / 15</div>
+    <div class="nav-progress"><div class="nav-progress-fill" id="progressFill" style="width:6.6%;"></div></div>
+  </div>
+  <button id="nextBtn" onclick="goToPage(currentPage+1)">Next →</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 1 — COVER -->
+<!-- ============================================================ -->
+<section class="page cover">
+  <div class="rainbow-arc"></div>
+  <div class="deco" style="width:70px;height:70px;background:var(--coral);top:20mm;left:14mm;"></div>
+  <div class="deco" style="width:40px;height:40px;background:var(--mint);top:34mm;right:22mm;"></div>
+  <div class="deco" style="width:26px;height:26px;background:var(--sky);top:60mm;left:26mm;"></div>
+  <div class="deco" style="width:50px;height:50px;background:var(--lav);bottom:60mm;right:16mm;"></div>
+  <div class="deco" style="width:34px;height:34px;background:var(--sun);bottom:80mm;left:18mm;"></div>
+
+  <div class="cover-inner">
+    <span class="brand-badge"><svg class="ico" style="width:20px;height:20px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+    <div class="cover-cast">
+      <svg class="ico ico-xl"><use href="#icon-head"/></svg>
+      <svg class="ico ico-xl"><use href="#icon-eyes"/></svg>
+      <svg class="ico ico-xl"><use href="#icon-nose"/></svg>
+      <svg class="ico ico-xl"><use href="#icon-mouth"/></svg>
+      <svg class="ico ico-xl"><use href="#icon-hands"/></svg>
+    </div>
+    <h1 class="cover-title">My Amazing Body</h1>
+    <p class="cover-sub">A Littlelume English Lesson Book for Our Youngest Learners</p>
+    <div class="cover-chips">
+      <span class="cover-chip" style="background:var(--sky-deep);">📘 Unit: My Body</span>
+      <span class="cover-chip" style="background:var(--coral-deep);">📍 Meeting 1</span>
+      <span class="cover-chip" style="background:var(--mint-deep);">🎈 Kindergarten · Age 4–5</span>
+    </div>
+    <div class="speech-bubble left" style="background:var(--white);">Hi! I'm Lumi <svg class="ico ico-sm" style="width:18px;height:18px;"><use href="#icon-lumi"/></svg> Let's learn about our bodies today!</div>
+  </div>
+
+  <div class="cover-foot">Littlelume English · Kindergarten · 90-Minute Lesson Book</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 — LEARNING OBJECTIVES -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:120px;height:120px;background:var(--sky);top:-40px;right:-40px;"></div>
+  <span class="kicker">🎯 Today's Mission</span>
+  <h2 class="page-title">Learning Objectives</h2>
+  <p class="page-sub">By the end of this lesson, I can do these things!</p>
+
+  <div class="content">
+    <div class="obj-item">
+      <div class="obj-icon" style="background:var(--sky);">🙋</div>
+      <div class="obj-text">I can point to and say my body parts.</div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-icon" style="background:var(--sun);">🏃</div>
+      <div class="obj-text">I can move my body when I hear "Touch your...".</div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-icon" style="background:var(--coral);">💬</div>
+      <div class="obj-text">I can say <b>"This is my ___."</b> about myself.</div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-icon" style="background:var(--mint);">🔤</div>
+      <div class="obj-text">I can hear and copy the sounds <b>C</b> and <b>D</b>.</div>
+    </div>
+
+    <div class="card soft-lav mt-18 center">
+      <div class="section-label" style="justify-content:center;"><span class="dot" style="background:var(--lav-deep);"></span> Today's Big Question</div>
+      <p style="font-size:17px; font-weight:700; margin:0;">"What can YOUR amazing body do?" 🌈</p>
+    </div>
+
+    <div class="lume-tip mt-18">
+      <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+      <span class="bubble"><b>Lumi says:</b> Point to each icon and say the goal out loud together as a class before we start!</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 2</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 — WARM-UP -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:90px;height:90px;background:var(--coral);bottom:-30px;left:-30px;"></div>
+  <span class="kicker">🔥 Warm-Up · 5 min</span>
+  <h2 class="page-title">Touch and Guess!</h2>
+  <p class="page-sub">Stand up! Listen and touch fast!</p>
+
+  <div class="content">
+    <div class="card soft-sky">
+      <div class="section-label"><span class="dot" style="background:var(--sky-deep);"></span> Teacher says:</div>
+      <ul class="cmd-list" id="cmdList1">
+        <li onclick="this.classList.toggle('done')"><span class="num">1</span> Touch your head! <svg class="ico ico-sm"><use href="#icon-head"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">2</span> Touch your nose! <svg class="ico ico-sm"><use href="#icon-nose"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">3</span> Touch your mouth! <svg class="ico ico-sm"><use href="#icon-mouth"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">4</span> Touch your ears! <svg class="ico ico-sm"><use href="#icon-ears"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">5</span> Touch your hands! <svg class="ico ico-sm"><use href="#icon-hands"/></svg></li>
+      </ul>
+      <button class="list-reset" onclick="resetList('cmdList1')">↺ Reset</button>
+    </div>
+
+    <div class="grid-3 mt-18">
+      <div class="practice-card soft-mint"><svg class="ico ico-lg"><use href="#icon-kid-a"/></svg><span class="sentence-row">Stand up</span></div>
+      <div class="practice-card soft-sun"><svg class="ico ico-lg"><use href="#icon-ears"/></svg><span class="sentence-row">Listen well</span></div>
+      <div class="practice-card soft-coral"><span class="emoji" style="font-size:52px;">⚡</span><span class="sentence-row">Touch fast!</span></div>
+    </div>
+
+    <div class="teacher-note mt-18">
+      <span class="pin">📌</span>
+      <span><b>Teacher Note:</b> Start slowly, then speed up. Students who touch the wrong part just laugh and try again — keep it fun, not competitive.</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 3</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 — VOCABULARY TIME -->
+<!-- ============================================================ -->
+<section class="page">
+  <span class="kicker">📚 Vocabulary Time · 12 min</span>
+  <h2 class="page-title">Words for My Body</h2>
+  <p class="page-sub">Look, say, and act it out!</p>
+
+  <div class="content">
+    <div class="vocab-grid">
+      <div class="vocab-card tap-card" onclick="tapCard(this,'head')">
+        <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+        <svg class="ico ico-xl"><use href="#icon-head"/></svg>
+        <div class="word">head</div>
+        <div class="pron">/hed/</div>
+        <div class="ex">This is my head.</div>
+        <div class="tpr">✋ Pat your head</div>
+      </div>
+      <div class="vocab-card tap-card" onclick="tapCard(this,'eyes')">
+        <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+        <svg class="ico ico-xl"><use href="#icon-eyes"/></svg>
+        <div class="word">eyes</div>
+        <div class="pron">/aɪz/</div>
+        <div class="ex">I have two eyes.</div>
+        <div class="tpr">👉 Point to eyes</div>
+      </div>
+      <div class="vocab-card tap-card" onclick="tapCard(this,'ears')">
+        <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+        <svg class="ico ico-xl"><use href="#icon-ears"/></svg>
+        <div class="word">ears</div>
+        <div class="pron">/ɪərz/</div>
+        <div class="ex">I have two ears.</div>
+        <div class="tpr">🤏 Wiggle ears</div>
+      </div>
+      <div class="vocab-card tap-card" onclick="tapCard(this,'nose')">
+        <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+        <svg class="ico ico-xl"><use href="#icon-nose"/></svg>
+        <div class="word">nose</div>
+        <div class="pron">/noʊz/</div>
+        <div class="ex">This is my nose.</div>
+        <div class="tpr">👉 Point to nose</div>
+      </div>
+      <div class="vocab-card tap-card" onclick="tapCard(this,'mouth')">
+        <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+        <svg class="ico ico-xl"><use href="#icon-mouth"/></svg>
+        <div class="word">mouth</div>
+        <div class="pron">/maʊθ/</div>
+        <div class="ex">This is my mouth.</div>
+        <div class="tpr">😮 Open mouth wide</div>
+      </div>
+      <div class="vocab-card tap-card" onclick="tapCard(this,'hands')">
+        <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+        <svg class="ico ico-xl"><use href="#icon-hands"/></svg>
+        <div class="word">hands</div>
+        <div class="pron">/hændz/</div>
+        <div class="ex">I have two hands.</div>
+        <div class="tpr">👏 Clap your hands</div>
+      </div>
+    </div>
+
+    <div class="teacher-note mt-18">
+      <span class="pin">📌</span>
+      <span><b>Teacher Note:</b> Just 6 words today! Say each word 3 times, students repeat, then do the TPR gesture together before moving to the next word. Tap a card to hear it and mark it practiced! 🔊</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 4</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 5 — LET'S TALK -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:80px;height:80px;background:var(--lav);top:-20px;right:-20px;"></div>
+  <span class="kicker">💬 Let's Talk! · 10 min</span>
+  <h2 class="page-title">Look, Listen, Talk!</h2>
+  <p class="page-sub">Look at the pictures and say it with me!</p>
+
+  <div class="content">
+    <div class="card soft-sky">
+      <div class="flex-row tap-row" onclick="speak('This is my head.')">
+        <svg class="ico ico-xl"><use href="#icon-head"/></svg>
+        <div class="speech-bubble left">This is my head!</div>
+      </div>
+      <div class="flex-row tap-row mt-8" onclick="speak('This is my nose.')">
+        <svg class="ico ico-xl"><use href="#icon-nose"/></svg>
+        <div class="speech-bubble left">This is my nose!</div>
+      </div>
+    </div>
+
+    <div class="card soft-mint mt-18">
+      <div class="flex-row tap-row" onclick="speak('I have two eyes.')">
+        <svg class="ico ico-xl"><use href="#icon-eyes"/></svg>
+        <div class="speech-bubble right">I have two eyes!</div>
+      </div>
+      <div class="flex-row tap-row mt-8" onclick="speak('I have two hands.')">
+        <svg class="ico ico-xl"><use href="#icon-hands"/></svg>
+        <div class="speech-bubble right">I have two hands!</div>
+      </div>
+    </div>
+
+    <div class="lume-tip mt-18">
+      <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+      <span class="bubble"><b>Lumi says:</b> Point to yourself and say it too — you're a great talker! 🎉</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 5</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 6 — GUIDED PRACTICE -->
+<!-- ============================================================ -->
+<section class="page">
+  <span class="kicker">🗣️ Guided Practice · 8 min</span>
+  <h2 class="page-title">Repeat After Me!</h2>
+  <p class="page-sub">Listen to your teacher, then say it together.</p>
+
+  <div class="content grid-2">
+    <div class="card soft-coral">
+      <div class="section-label"><span class="dot" style="background:var(--coral-deep);"></span> This is my...</div>
+      <p style="font-size:16px; font-weight:700; line-height:2.4;">
+        <svg class="ico ico-sm"><use href="#icon-head"/></svg> This is my head.<br>
+        <svg class="ico ico-sm"><use href="#icon-nose"/></svg> This is my nose.<br>
+        <svg class="ico ico-sm"><use href="#icon-mouth"/></svg> This is my mouth.<br>
+        <svg class="ico ico-sm"><use href="#icon-hands"/></svg> This is my hand.
+      </p>
+    </div>
+    <div class="card soft-lav">
+      <div class="section-label"><span class="dot" style="background:var(--lav-deep);"></span> I have...</div>
+      <p style="font-size:16px; font-weight:700; line-height:2.4;">
+        <svg class="ico ico-sm"><use href="#icon-eyes"/></svg> I have two eyes.<br>
+        <svg class="ico ico-sm"><use href="#icon-ears"/></svg> I have two ears.<br>
+        <svg class="ico ico-sm"><use href="#icon-hands"/></svg> I have two hands.<br>
+        <svg class="ico ico-sm"><use href="#icon-head"/></svg> I have one head.
+      </p>
+    </div>
+  </div>
+
+  <div class="lume-tip mt-18">
+    <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+    <span class="bubble"><b>Lumi says:</b> Say it 3 times — whisper, normal voice, then super loud!</span>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 6</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 7 — PICTURE PRACTICE -->
+<!-- ============================================================ -->
+<section class="page">
+  <span class="kicker">👉 Point and Match! · 8 min</span>
+  <h2 class="page-title">Look and Point!</h2>
+  <p class="page-sub">Point to the matching picture and say the word.</p>
+
+  <div class="content">
+    <div class="grid-3">
+      <div class="practice-card tap-card" onclick="tapCard(this,'head')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-xl"><use href="#icon-head"/></svg><div class="sentence-row">head</div></div>
+      <div class="practice-card tap-card" onclick="tapCard(this,'nose')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-xl"><use href="#icon-nose"/></svg><div class="sentence-row">nose</div></div>
+      <div class="practice-card tap-card" onclick="tapCard(this,'mouth')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-xl"><use href="#icon-mouth"/></svg><div class="sentence-row">mouth</div></div>
+      <div class="practice-card tap-card" onclick="tapCard(this,'eyes')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-xl"><use href="#icon-eyes"/></svg><div class="sentence-row">eyes</div></div>
+      <div class="practice-card tap-card" onclick="tapCard(this,'ears')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-xl"><use href="#icon-ears"/></svg><div class="sentence-row">ears</div></div>
+      <div class="practice-card tap-card" onclick="tapCard(this,'hands')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-xl"><use href="#icon-hands"/></svg><div class="sentence-row">hands</div></div>
+    </div>
+
+    <div class="card soft-sun mt-18 center">
+      <span style="font-size:15px; font-weight:700; display:inline-flex; align-items:center; gap:8px;">🧑‍🏫 Teacher says a word → <svg class="ico ico-sm"><use href="#icon-kid-a"/></svg> Children point to the matching picture!</span>
+    </div>
+
+    <div class="teacher-note mt-18">
+      <span class="pin">📌</span>
+      <span><b>Teacher Note:</b> Kindergarten friends are still learning to write, so this is a pointing and speaking game — no writing needed. For older groups, print and let children draw a line from the word to the picture.</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 7</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 8 — SPEAKING TIME -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:90px;height:90px;background:var(--mint);bottom:-30px;right:-30px;"></div>
+  <span class="kicker">👯 Speaking Time · 10 min</span>
+  <h2 class="page-title">Pair Work: What Is This?</h2>
+  <p class="page-sub">Ask your partner. Then switch roles!</p>
+
+  <div class="content">
+    <div class="grid-2">
+      <div class="card soft-sky center">
+        <svg class="ico ico-xl"><use href="#icon-kid-a"/></svg>
+        <div class="pill mt-8" style="background:var(--sky-deep);">FRIEND A</div>
+        <div class="speech-bubble left mt-8">What is this?</div>
+      </div>
+      <div class="card soft-coral center">
+        <svg class="ico ico-xl"><use href="#icon-kid-b"/></svg>
+        <div class="pill mt-8" style="background:var(--coral-deep);">FRIEND B</div>
+        <div class="speech-bubble right mt-8">This is my nose!</div>
+      </div>
+    </div>
+
+    <div class="section-label mt-18"><span class="dot" style="background:var(--lav-deep);"></span> Practice with these pictures:</div>
+    <div class="grid-3">
+      <div class="practice-card"><svg class="ico ico-lg"><use href="#icon-head"/></svg></div>
+      <div class="practice-card"><svg class="ico ico-lg"><use href="#icon-eyes"/></svg></div>
+      <div class="practice-card"><svg class="ico ico-lg"><use href="#icon-mouth"/></svg></div>
+      <div class="practice-card"><svg class="ico ico-lg"><use href="#icon-ears"/></svg></div>
+      <div class="practice-card"><svg class="ico ico-lg"><use href="#icon-hands"/></svg></div>
+      <div class="practice-card"><svg class="ico ico-lg"><use href="#icon-nose"/></svg></div>
+    </div>
+
+    <div class="lume-tip mt-18">
+      <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+      <span class="bubble"><b>Lumi says:</b> Switch roles after every picture. Give your partner a high five! 🙌</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 8</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 9 — TPR CHALLENGE -->
+<!-- ============================================================ -->
+<section class="page">
+  <span class="kicker">⚡ TPR Challenge · 8 min</span>
+  <h2 class="page-title">Listen and Do!</h2>
+  <p class="page-sub">Follow the commands as fast as you can!</p>
+
+  <div class="content">
+    <div class="card soft-sun">
+      <ul class="cmd-list" id="cmdList2">
+        <li onclick="this.classList.toggle('done')"><span class="num">1</span> Touch your head! <svg class="ico ico-sm"><use href="#icon-head"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">2</span> Touch your ears! <svg class="ico ico-sm"><use href="#icon-ears"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">3</span> Touch your nose! <svg class="ico ico-sm"><use href="#icon-nose"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">4</span> Point to your mouth! <svg class="ico ico-sm"><use href="#icon-mouth"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">5</span> Clap your hands! <svg class="ico ico-sm"><use href="#icon-hands"/></svg></li>
+        <li onclick="this.classList.toggle('done')"><span class="num">6</span> Give me a big smile! 😄</li>
+      </ul>
+      <button class="list-reset" onclick="resetList('cmdList2')">↺ Reset</button>
+    </div>
+
+    <div class="section-label mt-18"><span class="dot" style="background:var(--coral-deep);"></span> Play 3 rounds:</div>
+    <div class="grid-3">
+      <span class="round-badge" style="background:var(--mint-deep);">🐢 Round 1: Easy</span>
+      <span class="round-badge" style="background:var(--sun-deep); color:#5A4300;">🚶 Round 2: Medium</span>
+      <span class="round-badge" style="background:var(--coral-deep);">🚀 Round 3: Super Fast</span>
+    </div>
+
+    <div class="teacher-note mt-18">
+      <span class="pin">📌</span>
+      <span><b>Teacher Note:</b> In Round 3, mix up the order and go quickly — watch for giggles and mistakes, that's the fun part!</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 9</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 10 — CHANT TIME -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:100px;height:100px;background:var(--coral);top:-30px;left:-30px;"></div>
+  <span class="kicker">🎤 Chant Time · 6 min</span>
+  <h2 class="page-title">Where Is Your Nose?</h2>
+  <p class="page-sub">Chant together, then act it out!</p>
+
+  <div class="content">
+    <div class="card soft-lav">
+      <p style="font-size:18px; font-weight:700; line-height:1.9; text-align:center;">
+        Where, where, where is your nose? <svg class="ico ico-sm" style="vertical-align:text-bottom;"><use href="#icon-nose"/></svg><br>
+        Here it is, here it is, I found my nose! 🎉
+      </p>
+    </div>
+
+    <div class="grid-2 mt-18">
+      <div class="card soft-sky">
+        <div class="section-label"><span class="dot" style="background:var(--sky-deep);"></span> Teacher</div>
+        <p style="font-size:14px; font-weight:600;">Chant the lines and point to a body part on the last line.</p>
+      </div>
+      <div class="card soft-mint">
+        <div class="section-label"><span class="dot" style="background:var(--mint-deep);"></span> Students</div>
+        <p style="font-size:14px; font-weight:600;">Chant along and touch the matching body part quickly!</p>
+      </div>
+    </div>
+
+    <div class="lume-tip mt-18">
+      <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+      <span class="bubble"><b>Lumi says:</b> Repeat the chant with a new body part each time — ears, eyes, mouth — and go faster each round!</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 10</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 11 — PHONICS TIME -->
+<!-- ============================================================ -->
+<section class="page">
+  <span class="kicker">🔤 Phonics Time · 8 min</span>
+  <h2 class="page-title">Letters C c &amp; D d</h2>
+  <p class="page-sub">Listen, say, and move — then trace a little!</p>
+
+  <div class="content">
+    <div class="section-label"><span class="dot" style="background:var(--sky-deep);"></span> Listen and Say!</div>
+    <div class="grid-2">
+      <div class="letter-box soft-sky">
+        <div class="letter-big">C c</div>
+        <div class="speech-bubble left" style="margin-top:6px;">C says /k/!</div>
+        <div class="letter-words mt-14">
+          <div class="lw tap-card" onclick="tapCard(this,'cat')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-lg"><use href="#icon-cat"/></svg>cat</div>
+          <div class="lw tap-card" onclick="tapCard(this,'car')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-lg"><use href="#icon-car"/></svg>car</div>
+        </div>
+        <p style="font-size:13px; font-weight:700; margin-top:10px; color:var(--ink-soft);">Say it together: "C, /k/, cat!"</p>
+        <button class="listen-btn" onclick="speak('C. C says kuh. Cat. Car.')">🔊 Listen</button>
+      </div>
+      <div class="letter-box soft-coral">
+        <div class="letter-big">D d</div>
+        <div class="speech-bubble right" style="margin-top:6px;">D says /d/!</div>
+        <div class="letter-words mt-14">
+          <div class="lw tap-card" onclick="tapCard(this,'dog')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-lg"><use href="#icon-dog"/></svg>dog</div>
+          <div class="lw tap-card" onclick="tapCard(this,'duck')"><span class="tap-hint">🔊</span><span class="tap-badge">✓</span><svg class="ico ico-lg"><use href="#icon-duck"/></svg>duck</div>
+        </div>
+        <p style="font-size:13px; font-weight:700; margin-top:10px; color:var(--ink-soft);">Say it together: "D, /d/, dog!"</p>
+        <button class="listen-btn" onclick="speak('D. D says duh. Dog. Duck.')">🔊 Listen</button>
+      </div>
+    </div>
+
+    <div class="card soft-mint mt-18">
+      <div class="section-label"><span class="dot" style="background:var(--mint-deep);"></span> Clap the Sound!</div>
+      <p style="font-size:14px; font-weight:600;">Teacher says a word. Clap 👏 if it starts with <b>C</b>. Stomp 🦶 if it starts with <b>D</b>.</p>
+      <p style="font-size:15px; font-weight:700; margin-top:6px;">
+        <span class="tap-row" style="display:inline-block; padding:4px 8px;" onclick="speak('cat')">cat</span> ·
+        <span class="tap-row" style="display:inline-block; padding:4px 8px;" onclick="speak('dog')">dog</span> ·
+        <span class="tap-row" style="display:inline-block; padding:4px 8px;" onclick="speak('car')">car</span> ·
+        <span class="tap-row" style="display:inline-block; padding:4px 8px;" onclick="speak('duck')">duck</span> ·
+        <span class="tap-row" style="display:inline-block; padding:4px 8px;" onclick="speak('cup')">cup</span> ·
+        <span class="tap-row" style="display:inline-block; padding:4px 8px;" onclick="speak('dad')">dad</span>
+      </p>
+    </div>
+
+    <div class="card soft-sun mt-18">
+      <div class="section-label"><span class="dot" style="background:var(--sun-deep);"></span> A Little Tracing</div>
+      <div class="grid-2">
+        <div class="trace-letters center">C c</div>
+        <div class="trace-letters center">D d</div>
+      </div>
+    </div>
+
+    <div class="teacher-note mt-18">
+      <span class="pin">📌</span>
+      <span><b>Teacher Note:</b> Keep this page mostly oral and physical — sound, say, clap, stomp. Tracing is just a short, relaxed finger activity at the end, not the main focus.</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 11</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 12 — FUN ACTIVITY -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:90px;height:90px;background:var(--sun);bottom:-30px;left:-30px;"></div>
+  <span class="kicker">🎨 My Picture Time · 8 min</span>
+  <h2 class="page-title">Draw Yourself!</h2>
+  <p class="page-sub">Draw a picture of you, then describe it!</p>
+
+  <div class="content">
+    <div class="card soft-lav">
+      <div class="section-label"><span class="dot" style="background:var(--lav-deep);"></span> Pick a color and draw!</div>
+      <div class="canvas-tools">
+        <button class="swatch" style="background:#4A4358;" onclick="setColor_drawCanvas('#4A4358')" aria-label="Dark"></button>
+        <button class="swatch" style="background:#FF8FA3;" onclick="setColor_drawCanvas('#FF8FA3')" aria-label="Coral"></button>
+        <button class="swatch" style="background:#6FCBEF;" onclick="setColor_drawCanvas('#6FCBEF')" aria-label="Sky"></button>
+        <button class="swatch" style="background:#FFC93C;" onclick="setColor_drawCanvas('#FFC93C')" aria-label="Sun"></button>
+        <button class="swatch" style="background:#7BDFB0;" onclick="setColor_drawCanvas('#7BDFB0')" aria-label="Mint"></button>
+        <button class="swatch" style="background:#AF97F5;" onclick="setColor_drawCanvas('#AF97F5')" aria-label="Lavender"></button>
+        <button class="list-reset" onclick="clearCanvas_drawCanvas()">🧽 Clear</button>
+      </div>
+      <canvas id="drawCanvas" width="700" height="480" class="draw-canvas"></canvas>
+    </div>
+
+    <div class="card soft-coral mt-18">
+      <div class="section-label"><span class="dot" style="background:var(--coral-deep);"></span> Now describe it!</div>
+      <p style="font-size:15px; font-weight:700; line-height:2.4;">
+        <svg class="ico ico-sm"><use href="#icon-head"/></svg> This is me!<br>
+        <svg class="ico ico-sm"><use href="#icon-eyes"/></svg> I have two eyes.<br>
+        <svg class="ico ico-sm"><use href="#icon-mouth"/></svg> I have one mouth.<br>
+        <svg class="ico ico-sm"><use href="#icon-hands"/></svg> I have two hands.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 12</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 13 — REVIEW TIME -->
+<!-- ============================================================ -->
+<section class="page">
+  <span class="kicker">🔁 Review Time · 6 min</span>
+  <h2 class="page-title">Let's Review Together!</h2>
+  <p class="page-sub">Teacher points, students answer — tap the card to check!</p>
+
+  <div class="exit-progress" id="reviewProgressPill">⭐ <span id="reviewProgressText">0 / 4 checked</span></div>
+
+  <div class="content grid-2" id="reviewGrid">
+    <div class="card soft-sky center tap-card" style="position:relative;" onclick="revealReview(this,'This is my head.')">
+      <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+      <svg class="ico ico-lg"><use href="#icon-head"/></svg>
+      <div class="speech-bubble left mt-8">What is this?</div>
+      <p class="sentence-row mt-14">This is my ______.</p>
+    </div>
+    <div class="card soft-mint center tap-card" style="position:relative;" onclick="revealReview(this,'I have two eyes.')">
+      <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+      <svg class="ico ico-lg"><use href="#icon-eyes"/></svg>
+      <div class="speech-bubble right mt-8">How many eyes do you have?</div>
+      <p class="sentence-row mt-14">I have two ______.</p>
+    </div>
+    <div class="card soft-coral center tap-card" style="position:relative;" onclick="revealReview(this,'This is my nose.')">
+      <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+      <svg class="ico ico-lg"><use href="#icon-nose"/></svg>
+      <div class="speech-bubble left mt-8">What is this?</div>
+      <p class="sentence-row mt-14">This is my ______.</p>
+    </div>
+    <div class="card soft-sun center tap-card" style="position:relative;" onclick="revealReview(this,'I have two ears.')">
+      <span class="tap-hint">🔊</span><span class="tap-badge">✓</span>
+      <svg class="ico ico-lg"><use href="#icon-ears"/></svg>
+      <div class="speech-bubble right mt-8">How many ears do you have?</div>
+      <p class="sentence-row mt-14">I have two ______.</p>
+    </div>
+  </div>
+
+  <div class="lume-tip mt-18">
+    <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+    <span class="bubble"><b>Lumi says:</b> Great job today! You know so many body words now! 🎉</span>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 13</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 14 — EXIT TICKET -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:90px;height:90px;background:var(--mint);top:-30px;right:-30px;"></div>
+  <span class="kicker">🎟️ Exit Ticket</span>
+  <h2 class="page-title">Show What You Know!</h2>
+  <p class="page-sub">Do each part with your teacher, then check the box.</p>
+
+  <div class="content">
+    <div class="exit-progress" id="exitProgressPill">⭐ <span id="exitProgressText">0 / 5 done</span></div>
+
+    <div class="exit-box">
+      <span class="checkbox" onclick="toggleCheck(this)"></span>
+      <span class="txt" style="display:flex; align-items:center; gap:8px;">Point to your head and say: "This is my head." <svg class="ico ico-sm"><use href="#icon-head"/></svg></span>
+    </div>
+    <div class="exit-box">
+      <span class="checkbox" onclick="toggleCheck(this)"></span>
+      <span class="txt" style="display:flex; align-items:center; gap:8px;">Show your eyes and say: "I have two eyes." <svg class="ico ico-sm"><use href="#icon-eyes"/></svg></span>
+    </div>
+    <div class="exit-box">
+      <span class="checkbox" onclick="toggleCheck(this)"></span>
+      <span class="txt">Circle the letter <b>C</b>: &nbsp; a &nbsp; C &nbsp; b &nbsp; d</span>
+    </div>
+    <div class="exit-box">
+      <span class="checkbox" onclick="toggleCheck(this)"></span>
+      <span class="txt">Circle the letter <b>D</b>: &nbsp; D &nbsp; b &nbsp; c &nbsp; a</span>
+    </div>
+    <div class="exit-box" style="align-items:stretch;">
+      <span class="checkbox" onclick="toggleCheck(this)"></span>
+      <div style="flex:1;">
+        <span class="txt">Draw your favorite body part:</span>
+        <div class="card soft-sky mt-8" style="min-height:45mm; border:3px dashed var(--sky-deep);"></div>
+      </div>
+    </div>
+
+    <div class="lume-tip mt-18" id="exitCelebrate" style="display:none;">
+      <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+      <span class="bubble"><b>Lumi says:</b> Wow, all done! Great job today, superstar! 🎉⭐</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 14</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PAGE 15 — PARENT CONNECTION -->
+<!-- ============================================================ -->
+<section class="page">
+  <div class="deco" style="width:110px;height:110px;background:var(--lav);bottom:-30px;right:-30px;"></div>
+  <span class="kicker">💌 Parent Connection</span>
+  <h2 class="page-title">Let's Practice at Home!</h2>
+  <p class="page-sub">A note for families about today's lesson.</p>
+
+  <div class="content">
+    <div class="card soft-sun">
+      <div class="section-label"><span class="dot" style="background:var(--sun-deep);"></span> Today We Learned</div>
+      <div class="grid-2">
+        <p style="font-size:14px; font-weight:700;">🧩 Body Parts Vocabulary</p>
+        <p style="font-size:14px; font-weight:700;">💬 "This is my..."</p>
+        <p style="font-size:14px; font-weight:700;">🔢 "I have..."</p>
+        <p style="font-size:14px; font-weight:700;">🔤 Letters C c and D d</p>
+      </div>
+    </div>
+
+    <div class="card soft-mint mt-18">
+      <div class="section-label"><span class="dot" style="background:var(--mint-deep);"></span> 5-Minute Home Game</div>
+      <p style="font-size:14px; font-weight:600; line-height:1.8;">
+        👪 <b>Parent:</b> Point to a body part and ask <i>"What is this?"</i><br>
+        🧒 <b>Child:</b> <i>"This is my head." / "This is my nose." / "This is my mouth."</i><br><br>
+        👪 <b>Parent:</b> Ask <i>"How many eyes do you have?"</i><br>
+        🧒 <b>Child:</b> <i>"I have two eyes."</i>
+      </p>
+    </div>
+
+    <div class="teacher-note mt-18">
+      <span class="pin">📌</span>
+      <span><b>For Parents:</b> No writing needed at home yet — just point, say, and smile together. 3–5 minutes a day is perfect for this age. 💛</span>
+    </div>
+
+    <div class="lume-tip mt-18">
+      <span class="lume"><svg class="ico"><use href="#icon-lumi"/></svg></span>
+      <span class="bubble"><b>Lumi says:</b> Thank you for practicing with your little one! A little English every day makes a big difference. 💛</span>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>My Body · Meeting 1 · Page 15</span>
+    <span class="brand"><svg class="ico" style="width:14px;height:14px;"><use href="#icon-lumi"/></svg> Littlelume English</span>
+  </div>
+</section>
+
+<script>
+  // Reveal a gentle print helper and confirm page setup for a clean PDF export.
+  (function(){
+    var style = document.createElement('style');
+    style.media = 'print';
+    style.textContent = '@page { size: A4 portrait; margin: 0; }';
+    document.head.appendChild(style);
+  })();
+
+  /* ---------- Text-to-speech for tap-to-listen activities ---------- */
+  function speak(text){
+    if(!('speechSynthesis' in window)) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.82; u.pitch = 1.15; u.lang = 'en-US';
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  /* ---------- Tappable vocabulary / picture cards ---------- */
+  function tapCard(el, word){
+    speak(word);
+    el.classList.add('done');
+  }
+
+  /* ---------- Review Time: tap-to-reveal flashcards ---------- */
+  function revealReview(el, answer){
+    var p = el.querySelector('.sentence-row');
+    if(p) p.textContent = answer;
+    el.classList.add('done');
+    speak(answer);
+    updateReviewProgress();
+  }
+  function updateReviewProgress(){
+    var grid = document.getElementById('reviewGrid');
+    if(!grid) return;
+    var cards = grid.querySelectorAll('.tap-card');
+    var done = grid.querySelectorAll('.tap-card.done').length;
+    var textEl = document.getElementById('reviewProgressText');
+    if(textEl){
+      textEl.textContent = done + ' / ' + cards.length + ' checked';
+      var pill = document.getElementById('reviewProgressPill');
+      if(pill){
+        pill.style.background = (done === cards.length && cards.length > 0) ? 'var(--mint-deep)' : '';
+        pill.style.color = (done === cards.length && cards.length > 0) ? '#fff' : '';
+      }
+    }
+  }
+
+  /* ---------- Tap-to-complete command checklists (Warm-Up, TPR) ---------- */
+  function resetList(id){
+    var list = document.getElementById(id);
+    if(!list) return;
+    list.querySelectorAll('li').forEach(function(li){ li.classList.remove('done'); });
+  }
+
+  /* ---------- Exit Ticket checkboxes + progress ---------- */
+  function toggleCheck(el){
+    el.classList.toggle('checked');
+    el.textContent = el.classList.contains('checked') ? '✓' : '';
+    updateExitProgress();
+  }
+  function updateExitProgress(){
+    var boxes = document.querySelectorAll('#exitProgressPill ~ .exit-box .checkbox, .exit-box .checkbox');
+    var total = document.querySelectorAll('.exit-box .checkbox').length;
+    var checked = document.querySelectorAll('.exit-box .checkbox.checked').length;
+    var textEl = document.getElementById('exitProgressText');
+    if(textEl) textEl.textContent = checked + ' / ' + total + ' done';
+    var cel = document.getElementById('exitCelebrate');
+    if(cel) cel.style.display = (total > 0 && checked === total) ? 'flex' : 'none';
+  }
+
+  /* ---------- Interactive Reading Mode (one-page-at-a-time carousel) ---------- */
+  var pages = [];
+  var currentPage = 0;
+
+  function goToPage(i){
+    if(!pages.length) return;
+    currentPage = Math.max(0, Math.min(pages.length - 1, i));
+    pages.forEach(function(p, idx){ p.classList.toggle('active', idx === currentPage); });
+    var counter = document.getElementById('pageCounter');
+    if(counter) counter.textContent = 'Page ' + (currentPage + 1) + ' / ' + pages.length;
+    var fill = document.getElementById('progressFill');
+    if(fill) fill.style.width = (((currentPage + 1) / pages.length) * 100) + '%';
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    if(prevBtn) prevBtn.disabled = currentPage === 0;
+    if(nextBtn) nextBtn.disabled = currentPage === pages.length - 1;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function toggleReadingMode(){
+    document.body.classList.toggle('reading-mode');
+    var btn = document.getElementById('modeBtn');
+    if(document.body.classList.contains('reading-mode')){
+      if(btn) btn.textContent = '📜 View All Pages';
+      goToPage(currentPage);
+    } else {
+      if(btn) btn.textContent = '📖 Interactive Mode';
+      if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(!document.body.classList.contains('reading-mode')) return;
+    if(e.key === 'ArrowRight') goToPage(currentPage + 1);
+    if(e.key === 'ArrowLeft') goToPage(currentPage - 1);
+  });
+
+  /* Note: swipe-to-navigate is intentionally disabled. Reading Mode only
+     changes pages via the Back/Next buttons (or keyboard arrows) so that
+     drawing, tapping cards, or scrolling inside a page never accidentally
+     flips to a different page. */
+
+  /* ---------- Interactive drawing canvas (mouse + touch) ---------- */
+  function initCanvas(id){
+    var canvas = document.getElementById(id);
+    if(!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    var drawing = false;
+    var currentColor = '#4A4358';
+
+    function getPos(e){
+      var rect = canvas.getBoundingClientRect();
+      var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      var scaleX = canvas.width / rect.width;
+      var scaleY = canvas.height / rect.height;
+      return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+    }
+    function start(e){
+      drawing = true;
+      var pos = getPos(e);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      e.preventDefault();
+    }
+    function move(e){
+      if(!drawing) return;
+      var pos = getPos(e);
+      ctx.lineWidth = 7;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = currentColor;
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+      e.preventDefault();
+    }
+    function end(){ drawing = false; }
+
+    canvas.addEventListener('mousedown', start);
+    canvas.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start, {passive:false});
+    canvas.addEventListener('touchmove', move, {passive:false});
+    canvas.addEventListener('touchend', end);
+
+    window['setColor_' + id] = function(c){ currentColor = c; };
+    window['clearCanvas_' + id] = function(){ ctx.clearRect(0, 0, canvas.width, canvas.height); };
+  }
+
+  window.addEventListener('DOMContentLoaded', function(){
+    pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+    var counter = document.getElementById('pageCounter');
+    if(counter) counter.textContent = 'Page 1 / ' + pages.length;
+    updateExitProgress();
+    initCanvas('drawCanvas');
+  });
+</script>
+</body>
+</html>
