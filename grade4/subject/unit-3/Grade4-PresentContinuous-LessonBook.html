@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English | Grade 4 | Present Continuous Tense</title>
+<style>
+  :root{
+    --mint:#B4E4D1; --mint-d:#7FCBA9;
+    --pink:#FFC9DE; --pink-d:#F591B8;
+    --sky:#AEE0FF; --sky-d:#6FBCEF;
+    --lavender:#D9CEFF; --lavender-d:#B49CF0;
+    --yellow:#FFEDB0; --yellow-d:#F5D25C;
+    --peach:#FFD6BA; --peach-d:#F5A96B;
+    --ink:#2E2B4A; --ink-soft:#5A5678;
+    --am:#3FAE7E; --is:#3E8FD0; --are:#8B5FD1;
+    --card:#FFFFFF; --bg:#FBFAFF;
+    --radius:20px;
+    --shadow:0 8px 24px rgba(90,80,150,0.12);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:linear-gradient(180deg,#F4F1FF 0%, #FBFAFF 40%);
+    font-family:'Segoe UI', 'Poppins', Verdana, sans-serif;
+    color:var(--ink);
+  }
+  .app{max-width:900px; margin:0 auto; padding:18px 16px 90px;}
+  .topbar{
+    position:sticky; top:0; z-index:50; background:rgba(251,250,255,0.95);
+    backdrop-filter:blur(4px); padding:10px 0 12px; border-bottom:2px solid #ECE7FF;
+  }
+  .brandrow{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .logo{
+    width:40px; height:40px; border-radius:12px;
+    background:linear-gradient(135deg,var(--pink),var(--sky));
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .brand-text b{font-size:1.05em; letter-spacing:.3px;}
+  .brand-text span{display:block; font-size:.72em; color:var(--ink-soft);}
+  .grade-badge{
+    background:var(--lavender); color:var(--ink); font-weight:700; font-size:.78em;
+    padding:6px 12px; border-radius:999px; border:2px solid var(--lavender-d);
+  }
+  .mode-toggle{
+    font-size:.72em; background:var(--card); border:2px solid #E4DEFB; border-radius:999px;
+    padding:5px 10px; cursor:pointer; color:var(--ink-soft); font-weight:600;
+  }
+  .progress-wrap{margin-top:10px; background:#ECE7FF; border-radius:999px; height:10px; overflow:hidden;}
+  .progress-bar{height:100%; background:linear-gradient(90deg,var(--pink-d),var(--sky-d)); width:6%; transition:width .3s;}
+  .page-label{font-size:.72em; color:var(--ink-soft); margin-top:6px; text-align:right;}
+
+  .page{display:none; animation:fadein .35s ease;}
+  .page.active{display:block;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .card{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:22px 22px; margin-bottom:16px; border:2px solid #F1EDFF;
+  }
+  h1{font-size:1.5em; margin:.2em 0;}
+  h2{font-size:1.25em; margin:.1em 0 .5em; color:var(--ink);}
+  h3{font-size:1.05em; margin:.6em 0 .3em;}
+  p{line-height:1.55;}
+  .eyebrow{
+    display:inline-block; font-size:.72em; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+    color:var(--ink-soft); background:var(--mint); padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+
+  .cover-card{
+    text-align:center; padding:40px 20px; background:linear-gradient(160deg,var(--pink) 0%, var(--sky) 55%, var(--mint) 100%);
+    border:none; color:var(--ink);
+  }
+  .cover-card h1{font-size:2em; margin:.3em 0 .1em;}
+  .cover-card .sub{font-size:1.05em; font-weight:600;}
+  .cover-shapes{font-size:2.4em; margin-bottom:6px;}
+  .cover-tag{margin-top:14px; font-size:.85em; font-style:italic; color:var(--ink-soft);}
+  .cover-meta{
+    display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;
+  }
+  .pill{background:#fff; border-radius:999px; padding:7px 14px; font-size:.82em; font-weight:700; box-shadow:var(--shadow);}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr;}}
+  .grid3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+  @media(max-width:560px){.grid3{grid-template-columns:1fr 1fr;}}
+
+  .obj-item{display:flex; gap:10px; align-items:flex-start; padding:10px 0; border-bottom:1px dashed #E9E4FB;}
+  .obj-item:last-child{border-bottom:none;}
+  .obj-check{font-size:1.2em;}
+
+  .formula-box{
+    background:linear-gradient(135deg,var(--sky) 0%, var(--lavender) 100%);
+    border-radius:16px; padding:18px; text-align:center; font-size:1.15em; font-weight:800;
+    margin:10px 0; color:var(--ink);
+  }
+  .formula-box small{display:block; font-weight:600; font-size:.6em; margin-top:6px; color:var(--ink-soft);}
+
+  .usecase-card{border-left:6px solid var(--sky-d); background:#F6FBFF; border-radius:12px; padding:12px 14px; margin:10px 0;}
+  .usecase-card.b{border-left-color:var(--pink-d); background:#FFF6FA;}
+  .usecase-card b{color:var(--ink);}
+  .usecase-card .ex{margin-top:6px; font-size:.92em; color:var(--ink-soft);}
+
+  .amisare-row{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0;}
+  .amisare-chip{
+    flex:1; min-width:90px; text-align:center; padding:10px 8px; border-radius:12px; font-weight:800; color:#fff;
+  }
+  .amisare-chip.am{background:var(--am);}
+  .amisare-chip.is{background:var(--is);}
+  .amisare-chip.are{background:var(--are);}
+  .amisare-chip small{display:block; font-weight:500; font-size:.72em; opacity:.9;}
+
+  .watchout{
+    background:var(--peach); border:2px dashed var(--peach-d); border-radius:14px; padding:14px 16px; margin:12px 0;
+  }
+  .watchout b{display:block; margin-bottom:6px;}
+  .wrong{color:#B23A3A; text-decoration:line-through; margin-right:6px;}
+  .right{color:#2F8F5B; font-weight:700;}
+
+  table.ref{width:100%; border-collapse:collapse; margin-top:8px; font-size:.92em;}
+  table.ref th, table.ref td{border:1px solid #E9E4FB; padding:8px 10px; text-align:left;}
+  table.ref th{background:var(--lavender); color:var(--ink);}
+  table.ref tr:nth-child(even){background:#FAF9FF;}
+
+  .vocab-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  @media(max-width:560px){.vocab-grid{grid-template-columns:1fr;}}
+  .vocab-card{
+    background:#FAF9FF; border:2px solid #ECE7FF; border-radius:14px; padding:12px 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .vocab-emoji{font-size:1.8em;}
+  .vocab-word{font-weight:800;}
+  .vocab-ipa{font-size:.78em; color:var(--ink-soft);}
+  .vocab-ing{font-size:.85em; color:var(--is); font-weight:700;}
+  .speak-btn{
+    margin-left:auto; border:none; background:var(--sky); color:var(--ink); border-radius:999px;
+    width:34px; height:34px; cursor:pointer; font-size:1em;
+  }
+  .speak-btn:hover{background:var(--sky-d);}
+
+  .btn{
+    background:linear-gradient(135deg,var(--sky-d),var(--lavender-d)); color:#fff; border:none;
+    padding:10px 18px; border-radius:999px; font-weight:700; cursor:pointer; font-size:.92em;
+  }
+  .btn:hover{opacity:.9;}
+  .btn.secondary{background:#fff; color:var(--ink); border:2px solid #E4DEFB;}
+  .btn.small{padding:6px 12px; font-size:.8em;}
+
+  .exercise{background:#FAF9FF; border:2px solid #ECE7FF; border-radius:14px; padding:14px 16px; margin:12px 0;}
+  .exercise .qnum{font-weight:800; color:var(--is);}
+  .options{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}
+  .opt-btn{
+    background:#fff; border:2px solid #E4DEFB; border-radius:10px; padding:8px 14px; cursor:pointer; font-weight:600;
+  }
+  .opt-btn.correct{background:#DDF6E7; border-color:#3FAE7E; color:#217a52;}
+  .opt-btn.wrong{background:#FDE4E4; border-color:#D9605F; color:#a53434;}
+  .feedback{margin-top:8px; font-size:.88em; font-weight:700; min-height:1.2em;}
+  .feedback.ok{color:#2F8F5B;}
+  .feedback.bad{color:#B23A3A;}
+  .blank-input{
+    border:2px solid #D9CEFF; border-radius:8px; padding:6px 10px; font-size:.95em; width:130px;
+    font-family:inherit;
+  }
+
+  .sentence-builder .chips{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0;}
+  .chip{
+    background:var(--lavender); border:2px solid var(--lavender-d); border-radius:10px; padding:7px 12px;
+    cursor:pointer; font-weight:700;
+  }
+  .chip.used{opacity:.35; cursor:not-allowed;}
+  .built-area{
+    min-height:44px; border:2px dashed #C9BEF0; border-radius:10px; padding:8px 10px; margin:8px 0;
+    display:flex; gap:6px; flex-wrap:wrap; align-items:center;
+  }
+  .built-word{background:var(--sky); padding:6px 10px; border-radius:8px; font-weight:700; cursor:pointer;}
+
+  .story-box{background:#FFFDF6; border:2px solid var(--yellow-d); border-radius:14px; padding:16px; font-size:1.02em; line-height:1.7;}
+  .story-box .ing{color:var(--is); font-weight:800;}
+
+  .teacher-notes{
+    margin-top:14px; background:#F3EFFF; border:2px dashed var(--lavender-d); border-radius:14px; padding:12px 14px;
+    font-size:.85em; color:var(--ink-soft);
+  }
+  .teacher-notes b{color:var(--ink);}
+  .teacher-notes summary{cursor:pointer; font-weight:800; color:var(--ink); list-style:none;}
+  .teacher-notes summary::before{content:"👩‍🏫 "; }
+  body.student-mode .teacher-notes{display:none;}
+
+  .checklist-item{display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px dashed #E9E4FB;}
+  .checklist-item:last-child{border-bottom:none;}
+  .checklist-item input{width:20px; height:20px;}
+
+  .parent-box{background:var(--mint); border-radius:14px; padding:14px 16px; margin-top:14px;}
+
+  .navbar{
+    position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:2px solid #ECE7FF;
+    padding:10px 16px; display:flex; justify-content:space-between; align-items:center; z-index:60;
+  }
+  .navbar .center{font-size:.85em; color:var(--ink-soft); font-weight:700;}
+
+  .score-tag{font-weight:800; color:var(--is);}
+  .timer-tag{font-size:.78em; background:var(--yellow); padding:3px 10px; border-radius:999px; font-weight:700; margin-left:8px;}
+
+  @media print{
+    .navbar, .topbar .mode-toggle{display:none;}
+    .page{display:block !important; page-break-after:always;}
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="app" style="padding-top:0; padding-bottom:0;">
+    <div class="brandrow">
+      <div class="brand">
+        <div class="logo">✨</div>
+        <div class="brand-text">
+          <b>LittleLume English</b>
+          <span>Learn · Play · Shine</span>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="grade-badge">GRADE 4</span>
+        <button class="mode-toggle" onclick="toggleMode()">👩‍🏫 Teacher Mode: ON</button>
+      </div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="page-label" id="pageLabel">Page 1 of 16</div>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- PAGE 1: COVER -->
+  <section class="page active" data-page="1">
+    <div class="card cover-card">
+      <div class="cover-shapes">🌤️🏃‍♀️📖🎨</div>
+      <div class="eyebrow" style="background:#fff;">Lesson Book</div>
+      <h1>Present Continuous Tense</h1>
+      <div class="sub">"What is happening RIGHT NOW?"</div>
+      <div class="cover-tag">A LittleLume English Grade 4 Grammar Lesson Book</div>
+      <div class="cover-meta">
+        <div class="pill">📘 Grade 4 · CEFR A1–A2</div>
+        <div class="pill">⏱️ 90 minutes</div>
+        <div class="pill">🧩 Explain · Practice · Speak · Write</div>
+      </div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> This is the main teaching lesson book (not a game). Use it to explain the grammar step by step. Estimated total time: 90 minutes across one or two meetings. A separate "Practice & Play" game can follow this lesson book for extra practice.
+    </div>
+  </section>
+
+  <!-- PAGE 2: OBJECTIVES -->
+  <section class="page" data-page="2">
+    <div class="card">
+      <div class="eyebrow">Learning Objectives</div>
+      <h2>By the end of this lesson, I can...</h2>
+      <div class="obj-item"><span class="obj-check">🎯</span><p>Explain what the Present Continuous Tense is and when we use it.</p></div>
+      <div class="obj-item"><span class="obj-check">🎯</span><p>Build correct sentences using <b>am / is / are + verb-ing</b>.</p></div>
+      <div class="obj-item"><span class="obj-check">🎯</span><p>Make negative sentences and ask questions with short answers.</p></div>
+      <div class="obj-item"><span class="obj-check">🎯</span><p>Spell verb-ing forms correctly (run → running, make → making).</p></div>
+      <div class="obj-item"><span class="obj-check">🎯</span><p>Read a short story and answer questions about actions happening now.</p></div>
+      <div class="obj-item"><span class="obj-check">🎯</span><p>Ask and answer "What are you doing?" with a partner.</p></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> Read objectives aloud, or invite a student to read them. Time: 3 minutes.
+    </div>
+  </section>
+
+  <!-- PAGE 3: WARM UP -->
+  <section class="page" data-page="3">
+    <div class="card">
+      <div class="eyebrow">Warm-Up</div>
+      <h2>🎬 Freeze Frame!</h2>
+      <p>Look at each picture. What is the person doing right now? Tap the action that matches.</p>
+      <div id="warmup"></div>
+      <p style="margin-top:10px; font-size:.9em; color:var(--ink-soft);">TPR idea: Stand up! The teacher calls an action (run, jump, write, eat). Act it out for 5 seconds, then freeze!</p>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> Warm-Up (5 minutes). Do the TPR freeze game first for energy, then move to the tap activity. TPR cue: mime each verb big and clearly so students connect movement with meaning.
+    </div>
+  </section>
+
+  <!-- PAGE 4: WHAT IS -->
+  <section class="page" data-page="4">
+    <div class="card">
+      <div class="eyebrow">What is Present Continuous?</div>
+      <h2>Actions happening RIGHT NOW ⏱️</h2>
+      <p>The <b>Present Continuous Tense</b> talks about an action that is happening at this exact moment — while we are speaking.</p>
+      <div class="formula-box">
+        Subject + am / is / are + Verb-ing
+        <small>I am reading. She is writing. They are playing.</small>
+      </div>
+      <div class="amisare-row">
+        <div class="amisare-chip am">I<small>am</small></div>
+        <div class="amisare-chip is">He / She / It<small>is</small></div>
+        <div class="amisare-chip are">You / We / They<small>are</small></div>
+      </div>
+      <p>🔊 Look outside your window. What can you see people doing right now? That's Present Continuous!</p>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 5 minutes. Point to real actions happening in the room right now ("I am talking. You are listening.") to make the concept concrete before moving to formal grammar.
+    </div>
+  </section>
+
+  <!-- PAGE 5: GRAMMAR FOCUS - POSITIVE + USE CASES -->
+  <section class="page" data-page="5">
+    <div class="card">
+      <div class="eyebrow">Grammar Focus · Part 1</div>
+      <h2>Positive Sentences ✅</h2>
+      <div class="usecase-card">
+        <b>👉 Use it for an action happening at this exact moment.</b>
+        <div class="ex">Look! The dog <b>is barking</b>. — I <b>am doing</b> my homework now.</div>
+      </div>
+      <div class="usecase-card b">
+        <b>👉 Use it for something happening these days (even if not this exact second).</b>
+        <div class="ex">She <b>is learning</b> English this year. — We <b>are practicing</b> for the concert this week.</div>
+      </div>
+      <table class="ref">
+        <tr><th>Subject</th><th>Form</th><th>Example</th></tr>
+        <tr><td>I</td><td>am + V-ing</td><td>I <b>am cooking</b> dinner.</td></tr>
+        <tr><td>He / She / It</td><td>is + V-ing</td><td>She <b>is dancing</b>.</td></tr>
+        <tr><td>You / We / They</td><td>are + V-ing</td><td>They <b>are swimming</b>.</td></tr>
+      </table>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 8 minutes. Emphasize the two use-cases separately with fresh examples from classroom life. TPR: point at a student doing an action and build the sentence together out loud.
+    </div>
+  </section>
+
+  <!-- PAGE 6: SPELLING RULES -->
+  <section class="page" data-page="6">
+    <div class="card">
+      <div class="eyebrow">Spelling Rules</div>
+      <h2>How do we write verb-ing? ✍️</h2>
+      <table class="ref">
+        <tr><th>Rule</th><th>Verb</th><th>Verb-ing</th></tr>
+        <tr><td>Most verbs: just add <b>-ing</b></td><td>read, play, eat</td><td>reading, playing, eating</td></tr>
+        <tr><td>Verb ends in silent <b>e</b>: drop the e, add -ing</td><td>make, write, dance</td><td>making, writing, dancing</td></tr>
+        <tr><td>Short verb, one vowel + one consonant: double the last letter</td><td>run, swim, sit</td><td>running, swimming, sitting</td></tr>
+        <tr><td>Verb ends in <b>ie</b>: change to <b>y</b>, add -ing</td><td>lie, tie</td><td>lying, tying</td></tr>
+      </table>
+      <div class="watchout">
+        <b>⚠️ Watch Out!</b>
+        <span class="wrong">runing</span><span class="right">✔ running</span><br>
+        <span class="wrong">writeing</span><span class="right">✔ writing</span>
+      </div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 7 minutes. Write a few verbs on the board and ask students to guess which rule applies before revealing the answer — this makes the rule memorable rather than just told.
+    </div>
+  </section>
+
+  <!-- PAGE 7: GRAMMAR FOCUS - NEGATIVE -->
+  <section class="page" data-page="7">
+    <div class="card">
+      <div class="eyebrow">Grammar Focus · Part 2</div>
+      <h2>Negative Sentences ❌</h2>
+      <div class="formula-box">
+        Subject + am/is/are + NOT + Verb-ing
+        <small>I am not sleeping. He isn't cooking. They aren't studying.</small>
+      </div>
+      <table class="ref">
+        <tr><th>Subject</th><th>Full form</th><th>Short form</th></tr>
+        <tr><td>I</td><td>I am not</td><td>I'm not</td></tr>
+        <tr><td>He / She / It</td><td>He is not</td><td>He isn't</td></tr>
+        <tr><td>You / We / They</td><td>They are not</td><td>They aren't</td></tr>
+      </table>
+      <div class="usecase-card">
+        <b>👉 Use it to say an action is NOT happening now.</b>
+        <div class="ex">She <b>isn't watching</b> TV — she <b>is reading</b> a book.</div>
+      </div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 6 minutes. Practice contrast pairs: "He is not walking, he is running" to build negative + positive together.
+    </div>
+  </section>
+
+  <!-- PAGE 8: GRAMMAR FOCUS - QUESTIONS -->
+  <section class="page" data-page="8">
+    <div class="card">
+      <div class="eyebrow">Grammar Focus · Part 3</div>
+      <h2>Questions & Short Answers ❓</h2>
+      <div class="formula-box">
+        Am/Is/Are + Subject + Verb-ing ... ?
+        <small>Are you reading? Is she sleeping? Am I dreaming?</small>
+      </div>
+      <table class="ref">
+        <tr><th>Question</th><th>Short Yes</th><th>Short No</th></tr>
+        <tr><td>Are you playing?</td><td>Yes, I am.</td><td>No, I'm not.</td></tr>
+        <tr><td>Is he cooking?</td><td>Yes, he is.</td><td>No, he isn't.</td></tr>
+        <tr><td>Are they singing?</td><td>Yes, they are.</td><td>No, they aren't.</td></tr>
+      </table>
+      <div class="watchout">
+        <b>⚠️ Watch Out!</b>
+        <span class="wrong">What you are doing?</span><span class="right">✔ What are you doing?</span><br>
+        Question words (What/Where/Why) come first, then am/is/are, then the subject.
+      </div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 7 minutes. Drill the word order with hand gestures: point to yourself for the question word, sweep left-right for am/is/are + subject swap.
+    </div>
+  </section>
+
+  <!-- PAGE 9: VOCABULARY -->
+  <section class="page" data-page="9">
+    <div class="card">
+      <div class="eyebrow">Vocabulary · Action Verbs</div>
+      <h2>Listen &amp; Repeat 🔊</h2>
+      <p>Tap the speaker to hear each word. Say it after you hear it!</p>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 8 minutes. Model each word first, then use the speaker button as backup pronunciation support. Have students echo each word twice.
+    </div>
+  </section>
+
+  <!-- PAGE 10: GUIDED PRACTICE 1 - MCQ -->
+  <section class="page" data-page="10">
+    <div class="card">
+      <div class="eyebrow">Guided Practice · Part A</div>
+      <h2>Choose the Correct Word</h2>
+      <div id="mcqArea"></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 6 minutes. Let students try independently first, then review together. Ask "why" for each answer to reinforce subject-verb agreement.
+    </div>
+  </section>
+
+  <!-- PAGE 11: GUIDED PRACTICE 2 - FILL BLANK + BUILDER -->
+  <section class="page" data-page="11">
+    <div class="card">
+      <div class="eyebrow">Guided Practice · Part B</div>
+      <h2>Complete the Sentence</h2>
+      <div id="fillArea"></div>
+    </div>
+    <div class="card sentence-builder">
+      <h3>🧩 Build the Sentence</h3>
+      <p>Tap the words in the correct order.</p>
+      <div id="builderArea"></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 8 minutes. For the Sentence Builder, encourage students to say the sentence aloud once it's built correctly — connects writing with speaking.
+    </div>
+  </section>
+
+  <!-- PAGE 12: READING -->
+  <section class="page" data-page="12">
+    <div class="card">
+      <div class="eyebrow">Reading Time</div>
+      <h2>📖 A Busy Saturday</h2>
+      <div class="story-box">
+        It is Saturday morning at the LittleLume Explorer Club. Lumi <span class="ing">is painting</span> a colorful poster for the club wall. Toby <span class="ing">is not sitting</span> still — he <span class="ing">is jumping</span> around the room with excitement because the club picnic is today! Mimi <span class="ing">is reading</span> a map to find the best picnic spot. "<b>Are</b> you <span class="ing">packing</span> the snacks?" Mimi asks Kiko. "Yes, I <b>am</b>!" Kiko answers, and she <span class="ing">is putting</span> apples and sandwiches into a basket. Outside, the sun <span class="ing">is shining</span>, and birds <span class="ing">are singing</span> in the trees. Everyone <span class="ing">is getting</span> ready for a wonderful day!
+      </div>
+      <h3>Comprehension Questions</h3>
+      <div id="readingQ"></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 10 minutes. Read the story aloud first (or play TTS), then have students read silently before answering. Point out every -ing word as you read.
+    </div>
+  </section>
+
+  <!-- PAGE 13: SPEAKING -->
+  <section class="page" data-page="13">
+    <div class="card">
+      <div class="eyebrow">Speaking Practice</div>
+      <h2>🗣️ What Are You Doing?</h2>
+      <p><b>Mingle Challenge:</b> Walk around the classroom. Ask 3 classmates the question below and write their action.</p>
+      <div class="usecase-card">
+        <b>A:</b> What are you doing? &nbsp; <b>B:</b> I am ___ing.
+      </div>
+      <table class="ref">
+        <tr><th>Classmate's name</th><th>What they are doing</th></tr>
+        <tr><td>1. ______________</td><td>______________</td></tr>
+        <tr><td>2. ______________</td><td>______________</td></tr>
+        <tr><td>3. ______________</td><td>______________</td></tr>
+      </table>
+      <h3>Teacher Check ✔️</h3>
+      <div class="checklist-item"><input type="checkbox"><span>Correct tense (am/is/are + V-ing)</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>Correct verb form (spelling of -ing)</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>Complete sentence</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>Clear pronunciation</span></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 10 minutes. Model the mingle dialogue with one student first. Circulate and use the Teacher Check checklist to give quick feedback to each pair.
+    </div>
+  </section>
+
+  <!-- PAGE 14: WRITING -->
+  <section class="page" data-page="14">
+    <div class="card">
+      <div class="eyebrow">Writing Practice</div>
+      <h2>✏️ Describe the Picture</h2>
+      <p>Look at each scene in your mind and write one sentence using Present Continuous.</p>
+      <div class="exercise"><span class="qnum">1.</span> A boy / play football → <input class="blank-input" placeholder="Write your sentence"></div>
+      <div class="exercise"><span class="qnum">2.</span> Two girls / dance → <input class="blank-input" placeholder="Write your sentence"></div>
+      <div class="exercise"><span class="qnum">3.</span> A cat / sleep on the sofa → <input class="blank-input" placeholder="Write your sentence"></div>
+      <div class="exercise"><span class="qnum">4.</span> My family / eat dinner → <input class="blank-input" placeholder="Write your sentence"></div>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 8 minutes. This page is designed for print or notebook writing if typing isn't available. Check subject-verb agreement and -ing spelling.
+    </div>
+  </section>
+
+  <!-- PAGE 15: REVIEW + PARENTS -->
+  <section class="page" data-page="15">
+    <div class="card">
+      <div class="eyebrow">Quick Review</div>
+      <h2>🌟 Check My Learning</h2>
+      <div class="checklist-item"><input type="checkbox"><span>I can explain what Present Continuous Tense means.</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>I can use am / is / are + verb-ing correctly.</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>I can spell verb-ing forms (running, writing, swimming).</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>I can make negative sentences (isn't, aren't).</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>I can ask and answer "What are you doing?"</span></div>
+      <h3 style="margin-top:16px;">Final Quiz</h3>
+      <div id="finalQuiz"></div>
+    </div>
+    <div class="parent-box">
+      <b>💌 Dear Parents,</b>
+      <p style="margin:6px 0 0;">Today your child learned the <b>Present Continuous Tense</b> — sentences like "I am reading" or "She is playing" that describe actions happening right now. At home, try asking your child in English: <i>"What are you doing?"</i> during daily activities (cooking, cleaning, playing) and encourage them to answer in a full sentence. A few minutes of this each day builds real confidence!</p>
+    </div>
+    <div class="teacher-notes">
+      <b>Teacher Notes:</b> 5 minutes. Let students self-assess honestly before the final quiz — this builds metacognitive awareness. Send the Dear Parents note home if printing.
+    </div>
+  </section>
+
+  <!-- PAGE 16: TEACHER GUIDE -->
+  <section class="page" data-page="16">
+    <div class="card">
+      <div class="eyebrow">Teacher Guide</div>
+      <h2>⏱️ Timing Summary (Total: ~90 min)</h2>
+      <table class="ref">
+        <tr><th>Section</th><th>Time</th></tr>
+        <tr><td>Objectives</td><td>3 min</td></tr>
+        <tr><td>Warm-Up</td><td>5 min</td></tr>
+        <tr><td>What is Present Continuous?</td><td>5 min</td></tr>
+        <tr><td>Grammar Focus (Positive)</td><td>8 min</td></tr>
+        <tr><td>Spelling Rules</td><td>7 min</td></tr>
+        <tr><td>Grammar Focus (Negative)</td><td>6 min</td></tr>
+        <tr><td>Grammar Focus (Questions)</td><td>7 min</td></tr>
+        <tr><td>Vocabulary</td><td>8 min</td></tr>
+        <tr><td>Guided Practice A + B</td><td>14 min</td></tr>
+        <tr><td>Reading Time</td><td>10 min</td></tr>
+        <tr><td>Speaking Practice</td><td>10 min</td></tr>
+        <tr><td>Writing Practice</td><td>8 min</td></tr>
+        <tr><td>Review &amp; Parent Note</td><td>5 min</td></tr>
+      </table>
+      <p style="margin-top:12px;">💡 <b>Tip:</b> If time is short, split into two meetings: Meeting 1 = Pages 1–9 (concept + vocabulary), Meeting 2 = Pages 10–16 (practice, reading, speaking, writing, review).</p>
+      <p>🎮 Next step: pair this lesson book with the LittleLume "Present Continuous Practice & Play" game for extra practice.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="navbar">
+  <button class="btn secondary" onclick="goPrev()">← Back</button>
+  <div class="center" id="navCenter">1 / 16</div>
+  <button class="btn" onclick="goNext()">Next →</button>
+</div>
+
+<script>
+/* ---------- Navigation ---------- */
+let current = 1;
+const totalPages = 16;
+function renderNav(){
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.toggle('active', parseInt(p.dataset.page)===current);
+  });
+  document.getElementById('progressBar').style.width = Math.round((current/totalPages)*100)+'%';
+  document.getElementById('pageLabel').textContent = 'Page '+current+' of '+totalPages;
+  document.getElementById('navCenter').textContent = current+' / '+totalPages;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function goNext(){ if(current<totalPages){ current++; renderNav(); } }
+function goPrev(){ if(current>1){ current--; renderNav(); } }
+
+/* ---------- Teacher/Student mode ---------- */
+function toggleMode(){
+  document.body.classList.toggle('student-mode');
+  const btn = document.querySelector('.mode-toggle');
+  btn.textContent = document.body.classList.contains('student-mode') ? '🧒 Student Mode: ON' : '👩‍🏫 Teacher Mode: ON';
+}
+
+/* ---------- TTS ---------- */
+function speak(text){
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US'; u.rate = 0.85;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+}
+
+/* ---------- Warm-Up ---------- */
+const warmupData = [
+  {emoji:'🏃‍♀️', correct:'is running', options:['is running','is sleeping','is eating']},
+  {emoji:'📖', correct:'is reading', options:['is reading','is dancing','is swimming']},
+  {emoji:'🍳', correct:'is cooking', options:['is jumping','is cooking','is writing']},
+];
+function buildWarmup(){
+  const wrap = document.getElementById('warmup');
+  wrap.innerHTML='';
+  warmupData.forEach((item,i)=>{
+    const box = document.createElement('div');
+    box.className='exercise';
+    box.innerHTML = '<span class="qnum">'+(i+1)+'.</span> <span style="font-size:2em;">'+item.emoji+'</span> The person...';
+    const opts = document.createElement('div');
+    opts.className='options';
+    item.options.forEach(opt=>{
+      const b = document.createElement('button');
+      b.className='opt-btn'; b.textContent=opt;
+      b.onclick=()=>{
+        opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+        if(opt===item.correct){ b.classList.add('correct'); speak(opt); }
+        else { b.classList.add('wrong'); }
+      };
+      opts.appendChild(b);
+    });
+    box.appendChild(opts);
+    wrap.appendChild(box);
+  });
+}
+
+/* ---------- Vocabulary ---------- */
+const vocabData = [
+  {word:'run', ipa:'/rʌn/', ing:'running', emoji:'🏃'},
+  {word:'jump', ipa:'/dʒʌmp/', ing:'jumping', emoji:'🤸'},
+  {word:'read', ipa:'/riːd/', ing:'reading', emoji:'📖'},
+  {word:'write', ipa:'/raɪt/', ing:'writing', emoji:'✍️'},
+  {word:'eat', ipa:'/iːt/', ing:'eating', emoji:'🍽️'},
+  {word:'drink', ipa:'/drɪŋk/', ing:'drinking', emoji:'🥤'},
+  {word:'sleep', ipa:'/sliːp/', ing:'sleeping', emoji:'😴'},
+  {word:'dance', ipa:'/dæns/', ing:'dancing', emoji:'💃'},
+  {word:'swim', ipa:'/swɪm/', ing:'swimming', emoji:'🏊'},
+  {word:'cook', ipa:'/kʊk/', ing:'cooking', emoji:'🍳'},
+  {word:'sing', ipa:'/sɪŋ/', ing:'singing', emoji:'🎤'},
+  {word:'paint', ipa:'/peɪnt/', ing:'painting', emoji:'🎨'},
+];
+function buildVocab(){
+  const wrap = document.getElementById('vocabGrid');
+  wrap.innerHTML='';
+  vocabData.forEach(v=>{
+    const c = document.createElement('div');
+    c.className='vocab-card';
+    c.innerHTML = '<div class="vocab-emoji">'+v.emoji+'</div>'+
+      '<div><div class="vocab-word">'+v.word+' <span class="vocab-ipa">'+v.ipa+'</span></div>'+
+      '<div class="vocab-ing">→ '+v.ing+'</div></div>'+
+      '<button class="speak-btn" title="Listen">🔊</button>';
+    c.querySelector('.speak-btn').onclick=()=>speak(v.word+'. '+v.ing);
+    wrap.appendChild(c);
+  });
+}
+
+/* ---------- MCQ Guided Practice A ---------- */
+const mcqData = [
+  {q:'She ___ a letter now.', options:['is writing','are writing','am writing'], correct:'is writing', explain:'"She" uses IS + verb-ing.'},
+  {q:'I ___ my homework right now.', options:['is doing','are doing','am doing'], correct:'am doing', explain:'"I" always uses AM.'},
+  {q:'They ___ football in the park.', options:['is playing','are playing','am playing'], correct:'are playing', explain:'"They" uses ARE + verb-ing.'},
+  {q:'The baby ___ (sleep) in the crib.', options:['is sleeping','is sleepping','is sleepeing'], correct:'is sleeping', explain:'sleep just adds -ing: sleeping.'},
+  {q:'We ___ (swim) at the pool.', options:['are swiming','are swimming','are swim-ing'], correct:'are swimming', explain:'Double the "m": swimming.'},
+];
+function buildMCQ(){
+  const wrap = document.getElementById('mcqArea');
+  wrap.innerHTML='';
+  mcqData.forEach((item,i)=>{
+    const box = document.createElement('div');
+    box.className='exercise';
+    box.innerHTML = '<span class="qnum">'+(i+1)+'.</span> '+item.q;
+    const opts = document.createElement('div'); opts.className='options';
+    const fb = document.createElement('div'); fb.className='feedback';
+    item.options.forEach(opt=>{
+      const b = document.createElement('button');
+      b.className='opt-btn'; b.textContent=opt;
+      b.onclick=()=>{
+        opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+        if(opt===item.correct){
+          b.classList.add('correct'); fb.textContent='✔ Correct! '+item.explain; fb.className='feedback ok';
+        } else {
+          b.classList.add('wrong'); fb.textContent='✘ Try again. Hint: '+item.explain; fb.className='feedback bad';
+        }
+      };
+      opts.appendChild(b);
+    });
+    box.appendChild(opts); box.appendChild(fb);
+    wrap.appendChild(box);
+  });
+}
+
+/* ---------- Fill in the blank ---------- */
+const fillData = [
+  {sentence:'He ___ (drink) juice.', answer:'is drinking'},
+  {sentence:'The birds ___ (sing) in the tree.', answer:'are singing'},
+  {sentence:'I ___ (not / sleep) — I am wide awake!', answer:"am not sleeping"},
+];
+function buildFill(){
+  const wrap = document.getElementById('fillArea');
+  wrap.innerHTML='';
+  fillData.forEach((item,i)=>{
+    const box = document.createElement('div');
+    box.className='exercise';
+    const span = document.createElement('span'); span.innerHTML = '<span class="qnum">'+(i+1)+'.</span> '+item.sentence+' &nbsp;';
+    const input = document.createElement('input'); input.className='blank-input'; input.placeholder='type here';
+    const btn = document.createElement('button'); btn.className='btn small'; btn.textContent='Check'; btn.style.marginLeft='8px';
+    const fb = document.createElement('div'); fb.className='feedback';
+    btn.onclick=()=>{
+      const val = input.value.trim().toLowerCase().replace(/\s+/g,' ');
+      const correct = item.answer.toLowerCase();
+      if(val===correct){ fb.textContent='✔ Correct!'; fb.className='feedback ok'; }
+      else { fb.textContent='✘ Not quite. The answer is: '+item.answer; fb.className='feedback bad'; }
+    };
+    box.appendChild(span); box.appendChild(input); box.appendChild(btn); box.appendChild(fb);
+    wrap.appendChild(box);
+  });
+}
+
+/* ---------- Sentence Builder ---------- */
+const builderWords = ['She','is','painting','a','picture'];
+let builtSentence = [];
+function buildBuilder(){
+  const wrap = document.getElementById('builderArea');
+  wrap.innerHTML='';
+  const shuffled = [...builderWords].sort(()=>Math.random()-0.5);
+  const chipRow = document.createElement('div'); chipRow.className='chips';
+  const builtRow = document.createElement('div'); builtRow.className='built-area'; builtRow.id='builtRow';
+  const fb = document.createElement('div'); fb.className='feedback'; fb.id='builderFb';
+  const checkBtn = document.createElement('button'); checkBtn.className='btn small'; checkBtn.textContent='Check Sentence'; checkBtn.style.marginTop='8px';
+  const resetBtn = document.createElement('button'); resetBtn.className='btn secondary small'; resetBtn.textContent='Reset'; resetBtn.style.marginLeft='8px'; resetBtn.style.marginTop='8px';
+
+  builtSentence = [];
+  shuffled.forEach(word=>{
+    const chip = document.createElement('div'); chip.className='chip'; chip.textContent=word;
+    chip.onclick=()=>{
+      if(chip.classList.contains('used')) return;
+      chip.classList.add('used');
+      builtSentence.push(word);
+      renderBuilt();
+    };
+    chipRow.appendChild(chip);
+  });
+  function renderBuilt(){
+    builtRow.innerHTML='';
+    builtSentence.forEach((w,idx)=>{
+      const bw = document.createElement('div'); bw.className='built-word'; bw.textContent=w;
+      bw.onclick=()=>{
+        builtSentence.splice(idx,1);
+        Array.from(chipRow.children).forEach(c=>{ if(c.textContent===w) c.classList.remove('used'); });
+        renderBuilt();
+      };
+      builtRow.appendChild(bw);
+    });
+  }
+  checkBtn.onclick=()=>{
+    const answer = builtSentence.join(' ');
+    if(answer.toLowerCase()===builderWords.join(' ').toLowerCase()){
+      fb.textContent='✔ Perfect! "She is painting a picture." Say it out loud!'; fb.className='feedback ok';
+      speak(answer);
+    } else {
+      fb.textContent='✘ Not yet — check the word order: Subject + is + verb-ing + rest.'; fb.className='feedback bad';
+    }
+  };
+  resetBtn.onclick=buildBuilder;
+
+  wrap.appendChild(chipRow); wrap.appendChild(builtRow); wrap.appendChild(checkBtn); wrap.appendChild(resetBtn); wrap.appendChild(fb);
+}
+
+/* ---------- Reading comprehension ---------- */
+const readingData = [
+  {q:'What is Lumi doing?', options:['Painting a poster','Reading a map','Packing snacks'], correct:'Painting a poster'},
+  {q:'Why is Toby jumping around?', options:['He is scared','He is excited about the picnic','He is cold'], correct:'He is excited about the picnic'},
+  {q:'What is Mimi doing?', options:['Reading a map','Singing a song','Sleeping'], correct:'Reading a map'},
+  {q:'What is Kiko putting in the basket?', options:['Books','Apples and sandwiches','Toys'], correct:'Apples and sandwiches'},
+  {q:'What are the birds doing?', options:['Sleeping','Singing','Swimming'], correct:'Singing'},
+];
+function buildReading(){
+  const wrap = document.getElementById('readingQ');
+  wrap.innerHTML='';
+  readingData.forEach((item,i)=>{
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML='<span class="qnum">'+(i+1)+'.</span> '+item.q;
+    const opts = document.createElement('div'); opts.className='options';
+    const fb = document.createElement('div'); fb.className='feedback';
+    item.options.forEach(opt=>{
+      const b = document.createElement('button'); b.className='opt-btn'; b.textContent=opt;
+      b.onclick=()=>{
+        opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+        if(opt===item.correct){ b.classList.add('correct'); fb.textContent='✔ Correct!'; fb.className='feedback ok'; }
+        else { b.classList.add('wrong'); fb.textContent='✘ Look again at the story.'; fb.className='feedback bad'; }
+      };
+      opts.appendChild(b);
+    });
+    box.appendChild(opts); box.appendChild(fb);
+    wrap.appendChild(box);
+  });
+}
+
+/* ---------- Final Quiz ---------- */
+const finalQuizData = [
+  {q:'Choose the correct sentence:', options:['She are dancing.','She is dancing.','She am dancing.'], correct:'She is dancing.'},
+  {q:'Choose the correct negative form:', options:["They isn't playing.","They aren't playing.","They am not playing."], correct:"They aren't playing."},
+  {q:'Choose the correct question:', options:['What you are doing?','What are you doing?','What doing are you?'], correct:'What are you doing?'},
+  {q:'Choose the correct -ing spelling:', options:['swiming','swimming','swimeing'], correct:'swimming'},
+];
+function buildFinalQuiz(){
+  const wrap = document.getElementById('finalQuiz');
+  wrap.innerHTML='';
+  let score = 0;
+  const scoreTag = document.createElement('div'); scoreTag.className='score-tag'; scoreTag.textContent='Score: 0 / '+finalQuizData.length;
+  finalQuizData.forEach((item,i)=>{
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML='<span class="qnum">'+(i+1)+'.</span> '+item.q;
+    const opts = document.createElement('div'); opts.className='options';
+    let answered = false;
+    item.options.forEach(opt=>{
+      const b = document.createElement('button'); b.className='opt-btn'; b.textContent=opt;
+      b.onclick=()=>{
+        if(answered) return;
+        answered = true;
+        opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+        if(opt===item.correct){ b.classList.add('correct'); score++; }
+        else { b.classList.add('wrong'); }
+        scoreTag.textContent='Score: '+score+' / '+finalQuizData.length;
+      };
+      opts.appendChild(b);
+    });
+    box.appendChild(opts);
+    wrap.appendChild(box);
+  });
+  wrap.appendChild(scoreTag);
+}
+
+/* ---------- Init ---------- */
+buildWarmup();
+buildVocab();
+buildMCQ();
+buildFill();
+buildBuilder();
+buildReading();
+buildFinalQuiz();
+renderNav();
+</script>
+</body>
+</html>

@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English | Grade 4 | Snapshot Squad — Present Continuous Practice</title>
+<style>
+  :root{
+    --mint:#B4E4D1; --mint-d:#7FCBA9;
+    --pink:#FFC9DE; --pink-d:#F591B8;
+    --sky:#AEE0FF; --sky-d:#6FBCEF;
+    --lavender:#D9CEFF; --lavender-d:#B49CF0;
+    --yellow:#FFEDB0; --yellow-d:#F5D25C;
+    --peach:#FFD6BA; --peach-d:#F5A96B;
+    --ink:#2E2B4A; --ink-soft:#5A5678;
+    --card:#FFFFFF; --bg:#FBFAFF;
+    --radius:20px;
+    --shadow:0 8px 24px rgba(90,80,150,0.12);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:linear-gradient(180deg,#F2F5FF 0%, #FBFAFF 45%);
+    font-family:'Segoe UI', 'Poppins', Verdana, sans-serif; color:var(--ink);
+  }
+  .app{max-width:920px; margin:0 auto; padding:16px 16px 30px;}
+  .topbar{
+    position:sticky; top:0; z-index:50; background:rgba(251,250,255,0.96);
+    backdrop-filter:blur(4px); padding:10px 0 12px; border-bottom:2px solid #ECE7FF;
+  }
+  .brandrow{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:10px;}
+  .logo{
+    width:40px; height:40px; border-radius:12px;
+    background:linear-gradient(135deg,var(--sky),var(--lavender));
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .brand-text b{font-size:1.05em;}
+  .brand-text span{display:block; font-size:.72em; color:var(--ink-soft);}
+  .grade-badge{
+    background:var(--lavender); color:var(--ink); font-weight:700; font-size:.78em;
+    padding:6px 12px; border-radius:999px; border:2px solid var(--lavender-d);
+  }
+  .statrow{display:flex; align-items:center; gap:10px;}
+  .stat{
+    background:#fff; border:2px solid #ECE7FF; border-radius:999px; padding:5px 12px;
+    font-size:.8em; font-weight:800; display:flex; align-items:center; gap:5px;
+  }
+  .teacher-toggle{
+    font-size:.72em; background:var(--card); border:2px solid #E4DEFB; border-radius:999px;
+    padding:5px 10px; cursor:pointer; color:var(--ink-soft); font-weight:600;
+  }
+  body.student-mode .tnotes{display:none;}
+
+  .view{display:none;}
+  .view.active{display:block; animation:fadein .3s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .card{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:20px 22px; margin-bottom:16px; border:2px solid #F1EDFF;
+  }
+  h1{font-size:1.4em; margin:.2em 0;}
+  h2{font-size:1.2em; margin:.1em 0 .5em;}
+  h3{font-size:1.02em; margin:.5em 0 .3em;}
+  p{line-height:1.5;}
+  .eyebrow{
+    display:inline-block; font-size:.72em; font-weight:800; letter-spacing:1px; text-transform:uppercase;
+    color:var(--ink-soft); background:var(--mint); padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+
+  /* HUB / mission map */
+  .hub-hero{
+    text-align:center; padding:28px 18px; background:linear-gradient(160deg,var(--sky) 0%, var(--lavender) 60%, var(--pink) 100%);
+    border:none; color:var(--ink);
+  }
+  .hub-hero .camera{font-size:2.6em;}
+  .hub-hero h1{font-size:1.7em; margin:.2em 0 0;}
+  .hub-hero p{font-weight:600;}
+  .mission-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:10px;}
+  @media(max-width:560px){.mission-grid{grid-template-columns:1fr;}}
+  .mission-node{
+    background:#fff; border:3px solid #ECE7FF; border-radius:18px; padding:16px; cursor:pointer;
+    transition:transform .15s;
+    position:relative;
+  }
+  .mission-node:hover{transform:translateY(-3px);}
+  .mission-node.locked{opacity:.5; cursor:not-allowed;}
+  .mission-node.done{border-color:var(--mint-d); background:#F3FCF8;}
+  .mission-node .num{
+    width:32px; height:32px; border-radius:50%; background:var(--sky); color:#fff; font-weight:800;
+    display:flex; align-items:center; justify-content:center; margin-bottom:8px;
+  }
+  .mission-node.done .num{background:var(--mint-d);}
+  .mission-node .emoji{font-size:1.6em; float:right;}
+  .mission-node .mtitle{font-weight:800; margin-top:4px;}
+  .mission-node .mdesc{font-size:.82em; color:var(--ink-soft); margin-top:2px;}
+  .mission-node .check{position:absolute; top:10px; right:10px; font-size:1.1em; color:var(--mint-d);}
+  .lock-icon{position:absolute; top:12px; right:14px; font-size:1.1em;}
+
+  .backbtn{
+    background:#fff; border:2px solid #E4DEFB; border-radius:999px; padding:8px 16px; font-weight:700;
+    cursor:pointer; margin-bottom:12px; color:var(--ink);
+  }
+
+  .btn{
+    background:linear-gradient(135deg,var(--sky-d),var(--lavender-d)); color:#fff; border:none;
+    padding:10px 18px; border-radius:999px; font-weight:700; cursor:pointer; font-size:.9em;
+  }
+  .btn.secondary{background:#fff; color:var(--ink); border:2px solid #E4DEFB;}
+  .btn.small{padding:6px 12px; font-size:.8em;}
+  .btn:disabled{opacity:.5; cursor:not-allowed;}
+
+  /* Polaroid photo-card signature element */
+  .polaroid{
+    background:#fff; border:1px solid #e9e4fb; border-radius:6px; padding:10px 10px 26px; box-shadow:var(--shadow);
+    display:inline-block; transform:rotate(-1.5deg); position:relative;
+  }
+  .polaroid.tilt-r{transform:rotate(1.5deg);}
+  .polaroid .shot{
+    width:100%; min-height:90px; background:linear-gradient(135deg,var(--sky),var(--lavender));
+    border-radius:3px; display:flex; align-items:center; justify-content:center; font-size:2.4em;
+  }
+  .polaroid .cap{text-align:center; font-size:.78em; font-weight:700; margin-top:8px; color:var(--ink-soft);}
+
+  .exercise{background:#FAF9FF; border:2px solid #ECE7FF; border-radius:14px; padding:14px 16px; margin:12px 0;}
+  .exercise .qnum{font-weight:800; color:var(--sky-d);}
+  .options{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;}
+  .opt-btn{background:#fff; border:2px solid #E4DEFB; border-radius:10px; padding:8px 14px; cursor:pointer; font-weight:600;}
+  .opt-btn.correct{background:#DDF6E7; border-color:#3FAE7E; color:#217a52;}
+  .opt-btn.wrong{background:#FDE4E4; border-color:#D9605F; color:#a53434;}
+  .feedback{margin-top:8px; font-size:.86em; font-weight:700; min-height:1.2em;}
+  .feedback.ok{color:#2F8F5B;}
+  .feedback.bad{color:#B23A3A;}
+  .hint-box{
+    background:var(--yellow); border-radius:10px; padding:8px 12px; margin-top:8px; font-size:.85em; display:none;
+  }
+
+  .timer-pill{
+    display:inline-block; background:var(--peach); border-radius:999px; padding:4px 12px; font-weight:800; font-size:.85em;
+  }
+
+  .fixinput{border:2px solid #D9CEFF; border-radius:8px; padding:6px 10px; font-size:.9em; width:200px; font-family:inherit;}
+
+  .spinwrap{text-align:center; margin:14px 0;}
+  .spin-face{
+    display:inline-block; background:linear-gradient(135deg,var(--lavender),var(--sky)); border-radius:16px;
+    padding:20px 30px; font-size:1.3em; font-weight:800; color:var(--ink); min-width:220px;
+  }
+
+  .chips{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0;}
+  .chip{background:var(--lavender); border:2px solid var(--lavender-d); border-radius:10px; padding:7px 12px; cursor:pointer; font-weight:700;}
+  .chip.used{opacity:.35; cursor:not-allowed;}
+  .built-area{min-height:44px; border:2px dashed #C9BEF0; border-radius:10px; padding:8px 10px; margin:8px 0; display:flex; gap:6px; flex-wrap:wrap; align-items:center;}
+  .built-word{background:var(--sky); padding:6px 10px; border-radius:8px; font-weight:700; cursor:pointer;}
+
+  .memory-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:10px;}
+  @media(max-width:560px){.memory-grid{grid-template-columns:repeat(3,1fr);}}
+  .mcard{
+    aspect-ratio:1/1; background:linear-gradient(135deg,var(--sky-d),var(--lavender-d)); border-radius:10px;
+    display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; cursor:pointer; font-size:.85em;
+    text-align:center; padding:4px;
+  }
+  .mcard.flipped{background:#fff; color:var(--ink); border:2px solid var(--sky-d);}
+  .mcard.matched{background:#DDF6E7; color:#217a52; border:2px solid var(--mint-d); cursor:default;}
+
+  .checklist-item{display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px dashed #E9E4FB;}
+  .checklist-item:last-child{border-bottom:none;}
+  .checklist-item input{width:20px; height:20px;}
+
+  .badge-row{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:14px;}
+  .badge{
+    background:#fff; border:2px solid #ECE7FF; border-radius:14px; padding:12px 10px; text-align:center; width:110px;
+    opacity:.35;
+  }
+  .badge.earned{opacity:1; border-color:var(--yellow-d); background:#FFFBEF;}
+  .badge .bicon{font-size:1.8em;}
+  .badge .bname{font-size:.72em; font-weight:800; margin-top:4px;}
+
+  .cert{
+    text-align:center; padding:34px 20px; background:linear-gradient(160deg,var(--yellow) 0%, var(--peach) 100%);
+    border-radius:20px; border:4px double #E5A94F;
+  }
+  .cert h1{font-size:1.5em;}
+  .cert .name-line{border-bottom:2px solid var(--ink); display:inline-block; min-width:220px; margin:10px 0; font-weight:800; font-size:1.2em;}
+
+  .tnotes{margin-top:14px; background:#F3EFFF; border:2px dashed var(--lavender-d); border-radius:14px; padding:12px 14px; font-size:.85em; color:var(--ink-soft);}
+  .tnotes b{color:var(--ink);}
+
+  .stage-tab{display:flex; gap:8px; margin-bottom:10px;}
+  .stage-dot{width:28px; height:28px; border-radius:50%; background:#ECE7FF; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8em;}
+  .stage-dot.active{background:var(--sky-d); color:#fff;}
+  .stage-dot.done{background:var(--mint-d); color:#fff;}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="app" style="padding-top:0; padding-bottom:0;">
+    <div class="brandrow">
+      <div class="brand">
+        <div class="logo">📸</div>
+        <div class="brand-text">
+          <b>LittleLume English</b>
+          <span>Learn · Play · Shine — Practice &amp; Play</span>
+        </div>
+      </div>
+      <div class="statrow">
+        <span class="grade-badge">GRADE 4</span>
+        <span class="stat">⭐ <span id="xpCount">0</span> XP</span>
+        <button class="teacher-toggle" onclick="toggleMode()">👩‍🏫 Teacher Mode: ON</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- HUB -->
+  <div class="view active" id="view-hub">
+    <div class="card hub-hero">
+      <div class="camera">📸🕐</div>
+      <h1>Snapshot Squad</h1>
+      <p>Present Continuous Tense — Practice &amp; Play</p>
+      <p style="font-size:.85em; font-weight:500;">Capture what's happening RIGHT NOW! Complete every mission to become a Snapshot Master.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Mission Map</div>
+      <h2>Choose a mission</h2>
+      <div class="mission-grid" id="missionGrid"></div>
+    </div>
+    <div class="tnotes">
+      <b>Teacher Notes:</b> This is the practice companion — use it AFTER the "Present Continuous Lesson Book." It does not re-teach the grammar; it only reviews briefly and then jumps into games. Vocabulary here (cry, laugh, drive, fly a kite, etc.) is intentionally different from the Lesson Book's vocabulary list so students get fresh practice. Missions unlock one at a time. Estimated total time: 45-60 minutes.
+    </div>
+  </div>
+
+  <!-- QUICK REVIEW (shown before Mission 1 the first time) -->
+  <div class="view" id="view-review">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Quick Review</div>
+      <h2>📌 Remember this...</h2>
+      <div style="background:linear-gradient(135deg,var(--sky),var(--lavender)); border-radius:14px; padding:16px; text-align:center; font-weight:800; font-size:1.05em;">
+        am / is / are + verb-ing = happening NOW<br>
+        <span style="font-size:.7em; font-weight:600;">I am talking. He is smiling. They are watching.</span>
+      </div>
+      <p style="margin-top:12px; text-align:center;"><button class="btn" onclick="showView('m1')">Let's Play! →</button></p>
+    </div>
+  </div>
+
+  <!-- MISSION 1: Speed Snap -->
+  <div class="view" id="view-m1">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 1 · Speed Snap</div>
+      <h2>📸 Snap the Right Caption!</h2>
+      <p>A photo just got taken! Choose the caption that matches before time runs out. <span class="timer-pill" id="m1timer">⏱ 12s</span></p>
+      <div id="m1area"></div>
+      <div id="m1result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Score: <span id="m1score"></span></p>
+        <button class="btn" onclick="completeMission('m1')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 2: Caption Fix -->
+  <div class="view" id="view-m2">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 2 · Caption Fix</div>
+      <h2>🛠️ Fix the Wrong Caption</h2>
+      <p>Someone wrote these photo captions with mistakes! Type the correct sentence.</p>
+      <div id="m2area"></div>
+      <div id="m2result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Score: <span id="m2score"></span></p>
+        <button class="btn" onclick="completeMission('m2')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 3: Photo Spinner -->
+  <div class="view" id="view-m3">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 3 · Photo Spinner</div>
+      <h2>🎡 Spin & Match the Helper Verb</h2>
+      <p>Spin to get a subject and an action. Choose the correct helper verb (am/is/are) to caption the photo.</p>
+      <div class="spinwrap">
+        <div class="spin-face" id="spinFace">Tap Spin!</div>
+        <p style="margin-top:10px;"><button class="btn" onclick="spinPhoto()">🎡 Spin</button></p>
+      </div>
+      <div id="m3area"></div>
+      <div id="m3result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Score: <span id="m3score"></span></p>
+        <button class="btn" onclick="completeMission('m3')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 4: Question Detective -->
+  <div class="view" id="view-m4">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 4 · Question Detective</div>
+      <h2>🔍 Build the Question</h2>
+      <p>Tap the words in the correct order to ask a question. Then pick the matching short answer.</p>
+      <div id="m4area"></div>
+      <div id="m4result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Score: <span id="m4score"></span></p>
+        <button class="btn" onclick="completeMission('m4')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 5: Memory Match -->
+  <div class="view" id="view-m5">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 5 · Memory Match</div>
+      <h2>🧠 Verb ↔ Verb-ing Match</h2>
+      <p>Flip two cards. Find the verb and its matching -ing form!</p>
+      <div class="memory-grid" id="memoryGrid"></div>
+      <div id="m5result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> All pairs matched!</p>
+        <button class="btn" onclick="completeMission('m5')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 6: Speaking Studio -->
+  <div class="view" id="view-m6">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 6 · Speaking Studio</div>
+      <h2>🎙️ Say What's Happening!</h2>
+      <p>Tap word chips to build your sentence, then say it out loud to your teacher or partner.</p>
+      <div class="polaroid"><div class="shot">🧍</div><div class="cap">Right now...</div></div>
+      <div class="chips" id="speakChips"></div>
+      <div class="built-area" id="speakBuilt"></div>
+      <p><button class="btn small" onclick="checkSpeak()">Check</button> <button class="btn secondary small" onclick="resetSpeak()">Reset</button></p>
+      <div class="feedback" id="speakFb"></div>
+      <div style="margin-top:14px; padding:12px; background:#FAF9FF; border-radius:12px;">
+        <b>🗣️ Partner Round:</b> Ask your partner: "What are you doing?" Then answer: "I am ___ing." Take turns 3 times!
+      </div>
+      <h3 style="margin-top:14px;">Teacher Check ✔️</h3>
+      <div class="checklist-item"><input type="checkbox"><span>Correct helping verb (am/is/are)</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>Correct -ing spelling</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>Complete sentence spoken aloud</span></div>
+      <div class="checklist-item"><input type="checkbox"><span>Clear pronunciation</span></div>
+      <p style="text-align:center; margin-top:10px;"><button class="btn" onclick="completeMission('m6')">Mission Complete →</button></p>
+    </div>
+  </div>
+
+  <!-- MISSION 7: True or Freeze -->
+  <div class="view" id="view-m7">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 7 · True or Freeze</div>
+      <h2>🧊 Freeze! Is it TRUE?</h2>
+      <p>Read each sentence fast. Is it a TRUE Present Continuous sentence, or is something wrong? Tap before the clock freezes! <span class="timer-pill" id="m7timer">⏱ 10s</span></p>
+      <div id="m7area"></div>
+      <div id="m7result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Score: <span id="m7score"></span></p>
+        <button class="btn" onclick="completeMission('m7')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 8: Story Reporter -->
+  <div class="view" id="view-m8">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 8 · Story Reporter</div>
+      <h2>📰 Breaking News at the Park!</h2>
+      <p>You are a reporter! Read the story, then fill in your live report using words from the box.</p>
+      <div class="polaroid tilt-r"><div class="shot">🎤</div><div class="cap">Live at the Park</div></div>
+      <div class="story-box" style="margin-top:10px;">
+        It is a sunny afternoon at Star Park. A man <span class="ing">is flying</span> a big red kite. Two girls <span class="ing">are jumping</span> rope near the bench. A little dog <span class="ing">is chasing</span> a ball across the grass. Near the pond, an old man <span class="ing">is feeding</span> the ducks, and his grandson <span class="ing">is taking</span> photos with a camera. Suddenly, it <span class="ing">starts</span> to rain! Everyone <span class="ing">is running</span> to find shelter under the big tree.
+      </div>
+      <h3 style="margin-top:12px;">Your Live Report 🎙️</h3>
+      <div id="m8area"></div>
+      <div id="m8result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Score: <span id="m8score"></span></p>
+        <button class="btn" onclick="completeMission('m8')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MISSION 9: Emoji Charades -->
+  <div class="view" id="view-m9">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Mission 9 · Emoji Charades</div>
+      <h2>🎭 Guess & Say It!</h2>
+      <p>Look at the emoji clue. Say the full sentence out loud, THEN tap to reveal and check yourself.</p>
+      <div id="m9area"></div>
+      <div id="m9result" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Mission complete!</b> Great speaking practice!</p>
+        <button class="btn" onclick="completeMission('m9')">Claim Reward →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL BOSS -->
+  <div class="view" id="view-boss">
+    <button class="backbtn" onclick="showView('hub')">← Mission Map</button>
+    <div class="card">
+      <div class="eyebrow">Final Mission</div>
+      <h2>🏆 The Present Moment Challenge</h2>
+      <p>Three stages: <b>Identify → Fix → Create</b>. Don't worry if you make a mistake — you'll get a hint and can try again!</p>
+      <div class="stage-tab" id="stageTabs">
+        <div class="stage-dot active" id="dot1">1</div>
+        <div class="stage-dot" id="dot2">2</div>
+        <div class="stage-dot" id="dot3">3</div>
+      </div>
+      <div id="bossArea"></div>
+      <div id="bossResult" style="display:none; text-align:center; margin-top:10px;">
+        <p><b>Challenge complete!</b> First-try correct: <span id="bossScore"></span> / 6</p>
+        <button class="btn" onclick="showResults()">See My Results →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS / CERTIFICATE -->
+  <div class="view" id="view-results">
+    <div class="card">
+      <div class="eyebrow">Mission Summary</div>
+      <h2>🌟 Great Work, Snapshot Squad!</h2>
+      <p id="summaryText"></p>
+      <div class="badge-row" id="badgeRow"></div>
+    </div>
+    <div class="card cert">
+      <div style="font-size:2em;">🏅</div>
+      <h1>Certificate of Achievement</h1>
+      <p>This certifies that</p>
+      <div class="name-line" id="certName">___________________</div>
+      <p>has completed the <b>Present Continuous</b> Snapshot Squad missions<br>at LittleLume English — Grade 4</p>
+      <p style="font-size:.8em; margin-top:10px;">Learn · Play · Shine ✨</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ---------- Global state ---------- */
+let xp = 0;
+const missionOrder = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','boss'];
+let unlocked = {m1:true, m2:false, m3:false, m4:false, m5:false, m6:false, m7:false, m8:false, m9:false, boss:false};
+let completed = {m1:false, m2:false, m3:false, m4:false, m5:false, m6:false, m7:false, m8:false, m9:false, boss:false};
+let reviewShown = false;
+
+const missionMeta = {
+  m1:{title:'Speed Snap', desc:'Timed caption quiz', emoji:'📸'},
+  m2:{title:'Caption Fix', desc:'Correct the mistake', emoji:'🛠️'},
+  m3:{title:'Photo Spinner', desc:'Spin & match helper verb', emoji:'🎡'},
+  m4:{title:'Question Detective', desc:'Build & answer questions', emoji:'🔍'},
+  m5:{title:'Memory Match', desc:'Verb ↔ verb-ing pairs', emoji:'🧠'},
+  m6:{title:'Speaking Studio', desc:'Say it out loud', emoji:'🎙️'},
+  m7:{title:'True or Freeze', desc:'Spot the right sentence', emoji:'🧊'},
+  m8:{title:'Story Reporter', desc:'Live report fill-in', emoji:'📰'},
+  m9:{title:'Emoji Charades', desc:'Guess & speak', emoji:'🎭'},
+  boss:{title:'Final Mission', desc:'Identify · Fix · Create', emoji:'🏆'}
+};
+
+function addXP(n){ xp += n; document.getElementById('xpCount').textContent = xp; }
+
+function toggleMode(){
+  document.body.classList.toggle('student-mode');
+  const btn = document.querySelector('.teacher-toggle');
+  btn.textContent = document.body.classList.contains('student-mode') ? '🧒 Student Mode: ON' : '👩‍🏫 Teacher Mode: ON';
+}
+
+function speak(text){
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang='en-US'; u.rate=0.85;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function showView(id){
+  // stop any timers running in the background when leaving a timed mission
+  if(typeof m1TimerId !== 'undefined') clearInterval(m1TimerId);
+  if(typeof m7TimerId !== 'undefined') clearInterval(m7TimerId);
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  if(id==='m1'){ buildM1(); }
+  if(id==='m7'){ buildM7(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderHub(){
+  const grid = document.getElementById('missionGrid');
+  grid.innerHTML='';
+  missionOrder.forEach((id,i)=>{
+    const meta = missionMeta[id];
+    const node = document.createElement('div');
+    node.className='mission-node'+(unlocked[id]?'':' locked')+(completed[id]?' done':'');
+    node.innerHTML = (completed[id] ? '<span class="check">✅</span>' : (!unlocked[id] ? '<span class="lock-icon">🔒</span>' : '')) +
+      '<span class="emoji">'+meta.emoji+'</span>'+
+      '<div class="num">'+(i+1)+'</div>'+
+      '<div class="mtitle">'+meta.title+'</div>'+
+      '<div class="mdesc">'+meta.desc+'</div>';
+    node.onclick=()=>{
+      if(!unlocked[id]) return;
+      if(id==='m1' && !reviewShown){ reviewShown=true; showView('review'); }
+      else showView(id);
+    };
+    grid.appendChild(node);
+  });
+}
+
+function completeMission(id){
+  completed[id] = true;
+  addXP(10);
+  const idx = missionOrder.indexOf(id);
+  if(idx>=0 && idx+1 < missionOrder.length){
+    unlocked[missionOrder[idx+1]] = true;
+  }
+  if(id==='boss'){ showResults(); return; }
+  renderHub();
+  showView('hub');
+}
+
+/* ============ MISSION 1: Speed Snap (timed MCQ) ============ */
+const m1Data = [
+  {emoji:'😢', q:'What is she doing?', options:['She is crying.','She is laughing.','She is sleeping.'], correct:'She is crying.'},
+  {emoji:'😂', q:'What is he doing?', options:['He is crying.','He is laughing.','He is walking.'], correct:'He is laughing.'},
+  {emoji:'🚗', q:'What is Dad doing?', options:['He is flying.','He is driving.','He is climbing.'], correct:'He is driving.'},
+  {emoji:'🪁', q:'What are the kids doing?', options:['They are flying a kite.','They are catching a ball.','They are hiding.'], correct:'They are flying a kite.'},
+  {emoji:'🧗', q:'What is she doing?', options:['She is climbing.','She is throwing.','She is talking.'], correct:'She is climbing.'},
+  {emoji:'🙈', q:'What is the monkey doing?', options:['It is listening.','It is hiding.','It is walking.'], correct:'It is hiding.'},
+];
+let m1Index=0, m1Score=0, m1TimerId=null, m1TimeLeft=12;
+function buildM1(){
+  m1Index=0; m1Score=0;
+  document.getElementById('m1result').style.display='none';
+  renderM1Q();
+}
+function renderM1Q(){
+  clearInterval(m1TimerId);
+  const area = document.getElementById('m1area');
+  if(m1Index >= m1Data.length){
+    document.getElementById('m1score').textContent = m1Score+' / '+m1Data.length;
+    document.getElementById('m1result').style.display='block';
+    area.innerHTML='';
+    return;
+  }
+  const item = m1Data[m1Index];
+  area.innerHTML = '';
+  const polaroid = document.createElement('div'); polaroid.className='polaroid';
+  polaroid.innerHTML = '<div class="shot">'+item.emoji+'</div><div class="cap">Photo #'+(m1Index+1)+'</div>';
+  const box = document.createElement('div'); box.className='exercise';
+  box.innerHTML = '<span class="qnum">'+(m1Index+1)+'/'+m1Data.length+'</span> '+item.q;
+  const opts = document.createElement('div'); opts.className='options';
+  const fb = document.createElement('div'); fb.className='feedback';
+  let answered=false;
+  item.options.forEach(opt=>{
+    const b = document.createElement('button'); b.className='opt-btn'; b.textContent=opt;
+    b.onclick=()=>{
+      if(answered) return;
+      answered=true;
+      clearInterval(m1TimerId);
+      opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+      if(opt===item.correct){ b.classList.add('correct'); fb.textContent='✔ Snapped it!'; fb.className='feedback ok'; m1Score++; }
+      else { b.classList.add('wrong'); fb.textContent='✘ The correct caption was: '+item.correct; fb.className='feedback bad'; }
+      setTimeout(()=>{ m1Index++; renderM1Q(); }, 1100);
+    };
+    opts.appendChild(b);
+  });
+  box.appendChild(opts); box.appendChild(fb);
+  area.appendChild(polaroid); area.appendChild(box);
+
+  m1TimeLeft=12;
+  document.getElementById('m1timer').textContent='⏱ '+m1TimeLeft+'s';
+  m1TimerId = setInterval(()=>{
+    m1TimeLeft--;
+    document.getElementById('m1timer').textContent='⏱ '+m1TimeLeft+'s';
+    if(m1TimeLeft<=0){
+      clearInterval(m1TimerId);
+      if(!answered){
+        answered=true;
+        fb.textContent="⏱ Time's up! The correct caption was: "+item.correct; fb.className='feedback bad';
+        setTimeout(()=>{ m1Index++; renderM1Q(); }, 1200);
+      }
+    }
+  }, 1000);
+}
+
+/* ============ MISSION 2: Caption Fix (type the correction) ============ */
+const m2Data = [
+  {wrong:'She are laughing.', hint:'"She" needs IS, not ARE.', correct:'she is laughing'},
+  {wrong:'He is cryed.', hint:'Use verb-ing, not verb-ed: cry → crying.', correct:'he is crying'},
+  {wrong:'They is driving.', hint:'"They" needs ARE, not IS.', correct:'they are driving'},
+  {wrong:'I am not runing.', hint:'Double the "n": running.', correct:'i am not running'},
+];
+function buildM2(){
+  const wrap = document.getElementById('m2area');
+  wrap.innerHTML=''; document.getElementById('m2result').style.display='none';
+  let score=0;
+  m2Data.forEach((item,i)=>{
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML = '<span class="qnum">'+(i+1)+'.</span> ❌ <s>'+item.wrong+'</s>';
+    const row = document.createElement('div'); row.style.marginTop='6px';
+    const input = document.createElement('input'); input.className='fixinput'; input.placeholder='type the correct sentence';
+    const btn = document.createElement('button'); btn.className='btn small'; btn.textContent='Check'; btn.style.marginLeft='8px';
+    const hintBtn = document.createElement('button'); hintBtn.className='btn secondary small'; hintBtn.textContent='💡 Hint'; hintBtn.style.marginLeft='6px';
+    const hintBox = document.createElement('div'); hintBox.className='hint-box'; hintBox.textContent=item.hint;
+    const fb = document.createElement('div'); fb.className='feedback';
+    let done=false;
+    btn.onclick=()=>{
+      const val = input.value.trim().toLowerCase().replace(/[.!]/g,'').replace(/\s+/g,' ');
+      if(val===item.correct){
+        fb.textContent='✔ Fixed! Great eye.'; fb.className='feedback ok';
+        if(!done){ done=true; score++; document.getElementById('m2scoreLive'); }
+      } else {
+        fb.textContent='✘ Not quite yet — try the hint!'; fb.className='feedback bad';
+      }
+    };
+    hintBtn.onclick=()=>{ hintBox.style.display='block'; };
+    row.appendChild(input); row.appendChild(btn); row.appendChild(hintBtn);
+    box.appendChild(row); box.appendChild(hintBox); box.appendChild(fb);
+    wrap.appendChild(box);
+  });
+  const finishBtn = document.createElement('button'); finishBtn.className='btn'; finishBtn.style.marginTop='10px';
+  finishBtn.textContent='I fixed them all!';
+  finishBtn.onclick=()=>{
+    let correctCount=0;
+    wrap.querySelectorAll('.fixinput').forEach((inp,i)=>{
+      const val = inp.value.trim().toLowerCase().replace(/[.!]/g,'').replace(/\s+/g,' ');
+      if(val===m2Data[i].correct) correctCount++;
+    });
+    document.getElementById('m2score').textContent = correctCount+' / '+m2Data.length;
+    document.getElementById('m2result').style.display='block';
+  };
+  wrap.appendChild(finishBtn);
+}
+
+/* ============ MISSION 3: Photo Spinner ============ */
+const spinSubjects = [
+  {subj:'I', verb:'talk', ing:'talking', helper:'am', emoji:'🗣️'},
+  {subj:'She', verb:'wash', ing:'washing', helper:'is', emoji:'🧼'},
+  {subj:'We', verb:'listen', ing:'listening', helper:'are', emoji:'🎧'},
+  {subj:'They', verb:'throw', ing:'throwing', helper:'are', emoji:'🏐'},
+  {subj:'He', verb:'catch', ing:'catching', helper:'is', emoji:'🥎'},
+  {subj:'You', verb:'ride a bike', ing:'riding a bike', helper:'are', emoji:'🚲'},
+];
+let m3Spins = 0; const m3Target = 4; let m3Score=0; let m3Current=null;
+function spinPhoto(){
+  if(m3Spins >= m3Target) return;
+  m3Current = spinSubjects[Math.floor(Math.random()*spinSubjects.length)];
+  document.getElementById('spinFace').textContent = m3Current.emoji+' '+m3Current.subj+' + '+m3Current.verb;
+  renderM3Question();
+}
+function renderM3Question(){
+  const wrap = document.getElementById('m3area');
+  wrap.innerHTML='';
+  const helpers = ['am','is','are'];
+  const box = document.createElement('div'); box.className='exercise';
+  box.innerHTML = 'Which helper verb fits <b>"'+m3Current.subj+'"</b>?';
+  const opts = document.createElement('div'); opts.className='options';
+  const fb = document.createElement('div'); fb.className='feedback';
+  helpers.forEach(h=>{
+    const b = document.createElement('button'); b.className='opt-btn'; b.textContent=h;
+    b.onclick=()=>{
+      opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+      if(h===m3Current.helper){
+        b.classList.add('correct');
+        fb.textContent='✔ "'+m3Current.subj+' '+m3Current.helper+' '+m3Current.ing+'." Correct!';
+        fb.className='feedback ok';
+        speak(m3Current.subj+' '+m3Current.helper+' '+m3Current.ing);
+        m3Score++; m3Spins++;
+        document.getElementById('spinFace').textContent='Tap Spin!';
+        setTimeout(()=>{
+          if(m3Spins>=m3Target){
+            document.getElementById('m3score').textContent = m3Score+' / '+m3Target;
+            document.getElementById('m3result').style.display='block';
+            wrap.innerHTML='';
+          } else {
+            wrap.innerHTML='<p style="text-align:center; color:var(--ink-soft);">Spin again!</p>';
+          }
+        }, 1300);
+      } else {
+        b.classList.add('wrong');
+        fb.textContent='✘ Try again — think about the subject.';
+        fb.className='feedback bad';
+      }
+    };
+    opts.appendChild(b);
+  });
+  box.appendChild(opts); box.appendChild(fb);
+  wrap.appendChild(box);
+}
+function buildM3(){ m3Spins=0; m3Score=0; m3Current=null; document.getElementById('spinFace').textContent='Tap Spin!'; document.getElementById('m3area').innerHTML=''; document.getElementById('m3result').style.display='none'; }
+
+/* ============ MISSION 4: Question Detective ============ */
+const m4Data = [
+  {words:['Are','you','listening','?'], answerWords:['Yes',',','I','am','.'], display:'Are you listening?', wrongAnswer:"No, I'm not."},
+  {words:['Is','he','driving','?'], answerWords:['No',',','he',"isn't",'.'], display:'Is he driving?', wrongAnswer:'Yes, he is.'},
+  {words:['Are','they','hiding','?'], answerWords:['Yes',',','they','are','.'], display:'Are they hiding?', wrongAnswer:"No, they aren't."},
+];
+let m4Index=0, m4Score=0, m4Built=[], m4CurrentWords=[];
+function buildM4(){
+  m4Index=0; m4Score=0;
+  document.getElementById('m4result').style.display='none';
+  renderM4();
+}
+function renderM4(){
+  const wrap = document.getElementById('m4area');
+  if(m4Index >= m4Data.length){
+    document.getElementById('m4score').textContent = m4Score+' / '+m4Data.length;
+    document.getElementById('m4result').style.display='block';
+    wrap.innerHTML='';
+    return;
+  }
+  const item = m4Data[m4Index];
+  m4Built = [];
+  wrap.innerHTML='';
+  const box = document.createElement('div'); box.className='exercise';
+  box.innerHTML = '<span class="qnum">'+(m4Index+1)+'/'+m4Data.length+'</span> Build the question:';
+  const chipRow = document.createElement('div'); chipRow.className='chips';
+  const builtRow = document.createElement('div'); builtRow.className='built-area';
+  const shuffled = [...item.words].sort(()=>Math.random()-0.5);
+  shuffled.forEach(w=>{
+    const chip = document.createElement('div'); chip.className='chip'; chip.textContent=w;
+    chip.onclick=()=>{
+      if(chip.classList.contains('used')) return;
+      chip.classList.add('used'); m4Built.push(w);
+      renderBuilt();
+    };
+    chipRow.appendChild(chip);
+  });
+  function renderBuilt(){
+    builtRow.innerHTML='';
+    m4Built.forEach((w,idx)=>{
+      const bw = document.createElement('div'); bw.className='built-word'; bw.textContent=w;
+      bw.onclick=()=>{
+        m4Built.splice(idx,1);
+        Array.from(chipRow.children).forEach(c=>{ if(c.textContent===w) c.classList.remove('used'); });
+        renderBuilt();
+      };
+      builtRow.appendChild(bw);
+    });
+  }
+  const checkBtn = document.createElement('button'); checkBtn.className='btn small'; checkBtn.style.marginTop='8px';
+  checkBtn.textContent='Check Question';
+  const fb = document.createElement('div'); fb.className='feedback';
+  const answerArea = document.createElement('div'); answerArea.style.marginTop='10px';
+  checkBtn.onclick=()=>{
+    const built = m4Built.join(' ').replace(/\s\?/,'?');
+    if(built.toLowerCase() === item.display.toLowerCase()){
+      fb.textContent='✔ Great question! Now pick the short answer:'; fb.className='feedback ok';
+      speak(item.display);
+      renderAnswerOptions();
+    } else {
+      fb.textContent='✘ Check the word order: Am/Is/Are + subject + verb-ing?'; fb.className='feedback bad';
+    }
+  };
+  function renderAnswerOptions(){
+    answerArea.innerHTML='';
+    const correctAnswer = item.answerWords.join(' ').replace(/\s([,.])/g,'$1');
+    const distractor = item.wrongAnswer;
+    const opts = [correctAnswer, distractor].sort(()=>Math.random()-0.5);
+    const optRow = document.createElement('div'); optRow.className='options';
+    opts.forEach(opt=>{
+      const b = document.createElement('button'); b.className='opt-btn'; b.textContent=opt;
+      b.onclick=()=>{
+        optRow.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+        if(opt===correctAnswer){
+          b.classList.add('correct'); m4Score++;
+          setTimeout(()=>{ m4Index++; renderM4(); }, 1000);
+        } else {
+          b.classList.add('wrong');
+        }
+      };
+      optRow.appendChild(b);
+    });
+    answerArea.appendChild(optRow);
+  }
+  box.appendChild(chipRow); box.appendChild(builtRow); box.appendChild(checkBtn); box.appendChild(fb); box.appendChild(answerArea);
+  wrap.appendChild(box);
+}
+
+/* ============ MISSION 5: Memory Match ============ */
+const m5Verbs = [
+  {v:'cry', ing:'crying'},
+  {v:'laugh', ing:'laughing'},
+  {v:'drive', ing:'driving'},
+  {v:'catch', ing:'catching'},
+  {v:'climb', ing:'climbing'},
+  {v:'hide', ing:'hiding'},
+];
+let m5Cards=[], m5Flipped=[], m5MatchedCount=0;
+function buildM5(){
+  m5Flipped=[]; m5MatchedCount=0;
+  document.getElementById('m5result').style.display='none';
+  const deck = [];
+  m5Verbs.forEach((item,i)=>{
+    deck.push({id:'v'+i, label:item.v, pair:i, kind:'v'});
+    deck.push({id:'i'+i, label:item.ing, pair:i, kind:'ing'});
+  });
+  m5Cards = deck.sort(()=>Math.random()-0.5);
+  const grid = document.getElementById('memoryGrid');
+  grid.innerHTML='';
+  m5Cards.forEach(card=>{
+    const el = document.createElement('div');
+    el.className='mcard';
+    el.textContent='❓';
+    el.dataset.id = card.id;
+    el.onclick=()=>flipM5(el, card);
+    grid.appendChild(el);
+  });
+}
+function flipM5(el, card){
+  if(el.classList.contains('flipped') || el.classList.contains('matched')) return;
+  if(m5Flipped.length>=2) return;
+  el.classList.add('flipped'); el.textContent = card.label;
+  speak(card.label);
+  m5Flipped.push({el, card});
+  if(m5Flipped.length===2){
+    const [a,b] = m5Flipped;
+    if(a.card.pair === b.card.pair && a.card.kind !== b.card.kind){
+      setTimeout(()=>{
+        a.el.classList.add('matched'); b.el.classList.add('matched');
+        a.el.classList.remove('flipped'); b.el.classList.remove('flipped');
+        m5Flipped=[]; m5MatchedCount++;
+        if(m5MatchedCount === m5Verbs.length){
+          document.getElementById('m5result').style.display='block';
+        }
+      }, 500);
+    } else {
+      setTimeout(()=>{
+        a.el.classList.remove('flipped'); b.el.classList.remove('flipped');
+        a.el.textContent='❓'; b.el.textContent='❓';
+        m5Flipped=[];
+      }, 800);
+    }
+  }
+}
+
+/* ============ MISSION 6: Speaking Studio ============ */
+const speakSubjects = ['I','He','She','We','They'];
+const speakVerbsIng = ['talking','laughing','listening','climbing'];
+const speakHelperMap = {I:'am', He:'is', She:'is', We:'are', They:'are'};
+let speakBuiltArr = [];
+function buildM6(){
+  speakBuiltArr = [];
+  const chipWrap = document.getElementById('speakChips');
+  chipWrap.innerHTML='';
+  const pool = [...speakSubjects, ...Object.values(speakHelperMap).filter((v,i,a)=>a.indexOf(v)===i), ...speakVerbsIng].sort(()=>Math.random()-0.5);
+  const uniquePool = [...new Set(pool)];
+  uniquePool.forEach(word=>{
+    const chip = document.createElement('div'); chip.className='chip'; chip.textContent=word;
+    chip.onclick=()=>{
+      if(chip.classList.contains('used')) return;
+      chip.classList.add('used');
+      speakBuiltArr.push(word);
+      renderSpeakBuilt();
+    };
+    chipWrap.appendChild(chip);
+  });
+  renderSpeakBuilt();
+  document.getElementById('speakFb').textContent='';
+}
+function renderSpeakBuilt(){
+  const wrap = document.getElementById('speakBuilt');
+  wrap.innerHTML='';
+  speakBuiltArr.forEach((w,idx)=>{
+    const bw = document.createElement('div'); bw.className='built-word'; bw.textContent=w;
+    bw.onclick=()=>{
+      speakBuiltArr.splice(idx,1);
+      Array.from(document.getElementById('speakChips').children).forEach(c=>{ if(c.textContent===w) c.classList.remove('used'); });
+      renderSpeakBuilt();
+    };
+    wrap.appendChild(bw);
+  });
+}
+function resetSpeak(){ buildM6(); }
+function checkSpeak(){
+  const fb = document.getElementById('speakFb');
+  if(speakBuiltArr.length < 3){
+    fb.textContent = '✘ Add a subject, a helper verb (am/is/are), and an action word (verb-ing).';
+    fb.className = 'feedback bad';
+    return;
+  }
+  const subj = speakBuiltArr[0];
+  const helper = speakBuiltArr[1];
+  const verb = speakBuiltArr[2];
+  const expectedHelper = speakHelperMap[subj];
+  if(expectedHelper && helper===expectedHelper && speakVerbsIng.includes(verb)){
+    fb.textContent = '✔ "Right now, '+subj+' '+helper+' '+verb+'." Now say it out loud!';
+    fb.className='feedback ok';
+    speak('Right now, '+subj+' '+helper+' '+verb);
+  } else {
+    fb.textContent = '✘ Check the order: subject, then am/is/are, then the -ing word.';
+    fb.className='feedback bad';
+  }
+}
+
+/* ============ MISSION 7: True or Freeze ============ */
+const m7Data = [
+  {sentence:'She is singing a song.', isTrue:true},
+  {sentence:'He are eating lunch.', isTrue:false},
+  {sentence:'They are jumping rope.', isTrue:true},
+  {sentence:'I is drinking water.', isTrue:false},
+  {sentence:'We are watching a movie.', isTrue:true},
+  {sentence:'The dog is runing fast.', isTrue:false},
+];
+let m7Index=0, m7Score=0, m7TimerId=null, m7TimeLeft=10;
+function buildM7(){
+  m7Index=0; m7Score=0;
+  document.getElementById('m7result').style.display='none';
+  renderM7();
+}
+function renderM7(){
+  clearInterval(m7TimerId);
+  const area = document.getElementById('m7area');
+  if(m7Index >= m7Data.length){
+    document.getElementById('m7score').textContent = m7Score+' / '+m7Data.length;
+    document.getElementById('m7result').style.display='block';
+    area.innerHTML='';
+    return;
+  }
+  const item = m7Data[m7Index];
+  area.innerHTML='';
+  const box = document.createElement('div'); box.className='exercise';
+  box.innerHTML = '<span class="qnum">'+(m7Index+1)+'/'+m7Data.length+'</span> <b>"'+item.sentence+'"</b>';
+  const opts = document.createElement('div'); opts.className='options';
+  const fb = document.createElement('div'); fb.className='feedback';
+  let answered=false;
+  ['✔ TRUE','✘ NOT TRUE'].forEach(label=>{
+    const b = document.createElement('button'); b.className='opt-btn'; b.textContent=label;
+    b.onclick=()=>{
+      if(answered) return;
+      answered=true; clearInterval(m7TimerId);
+      opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+      const pickedTrue = label.includes('NOT') ? false : true;
+      if(pickedTrue === item.isTrue){
+        b.classList.add('correct'); fb.textContent='✔ Frozen correctly!'; fb.className='feedback ok'; m7Score++;
+      } else {
+        b.classList.add('wrong'); fb.textContent='✘ Oops! That sentence was '+(item.isTrue?'TRUE.':'NOT true.'); fb.className='feedback bad';
+      }
+      setTimeout(()=>{ m7Index++; renderM7(); }, 1100);
+    };
+    opts.appendChild(b);
+  });
+  box.appendChild(opts); box.appendChild(fb);
+  area.appendChild(box);
+
+  m7TimeLeft=10;
+  document.getElementById('m7timer').textContent='⏱ '+m7TimeLeft+'s';
+  m7TimerId = setInterval(()=>{
+    m7TimeLeft--;
+    document.getElementById('m7timer').textContent='⏱ '+m7TimeLeft+'s';
+    if(m7TimeLeft<=0){
+      clearInterval(m7TimerId);
+      if(!answered){
+        answered=true;
+        fb.textContent='🧊 Froze too long! It was '+(item.isTrue?'TRUE.':'NOT true.'); fb.className='feedback bad';
+        setTimeout(()=>{ m7Index++; renderM7(); }, 1200);
+      }
+    }
+  }, 1000);
+}
+
+/* ============ MISSION 8: Story Reporter (fill-in from word box) ============ */
+const m8WordBox = ['is flying','are jumping','is chasing','is feeding','is taking','is running'];
+const m8Data = [
+  {sentence:'The man ___ a kite.', answer:'is flying'},
+  {sentence:'The girls ___ rope.', answer:'are jumping'},
+  {sentence:'The dog ___ a ball.', answer:'is chasing'},
+  {sentence:'The grandson ___ photos.', answer:'is taking'},
+  {sentence:'Everyone ___ to find shelter.', answer:'is running'},
+];
+function buildM8(){
+  const wrap = document.getElementById('m8area');
+  wrap.innerHTML='';
+  document.getElementById('m8result').style.display='none';
+  const bank = document.createElement('div'); bank.className='chips'; bank.style.marginBottom='10px';
+  bank.innerHTML = '<b style="width:100%;">Word Box:</b>';
+  m8WordBox.forEach(w=>{
+    const chip = document.createElement('span'); chip.className='chip'; chip.style.cursor='default';
+    chip.textContent = w;
+    bank.appendChild(chip);
+  });
+  wrap.appendChild(bank);
+  m8Data.forEach((item,i)=>{
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML = '<span class="qnum">'+(i+1)+'.</span> '+item.sentence+' &nbsp;';
+    const input = document.createElement('input'); input.className='fixinput'; input.placeholder='type from word box';
+    const fb = document.createElement('span');
+    box.appendChild(input);
+    wrap.appendChild(box);
+  });
+  const finishBtn = document.createElement('button'); finishBtn.className='btn'; finishBtn.style.marginTop='10px';
+  finishBtn.textContent='Submit My Report';
+  finishBtn.onclick=()=>{
+    let score=0;
+    const inputs = wrap.querySelectorAll('.fixinput');
+    inputs.forEach((inp,i)=>{
+      const val = inp.value.trim().toLowerCase();
+      if(val === m8Data[i].answer) score++;
+    });
+    document.getElementById('m8score').textContent = score+' / '+m8Data.length;
+    document.getElementById('m8result').style.display='block';
+  };
+  wrap.appendChild(finishBtn);
+}
+
+/* ============ MISSION 9: Emoji Charades (speak, then reveal) ============ */
+const m9Data = [
+  {emoji:'🧍‍♂️💧', answer:'He is drinking water.'},
+  {emoji:'🧍‍♀️🚿', answer:'She is taking a shower.'},
+  {emoji:'👦⚽', answer:'The boy is kicking a ball.'},
+  {emoji:'👧🎨', answer:'The girl is painting a picture.'},
+  {emoji:'🐶🦴', answer:'The dog is eating a bone.'},
+];
+function buildM9(){
+  const wrap = document.getElementById('m9area');
+  wrap.innerHTML='';
+  document.getElementById('m9result').style.display='none';
+  m9Data.forEach((item,i)=>{
+    const box = document.createElement('div'); box.className='exercise'; box.style.textAlign='center';
+    box.innerHTML = '<div style="font-size:2.2em;">'+item.emoji+'</div><p style="font-size:.85em; color:var(--ink-soft);">Say the sentence out loud, then tap to check!</p>';
+    const revealBtn = document.createElement('button'); revealBtn.className='btn secondary small'; revealBtn.textContent='🔎 Reveal Answer';
+    const answerBox = document.createElement('div'); answerBox.className='feedback ok'; answerBox.style.display='none';
+    revealBtn.onclick=()=>{
+      answerBox.textContent = '✔ "'+item.answer+'"';
+      answerBox.style.display='block';
+      speak(item.answer);
+      revealBtn.style.display='none';
+    };
+    box.appendChild(revealBtn); box.appendChild(answerBox);
+    wrap.appendChild(box);
+  });
+  const doneBtn = document.createElement('button'); doneBtn.className='btn'; doneBtn.style.marginTop='10px';
+  doneBtn.textContent="We said them all!";
+  doneBtn.onclick=()=>{ document.getElementById('m9result').style.display='block'; };
+  wrap.appendChild(doneBtn);
+}
+
+/* ============ FINAL BOSS: Identify -> Fix -> Create ============ */
+let bossStage = 1;
+let bossFirstTryCorrect = 0;
+let bossStageIndex = 0;
+
+const bossIdentify = [
+  {emoji:'🚴', q:'What are they doing?', options:['They are riding a bike.','They are driving.','They are hiding.'], correct:'They are riding a bike.'},
+  {emoji:'😭', q:'What is the boy doing?', options:['He is laughing.','He is crying.','He is climbing.'], correct:'He is crying.'},
+];
+const bossFix = [
+  {wrong:'She are throwing the ball.', correct:'she is throwing the ball', hint:'"She" needs IS.'},
+  {wrong:'We is catching fish.', correct:'we are catching fish', hint:'"We" needs ARE.'},
+];
+const bossCreate = [
+  {frame:'Right now, my friend ___ ___.', hintWords:'(subject already given: "my friend" = he/she → use IS)'},
+  {frame:'Right now, my classmates ___ ___.', hintWords:'("my classmates" = they → use ARE)'}
+];
+
+function buildBoss(){
+  bossFirstTryCorrect = 0;
+  bossStageIndex = 0;
+  bossStage = 1;
+  updateStageDots();
+  renderBossStage1();
+}
+function updateStageDots(){
+  [1,2,3].forEach(n=>{
+    const dot = document.getElementById('dot'+n);
+    dot.classList.remove('active','done');
+    if(n < bossStage) dot.classList.add('done');
+    else if(n === bossStage) dot.classList.add('active');
+  });
+}
+
+function renderBossStage1(){
+  const wrap = document.getElementById('bossArea');
+  wrap.innerHTML = '<h3>Stage 1: Identify</h3>';
+  let idx=0; let firstTry=true;
+  function renderQ(){
+    if(idx >= bossIdentify.length){ bossStage=2; bossStageIndex=0; updateStageDots(); renderBossStage2(); return; }
+    const item = bossIdentify[idx];
+    firstTry = true;
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML = '<span style="font-size:1.8em;">'+item.emoji+'</span> '+item.q;
+    const opts = document.createElement('div'); opts.className='options';
+    const fb = document.createElement('div'); fb.className='feedback';
+    item.options.forEach(opt=>{
+      const b = document.createElement('button'); b.className='opt-btn'; b.textContent=opt;
+      b.onclick=()=>{
+        opts.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('correct','wrong'));
+        if(opt===item.correct){
+          b.classList.add('correct'); fb.textContent='✔ Correct!'; fb.className='feedback ok';
+          if(firstTry) bossFirstTryCorrect++;
+          setTimeout(()=>{ idx++; wrap.innerHTML='<h3>Stage 1: Identify</h3>'; renderQ(); }, 900);
+        } else {
+          b.classList.add('wrong'); fb.textContent='✘ Not this one — try again!'; fb.className='feedback bad';
+          firstTry=false;
+        }
+      };
+      opts.appendChild(b);
+    });
+    box.appendChild(opts); box.appendChild(fb);
+    wrap.appendChild(box);
+  }
+  renderQ();
+}
+
+function renderBossStage2(){
+  const wrap = document.getElementById('bossArea');
+  wrap.innerHTML = '<h3>Stage 2: Fix</h3>';
+  let idx=0;
+  function renderQ(){
+    if(idx >= bossFix.length){ bossStage=3; bossStageIndex=0; updateStageDots(); renderBossStage3(); return; }
+    const item = bossFix[idx];
+    let firstTry = true;
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML = '❌ <s>'+item.wrong+'</s>';
+    const row = document.createElement('div'); row.style.marginTop='6px';
+    const input = document.createElement('input'); input.className='fixinput'; input.placeholder='type the fix';
+    const btn = document.createElement('button'); btn.className='btn small'; btn.textContent='Check'; btn.style.marginLeft='8px';
+    const fb = document.createElement('div'); fb.className='feedback';
+    const hintBox = document.createElement('div'); hintBox.className='hint-box'; hintBox.style.display='none'; hintBox.textContent=item.hint;
+    btn.onclick=()=>{
+      const val = input.value.trim().toLowerCase().replace(/[.!]/g,'').replace(/\s+/g,' ');
+      if(val === item.correct){
+        fb.textContent='✔ Fixed it!'; fb.className='feedback ok';
+        if(firstTry) bossFirstTryCorrect++;
+        setTimeout(()=>{ idx++; wrap.innerHTML='<h3>Stage 2: Fix</h3>'; renderQ(); }, 900);
+      } else {
+        fb.textContent='✘ Try again.'; fb.className='feedback bad';
+        hintBox.style.display='block';
+        firstTry=false;
+      }
+    };
+    row.appendChild(input); row.appendChild(btn);
+    box.appendChild(row); box.appendChild(hintBox); box.appendChild(fb);
+    wrap.appendChild(box);
+  }
+  renderQ();
+}
+
+function renderBossStage3(){
+  const wrap = document.getElementById('bossArea');
+  wrap.innerHTML = '<h3>Stage 3: Create</h3><p style="font-size:.88em; color:var(--ink-soft);">Fill in the blanks, then say your sentence out loud.</p>';
+  let idx=0;
+  function renderQ(){
+    if(idx >= bossCreate.length){
+      document.getElementById('bossScore').textContent = bossFirstTryCorrect;
+      document.getElementById('bossResult').style.display='block';
+      wrap.innerHTML='';
+      return;
+    }
+    const item = bossCreate[idx];
+    let firstTry = true;
+    const box = document.createElement('div'); box.className='exercise';
+    box.innerHTML = '<b>'+item.frame+'</b><br><span style="font-size:.8em; color:var(--ink-soft);">'+item.hintWords+'</span>';
+    const row = document.createElement('div'); row.style.marginTop='8px';
+    const in1 = document.createElement('input'); in1.className='fixinput'; in1.style.width='90px'; in1.placeholder='am/is/are';
+    const in2 = document.createElement('input'); in2.className='fixinput'; in2.style.width='110px'; in2.placeholder='verb-ing';
+    const btn = document.createElement('button'); btn.className='btn small'; btn.textContent='Check'; btn.style.marginLeft='8px';
+    const speakBtn = document.createElement('button'); speakBtn.className='btn secondary small'; speakBtn.textContent='🔊 Say it'; speakBtn.style.marginLeft='6px';
+    const fb = document.createElement('div'); fb.className='feedback';
+    speakBtn.onclick=()=>{ speak(item.frame.replace('___ ___', in1.value+' '+in2.value)); };
+    btn.onclick=()=>{
+      const h = in1.value.trim().toLowerCase();
+      const v = in2.value.trim().toLowerCase();
+      const validHelper = ['is','are'].includes(h);
+      const validVerb = v.endsWith('ing') && v.length>3;
+      if(validHelper && validVerb){
+        fb.textContent='✔ Nice sentence! Say it out loud to your teacher.'; fb.className='feedback ok';
+        if(firstTry) bossFirstTryCorrect++;
+        setTimeout(()=>{ idx++; wrap.innerHTML='<h3>Stage 3: Create</h3>'; renderQ(); }, 1100);
+      } else {
+        fb.textContent='✘ Check: is/are + a real -ing verb.'; fb.className='feedback bad';
+        firstTry=false;
+      }
+    };
+    row.appendChild(in1); row.appendChild(in2); row.appendChild(btn); row.appendChild(speakBtn);
+    box.appendChild(row); box.appendChild(fb);
+    wrap.appendChild(box);
+  }
+  renderQ();
+}
+
+/* ============ Results / Certificate ============ */
+function showResults(){
+  const summary = document.getElementById('summaryText');
+  summary.innerHTML = 'You earned <b>'+xp+' XP</b> and finished all 6 missions plus the Final Mission! You practiced identifying, fixing, building, and speaking Present Continuous sentences.';
+  const badges = [
+    {icon:'📸', name:'Speed Snapper', earned: completed.m1},
+    {icon:'🛠️', name:'Caption Fixer', earned: completed.m2},
+    {icon:'🎡', name:'Spin Star', earned: completed.m3},
+    {icon:'🔍', name:'Question Detective', earned: completed.m4},
+    {icon:'🧠', name:'Memory Master', earned: completed.m5},
+    {icon:'🎙️', name:'Speaking Star', earned: completed.m6},
+    {icon:'🧊', name:'Freeze Champion', earned: completed.m7},
+    {icon:'📰', name:'Star Reporter', earned: completed.m8},
+    {icon:'🎭', name:'Charades Champ', earned: completed.m9},
+    {icon:'🏆', name:'Present Moment Master', earned: completed.boss},
+  ];
+  const row = document.getElementById('badgeRow');
+  row.innerHTML='';
+  badges.forEach(b=>{
+    const el = document.createElement('div'); el.className='badge'+(b.earned?' earned':'');
+    el.innerHTML = '<div class="bicon">'+b.icon+'</div><div class="bname">'+b.name+'</div>';
+    row.appendChild(el);
+  });
+  const nameInput = document.createElement('div');
+  document.getElementById('certName').contentEditable = true;
+  showView('results');
+}
+
+/* ---------- Init all missions ---------- */
+renderHub();
+buildM2();
+buildM3();
+buildM4();
+buildM5();
+buildM6();
+buildM8();
+buildM9();
+buildBoss();
+/* m1 and m7 are timer-based and are built lazily by showView() when the
+   student actually enters those missions, so their countdown never runs
+   in the background before the student opens them. */
+</script>
+</body>
+</html>
