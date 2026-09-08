@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English - Oral Exam Prep</title>
+<style>
+  :root{
+    --pink:#ffd6e8;
+    --pink-dark:#ff8fb3;
+    --tosca:#b8f2e6;
+    --tosca-dark:#4dd0c1;
+    --mint:#d9f7f0;
+    --purple:#e6d9f7;
+    --yellow:#fff3b0;
+    --orange:#ffd9a8;
+    --text:#3a3a4a;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Comic Sans MS','Trebuchet MS',sans-serif;
+    background:linear-gradient(135deg,var(--mint),var(--pink));
+    color:var(--text);
+    min-height:100vh;
+  }
+  .app{
+    max-width:760px;
+    margin:0 auto;
+    min-height:100vh;
+    background:var(--white);
+    box-shadow:0 0 30px rgba(0,0,0,0.1);
+    display:flex;
+    flex-direction:column;
+  }
+  header.topbar{
+    background:linear-gradient(90deg,var(--tosca-dark),var(--pink-dark));
+    color:white;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-logo{
+    width:38px;height:38px;border-radius:50%;
+    background:white;color:var(--pink-dark);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:bold;font-size:20px;
+  }
+  .brand-text{line-height:1.1;}
+  .brand-text .name{font-weight:bold;font-size:16px;}
+  .brand-text .tag{font-size:11px;opacity:0.9;}
+  .progress-wrap{padding:8px 18px;background:var(--mint);}
+  .progress-bar{
+    height:10px;background:#e0e0e0;border-radius:10px;overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;background:linear-gradient(90deg,var(--tosca-dark),var(--pink-dark));
+    width:0%;transition:width 0.3s;
+  }
+  .progress-label{font-size:11px;text-align:right;color:#888;margin-top:2px;}
+  main{flex:1;padding:22px 20px 10px;overflow-y:auto;}
+  .page{display:none;animation:fadeIn 0.3s ease;}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  h1{font-size:24px;color:var(--pink-dark);margin-bottom:6px;}
+  h2{font-size:20px;color:var(--tosca-dark);margin-top:0;}
+  .subtitle{color:#888;font-size:14px;margin-bottom:16px;}
+  .card{
+    background:var(--mint);
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:14px;
+    border:2px solid var(--tosca);
+  }
+  .card.pink{background:var(--pink);border-color:var(--pink-dark);}
+  .card.purple{background:var(--purple);border-color:#c9a8f0;}
+  .card.yellow{background:var(--yellow);border-color:#f0c94d;}
+  .card.orange{background:var(--orange);border-color:#f0a94d;}
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    border-radius:12px;
+    padding:10px 16px;
+    font-size:15px;
+    font-weight:bold;
+    transition:transform 0.15s;
+  }
+  button:active{transform:scale(0.95);}
+  .btn-main{background:var(--pink-dark);color:white;}
+  .btn-alt{background:var(--tosca-dark);color:white;}
+  .btn-speak{background:white;border:2px solid var(--tosca-dark);color:var(--tosca-dark);padding:6px 12px;font-size:14px;}
+  .btn-speak:hover{background:var(--tosca);}
+  .nav-buttons{
+    display:flex;justify-content:space-between;
+    padding:14px 20px;border-top:2px solid var(--mint);
+    background:white;
+  }
+  .word-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .word-chip{
+    background:white;border:2px solid var(--tosca-dark);
+    border-radius:20px;padding:8px 14px;
+    display:flex;align-items:center;gap:8px;
+    font-size:15px;
+  }
+  .dialogue-line{margin-bottom:10px;padding:8px 12px;border-radius:10px;}
+  .dialogue-line.A{background:var(--pink);}
+  .dialogue-line.B{background:var(--tosca);}
+  .speaker{font-weight:bold;margin-right:6px;}
+  .sentence-tap{
+    background:white;border:2px solid #ccc;border-radius:12px;
+    padding:12px;margin-bottom:10px;font-size:16px;
+  }
+  .type-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+  .type-btn{background:white;border:2px solid var(--tosca-dark);color:var(--tosca-dark);font-size:13px;padding:6px 10px;}
+  .type-btn.correct{background:#8be08b !important;color:white !important;border-color:#4caf50 !important;}
+  .type-btn.wrong{background:#f5a3a3 !important;color:white !important;border-color:#e53935 !important;}
+  .feedback{margin-top:6px;font-weight:bold;min-height:18px;}
+  .reveal-box{
+    margin-top:8px;background:white;border:2px dashed var(--pink-dark);
+    border-radius:10px;padding:10px;display:none;
+  }
+  .reveal-box.show{display:block;}
+  .qa-item{margin-bottom:14px;}
+  .qa-question{font-weight:bold;margin-bottom:4px;}
+  .mission-map{display:flex;flex-direction:column;gap:10px;}
+  .mission-item{
+    display:flex;align-items:center;justify-content:space-between;
+    background:white;border:2px solid var(--tosca);border-radius:14px;
+    padding:10px 14px;
+  }
+  .stars{color:#f0c94d;font-size:16px;}
+  .spin-wheel-wrap{position:relative;text-align:center;margin:34px 0 14px;}
+  .wheel-pointer{
+    position:absolute;
+    top:-14px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:30px;
+    color:#e53935;
+    z-index:5;
+    text-shadow:0 2px 2px rgba(0,0,0,0.2);
+  }
+  #wheel{transition:transform 4s cubic-bezier(.17,.67,.16,1); display:block; margin:0 auto;}
+  .checklist-item{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .checklist-item input{width:20px;height:20px;}
+  .cert{
+    text-align:center;padding:30px 20px;background:linear-gradient(135deg,var(--yellow),var(--pink));
+    border-radius:20px;border:4px double var(--pink-dark);
+  }
+  .cert h2{color:var(--pink-dark);font-size:26px;}
+  .mock-q{
+    background:white;border:2px solid var(--pink-dark);border-radius:14px;
+    padding:16px;text-align:center;font-size:18px;min-height:60px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  small.hint{color:#999;display:block;margin-top:4px;}
+  .role-toggle{margin-bottom:10px;}
+  ul{padding-left:20px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">L</div>
+      <div class="brand-text">
+        <div class="name">LittleLume English</div>
+        <div class="tag">Learn • Play • Shine</div>
+      </div>
+    </div>
+    <div style="font-size:12px;text-align:right;">Grade 4<br>Oral Exam Prep</div>
+  </header>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">Page 1 / 1</div>
+  </div>
+  <main id="main">
+
+    <!-- PAGE 0: COVER -->
+    <div class="page active" data-page="0">
+      <h1>🎤 Oral Exam Preparation</h1>
+      <p class="subtitle">Eid Festivals • Cycling Fun • Grammar & Spelling Bonus</p>
+      <div class="card pink">
+        <p>Hello, Learner! 👋 This book will help you speak confidently for your oral exam. You will practice:</p>
+        <ul>
+          <li>Types of Sentences</li>
+          <li>Spelling: Silent "b" in -mb words</li>
+          <li>Eid-ul-Fitr & Eid-ul-Adha vocabulary and conversations</li>
+          <li>Talking about cycling</li>
+          <li>A Mock Oral Exam</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p><strong>💡 Tip:</strong> Tap the 🔊 buttons to hear how words and sentences sound. Practice saying them out loud, not just reading silently!</p>
+      </div>
+    </div>
+
+    <!-- PAGE 1: HOW TO USE -->
+    <div class="page" data-page="1">
+      <h2>📖 How to Use This Book</h2>
+      <div class="card">
+        <ol>
+          <li>Go through each section in order.</li>
+          <li>Tap 🔊 to listen, then repeat out loud.</li>
+          <li>Try every activity before checking the answer.</li>
+          <li>Practice the dialogues with a partner (or your teacher) — take turns being Speaker A and Speaker B.</li>
+          <li>Finish with the Mock Oral Exam and the Review Wheel.</li>
+        </ol>
+      </div>
+      <div class="card yellow">
+        <p><strong>For Teachers/Parents:</strong> Please listen to the student's spoken answers for each activity marked 🗣️ Speaking Practice, and encourage full sentences and clear pronunciation.</p>
+      </div>
+    </div>
+
+    <!-- PAGE 2: TYPES OF SENTENCES INTRO -->
+    <div class="page" data-page="2">
+      <h2>✏️ Grammar: Types of Sentences</h2>
+      <p class="subtitle">There are 4 types of sentences. Listen and repeat each one!</p>
+      <div class="card">
+        <div class="word-chip" style="margin-bottom:10px;"><span><strong>Declarative</strong> — tells something. Ends with a period (.)</span><button class="btn-speak" onclick="speak('It is now rainy season.')">🔊</button></div>
+        <p style="margin-left:10px;">Example: <em>It is now rainy season.</em></p>
+        <div class="word-chip" style="margin-bottom:10px;"><span><strong>Exclamatory</strong> — shows strong feeling. Ends with (!)</span><button class="btn-speak" onclick="speak('That was amazing!')">🔊</button></div>
+        <p style="margin-left:10px;">Example: <em>That was amazing!</em></p>
+        <div class="word-chip" style="margin-bottom:10px;"><span><strong>Imperative</strong> — tells someone to do something. Ends with (.)</span><button class="btn-speak" onclick="speak('Please open the door.')">🔊</button></div>
+        <p style="margin-left:10px;">Example: <em>Please open the door.</em></p>
+        <div class="word-chip" style="margin-bottom:10px;"><span><strong>Interrogative</strong> — asks a question. Ends with (?)</span><button class="btn-speak" onclick="speak('May I go to the bathroom?')">🔊</button></div>
+        <p style="margin-left:10px;">Example: <em>May I go to the bathroom?</em></p>
+      </div>
+    </div>
+
+    <!-- PAGE 3: SENTENCE TYPE GAME -->
+    <div class="page" data-page="3">
+      <h2>🎯 Tap the Correct Type!</h2>
+      <p class="subtitle">Read each sentence, listen to it, then tap the correct sentence type.</p>
+      <div id="sentenceGame"></div>
+    </div>
+
+    <!-- PAGE 4: SPELLING INTRO -->
+    <div class="page" data-page="4">
+      <h2>🔤 Spelling: Silent "b" in -mb</h2>
+      <p class="subtitle">In these words, the letter "b" is silent — we don't say it! Listen carefully.</p>
+      <div class="card">
+        <div class="word-grid" id="spellingWords"></div>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Speaking Practice:</strong> Say each word aloud, then spell it out loud letter by letter. Example: "Comb — C-O-M-B."</p>
+      </div>
+    </div>
+
+    <!-- PAGE 5: SPELLING GAME -->
+    <div class="page" data-page="5">
+      <h2>🔍 Listen and Guess</h2>
+      <p class="subtitle">Tap 🔊 to hear the word, try to spell it, then tap "Reveal" to check!</p>
+      <div id="spellingGame"></div>
+    </div>
+
+    <!-- PAGE 6: EID VOCAB -->
+    <div class="page" data-page="6">
+      <h2>🌙 Eid-ul-Fitr & Eid-ul-Adha Vocabulary</h2>
+      <p class="subtitle">Listen and repeat each word or phrase.</p>
+      <div class="card pink" id="eidVocab"></div>
+    </div>
+
+    <!-- PAGE 7: EID-UL-ADHA READING -->
+    <div class="page" data-page="7">
+      <h2>📖 Reading: Eid-ul-Adha</h2>
+      <div class="card">
+        <p>Eid-al-Adha is a religious holiday celebrated by Muslims worldwide to remember Ibrahim's willingness to sacrifice his son Ismael for Allah. It is one of the two Eid festivals that Muslims celebrate.</p>
+        <p>Eid al-Adha is four days long and starts on the 10th day of the month of DhulHijja of the lunar Islamic calendar. This is the day after the pilgrims in Hajj go down from Mount Arafat. It happens approximately 70 days after the end of the month of Ramadan.</p>
+        <p>It is the day when many acts of worship are combined, such as reciting takbeerat, praying as a large community, and offering the udhiya (the sacrificial animal).</p>
+        <button class="btn-speak" onclick="speak('Eid al-Adha is a religious holiday celebrated by Muslims worldwide to remember Ibrahim, willingness to sacrifice his son Ismael for Allah. It starts on the tenth day of Dhul Hijja.')">🔊 Listen to the passage</button>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Speaking Practice — Answer out loud:</strong></p>
+        <div class="qa-item"><div class="qa-question">1. What does Eid-ul-Adha remind Muslims of?</div><button class="btn-speak" onclick="toggleReveal('r1')">Show Answer</button><div class="reveal-box" id="r1">Ibrahim's willingness to sacrifice his son Ismael for Allah.</div></div>
+        <div class="qa-item"><div class="qa-question">2. How many days long is Eid al-Adha?</div><button class="btn-speak" onclick="toggleReveal('r2')">Show Answer</button><div class="reveal-box" id="r2">Four days long.</div></div>
+        <div class="qa-item"><div class="qa-question">3. When does it start?</div><button class="btn-speak" onclick="toggleReveal('r3')">Show Answer</button><div class="reveal-box" id="r3">On the 10th day of the month of DhulHijja.</div></div>
+        <div class="qa-item"><div class="qa-question">4. What is the "udhiya"?</div><button class="btn-speak" onclick="toggleReveal('r4')">Show Answer</button><div class="reveal-box" id="r4">The sacrificial animal.</div></div>
+        <div class="qa-item"><div class="qa-question">5. How many days after Ramadan does it happen?</div><button class="btn-speak" onclick="toggleReveal('r5')">Show Answer</button><div class="reveal-box" id="r5">Approximately 70 days.</div></div>
+      </div>
+    </div>
+
+    <!-- PAGE 8: CONVERSATION EID-UL-FITR -->
+    <div class="page" data-page="8">
+      <h2>💬 Conversation: Where will you pray on Eid-ul-Fitr?</h2>
+      <div class="card">
+        <div class="dialogue-line A"><span class="speaker">Akhlas:</span>As-Salaamu'alaikum warahmatullaah. <button class="btn-speak" onclick="speak(`As-Salaamu alaikum warahmatullaah`)">🔊</button></div>
+        <div class="dialogue-line B"><span class="speaker">Rafi:</span>Wa'alaikumsalaam warahmatullaah. <button class="btn-speak" onclick="speak(`Wa alaikumsalaam warahmatullaah`)">🔊</button></div>
+        <div class="dialogue-line A"><span class="speaker">Akhlas:</span>Today is our last day of fasting in Ramadan.</div>
+        <div class="dialogue-line B"><span class="speaker">Rafi:</span>Alhamdulillah, we will complete our fasting today.</div>
+        <div class="dialogue-line A"><span class="speaker">Akhlas:</span>Where will you go for Eid-ul-Fitr prayer?</div>
+        <div class="dialogue-line B"><span class="speaker">Rafi:</span>My family goes to the prayer ground for Eid-ul-Fitr prayer.</div>
+        <div class="dialogue-line A"><span class="speaker">Akhlas:</span>Why at the prayer ground?</div>
+        <div class="dialogue-line B"><span class="speaker">Rafi:</span>Because the Prophet Muhammad said it's best to pray at the ground.</div>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Role Swap:</strong> First read as Akhlas, then switch and read as Rafi. Then try answering: "Where will YOU go for Eid-ul-Fitr prayer?" in your own words.</p>
+      </div>
+    </div>
+
+    <!-- PAGE 9: PRESENTATION FRAMEWORK -->
+    <div class="page" data-page="9">
+      <h2>🎙️ Presentation: What I Do on Eid</h2>
+      <p class="subtitle">Use these points to build your own spoken presentation.</p>
+      <div class="card purple">
+        <p><strong>1. Before Eid prayer:</strong> What do you do to get ready? (e.g. take a bath, wear new clothes, brush teeth)</p>
+        <p><strong>2. During the Eid sermon:</strong> What do you do while listening?</p>
+        <p><strong>3. After Eid prayer:</strong> What are your family traditions? (e.g. visiting family, offering sacrifice, sharing food)</p>
+      </div>
+      <div class="card">
+        <p>🗣️ <strong>Speaking Practice:</strong> Say one full sentence for each point above. Example:</p>
+        <p><em>"Before Eid prayer, I take a bath and wear new clothes."</em> <button class="btn-speak" onclick="speak('Before Eid prayer, I take a bath and wear new clothes.')">🔊</button></p>
+      </div>
+    </div>
+
+    <!-- PAGE 10: TELL YOUR FRIEND -->
+    <div class="page" data-page="10">
+      <h2>🏡 Tell Your Friend: Eid-ul-Fitr at My Home Town</h2>
+      <div class="card">
+        <p>As-Salaamu'alaikum warahmatullaah wabarakaatuh.</p>
+        <p>Brothers and sisters, Eid-ul-Fitr and Eid-ul-Adha are the happiest days for me. My family and I perform Tarawih or night prayers every night. A week before Eid-ul-Fitr, my family goes to our home town.</p>
+        <p>I spent my Eid-ul-Fitr holiday together with all of my extended family. I visited my uncles' and aunts' houses and the houses of other relatives. I felt very happy and enjoyed spending my days there. They are some of the greatest days for our big family.</p>
+        <p>Thank you. Was-Salaamu'alaikum warahmatullaah wabarakaatuh.</p>
+        <button class="btn-speak" onclick="speak(`Eid-ul-Fitr and Eid-ul-Adha are the happiest days for me. A week before Eid-ul-Fitr, my family goes to our home town. I visited my uncles and aunts houses and felt very happy.`)">🔊 Listen to the speech</button>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Your Turn:</strong> Practice telling your own short speech about Eid using this pattern: Greeting → Where you go → Who you visit → How you feel → Thank you.</p>
+      </div>
+    </div>
+
+    <!-- PAGE 11: BENEFITS OF CYCLING -->
+    <div class="page" data-page="11">
+      <h2>🚴 Reading: Benefits of Cycling</h2>
+      <div class="card">
+        <p>There are many health benefits that are associated with cycling. They are:</p>
+        <ol>
+          <li>Cycling is one of the easiest ways to exercise</li>
+          <li>Cycling builds strength and muscle tone</li>
+          <li>Cycling burns calories</li>
+          <li>Cycling improves heart health</li>
+          <li>Cycling improves coordination</li>
+          <li>Cycling reduces stress</li>
+        </ol>
+        <button class="btn-speak" onclick="speak('There are many health benefits of cycling. It builds strength, burns calories, improves heart health, improves coordination, and reduces stress.')">🔊 Listen</button>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Speaking Practice — Answer out loud:</strong></p>
+        <div class="qa-item"><div class="qa-question">1. Does cycling benefit human beings? Why?</div><button class="btn-speak" onclick="toggleReveal('c1')">Show Answer</button><div class="reveal-box" id="c1">Yes, because it builds strength, burns calories, and improves heart health.</div></div>
+        <div class="qa-item"><div class="qa-question">2. Choose ONE benefit and explain it in your own words.</div><button class="btn-speak" onclick="toggleReveal('c2')">Show a Sample Answer</button><div class="reveal-box" id="c2">Cycling reduces stress because it helps me relax and feel happy when I ride outside.</div></div>
+        <div class="qa-item"><div class="qa-question">3. Why do you think cycling improves coordination?</div><button class="btn-speak" onclick="toggleReveal('c3')">Show a Sample Answer</button><div class="reveal-box" id="c3">Because you need to balance, steer, and pedal at the same time.</div></div>
+      </div>
+    </div>
+
+    <!-- PAGE 12: CONVERSATION CYCLING -->
+    <div class="page" data-page="12">
+      <h2>💬 Conversation: Where do you go for cycling?</h2>
+      <div class="card">
+        <div class="dialogue-line A"><span class="speaker">Rafi:</span>As-Salaamu'alaikum warahmatullaah.</div>
+        <div class="dialogue-line B"><span class="speaker">Akhlas:</span>Wa'alaikumsalaam warahmatullaah.</div>
+        <div class="dialogue-line A"><span class="speaker">Rafi:</span>Do you usually go cycling on weekend?</div>
+        <div class="dialogue-line B"><span class="speaker">Akhlas:</span>Yes, I do. I go with my family.</div>
+        <div class="dialogue-line A"><span class="speaker">Rafi:</span>Where do you go cycling?</div>
+        <div class="dialogue-line B"><span class="speaker">Akhlas:</span>I go around my housing complex. How about you?</div>
+        <div class="dialogue-line A"><span class="speaker">Rafi:</span>I used to go around the city.</div>
+        <div class="dialogue-line B"><span class="speaker">Akhlas:</span>Did you feel happy?</div>
+        <div class="dialogue-line A"><span class="speaker">Rafi:</span>Yes, I did. I had wonderful times!</div>
+        <div class="dialogue-line B"><span class="speaker">Akhlas:</span>I did too. Cycling makes us healthy.</div>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Role Swap:</strong> Read as Rafi, then swap to Akhlas. Then answer for yourself: "Do you usually go cycling on weekend? Where do you go?"</p>
+      </div>
+    </div>
+
+    <!-- PAGE 13: PROJECT - PLANNING A CYCLING TRIP -->
+    <div class="page" data-page="13">
+      <h2>🗺️ Project: Planning a Cycling Trip</h2>
+      <div class="card">
+        <p>Plan a time to go cycling near your home during the weekend. Invite your family or friend(s) to go with you.</p>
+        <table style="width:100%;border-collapse:collapse;" border="1" cellpadding="6">
+          <tr style="background:var(--tosca);"><th>Time</th><th>Who Came With Me</th><th>What We Did</th></tr>
+          <tr><td>e.g. Sat</td><td>My father</td><td>We passed a corn field. We saw cats playing.</td></tr>
+          <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        </table>
+      </div>
+      <div class="card yellow">
+        <p>🗣️ <strong>Speaking Practice:</strong> Present your own cycling experience out loud. Use this pattern:</p>
+        <p><em>"On Saturday, I went cycling with my mother. We saw many trees and a small river."</em> <button class="btn-speak" onclick="speak('On Saturday, I went cycling with my mother. We saw many trees and a small river.')">🔊</button></p>
+      </div>
+    </div>
+
+    <!-- PAGE 14: MOCK ORAL EXAM -->
+    <div class="page" data-page="14">
+      <h2>🎓 Mock Oral Exam</h2>
+      <p class="subtitle">Tap "New Question" and answer out loud!</p>
+      <div class="mock-q" id="mockQ">Tap "New Question" to begin!</div>
+      <div style="text-align:center;margin-top:14px;">
+        <button class="btn-main" onclick="newMockQuestion()">🎲 New Question</button>
+        <button class="btn-speak" onclick="speak(document.getElementById('mockQ').innerText)">🔊 Hear it again</button>
+      </div>
+    </div>
+
+    <!-- PAGE 15: SPIN & SAY REVIEW -->
+    <div class="page" data-page="15">
+      <h2>🎡 Spin & Say Review</h2>
+      <p class="subtitle">Spin the wheel and talk about the topic you land on!</p>
+      <div class="spin-wheel-wrap">
+        <div class="wheel-pointer">▼</div>
+        <svg id="wheel" width="240" height="240" viewBox="0 0 240 240">
+          <circle cx="120" cy="120" r="118" fill="white" stroke="#ccc" stroke-width="2"/>
+          <g id="wheelSegs"></g>
+        </svg>
+        <div style="margin-top:10px;">
+          <button class="btn-main" onclick="spinWheel()">Spin!</button>
+        </div>
+        <p id="wheelResult" style="font-weight:bold;margin-top:8px;"></p>
+      </div>
+    </div>
+
+    <!-- PAGE 16: CHECK MY LEARNING -->
+    <div class="page" data-page="16">
+      <h2>✅ Check My Learning</h2>
+      <div class="card">
+        <div class="checklist-item"><input type="checkbox"><span>I can name the 4 types of sentences.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can spell -mb words with a silent "b".</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can talk about Eid-ul-Fitr and Eid-ul-Adha.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can have a conversation about cycling.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can answer questions about a reading passage out loud.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I feel confident for my oral exam!</span></div>
+      </div>
+      <h2>👩‍🏫 Teacher Observation</h2>
+      <div class="card purple">
+        <div class="checklist-item"><input type="checkbox"><span>Speaks in complete sentences</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Uses correct pronunciation</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Answers confidently without long pauses</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Uses vocabulary from the lesson correctly</span></div>
+      </div>
+    </div>
+
+    <!-- PAGE 17: CERTIFICATE -->
+    <div class="page" data-page="17">
+      <div class="cert">
+        <h2>🏆 Certificate of Achievement 🏆</h2>
+        <p style="font-size:18px;">This certifies that</p>
+        <p style="font-size:22px;font-weight:bold;border-bottom:2px solid var(--pink-dark);display:inline-block;padding:4px 30px;">______________________</p>
+        <p style="margin-top:14px;">has completed the</p>
+        <p style="font-size:18px;font-weight:bold;">LittleLume English Oral Exam Preparation</p>
+        <p style="margin-top:20px;font-size:30px;">🌟🌟🌟</p>
+        <p style="margin-top:10px;font-size:13px;color:#888;">LittleLume English — Learn • Play • Shine</p>
+      </div>
+    </div>
+
+  </main>
+  <div class="nav-buttons">
+    <button class="btn-alt" onclick="goPrev()">⬅ Back</button>
+    <button class="btn-main" onclick="goNext()">Next ➡</button>
+  </div>
+</div>
+
+<script>
+// ---------- Navigation ----------
+const pages = document.querySelectorAll('.page');
+const total = pages.length;
+let current = 0;
+
+function showPage(i){
+  pages.forEach(p=>p.classList.remove('active'));
+  pages[i].classList.add('active');
+  document.getElementById('progressFill').style.width = ((i+1)/total*100)+'%';
+  document.getElementById('progressLabel').innerText = 'Page '+(i+1)+' / '+total;
+  window.scrollTo(0,0);
+}
+function goNext(){ if(current < total-1){ current++; showPage(current);} }
+function goPrev(){ if(current > 0){ current--; showPage(current);} }
+
+// ---------- Text to Speech ----------
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+}
+
+function toggleReveal(id){
+  document.getElementById(id).classList.toggle('show');
+}
+
+// ---------- Sentence Type Game ----------
+const sentenceData = [
+  {text:"It is now rainy season.", type:"Declarative"},
+  {text:"That was amazing!", type:"Exclamatory"},
+  {text:"Please open the door.", type:"Imperative"},
+  {text:"May I go to the bathroom?", type:"Interrogative"},
+  {text:"Study for the math test.", type:"Imperative"},
+  {text:"Where will you go for Eid-ul-Fitr prayer?", type:"Interrogative"},
+  {text:"Alhamdulillah, we will complete our fasting today.", type:"Declarative"},
+  {text:"I had wonderful times!", type:"Exclamatory"}
+];
+const types = ["Declarative","Exclamatory","Imperative","Interrogative"];
+
+function buildSentenceGame(){
+  const container = document.getElementById('sentenceGame');
+  sentenceData.forEach((s,idx)=>{
+    const div = document.createElement('div');
+    div.className = 'sentence-tap';
+    div.innerHTML = `
+      <div>${idx+1}. "${s.text}" <button class="btn-speak" onclick="speak('${s.text.replace(/'/g,"\\'")}')">🔊</button></div>
+      <div class="type-buttons" id="tb${idx}"></div>
+      <div class="feedback" id="fb${idx}"></div>
+    `;
+    container.appendChild(div);
+    const tb = div.querySelector('#tb'+idx);
+    types.forEach(t=>{
+      const b = document.createElement('button');
+      b.className = 'type-btn';
+      b.innerText = t;
+      b.onclick = ()=>checkSentence(idx, t, b);
+      tb.appendChild(b);
+    });
+  });
+}
+function checkSentence(idx, chosen, btn){
+  const correct = sentenceData[idx].type;
+  const fb = document.getElementById('fb'+idx);
+  const tb = document.getElementById('tb'+idx);
+  [...tb.children].forEach(b=>{b.classList.remove('correct','wrong'); b.disabled=true;});
+  if(chosen === correct){
+    btn.classList.add('correct');
+    fb.innerText = "✅ Correct! It's " + correct + ".";
+    fb.style.color = "#2e7d32";
+  } else {
+    btn.classList.add('wrong');
+    fb.innerText = "❌ Not quite. The correct answer is " + correct + ".";
+    fb.style.color = "#c62828";
+    [...tb.children].forEach(b=>{ if(b.innerText===correct) b.classList.add('correct'); });
+  }
+}
+
+// ---------- Spelling ----------
+const mbWords = ["comb","lamb","limb","numb","thumb","tomb","climb","crumb","bomb","womb"];
+function buildSpellingWords(){
+  const wrap = document.getElementById('spellingWords');
+  mbWords.forEach(w=>{
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.innerHTML = `<span>${w}</span><button class="btn-speak" onclick="speak('${w}')">🔊</button>`;
+    wrap.appendChild(chip);
+  });
+}
+function buildSpellingGame(){
+  const wrap = document.getElementById('spellingGame');
+  mbWords.forEach((w,idx)=>{
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;">
+        <strong>Word ${idx+1}</strong>
+        <button class="btn-speak" onclick="speak('${w}')">🔊 Listen</button>
+        <button class="btn-alt" onclick="toggleReveal('sp${idx}')">Reveal</button>
+      </div>
+      <div class="reveal-box" id="sp${idx}">${w.toUpperCase()} — spelled: ${w.split('').join('-').toUpperCase()}</div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+// ---------- Eid Vocabulary ----------
+const eidVocabList = [
+  "Eid-ul-Fitr","Eid-ul-Adha","Ramadan","fasting","sacrifice","sermon",
+  "prayer ground","lunar calendar","Hajj","Mount Arafat","udhiya","Tarawih",
+  "extended family","home town","Alhamdulillah"
+];
+function buildEidVocab(){
+  const wrap = document.getElementById('eidVocab');
+  eidVocabList.forEach(w=>{
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.style.marginBottom = '8px';
+    chip.innerHTML = `<span>${w}</span><button class="btn-speak" onclick="speak('${w.replace(/'/g,"")}')">🔊</button>`;
+    wrap.appendChild(chip);
+  });
+}
+
+// ---------- Mock Oral Exam ----------
+const mockQuestions = [
+  "What is Eid-ul-Fitr?",
+  "When does Eid-ul-Adha start?",
+  "What do you do before Eid prayer?",
+  "Where does your family go for Eid-ul-Fitr prayer?",
+  "What did you do during your last Eid holiday?",
+  "Name three benefits of cycling.",
+  "Do you usually go cycling on the weekend?",
+  "Where do you go cycling?",
+  "How do you feel after cycling?",
+  "Give an example of a declarative sentence.",
+  "Give an example of an interrogative sentence.",
+  "Spell the word 'thumb' out loud."
+];
+function newMockQuestion(){
+  const q = mockQuestions[Math.floor(Math.random()*mockQuestions.length)];
+  document.getElementById('mockQ').innerText = q;
+  speak(q);
+}
+
+// ---------- Spin Wheel ----------
+const wheelTopics = ["Eid-ul-Fitr","Eid-ul-Adha","Cycling","Sentences","Spelling","My Home Town"];
+const wheelColors = ["#ffd6e8","#b8f2e6","#fff3b0","#e6d9f7","#ffd9a8","#d9f7f0"];
+function buildWheel(){
+  const g = document.getElementById('wheelSegs');
+  const n = wheelTopics.length;
+  const angle = 360/n;
+  for(let i=0;i<n;i++){
+    const startAngle = i*angle;
+    const endAngle = startAngle+angle;
+    const x1 = 120 + 118*Math.cos(Math.PI*startAngle/180);
+    const y1 = 120 + 118*Math.sin(Math.PI*startAngle/180);
+    const x2 = 120 + 118*Math.cos(Math.PI*endAngle/180);
+    const y2 = 120 + 118*Math.sin(Math.PI*endAngle/180);
+    const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+    path.setAttribute("d", `M120,120 L${x1},${y1} A118,118 0 0,1 ${x2},${y2} Z`);
+    path.setAttribute("fill", wheelColors[i%wheelColors.length]);
+    path.setAttribute("stroke","white");
+    g.appendChild(path);
+    const midAngle = startAngle+angle/2;
+    const tx = 120 + 75*Math.cos(Math.PI*midAngle/180);
+    const ty = 120 + 75*Math.sin(Math.PI*midAngle/180);
+    const text = document.createElementNS("http://www.w3.org/2000/svg","text");
+    text.setAttribute("x", tx);
+    text.setAttribute("y", ty);
+    text.setAttribute("font-size","11");
+    text.setAttribute("text-anchor","middle");
+    text.setAttribute("fill","#3a3a4a");
+    text.textContent = wheelTopics[i];
+    g.appendChild(text);
+  }
+}
+let wheelRotation = 0;
+function spinWheel(){
+  const n = wheelTopics.length;
+  const anglePer = 360/n;
+  // spin a random number of extra degrees on top of several full turns
+  const randomExtraDeg = Math.random()*360;
+  const spins = 5*360;
+  wheelRotation += spins + randomExtraDeg;
+  document.getElementById('wheel').style.transform = `rotate(${wheelRotation}deg)`;
+  setTimeout(()=>{
+    // Pointer is fixed at the top of the wheel, which is screen-angle 270
+    // (using the same 0deg-at-3-o'clock, clockwise-increasing convention
+    // used to draw the segments in buildWheel()).
+    // A point originally at "originalAngle" ends up at screen angle
+    // (originalAngle + rotation) mod 360 after rotating clockwise.
+    // We solve for the originalAngle that now sits under the pointer.
+    const normalized = ((wheelRotation % 360) + 360) % 360;
+    const originalAngle = ((270 - normalized) % 360 + 360) % 360;
+    const idx = Math.floor(originalAngle / anglePer) % n;
+    const topic = wheelTopics[idx];
+    document.getElementById('wheelResult').innerText = "🎉 Talk about: " + topic + "!";
+    speak("Talk about " + topic);
+  }, 4100);
+}
+
+// ---------- Init ----------
+buildSentenceGame();
+buildSpellingWords();
+buildSpellingGame();
+buildEidVocab();
+buildWheel();
+showPage(0);
+</script>
+</body>
+</html>

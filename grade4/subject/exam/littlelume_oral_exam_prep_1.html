@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LittleLume English — Oral Exam Preparation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF8FAE;
+    --pink-light:#FFE6EE;
+    --tosca:#3DB6A0;
+    --tosca-dark:#2C8C7A;
+    --tosca-light:#E1F5F0;
+    --gold:#EFA23A;
+    --gold-light:#FCEED9;
+    --sky:#4A9FE0;
+    --sky-light:#E3F1FC;
+    --ink:#31324A;
+    --ink-soft:#6B6C85;
+    --cream:#FFFBF6;
+    --white:#FFFFFF;
+    --line:#EDE7E0;
+    --radius:20px;
+    --shadow:0 8px 24px rgba(49,50,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Nunito Sans', sans-serif;
+    background:linear-gradient(180deg,var(--pink-light) 0%, var(--cream) 320px);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  h1,h2,h3,.brand{font-family:'Fredoka', sans-serif;}
+  #app{
+    width:100%;
+    min-height:100vh;
+    background:var(--white);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+  }
+  header.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 32px;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    font-size:16px;
+    color:var(--tosca-dark);
+  }
+  .brand .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--pink);
+    display:inline-block;
+  }
+  .page-counter{
+    font-size:13px;
+    color:var(--ink-soft);
+    font-weight:700;
+  }
+  main{
+    flex:1;
+    padding:28px 32px 110px 32px;
+    width:100%;
+    max-width:720px;
+    margin:0 auto;
+  }
+  .screen{display:none;animation:fade .35s ease;}
+  .screen.active{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .eyebrow{
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--pink);
+    margin-bottom:6px;
+  }
+  .eyebrow.tosca{color:var(--tosca-dark);}
+  .eyebrow.gold{color:var(--gold);}
+  .eyebrow.sky{color:var(--sky);}
+  h2.title{
+    font-size:24px;
+    margin:0 0 4px 0;
+    line-height:1.25;
+  }
+  p.sub{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:0 0 18px 0;
+    line-height:1.5;
+  }
+  .time-pill{
+    display:inline-block;
+    background:var(--tosca-light);
+    color:var(--tosca-dark);
+    font-size:12px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:100px;
+    margin-bottom:14px;
+  }
+
+  /* Cover */
+  .cover{
+    text-align:center;
+    padding-top:10px;
+  }
+  .cover .badge{
+    width:96px;height:96px;
+    border-radius:28px;
+    background:linear-gradient(135deg,var(--pink) 0%, var(--tosca) 100%);
+    margin:10px auto 20px auto;
+    display:flex;align-items:center;justify-content:center;
+    font-size:44px;
+    box-shadow:var(--shadow);
+  }
+  .cover h1{
+    font-size:26px;
+    margin:0 0 8px 0;
+    line-height:1.3;
+  }
+  .cover p.tag{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0 0 22px 0;
+  }
+  .cover-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-bottom:26px;
+  }
+  .chip{
+    background:var(--pink-light);
+    color:#B5486A;
+    font-size:12.5px;
+    font-weight:700;
+    padding:7px 13px;
+    border-radius:100px;
+  }
+  .chip.tosca{background:var(--tosca-light); color:var(--tosca-dark);}
+  .chip.gold{background:var(--gold-light); color:#9C6A16;}
+  .chip.sky{background:var(--sky-light); color:#2B6FA1;}
+  .meta-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+    text-align:left;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .meta-card b{color:var(--ink);}
+
+  /* Cards */
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:var(--shadow);
+  }
+  .card.soft{background:var(--cream); box-shadow:none;}
+  .card h3{margin:0 0 10px 0; font-size:16px;}
+
+  .vocab-grid{display:flex; flex-direction:column; gap:10px;}
+  .vocab-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:11px 14px;
+  }
+  .vocab-item .word-en{font-weight:800; font-size:15px;}
+  .vocab-item .word-id{color:var(--ink-soft); font-size:12.5px; margin-top:2px;}
+  .speak-btn{
+    border:none;
+    background:var(--tosca);
+    color:#fff;
+    width:36px;height:36px;
+    border-radius:50%;
+    font-size:15px;
+    cursor:pointer;
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .15s ease;
+  }
+  .speak-btn:active{transform:scale(0.9);}
+  .speak-btn.pink{background:var(--pink);}
+  .speak-btn.gold{background:var(--gold);}
+  .speak-btn.sky{background:var(--sky);}
+
+  .sentence-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .sentence-line:last-child{border-bottom:none;}
+  .sentence-line .txt{font-size:14.5px; line-height:1.5;}
+  .sentence-line .txt b{color:var(--tosca-dark);}
+
+  .dialogue{
+    background:var(--cream);
+    border-radius:16px;
+    padding:14px;
+  }
+  .bubble{
+    max-width:88%;
+    padding:10px 14px;
+    border-radius:16px;
+    margin-bottom:10px;
+    font-size:14px;
+    line-height:1.5;
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+  }
+  .bubble.teacher{
+    background:var(--tosca);
+    color:#fff;
+    border-bottom-left-radius:4px;
+  }
+  .bubble.student{
+    background:var(--pink);
+    color:#fff;
+    margin-left:auto;
+    border-bottom-right-radius:4px;
+    text-align:left;
+  }
+  .bubble .who{font-weight:800; display:block; font-size:11px; opacity:.85; margin-bottom:2px;}
+  .bubble button.speak-btn{
+    background:rgba(255,255,255,0.28);
+    width:28px;height:28px;
+    font-size:12px;
+  }
+
+  .watchbox{
+    background:var(--gold-light);
+    border:1px solid #F0D8A8;
+    border-radius:16px;
+    padding:14px;
+    font-size:13.5px;
+    line-height:1.55;
+  }
+  .watchbox b{color:#9C6A16;}
+
+  .reading-box{
+    background:var(--sky-light);
+    border-radius:16px;
+    padding:16px;
+    font-size:14.5px;
+    line-height:1.7;
+  }
+  .reveal-btn{
+    margin-top:10px;
+    border:none;
+    background:var(--sky);
+    color:#fff;
+    padding:9px 16px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+  }
+  .answer-box{
+    display:none;
+    margin-top:10px;
+    background:var(--white);
+    border:1px dashed var(--sky);
+    border-radius:12px;
+    padding:12px;
+    font-size:13.5px;
+  }
+  .answer-box.show{display:block;}
+
+  .qcard{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:14px;
+    margin-bottom:12px;
+  }
+  .qcard .qnum{
+    font-size:11.5px;
+    font-weight:800;
+    color:var(--pink);
+    margin-bottom:4px;
+  }
+  .qcard .qtext{font-size:14.5px; font-weight:700; margin-bottom:8px;}
+  .qcard .hint{font-size:12.5px; color:var(--ink-soft); font-style:italic;}
+
+  /* Mock exam picker */
+  .picker-box{
+    text-align:center;
+    background:linear-gradient(135deg, var(--tosca-light), var(--sky-light));
+    border-radius:20px;
+    padding:26px 18px;
+  }
+  .picker-question{
+    font-size:18px;
+    font-weight:800;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 6px;
+    line-height:1.4;
+    color:var(--ink);
+  }
+  .picker-btn{
+    border:none;
+    background:var(--ink);
+    color:#fff;
+    padding:13px 26px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:14.5px;
+    cursor:pointer;
+    margin-top:16px;
+  }
+
+  /* Wheel review game */
+  .wheel-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+  }
+  #wheel{
+    width:230px;height:230px;
+    border-radius:50%;
+    transition:transform 3.2s cubic-bezier(.17,.67,.21,1.01);
+    box-shadow:0 0 0 6px var(--white), 0 8px 20px rgba(0,0,0,0.15);
+  }
+  .wheel-pointer{
+    width:0;height:0;
+    border-left:12px solid transparent;
+    border-right:12px solid transparent;
+    border-bottom:20px solid var(--ink);
+    margin-bottom:-6px;
+    z-index:2;
+  }
+  .spin-btn{
+    border:none;
+    background:var(--pink);
+    color:#fff;
+    padding:13px 30px;
+    border-radius:100px;
+    font-weight:800;
+    font-size:14.5px;
+    cursor:pointer;
+  }
+  .wheel-result{
+    min-height:26px;
+    font-weight:800;
+    font-size:15px;
+    color:var(--tosca-dark);
+    text-align:center;
+  }
+
+  /* Checklists */
+  .checklist-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .checklist-item:last-child{border-bottom:none;}
+  .checklist-item input{
+    width:19px;height:19px;
+    margin-top:2px;
+    accent-color:var(--tosca);
+    flex-shrink:0;
+  }
+  .stars{
+    display:flex;
+    gap:6px;
+    margin:8px 0 4px 0;
+  }
+  .star{
+    font-size:22px;
+    cursor:pointer;
+    color:#DCDCE4;
+    user-select:none;
+  }
+  .star.filled{color:var(--gold);}
+
+  /* Certificate */
+  .cert{
+    border:3px solid var(--gold);
+    border-radius:20px;
+    padding:26px 20px;
+    text-align:center;
+    background:
+      radial-gradient(circle at top left, var(--pink-light), transparent 60%),
+      radial-gradient(circle at bottom right, var(--tosca-light), transparent 60%),
+      var(--white);
+  }
+  .cert .ribbon{font-size:40px; margin-bottom:6px;}
+  .cert h3{font-size:19px; margin:6px 0 2px 0;}
+  .cert p{font-size:13px; color:var(--ink-soft); margin:2px 0;}
+  .cert .name-line{
+    border-bottom:2px dotted var(--ink-soft);
+    margin:18px 24px;
+    padding-bottom:4px;
+    font-family:'Fredoka', sans-serif;
+    font-size:17px;
+    color:var(--tosca-dark);
+    min-height:24px;
+  }
+
+  details.tnote{
+    margin-top:16px;
+    background:#F4F0FB;
+    border-radius:14px;
+    padding:10px 14px;
+    font-size:12.5px;
+    color:#5C5570;
+  }
+  details.tnote summary{
+    font-weight:800;
+    cursor:pointer;
+    color:#7A5FC7;
+  }
+  details.tnote p{margin:8px 0 0 0; line-height:1.6;}
+
+  nav.bottombar{
+    position:sticky;
+    bottom:0;
+    background:var(--white);
+    border-top:1px solid var(--line);
+    padding:14px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    width:100%;
+    max-width:720px;
+    margin:0 auto;
+  }
+  .nav-btn{
+    border:none;
+    padding:11px 18px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .nav-btn.prev{background:var(--cream); color:var(--ink-soft);}
+  .nav-btn.next{background:var(--ink); color:#fff;}
+  .nav-btn:disabled{opacity:0.35; cursor:default;}
+  .dots{display:flex; gap:5px;}
+  .dots span{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--line);
+  }
+  .dots span.on{background:var(--pink); width:16px; border-radius:4px;}
+
+  @media (max-width:400px){
+    main{padding:18px 15px 100px 15px;}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span>LittleLume English</div>
+    <div class="page-counter" id="pageCounter">1 / 15</div>
+  </header>
+
+  <main id="main">
+
+    <!-- 1. COVER -->
+    <section class="screen active" data-page="1">
+      <div class="cover">
+        <div class="badge">🎤</div>
+        <h1>Oral Exam Preparation</h1>
+        <p class="tag">Grade 4 · Speaking &amp; Listening Practice</p>
+        <div class="cover-chips">
+          <span class="chip gold">🌙 Eid al-Fitr</span>
+          <span class="chip gold">🐐 Eid al-Adha</span>
+          <span class="chip sky">🚲 Cycling Together</span>
+        </div>
+        <div class="meta-card">
+          <b>What's inside:</b> vocabulary with audio, key sentences, speaking dialogues, a reading passage, and a full mock oral exam — everything you need to feel confident before the test.<br><br>
+          <b>Topics:</b> Eid al-Fitr, Eid al-Adha, Cycling Together, Where Do You Go for Cycling, Planning a Cycling Trip, Benefits of Cycling.
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. HOW TO USE -->
+    <section class="screen" data-page="2">
+      <div class="eyebrow">Before You Start</div>
+      <h2 class="title">How to Use This Book</h2>
+      <p class="sub">A quick guide for students and teachers before the speaking test.</p>
+
+      <div class="card">
+        <h3>🔊 For Students</h3>
+        <div class="sentence-line"><div class="txt">Tap the <b>speaker icon</b> to hear how each word or sentence sounds.</div></div>
+        <div class="sentence-line"><div class="txt">Repeat out loud <b>three times</b> after listening.</div></div>
+        <div class="sentence-line"><div class="txt">Practise the dialogues with a partner or your teacher.</div></div>
+        <div class="sentence-line"><div class="txt">Try the Mock Oral Exam page as many times as you like.</div></div>
+      </div>
+
+      <div class="card soft">
+        <h3>⏱ Suggested Time</h3>
+        <div class="sentence-line"><div class="txt">Eid al-Fitr &amp; Eid al-Adha — <b>20 minutes</b></div></div>
+        <div class="sentence-line"><div class="txt">Cycling topics (4 pages) — <b>30 minutes</b></div></div>
+        <div class="sentence-line"><div class="txt">Mock Exam &amp; Review Game — <b>15 minutes</b></div></div>
+      </div>
+
+      <details class="tnote">
+        <summary>Teacher Note</summary>
+        <p>This book is built for oral exam preparation, not new grammar teaching — students should already know basic sentence patterns. Focus on pronunciation, confidence, and complete-sentence answers.</p>
+      </details>
+    </section>
+
+    <!-- 3. EID AL-FITR VOCAB -->
+    <section class="screen" data-page="3">
+      <div class="eyebrow gold">Topic 1 · Festival</div>
+      <span class="time-pill">🕐 10 min</span>
+      <h2 class="title">Eid al-Fitr Vocabulary</h2>
+      <p class="sub">Listen, repeat, and learn these key words.</p>
+
+      <div class="card">
+        <h3>📖 Key Words</h3>
+        <div class="vocab-grid" id="vocabFitr"></div>
+      </div>
+
+      <div class="card soft">
+        <h3>💬 Key Sentences</h3>
+        <div id="sentFitr"></div>
+      </div>
+
+      <details class="tnote">
+        <summary>Teacher Note</summary>
+        <p>Encourage full-sentence answers: "We celebrate Eid al-Fitr after Ramadan," not just "Eid al-Fitr."</p>
+      </details>
+    </section>
+
+    <!-- 4. EID AL-FITR SPEAKING -->
+    <section class="screen" data-page="4">
+      <div class="eyebrow gold">Topic 1 · Festival</div>
+      <span class="time-pill">🕐 10 min</span>
+      <h2 class="title">Eid al-Fitr — Speaking Practice</h2>
+      <p class="sub">Practise this dialogue, then swap roles.</p>
+
+      <div class="card">
+        <h3>🗣 Dialogue</h3>
+        <div class="dialogue" id="dialogFitr"></div>
+      </div>
+
+      <div class="card soft">
+        <h3>🔄 Role Swap</h3>
+        <div class="sentence-line"><div class="txt">Now <b>you</b> ask the questions, and your teacher answers. Try to ask each question in a different order!</div></div>
+      </div>
+
+      <div class="watchbox">
+        <b>Watch Out!</b> Say "Eid <u>al</u>-Fitr," not "Eid Fitr." Practise the sound slowly: /eed al fih-tr/.
+      </div>
+    </section>
+
+    <!-- 5. EID AL-ADHA VOCAB -->
+    <section class="screen" data-page="5">
+      <div class="eyebrow gold">Topic 2 · Festival</div>
+      <span class="time-pill">🕐 10 min</span>
+      <h2 class="title">Eid al-Adha Vocabulary</h2>
+      <p class="sub">Listen, repeat, and learn these key words.</p>
+
+      <div class="card">
+        <h3>📖 Key Words</h3>
+        <div class="vocab-grid" id="vocabAdha"></div>
+      </div>
+
+      <div class="card soft">
+        <h3>💬 Key Sentences</h3>
+        <div id="sentAdha"></div>
+      </div>
+    </section>
+
+    <!-- 6. EID AL-ADHA SPEAKING -->
+    <section class="screen" data-page="6">
+      <div class="eyebrow gold">Topic 2 · Festival</div>
+      <span class="time-pill">🕐 10 min</span>
+      <h2 class="title">Eid al-Adha — Speaking Practice</h2>
+      <p class="sub">Practise this dialogue, then swap roles.</p>
+
+      <div class="card">
+        <h3>🗣 Dialogue</h3>
+        <div class="dialogue" id="dialogAdha"></div>
+      </div>
+
+      <div class="watchbox">
+        <b>Watch Out!</b> "Sacrifice" is pronounced /SAK-ri-fice/ — three syllables, stress on the first one.
+      </div>
+    </section>
+
+    <!-- 7. CYCLING TOGETHER -->
+    <section class="screen" data-page="7">
+      <div class="eyebrow sky">Topic 3 · Cycling</div>
+      <span class="time-pill">🕐 8 min</span>
+      <h2 class="title">Cycling Together</h2>
+      <p class="sub">Vocabulary and sentences about riding with friends.</p>
+
+      <div class="card">
+        <h3>📖 Key Words</h3>
+        <div class="vocab-grid" id="vocabTogether"></div>
+      </div>
+
+      <div class="card soft">
+        <h3>💬 Key Sentences</h3>
+        <div id="sentTogether"></div>
+      </div>
+
+      <div class="qcard">
+        <div class="qnum">Speak Up</div>
+        <div class="qtext">Who do you go cycling with?</div>
+        <div class="hint">Answer: "I go cycling with ___."</div>
+      </div>
+      <div class="qcard">
+        <div class="qnum">Speak Up</div>
+        <div class="qtext">Why is cycling together fun?</div>
+        <div class="hint">Answer: "Cycling together is fun because ___."</div>
+      </div>
+    </section>
+
+    <!-- 8. WHERE DO YOU GO FOR CYCLING -->
+    <section class="screen" data-page="8">
+      <div class="eyebrow sky">Topic 4 · Cycling</div>
+      <span class="time-pill">🕐 8 min</span>
+      <h2 class="title">Where Do You Go for Cycling?</h2>
+      <p class="sub">Talk about the places where you ride your bike.</p>
+
+      <div class="card">
+        <h3>📖 Key Words</h3>
+        <div class="vocab-grid" id="vocabPlace"></div>
+      </div>
+
+      <div class="card soft">
+        <h3>🗣 Mini Dialogue</h3>
+        <div class="dialogue" id="dialogPlace"></div>
+      </div>
+
+      <div class="watchbox">
+        <b>Reference Table</b><br>
+        "I go cycling <b>in</b> the park." · "I go cycling <b>along</b> the riverside." · "I go cycling <b>around</b> my neighborhood."
+      </div>
+    </section>
+
+    <!-- 9. PLANNING A CYCLING TRIP -->
+    <section class="screen" data-page="9">
+      <div class="eyebrow sky">Topic 5 · Cycling</div>
+      <span class="time-pill">🕐 8 min</span>
+      <h2 class="title">Planning a Cycling Trip</h2>
+      <p class="sub">Learn how to talk about preparing for a bike trip.</p>
+
+      <div class="card">
+        <h3>📖 Key Words</h3>
+        <div class="vocab-grid" id="vocabPlan"></div>
+      </div>
+
+      <div class="card soft">
+        <h3>✅ Planning Steps</h3>
+        <div id="sentPlan"></div>
+      </div>
+
+      <div class="card">
+        <h3>🗣 Mini Dialogue</h3>
+        <div class="dialogue" id="dialogPlan"></div>
+      </div>
+    </section>
+
+    <!-- 10. BENEFITS OF CYCLING -->
+    <section class="screen" data-page="10">
+      <div class="eyebrow sky">Topic 6 · Cycling</div>
+      <span class="time-pill">🕐 8 min</span>
+      <h2 class="title">Benefits of Cycling</h2>
+      <p class="sub">Read the passage, then answer the questions.</p>
+
+      <div class="reading-box" id="readingBox"></div>
+
+      <div class="card" style="margin-top:14px;">
+        <h3>❓ Comprehension Questions</h3>
+        <div id="compQ"></div>
+      </div>
+    </section>
+
+    <!-- 11. MOCK ORAL EXAM -->
+    <section class="screen" data-page="11">
+      <div class="eyebrow">Mock Exam</div>
+      <h2 class="title">Mock Oral Exam</h2>
+      <p class="sub">Tap the button to get a random question. Answer out loud in a full sentence!</p>
+
+      <div class="picker-box">
+        <div class="picker-question" id="pickerQ">Tap the button to start!</div>
+        <button class="picker-btn" onclick="pickQuestion()">🎲 Get a Question</button>
+      </div>
+
+      <details class="tnote">
+        <summary>Teacher Note</summary>
+        <p>Questions are pulled randomly from all six topics. Use this page for repeated practice — no two rounds are the same order.</p>
+      </details>
+    </section>
+
+    <!-- 12. REVIEW GAME -->
+    <section class="screen" data-page="12">
+      <div class="eyebrow">Review Game</div>
+      <h2 class="title">Spin &amp; Say</h2>
+      <p class="sub">Spin the wheel and answer the topic it lands on.</p>
+
+      <div class="wheel-wrap">
+        <div class="wheel-pointer"></div>
+        <svg id="wheel" viewBox="0 0 200 200"></svg>
+        <button class="spin-btn" onclick="spinWheel()">🎡 Spin the Wheel</button>
+        <div class="wheel-result" id="wheelResult"></div>
+      </div>
+    </section>
+
+    <!-- 13. CHECK MY LEARNING -->
+    <section class="screen" data-page="13">
+      <div class="eyebrow">Self-Assessment</div>
+      <h2 class="title">Check My Learning</h2>
+      <p class="sub">Tick the box if you feel confident. Be honest!</p>
+
+      <div class="card">
+        <div class="checklist-item"><input type="checkbox"><span>I can talk about Eid al-Fitr in English.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can talk about Eid al-Adha in English.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can say who I go cycling with.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can say where I go for cycling.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can explain how to plan a cycling trip.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can explain the benefits of cycling.</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>I can answer questions with full sentences.</span></div>
+      </div>
+
+      <div class="card soft">
+        <h3>How confident do I feel?</h3>
+        <div class="stars" id="studentStars">
+          <span class="star" data-v="1">★</span>
+          <span class="star" data-v="2">★</span>
+          <span class="star" data-v="3">★</span>
+          <span class="star" data-v="4">★</span>
+          <span class="star" data-v="5">★</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. TEACHER OBSERVATION -->
+    <section class="screen" data-page="14">
+      <div class="eyebrow">For the Teacher</div>
+      <h2 class="title">Teacher Observation Checklist</h2>
+      <p class="sub">Use this while the student practises or during the real exam.</p>
+
+      <div class="card">
+        <div class="checklist-item"><input type="checkbox"><span>Uses correct vocabulary for each topic</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Speaks in complete sentences</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Pronunciation is clear and understandable</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Answers confidently without long pauses</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Can explain reasons using "because"</span></div>
+        <div class="checklist-item"><input type="checkbox"><span>Maintains eye contact / good body language</span></div>
+      </div>
+
+      <div class="card soft">
+        <h3>📝 Notes</h3>
+        <p style="font-size:13px; color:var(--ink-soft); line-height:1.6;">Write additional comments on a separate sheet or verbally during the practice session.</p>
+      </div>
+    </section>
+
+    <!-- 15. CERTIFICATE -->
+    <section class="screen" data-page="15">
+      <div class="eyebrow">Well Done!</div>
+      <h2 class="title">Certificate of Completion</h2>
+      <p class="sub">Print or save this page as a reward for finishing.</p>
+
+      <div class="cert">
+        <div class="ribbon">🏅</div>
+        <h3>Speaking Star Certificate</h3>
+        <p>This certifies that</p>
+        <div class="name-line"></div>
+        <p>has completed the <b>Oral Exam Preparation</b> lesson book on Festivals &amp; Cycling.</p>
+        <p style="margin-top:14px;">LittleLume English · Learn Play Shine</p>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="bottombar">
+    <button class="nav-btn prev" id="prevBtn" onclick="goPrev()">← Back</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn next" id="nextBtn" onclick="goNext()">Next →</button>
+  </nav>
+
+</div>
+
+<script>
+/* ---------------- DATA ---------------- */
+const vocabFitr = [
+  ["Eid al-Fitr","Hari Raya Idul Fitri"],
+  ["mosque","masjid"],
+  ["pray","berdoa / sholat"],
+  ["new clothes","baju baru"],
+  ["forgiveness","maaf"],
+  ["relatives","saudara"],
+  ["celebrate","merayakan"],
+  ["Eid Mubarak","Selamat Hari Raya"]
+];
+const sentFitr = [
+  "We <b>celebrate</b> Eid al-Fitr after Ramadan.",
+  "I wear <b>new clothes</b> on Eid al-Fitr.",
+  "We ask for <b>forgiveness</b> from our family.",
+  "We visit our <b>relatives</b> in the morning."
+];
+const dialogFitr = [
+  ["teacher","What do you celebrate after Ramadan?"],
+  ["student","We celebrate Eid al-Fitr after Ramadan."],
+  ["teacher","What do you wear on that day?"],
+  ["student","I wear new clothes on Eid al-Fitr."],
+  ["teacher","What do you say to your family?"],
+  ["student","We ask for forgiveness and say 'Eid Mubarak'."]
+];
+
+const vocabAdha = [
+  ["Eid al-Adha","Hari Raya Idul Adha"],
+  ["sacrifice","kurban / mengorbankan"],
+  ["goat","kambing"],
+  ["cow","sapi"],
+  ["share","membagikan"],
+  ["meat","daging"],
+  ["poor people","orang yang membutuhkan"],
+  ["pray","sholat"]
+];
+const sentAdha = [
+  "We celebrate Eid al-Adha two months after Eid al-Fitr.",
+  "People <b>sacrifice</b> a goat or a cow.",
+  "We <b>share</b> the meat with poor people.",
+  "We <b>pray</b> at the mosque in the morning."
+];
+const dialogAdha = [
+  ["teacher","What happens on Eid al-Adha?"],
+  ["student","People sacrifice a goat or a cow."],
+  ["teacher","What do people do with the meat?"],
+  ["student","We share the meat with poor people."],
+  ["teacher","Where do you pray on that morning?"],
+  ["student","We pray at the mosque in the morning."]
+];
+
+const vocabTogether = [
+  ["bicycle / bike","sepeda"],
+  ["ride","mengendarai / bersepeda"],
+  ["helmet","helm"],
+  ["pedal","mengayuh"],
+  ["wheel","roda"],
+  ["together","bersama"],
+  ["exercise","olahraga"]
+];
+const sentTogether = [
+  "I <b>ride</b> my bicycle with my friends.",
+  "We wear a <b>helmet</b> for safety.",
+  "Cycling <b>together</b> is fun and healthy.",
+  "We take turns to <b>pedal</b> up the hill."
+];
+
+const vocabPlace = [
+  ["park","taman"],
+  ["riverside","tepi sungai"],
+  ["neighborhood","lingkungan rumah"],
+  ["mountain road","jalan pegunungan"],
+  ["bike path","jalur sepeda"]
+];
+const dialogPlace = [
+  ["teacher","Where do you go for cycling?"],
+  ["student","I go cycling in the park near my house."],
+  ["teacher","Do you ever cycle somewhere else?"],
+  ["student","Yes, sometimes we cycle along the riverside."]
+];
+
+const vocabPlan = [
+  ["plan","rencana"],
+  ["route","rute"],
+  ["map","peta"],
+  ["schedule","jadwal"],
+  ["checklist","daftar periksa"],
+  ["meeting point","titik kumpul"],
+  ["water bottle","botol air"],
+  ["snacks","camilan"]
+];
+const sentPlan = [
+  "First, we <b>choose a route</b> together.",
+  "We <b>decide the meeting point</b> and time.",
+  "We check the <b>checklist</b>: helmet, water, and snacks.",
+  "We <b>bring water and snacks</b> for the trip."
+];
+const dialogPlan = [
+  ["teacher","How do you plan a cycling trip?"],
+  ["student","First, we choose a route and a meeting point."],
+  ["teacher","What do you need to bring?"],
+  ["student","We bring a water bottle, snacks, and a helmet."]
+];
+
+const readingText = `<b>Benefits of Cycling</b><br><br>
+Cycling is a fun activity that is also good for our health. When we cycle, our heart becomes stronger <b>because</b> it works harder to pump blood. Our legs also become stronger <b>because</b> pedaling uses many leg muscles.
+<br><br>
+Besides that, cycling outdoors lets us breathe fresh air, which makes us feel refreshed. Cycling is also good for the environment <b>because</b> a bicycle does not produce smoke like a car or a motorbike.
+<br><br>
+That is why many families choose cycling together as a healthy weekend activity.`;
+
+const compQ = [
+  ["Why does our heart become stronger when we cycle?","because it works harder to pump blood"],
+  ["Why do our legs become stronger?","because pedaling uses many leg muscles"],
+  ["Why is cycling good for the environment?","because a bicycle does not produce smoke"],
+  ["When do many families choose to cycle together?","on the weekend"]
+];
+
+const mockQuestions = [
+  "What do you celebrate after Ramadan?",
+  "What do you wear on Eid al-Fitr?",
+  "What do people sacrifice on Eid al-Adha?",
+  "What do people do with the meat on Eid al-Adha?",
+  "Who do you go cycling with?",
+  "Why is cycling together fun?",
+  "Where do you go for cycling?",
+  "How do you plan a cycling trip?",
+  "What do you need to bring on a cycling trip?",
+  "Why does cycling make your heart stronger?",
+  "Why is cycling good for the environment?",
+  "Why do you wear a helmet when cycling?"
+];
+
+const wheelTopics = [
+  {label:"Eid al-Fitr", color:"#EFA23A"},
+  {label:"Eid al-Adha", color:"#F2C169"},
+  {label:"Cycling Together", color:"#4A9FE0"},
+  {label:"Where to Cycle", color:"#7FC1E8"},
+  {label:"Planning a Trip", color:"#3DB6A0"},
+  {label:"Benefits of Cycling", color:"#FF8FAE"}
+];
+
+/* ---------------- RENDER HELPERS ---------------- */
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g,''));
+  u.lang = 'en-US';
+  u.rate = 0.92;
+  window.speechSynthesis.speak(u);
+}
+
+function renderVocab(containerId, list, btnClass){
+  const c = document.getElementById(containerId);
+  c.innerHTML = list.map(([en,id]) => `
+    <div class="vocab-item">
+      <div>
+        <div class="word-en">${en}</div>
+        <div class="word-id">${id}</div>
+      </div>
+      <button class="speak-btn ${btnClass}" onclick="speak('${en.replace(/'/g,"\\'")}')">🔊</button>
+    </div>
+  `).join('');
+}
+
+function renderSentences(containerId, list){
+  const c = document.getElementById(containerId);
+  c.innerHTML = list.map(s => `
+    <div class="sentence-line">
+      <button class="speak-btn" onclick="speak('${s.replace(/<[^>]*>/g,'').replace(/'/g,"\\'")}')">🔊</button>
+      <div class="txt">${s}</div>
+    </div>
+  `).join('');
+}
+
+function renderDialogue(containerId, lines){
+  const c = document.getElementById(containerId);
+  c.innerHTML = lines.map(([who,txt]) => `
+    <div class="bubble ${who}">
+      <div>
+        <span class="who">${who === 'teacher' ? 'Teacher' : 'Student'}</span>
+        ${txt}
+      </div>
+      <button class="speak-btn" onclick="speak('${txt.replace(/'/g,"\\'")}')">🔊</button>
+    </div>
+  `).join('');
+}
+
+function renderComp(containerId, list){
+  const c = document.getElementById(containerId);
+  c.innerHTML = list.map((q,i) => `
+    <div class="qcard">
+      <div class="qnum">Question ${i+1}</div>
+      <div class="qtext">${q[0]}</div>
+      <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Show Sample Answer</button>
+      <div class="answer-box">It is ${q[1]}.</div>
+    </div>
+  `).join('');
+}
+
+/* mount all content */
+renderVocab('vocabFitr', vocabFitr, 'gold');
+renderSentences('sentFitr', sentFitr);
+renderDialogue('dialogFitr', dialogFitr);
+
+renderVocab('vocabAdha', vocabAdha, 'gold');
+renderSentences('sentAdha', sentAdha);
+renderDialogue('dialogAdha', dialogAdha);
+
+renderVocab('vocabTogether', vocabTogether, 'sky');
+renderSentences('sentTogether', sentTogether);
+
+renderVocab('vocabPlace', vocabPlace, 'sky');
+renderDialogue('dialogPlace', dialogPlace);
+
+renderVocab('vocabPlan', vocabPlan, 'sky');
+renderSentences('sentPlan', sentPlan);
+renderDialogue('dialogPlan', dialogPlan);
+
+document.getElementById('readingBox').innerHTML = readingText +
+  `<br><br><button class="reveal-btn" onclick="speak(document.getElementById('readingBox').innerText)">🔊 Listen to the Passage</button>`;
+renderComp('compQ', compQ);
+
+/* mock exam picker */
+function pickQuestion(){
+  const q = mockQuestions[Math.floor(Math.random()*mockQuestions.length)];
+  document.getElementById('pickerQ').textContent = q;
+  speak(q);
+}
+
+/* wheel */
+function buildWheel(){
+  const svg = document.getElementById('wheel');
+  const n = wheelTopics.length;
+  const cx=100, cy=100, r=98;
+  let html = '';
+  for(let i=0;i<n;i++){
+    const a0 = (i/n)*2*Math.PI - Math.PI/2;
+    const a1 = ((i+1)/n)*2*Math.PI - Math.PI/2;
+    const x0 = cx + r*Math.cos(a0), y0 = cy + r*Math.sin(a0);
+    const x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
+    html += `<path d="M${cx},${cy} L${x0},${y0} A${r},${r} 0 0,1 ${x1},${y1} Z" fill="${wheelTopics[i].color}"/>`;
+    const mid = (a0+a1)/2;
+    const tx = cx + (r*0.62)*Math.cos(mid), ty = cy + (r*0.62)*Math.sin(mid);
+    const deg = mid*180/Math.PI + 90;
+    html += `<text x="${tx}" y="${ty}" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" transform="rotate(${deg} ${tx} ${ty})">${wheelTopics[i].label}</text>`;
+  }
+  svg.innerHTML = html;
+}
+buildWheel();
+
+let wheelRotation = 0;
+function spinWheel(){
+  const n = wheelTopics.length;
+  const extraSpins = 5 + Math.floor(Math.random()*3);
+  const randomIndex = Math.floor(Math.random()*n);
+  const sliceAngle = 360/n;
+  const targetAngle = 360*extraSpins + (360 - (randomIndex*sliceAngle) - sliceAngle/2);
+  wheelRotation = targetAngle;
+  const wheel = document.getElementById('wheel');
+  wheel.style.transform = `rotate(${wheelRotation}deg)`;
+  document.getElementById('wheelResult').textContent = '';
+  setTimeout(()=>{
+    document.getElementById('wheelResult').textContent = "🎯 Talk about: " + wheelTopics[randomIndex].label + "!";
+    speak("Talk about " + wheelTopics[randomIndex].label);
+  }, 3300);
+}
+
+/* stars */
+document.querySelectorAll('#studentStars .star').forEach(star=>{
+  star.addEventListener('click', ()=>{
+    const v = parseInt(star.dataset.v);
+    document.querySelectorAll('#studentStars .star').forEach(s=>{
+      s.classList.toggle('filled', parseInt(s.dataset.v) <= v);
+    });
+  });
+});
+
+/* ---------------- NAVIGATION ---------------- */
+const screens = Array.from(document.querySelectorAll('.screen'));
+let current = 0;
+const dotsWrap = document.getElementById('dots');
+screens.forEach((_,i)=>{
+  const d = document.createElement('span');
+  dotsWrap.appendChild(d);
+});
+
+function render(){
+  screens.forEach((s,i)=> s.classList.toggle('active', i===current));
+  document.getElementById('pageCounter').textContent = `${current+1} / ${screens.length}`;
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').textContent = current === screens.length-1 ? 'Finish 🎉' : 'Next →';
+  Array.from(dotsWrap.children).forEach((d,i)=> d.classList.toggle('on', i===current));
+  document.getElementById('main').scrollTop = 0;
+  window.scrollTo(0,0);
+}
+function goNext(){
+  if(current < screens.length-1){ current++; render(); }
+}
+function goPrev(){
+  if(current > 0){ current--; render(); }
+}
+render();
+</script>
+</body>
+</html>
