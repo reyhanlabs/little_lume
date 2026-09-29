@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>My Feelings — Practice &amp; Play | Littlelume English</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cr:#FFF8ED;--cr2:#FFF1DD;--ink:#2B2250;--soft:#5B5380;--sun:#FFD166;--co:#FF6B6B;--sky:#5DA9E9;--gr:#B185DB;--lf:#8AC926;--sh:rgba(43,34,80,.16)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--cr);color:var(--ink);font:600 16px/1.5 Quicksand,sans-serif;overflow:hidden}
+h1,h2,h3,.bf{font-family:'Baloo 2',sans-serif;margin:0}
+#book{display:flex;height:100dvh;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+#book::-webkit-scrollbar{display:none}
+.pg{flex:0 0 100vw;scroll-snap-align:start;scroll-snap-stop:always;height:100dvh;overflow-y:auto;padding:70px 18px 90px}
+.in{max-width:640px;margin:0 auto}
+.pg h2{font-size:1.7rem;text-align:center}.sub{text-align:center;color:var(--soft);margin:2px 0 14px}
+.top{position:fixed;top:0;left:0;right:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:rgba(255,248,237,.95);z-index:5;font:700 1rem 'Baloo 2'}
+.lv{display:flex;gap:4px}.lv button{border:2px solid var(--ink);background:#fff;border-radius:99px;padding:3px 9px;font:700 .85rem Quicksand;cursor:pointer;color:var(--ink)}.lv button.on{background:var(--ink);color:#fff}
+.bar{position:fixed;top:54px;left:0;height:4px;background:var(--co);z-index:6;transition:width .3s}
+.nav{position:fixed;bottom:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:center;gap:16px;background:linear-gradient(transparent,var(--cr) 40%);z-index:5}
+.nav button{width:54px;height:54px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:1.5rem;cursor:pointer}.nav span{font-weight:700;min-width:60px;text-align:center}
+.card{background:#fff;border-radius:20px;box-shadow:0 5px 0 var(--sh);padding:16px;margin-bottom:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hero{background:linear-gradient(160deg,#D9F2E3,#FFE8B8 50%,#FFD3E4);margin:-70px -18px 0;min-height:100dvh;padding:90px 24px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.hero h1{font-size:2.6rem;line-height:1.1}.hero b{color:var(--co)}
+.out{font:700 1.35rem 'Baloo 2';text-align:center;min-height:60px;margin:8px 0}.out b{color:var(--co)}
+.btn{border:0;background:var(--ink);color:#fff;padding:12px 24px;border-radius:99px;font:700 1.05rem 'Baloo 2';cursor:pointer;min-height:48px}
+.chs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ch{border:3px solid transparent;background:var(--cr2);border-radius:14px;padding:8px 10px;cursor:pointer;font:700 .9rem Quicksand;display:flex;align-items:center;gap:6px;min-height:48px}.ch svg{width:28px;height:28px}.ch.on{border-color:var(--ink);background:#fff}
+.opt{border:0;border-radius:18px;background:#fff;box-shadow:0 5px 0 var(--sh);padding:10px;cursor:pointer;font:700 1rem 'Baloo 2';color:var(--ink);text-align:center}.opt svg{width:78px;height:78px;display:block;margin:auto;pointer-events:none}.opt.ok{background:#DFF5B8}.opt.no{background:#FFD9D9}
+.wheel{width:260px;height:260px;border-radius:50%;margin:0 auto;border:6px solid #fff;box-shadow:0 8px 0 var(--sh);transition:transform 4s cubic-bezier(.17,.67,.16,1);position:relative}
+.wl{position:absolute;width:38px;height:38px;margin:-19px 0 0 -19px}.wp{width:0;height:0;border:13px solid transparent;border-top:22px solid var(--ink);border-bottom:0;margin:0 auto -8px;position:relative;z-index:2}
+.rp{perspective:900px;height:150px;cursor:pointer}.rp>div{position:relative;height:100%;transition:transform .6s;transform-style:preserve-3d}.rp.f>div{transform:rotateY(180deg)}
+.rp p{position:absolute;inset:0;margin:0;border-radius:16px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;box-shadow:0 5px 0 var(--sh);background:#fff}.rp p+p{background:#FF9F5A;color:#fff;transform:rotateY(180deg);font-family:'Baloo 2'}
+.pal{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}.pal i{width:38px;height:38px;border-radius:50%;border:4px solid #fff;box-shadow:0 2px 0 var(--sh);cursor:pointer}.pal i.on{outline:3px solid var(--ink)}
+.cf{background:#fff;border-radius:16px;padding:6px;text-align:center;font-size:.8rem;box-shadow:0 4px 0 var(--sh)}.cf svg{width:100%;cursor:pointer}
+.br{width:170px;height:170px;border-radius:50%;background:radial-gradient(#CFEFFF,#5DA9E9);margin:14px auto;display:flex;align-items:center;justify-content:center;color:#fff;font:800 1.3rem 'Baloo 2';animation:br 8s ease-in-out infinite}
+@keyframes br{0%,100%{transform:scale(.6)}50%{transform:scale(1.15)}}
+@media(prefers-reduced-motion:reduce){.br{animation:none}.wheel{transition:none}#book{scroll-behavior:auto}}
+ul{padding-left:20px;margin:6px 0}
+</style></head><body>
+<div class="top"><div>Littlelume English</div><div class="lv" id="lv"><button data-l="1">⭐ Look</button><button data-l="2">⭐⭐ Say</button><button data-l="3">⭐⭐⭐ Think</button></div></div>
+<div class="bar" id="bar"></div><div id="book"></div>
+<div class="nav"><button onclick="go(-1)" aria-label="Previous">‹</button><span id="cnt"></span><button onclick="go(1)" aria-label="Next">›</button></div>
+<script>
+const $=s=>document.querySelector(s),sh=a=>[...a].sort(()=>Math.random()-.5),lw=s=>s.toLowerCase();
+const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u)}catch(e){}};
+let L=2;const NC=()=>[2,3,4][L-1],LAB=()=>L<3;
+const F=[["Happy","#FFD166","r","sm","","when I play with my friends","Smile big and clap your hands!"],
+["Sad","#5DA9E9","r","fr","t","when I lose my toy","Make a sad face. Rub your eyes."],
+["Angry","#FF6B6B","a","gr","","when someone breaks my crayon","Frown. Stomp your feet, then breathe out."],
+["Scared","#B185DB","w","o","s","when it is dark","Open your eyes wide. Hug yourself."],
+["Surprised","#FF9F5A","w","O","","when I see a gift","Open your mouth. Throw your hands up!"],
+["Excited","#FF6FA3","s","gn","","on my birthday","Jump up and down and cheer!"],
+["Tired","#8D99AE","z","sl","","at night","Yawn. Stretch. Rest your head."],
+["Calm","#8AC926","c","ge","","when I read a book","Close your eyes. Breathe slowly."],
+["Proud","#F4A261","c","sm","b","when I do it myself","Stand tall. Put your hands on your hips."],
+["Shy","#F7A8B8","d","sl","b","with new friends","Look down. Give a tiny wave."],
+["Worried","#7FC8C1","v","fr","","before a test","Bite your lip. Rub your hands."],
+["Silly","#C3E86B","y","tg","","when I dance","Wiggle and stick out your tongue!"]];
+const I='#2B2250';
+const dot=(x,y,r=5)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${I}"/>`,ln=(a,b,c,d,w=5)=>`<path d="M${a},${b}L${c},${d}" stroke="${I}" stroke-width="${w}" stroke-linecap="round"/>`,cu=(d,w=5,f='none')=>`<path d="${d}" stroke="${I}" stroke-width="${w}" fill="${f}" stroke-linecap="round"/>`;
+function eyes(E){let e='';if('rdv'.includes(E))e=dot(36,E=='d'?50:46)+dot(64,E=='d'?50:46);
+if(E=='v')e+=ln(28,36,44,40,4)+ln(72,36,56,40,4);if(E=='a')e=ln(30,38,44,44)+ln(70,38,56,44)+dot(37,50,4)+dot(63,50,4);
+if(E=='w')e='<circle cx="36" cy="46" r="8" fill="#fff"/><circle cx="64" cy="46" r="8" fill="#fff"/>'+dot(36,46,3.5)+dot(64,46,3.5);
+if(E=='s')e=dot(36,46)+dot(64,46)+'<circle cx="34" cy="44" r="1.6" fill="#fff"/><circle cx="62" cy="44" r="1.6" fill="#fff"/>';
+if(E=='z')e=ln(30,47,44,47,4)+ln(56,47,70,47,4);if(E=='c')e=cu('M30,47Q37,41 44,47',4)+cu('M56,47Q63,41 70,47',4);
+if(E=='y')e=dot(36,46)+'<circle cx="64" cy="46" r="9" fill="#fff"/>'+dot(66,46,4);return e}
+function mouth(M){return({sm:cu('M35,60Q50,76 65,60'),fr:cu('M35,70Q50,56 65,70'),gr:cu('M34,64L66,64',6),o:dot(50,66,6),O:dot(50,66,9),gn:cu('M32,58Q50,82 68,58Q50,66 32,58Z',3,I),sl:cu('M42,65Q50,69 58,65',4),ge:cu('M38,62Q50,70 62,62',4),tg:cu('M34,60Q50,76 66,60',4)+'<path d="M46,68Q50,82 56,68Z" fill="#FF6B6B"/>'})[M]||''}
+const wrap=(c,b,o)=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="${c}"${o?` stroke="${I}" stroke-width="3"`:''}/>${b}</svg>`;
+function face(i,fill,o){const f=F[i];let x=f[4]=='t'?'<path d="M35,52Q31,60 35,64Q39,60 35,52Z" fill="#5DA9E9"/>':f[4]=='s'?'<path d="M72,30Q68,40 72,44Q76,40 72,30Z" fill="#5DA9E9"/>':f[4]=='b'?'<circle cx="27" cy="58" r="6" fill="#FF6B6B" opacity=".35"/><circle cx="73" cy="58" r="6" fill="#FF6B6B" opacity=".35"/>':'';return wrap(fill||f[1],eyes(f[2])+mouth(f[3])+x,o)}
+const idx=F.map((_,i)=>i);
+function choices(a){return sh([a,...sh(idx.filter(i=>i!=a)).slice(0,NC()-1)])}
+const optH=i=>`<button class="opt" data-i="${i}">${face(i)}${LAB()?F[i][0]:'?'}</button>`;
+const P=[],add=(t,h)=>P.push([t,h]);
+add('Start',`<div class="hero"><h1>My <b>Feelings</b><br>Practice &amp; Play</h1><p style="max-width:420px">One book for every child. Pick a level at the top — ⭐ look &amp; tap, ⭐⭐ say it, ⭐⭐⭐ think &amp; build. Everything has sound, no timers, and no “wrong” buzzers.</p><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:270px">${[0,1,2,3,4,5].map(i=>`<div style="width:40px">${face(i)}</div>`).join('')}</div><p style="color:var(--soft);margin-top:20px">Swipe left → to play</p></div>`);
+add('Spin',`<div class="in"><h2>Spin the Wheel</h2><p class="sub">Spin, listen, then say the sentence.</p><div class="wp"></div><div class="wheel" id="wh"></div><div style="text-align:center;margin:14px"><button class="btn" onclick="spin()">🎡 Spin</button></div><div class="out" id="wo">Tap Spin!</div></div>`);
+add('Act it out',`<div class="in"><h2>Act It Out!</h2><p class="sub">Show the feeling with your face and body. Friends guess!</p><div style="width:130px;margin:0 auto" id="af"></div><div class="out" id="ao">Tap “Show me!”</div><div style="text-align:center"><button class="btn" onclick="act()">🎭 Show me!</button> <button class="btn" onclick="say(actS)" style="background:var(--sky)">🔊</button></div></div>`);
+add('Good or not?',`<div class="in"><h2>Feels Good or Not?</h2><p class="sub">Tap how it makes you feel.</p><div class="card" style="text-align:center"><div style="font-size:4.5rem" id="sE"></div><div class="out" id="sT"></div><div class="g2"><button class="opt" onclick="sortA(1)">😊<br>Feels good</button><button class="opt" onclick="sortA(0)">😟<br>Not so good</button></div></div></div>`);
+add('Pick the face',`<div class="in"><h2>How Do They Feel?</h2><p class="sub">Listen to the story. Tap the face.</p><div class="card" style="text-align:center"><div style="font-size:3rem" id="cE"></div><div class="out" id="cT" style="min-height:40px"></div><button class="btn" onclick="say(cS+' How do they feel?')">🔊 Listen</button></div><div class="g2" id="cO"></div><div class="out" id="cM"></div></div>`);
+add('Build a face',`<div class="in"><h2>Build a Face</h2><p class="sub">Make your own feeling face!</p><div style="width:140px;margin:0 auto" id="bfF"></div><p class="sub" style="margin-top:12px">Eyes</p><div class="chs" id="bE">${['r','c','w','s','z','a'].map(e=>`<div class="ch" data-v="${e}">${wrap('#fff',eyes(e))}</div>`).join('')}</div><p class="sub" style="margin-top:10px">Mouth</p><div class="chs" id="bM">${['sm','fr','gr','o','gn','ge'].map(m=>`<div class="ch" data-v="${m}">${wrap('#fff',mouth(m))}</div>`).join('')}</div><p class="sub" style="margin-top:10px">Color</p><div class="pal" id="bC">${['#FFD166','#5DA9E9','#FF6B6B','#B185DB','#FF9F5A','#FF6FA3','#8AC926'].map(c=>`<i data-v="${c}" style="background:${c}"></i>`).join('')}</div><div class="out" id="bO">Pick eyes, a mouth and a color!</div><div class="chs" id="bN">${F.map((f,i)=>`<div class="ch" data-i="${i}">${f[0]}</div>`).join('')}</div></div>`);
+add('Sentences',`<div class="in"><h2>Build a Sentence</h2><p class="sub" id="sP"></p><div class="out" id="sO"></div><div class="chs" id="sW" style="margin-bottom:8px"></div><div class="chs" id="sF">${F.map((f,i)=>`<div class="ch" data-i="${i}">${face(i)}${f[0]}</div>`).join('')}</div><p class="sub" id="sRl" style="margin-top:12px">Reason</p><div class="chs" id="sR">${[0,1,3,5,6,7].map(i=>`<div class="ch" data-i="${i}">${F[i][5]}</div>`).join('')}</div><div style="text-align:center;margin-top:14px"><button class="btn" onclick="say($('#sO').innerText)">🔊 Read it</button></div></div>`);
+add('Role-play',`<div class="in"><h2>Role-Play Cards</h2><p class="sub">Tap a card. Listen. Act it out!</p><div class="g2" id="rp"></div></div>`);
+add('Color it',`<div class="in"><h2>Color the Faces</h2><p class="sub">Pick a color. Tap a face to fill it.</p><div class="pal" id="cp">${['#FFD166','#5DA9E9','#FF6B6B','#B185DB','#FF9F5A','#FF6FA3','#8AC926','#8D99AE','#7FC8C1','#FFFFFF'].map((c,i)=>`<i data-v="${c}" style="background:${c}"${i?'':' class="on"'}></i>`).join('')}</div><div class="g3">${F.map((f,i)=>`<div class="cf" onclick="say('${f[0]}')">${face(i,'#fff',1)}${f[0]}</div>`).join('')}</div></div>`);
+add('Calm corner',`<div class="in" style="text-align:center"><h2>Calm Corner</h2><p class="sub">Big feelings? Breathe with the bubble.</p><div class="br" id="bt">Breathe</div><p>Breathe in… and out… five times.</p><button class="btn" onclick="brs()">🔊 Guide me</button></div>`);
+add('Teachers',`<div class="in"><h2>Teacher &amp; Parent Notes</h2><div class="card"><h3>One book, every child</h3><ul><li><b>⭐ Look:</b> 2 choices, words shown, sound on. Great for first exposure or younger children.</li><li><b>⭐⭐ Say:</b> 3 choices plus reasons. Children say the full sentence.</li><li><b>⭐⭐⭐ Think:</b> 4 choices, words hidden — listen and decide. Sentences add he/she.</li></ul>Mixed group? Let each child pick their own level on the same page.</div><div class="card"><h3>Built to include</h3><ul><li>Every card is picture + sound, so reading is not needed.</li><li>No timers, no scores that end in failure; gentle “try again”.</li><li>Big tap targets; motion stops if the device asks for reduced motion.</li><li>Act It Out and Calm Corner work with no screen skills at all.</li></ul></div><div class="card"><h3>Use with</h3><p>The Littlelume English “My Feelings” lesson book and printable worksheets.</p></div></div>`);
+const bk=$('#book');bk.innerHTML=P.map(p=>`<section class="pg">${p[1]}</section>`).join('');let cur=0;
+function upd(){cur=Math.round(bk.scrollLeft/bk.clientWidth);$('#cnt').textContent=P[cur][0]+' '+(cur+1)+'/'+P.length;$('#bar').style.width=((cur+1)/P.length*100)+'%'}
+function go(d){bk.scrollTo({left:Math.max(0,Math.min(P.length-1,cur+d))*bk.clientWidth})}
+bk.addEventListener('scroll',()=>{clearTimeout(bk._t);bk._t=setTimeout(upd,60)});
+addEventListener('keydown',e=>{if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1)});
+addEventListener('resize',()=>bk.scrollTo({left:cur*bk.clientWidth,behavior:'instant'}));
+const pick=(sel,fn)=>{$(sel).onclick=e=>{const c=e.target.closest('.ch,i,.opt');if(!c)return;[...$(sel).children].forEach(x=>x.classList.remove('on'));c.classList.add('on');fn(c)}};
+// level
+$('#lv').onclick=e=>{const b=e.target.closest('button');if(!b)return;L=+b.dataset.l;lvl()};
+function lvl(){[...$('#lv').children].forEach(b=>b.classList.toggle('on',+b.dataset.l==L));cq();sfix();say(['','Level one. Look and tap.','Level two. Say it.','Level three. Think and build.'][L])}
+// wheel
+const wh=$('#wh'),sg=360/12;let rot=0;
+wh.style.background='conic-gradient('+F.map((f,i)=>f[1]+' '+i*sg+'deg '+(i+1)*sg+'deg').join(',')+')';
+F.forEach((f,i)=>{const a=(i*sg+sg/2-90)*Math.PI/180,d=document.createElement('div');d.className='wl';d.style.left=130+92*Math.cos(a)+'px';d.style.top=130+92*Math.sin(a)+'px';d.innerHTML=face(i);wh.appendChild(d)});
+function spin(){const t=Math.floor(Math.random()*12);rot+=1800+((360-(t*sg+sg/2)-rot%360+720)%360);wh.style.transform='rotate('+rot+'deg)';$('#wo').textContent='Spinning…';
+setTimeout(()=>{const f=F[t];const s=L==1?`I feel ${lw(f[0])}.`:L==2?`I feel ${lw(f[0])}. How do you feel?`:`I feel ${lw(f[0])} ${f[5]}.`;$('#wo').innerHTML='🎉 <b>'+f[0]+'</b><br>'+(L==3?'Say why: “'+s+'”':'Say: “'+s+'”');say(s)},4100)}
+// act
+let actS='';function act(){const i=Math.floor(Math.random()*12);$('#af').innerHTML=face(i);actS=F[i][6]+' I feel '+lw(F[i][0])+'.';$('#ao').innerHTML='<b>'+F[i][0]+'</b><br>'+F[i][6];say(actS)}
+// sort
+const S=[['🍦','I eat ice cream.',1],['🌧️','It is a loud storm.',0],['🎁','I get a gift.',1],['💔','My toy is broken.',0],['🤗','A friend gives me a hug.',1],['🌑','I am alone in the dark.',0],['🎂','It is my birthday.',1],['🐕','A big dog barks at me.',0]];let sq=[],sv;
+function sfix(){sv=null;sq=sh(S);sn()}
+function sn(){sv=sq.shift();if(!sv){sq=sh(S);sv=sq.shift()}$('#sE').textContent=sv[0];$('#sT').textContent=sv[1]}
+function sortA(g){const ok=g==sv[2];say(ok?(g?'Yes! That makes me happy.':'Yes. That can make me sad or scared.'):'Hmm, try again!');$('#sT').textContent=ok?'⭐ Yes!':'Try again 😊';if(ok)setTimeout(sn,1400)}
+// pick face
+const C=[['🧸','A friend shares a toy.',0],['🍦','The ice cream falls on the floor.',1],['🖍️','Someone breaks the crayon.',2],['🌑','The lights go out.',3],['🐶','A puppy jumps out of a box!',4],['🎂','Tomorrow is the birthday party.',5],['🛏️','It is bedtime.',6],['📖','A quiet story time.',7]];let cS,ca;
+function cq(){const s=C[Math.floor(Math.random()*C.length)];ca=s[2];cS=s[1];$('#cE').textContent=s[0];$('#cT').textContent=L==3?'🔊 Listen carefully…':s[1];$('#cM').textContent='';$('#cO').innerHTML=choices(ca).map(optH).join('');say(cS+' How do they feel?')}
+$('#cO').onclick=e=>{const b=e.target.closest('.opt');if(!b)return;if(+b.dataset.i==ca){b.classList.add('ok');$('#cM').textContent='Yes! They feel '+lw(F[ca][0])+'. 🎉';say('They feel '+lw(F[ca][0]));setTimeout(cq,1800)}else{b.classList.add('no');$('#cM').textContent='Good try! Listen again. 😊'}}
+// build face
+let bE='r',bM='sm',bC='#FFD166';function bfd(){$('#bfF').innerHTML=wrap(bC,eyes(bE)+mouth(bM))}
+pick('#bE',c=>{bE=c.dataset.v;bfd()});pick('#bM',c=>{bM=c.dataset.v;bfd()});pick('#bC',c=>{bC=c.dataset.v;bfd()});
+pick('#bN',c=>{const s='This face feels '+lw(F[+c.dataset.i][0])+'. I feel '+lw(F[+c.dataset.i][0])+'.';$('#bO').textContent=s;say(s)});bfd();
+// sentence builder
+let sw='I',sf=null,sr=null;
+function sb(){const v=sw=='I'?'feel':'feels';$('#sO').innerHTML=sw+' '+v+' '+(sf!=null?'<b>'+lw(F[sf][0])+'</b>':'___')+(L>1?' '+(sr!=null?'<b>'+F[sr][5]+'</b>':'___'):'')+'.'}
+function sfx(){$('#sP').textContent=['','Pick a feeling.','Pick a feeling and a reason.','Pick who, a feeling and a reason.'][L];$('#sRl').style.display=$('#sR').style.display=L>1?'':'none';$('#sW').style.display=L>2?'':'none';if(L<3)sw='I';sb()}
+$('#sW').innerHTML=['I','He','She'].map(w=>`<div class="ch${w=='I'?' on':''}" data-v="${w}">${w}</div>`).join('');
+pick('#sW',c=>{sw=c.dataset.v;sb()});pick('#sF',c=>{sf=+c.dataset.i;sb();if(L==1)say($('#sO').innerText)});pick('#sR',c=>{sr=+c.dataset.i;sb()});
+const _l=lvl;lvl=function(){[...$('#lv').children].forEach(b=>b.classList.toggle('on',+b.dataset.l==L));cq();sfix();sfx();say(['','Level one. Look and tap.','Level two. Say it.','Level three. Think and build.'][L])};$('#lv').onclick=e=>{const b=e.target.closest('button');if(!b)return;L=+b.dataset.l;lvl()};
+// role play
+const R=[['Your friend gives you a big hug.','I feel happy. Thank you!'],['Your ice cream falls down.','I feel sad. Oh no!'],['Someone takes your toy.','I feel angry. That is my toy!'],['It is dark and you hear a noise.','I feel scared. Stay with me, please.'],['You find a puppy in a box!','I feel surprised! Wow!'],['You are at a new school.','I feel shy. Hello.']];
+$('#rp').innerHTML=R.map(r=>`<div class="rp" onclick="this.classList.toggle('f');say('${r[0]} ${r[1]}')"><div><p>${r[0]}</p><p>${r[1]}</p></div></div>`).join('');
+// color
+let cc='#FFD166';pick('#cp',c=>cc=c.dataset.v);
+document.querySelectorAll('.cf svg').forEach(s=>s.onclick=e=>{s.querySelector('circle').setAttribute('fill',cc)});
+// calm
+function brs(){say('Breathe in slowly. One, two, three, four. Now breathe out. One, two, three, four. Again. Breathe in. And out. You are doing great.')}
+setInterval(()=>{const t=$('#bt');if(t)t.textContent=t.textContent=='Breathe in'?'Breathe out':'Breathe in'},4000);
+upd();lvl();
+</script></body></html>

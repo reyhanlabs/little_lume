@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>My Feelings — Littlelume English Swipe Book</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cr:#FFF8ED;--cr2:#FFF1DD;--ink:#2B2250;--soft:#5B5380;--sun:#FFD166;--co:#FF6B6B;--sky:#5DA9E9;--gr:#B185DB;--lf:#8AC926;--sh:rgba(43,34,80,.16)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--cr);color:var(--ink);font:600 16px/1.5 Quicksand,sans-serif;overflow:hidden}
+h1,h2,h3,.bf{font-family:'Baloo 2',sans-serif;margin:0}
+#book{display:flex;height:100dvh;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+#book::-webkit-scrollbar{display:none}
+.pg{flex:0 0 100vw;scroll-snap-align:start;scroll-snap-stop:always;height:100dvh;overflow-y:auto;padding:64px 18px 86px}
+.in{max-width:640px;margin:0 auto}
+.pg h2{font-size:1.7rem;text-align:center}.sub{text-align:center;color:var(--soft);margin:2px 0 16px}
+.top{position:fixed;top:0;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(255,248,237,.94);z-index:5;font-family:'Baloo 2';font-weight:700}
+.top i{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--sun);border:6px solid var(--sun);box-shadow:inset 0 0 0 20px var(--co);vertical-align:middle;margin-right:8px}
+.bar{position:fixed;top:50px;left:0;height:4px;background:var(--co);z-index:6;transition:width .3s}
+.nav{position:fixed;bottom:0;left:0;right:0;height:70px;display:flex;align-items:center;justify-content:center;gap:16px;background:linear-gradient(transparent,var(--cr) 40%);z-index:5;padding-bottom:6px}
+.nav button{width:52px;height:52px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:1.4rem;cursor:pointer}
+.nav span{font-weight:700;min-width:64px;text-align:center}
+.card{background:#fff;border-radius:20px;box-shadow:0 5px 0 var(--sh);padding:16px;margin-bottom:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero{background:linear-gradient(160deg,#FFE8B8,#FFD9C4 50%,#FFC9DE);margin:-64px -18px 0;min-height:100dvh;padding:90px 24px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.hero h1{font-size:3rem;line-height:1.1}.hero h1 b{color:var(--co)}
+.chip{display:inline-block;background:#fff;border-radius:99px;padding:5px 14px;font-weight:700;font-size:.85rem;margin:4px}
+.fc{cursor:pointer;text-align:center;padding:14px 8px;border-radius:20px;color:#fff;box-shadow:0 5px 0 var(--sh);border:0;font:inherit}
+.fc svg{width:76px;height:76px;background:#fff;border-radius:50%}.fc .w{font:800 1.3rem 'Baloo 2';display:block;margin-top:4px}.fc small{display:block;font-weight:600;line-height:1.3}
+.pat{font:700 1.5rem 'Baloo 2';text-align:center;color:var(--co);margin:6px 0}
+.ex{background:var(--cr2);border-radius:12px;padding:8px 12px;margin-top:8px;display:flex;align-items:center;gap:10px;cursor:pointer}.ex svg{width:38px;height:38px;flex:none}
+.bub{max-width:82%;padding:10px 14px;border-radius:18px;margin:8px 0;cursor:pointer}.bub.a{background:#fff;box-shadow:0 3px 0 var(--sh)}.bub.b{background:var(--sun);margin-left:auto}
+.opp{display:flex;align-items:center;justify-content:space-around;text-align:center}.opp svg{width:64px;height:64px}
+.chs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ch{border:3px solid transparent;background:var(--cr2);border-radius:14px;padding:8px 10px;cursor:pointer;font:700 .9rem Quicksand;display:flex;align-items:center;gap:6px}.ch svg{width:26px;height:26px}.ch.on{border-color:var(--ink);background:#fff}
+.out{font:700 1.4rem 'Baloo 2';text-align:center;min-height:56px;margin:8px 0}.out b{color:var(--co)}
+.q{display:grid;grid-template-columns:1fr 1fr;gap:10px}.q button{border:0;border-radius:14px;padding:13px;background:var(--sky);color:#fff;font:700 1.05rem 'Baloo 2';cursor:pointer}.q .ok{background:var(--lf)}.q .no{background:var(--co)}
+.btn{border:0;background:var(--ink);color:#fff;padding:10px 22px;border-radius:99px;font:700 1rem 'Baloo 2';cursor:pointer}
+.cl{padding:8px 4px;font:700 1.2rem 'Baloo 2';border-radius:8px;transition:.3s}.cl.on{background:var(--sun)}
+.tip{display:flex;gap:12px;align-items:center}.tip b{font-size:2rem}
+.cert{border:6px double var(--co);border-radius:20px;background:#fff;text-align:center;padding:26px 14px}
+.cert .nm{font:800 1.8rem 'Baloo 2';border-bottom:3px dashed var(--soft);min-width:60%;display:inline-block;min-height:46px;outline:0;color:var(--co)}
+ul{padding-left:20px;margin:6px 0}
+</style></head><body>
+<div class="top"><div><i></i>Littlelume English</div><div id="ttl" style="font-size:.85rem;color:var(--soft)">My Feelings</div></div>
+<div class="bar" id="bar"></div>
+<div id="book"></div>
+<div class="nav"><button onclick="go(-1)" aria-label="Previous">‹</button><span id="cnt">1/1</span><button onclick="go(1)" aria-label="Next">›</button></div>
+<script>
+const $=s=>document.querySelector(s);
+const sh=a=>[...a].sort(()=>Math.random()-.5);
+const say=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.8;speechSynthesis.speak(u)}catch(e){}};
+// name,color,eyes,mouth,extra,sentence,cause
+const F=[
+["Happy","#FFD166","r","sm","","I feel happy when I play with friends.","when I play with my friends"],
+["Sad","#5DA9E9","r","fr","t","I feel sad when I lose my toy.","when I lose my toy"],
+["Angry","#FF6B6B","a","gr","","I feel angry when someone breaks my crayon.","when someone breaks my crayon"],
+["Scared","#B185DB","w","o","s","I feel scared when it is dark.","when it is dark"],
+["Surprised","#FF9F5A","w","O","","I feel surprised when I see a gift!","when I see a gift"],
+["Excited","#FF6FA3","s","gn","","I feel excited on my birthday.","on my birthday"],
+["Tired","#8D99AE","z","sl","","I feel tired at night.","at night"],
+["Calm","#8AC926","c","ge","","I feel calm when I read a book.","when I read a book"],
+["Proud","#F4A261","c","sm","b","I feel proud when I do it myself.","when I do it myself"],
+["Shy","#F7A8B8","d","sl","b","I feel shy with new friends.","with new friends"],
+["Worried","#7FC8C1","v","fr","","I feel worried before a test.","before a test"],
+["Silly","#C3E86B","y","tg","","I feel silly when I dance.","when I dance"]];
+const K={};F.forEach((f,i)=>K[f[0]]=i);
+function face(i,z){const f=F[i],c=f[1],I='#2B2250';let e='',m='';
+const dot=(x,y,r=5)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${I}"/>`;
+const ln=(a,b,c2,d,w=5)=>`<path d="M${a},${b}L${c2},${d}" stroke="${I}" stroke-width="${w}" stroke-linecap="round"/>`;
+const cu=(d,w=5,fill='none')=>`<path d="${d}" stroke="${I}" stroke-width="${w}" fill="${fill}" stroke-linecap="round"/>`;
+const E=f[2];
+if(E=='r'||E=='d'||E=='v')e=dot(36,46)+dot(64,46);
+if(E=='d')e=dot(36,50)+dot(64,50);
+if(E=='v')e+=ln(28,36,44,40,4)+ln(72,36,56,40,4);
+if(E=='a')e=ln(30,38,44,44)+ln(70,38,56,44)+dot(37,50,4)+dot(63,50,4);
+if(E=='w')e='<circle cx="36" cy="46" r="8" fill="#fff"/><circle cx="64" cy="46" r="8" fill="#fff"/>'+dot(36,46,3.5)+dot(64,46,3.5);
+if(E=='s')e=dot(36,46)+dot(64,46)+'<circle cx="34" cy="44" r="1.6" fill="#fff"/><circle cx="62" cy="44" r="1.6" fill="#fff"/>';
+if(E=='z')e=ln(30,47,44,47,4)+ln(56,47,70,47,4);
+if(E=='c')e=cu('M30,47Q37,41 44,47',4)+cu('M56,47Q63,41 70,47',4);
+if(E=='y')e=dot(36,46)+'<circle cx="64" cy="46" r="9" fill="#fff"/>'+dot(66,46,4);
+const M=f[3];
+if(M=='sm')m=cu('M35,60Q50,76 65,60');if(M=='fr')m=cu('M35,70Q50,56 65,70');if(M=='gr')m=cu('M34,64L66,64',6);
+if(M=='o')m=dot(50,66,6);if(M=='O')m=dot(50,66,9);if(M=='gn')m=cu('M32,58Q50,82 68,58Q50,66 32,58Z',3,I);
+if(M=='sl')m=cu('M42,65Q50,69 58,65',4);if(M=='ge')m=cu('M38,62Q50,70 62,62',4);
+if(M=='tg')m=cu('M34,60Q50,76 66,60',4)+'<path d="M46,68Q50,82 56,68Z" fill="#FF6B6B"/>';
+let x='';if(f[4]=='t')x='<path d="M35,52Q31,60 35,64Q39,60 35,52Z" fill="#5DA9E9"/>';
+if(f[4]=='s')x='<path d="M72,30Q68,40 72,44Q76,40 72,30Z" fill="#5DA9E9"/>';
+if(f[4]=='b')x='<circle cx="27" cy="58" r="6" fill="#FF6B6B" opacity=".35"/><circle cx="73" cy="58" r="6" fill="#FF6B6B" opacity=".35"/>';
+return `<svg viewBox="0 0 100 100"${z?` width="${z}" height="${z}"`:''}><circle cx="50" cy="50" r="46" fill="${c}"/>${e}${m}${x}</svg>`}
+const lw=n=>n.toLowerCase();
+const fcard=i=>`<button class="fc" style="background:${F[i][1]}" onclick="say('${F[i][0]}. ${F[i][5]}')">${face(i)}<span class="w">${F[i][0]} 🔊</span><small>${F[i][5]}</small></button>`;
+const ex=(i,t)=>`<div class="ex" onclick="say(this.innerText)">${face(i)}<span>${t}</span></div>`;
+const vocab=(n,a)=>`<h2>Feeling Words ${n}</h2><p class="sub">Tap a card to hear the word and sentence.</p><div class="g2">${a.map(fcard).join('')}</div>`;
+const P=[];const add=(t,h)=>P.push([t,h]);
+add('Cover',`<div class="hero"><span class="chip">Unit 3 · Kindergarten</span><h1>My <b>Feelings</b></h1><p style="max-width:420px">A swipe-through English lesson book with 12 feeling words, 5 grammar patterns, a story, games and a certificate.</p><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:280px">${[0,1,2,3,4,5].map(i=>face(i,42)).join('')}</div><p class="bf" style="margin-top:22px">Littlelume English</p><p style="color:var(--soft)">Swipe left → to begin</p></div>`);
+add('Meet Lumi',`<div class="in"><h2>Hello, I am Lumi! ⭐</h2><p class="sub">Your little star guide.</p><div class="card"><h3>In this book we will…</h3><ul><li>Learn <b>12 feeling words</b></li><li>Say <b>“I feel happy.”</b> and <b>“How do you feel?”</b></li><li>Ask and answer <b>“Are you sad? Yes, I am.”</b></li><li>Talk about <b>he</b> and <b>she</b>: “She feels proud.”</li><li>Say <b>why</b>: “I feel sad when I lose my toy.”</li><li>Learn what to do with big feelings</li></ul></div><div class="card"><h3>How to use</h3><p>👉 Swipe sideways or use the arrows.<br>🔊 Tap cards and sentences to hear them.<br>🎮 Play the games near the end!</p></div></div>`);
+add('Warm-up',`<div class="in"><h2>Warm-up: Hello!</h2><p class="sub">Tap each line to listen. Then say it with a friend.</p><div class="bub a" onclick="say('Hello! How are you?')">🧒 Hello! How are you?</div><div class="bub b" onclick="say('I am happy! How are you?')">👧 I’m happy! How are you?</div><div class="bub a" onclick="say('I am tired. Thank you!')">🧒 I’m tired. Thank you!</div><div class="card" style="margin-top:18px"><h3>Let’s move! 🕺</h3><p>Teacher says a feeling. Show it with your face and body. Then say: <b>“I feel ___.”</b></p></div></div>`);
+add('Words 1',`<div class="in">${vocab(1,[0,1,2,3])}</div>`);
+add('Words 2',`<div class="in">${vocab(2,[4,5,6,7])}</div>`);
+add('Words 3',`<div class="in">${vocab(3,[8,9,10,11])}</div>`);
+add('Opposites',`<div class="in"><h2>Opposites</h2><p class="sub">Some feelings are opposites. Tap to hear.</p>${[[0,1],[5,6],[7,2],[11,10]].map(p=>`<div class="card opp" onclick="say('${F[p[0]][0]}. ${F[p[1]][0]}.')"><div>${face(p[0])}<br>${F[p[0]][0]}</div><b style="font-size:1.6rem">↔</b><div>${face(p[1])}<br>${F[p[1]][0]}</div></div>`).join('')}</div>`);
+add('Grammar 1',`<div class="in"><h2>Grammar 1</h2><p class="sub">Say how you feel.</p><div class="card"><div class="pat">I feel / I am + feeling.</div>${ex(0,'I feel happy.')}${ex(1,'I am sad.')}${ex(6,'I feel tired.')}${ex(5,'I am excited!')}</div><div class="card">💡 <b>Tip:</b> “I feel” and “I am” mean the same here. Both are correct!</div></div>`);
+add('Grammar 2',`<div class="in"><h2>Grammar 2</h2><p class="sub">Ask about feelings.</p><div class="card"><div class="pat">How do you feel?</div><div class="bub a" onclick="say('How do you feel?')">🧒 How do you feel?</div><div class="bub b" onclick="say('I feel proud!')">👧 I feel proud!</div><div class="bub a" onclick="say('How are you feeling today?')">🧒 How are you feeling today?</div><div class="bub b" onclick="say('I am calm.')">👧 I am calm.</div></div><div class="card">🎤 <b>Pair talk:</b> Ask 3 friends. Use a different feeling each time!</div></div>`);
+add('Grammar 3',`<div class="in"><h2>Grammar 3</h2><p class="sub">Yes / No questions.</p><div class="card"><div class="pat">Are you + feeling?</div>${ex(1,'Are you sad?  Yes, I am.')}${ex(0,'Are you sad?  No, I’m not. I’m happy!')}${ex(3,'Are you scared?  Yes, I am.')}${ex(7,'Are you angry?  No, I’m not. I’m calm.')}</div></div>`);
+add('Grammar 4',`<div class="in"><h2>Grammar 4</h2><p class="sub">Talk about other people.</p><div class="card"><div class="pat">He / She + feels / is + feeling.</div>${ex(8,'👧 She feels proud.')}${ex(9,'👦 He is shy.')}${ex(10,'👧 She is worried.')}${ex(11,'👦 He feels silly.')}</div><div class="card">💡 For <b>he</b> and <b>she</b>, add <b>s</b>: I feel → she feel<b>s</b>.</div></div>`);
+add('Grammar 5',`<div class="in"><h2>Grammar 5</h2><p class="sub">Say why you feel that way.</p><div class="card"><div class="pat">I feel ___ when ___.</div>${[0,1,3,5,7].map(i=>ex(i,F[i][5])).join('')}</div></div>`);
+add('Story',`<div class="in"><h2>Story: Lumi’s Day</h2><p class="sub">Tap a picture to hear the line.</p>${[[6,'In the morning, Lumi feels tired.'],[0,'At school, Lumi feels happy.'],[1,'Oh no! Lumi drops her cookie. She feels sad.'],[3,'Thunder! Lumi feels scared.'],[7,'Her friend gives a hug. Lumi feels calm.'],[8,'“I can share!” Lumi feels proud. The end! ⭐']].map(s=>`<div class="card tip" style="cursor:pointer" onclick="say(this.innerText)"><div style="width:64px;flex:none">${face(s[0])}</div><span>${s[1]}</span></div>`).join('')}</div>`);
+add('Chant',`<div class="in"><h2>Feelings Chant</h2><p class="sub">Clap and say each line.</p><div class="card" id="ch">${['Happy, happy, clap your hands!','Sad, sad, hold my hand.','Angry, angry, breathe one, two, three.','Scared, scared, stay by me.','Excited, excited, jump up high!','Tired, tired, say goodnight.','Calm, calm, breathe in slow.','How do you feel? Let’s go!'].map(l=>`<div class="cl">${l}</div>`).join('')}</div><div style="text-align:center"><button class="btn" onclick="chant()">▶ Sing along</button></div></div>`);
+add('Big feelings',`<div class="in"><h2>What Can I Do?</h2><p class="sub">Big feelings are okay. Here is what helps.</p>${[['🌬️','Take three deep breaths.'],['🤗','Ask for a hug.'],['🗣️','Tell a friend: “I feel sad.”'],['💧','Drink some water.'],['🎨','Draw how you feel.'],['😴','Rest and be quiet.']].map(t=>`<div class="card tip" style="cursor:pointer" onclick="say('${t[1].replace(/[“”]/g,'')}')"><b>${t[0]}</b><span>${t[1]}</span></div>`).join('')}</div>`);
+add('Build',`<div class="in"><h2>Build a Sentence</h2><p class="sub">Pick a feeling and a reason.</p><div class="out" id="bo">I feel ___ ___.</div><div class="chs" id="bf">${F.map((f,i)=>`<div class="ch" data-i="${i}">${face(i)}${f[0]}</div>`).join('')}</div><p class="sub" style="margin-top:14px">Reason</p><div class="chs" id="br">${[0,1,3,5,6,7].map(i=>`<div class="ch" data-i="${i}">${F[i][6]}</div>`).join('')}</div><div style="text-align:center;margin-top:14px"><button class="btn" onclick="say($('#bo').innerText)">🔊 Read it</button></div></div>`);
+add('Check-in',`<div class="in"><h2>How Do You Feel Today?</h2><p class="sub">Tap a face.</p><div style="width:100px;margin:0 auto" id="mf">${face(0)}</div><div class="out" id="mo">I feel <b>happy</b> today!</div><div class="chs" id="mc">${F.map((f,i)=>`<div class="ch" data-i="${i}">${face(i)}${f[0]}</div>`).join('')}</div></div>`);
+add('Quiz',`<div class="in"><h2>Match the Feeling</h2><p class="sub" id="qp"></p><div style="width:120px;margin:0 auto" id="qf"></div><div class="q" id="qc" style="margin-top:14px"></div><div class="out" id="qm"></div><div style="text-align:center"><button class="btn" id="qr" style="display:none" onclick="quiz()">Play again</button></div></div>`);
+add('Listen',`<div class="in"><h2>Listen &amp; Tap</h2><p class="sub">Press 🔊, listen, then tap the right face.</p><div style="text-align:center;margin-bottom:14px"><button class="btn" onclick="say('I feel '+F[lt][0].toLowerCase())">🔊 Listen again</button></div><div class="g2" id="lg"></div><div class="out" id="lm"></div></div>`);
+add('Review',`<div class="in"><h2>I Can…</h2><p class="sub">Tap the stars you have earned!</p>${['say 12 feeling words','say “I feel happy.”','ask “How do you feel?”','answer “Yes, I am. / No, I’m not.”','say “She feels proud.”','say why: “I feel sad when…”','name one thing to do when I feel angry'].map(t=>`<div class="card tip" style="cursor:pointer" onclick="const s=this.firstChild;s.textContent=s.textContent=='☆'?'⭐':'☆'"><b>☆</b><span>I can ${t}.</span></div>`).join('')}</div>`);
+add('Certificate',`<div class="in"><div class="cert"><div style="width:70px;margin:0 auto">${face(0)}</div><h2 style="color:var(--co)">Certificate of Star Feelings</h2><p>This is to say that</p><div class="nm" contenteditable="true" spellcheck="false"></div><p>can talk about feelings in English!</p><p class="bf" style="font-size:1.2rem">⭐ Littlelume English ⭐</p></div><p class="sub" style="margin-top:12px">Tap the line to type a name.</p></div>`);
+add('Teacher notes',`<div class="in"><h2>Teacher &amp; Parent Notes</h2><div class="card"><h3>Objectives</h3><ul><li>Name 12 feelings</li><li>Use I feel / I am, How do you feel?, Are you…?, He/She feels…, I feel… when…</li></ul></div><div class="card"><h3>Suggested plan (2–3 sessions)</h3><ul><li>Session 1: Warm-up, Words 1–2, Grammar 1–2</li><li>Session 2: Words 3, Opposites, Grammar 3–5</li><li>Session 3: Story, Chant, games, Review</li></ul></div><div class="card"><h3>Tips</h3><ul><li>Model each face first, then let children copy.</li><li>Sound (🔊) uses your device’s English voice.</li><li>Praise every try — feelings talk should feel safe.</li></ul></div></div>`);
+// render
+const bk=$('#book');bk.innerHTML=P.map(p=>`<section class="pg">${p[1]}</section>`).join('');
+const pgs=[...bk.children];let cur=0;
+function upd(){cur=Math.round(bk.scrollLeft/bk.clientWidth);$('#cnt').textContent=(cur+1)+'/'+P.length;$('#bar').style.width=((cur+1)/P.length*100)+'%';$('#ttl').textContent=P[cur][0]}
+function go(d){bk.scrollTo({left:(Math.max(0,Math.min(P.length-1,cur+d)))*bk.clientWidth})}
+bk.addEventListener('scroll',()=>{clearTimeout(bk._t);bk._t=setTimeout(upd,60)});
+addEventListener('keydown',e=>{if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1)});
+addEventListener('resize',()=>bk.scrollTo({left:cur*bk.clientWidth,behavior:'instant'}));upd();
+function chant(){const L=[...document.querySelectorAll('#ch .cl')];let i=0;L.forEach(l=>l.classList.remove('on'));(function n(){if(i>0)L[i-1].classList.remove('on');if(i>=L.length)return;L[i].classList.add('on');say(L[i].innerText);i++;setTimeout(n,2600)})()}
+// build
+let bf=null,br=null;
+function bu(){$('#bo').innerHTML='I feel '+(bf!=null?'<b>'+lw(F[bf][0])+'</b>':'___')+' '+(br!=null?'<b>'+F[br][6]+'</b>':'___')+'.'}
+$('#bf').onclick=e=>{const c=e.target.closest('.ch');if(!c)return;[...$('#bf').children].forEach(x=>x.classList.remove('on'));c.classList.add('on');bf=+c.dataset.i;bu()};
+$('#br').onclick=e=>{const c=e.target.closest('.ch');if(!c)return;[...$('#br').children].forEach(x=>x.classList.remove('on'));c.classList.add('on');br=+c.dataset.i;bu()};
+$('#mc').onclick=e=>{const c=e.target.closest('.ch');if(!c)return;const i=+c.dataset.i;$('#mf').innerHTML=face(i);$('#mo').innerHTML='I feel <b>'+lw(F[i][0])+'</b> today!';say('I feel '+lw(F[i][0])+' today')};
+// quiz
+let qs,qi,qsc;
+function quiz(){qs=sh(F.map((_,i)=>i)).slice(0,8);qi=0;qsc=0;$('#qr').style.display='none';qn()}
+function qn(){$('#qm').textContent='';if(qi>=qs.length){$('#qf').innerHTML='';$('#qc').innerHTML='';$('#qp').textContent='Done!';$('#qm').textContent='You scored '+qsc+' / '+qs.length+' ⭐';$('#qr').style.display='inline-block';return}
+const a=qs[qi];$('#qp').textContent='Question '+(qi+1)+' of '+qs.length+' · Score '+qsc;$('#qf').innerHTML=face(a);
+const o=sh([a,...sh(F.map((_,i)=>i).filter(i=>i!=a)).slice(0,3)]);$('#qc').innerHTML=o.map(i=>`<button data-i="${i}">${F[i][0]}</button>`).join('');
+$('#qc').onclick=e=>{const b=e.target.closest('button');if(!b)return;[...$('#qc').children].forEach(x=>x.disabled=true);if(+b.dataset.i==a){b.className='ok';qsc++;$('#qm').textContent='Great! I feel '+lw(F[a][0])+'. 🎉'}else{b.className='no';$('#qm').textContent='Good try! It is '+lw(F[a][0])+'.'}setTimeout(()=>{qi++;qn()},1300)}}
+quiz();
+// listen
+let lt=0;
+function listen(){lt=Math.floor(Math.random()*F.length);const o=sh([lt,...sh(F.map((_,i)=>i).filter(i=>i!=lt)).slice(0,3)]);$('#lm').textContent='';
+$('#lg').innerHTML=o.map(i=>`<div class="card" style="cursor:pointer;text-align:center;padding:10px" data-i="${i}"><div style="width:80px;margin:auto;pointer-events:none">${face(i)}</div></div>`).join('');
+$('#lg').onclick=e=>{const c=e.target.closest('.card');if(!c)return;if(+c.dataset.i==lt){$('#lm').textContent='Yes! '+F[lt][0]+'! 🎉';say('Great job! '+F[lt][0]);setTimeout(()=>{listen();say('I feel '+lw(F[lt][0]))},1800)}else{$('#lm').textContent='Try again! 😊'}}}
+listen();
+</script></body></html>
