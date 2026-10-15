@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LittleLume English – Play Zone: Subject-Verb Agreement</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#141b3a;--panel:#1f2a5a;--glow:#ffd66b;--mint:#5eead4;--pink:#ff8fb1;--sky:#7cc4ff;--txt:#f4f6ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--txt);font-family:Quicksand,"Trebuchet MS",sans-serif;font-size:18px;font-weight:500;
+ background:radial-gradient(circle at 15% 10%,#2b3a80 0,transparent 40%),radial-gradient(circle at 90% 80%,#3a2a70 0,transparent 35%),var(--bg)}
+h1,h2,h3,.big{font-family:"Baloo 2","Comic Sans MS",sans-serif;margin:0}
+.top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.25rem}
+.brand svg{width:34px;height:34px}.brand b{color:var(--glow)}
+.stars{background:var(--panel);border:2px solid var(--glow);border-radius:30px;padding:4px 16px;font-family:"Baloo 2",sans-serif;font-weight:800;color:var(--glow)}
+main{max-width:860px;margin:0 auto;padding:6px 16px 50px}
+.hero{text-align:center;padding:16px 0 8px}
+.hero h1{font-size:2.5rem;color:var(--glow);text-shadow:0 0 22px #ffd66b88}
+.hub{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+@media(max-width:620px){.hub{grid-template-columns:1fr}.hero h1{font-size:1.9rem}}
+.tile{background:var(--panel);border:3px solid transparent;border-radius:28px 8px 28px 8px;padding:18px;text-align:left;color:var(--txt);cursor:pointer;font:inherit;position:relative}
+.tile:hover{border-color:var(--c)}
+.tile h3{font-size:1.4rem;color:var(--c)}
+.tile p{margin:6px 0 0}
+.tile .em{font-size:2.2rem}
+.tile .done{position:absolute;top:10px;right:14px;font-size:1.6rem;display:none}
+.tile.ok .done{display:block}
+button:focus-visible{outline:4px solid var(--glow);outline-offset:3px}
+.stage{display:none}.stage.on{display:block}
+.hubwrap.off{display:none}
+.bk{background:none;border:2px solid var(--sky);color:var(--sky);border-radius:20px;padding:6px 16px;font:inherit;font-weight:700;cursor:pointer;margin:6px 0 12px}
+.box{background:var(--panel);border-radius:26px;padding:22px;text-align:center}
+.lamps{display:flex;justify-content:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lamps i{width:24px;height:30px;border-radius:8px 8px 12px 12px;background:#0e1430;border:2px solid #4a5aa8;display:block}
+.lamps i.lit{background:var(--glow);border-color:var(--glow);box-shadow:0 0 14px var(--glow)}
+.sent{font-family:"Baloo 2",sans-serif;font-size:1.6rem;line-height:1.35;margin:10px 0 16px}
+.sent u{display:inline-block;min-width:70px;border-bottom:4px dotted var(--pink);text-decoration:none;color:var(--pink)}
+.ch{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.ch button,.w{font:inherit;font-weight:700;font-size:1.05rem;border-radius:16px;padding:10px 20px;border:3px solid var(--sky);background:transparent;color:var(--txt);cursor:pointer}
+.ch button:hover:not(:disabled){background:#7cc4ff33}
+.good{background:var(--mint)!important;color:#0b2b27!important;border-color:var(--mint)!important}
+.bad{background:var(--pink)!important;color:#3a0d1c!important;border-color:var(--pink)!important}
+.msg{min-height:2.6em;margin-top:14px;font-weight:700}
+.go{background:var(--glow);color:#3a2e00;border:0;border-radius:20px;padding:10px 26px;font:inherit;font-weight:800;cursor:pointer;margin-top:8px}
+.tray{min-height:64px;border:3px dashed #5566b8;border-radius:18px;padding:10px;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:520px){.mem{grid-template-columns:repeat(3,1fr)}}
+.card{aspect-ratio:1.2;border-radius:16px;border:3px solid var(--sky);background:#2a3a86;color:transparent;font:inherit;font-weight:800;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px}
+.card.up{background:#fff;color:#1b2350;border-color:#fff}
+.card.m{background:var(--mint);border-color:var(--mint);color:#0b2b27}
+.end{font-size:1.3rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.track{position:relative;height:14px;background:#0e1430;border-radius:10px;margin:14px 0 18px}
+.track #rp{height:100%;width:0;background:var(--sky);border-radius:10px;transition:width .4s}
+.rk{position:absolute;right:-6px;top:-14px;font-size:1.6rem}
+.story{font-size:1.15rem;line-height:2.4}
+.story select{font:inherit;font-weight:700;padding:3px 6px;border-radius:10px;border:3px solid var(--sky);background:#0e1430;color:var(--txt)}
+.story select.good{background:var(--mint);color:#0b2b27}.story select.bad{background:var(--pink);color:#3a0d1c}
+table#ft{width:100%;border-collapse:collapse;margin-top:12px}
+#ft td,#ft th{border-bottom:2px solid #3a4a98;padding:8px;text-align:left}#ft td:last-child,#ft th:last-child{text-align:right}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><symbol id="lamp" viewBox="0 0 64 64"><rect x="26" y="4" width="12" height="6" rx="3" fill="#fff"/><path d="M22 14h20l6 12v18a10 10 0 0 1-10 10H26a10 10 0 0 1-10-10V26z" fill="#ffd66b" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><circle cx="27" cy="34" r="3" fill="#141b3a"/><circle cx="37" cy="34" r="3" fill="#141b3a"/><path d="M27 43q5 5 10 0" fill="none" stroke="#141b3a" stroke-width="3" stroke-linecap="round"/><rect x="24" y="56" width="16" height="5" rx="2.5" fill="#5eead4"/></symbol></defs></svg>
+
+<div class="top">
+  <div class="brand"><svg><use href="#lamp"/></svg>LittleLume <b>English</b></div>
+  <div class="stars" aria-live="polite">⭐ <span id="st">0</span> / 48 stars</div>
+</div>
+
+<main>
+<div class="hubwrap" id="hub">
+  <div class="hero">
+    <h1>Play Zone</h1>
+    <p>Subject-Verb Agreement · Grade 4<br>Pick a game and collect stars!</p>
+  </div>
+  <div class="hub">
+    <button class="tile" style="--c:var(--glow)" data-g="lantern"><span class="done">✅</span><span class="em">🏮</span><h3>Lantern Lights</h3><p>Pick the right verb to light up every lantern.</p></button>
+    <button class="tile" style="--c:var(--mint)" data-g="build"><span class="done">✅</span><span class="em">🧩</span><h3>Sentence Builder</h3><p>Tap the words in order to build a correct sentence.</p></button>
+    <button class="tile" style="--c:var(--pink)" data-g="detect"><span class="done">✅</span><span class="em">🔍</span><h3>Word Detective</h3><p>Find the wrong verb hiding in each sentence.</p></button>
+    <button class="tile" style="--c:var(--sky)" data-g="rocket"><span class="done">✅</span><span class="em">🚀</span><h3>Rocket Check</h3><p>Is the sentence correct or incorrect? Launch the rocket!</p></button>
+    <button class="tile" style="--c:#c4a8ff;grid-column:1/-1" data-g="story"><span class="done">✅</span><span class="em">📖</span><h3>Story Time</h3><p>Complete a short story by choosing the right verbs.</p></button>
+  </div>
+  <div style="text-align:center;margin-top:22px"><p id="prog">Games finished: 0 / 5</p><button class="go" id="fbtn">🏆 See Final Score</button></div>
+</div>
+
+<!-- Lantern -->
+<div class="stage" id="s-lantern"><button class="bk">← Back to Play Zone</button>
+  <div class="box"><h2>Lantern Lights</h2><div class="lamps" id="lamps"></div>
+    <div class="sent" id="lq"></div><div class="ch" id="lo"></div><div class="msg" id="lm"></div></div></div>
+
+<!-- Builder -->
+<div class="stage" id="s-build"><button class="bk">← Back to Play Zone</button>
+  <div class="box"><h2>Sentence Builder</h2><p id="bh"></p>
+    <div class="tray" id="bt" aria-label="Your sentence"></div>
+    <div class="ch" id="bw"></div>
+    <div><button class="go" id="bc">Check sentence</button></div><div class="msg" id="bm"></div></div></div>
+
+<!-- Detective -->
+<div class="stage" id="s-detect"><button class="bk">← Back to Play Zone</button>
+  <div class="box"><h2>Word Detective</h2><p id="dh"></p>
+    <div class="ch" id="dw" style="margin:16px 0"></div><div class="msg" id="dm"></div></div></div>
+
+<!-- Rocket -->
+<div class="stage" id="s-rocket"><button class="bk">← Back to Play Zone</button>
+  <div class="box"><h2>Rocket Check</h2><p>Is the sentence written correctly?</p>
+    <div class="track"><div id="rp"></div><span class="rk">🚀</span></div>
+    <div class="sent" id="rs"></div>
+    <div class="ch" id="ro"><button data-v="1">✔ Correct</button><button data-v="0">✘ Incorrect</button></div><div class="msg" id="rm"></div></div></div>
+
+<!-- Story -->
+<div class="stage" id="s-story"><button class="bk">← Back to Play Zone</button>
+  <div class="box" style="text-align:left"><h2 style="text-align:center">Story Time</h2><p style="text-align:center">Choose the correct verb for each blank, then tap Check.</p>
+    <div class="story" id="sty"></div>
+    <div style="text-align:center"><button class="go" id="sck">Check story</button></div><div class="msg" id="sm" style="text-align:center"></div></div></div>
+
+<!-- Final -->
+<div class="stage" id="s-final"><button class="bk">← Back to Play Zone</button>
+  <div class="box"><h2>🏆 Final Score</h2><div class="big" id="fs" style="font-size:3rem;color:var(--glow)"></div>
+    <div id="fr" class="sent"></div><table id="ft"></table><p id="fn"></p></div></div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);const MAX={lantern:10,build:12,detect:8,rocket:10,story:8},NAMES={lantern:'🏮 Lantern Lights',build:'🧩 Sentence Builder',detect:'🔍 Word Detective',rocket:'🚀 Rocket Check',story:'📖 Story Time'};
+const scores={};let run=0,cur=null;const TOTAL=48;
+function upd(){let t=run;for(const k in scores)if(k!==cur)t+=scores[k];$('st').textContent=t;
+ const n=Object.keys(scores).length;$('prog').textContent='Games finished: '+n+' / 5'}
+function star(n=1){run+=n;upd()}
+function show(g){cur=g;run=0;upd();$('hub').classList.add('off');document.querySelectorAll('.stage').forEach(s=>s.classList.remove('on'));
+ $('s-'+g).classList.add('on');({lantern:lanternStart,build:buildStart,detect:detStart,rocket:rocketStart,story:storyStart})[g]();scrollTo(0,0)}
+function home(){cur=null;run=0;upd();document.querySelectorAll('.stage').forEach(s=>s.classList.remove('on'));$('hub').classList.remove('off')}
+document.querySelectorAll('.tile').forEach(t=>t.onclick=()=>show(t.dataset.g));
+document.querySelectorAll('.bk').forEach(b=>b.onclick=home);
+function finish(g,box,text){scores[g]=run;run=0;cur=null;upd();document.querySelector('[data-g='+g+']').classList.add('ok');
+ box.innerHTML=`<p class="end">${text}</p><p class="big">Score: ${scores[g]} / ${MAX[g]}</p><button class="go">Play again</button> <button class="go" style="background:var(--sky)">Play Zone</button> <button class="go" style="background:var(--mint)">🏆 Final Score</button>`;
+ const b=box.querySelectorAll('button');b[0].onclick=()=>show(g);b[1].onclick=home;b[2].onclick=showFinal}
+function showFinal(){cur=null;run=0;upd();$('hub').classList.add('off');document.querySelectorAll('.stage').forEach(x=>x.classList.remove('on'));$('s-final').classList.add('on');
+ let t=0,rows='<tr><th>Game</th><th>Score</th></tr>';
+ for(const g in MAX){const d=g in scores;if(d)t+=scores[g];rows+=`<tr><td>${NAMES[g]}</td><td>${d?scores[g]+' / '+MAX[g]:'not played'}</td></tr>`}
+ $('ft').innerHTML=rows;$('fs').textContent=t+' / '+TOTAL;const p=t/TOTAL*100,n=Object.keys(scores).length;
+ $('fr').textContent=p>=90?'🥇 Gold Lantern: Superstar!':p>=70?'🥈 Silver Lantern: Great job!':p>=50?'🥉 Bronze Lantern: Good work!':'🌱 Keep practicing, you can do it!';
+ $('fn').textContent=n<5?'You have played '+n+' of 5 games. Play the rest to raise your score!':'You finished all 5 games. Well done, Little Learner!';scrollTo(0,0)}
+$('fbtn').onclick=showFinal;
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+
+/* 1. Lantern Lights */
+const LQ=[
+['The elephant ___ water with its trunk.','sprays','spray'],
+['Her parents ___ in a small village.','live','lives'],
+['A bee ___ from flower to flower.','flies','fly'],
+['The students ___ ready for the test.','are','is'],
+['Our neighbor ___ a very loud radio.','has','have'],
+['The cookies on the plate ___ delicious.','smell','smells'],
+['My cousin ___ swimming every Saturday.','goes','go'],
+['Both of my brothers ___ tall.','are','is'],
+['The flock of geese ___ over the lake.','flies','fly'],
+['Neither the girl nor her friends ___ afraid.','were','was']];
+let li,ls;
+function lanternStart(){li=0;ls=0;$('lamps').innerHTML=LQ.map(()=>'<i></i>').join('');lanternAsk()}
+function lanternAsk(){const q=LQ[li];$('lm').textContent='';
+ $('lq').innerHTML=q[0].replace('___','<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>');
+ $('lo').innerHTML='';shuf([q[1],q[2]]).forEach(t=>{const b=document.createElement('button');b.textContent=t;
+  b.onclick=()=>{[...$('lo').children].forEach(x=>x.disabled=true);
+   if(t===q[1]){b.classList.add('good');$('lamps').children[li].classList.add('lit');star();ls++;$('lm').textContent='Yes! Lantern lit! 🏮'}
+   else{b.classList.add('bad');$('lm').textContent='Oops! The answer is “'+q[1]+'”.'}
+   const n=document.createElement('button');n.className='go';n.textContent=li<LQ.length-1?'Next lantern':'Finish';
+   n.onclick=()=>{li++;li<LQ.length?lanternAsk():finish('lantern',document.querySelector('#s-lantern .box'),`🎉 You lit ${ls} of ${LQ.length} lanterns!`)};
+   $('lm').appendChild(document.createElement('br'));$('lm').appendChild(n)};$('lo').appendChild(b)})}
+
+/* 2. Sentence Builder */
+const BQ=[
+['The little kitten sleeps on my bed.',['sleep']],
+['My grandparents have a big garden.',['has']],
+['Nobody in the class is late today.',['are']],
+['She doesn’t like cold soup.',['don’t']],
+['The birds in the tree sing happily.',['sings']],
+['There are seven days in a week.',['is']]];
+let bi,bo;
+function buildStart(){bi=0;buildAsk()}
+function buildAsk(){bo=[];$('bm').textContent='';const q=BQ[bi];$('bh').textContent=`Sentence ${bi+1} of ${BQ.length}: tap the words in the right order.`;
+ const words=shuf(q[0].split(' ').concat(q[1]));renderB(words)}
+function renderB(words){
+ $('bt').innerHTML='';$('bw').innerHTML='';
+ if(!bo.length)$('bt').innerHTML='<span style="opacity:.6">Your sentence appears here</span>';
+ bo.forEach((w,i)=>{const b=document.createElement('button');b.className='w';b.textContent=w;b.style.borderColor='var(--mint)';
+  b.onclick=()=>{bo.splice(i,1);words.push(w);renderB(words)};if(!$('bt').querySelector('button'))$('bt').innerHTML='';$('bt').appendChild(b)});
+ words.forEach((w,i)=>{const b=document.createElement('button');b.className='w';b.textContent=w;
+  b.onclick=()=>{words.splice(i,1);bo.push(w);renderB(words)};$('bw').appendChild(b)});
+ $('bc').onclick=()=>{const s=bo.join(' '),q=BQ[bi];
+  if(s===q[0]){star(2);$('bm').innerHTML='Perfect sentence! +2 ⭐<br>';const n=document.createElement('button');n.className='go';n.textContent=bi<BQ.length-1?'Next sentence':'Finish';
+   n.onclick=()=>{bi++;bi<BQ.length?buildAsk():finish('build',document.querySelector('#s-build .box'),'🧩 You built all the sentences. Great work!')};$('bm').appendChild(n)}
+  else $('bm').textContent=bo.length?'Not yet. Check the verb and the word order, then try again.':'Tap some words first.'}}
+
+/* 3. Word Detective */
+const DQ=[
+['The farmer feed the chickens.','feed','feeds'],
+['My little sisters plays with dolls.','plays','play'],
+['Mr. Lee and his son fishes on Sunday.','fishes','fish'],
+['A group of kids are singing.','are','is'],
+['I is very hungry now.','is','am'],
+['Every child in the school have a badge.','have','has'],
+['The mice eats the cheese.','eats','eat'],
+['She don’t watch TV at night.','don’t','doesn’t']];
+let di;
+function detStart(){di=0;detAsk()}
+function detAsk(){const q=DQ[di];$('dm').textContent='';$('dh').textContent=`Case ${di+1} of ${DQ.length}: tap the word that does not agree.`;
+ $('dw').innerHTML='';q[0].split(' ').forEach(w=>{const b=document.createElement('button');b.className='w';b.textContent=w;
+  b.onclick=()=>{if($('dw').dataset.d==di)return;const clean=w.replace(/[.,]$/,'');
+   if(clean===q[1]){$('dw').dataset.d=di;b.classList.add('bad');star();$('dm').innerHTML=`Caught it! Fix: “${q[2]}”. +1 ⭐<br>`;
+    const n=document.createElement('button');n.className='go';n.textContent=di<DQ.length-1?'Next case':'Finish';
+    n.onclick=()=>{di++;di<DQ.length?detAsk():finish('detect',document.querySelector('#s-detect .box'),'🔍 Case closed. You are a top detective!')};$('dm').appendChild(n)}
+   else{$('dm').textContent='That word is fine. Look at the subject and try another word.'}};$('dw').appendChild(b)})}
+
+/* 4. Rocket Check */
+const RQ=[['My dad cook dinner every night.0','My dad cooks dinner every night.'],['The girls are playing outside.1'],['A bird sing in the tree.0','A bird sings in the tree.'],['We has a new teacher.0','We have a new teacher.'],['Everybody loves the party.1'],['The dogs chases the ball.0','The dogs chase the ball.'],['She doesn’t eat meat.1'],['The boxes is very heavy.0','The boxes are very heavy.'],['I am nine years old.1'],['There are a pen on the desk.0','There is a pen on the desk.']];
+let ri,rl=false;
+function rocketStart(){ri=0;rocketAsk()}
+function rocketAsk(){rl=false;const q=RQ[ri],t=q[0];$('rp').style.width=(ri/RQ.length*100)+'%';$('rs').textContent=t.slice(0,-1);$('rm').textContent='';
+ document.querySelectorAll('#ro button').forEach(b=>b.className='')}
+document.querySelectorAll('#ro button').forEach(b=>b.onclick=()=>{if(rl)return;rl=true;const q=RQ[ri],ok=+b.dataset.v===+q[0].slice(-1);
+ b.classList.add(ok?'good':'bad');if(ok)star();
+ $('rm').innerHTML=(ok?'Correct! 🚀':'Not quite.')+(q[1]?' Right version: “'+q[1]+'”':' This sentence is correct.')+'<br>';
+ const n=document.createElement('button');n.className='go';n.textContent=ri<RQ.length-1?'Next':'Finish';
+ n.onclick=()=>{ri++;ri<RQ.length?rocketAsk():finish('rocket',document.querySelector('#s-rocket .box'),'🚀 Blast off! Mission complete!')};$('rm').appendChild(n)});
+
+/* 5. Story Time */
+const ST=[['Sam and his friends ',['play','plays'],0,' at the park every Saturday. Sam '],['',['has','have'],0,' a red kite, and his friends '],['',['bring','brings'],0,' balls. The sun '],['',['is','are'],0,' bright today. Everyone '],['',['feels','feel'],0,' happy. Sam’s mom '],['',['makes','make'],0,' sandwiches for the group. There '],['',['is','are'],1,' two big bags of fruit. After lunch, the children '],['',['walk','walks'],0,' home.']];
+function storyStart(){$('sm').textContent='';$('sck').disabled=false;const d=$('sty');d.innerHTML='';
+ ST.forEach(p=>{d.append(p[0]);const se=document.createElement('select');se.innerHTML='<option value="">…</option>'+p[1].map(o=>`<option>${o}</option>`).join('');se.dataset.a=p[1][p[2]];d.appendChild(se);d.append(p[3])})}
+$('sck').onclick=()=>{const sel=[...document.querySelectorAll('#sty select')];if(sel.some(x=>!x.value)){$('sm').textContent='Choose an answer for every blank first.';return}
+ $('sck').disabled=true;sel.forEach(x=>{const ok=x.value===x.dataset.a;x.className=ok?'good':'bad';if(ok)star();else x.title='Correct: '+x.dataset.a});
+ const n=document.createElement('button');n.className='go';n.textContent='Finish';
+ $('sm').innerHTML='Green is correct. Pink is wrong (the correct verb shows when you hover or tap it).<br>';
+ sel.forEach(x=>{if(x.className==='bad')x.insertAdjacentHTML('afterend','<b style="color:var(--pink)"> ['+x.dataset.a+'] </b>')});
+ n.onclick=()=>finish('story',document.querySelector('#s-story .box'),'📖 The story is complete. Nice reading!');$('sm').appendChild(n)};
+upd();
+</script>
+</body>
+</html>
