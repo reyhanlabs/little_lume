@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bell Rush – Practice &amp; Play</title>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Lexend:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1f3fd6; --bg2:#1a34b3; --card:#fff8e6; --ink:#14142b; --red:#ff4d3d; --sun:#ffc93c; --mint:#2dd4a0; --soft:#5b5b78;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16268f;--bg2:#101c6e;}}
+:root[data-theme="dark"]{--bg:#16268f;--bg2:#101c6e;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:border-box;}
+body{margin:0;min-height:100vh;font-family:'Lexend',system-ui,sans-serif;color:var(--ink);background-color:var(--bg);
+  background-image:radial-gradient(var(--bg2) 22%,transparent 24%);background-size:22px 22px;}
+h1,h2,h3,.big{font-family:'Lilita One','Lexend',sans-serif;font-weight:400;margin:0;}
+button{font-family:inherit;cursor:pointer;color:var(--ink);}
+button:focus-visible{outline:4px solid var(--sun);outline-offset:3px;}
+.wrap{max-width:560px;margin:0 auto;padding:14px 14px 40px;}
+.screen{display:none;}.screen.on{display:block;}
+.box{background:var(--card);border:4px solid var(--ink);border-radius:18px;box-shadow:7px 7px 0 var(--ink);padding:20px;}
+.btn{border:4px solid var(--ink);background:var(--sun);border-radius:14px;padding:12px 22px;font-size:20px;font-family:'Lilita One',sans-serif;box-shadow:5px 5px 0 var(--ink);transition:transform .08s,box-shadow .08s;}
+.btn:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink);}
+.btn.red{background:var(--red);color:#fff;}
+.btn.ghost{background:var(--card);}
+
+/* start */
+.hero{text-align:center;color:#fff;padding:18px 0 8px;}
+.hero .bell{font-size:84px;display:inline-block;transform-origin:50% 8%;animation:ring 1.6s ease-in-out infinite;}
+@keyframes ring{0%,100%{transform:rotate(0)}15%{transform:rotate(14deg)}30%{transform:rotate(-12deg)}45%{transform:rotate(8deg)}60%{transform:rotate(-5deg)}}
+.hero h1{font-size:64px;line-height:.95;text-shadow:5px 5px 0 var(--ink);letter-spacing:1px;}
+.hero p{font-weight:600;margin:10px auto 0;max-width:30ch;}
+.rules{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:10px;}
+.rules li{display:flex;gap:12px;align-items:center;font-weight:600;font-size:15px;}
+.rules b.ic{flex:none;width:40px;height:40px;border:3px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:20px;background:var(--mint);}
+.best{margin-top:14px;font-weight:600;color:var(--soft);font-size:14px;text-align:center;}
+
+/* hud */
+.hud{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:#fff;}
+.hud .pill{background:var(--card);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:4px 12px;font-weight:800;font-size:14px;box-shadow:3px 3px 0 var(--ink);white-space:nowrap;}
+.hud .score{margin-left:auto;font-family:'Lilita One',sans-serif;font-size:30px;text-shadow:3px 3px 0 var(--ink);}
+.fuse{height:18px;border:4px solid var(--ink);border-radius:999px;background:var(--card);overflow:hidden;margin-bottom:14px;}
+.fuse i{display:block;height:100%;width:100%;background:var(--mint);transform-origin:left;}
+.fuse.low i{background:var(--red);}
+.round-tag{display:inline-block;background:var(--red);color:#fff;border:3px solid var(--ink);border-radius:10px;padding:3px 12px;font-family:'Lilita One',sans-serif;font-size:17px;transform:rotate(-2deg);margin-bottom:12px;}
+.combo{position:absolute;right:14px;top:-16px;background:var(--sun);border:3px solid var(--ink);border-radius:12px;padding:2px 12px;font-family:'Lilita One',sans-serif;transform:rotate(4deg);opacity:0;transition:opacity .2s;}
+.combo.show{opacity:1;}
+.qbox{position:relative;}
+.q{font-size:23px;line-height:1.25;margin:0 0 14px;}
+.big-emoji{font-size:64px;text-align:center;margin:0 0 6px;}
+
+/* timetable board */
+.board{background:#0f5a45;color:#f4fff9;border:4px solid var(--ink);border-radius:12px;padding:10px 14px;margin-bottom:14px;box-shadow:inset 0 0 0 3px #d9a35c;}
+.board h3{font-size:19px;margin-bottom:6px;color:var(--sun);}
+.board table{width:100%;border-collapse:collapse;font-size:15px;}
+.board td{padding:3px 0;border-bottom:1px dashed rgba(255,255,255,.3);}
+.board td:first-child{width:62px;font-weight:800;color:#bff3df;}
+
+.opts{display:grid;gap:10px;}
+.opt{border:4px solid var(--ink);background:#fff;border-radius:14px;padding:13px 16px;text-align:left;font-size:17px;font-weight:600;box-shadow:4px 4px 0 var(--ink);transition:transform .08s,box-shadow .08s;}
+.opt:hover:not(:disabled){background:#eaf0ff;}
+.opt:active:not(:disabled){transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink);}
+.opt.right{background:var(--mint);}
+.opt.wrong{background:var(--red);color:#fff;animation:shake .3s;}
+.opt:disabled{cursor:default;}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* order */
+.slots{display:flex;flex-wrap:wrap;gap:8px;min-height:58px;padding:10px;border:4px dashed var(--ink);border-radius:14px;background:#fff;margin-bottom:12px;align-items:center;}
+.slots .hint{color:var(--soft);font-weight:600;font-size:14px;}
+.tile{border:3px solid var(--ink);background:var(--sun);border-radius:10px;padding:8px 13px;font-weight:800;font-size:16px;box-shadow:3px 3px 0 var(--ink);}
+.tile.placed{background:var(--mint);box-shadow:none;}
+.tile.shake{animation:shake .3s;background:var(--red);color:#fff;}
+.bank{display:flex;flex-wrap:wrap;gap:10px;}
+
+.fb{margin-top:14px;border:4px solid var(--ink);border-radius:14px;padding:12px 14px;font-weight:600;display:none;}
+.fb.good{display:block;background:#c9f7e6;}
+.fb.bad{display:block;background:#ffd9d4;}
+.fb b{font-family:'Lilita One',sans-serif;font-size:20px;font-weight:400;display:block;}
+.next{margin-top:14px;text-align:right;display:none;}
+
+/* result */
+.result{text-align:center;}
+.stars{font-size:50px;letter-spacing:4px;}
+.stars span{display:inline-block;opacity:.18;filter:grayscale(1);}
+.stars span.lit{opacity:1;filter:none;animation:pop .5s cubic-bezier(.3,1.6,.5,1) both;}
+@keyframes pop{from{transform:scale(0) rotate(-40deg)}to{transform:scale(1) rotate(0)}}
+.final{font-family:'Lilita One',sans-serif;font-size:84px;line-height:1;margin:4px 0;color:var(--red);text-shadow:4px 4px 0 var(--ink);}
+.rank{display:inline-block;background:var(--sun);border:4px solid var(--ink);border-radius:12px;padding:4px 16px;font-family:'Lilita One',sans-serif;font-size:24px;transform:rotate(-2deg);margin:6px 0 14px;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;}
+.stat{border:3px solid var(--ink);border-radius:12px;background:#fff;padding:8px 4px;}
+.stat b{display:block;font-family:'Lilita One',sans-serif;font-size:26px;font-weight:400;}
+.stat span{font-size:12px;font-weight:600;color:var(--soft);}
+.rounds{text-align:left;margin:10px 0 16px;display:grid;gap:6px;}
+.rrow{display:flex;justify-content:space-between;gap:8px;font-weight:600;font-size:14px;border-bottom:2px dashed rgba(20,20,43,.25);padding-bottom:4px;}
+.review{text-align:left;font-size:14px;font-weight:600;margin:0 0 14px;}
+.review h3{font-size:19px;margin-bottom:6px;}
+.review div{padding:6px 0;border-bottom:2px dashed rgba(20,20,43,.25);}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+@media (max-width:380px){.hero h1{font-size:52px}.q{font-size:20px}.final{font-size:68px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- START -->
+<section class="screen on" id="sStart">
+  <div class="hero">
+    <div class="bell">🔔</div>
+    <h1>BELL<br>RUSH</h1>
+    <p>Beat the school bell! Answer fast, build a combo, and get the highest score.</p>
+  </div>
+  <div class="box">
+    <ul class="rules">
+      <li><b class="ic">⚡</b><span>32 new questions in 7 rounds. This game uses a <b>new timetable</b> (Wednesday, Thursday &amp; Friday).</span></li>
+      <li><b class="ic">⏱️</b><span>Answer before the fuse runs out. Faster answers give a bigger bonus. The Boss Order round has no timer.</span></li>
+      <li><b class="ic">🔥</b><span>Get answers right in a row to grow your combo and score more points.</span></li>
+    </ul>
+    <div style="text-align:center"><button class="btn red" id="btnStart">Ring the bell!</button></div>
+    <div class="best" id="bestLine"></div>
+  </div>
+</section>
+
+<!-- GAME -->
+<section class="screen" id="sGame">
+  <div class="hud">
+    <span class="pill" id="hudQ">1 / 32</span>
+    <span class="pill" id="hudStreak">🔥 0</span>
+    <span class="score" id="hudScore">0</span>
+  </div>
+  <div class="fuse" id="fuse"><i id="fuseBar"></i></div>
+  <div class="box qbox" id="qbox">
+    <div class="combo" id="combo">COMBO x2!</div>
+    <div class="round-tag" id="roundTag"></div>
+    <div id="qArea"></div>
+    <div class="fb" id="fb"></div>
+    <div class="next" id="nextWrap"><button class="btn" id="btnNext">Next</button></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="screen" id="sResult">
+  <div class="box result">
+    <h2 style="font-size:28px">Final score</h2>
+    <div class="stars" id="rStars"></div>
+    <div class="final" id="rScore">0</div>
+    <div class="rank" id="rRank"></div>
+    <div class="stats">
+      <div class="stat"><b id="rAcc">0%</b><span>correct</span></div>
+      <div class="stat"><b id="rStreak">0</b><span>best combo</span></div>
+      <div class="stat"><b id="rTime">0s</b><span>avg. time</span></div>
+    </div>
+    <div class="rounds" id="rRounds"></div>
+    <div class="review" id="rReview"></div>
+    <div class="best" id="rBest" style="margin:0 0 14px"></div>
+    <div class="btns"><button class="btn red" id="btnAgain">Play again</button></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+var WED=[["7:30","Indonesian"],["8:30","English"],["9:30","PE"],["10:30","Break"],["11:00","Science"],["12:00","Lunch"]];
+var THU=[["7:30","Mathematics"],["8:30","Art"],["9:30","Social Studies"],["10:30","Break"],["11:00","Computer"],["12:00","Religion"]];
+var FRI=[["7:30","Science"],["8:30","English"],["9:30","Art"],["10:30","Break"],["11:00","Mathematics"],["12:00","Lunch"]];
+
+/* type: mc (multiple choice) | order (tap in order). a = index of correct option for mc */
+var ROUNDS=[
+ {name:"Round 1: Timetable Detective",qs:[
+  {board:["Wednesday",WED],q:"What subject do you have at 9:30 on Wednesday?",o:["PE","Science","English"],a:0,e:"At 9:30 on Wednesday, the class is PE."},
+  {board:["Thursday",THU],q:"Which subject comes before Break on Thursday?",o:["Art","Social Studies","Computer"],a:1,e:"Social Studies is at 9:30, right before Break."},
+  {board:["Wednesday",WED],q:"What time is Science on Wednesday?",o:["8:30","12:00","11:00"],a:2,e:"Science starts at 11:00 on Wednesday."},
+  {board:["Thursday",THU],q:"Which subject comes after Art on Thursday?",o:["Social Studies","Mathematics","Religion"],a:0,e:"After Art (8:30) comes Social Studies (9:30)."},
+  {board:["Thursday",THU],q:"What is the last class on Thursday?",o:["Computer","Religion","Break"],a:1,e:"Religion at 12:00 is the last class."}
+ ]},
+ {name:"Round 2: Grammar Fix",qs:[
+  {q:"My sister ___ Art on Thursday.",o:["have","has","haves"],a:1,e:"Use “has” with she, he and it. My sister = she."},
+  {q:"Dina ___ forgets her ruler. (0% of the time)",o:["always","usually","never"],a:2,e:"“Never” means 0% of the time."},
+  {q:"Which sentence is correct?",o:["Science starts on 11:00.","Science starts at 11:00.","Science start at 11:00."],a:1,e:"We say “at” with a time, and “starts” goes with Science."},
+  {q:"On Thursday, Break is ___ Social Studies and Computer.",o:["between","from","at"],a:0,e:"Break is in the middle of the two classes, so we say “between”."},
+  {q:"Find the mistake: “They has Mathematics on Thursday.”",o:["They","has","Mathematics"],a:1,e:"They is plural, so it must be “They have”."}
+ ]},
+ {name:"Round 3: Pack Your Bag",qs:[
+  {em:"🔬",q:"You need a microscope. Which class is it?",o:["Art","Science","Religion"],a:1,e:"We use a microscope in Science."},
+  {em:"⌨️",q:"You need a keyboard. Which class is it?",o:["Computer","PE","English"],a:0,e:"A keyboard is for Computer class."},
+  {em:"🗺️",q:"You need a world map. Which class is it?",o:["Mathematics","Indonesian","Social Studies"],a:2,e:"Maps help us in Social Studies."},
+  {em:"🧮",q:"You need a calculator. Which class is it?",o:["Mathematics","Art","PE"],a:0,e:"A calculator is for Mathematics."}
+ ]},
+ {name:"Round 4: Friday Detective",qs:[
+  {board:["Friday",FRI],q:"What time is Art on Friday?",o:["8:30","9:30","11:00"],a:1,e:"Art is at 9:30 on Friday."},
+  {board:["Friday",FRI],q:"Which subject comes after Break on Friday?",o:["Mathematics","English","Lunch"],a:0,e:"After Break (10:30) comes Mathematics (11:00)."},
+  {board:["Friday",FRI],q:"What do you have at 7:30 on Friday?",o:["English","Art","Science"],a:2,e:"The first class on Friday is Science at 7:30."},
+  {board:["Friday",FRI],q:"How many lessons are there on Friday? (Break and Lunch are not lessons.)",o:["3","4","5"],a:1,e:"Science, English, Art and Mathematics = 4 lessons."},
+  {board:["Friday",FRI],q:"Which lesson comes right before Lunch on Friday?",o:["Art","Mathematics","Break"],a:1,e:"Mathematics at 11:00 is the last lesson before Lunch at 12:00."}
+ ]},
+ {name:"Round 5: Always or Never?",qs:[
+  {q:"Budi eats lunch at 12:00 on 5 of 5 school days. He ___ eats lunch at 12:00.",o:["never","always","sometimes"],a:1,e:"5 of 5 days = 100%, so we say “always”."},
+  {q:"I go to school by bus on 4 of 5 days. I ___ go by bus.",o:["usually","never","always"],a:0,e:"4 of 5 days is most of the time, so we say “usually”."},
+  {q:"We have PE on only 1 of 5 days. We ___ have PE.",o:["always","sometimes","never"],a:1,e:"Only on some days = “sometimes”."},
+  {q:"She ___ her homework at night.",o:["does usually","usually do","usually does"],a:2,e:"The frequency word goes before the main verb: “usually does”."},
+  {q:"“Tono is never late.” What does it mean?",o:["He is late every day.","He is not late at all.","He is late sometimes."],a:1,e:"“Never” means 0%, so Tono is not late at all."}
+ ]},
+ {name:"Round 6: Question Time",qs:[
+  {q:"“___ do you have Art?” “On Thursday.”",o:["Who","What","When"],a:2,e:"“When” asks about the day or time."},
+  {q:"“___ time does Break start?” “At 10:30.”",o:["What","Where","Who"],a:0,e:"We say “What time…?” to ask about the clock."},
+  {q:"What ___ you have on Friday?",o:["is","does","do"],a:2,e:"Use “do” with you, I, we and they."},
+  {q:"Which is a good answer to “What time is Science?”",o:["On Wednesday.","At 11:00.","With my friend."],a:1,e:"A question with “What time” needs a time answer: “At 11:00.”"}
+ ]},
+ {name:"Round 7: Boss Order",qs:[
+  {type:"order",board:["Thursday",THU],q:"Look at the board. Tap Thursday’s first four periods in order.",items:["Mathematics","Art","Social Studies","Break"],e:"Thursday: Mathematics, Art, Social Studies, then Break."},
+  {type:"order",q:"Build the sentence. Tap the words in order.",items:["She","always","has","Art","on Thursday."],e:"She always has Art on Thursday."},
+  {type:"order",board:["Wednesday",WED],q:"Look at the board. Tap Wednesday’s first four periods in order.",items:["Indonesian","English","PE","Break"],e:"Wednesday: Indonesian, English, PE, then Break."},
+  {type:"order",q:"Build the sentence. Tap the words in order.",items:["Science","is","after","Break","on Wednesday."],e:"Science is after Break on Wednesday."}
+ ]}
+];
+
+var $=function(id){return document.getElementById(id);};
+var flat=[];ROUNDS.forEach(function(r,ri){r.qs.forEach(function(q){q.r=ri;flat.push(q);});});
+var TOTAL=flat.length, MC_TIME=15, OR_TIME=30;
+var S, timer, tStart, tLimit, locked;
+
+function show(id){["sStart","sGame","sResult"].forEach(function(x){$(x).classList.toggle("on",x===id);});window.scrollTo(0,0);}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+
+/* tiny sound effects */
+var ac;function beep(f,d,t){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.type=t||"square";o.frequency.value=f;g.gain.value=.05;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d);}catch(e){}}
+function sfx(ok){if(ok){beep(660,.1);setTimeout(function(){beep(880,.15);},100);}else{beep(200,.25,"sawtooth");}}
+
+function start(){
+  S={i:0,score:0,streak:0,best:0,ok:0,times:[],rr:ROUNDS.map(function(){return{ok:0,n:0};}),wrong:[],max:0};
+  show("sGame");nextQ();
+}
+function nextQ(){
+  if(S.i>=TOTAL){return finish();}
+  var q=flat[S.i];locked=false;
+  $("hudQ").textContent=(S.i+1)+" / "+TOTAL;
+  $("hudStreak").textContent="🔥 "+S.streak;
+  $("hudScore").textContent=S.score;
+  $("roundTag").textContent=ROUNDS[q.r].name;
+  $("fb").className="fb";$("nextWrap").style.display="none";
+  $("btnNext").textContent=S.i===TOTAL-1?"See my score":"Next";
+  var h="";
+  if(q.board){h+='<div class="board"><h3>'+q.board[0]+'</h3><table>'+q.board[1].map(function(r){return"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>";}).join("")+"</table></div>";}
+  if(q.em){h+='<div class="big-emoji">'+q.em+"</div>";}
+  h+='<p class="q">'+esc(q.q)+"</p>";
+  if(q.type==="order"){
+    h+='<div class="slots" id="slots"><span class="hint">Your answer goes here</span></div><div class="bank" id="bank"></div>';
+    $("qArea").innerHTML=h;buildOrder(q);noTimer();
+  }else{
+    h+='<div class="opts" id="opts"></div>';
+    $("qArea").innerHTML=h;
+    var idx=shuffle(q.o.map(function(_,k){return k;}));
+    idx.forEach(function(k){var b=document.createElement("button");b.className="opt";b.textContent=q.o[k];b.onclick=function(){answerMC(q,k,b);};$("opts").appendChild(b);});
+    startTimer(MC_TIME);
+  }
+}
+function noTimer(){clearInterval(timer);tLimit=Infinity;tStart=Date.now();$("fuse").style.visibility="hidden";}
+function startTimer(sec){
+  $("fuse").style.visibility="visible";
+  clearInterval(timer);tLimit=sec*1000;tStart=Date.now();
+  var bar=$("fuseBar"),f=$("fuse");f.classList.remove("low");bar.style.transform="scaleX(1)";
+  timer=setInterval(function(){
+    var left=Math.max(0,tLimit-(Date.now()-tStart)),p=left/tLimit;
+    bar.style.transform="scaleX("+p+")";f.classList.toggle("low",p<.3);
+    if(left<=0){clearInterval(timer);if(!locked){timeUp();}}
+  },60);
+}
+function elapsed(){return Date.now()-tStart;}
+function points(frac){ // frac: 0..1 of time left
+  var base=100,bonus=Math.round(50*frac),combo=Math.min(S.streak,5)*10;
+  return base+bonus+combo;
+}
+function award(q,okAll,pts,partial){
+  clearInterval(timer);locked=true;
+  var r=S.rr[q.r];r.n++;
+  S.max+=200;
+  S.times.push(Math.min(elapsed(),tLimit)/1000);
+  if(okAll){S.ok++;r.ok++;S.streak++;S.best=Math.max(S.best,S.streak);S.score+=pts;sfx(true);}
+  else{S.streak=0;if(partial)S.score+=partial;S.wrong.push(q);sfx(false);}
+  $("hudScore").textContent=S.score;$("hudStreak").textContent="🔥 "+S.streak;
+  var c=$("combo");if(okAll&&S.streak>=2){c.textContent="COMBO x"+S.streak+"!";c.classList.add("show");}else{c.classList.remove("show");}
+  var fb=$("fb");
+  fb.className="fb "+(okAll?"good":"bad");
+  fb.innerHTML="<b>"+(okAll?"+"+pts+" points!":(partial?"Almost! +"+partial+" points":"Not this time"))+"</b>"+esc(q.e);
+  $("nextWrap").style.display="block";$("btnNext").focus();
+}
+function answerMC(q,k,btn){
+  if(locked)return;
+  var ok=k===q.a,frac=Math.max(0,1-elapsed()/tLimit);
+  Array.prototype.forEach.call($("opts").children,function(b){b.disabled=true;});
+  btn.classList.add(ok?"right":"wrong");
+  if(!ok){Array.prototype.forEach.call($("opts").children,function(b){if(b.textContent===q.o[q.a])b.classList.add("right");});}
+  award(q,ok,points(frac),0);
+}
+function timeUp(){
+  var q=flat[S.i];
+  if(q.type==="order"){award(q,false,0,0);}
+  else{
+    Array.prototype.forEach.call($("opts").children,function(b){b.disabled=true;if(b.textContent===q.o[q.a])b.classList.add("right");});
+    award(q,false,0,0);
+  }
+  $("fb").firstChild.textContent="Time’s up!";
+}
+function buildOrder(q){
+  var placed=0,mistakes=0,tiles=shuffle(q.items.map(function(t,k){return{t:t,k:k};}));
+  var slots=$("slots"),bank=$("bank");
+  tiles.forEach(function(it){
+    var b=document.createElement("button");b.className="tile";b.textContent=it.t;
+    b.onclick=function(){
+      if(locked)return;
+      if(it.k===placed){
+        if(placed===0)slots.innerHTML="";
+        var s=document.createElement("span");s.className="tile placed";s.textContent=it.t;slots.appendChild(s);
+        b.remove();placed++;beep(520+placed*60,.07);
+        if(placed===q.items.length){
+          var frac=Math.max(0,1-elapsed()/tLimit);
+          if(mistakes===0){award(q,true,points(frac)+0,0);}
+          else{award(q,false,0,Math.max(30,100-mistakes*25));}
+        }
+      }else{
+        mistakes++;b.classList.add("shake");beep(180,.12,"sawtooth");
+        setTimeout(function(){b.classList.remove("shake");},320);
+      }
+    };
+    bank.appendChild(b);
+  });
+}
+
+function finish(){
+  clearInterval(timer);show("sResult");
+  var pct=S.max?S.score/S.max:0,acc=Math.round(S.ok/TOTAL*100);
+  var rank,stars;
+  if(pct>=.8){rank="Timetable Legend";stars=3;}
+  else if(pct>=.55){rank="Bell Ringer";stars=2;}
+  else if(pct>=.3){rank="Class Helper";stars=1;}
+  else{rank="Warm-up Student";stars=0;}
+  if(acc===100)stars=3;
+  var el=$("rScore"),n=0,step=Math.max(1,Math.round(S.score/40)),iv=setInterval(function(){n=Math.min(S.score,n+step);el.textContent=n;if(n>=S.score)clearInterval(iv);},25);
+  $("rRank").textContent=rank;
+  $("rStars").innerHTML=[0,1,2].map(function(k){return'<span class="'+(k<stars?"lit":"")+'" style="animation-delay:'+(k*.25+.3)+'s">⭐</span>';}).join("");
+  $("rAcc").textContent=acc+"%";$("rStreak").textContent=S.best;
+  var avg=S.times.reduce(function(a,b){return a+b;},0)/Math.max(1,S.times.length);$("rTime").textContent=avg.toFixed(1)+"s";
+  $("rRounds").innerHTML=ROUNDS.map(function(r,i){return'<div class="rrow"><span>'+esc(r.name)+"</span><span>"+S.rr[i].ok+" / "+S.rr[i].n+"</span></div>";}).join("");
+  $("rReview").innerHTML=S.wrong.length?"<h3>Review these</h3>"+S.wrong.map(function(q){return"<div>"+esc(q.e)+"</div>";}).join(""):"<h3>Perfect run! No mistakes to review. 🎉</h3>";
+  var best=0;try{best=parseInt(localStorage.getItem("bellrush-best")||"0",10)||0;}catch(e){}
+  if(S.score>best){best=S.score;try{localStorage.setItem("bellrush-best",String(best));}catch(e){}$("rBest").textContent="New best score on this device! 🏅";}
+  else{$("rBest").textContent="Best score on this device: "+best;}
+}
+
+$("btnStart").onclick=start;
+$("btnAgain").onclick=start;
+$("btnNext").onclick=function(){S.i++;nextQ();};
+(function(){var b=0;try{b=parseInt(localStorage.getItem("bellrush-best")||"0",10)||0;}catch(e){}if(b)$("bestLine").textContent="Your best score: "+b;})();
+})();
+</script>
+</body>
+</html>
